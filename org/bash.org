@@ -1,0 +1,184 @@
+#+TITLE: Bash
+#+AUTHOR: Shaka
+#+EMAIL: shaka.xi919@gmail.com
+#+OPTIONS: toc:1
+
+* Running ways
+- Make the shell script executable :: The script should begin with the shebang (e.g. =#!/bin/bash=).
+- Treat the shell script as the argument of =sh= :: In this case, the shebang is not necessary.
+* Print
+** =echo=
+- By default, a line break is appended every time it is invoked.
+- The default line break can be avoided by option =-n=.
+** =printf=
+- Syntax
+#+begin_src shell
+printf "format_list" content/variable_list
+#+end_src
+- Format
+  - =%s=
+    - =%3s= :: 3-character wide and right alignment.
+    - =%-3s= :: 3-character wide and left alignment.
+  - =%c=
+  - =\n= :: Line break.
+  - =%f=
+    - =%5.2f= :: 5-character wide with 2 of them for decimal portion, right alignment.
+    - =%-5.2f= :: 5-character wide with 2 of them for decimal portion, left alignment.
+* Variable
+In Bash, every variable is a string.
+** Plain variable
+- Assignment
+#+begin_src shell
+var_name=var_value
+#+end_src
+** Environment variable
+- List
+#+begin_src shell
+cat /proc/$PID/environ
+#+end_src
+where =$PID= is an integer and can be obtained by =pgrep=, e.g.
+#+begin_src shell
+pgrep emacs
+#+end_src
+- Assignment
+#+begin_src shell
+env_var_name=value
+export env_var_name
+...
+export env_var_name=value;
+#+end_src
+- =$SHELL= or =$0=
+- =$UID=
+- =$?=
+  - The exit state of last command
+    - 0 :: successfully executed.
+    - Others :: failure.
+- Get the length of variable's value (string)
+#+begin_src shell
+${#var_name}
+#+end_src
+** Mathematical operation, e.g. =let=
+- =$= in front of variable name is not needed.
+#+begin_src shell
+let var=var1+var2
+...
+let var++
+let var+=1
+let var=var+1
+...
+let var--
+let var-=1
+let var=var-1
+#+end_src
+* Array
+#+begin_src shell
+array_var=(0, 1, 2, 3, 6)
+...
+echo #{array_var[0]}
+#+end_src
+* Alias
+#+begin_src shell
+alias new_command='command sequence'
+...
+new_command
+#+end_src
+* Function
+#+begin_src shell
+function func_name()
+{
+statements
+}
+...
+func_name()
+{
+statements
+}
+...
+func_name arg_list
+#+end_src
+- =$0=: script name.
+- =$n=: the =n=-th argument, n=1, 2, ...
+- =$@=: "$1" "$2" "$3"
+- =$*=: "$1c$2c$3", where =c= is the 1st character of /IFS/.
+* Test & comparison
+- Arithmetic
+#+begin_src shell
+[ $var -eq 0 ]
+[ $var -ne 0 ]
+[ $var -gt 0 ]
+[ $var -ge 0 ]
+[ $var -lt 0 ]
+[ $var -le 0 ]
+[ $var1 -ne 0 -a $var2 -lt 1 ]
+[ $var1 -ne 0 -o $var2 -lt 1 ]
+#+end_src
+- File system
+#+begin_src shell
+[ -f $var ] # is $var a file?
+[ -d $var ] # is $var a directory?
+[ -x $var ] # is $var executable?
+[ -e $var ] # does $var exist?
+[ -w $var ] # is $var writable?
+[ -r $var ] # is $var readable?
+[ -L $var ] # is $var a symbolic link?
+[ -b $var ] # is $var a block device?
+[ -c $var ] # is $var a character device?
+#+end_src
+- String
+#+begin_src shell
+[[ -z $str ]] # is $str an empty string?
+[[ -n $str ]] # is $str a non-empty string?
+[[ $str1==$str2 ]]
+[[ $str1!=$str2 ]]
+[[ $str1>$str2 ]]
+[[ $str1<$str2 ]]
+[[ -n $str1 ]] && [[ -z $str2 ]]
+[[ -n $str1 ]] || [[ -z $str2 ]]
+#+end_src
+* Judgement
+#+begin_src shell
+if condition; then
+commands
+fi
+...
+[ condition ] && command
+...
+[ condition ] || command
+...
+if condition; then
+commands1
+else
+commands2
+fi
+...
+if condition1; then
+commands1
+elif condition2; then
+commands2
+else
+commands3
+fi
+#+end_src
+* Iteration
+#+begin_src shell
+for var in list;
+do
+commands # use $var
+done
+...
+while condition
+do
+commands # use $var
+done
+...
+until condition
+do
+commands # use $var
+done
+#+end_src
+* Miscellaneous
+- Commands are seperated by semicolon (;) or line break.
+- /File descriptor/ is an abstract pointer for file access.
+- Internal field separator (IFS)
+  - =$IFS= is the environment variable to store IFS.
+  - Default values: space, table, line break.

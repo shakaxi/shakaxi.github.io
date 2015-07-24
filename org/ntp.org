@@ -1,0 +1,31 @@
+#+TITLE: NTP
+#+AUTHOR: Shaka
+#+EMAIL: shaka.xi919@gmail.com
+#+OPTIONS: toc:1
+
+Network time protocol (NTP) is a very convenient service which can provide network time synchronized automatically and periodically. This document briefly describes the installation and configuration of NTP on Linux OS.
+* Installation[fn:1]
+#+BEGIN_SRC sh
+sudo pacman -S ntp
+#+END_SRC
+* Configuration
+** Prepend following line(s) to =/etc/ntp.conf=.
+- As server
+#+BEGIN_SRC sh
+server 127.127.1.1
+fudge 127.127.1.1 stratum 12
+#+END_SRC
+- As client
+#+BEGIN_SRC sh
+server IP_ADDRESS
+#+END_SRC
+** Start and enable the service
+#+BEGIN_SRC sh
+systemctl enable ntpd.service
+systemctl start ntpd.service
+#+END_SRC
+
+* Footnotes
+
+[fn:1] Without loss of generality, we take Arch Linux for instance here.
+

@@ -1,0 +1,40 @@
+#+TITLE: NFS
+#+AUTHOR: Wei Xi
+#+EMAIL: shaka@189.cn
+#+OPTIONS: ^:nil
+
+* Installation
+#+BEGIN_SRC bash
+sudo pacman -S nfs-utils
+#+END_SRC
+* Configuration
+** Server
+Edit =/etc/exports=, e.g.
+#+BEGIN_SRC bash
+# /etc/exports - exports(5) - directories exported to NFS clients
+#
+# Example for NFSv2 and NFSv3:
+#  /srv/home        hostname1(rw,sync) hostname2(ro,sync)
+# Example for NFSv4:
+#  /srv/nfs4	    hostname1(rw,sync,fsid=0)
+#  /srv/nfs4/home   hostname1(rw,sync,nohide)
+# Using Kerberos and integrity checking:
+#  /srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)
+#  /srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)
+#
+# Use `exportfs -arv` to reload.
+
+/home 192.168.2.0/24(rw,async,subtree_check,no_root_squash)
+/opt 192.168.2.0/24(ro,async,subtree_check,no_root_squash)
+#+END_SRC
+And then enable and start the service.
+#+BEGIN_SRC bash
+systemctl enable nfs-server.service
+systemctl start nfs-server.service
+#+END_SRC
+** Client
+Add the corresponding entries in =/etc/fstab=, e.g.
+#+BEGIN_SRC bash
+head:/opt               /opt            nfs4            ro,_netdev,soft,async           0 0
+head:/home            /home           nfs4             rw,_netdev,soft,async            0 0
+#+END_SRC

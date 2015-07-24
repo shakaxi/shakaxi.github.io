@@ -1,0 +1,117 @@
+#+TITLE: Drawing with PGF/Tikz
+#+AUTHOR: Shaka
+#+EMAIL: shaka.xi919@gmail.com
+#+OPTIONS: toc:1
+
+* Setting
+#+begin_src latex
+\usepackage{tikz}
+#+end_src
+#+begin_src latex
+\tikz ...
+#+end_src
+#+begin_src latex
+\begin{tikzpicture}
+...
+\end{tikzpicture}
+#+end_src
+* Style
+#+begin_src latex
+\tikzstyle /newstylename/=[option1=value1, option2=value2, ...]
+\tikzstyle /existingstylename/+=[option1=value1, option2=value2, ...]
+#+end_src
+* Coordinate
+- (x0, y0)
+- (angle, radius)
+* List
+#+begin_src latex
+% step length = 1
+{a, ..., b}
+
+% step length = d
+{a, a + d, ..., b}
+#+end_src
+* Arrow
+- -
+- ->
+- <-
+- <->
+- ->>
+* Draw
+** Line
+#+begin_src shell
+\draw (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
+#+end_src
+** Curve
+#+begin_src latex
+\draw (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
+\draw (x1, y1) .. controls (x2, y2) .. (x3, y3);
+#+end_src
+** Grid
+#+begin_src latex
+\draw [step=s] (x1, y1) grid (x2, y2);
+\draw [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
+#+end_src
+** Arc
+#+begin_src latex
+\draw (x1, y1) arc (start_angle: end_angle: radius);
+#+end_src
+** Rectangle
+#+begin_src latex
+\draw (x1, y1) rectangle (x2, y2);
+\fill [color] (x1, y1) rectangle (x2, y2);
+\filldraw [fill=color1, draw=color2] (x1, y1) rectangle (x2, y2);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) rectangle (x2, y2);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) rectangle (x2, y2);
+\clip (x1, y1) rectangle (x2, y2);
+#+end_src
+** Circle
+#+begin_src latex
+\draw (x1, y1) circle (radius);
+\fill [color] (x1, y1) circle (radius);
+\filldraw [fill=color1, draw=color2] (x1, y1) circle (radius);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) circle (radius);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) circle (radius);
+\clip (x1, y1) circle (radius);
+#+end_src
+** Ellipse
+#+begin_src latex
+\draw (x1, y1) ellipse (x_radius and y_radius);
+\fill [color] (x1, y1) ellipse (x_radius and y_radius);
+\filldraw [fill=color1, draw=color2] (x1, y1) ellipse (x_radius and y_radius);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) ellipse (x_radius and y_radius);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) ellipse (x_radius and y_radius);
+\clip (x1, y1) ellipse (x_radius and y_radius);
+#+end_src
+** Node
+#+begin_src latex
+(x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
+
+\node at (x0, y0) (node_name) {node_label};
+#+end_src
+*** Connecting nodes with
+- Lines
+#+begin_src latex
+\draw [arrow] (node_name_A) to (node_name_B);
+\draw (node_name_A) edge [arrow, color] (node_name_B);
+#+end_src
+- Curves
+#+begin_src latex
+\draw [arrow] (node_name_A) to [bend left/right=30] (node_name_B);
+\draw [arrow] (node_name_A) to [in=30, out=60] (node_name_B);
+\draw (node_name_A) edge [arrow, color, in=30, out=60] (node_name_B);
+\draw (node_name_A) edge [arrow, color, bend left/right=30] (node_name_B);
+#+end_src
+* Refer to nodes outside current picture
+#+begin_src latex
+\tikzstyle{every picture}+=[remember picture]
+...
+\tikz[overlay]
+\begin{tikzpicture}[overlay]
+...
+\end{tikzpicture}
+#+end_src
+* Mix tikz command with LaTeX
+#+begin_src latex
+\tikz [baseline] ...
+#+end_src
