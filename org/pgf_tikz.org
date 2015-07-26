@@ -1,6 +1,4 @@
 #+TITLE: Drawing with PGF/Tikz
-#+AUTHOR: Shaka
-#+EMAIL: shaka.xi919@gmail.com
 #+OPTIONS: toc:1
 
 * Setting
@@ -39,7 +37,7 @@
 - ->>
 * Draw
 ** Line
-#+begin_src shell
+#+begin_src sh
 \draw (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
 #+end_src
 ** Curve

@@ -3,23 +3,23 @@
 #+OPTIONS: ^:nil
 
 * 安装openssh
-#+begin_src shell
+#+BEGIN_SRC sh
 pacman -S openssh
-#+end_src
+#+END_SRC
 * 为了避免每次登录都需要输入密码，可以采用非对称加密传输
 - 在客户端产生密钥对
-#+begin_src shell
+#+BEGIN_SRC sh
 ssh-keygen -t rsa（或者ssh-keygen -t dsa）
-#+end_src
+#+END_SRC
 - 将公钥拷贝到服务器端
-#+begin_src shell
+#+BEGIN_SRC sh
 scp ~/.ssh/id_rsa.pub USERNAME@SERVER:~/.ssh/authorized_keys（或者ssh-copy-id -i ~/.ssh/id_rsa.pub USERNAME@SERVER）
-#+end_src
+#+END_SRC
 * 为了通过ssh运行带有GUI的程序，需要使用X11 Forwarding
 - 在服务器上安装xorg-xauth
-#+begin_src shell
+#+BEGIN_SRC sh
 pacman -S xorg-xauth
-#+end_src
+#+END_SRC
 - 配置服务器端
 在/etc/ssh/sshd_config中添加X11Forwarding yes
 - 配置客户端

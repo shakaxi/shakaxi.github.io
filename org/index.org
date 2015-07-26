@@ -1,0 +1,8 @@
+#+TITLE: Index
+
+   + [[file:bash.org][Bash]]
+   + [[file:pgf_tikz.org][Drawing with PGF/Tikz]]
+   + [[file:nfs.org][NFS]]
+   + [[file:ntp.org][NTP]]
+   + [[file:ssh.org][SSH]]
+   + [[file:switch.org][关于switch语句]]
