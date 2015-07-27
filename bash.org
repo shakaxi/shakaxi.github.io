@@ -9,54 +9,55 @@
 - The default line break can be avoided by option =-n=.
 ** =printf=
 - Syntax
-#+begin_src sh
+#+BEGIN_SRC sh
 printf "format_list" content/variable_list
-#+end_src
+#+END_SRC
 - Format
-  - =%s=
+  + =%s=
     - =%3s= :: 3-character wide and right alignment.
     - =%-3s= :: 3-character wide and left alignment.
-  - =%c=
-  - =\n= :: Line break.
-  - =%f=
+  + =%c=
+  + =\n= :: Line break.
+  + =%f=
     - =%5.2f= :: 5-character wide with 2 of them for decimal portion, right alignment.
     - =%-5.2f= :: 5-character wide with 2 of them for decimal portion, left alignment.
 * Variable
 In Bash, every variable is a string.
 ** Plain variable
-- Assignment
-#+begin_src sh
+Assignment
+#+BEGIN_SRC sh
 var_name=var_value
-#+end_src
+#+END_SRC
 ** Environment variable
-- List
-#+begin_src sh
+*** List
+#+BEGIN_SRC sh
 cat /proc/$PID/environ
-#+end_src
+#+END_SRC
 where =$PID= is an integer and can be obtained by =pgrep=, e.g.
-#+begin_src sh
+#+BEGIN_SRC sh
 pgrep emacs
-#+end_src
-- Assignment
-#+begin_src sh
+#+END_SRC
+*** Assignment
+#+BEGIN_SRC sh
 env_var_name=value
 export env_var_name
 ...
-export env_var_name=value;
-#+end_src
+export env_var_name=value
+#+END_SRC
 - =$SHELL= or =$0=
 - =$UID=
 - =$?=
-  - The exit state of last command
-    - 0 :: successfully executed.
-    - Others :: failure.
-- Get the length of variable's value (string)
-#+begin_src sh
+| =$?=   | The exit state of last command |
+|--------+--------------------------------|
+| 0      | successfully executed          |
+| Others | failure                        |
+*** Get the length of variable's value (string)
+#+BEGIN_SRC sh
 ${#var_name}
-#+end_src
-** Mathematical operation, e.g. =let=
-- =$= in front of variable name is not needed.
-#+begin_src sh
+#+END_SRC
+** Mathematical operation (e.g. =let=)
+=$= in front of variable name is not needed.
+#+BEGIN_SRC sh
 let var=var1+var2
 ...
 let var++
@@ -66,21 +67,21 @@ let var=var+1
 let var--
 let var-=1
 let var=var-1
-#+end_src
+#+END_SRC
 * Array
-#+begin_src sh
+#+BEGIN_SRC sh
 array_var=(0, 1, 2, 3, 6)
 ...
 echo #{array_var[0]}
-#+end_src
+#+END_SRC
 * Alias
-#+begin_src sh
+#+BEGIN_SRC sh
 alias new_command='command sequence'
 ...
 new_command
-#+end_src
+#+END_SRC
 * Function
-#+begin_src sh
+#+BEGIN_SRC sh
 function func_name()
 {
 statements
@@ -92,14 +93,14 @@ statements
 }
 ...
 func_name arg_list
-#+end_src
+#+END_SRC
 - =$0=: script name.
 - =$n=: the =n=-th argument, n=1, 2, ...
 - =$@=: "$1" "$2" "$3"
 - =$*=: "$1c$2c$3", where =c= is the 1st character of /IFS/.
 * Test & comparison
-- Arithmetic
-#+begin_src sh
+** Arithmetic
+#+BEGIN_SRC sh
 [ $var -eq 0 ]
 [ $var -ne 0 ]
 [ $var -gt 0 ]
@@ -108,9 +109,9 @@ func_name arg_list
 [ $var -le 0 ]
 [ $var1 -ne 0 -a $var2 -lt 1 ]
 [ $var1 -ne 0 -o $var2 -lt 1 ]
-#+end_src
-- File system
-#+begin_src sh
+#+END_SRC
+** File system
+#+BEGIN_SRC sh
 [ -f $var ] # is $var a file?
 [ -d $var ] # is $var a directory?
 [ -x $var ] # is $var executable?
@@ -120,9 +121,9 @@ func_name arg_list
 [ -L $var ] # is $var a symbolic link?
 [ -b $var ] # is $var a block device?
 [ -c $var ] # is $var a character device?
-#+end_src
-- String
-#+begin_src sh
+#+END_SRC
+** String
+#+BEGIN_SRC sh
 [[ -z $str ]] # is $str an empty string?
 [[ -n $str ]] # is $str a non-empty string?
 [[ $str1==$str2 ]]
@@ -131,9 +132,9 @@ func_name arg_list
 [[ $str1<$str2 ]]
 [[ -n $str1 ]] && [[ -z $str2 ]]
 [[ -n $str1 ]] || [[ -z $str2 ]]
-#+end_src
+#+END_SRC
 * Judgement
-#+begin_src sh
+#+BEGIN_SRC sh
 if condition; then
 commands
 fi
@@ -155,9 +156,9 @@ commands2
 else
 commands3
 fi
-#+end_src
+#+END_SRC
 * Iteration
-#+begin_src sh
+#+BEGIN_SRC sh
 for var in list;
 do
 commands # use $var
@@ -172,10 +173,10 @@ until condition
 do
 commands # use $var
 done
-#+end_src
+#+END_SRC
 * Miscellaneous
 - Commands are seperated by semicolon (;) or line break.
 - /File descriptor/ is an abstract pointer for file access.
 - Internal field separator (IFS)
-  - =$IFS= is the environment variable to store IFS.
-  - Default values: space, table, line break.
+  + =$IFS= is the environment variable to store IFS.
+  + Default values: space, table, line break.

@@ -1,5 +1,4 @@
-#+TITLE: NFS
-#+OPTIONS: ^:nil
+#+TITLE: Network File System (NFS)
 
 * Installation
 #+BEGIN_SRC sh
