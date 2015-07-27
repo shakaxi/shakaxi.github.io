@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Drawing with PGF/Tikz</title>
-<!-- 2015-07-27 Mon 00:56 -->
+<!-- 2015-07-27 Mon 22:40 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -148,7 +148,22 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3">Coordinate</a></li>
 <li><a href="#sec-4">List</a></li>
 <li><a href="#sec-5">Arrow</a></li>
-<li><a href="#sec-6">Draw</a></li>
+<li><a href="#sec-6">Draw</a>
+<ul>
+<li><a href="#sec-6-1">Line</a></li>
+<li><a href="#sec-6-2">Curve</a></li>
+<li><a href="#sec-6-3">Grid</a></li>
+<li><a href="#sec-6-4">Arc</a></li>
+<li><a href="#sec-6-5">Rectangle</a></li>
+<li><a href="#sec-6-6">Circle</a></li>
+<li><a href="#sec-6-7">Ellipse</a></li>
+<li><a href="#sec-6-8">Node</a>
+<ul>
+<li><a href="#sec-6-8-1">Connecting nodes with</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#sec-7">Refer to nodes outside current picture</a></li>
 <li><a href="#sec-8">Mix tikz command with LaTeX</a></li>
 </ul>
@@ -160,19 +175,12 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #00ffff; font-weight: bold;">\usepackage</span>{<span style="color: #0000ff; font-weight: bold;">tikz</span>}
-</pre>
-</div>
-<div class="org-src-container">
-
-<pre class="src src-latex"><span style="color: #696969;">\tikz</span> ...
-</pre>
-</div>
-<div class="org-src-container">
-
-<pre class="src src-latex"><span style="color: #00ffff; font-weight: bold;">\begin</span>{<span style="color: #0000ff; font-weight: bold;">tikzpicture</span>}
+<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
 ...
-<span style="color: #00ffff; font-weight: bold;">\end</span>{<span style="color: #0000ff; font-weight: bold;">tikzpicture</span>}
+<span style="color: #696969;">\tikz</span> ...
+<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}
+...
+<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
 </pre>
 </div>
 </div>
@@ -204,10 +212,10 @@ for the JavaScript code in this tag.
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #ff0000;">% </span><span style="color: #ff0000;">step length = 1</span>
+<pre class="src src-latex"><span style="color: #b22222;">% </span><span style="color: #b22222;">step length = 1</span>
 {a, ..., b}
-
-<span style="color: #ff0000;">% </span><span style="color: #ff0000;">step length = d</span>
+...
+<span style="color: #b22222;">% </span><span style="color: #b22222;">step length = d</span>
 {a, a + d, ..., b}
 </pre>
 </div>
@@ -238,7 +246,7 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">\draw (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
 </pre>
 </div>
 </div>
@@ -326,7 +334,7 @@ for the JavaScript code in this tag.
 <div class="org-src-container">
 
 <pre class="src src-latex">(x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
-
+...
 <span style="color: #696969;">\node</span> at (x0, y0) (node_name) {node_label};
 </pre>
 </div>
@@ -368,9 +376,9 @@ for the JavaScript code in this tag.
 <pre class="src src-latex"><span style="color: #696969;">\tikzstyle</span>{every picture}+=[remember picture]
 ...
 <span style="color: #696969;">\tikz</span>[overlay]
-<span style="color: #00ffff; font-weight: bold;">\begin</span>{<span style="color: #0000ff; font-weight: bold;">tikzpicture</span>}[overlay]
+<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}[overlay]
 ...
-<span style="color: #00ffff; font-weight: bold;">\end</span>{<span style="color: #0000ff; font-weight: bold;">tikzpicture</span>}
+<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
 </pre>
 </div>
 </div>
@@ -388,7 +396,7 @@ for the JavaScript code in this tag.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-27 Mon 00:56</p>
+<p class="date">Created: 2015-07-27 Mon 22:40</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

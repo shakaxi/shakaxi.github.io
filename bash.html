@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Bash</title>
-<!-- 2015-07-27 Mon 00:56 -->
+<!-- 2015-07-27 Mon 22:40 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -153,14 +153,26 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3">Variable</a>
 <ul>
 <li><a href="#sec-3-1">Plain variable</a></li>
-<li><a href="#sec-3-2">Environment variable</a></li>
-<li><a href="#sec-3-3">Mathematical operation, e.g. <code>let</code></a></li>
+<li><a href="#sec-3-2">Environment variable</a>
+<ul>
+<li><a href="#sec-3-2-1">List</a></li>
+<li><a href="#sec-3-2-2">Assignment</a></li>
+<li><a href="#sec-3-2-3">Get the length of variable's value (string)</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">Mathematical operation (e.g. <code>let</code>)</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">Array</a></li>
 <li><a href="#sec-5">Alias</a></li>
 <li><a href="#sec-6">Function</a></li>
-<li><a href="#sec-7">Test &amp; comparison</a></li>
+<li><a href="#sec-7">Test &amp; comparison</a>
+<ul>
+<li><a href="#sec-7-1">Arithmetic</a></li>
+<li><a href="#sec-7-2">File system</a></li>
+<li><a href="#sec-7-3">String</a></li>
+</ul>
+</li>
 <li><a href="#sec-8">Judgement</a></li>
 <li><a href="#sec-9">Iteration</a></li>
 <li><a href="#sec-10">Miscellaneous</a></li>
@@ -202,7 +214,7 @@ for the JavaScript code in this tag.
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #0000ff; font-weight: bold;">printf</span> <span style="color: #00ff00;">"format_list"</span> content/variable_list
+<pre class="src src-sh"><span style="color: #483d8b;">printf</span> <span style="color: #8b2252;">"format_list"</span> content/variable_list
 </pre>
 </div>
 <ul class="org-ul">
@@ -244,13 +256,12 @@ In Bash, every variable is a string.
 <div id="outline-container-sec-3-1" class="outline-3">
 <h3 id="sec-3-1">Plain variable</h3>
 <div class="outline-text-3" id="text-3-1">
-<ul class="org-ul">
-<li>Assignment
-</li>
-</ul>
+<p>
+Assignment
+</p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ffff00;">var_name</span>=var_value
+<pre class="src src-sh"><span style="color: #a0522d;">var_name</span>=var_value
 </pre>
 </div>
 </div>
@@ -258,13 +269,12 @@ In Bash, every variable is a string.
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">Environment variable</h3>
 <div class="outline-text-3" id="text-3-2">
-<ul class="org-ul">
-<li>List
-</li>
-</ul>
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1">List</h4>
+<div class="outline-text-4" id="text-3-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">cat /proc/$<span style="color: #ffff00;">PID</span>/environ
+<pre class="src src-sh">cat /proc/$<span style="color: #a0522d;">PID</span>/environ
 </pre>
 </div>
 <p>
@@ -275,16 +285,17 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 <pre class="src src-sh">pgrep emacs
 </pre>
 </div>
-<ul class="org-ul">
-<li>Assignment
-</li>
-</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2">Assignment</h4>
+<div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ffff00;">env_var_name</span>=value
-<span style="color: #0000ff; font-weight: bold;">export</span> env_var_name
+<pre class="src src-sh"><span style="color: #a0522d;">env_var_name</span>=value
+<span style="color: #483d8b;">export</span> env_var_name
 ...
-<span style="color: #0000ff; font-weight: bold;">export</span> <span style="color: #ffff00;">env_var_name</span>=value;
+<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">env_var_name</span>=value
 </pre>
 </div>
 <ul class="org-ul">
@@ -293,45 +304,64 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 <li><code>$UID</code>
 </li>
 <li><code>$?</code>
-<ul class="org-ul">
-<li>The exit state of last command
-<dl class="org-dl">
-<dt> 0 </dt><dd>successfully executed.
-</dd>
-<dt> Others </dt><dd>failure.
-</dd>
-</dl>
 </li>
 </ul>
-</li>
-<li>Get the length of variable's value (string)
-</li>
-</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left"><code>$?</code></th>
+<th scope="col" class="left">The exit state of last command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">0</td>
+<td class="left">successfully executed</td>
+</tr>
+
+<tr>
+<td class="left">Others</td>
+<td class="left">failure</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3">Get the length of variable's value (string)</h4>
+<div class="outline-text-4" id="text-3-2-3">
 <div class="org-src-container">
 
-<pre class="src src-sh">${#<span style="color: #ffff00;">var_name</span>}
+<pre class="src src-sh">${#<span style="color: #a0522d;">var_name</span>}
 </pre>
 </div>
 </div>
 </div>
+</div>
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">Mathematical operation, e.g. <code>let</code></h3>
+<h3 id="sec-3-3">Mathematical operation (e.g. <code>let</code>)</h3>
 <div class="outline-text-3" id="text-3-3">
-<ul class="org-ul">
-<li><code>$</code> in front of variable name is not needed.
-</li>
-</ul>
+<p>
+<code>$</code> in front of variable name is not needed.
+</p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #0000ff; font-weight: bold;">let</span> <span style="color: #ffff00;">var</span>=var1+var2
+<pre class="src src-sh"><span style="color: #483d8b;">let</span> <span style="color: #a0522d;">var</span>=var1+var2
 ...
-<span style="color: #0000ff; font-weight: bold;">let</span> var++
-<span style="color: #0000ff; font-weight: bold;">let</span> <span style="color: #ffff00;">var</span>+=1
-<span style="color: #0000ff; font-weight: bold;">let</span> <span style="color: #ffff00;">var</span>=var+1
+<span style="color: #483d8b;">let</span> var++
+<span style="color: #483d8b;">let</span> <span style="color: #a0522d;">var</span>+=1
+<span style="color: #483d8b;">let</span> <span style="color: #a0522d;">var</span>=var+1
 ...
-<span style="color: #0000ff; font-weight: bold;">let</span> var--
-<span style="color: #0000ff; font-weight: bold;">let</span> var-=1
-<span style="color: #0000ff; font-weight: bold;">let</span> <span style="color: #ffff00;">var</span>=var-1
+<span style="color: #483d8b;">let</span> var--
+<span style="color: #483d8b;">let</span> var-=1
+<span style="color: #483d8b;">let</span> <span style="color: #a0522d;">var</span>=var-1
 </pre>
 </div>
 </div>
@@ -342,9 +372,9 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #ffff00;">array_var</span>=(0, 1, 2, 3, 6)
+<pre class="src src-sh"><span style="color: #a0522d;">array_var</span>=(0, 1, 2, 3, 6)
 ...
-<span style="color: #0000ff; font-weight: bold;">echo</span> <span style="color: #ff0000;">#</span><span style="color: #ff0000;">{array_var[0]}</span>
+<span style="color: #483d8b;">echo</span> <span style="color: #b22222;">#</span><span style="color: #b22222;">{array_var[0]}</span>
 </pre>
 </div>
 </div>
@@ -354,7 +384,7 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #0000ff; font-weight: bold;">alias</span> <span style="color: #ffff00;">new_command</span>=<span style="color: #00ff00;">'command sequence'</span>
+<pre class="src src-sh"><span style="color: #483d8b;">alias</span> <span style="color: #a0522d;">new_command</span>=<span style="color: #8b2252;">'command sequence'</span>
 ...
 new_command
 </pre>
@@ -366,12 +396,12 @@ new_command
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #00ffff; font-weight: bold;">function</span> <span style="color: #0000ff; font-weight: bold;">func_name</span>()
+<pre class="src src-sh"><span style="color: #a020f0;">function</span> <span style="color: #0000ff;">func_name</span>()
 {
 statements
 }
 ...
-<span style="color: #0000ff; font-weight: bold;">func_name</span>()
+<span style="color: #0000ff;">func_name</span>()
 {
 statements
 }
@@ -394,54 +424,56 @@ func_name arg_list
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">Test &amp; comparison</h2>
 <div class="outline-text-2" id="text-7">
-<ul class="org-ul">
-<li>Arithmetic
-</li>
-</ul>
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">Arithmetic</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">[ $<span style="color: #ffff00;">var</span> -eq 0 ]
-[ $<span style="color: #ffff00;">var</span> -ne 0 ]
-[ $<span style="color: #ffff00;">var</span> -gt 0 ]
-[ $<span style="color: #ffff00;">var</span> -ge 0 ]
-[ $<span style="color: #ffff00;">var</span> -lt 0 ]
-[ $<span style="color: #ffff00;">var</span> -le 0 ]
-[ $<span style="color: #ffff00;">var1</span> -ne 0 -a $<span style="color: #ffff00;">var2</span> -lt 1 ]
-[ $<span style="color: #ffff00;">var1</span> -ne 0 -o $<span style="color: #ffff00;">var2</span> -lt 1 ]
+<pre class="src src-sh">[ $<span style="color: #a0522d;">var</span> -eq 0 ]
+[ $<span style="color: #a0522d;">var</span> -ne 0 ]
+[ $<span style="color: #a0522d;">var</span> -gt 0 ]
+[ $<span style="color: #a0522d;">var</span> -ge 0 ]
+[ $<span style="color: #a0522d;">var</span> -lt 0 ]
+[ $<span style="color: #a0522d;">var</span> -le 0 ]
+[ $<span style="color: #a0522d;">var1</span> -ne 0 -a $<span style="color: #a0522d;">var2</span> -lt 1 ]
+[ $<span style="color: #a0522d;">var1</span> -ne 0 -o $<span style="color: #a0522d;">var2</span> -lt 1 ]
 </pre>
 </div>
-<ul class="org-ul">
-<li>File system
-</li>
-</ul>
+</div>
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">File system</h3>
+<div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">[ -f $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $var a file?</span>
-[ -d $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $var a directory?</span>
-[ -x $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $var executable?</span>
-[ -e $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">does $var exist?</span>
-[ -w $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $var writable?</span>
-[ -r $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $var readable?</span>
-[ -L $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $var a symbolic link?</span>
-[ -b $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $var a block device?</span>
-[ -c $<span style="color: #ffff00;">var</span> ] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $var a character device?</span>
+<pre class="src src-sh">[ -f $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $var a file?</span>
+[ -d $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $var a directory?</span>
+[ -x $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $var executable?</span>
+[ -e $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">does $var exist?</span>
+[ -w $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $var writable?</span>
+[ -r $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $var readable?</span>
+[ -L $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $var a symbolic link?</span>
+[ -b $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $var a block device?</span>
+[ -c $<span style="color: #a0522d;">var</span> ] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $var a character device?</span>
 </pre>
 </div>
-<ul class="org-ul">
-<li>String
-</li>
-</ul>
+</div>
+</div>
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3">String</h3>
+<div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 
-<pre class="src src-sh">[[ -z $<span style="color: #ffff00;">str</span> ]] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $str an empty string?</span>
-[[ -n $<span style="color: #ffff00;">str</span> ]] <span style="color: #ff0000;"># </span><span style="color: #ff0000;">is $str a non-empty string?</span>
-[[ $<span style="color: #ffff00;">str1</span>==$<span style="color: #ffff00;">str2</span> ]]
-[[ $<span style="color: #ffff00;">str1</span>!=$<span style="color: #ffff00;">str2</span> ]]
-[[ $<span style="color: #ffff00;">str1</span>&gt;$<span style="color: #ffff00;">str2</span> ]]
-[[ $<span style="color: #ffff00;">str1</span>&lt;$<span style="color: #ffff00;">str2</span> ]]
-[[ -n $<span style="color: #ffff00;">str1</span> ]] &amp;&amp; [[ -z $<span style="color: #ffff00;">str2</span> ]]
-[[ -n $<span style="color: #ffff00;">str1</span> ]] || [[ -z $<span style="color: #ffff00;">str2</span> ]]
+<pre class="src src-sh">[[ -z $<span style="color: #a0522d;">str</span> ]] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $str an empty string?</span>
+[[ -n $<span style="color: #a0522d;">str</span> ]] <span style="color: #b22222;"># </span><span style="color: #b22222;">is $str a non-empty string?</span>
+[[ $<span style="color: #a0522d;">str1</span>==$<span style="color: #a0522d;">str2</span> ]]
+[[ $<span style="color: #a0522d;">str1</span>!=$<span style="color: #a0522d;">str2</span> ]]
+[[ $<span style="color: #a0522d;">str1</span>&gt;$<span style="color: #a0522d;">str2</span> ]]
+[[ $<span style="color: #a0522d;">str1</span>&lt;$<span style="color: #a0522d;">str2</span> ]]
+[[ -n $<span style="color: #a0522d;">str1</span> ]] &amp;&amp; [[ -z $<span style="color: #a0522d;">str2</span> ]]
+[[ -n $<span style="color: #a0522d;">str1</span> ]] || [[ -z $<span style="color: #a0522d;">str2</span> ]]
 </pre>
+</div>
 </div>
 </div>
 </div>
@@ -450,27 +482,27 @@ func_name arg_list
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #00ffff; font-weight: bold;">if</span> condition; <span style="color: #00ffff; font-weight: bold;">then</span>
+<pre class="src src-sh"><span style="color: #a020f0;">if</span> condition; <span style="color: #a020f0;">then</span>
 commands
-<span style="color: #00ffff; font-weight: bold;">fi</span>
+<span style="color: #a020f0;">fi</span>
 ...
-[ condition ] &amp;&amp; <span style="color: #0000ff; font-weight: bold;">command</span>
+[ condition ] &amp;&amp; <span style="color: #483d8b;">command</span>
 ...
-[ condition ] || <span style="color: #0000ff; font-weight: bold;">command</span>
+[ condition ] || <span style="color: #483d8b;">command</span>
 ...
-<span style="color: #00ffff; font-weight: bold;">if</span> condition; <span style="color: #00ffff; font-weight: bold;">then</span>
+<span style="color: #a020f0;">if</span> condition; <span style="color: #a020f0;">then</span>
 commands1
-<span style="color: #00ffff; font-weight: bold;">else</span>
+<span style="color: #a020f0;">else</span>
 commands2
-<span style="color: #00ffff; font-weight: bold;">fi</span>
+<span style="color: #a020f0;">fi</span>
 ...
-<span style="color: #00ffff; font-weight: bold;">if</span> condition1; <span style="color: #00ffff; font-weight: bold;">then</span>
+<span style="color: #a020f0;">if</span> condition1; <span style="color: #a020f0;">then</span>
 commands1
-<span style="color: #00ffff; font-weight: bold;">elif</span> condition2; <span style="color: #00ffff; font-weight: bold;">then</span>
+<span style="color: #a020f0;">elif</span> condition2; <span style="color: #a020f0;">then</span>
 commands2
-<span style="color: #00ffff; font-weight: bold;">else</span>
+<span style="color: #a020f0;">else</span>
 commands3
-<span style="color: #00ffff; font-weight: bold;">fi</span>
+<span style="color: #a020f0;">fi</span>
 </pre>
 </div>
 </div>
@@ -480,20 +512,20 @@ commands3
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #00ffff; font-weight: bold;">for</span> var<span style="color: #00ffff; font-weight: bold;"> in</span> list;
-<span style="color: #00ffff; font-weight: bold;">do</span>
-commands <span style="color: #ff0000;"># </span><span style="color: #ff0000;">use $var</span>
-<span style="color: #00ffff; font-weight: bold;">done</span>
+<pre class="src src-sh"><span style="color: #a020f0;">for</span> var<span style="color: #a020f0;"> in</span> list;
+<span style="color: #a020f0;">do</span>
+commands <span style="color: #b22222;"># </span><span style="color: #b22222;">use $var</span>
+<span style="color: #a020f0;">done</span>
 ...
-<span style="color: #00ffff; font-weight: bold;">while</span> condition
-<span style="color: #00ffff; font-weight: bold;">do</span>
-commands <span style="color: #ff0000;"># </span><span style="color: #ff0000;">use $var</span>
-<span style="color: #00ffff; font-weight: bold;">done</span>
+<span style="color: #a020f0;">while</span> condition
+<span style="color: #a020f0;">do</span>
+commands <span style="color: #b22222;"># </span><span style="color: #b22222;">use $var</span>
+<span style="color: #a020f0;">done</span>
 ...
-<span style="color: #00ffff; font-weight: bold;">until</span> condition
-<span style="color: #00ffff; font-weight: bold;">do</span>
-commands <span style="color: #ff0000;"># </span><span style="color: #ff0000;">use $var</span>
-<span style="color: #00ffff; font-weight: bold;">done</span>
+<span style="color: #a020f0;">until</span> condition
+<span style="color: #a020f0;">do</span>
+commands <span style="color: #b22222;"># </span><span style="color: #b22222;">use $var</span>
+<span style="color: #a020f0;">done</span>
 </pre>
 </div>
 </div>
@@ -520,7 +552,7 @@ commands <span style="color: #ff0000;"># </span><span style="color: #ff0000;">us
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-27 Mon 00:56</p>
+<p class="date">Created: 2015-07-27 Mon 22:40</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
