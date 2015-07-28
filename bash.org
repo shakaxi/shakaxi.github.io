@@ -14,13 +14,13 @@ printf "format_list" content/variable_list
 #+END_SRC
 - Format
   + =%s=
-    - =%3s= :: 3-character wide and right alignment.
-    - =%-3s= :: 3-character wide and left alignment.
+    - =%3s=: 3-character wide and right alignment.
+    - =%-3s=: 3-character wide and left alignment.
   + =%c=
-  + =\n= :: Line break.
+  + =\n=: line break.
   + =%f=
-    - =%5.2f= :: 5-character wide with 2 of them for decimal portion, right alignment.
-    - =%-5.2f= :: 5-character wide with 2 of them for decimal portion, left alignment.
+    - =%5.2f=: 5-character wide with 2 of them for decimal portion, right alignment.
+    - =%-5.2f=: 5-character wide with 2 of them for decimal portion, left alignment.
 * Variable
 In Bash, every variable is a string.
 ** Plain variable
@@ -46,11 +46,9 @@ export env_var_name=value
 #+END_SRC
 - =$SHELL= or =$0=
 - =$UID=
-- =$?=
-| =$?=   | The exit state of last command |
-|--------+--------------------------------|
-| 0      | successfully executed          |
-| Others | failure                        |
+- =$?= indicates the exit state of last command.
+  + *0* means successfully executed
+  + *Others* mean failure
 *** Get the length of variable's value (string)
 #+BEGIN_SRC sh
 ${#var_name}

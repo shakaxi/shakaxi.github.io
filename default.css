@@ -1,19 +1,21 @@
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono|Droid+Serif);
+/*@import url(http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono|Droid+Serif);*/
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
 @media all
 {
     html {
 	margin: 0;
-	font: 300 .9em/1.6em "Droid Serif", Cambria, Georgia, "DejaVu Serif", serif;
-	background-image: url(http://orgmode.org/img/org-mode-unicorn-logo-worg.png);
+	/*font: 300 .9em/1.6em "Droid Serif", Cambria, Georgia, "DejaVu Serif", serif;*/
+	font: 300 .9em/1.6em "Ubuntu";
+	/*background-image: url(http://orgmode.org/img/org-mode-unicorn-logo-worg.png);
 	background-attachment: fixed;
 	background-position: right bottom;
 	background-repeat: no-repeat;
-	background-color: white;
+	background-color: white;*/
     }
 
     body {
-	font-size: 12pt;
+	font-size: 16pt;
 	line-height: 18pt;
 	color: black;
 	margin-top: 0;
@@ -21,7 +23,7 @@
     }
     body #content {
 	padding-top: 0px;
-	max-width: 80%;
+	max-width: 100%;
 	min-width: 700px;
 	margin-left: 20px;
 	background-color: white;
@@ -30,7 +32,7 @@
     }
     body .title {
 	margin-left: 0px;
-	font-size: 22pt;
+	font-size: 30pt;
     }
 
     #org-div-home-and-up{
@@ -41,7 +43,7 @@
 
     /* TOC inspired by http://jashkenas.github.com/coffee-script */
     #table-of-contents {
-	font-size: 10pt;
+	font-size: 12pt;
 	position: fixed;
 	right: 0em;
 	top: 0em;
@@ -107,7 +109,7 @@ content: "*** "
 */
 
     h2 {
-	font-family:sans-serif;
+	font-family:Ubuntu;
 	font-size:1.45em;
 	line-height:16px;
 	padding:10px 0 10px 0;
@@ -120,7 +122,7 @@ content: "*** "
     }
 
     h3 {
-	font-family:sans-serif;
+	font-family:Ubuntu;
 	font-size:1.3em;
 	color: grey;
 	margin-left: 0.6em;
@@ -134,7 +136,7 @@ content: "*** "
     }
 
     h4 {
-	font-family:sans-serif;
+	font-family:Ubuntu;
 	font-size:1.2em;
 	margin-left: 1.2em;
 	color: #A5573E;
@@ -225,7 +227,8 @@ content: "*** "
     /*  } */
 
     pre {
-	font-family: Droid Sans Mono, Monaco, Consolas, "Lucida Console", monospace;
+	/*font-family: Droid Sans Mono, Monaco, Consolas, "Lucida Console", monospace;*/
+	font-family: Ubuntu
 	color: black;
 	font-size: 90%;
 	background-color: #ffffff;
@@ -933,7 +936,7 @@ content: "*** "
 
     #show_source {margin: 0; padding: 0;}
 
-    #postamble {
+    /*#postamble {
 	font-size: 75%;
 	min-width: 700px;
 	max-width: 80%;
@@ -943,7 +946,7 @@ content: "*** "
 	border: 1px solid gray;
 	background-color: #ffffff;
 	z-index: -1000;
-    }
+    }*/
 
 
 } /* END OF @media all */
@@ -957,5 +960,6 @@ content: "*** "
 	border: 1px solid #CCC;
 	max-width: 50%;
 	overflow: auto;
+	z-index: 1000
     }
 } /* END OF @media screen */
