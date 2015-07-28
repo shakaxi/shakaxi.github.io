@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>关于switch语句</title>
-<!-- 2015-07-27 Mon 22:40 -->
+<!-- 2015-07-27 Mon 23:17 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -140,7 +140,7 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">关于switch语句</h1>
 <p>
-在C/C++语言中，switch语句的通用格式为
+在C/C++语言中， <code>switch</code> 语句的通用格式为
 </p>
 <div class="org-src-container">
 
@@ -154,16 +154,16 @@ for the JavaScript code in this tag.
 </pre>
 </div>
 <p>
-顾名思义，int<sub>expr必须是一个结果为整数值的表达式。另外，每个标签都必须是整数常量表达式。最常见的标签是int或char常量（如1或‘a’），也可以是枚举常量。C</sub>++中的case标签只是行标签，而不是选项之间的界限。也就是说，程序跳到switch中特定代码后，将依次执行之后的所有语句，除非有明确的其他指示。程序不会执行到下一个case处自动停止，要让程序执行完一组特定语句后停止，必须使用break语句。这将导致程序跳到switch后面的语句处执行。
+顾名思义， <code>int_expr</code> 必须是一个结果为整数值的表达式。另外，每个标签都必须是整数常量表达式。最常见的标签是 <code>int</code> 或 <code>char</code> 常量（如1或‘a’），也可以是枚举常量。C++中的 <code>case</code> 标签只是行标签，而不是选项之间的界限。也就是说，程序跳到 <code>switch</code> 中特定代码后，将依次执行之后的所有语句，除非有明确的其他指示。程序不会执行到下一个 <code>case</code> 处自动停止，要让程序执行完一组特定语句后停止，必须使用 <code>break</code> 语句。这将导致程序跳到 <code>switch</code> 后面的语句处执行。
 </p>
 
 <p>
-关于将枚举量用作标签，通常，cin无法识别枚举类型（它不知道程序员是如何定义它们的），因此程序要求用户选择选项时输入整数。当switch语句将int值和枚举量标签进行比较时，将枚举量提升为int。另外，在while循环测试条件中，也会将枚举量提升为int类型。
+关于将枚举量用作标签，通常， <code>cin</code> 无法识别枚举类型（它不知道程序员是如何定义它们的），因此程序要求用户选择选项时输入整数。当 <code>switch</code> 语句将 <code>int</code> 值和枚举量标签进行比较时，将枚举量提升为 <code>int</code> 。另外，在 <code>while</code> 循环测试条件中，也会将枚举量提升为 <code>int</code> 类型。
 </p>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-27 Mon 22:40</p>
+<p class="date">Created: 2015-07-27 Mon 23:17</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
