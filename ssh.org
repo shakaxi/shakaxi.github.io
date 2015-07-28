@@ -5,7 +5,7 @@ Take Archlinux for instance here.
 #+BEGIN_SRC sh
 pacman -S openssh
 #+END_SRC
-* Asymmetrically encrypted transmission to avoid providing password every login
+* Transmission over asymmetrical encryption
 - Generate key pair on the client
 #+BEGIN_SRC sh
 ssh-keygen -t rsa
