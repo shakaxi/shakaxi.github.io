@@ -1,4 +1,5 @@
 #+TITLE: Network File System (NFS)
+#+OPTIONS: num:6
 
 * Installation
 #+BEGIN_SRC sh

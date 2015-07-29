@@ -4,7 +4,7 @@
    + [[file:bash.org][Bash]]
    + [[file:pbs_maui.org][Cluster Deployment based on PBS and Maui]]
    + [[file:customize_emacs.org][Customize Emacs]]
-   + [[file:blog.org][Deploy Blog Site on Github]]
+   + [[file:blog.org][Deploy Blog Site on GitHub]]
    + [[file:pgf_tikz.org][Drawing with PGF/Tikz]]
    + [[file:mobility_mgmt.org][Mobility Management in LTE]]
    + [[file:nfs.org][Network File System (NFS)]]

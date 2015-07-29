@@ -1,4 +1,6 @@
-#+TITLE: Deploy Blog Site on Github
+#+TITLE: Deploy Blog Site on GitHub
+#+OPTIONS: num:6
 
-Up to now, it has been quite a long time for me not 
-This webpage is composed to summarize the procedures I built my personal blog site on Github.
+It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on [[https://github.com][GitHub]]. This page is just composed to summarize the detailed procedure.
+
+* Sign up an account on GitHub and create a repository

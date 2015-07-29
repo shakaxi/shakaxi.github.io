@@ -1,4 +1,5 @@
 #+TITLE: Secure Shell (SSH)
+#+OPTIONS: num:6
 
 * Installation
 Take Archlinux for instance here.

@@ -1,4 +1,5 @@
 #+TITLE: Customize Emacs
+#+OPTIONS: num:6
 
 * Set values for predefined variables
 #+BEGIN_SRC sh

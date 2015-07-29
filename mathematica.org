@@ -1,5 +1,5 @@
 #+TITLE: A Brief Summary of Mathematica
-#+OPTIONS: ^:nil
+#+OPTIONS: ^:nil num:6
 
 * Bracketing
 - Parenthesis () :: change the priorities in computing.
