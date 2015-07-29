@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Network File System (NFS)</title>
-<!-- 2015-07-29 Wed 22:50 -->
+<!-- 2015-07-30 Thu 00:33 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -175,18 +175,18 @@ Edit <code>/etc/exports</code>, e.g.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">/etc/exports - exports(5) - directories exported to NFS clients</span>
-<span style="color: #b22222;">#</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Example for NFSv2 and NFSv3:</span>
-<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/home        hostname1(rw,sync) hostname2(ro,sync)</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Example for NFSv4:</span>
-<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/nfs4        hostname1(rw,sync,fsid=0)</span>
-<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/nfs4/home   hostname1(rw,sync,nohide)</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Using Kerberos and integrity checking:</span>
-<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)</span>
-<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)</span>
-<span style="color: #b22222;">#</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Use `exportfs -arv` to reload.</span>
+<pre class="src src-sh"><span style="color: #ff0000;"># </span><span style="color: #ff0000;">/etc/exports - exports(5) - directories exported to NFS clients</span>
+<span style="color: #ff0000;">#</span>
+<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Example for NFSv2 and NFSv3:</span>
+<span style="color: #ff0000;">#  </span><span style="color: #ff0000;">/srv/home        hostname1(rw,sync) hostname2(ro,sync)</span>
+<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Example for NFSv4:</span>
+<span style="color: #ff0000;">#  </span><span style="color: #ff0000;">/srv/nfs4        hostname1(rw,sync,fsid=0)</span>
+<span style="color: #ff0000;">#  </span><span style="color: #ff0000;">/srv/nfs4/home   hostname1(rw,sync,nohide)</span>
+<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Using Kerberos and integrity checking:</span>
+<span style="color: #ff0000;">#  </span><span style="color: #ff0000;">/srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)</span>
+<span style="color: #ff0000;">#  </span><span style="color: #ff0000;">/srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)</span>
+<span style="color: #ff0000;">#</span>
+<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Use `exportfs -arv` to reload.</span>
 
 /home 192.168.2.0/24(rw,async,subtree_check,no_root_squash)
 /opt 192.168.2.0/24(ro,async,subtree_check,no_root_squash)
@@ -221,7 +221,7 @@ server:/home            /home           nfs4             rw,_netdev,soft,async  
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-29 Wed 22:50</p>
+<p class="date">Created: 2015-07-30 Thu 00:33</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

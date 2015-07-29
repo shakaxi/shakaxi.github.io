@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Cluster Deployment based on PBS and Maui</title>
+<!-- 2015-07-30 Thu 00:33 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="shaka" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Cluster Deployment based on PBS and Maui</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Introduction</a></li>
+<li><a href="#sec-2">Installation</a></li>
+<li><a href="#sec-3">Configuration</a>
+<ul>
+<li><a href="#sec-3-1">Server (head node)</a>
+<ul>
+<li><a href="#sec-3-1-1"><code>/var/spoo/torque/server_priv/nodes</code></a></li>
+<li><a href="#sec-3-1-2">PBS/Torque server</a></li>
+<li><a href="#sec-3-1-3">Maui</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">Client (computing node)</a>
+<ul>
+<li><a href="#sec-3-2-1"><code>/var/spool/torque/server_name</code></a></li>
+<li><a href="#sec-3-2-2"><code>/var/spool/torque/mom_priv/config</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">Configure the service</a>
+<ul>
+<li><a href="#sec-4-1">Server (head node)</a>
+<ul>
+<li><a href="#sec-4-1-1">Resource manager (PBS/Torque server)</a></li>
+<li><a href="#sec-4-1-2">Scheduler</a>
+<ul>
+<li><a href="#sec-4-1-2-1">Maui</a></li>
+<li><a href="#sec-4-1-2-2">PBS scheduler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4-2">Client (computing node)</a>
+<ul>
+<li><a href="#sec-4-2-1">PBS client</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-5">Start and enable the service</a>
+<ul>
+<li><a href="#sec-5-1">Server (head node)</a></li>
+<li><a href="#sec-5-2">Client (computing node)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Portable batch system (PBS) was originally developed by NASA, which is comprised of a <i>resource manager</i>, a <i>scheduler</i> and a <i>client</i>. What is different, a resource manager and a scheduler are usually running on server side, while clients running on computing nodes. For the softwares, both commercial <i>PBS Pro</i> and open-source <i>Torque</i> are available. But herein, we consider the open-source Torque only.
+</p>
+
+<p>
+Just as their names indicate, a resource manager targets for resource management and configuration, responsible for checking the availability of resource, e.g. CPU, memory, etc., and resource assignment; a scheduler accept jobs from subscribers and maintains one or more queues.
+</p>
+
+<p>
+The built-in scheduler is a simple FIFO scheduler. However, other schedulers can be adopted instead. For instance, <i>Maui</i> is a very popular and powerful scheduler, based on which advanced and complex strategies can be realized and customized.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Installation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+For <a href="https://wiki.archlinux.org">ArchLinux</a>, Torque and Maui can be easily installed from <i>AUR</i>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">yaourt torque
+...
+yaourt maui
+...
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Configuration</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Server (head node)</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><code>/var/spoo/torque/server_priv/nodes</code></h4>
+<div class="outline-text-4" id="text-3-1-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">node1 <span style="color: #ffff00;">np</span>=2
+node2 <span style="color: #ffff00;">np</span>=4
+...
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2">PBS/Torque server</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">qmgr -c <span style="color: #00ff00;">'p s'</span>
+<span style="color: #ff0000;">#</span>
+<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Create queues and set their attributes.</span>
+<span style="color: #ff0000;">#</span>
+<span style="color: #ff0000;">#</span>
+<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Create and define queue COMMON</span>
+<span style="color: #ff0000;">#</span>
+create queue COMMON
+<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON queue_type = Execution
+<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON resources_default.nodes = 1
+<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON resources_default.walltime = 240:00:00
+<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON enabled = True
+<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON started = True
+<span style="color: #ff0000;">#</span>
+<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Create and define queue VIP</span>
+<span style="color: #ff0000;">#</span>
+create queue VIP
+<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP queue_type = Execution
+<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP resources_default.nodes = 1
+<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP resources_default.walltime = 240:00:00
+<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP enabled = True
+<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP started = True
+<span style="color: #ff0000;">#</span>
+<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Set server attributes.</span>
+<span style="color: #ff0000;">#</span>
+<span style="color: #0000ff; font-weight: bold;">set</span> server scheduling = True
+<span style="color: #0000ff; font-weight: bold;">set</span> server acl_hosts = head
+<span style="color: #0000ff; font-weight: bold;">set</span> server default_queue = COMMON
+<span style="color: #0000ff; font-weight: bold;">set</span> server log_events = 511
+<span style="color: #0000ff; font-weight: bold;">set</span> server mail_from = server
+<span style="color: #0000ff; font-weight: bold;">set</span> server query_other_jobs = True
+<span style="color: #0000ff; font-weight: bold;">set</span> server scheduler_iteration = 600
+<span style="color: #0000ff; font-weight: bold;">set</span> server node_check_rate = 150
+<span style="color: #0000ff; font-weight: bold;">set</span> server tcp_timeout = 300
+<span style="color: #0000ff; font-weight: bold;">set</span> server job_stat_rate = 45
+<span style="color: #0000ff; font-weight: bold;">set</span> server poll_jobs = True
+<span style="color: #0000ff; font-weight: bold;">set</span> server mom_job_sync = True
+<span style="color: #0000ff; font-weight: bold;">set</span> server mail_domain = example.com
+<span style="color: #0000ff; font-weight: bold;">set</span> server keep_completed = 0
+<span style="color: #0000ff; font-weight: bold;">set</span> server next_job_number = 1
+<span style="color: #0000ff; font-weight: bold;">set</span> server moab_array_compatible = True
+<span style="color: #0000ff; font-weight: bold;">set</span> server nppcu = 1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3">Maui</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+Append following lines to <code>maui.cfg</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">CLASSWEIGHT   1
+CLASSCFG[COMMON]   <span style="color: #ffff00;">PRIORITY</span>=1
+CLASSCFG[VIP]   <span style="color: #ffff00;">PRIORITY</span>=100000
+CLASSLIST   [COMMON VIP]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">Client (computing node)</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><code>/var/spool/torque/server_name</code></h4>
+<div class="outline-text-4" id="text-3-2-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">head
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><code>/var/spool/torque/mom_priv/config</code></h4>
+<div class="outline-text-4" id="text-3-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">$<span style="color: #ffff00;">pbssever</span> head
+$<span style="color: #ffff00;">logevent</span> 255
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Configure the service</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Server (head node)</h3>
+<div class="outline-text-3" id="text-4-1">
+</div><div id="outline-container-sec-4-1-1" class="outline-4">
+<h4 id="sec-4-1-1">Resource manager (PBS/Torque server)</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+Create <code>/etc/systemd/system/torque-server.service</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">[Unit]
+<span style="color: #ffff00;">Description</span>=TORQUE server
+<span style="color: #ffff00;">Wants</span>=basic.target
+<span style="color: #ffff00;">After</span>=basic.target network.target
+
+[Service]
+<span style="color: #ffff00;">Type</span>=forking
+<span style="color: #ffff00;">PIDFile</span>=/var/spool/torque/server_priv/server.lock
+<span style="color: #ffff00;">ExecStart</span>=/usr/local/sbin/pbs_server
+
+[Install]
+<span style="color: #ffff00;">WantedBy</span>=multi-user.target
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-1-2" class="outline-4">
+<h4 id="sec-4-1-2">Scheduler<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup></h4>
+<div class="outline-text-4" id="text-4-1-2">
+</div><div id="outline-container-sec-4-1-2-1" class="outline-5">
+<h5 id="sec-4-1-2-1">Maui</h5>
+<div class="outline-text-5" id="text-4-1-2-1">
+<p>
+Create <code>/etc/systemd/system/torque-maui.service</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">[Unit]
+<span style="color: #ffff00;">Description</span>=Maui scheduler
+<span style="color: #ffff00;">Wants</span>=torque-server.service
+<span style="color: #ffff00;">After</span>=torque-server.service
+
+[Service]
+<span style="color: #ffff00;">Type</span>=forking
+<span style="color: #ffff00;">PIDFile</span>=/usr/local/maui/maui.pid
+<span style="color: #ffff00;">ExecStart</span>=/usr/local/maui/sbin/maui
+
+[Install]
+<span style="color: #ffff00;">WantedBy</span>=multi-user.target
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-1-2-2" class="outline-5">
+<h5 id="sec-4-1-2-2">PBS scheduler</h5>
+<div class="outline-text-5" id="text-4-1-2-2">
+<p>
+Create <code>/etc/systemd/system/torque-scheduler.service</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">[Unit]
+<span style="color: #ffff00;">Description</span>=TORQUE scheduler
+<span style="color: #ffff00;">Wants</span>=torque-server.service
+<span style="color: #ffff00;">After</span>=torque-server.service
+
+[Service]
+<span style="color: #ffff00;">Type</span>=forking
+<span style="color: #ffff00;">PIDFile</span>=/var/spool/torque/sched_priv/sched.lock
+<span style="color: #ffff00;">ExecStart</span>=/usr/local/sbin/pbs_sched
+
+[Install]
+<span style="color: #ffff00;">WantedBy</span>=multi-user.target
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Client (computing node)</h3>
+<div class="outline-text-3" id="text-4-2">
+</div><div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1">PBS client</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+Create <code>/etc/systemd/system/torque-node.service</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">[Unit]
+<span style="color: #ffff00;">Description</span>=TORQUE node
+<span style="color: #ffff00;">Wants</span>=basic.target
+<span style="color: #ffff00;">After</span>=basic.target network.target
+
+[Service]
+<span style="color: #ffff00;">Type</span>=forking
+<span style="color: #ffff00;">PIDFile</span>=/var/spool/torque/mom_priv/mom.lock
+<span style="color: #ffff00;">ExecStart</span>=/usr/local/sbin/pbs_mom
+
+[Install]
+<span style="color: #ffff00;">WantedBy</span>=multi-user.target
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Start and enable the service</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">Server (head node)</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">systemctl enable torque-server.service
+systemctl start torque-server.service
+systemctl enable torque-maui.service
+systemctl start torque-maui.service
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">Client (computing node)</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">systemctl enable torque-node.service
+systemctl start torque-node.service
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+Only one scheduler is needed, which can be Maui scheduler or built-in PBS scheduler.
+</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: shaka</p>
+<p class="date">Created: 2015-07-30 Thu 00:33</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

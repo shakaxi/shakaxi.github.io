@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>关于switch语句</title>
+<title>Mobility Management in LTE</title>
 <!-- 2015-07-30 Thu 00:33 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
@@ -138,27 +138,13 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">关于switch语句</h1>
+<h1 class="title">Mobility Management in LTE</h1>
 <p>
-在C/C++语言中， <code>switch</code> 语句的通用格式为
-</p>
-<div class="org-src-container">
-
-<pre class="src src-c"><span class="linenr">1: </span><span style="color: #00ffff; font-weight: bold;">switch</span> (int_expr)
-<span class="linenr">2: </span>{
-<span class="linenr">3: </span>        <span style="color: #00ffff; font-weight: bold;">case</span> label1: statement(s)
-<span class="linenr">4: </span>        <span style="color: #00ffff; font-weight: bold;">case</span> label2: statement(s)
-<span class="linenr">5: </span>        ...
-<span class="linenr">6: </span>        <span style="color: #00ffff; font-weight: bold;">default</span>: statement(s)
-<span class="linenr">7: </span>}
-</pre>
-</div>
-<p>
-顾名思义， <code>int_expr</code> 必须是一个结果为整数值的表达式。另外，每个标签都必须是整数常量表达式。最常见的标签是 <code>int</code> 或 <code>char</code> 常量（如1或‘a’），也可以是枚举常量。C++中的 <code>case</code> 标签只是行标签，而不是选项之间的界限。也就是说，程序跳到 <code>switch</code> 中特定代码后，将依次执行之后的所有语句，除非有明确的其他指示。程序不会执行到下一个 <code>case</code> 处自动停止，要让程序执行完一组特定语句后停止，必须使用 <code>break</code> 语句。这将导致程序跳到 <code>switch</code> 后面的语句处执行。
+The most remarkable character of mobile communication, which differs from other communication methods, is its mobility. The mobility can fall into two categories, intra-radio access technology (RAT) and inter-RAT mobility. Just as its name indicates, intra-RAT mobility means that the UE moves within one RAT, while inter-RAT mobility is the case that the UE move from one RAT to another. Namely, the source cell and the destination cell belong to two different RATs. Moreover, according to whether the destination cell operates on the same frequency as the serving cell, intra-RAT mobility can be further divided into intra-frequency and inter-frequency mobility two types.
 </p>
 
 <p>
-关于将枚举量用作标签，通常， <code>cin</code> 无法识别枚举类型（它不知道程序员是如何定义它们的），因此程序要求用户选择选项时输入整数。当 <code>switch</code> 语句将 <code>int</code> 值和枚举量标签进行比较时，将枚举量提升为 <code>int</code> 。另外，在 <code>while</code> 循环测试条件中，也会将枚举量提升为 <code>int</code> 类型。
+In long term evolution (LTE) system, user equipment (UE)'s mobility depends on the state of radio resource control (RRC). For RRC, there are totally two states, idle (<i>RRC_IDLE</i>) and connected (<i>RRC_CONNECTED</i>). In idle state, there isn't any RRC connection between UE and evolved universal terrestrial radio access network (E-UTRAN). And the UE's mobility can be described as cell selection/reselection. What's different, in connected state, dedicated RRC connection exists between E-UTRAN and UE. The mobility of UE can be correspondingly expressed as cell handover.
 </p>
 </div>
 <div id="postamble" class="status">
