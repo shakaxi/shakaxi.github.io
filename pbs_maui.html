@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Cluster Deployment based on PBS and Maui</title>
-<!-- 2015-07-30 Thu 00:33 -->
+<!-- 2015-07-30 Thu 00:36 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -235,8 +235,8 @@ yaourt maui
 <div class="outline-text-4" id="text-3-1-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">node1 <span style="color: #ffff00;">np</span>=2
-node2 <span style="color: #ffff00;">np</span>=4
+<pre class="src src-sh">node1 <span style="color: #a0522d;">np</span>=2
+node2 <span style="color: #a0522d;">np</span>=4
 ...
 </pre>
 </div>
@@ -247,48 +247,48 @@ node2 <span style="color: #ffff00;">np</span>=4
 <div class="outline-text-4" id="text-3-1-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">qmgr -c <span style="color: #00ff00;">'p s'</span>
-<span style="color: #ff0000;">#</span>
-<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Create queues and set their attributes.</span>
-<span style="color: #ff0000;">#</span>
-<span style="color: #ff0000;">#</span>
-<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Create and define queue COMMON</span>
-<span style="color: #ff0000;">#</span>
+<pre class="src src-sh">qmgr -c <span style="color: #8b2252;">'p s'</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Create queues and set their attributes.</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Create and define queue COMMON</span>
+<span style="color: #b22222;">#</span>
 create queue COMMON
-<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON queue_type = Execution
-<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON resources_default.nodes = 1
-<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON resources_default.walltime = 240:00:00
-<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON enabled = True
-<span style="color: #0000ff; font-weight: bold;">set</span> queue COMMON started = True
-<span style="color: #ff0000;">#</span>
-<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Create and define queue VIP</span>
-<span style="color: #ff0000;">#</span>
+<span style="color: #483d8b;">set</span> queue COMMON queue_type = Execution
+<span style="color: #483d8b;">set</span> queue COMMON resources_default.nodes = 1
+<span style="color: #483d8b;">set</span> queue COMMON resources_default.walltime = 240:00:00
+<span style="color: #483d8b;">set</span> queue COMMON enabled = True
+<span style="color: #483d8b;">set</span> queue COMMON started = True
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Create and define queue VIP</span>
+<span style="color: #b22222;">#</span>
 create queue VIP
-<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP queue_type = Execution
-<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP resources_default.nodes = 1
-<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP resources_default.walltime = 240:00:00
-<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP enabled = True
-<span style="color: #0000ff; font-weight: bold;">set</span> queue VIP started = True
-<span style="color: #ff0000;">#</span>
-<span style="color: #ff0000;"># </span><span style="color: #ff0000;">Set server attributes.</span>
-<span style="color: #ff0000;">#</span>
-<span style="color: #0000ff; font-weight: bold;">set</span> server scheduling = True
-<span style="color: #0000ff; font-weight: bold;">set</span> server acl_hosts = head
-<span style="color: #0000ff; font-weight: bold;">set</span> server default_queue = COMMON
-<span style="color: #0000ff; font-weight: bold;">set</span> server log_events = 511
-<span style="color: #0000ff; font-weight: bold;">set</span> server mail_from = server
-<span style="color: #0000ff; font-weight: bold;">set</span> server query_other_jobs = True
-<span style="color: #0000ff; font-weight: bold;">set</span> server scheduler_iteration = 600
-<span style="color: #0000ff; font-weight: bold;">set</span> server node_check_rate = 150
-<span style="color: #0000ff; font-weight: bold;">set</span> server tcp_timeout = 300
-<span style="color: #0000ff; font-weight: bold;">set</span> server job_stat_rate = 45
-<span style="color: #0000ff; font-weight: bold;">set</span> server poll_jobs = True
-<span style="color: #0000ff; font-weight: bold;">set</span> server mom_job_sync = True
-<span style="color: #0000ff; font-weight: bold;">set</span> server mail_domain = example.com
-<span style="color: #0000ff; font-weight: bold;">set</span> server keep_completed = 0
-<span style="color: #0000ff; font-weight: bold;">set</span> server next_job_number = 1
-<span style="color: #0000ff; font-weight: bold;">set</span> server moab_array_compatible = True
-<span style="color: #0000ff; font-weight: bold;">set</span> server nppcu = 1
+<span style="color: #483d8b;">set</span> queue VIP queue_type = Execution
+<span style="color: #483d8b;">set</span> queue VIP resources_default.nodes = 1
+<span style="color: #483d8b;">set</span> queue VIP resources_default.walltime = 240:00:00
+<span style="color: #483d8b;">set</span> queue VIP enabled = True
+<span style="color: #483d8b;">set</span> queue VIP started = True
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Set server attributes.</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #483d8b;">set</span> server scheduling = True
+<span style="color: #483d8b;">set</span> server acl_hosts = head
+<span style="color: #483d8b;">set</span> server default_queue = COMMON
+<span style="color: #483d8b;">set</span> server log_events = 511
+<span style="color: #483d8b;">set</span> server mail_from = server
+<span style="color: #483d8b;">set</span> server query_other_jobs = True
+<span style="color: #483d8b;">set</span> server scheduler_iteration = 600
+<span style="color: #483d8b;">set</span> server node_check_rate = 150
+<span style="color: #483d8b;">set</span> server tcp_timeout = 300
+<span style="color: #483d8b;">set</span> server job_stat_rate = 45
+<span style="color: #483d8b;">set</span> server poll_jobs = True
+<span style="color: #483d8b;">set</span> server mom_job_sync = True
+<span style="color: #483d8b;">set</span> server mail_domain = example.com
+<span style="color: #483d8b;">set</span> server keep_completed = 0
+<span style="color: #483d8b;">set</span> server next_job_number = 1
+<span style="color: #483d8b;">set</span> server moab_array_compatible = True
+<span style="color: #483d8b;">set</span> server nppcu = 1
 </pre>
 </div>
 </div>
@@ -302,8 +302,8 @@ Append following lines to <code>maui.cfg</code>.
 <div class="org-src-container">
 
 <pre class="src src-sh">CLASSWEIGHT   1
-CLASSCFG[COMMON]   <span style="color: #ffff00;">PRIORITY</span>=1
-CLASSCFG[VIP]   <span style="color: #ffff00;">PRIORITY</span>=100000
+CLASSCFG[COMMON]   <span style="color: #a0522d;">PRIORITY</span>=1
+CLASSCFG[VIP]   <span style="color: #a0522d;">PRIORITY</span>=100000
 CLASSLIST   [COMMON VIP]
 </pre>
 </div>
@@ -328,8 +328,8 @@ CLASSLIST   [COMMON VIP]
 <div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">$<span style="color: #ffff00;">pbssever</span> head
-$<span style="color: #ffff00;">logevent</span> 255
+<pre class="src src-sh">$<span style="color: #a0522d;">pbssever</span> head
+$<span style="color: #a0522d;">logevent</span> 255
 </pre>
 </div>
 </div>
@@ -351,17 +351,17 @@ Create <code>/etc/systemd/system/torque-server.service</code>
 <div class="org-src-container">
 
 <pre class="src src-sh">[Unit]
-<span style="color: #ffff00;">Description</span>=TORQUE server
-<span style="color: #ffff00;">Wants</span>=basic.target
-<span style="color: #ffff00;">After</span>=basic.target network.target
+<span style="color: #a0522d;">Description</span>=TORQUE server
+<span style="color: #a0522d;">Wants</span>=basic.target
+<span style="color: #a0522d;">After</span>=basic.target network.target
 
 [Service]
-<span style="color: #ffff00;">Type</span>=forking
-<span style="color: #ffff00;">PIDFile</span>=/var/spool/torque/server_priv/server.lock
-<span style="color: #ffff00;">ExecStart</span>=/usr/local/sbin/pbs_server
+<span style="color: #a0522d;">Type</span>=forking
+<span style="color: #a0522d;">PIDFile</span>=/var/spool/torque/server_priv/server.lock
+<span style="color: #a0522d;">ExecStart</span>=/usr/local/sbin/pbs_server
 
 [Install]
-<span style="color: #ffff00;">WantedBy</span>=multi-user.target
+<span style="color: #a0522d;">WantedBy</span>=multi-user.target
 </pre>
 </div>
 </div>
@@ -378,17 +378,17 @@ Create <code>/etc/systemd/system/torque-maui.service</code>
 <div class="org-src-container">
 
 <pre class="src src-sh">[Unit]
-<span style="color: #ffff00;">Description</span>=Maui scheduler
-<span style="color: #ffff00;">Wants</span>=torque-server.service
-<span style="color: #ffff00;">After</span>=torque-server.service
+<span style="color: #a0522d;">Description</span>=Maui scheduler
+<span style="color: #a0522d;">Wants</span>=torque-server.service
+<span style="color: #a0522d;">After</span>=torque-server.service
 
 [Service]
-<span style="color: #ffff00;">Type</span>=forking
-<span style="color: #ffff00;">PIDFile</span>=/usr/local/maui/maui.pid
-<span style="color: #ffff00;">ExecStart</span>=/usr/local/maui/sbin/maui
+<span style="color: #a0522d;">Type</span>=forking
+<span style="color: #a0522d;">PIDFile</span>=/usr/local/maui/maui.pid
+<span style="color: #a0522d;">ExecStart</span>=/usr/local/maui/sbin/maui
 
 [Install]
-<span style="color: #ffff00;">WantedBy</span>=multi-user.target
+<span style="color: #a0522d;">WantedBy</span>=multi-user.target
 </pre>
 </div>
 </div>
@@ -402,17 +402,17 @@ Create <code>/etc/systemd/system/torque-scheduler.service</code>
 <div class="org-src-container">
 
 <pre class="src src-sh">[Unit]
-<span style="color: #ffff00;">Description</span>=TORQUE scheduler
-<span style="color: #ffff00;">Wants</span>=torque-server.service
-<span style="color: #ffff00;">After</span>=torque-server.service
+<span style="color: #a0522d;">Description</span>=TORQUE scheduler
+<span style="color: #a0522d;">Wants</span>=torque-server.service
+<span style="color: #a0522d;">After</span>=torque-server.service
 
 [Service]
-<span style="color: #ffff00;">Type</span>=forking
-<span style="color: #ffff00;">PIDFile</span>=/var/spool/torque/sched_priv/sched.lock
-<span style="color: #ffff00;">ExecStart</span>=/usr/local/sbin/pbs_sched
+<span style="color: #a0522d;">Type</span>=forking
+<span style="color: #a0522d;">PIDFile</span>=/var/spool/torque/sched_priv/sched.lock
+<span style="color: #a0522d;">ExecStart</span>=/usr/local/sbin/pbs_sched
 
 [Install]
-<span style="color: #ffff00;">WantedBy</span>=multi-user.target
+<span style="color: #a0522d;">WantedBy</span>=multi-user.target
 </pre>
 </div>
 </div>
@@ -431,17 +431,17 @@ Create <code>/etc/systemd/system/torque-node.service</code>
 <div class="org-src-container">
 
 <pre class="src src-sh">[Unit]
-<span style="color: #ffff00;">Description</span>=TORQUE node
-<span style="color: #ffff00;">Wants</span>=basic.target
-<span style="color: #ffff00;">After</span>=basic.target network.target
+<span style="color: #a0522d;">Description</span>=TORQUE node
+<span style="color: #a0522d;">Wants</span>=basic.target
+<span style="color: #a0522d;">After</span>=basic.target network.target
 
 [Service]
-<span style="color: #ffff00;">Type</span>=forking
-<span style="color: #ffff00;">PIDFile</span>=/var/spool/torque/mom_priv/mom.lock
-<span style="color: #ffff00;">ExecStart</span>=/usr/local/sbin/pbs_mom
+<span style="color: #a0522d;">Type</span>=forking
+<span style="color: #a0522d;">PIDFile</span>=/var/spool/torque/mom_priv/mom.lock
+<span style="color: #a0522d;">ExecStart</span>=/usr/local/sbin/pbs_mom
 
 [Install]
-<span style="color: #ffff00;">WantedBy</span>=multi-user.target
+<span style="color: #a0522d;">WantedBy</span>=multi-user.target
 </pre>
 </div>
 </div>
@@ -489,7 +489,7 @@ Only one scheduler is needed, which can be Maui scheduler or built-in PBS schedu
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-30 Thu 00:33</p>
+<p class="date">Created: 2015-07-30 Thu 00:36</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
