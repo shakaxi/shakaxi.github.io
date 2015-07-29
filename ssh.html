@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Secure Shell (SSH)</title>
-<!-- 2015-07-30 Thu 00:36 -->
+<!-- 2015-07-30 Thu 01:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -143,12 +143,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Installation</a></li>
-<li><a href="#sec-2">Transmission over asymmetrical encryption</a></li>
-<li><a href="#sec-3">Enable <code>X11 forwarding</code> to run GUI programs over SSH</a>
+<li><a href="#sec-1">1. Installation</a></li>
+<li><a href="#sec-2">2. Transmission over asymmetrical encryption</a></li>
+<li><a href="#sec-3">3. Enable <code>X11 forwarding</code> to run GUI programs over SSH</a>
 <ul>
-<li><a href="#sec-3-1">On server</a></li>
-<li><a href="#sec-3-2">On client</a></li>
+<li><a href="#sec-3-1">3.1. On server</a></li>
+<li><a href="#sec-3-2">3.2. On client</a></li>
 </ul>
 </li>
 </ul>
@@ -156,7 +156,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Installation</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Take Archlinux for instance here.
@@ -169,7 +169,7 @@ Take Archlinux for instance here.
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Transmission over asymmetrical encryption</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> Transmission over asymmetrical encryption</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Generate key pair on the client
@@ -194,10 +194,10 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub USERNAME@SERVER
 </div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Enable <code>X11 forwarding</code> to run GUI programs over SSH</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> Enable <code>X11 forwarding</code> to run GUI programs over SSH</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">On server</h3>
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> On server</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Installation
@@ -223,7 +223,7 @@ Add following line in <code>/etc/ssh/sshd_config</code>
 </div>
 </div>
 <div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">On client</h3>
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> On client</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Add following lines in <code>/etc/ssh/ssh_config</code>
@@ -241,7 +241,7 @@ ForwardX11Trusted yes
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-30 Thu 00:36</p>
+<p class="date">Created: 2015-07-30 Thu 01:11</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

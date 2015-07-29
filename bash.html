@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Bash</title>
-<!-- 2015-07-30 Thu 00:36 -->
+<!-- 2015-07-30 Thu 01:12 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -143,45 +143,45 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Running ways</a></li>
-<li><a href="#sec-2">Print</a>
+<li><a href="#sec-1">1. Running ways</a></li>
+<li><a href="#sec-2">2. Print</a>
 <ul>
-<li><a href="#sec-2-1"><code>echo</code></a></li>
-<li><a href="#sec-2-2"><code>printf</code></a></li>
+<li><a href="#sec-2-1">2.1. <code>echo</code></a></li>
+<li><a href="#sec-2-2">2.2. <code>printf</code></a></li>
 </ul>
 </li>
-<li><a href="#sec-3">Variable</a>
+<li><a href="#sec-3">3. Variable</a>
 <ul>
-<li><a href="#sec-3-1">Plain variable</a></li>
-<li><a href="#sec-3-2">Environment variable</a>
+<li><a href="#sec-3-1">3.1. Plain variable</a></li>
+<li><a href="#sec-3-2">3.2. Environment variable</a>
 <ul>
-<li><a href="#sec-3-2-1">List</a></li>
-<li><a href="#sec-3-2-2">Assignment</a></li>
-<li><a href="#sec-3-2-3">Get the length of variable's value (string)</a></li>
+<li><a href="#sec-3-2-1">3.2.1. List</a></li>
+<li><a href="#sec-3-2-2">3.2.2. Assignment</a></li>
+<li><a href="#sec-3-2-3">3.2.3. Get the length of variable's value (string)</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-3">Mathematical operation (e.g. <code>let</code>)</a></li>
+<li><a href="#sec-3-3">3.3. Mathematical operation (e.g. <code>let</code>)</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">Array</a></li>
-<li><a href="#sec-5">Alias</a></li>
-<li><a href="#sec-6">Function</a></li>
-<li><a href="#sec-7">Test &amp; comparison</a>
+<li><a href="#sec-4">4. Array</a></li>
+<li><a href="#sec-5">5. Alias</a></li>
+<li><a href="#sec-6">6. Function</a></li>
+<li><a href="#sec-7">7. Test &amp; comparison</a>
 <ul>
-<li><a href="#sec-7-1">Arithmetic</a></li>
-<li><a href="#sec-7-2">File system</a></li>
-<li><a href="#sec-7-3">String</a></li>
+<li><a href="#sec-7-1">7.1. Arithmetic</a></li>
+<li><a href="#sec-7-2">7.2. File system</a></li>
+<li><a href="#sec-7-3">7.3. String</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">Judgement</a></li>
-<li><a href="#sec-9">Iteration</a></li>
-<li><a href="#sec-10">Miscellaneous</a></li>
+<li><a href="#sec-8">8. Judgement</a></li>
+<li><a href="#sec-9">9. Iteration</a></li>
+<li><a href="#sec-10">10. Miscellaneous</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Running ways</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> Running ways</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt> Make the shell script executable </dt><dd>The script should begin with the shebang (e.g. <code>#!/bin/bash</code>).
@@ -192,10 +192,10 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Print</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> Print</h2>
 <div class="outline-text-2" id="text-2">
 </div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><code>echo</code></h3>
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> <code>echo</code></h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>By default, a line break is appended every time it is invoked.
@@ -206,7 +206,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><code>printf</code></h3>
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> <code>printf</code></h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Syntax
@@ -247,14 +247,14 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Variable</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> Variable</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In Bash, every variable is a string.
 </p>
 </div>
 <div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">Plain variable</h3>
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Plain variable</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Assignment
@@ -267,10 +267,10 @@ Assignment
 </div>
 </div>
 <div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">Environment variable</h3>
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Environment variable</h3>
 <div class="outline-text-3" id="text-3-2">
 </div><div id="outline-container-sec-3-2-1" class="outline-4">
-<h4 id="sec-3-2-1">List</h4>
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> List</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <div class="org-src-container">
 
@@ -288,7 +288,7 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 </div>
 </div>
 <div id="outline-container-sec-3-2-2" class="outline-4">
-<h4 id="sec-3-2-2">Assignment</h4>
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> Assignment</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 
@@ -315,7 +315,7 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 </div>
 </div>
 <div id="outline-container-sec-3-2-3" class="outline-4">
-<h4 id="sec-3-2-3">Get the length of variable's value (string)</h4>
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> Get the length of variable's value (string)</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <div class="org-src-container">
 
@@ -326,7 +326,7 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 </div>
 </div>
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">Mathematical operation (e.g. <code>let</code>)</h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Mathematical operation (e.g. <code>let</code>)</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <code>$</code> in front of variable name is not needed.
@@ -348,7 +348,7 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 </div>
 </div>
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Array</h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> Array</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 
@@ -360,7 +360,7 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 </div>
 </div>
 <div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">Alias</h2>
+<h2 id="sec-5"><span class="section-number-2">5</span> Alias</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
@@ -372,7 +372,7 @@ new_command
 </div>
 </div>
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">Function</h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> Function</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 
@@ -402,10 +402,10 @@ func_name arg_list
 </div>
 </div>
 <div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">Test &amp; comparison</h2>
+<h2 id="sec-7"><span class="section-number-2">7</span> Test &amp; comparison</h2>
 <div class="outline-text-2" id="text-7">
 </div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1">Arithmetic</h3>
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Arithmetic</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
@@ -422,7 +422,7 @@ func_name arg_list
 </div>
 </div>
 <div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2">File system</h3>
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> File system</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 
@@ -440,7 +440,7 @@ func_name arg_list
 </div>
 </div>
 <div id="outline-container-sec-7-3" class="outline-3">
-<h3 id="sec-7-3">String</h3>
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> String</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 
@@ -458,7 +458,7 @@ func_name arg_list
 </div>
 </div>
 <div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8">Judgement</h2>
+<h2 id="sec-8"><span class="section-number-2">8</span> Judgement</h2>
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
@@ -488,7 +488,7 @@ commands3
 </div>
 </div>
 <div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9">Iteration</h2>
+<h2 id="sec-9"><span class="section-number-2">9</span> Iteration</h2>
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 
@@ -511,7 +511,7 @@ commands <span style="color: #b22222;"># </span><span style="color: #b22222;">us
 </div>
 </div>
 <div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10">Miscellaneous</h2>
+<h2 id="sec-10"><span class="section-number-2">10</span> Miscellaneous</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Commands are seperated by semicolon (;) or line break.
@@ -532,7 +532,7 @@ commands <span style="color: #b22222;"># </span><span style="color: #b22222;">us
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-30 Thu 00:36</p>
+<p class="date">Created: 2015-07-30 Thu 01:12</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
