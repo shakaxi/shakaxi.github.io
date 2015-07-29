@@ -32,6 +32,6 @@ systemctl start nfs-server.service
 ** Client
 Add the corresponding entries in =/etc/fstab=, e.g.
 #+BEGIN_SRC sh
-head:/opt               /opt            nfs4            ro,_netdev,soft,async           0 0
-head:/home            /home           nfs4             rw,_netdev,soft,async            0 0
+server:/opt               /opt            nfs4            ro,_netdev,soft,async           0 0
+server:/home            /home           nfs4             rw,_netdev,soft,async            0 0
 #+END_SRC
