@@ -1,0 +1,35 @@
+#+TITLE: Customize Emacs
+
+* Set values for predefined variables
+#+BEGIN_SRC sh
+(setq variable value)
+#+END_SRC
+* Bind shortcut keys
+** Set global shortcut key
+#+BEGIN_SRC sh
+(global-set-key key command)
+#+END_SRC
+where =key= is shortcut[fn:1], e.g. =M-SPC=, =<f7>=, and =command= is the command name with a prefix of single quotation mark.
+** Set shortcut key for specific modes
+#+BEGIN_SRC sh
+(define-key keymap key command)
+#+END_SRC
+where =keymap= is associated to some mode, e.g. =c-mode-map=. Usually, each mode has its own keymap, which is the mode name appended with =-map=.
+* Mode & hook
+Emacs uses different modes to provide different editing environment. Generally, each file type has its own /major-mode/ [fn:2] and one or more /minor-mode/ [fn:3]. Usually, each major-mode provides /hook/, mode name appended with =-hook=. When entering some major-mode, the functions in the corresponding hook will be provoked.
+* Third party extension
+After the installation, the configuration includes two steps
+#+BEGIN_SRC sh
+(add-to-list 'load-path path-of-the-extension)
+(require 'extension-name)
+#+END_SRC
+* Footnotes
+
+[fn:1] The expressions of the shortcut key can be obtained by =C-h k= first and then treated as the input parameter of =kbd=, e.g. =(kbd "M-SPC")=.
+
+[fn:2] For the file type, define syntax highlight, indent, comment, etc.
+
+[fn:3] It can be aded to =major-mode=. It defines the enhancement or decoration.
+
+
+

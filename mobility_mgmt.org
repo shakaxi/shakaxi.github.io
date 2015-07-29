@@ -1,0 +1,6 @@
+#+TITLE: Mobility Management in LTE
+#+OPTIONS: ^:nil
+
+The most remarkable character of mobile communication, which differs from other communication methods, is its mobility. The mobility can fall into two categories, intra-radio access technology (RAT) and inter-RAT mobility. Just as its name indicates, intra-RAT mobility means that the UE moves within one RAT, while inter-RAT mobility is the case that the UE move from one RAT to another. Namely, the source cell and the destination cell belong to two different RATs. Moreover, according to whether the destination cell operates on the same frequency as the serving cell, intra-RAT mobility can be further divided into intra-frequency and inter-frequency mobility two types.
+
+In long term evolution (LTE) system, user equipment (UE)'s mobility depends on the state of radio resource control (RRC). For RRC, there are totally two states, idle (/RRC_IDLE/) and connected (/RRC_CONNECTED/). In idle state, there isn't any RRC connection between UE and evolved universal terrestrial radio access network (E-UTRAN). And the UE's mobility can be described as cell selection/reselection. What's different, in connected state, dedicated RRC connection exists between E-UTRAN and UE. The mobility of UE can be correspondingly expressed as cell handover.

@@ -1,0 +1,172 @@
+#+TITLE: Cluster Deployment based on PBS and Maui
+
+* Introduction
+Portable batch system (PBS) was originally developed by NASA, which is comprised of a /resource manager/, a /scheduler/ and a /client/. What is different, a resource manager and a scheduler are usually running on server side, while clients running on computing nodes. For the softwares, both commercial /PBS Pro/ and open-source /Torque/ are available. But herein, we consider the open-source Torque only.
+
+Just as their names indicate, a resource manager targets for resource management and configuration, responsible for checking the availability of resource, e.g. CPU, memory, etc., and resource assignment; a scheduler accept jobs from subscribers and maintains one or more queues.
+
+The built-in scheduler is a simple FIFO scheduler. However, other schedulers can be adopted instead. For instance, /Maui/ is a very popular and powerful scheduler, based on which advanced and complex strategies can be realized and customized.
+* Installation
+For [[https://wiki.archlinux.org][ArchLinux]], Torque and Maui can be easily installed from /AUR/.
+#+BEGIN_SRC sh
+yaourt torque
+...
+yaourt maui
+...
+#+END_SRC
+* Configuration
+** Server (head node)
+*** =/var/spoo/torque/server_priv/nodes=
+#+BEGIN_SRC sh
+node1 np=2
+node2 np=4
+...
+#+END_SRC
+*** PBS/Torque server
+#+BEGIN_SRC sh
+qmgr -c 'p s'
+#
+# Create queues and set their attributes.
+#
+#
+# Create and define queue COMMON
+#
+create queue COMMON
+set queue COMMON queue_type = Execution
+set queue COMMON resources_default.nodes = 1
+set queue COMMON resources_default.walltime = 240:00:00
+set queue COMMON enabled = True
+set queue COMMON started = True
+#
+# Create and define queue VIP
+#
+create queue VIP
+set queue VIP queue_type = Execution
+set queue VIP resources_default.nodes = 1
+set queue VIP resources_default.walltime = 240:00:00
+set queue VIP enabled = True
+set queue VIP started = True
+#
+# Set server attributes.
+#
+set server scheduling = True
+set server acl_hosts = head
+set server default_queue = COMMON
+set server log_events = 511
+set server mail_from = server
+set server query_other_jobs = True
+set server scheduler_iteration = 600
+set server node_check_rate = 150
+set server tcp_timeout = 300
+set server job_stat_rate = 45
+set server poll_jobs = True
+set server mom_job_sync = True
+set server mail_domain = example.com
+set server keep_completed = 0
+set server next_job_number = 1
+set server moab_array_compatible = True
+set server nppcu = 1
+#+END_SRC
+*** Maui
+Append following lines to =maui.cfg=.
+#+BEGIN_SRC sh
+CLASSWEIGHT   1
+CLASSCFG[COMMON]   PRIORITY=1
+CLASSCFG[VIP]   PRIORITY=100000
+CLASSLIST   [COMMON VIP]
+#+END_SRC
+** Client (computing node)
+*** =/var/spool/torque/server_name=
+#+BEGIN_SRC sh
+head
+#+END_SRC
+*** =/var/spool/torque/mom_priv/config=
+#+BEGIN_SRC sh
+$pbssever head
+$logevent 255
+#+END_SRC
+* Configure the service
+** Server (head node)
+*** Resource manager (PBS/Torque server)
+Create =/etc/systemd/system/torque-server.service=
+#+BEGIN_SRC sh
+[Unit]
+Description=TORQUE server
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+Type=forking
+PIDFile=/var/spool/torque/server_priv/server.lock
+ExecStart=/usr/local/sbin/pbs_server
+
+[Install]
+WantedBy=multi-user.target
+#+END_SRC
+*** Scheduler[fn:1]
+**** Maui
+Create =/etc/systemd/system/torque-maui.service=
+#+BEGIN_SRC sh
+[Unit]
+Description=Maui scheduler
+Wants=torque-server.service
+After=torque-server.service
+
+[Service]
+Type=forking
+PIDFile=/usr/local/maui/maui.pid
+ExecStart=/usr/local/maui/sbin/maui
+
+[Install]
+WantedBy=multi-user.target
+#+END_SRC
+**** PBS scheduler
+Create =/etc/systemd/system/torque-scheduler.service=
+#+BEGIN_SRC sh
+[Unit]
+Description=TORQUE scheduler
+Wants=torque-server.service
+After=torque-server.service
+
+[Service]
+Type=forking
+PIDFile=/var/spool/torque/sched_priv/sched.lock
+ExecStart=/usr/local/sbin/pbs_sched
+
+[Install]
+WantedBy=multi-user.target
+#+END_SRC
+** Client (computing node)
+*** PBS client
+Create =/etc/systemd/system/torque-node.service=
+#+BEGIN_SRC sh
+[Unit]
+Description=TORQUE node
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+Type=forking
+PIDFile=/var/spool/torque/mom_priv/mom.lock
+ExecStart=/usr/local/sbin/pbs_mom
+
+[Install]
+WantedBy=multi-user.target
+#+END_SRC
+* Start and enable the service
+** Server (head node)
+#+BEGIN_SRC sh
+systemctl enable torque-server.service
+systemctl start torque-server.service
+systemctl enable torque-maui.service
+systemctl start torque-maui.service
+#+END_SRC
+** Client (computing node)
+#+BEGIN_SRC sh
+systemctl enable torque-node.service
+systemctl start torque-node.service
+#+END_SRC
+
+* Footnotes
+
+[fn:1] Only one scheduler is needed, which can be Maui scheduler or built-in PBS scheduler.

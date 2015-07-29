@@ -1,8 +1,12 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:mathematica.org][A Brief Summary of Mathematica]]
    + [[file:bash.org][Bash]]
+   + [[file:pbs_maui.org][Cluster Deployment based on PBS and Maui]]
+   + [[file:customize_emacs.org][Customize Emacs]]
    + [[file:blog.org][Deploy Blog Site on Github]]
    + [[file:pgf_tikz.org][Drawing with PGF/Tikz]]
+   + [[file:mobility_mgmt.org][Mobility Management in LTE]]
    + [[file:nfs.org][Network File System (NFS)]]
    + [[file:ntp.org][Network Time Protocol (NTP)]]
    + [[file:ssh.org][Secure Shell (SSH)]]
