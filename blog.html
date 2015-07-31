@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Deploy Blog Site on GitHub</title>
-<!-- 2015-07-30 Thu 01:12 -->
+<!-- 2015-08-01 Sat 00:35 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -143,21 +143,193 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Sign up an account on GitHub and create a repository</a></li>
+<li><a href="#sec-1">1. Preparation</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Softwares</a></li>
+<li><a href="#sec-1-2">1.2. Account on GitHub</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Configuration</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Emacs and Orgmode</a></li>
+<li><a href="#sec-2-2">2.2. GitHub</a></li>
+<li><a href="#sec-2-3">2.3. Initialization</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Publish a new post</a></li>
 </ul>
 </div>
 </div>
 <p>
-It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on <a href="https://github.com">GitHub</a>. This page is just composed to summarize the detailed procedure.
+It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on <a href="https://github.com">GitHub</a>. This page is just written to summarize the procedure.
 </p>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Sign up an account on GitHub and create a repository</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> Preparation</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Softwares</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Above all, you should have <a href="http://www.gnu.org/software/emacs/">Emacs</a> and <a href="http://orgmode.org/">Orgmode</a> installed. Taking ArchLinux for instance, Emacs can be installed as follows
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">pacman -S emacs
+</pre>
+</div>
+<p>
+The installation of Orgmode can be avoided since it has been already included as a built-in plugin.
+</p>
+
+<p>
+In order to freely exchange data with GitHub, <code>git</code> is needed. Also taking ArchLinux for example, the installation can be performed by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">pacman -S git
+</pre>
 </div>
 </div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Account on GitHub</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Of course, an account on GitHub is also indispensable. If you do not have an account, you have to sign up on <a href="http://github.com">http://github.com</a>. According to the description of <a href="https://pages.github.com/">GitHub Pages</a>, if your account is <code>USERNAME</code>, your blog site can be accessed via <a href="http://USERNAME.github.io">http://USERNAME.github.io</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Configuration</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Emacs and Orgmode</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+First, you should create a fold to store your data of your blog site, e.g. <code>~/blog</code>.
+</p>
+
+<p>
+In order to publish your webpages, i.e. html files, you should configure your Emacs. The <code>~/.emacs</code> should look like
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span class="linenr"> 1: </span>...
+<span class="linenr"> 2: </span>(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
+<span class="linenr"> 3: </span>(setq org-publish-project-alist
+<span class="linenr"> 4: </span>      '(
+<span class="linenr"> 5: </span>        (<span style="color: #8b2252;">"org"</span>
+<span class="linenr"> 6: </span>         <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/blog/org"</span>
+<span class="linenr"> 7: </span>         <span style="color: #483d8b;">:base-extension</span> <span style="color: #8b2252;">"org"</span>
+<span class="linenr"> 8: </span>         <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/blog/html"</span>
+<span class="linenr"> 9: </span>         <span style="color: #483d8b;">:recursive</span> t
+<span class="linenr">10: </span>         <span style="color: #483d8b;">:publishing-function</span> org-html-publish-to-html
+<span class="linenr">11: </span>         <span style="color: #483d8b;">:headline-levels</span> 4
+<span class="linenr">12: </span>         <span style="color: #483d8b;">:section-numbers</span> nil
+<span class="linenr">13: </span>         <span style="color: #483d8b;">:auto-preamble</span> t
+<span class="linenr">14: </span>         <span style="color: #483d8b;">:auto-sitemap</span> t
+<span class="linenr">15: </span>         <span style="color: #483d8b;">:sitemap-filename</span> <span style="color: #8b2252;">"index.org"</span>
+<span class="linenr">16: </span>         <span style="color: #483d8b;">:sitemap-title</span> <span style="color: #8b2252;">"Blog Site"</span>
+<span class="linenr">17: </span>         <span style="color: #483d8b;">:author</span> <span style="color: #8b2252;">"NAME"</span>
+<span class="linenr">18: </span>         <span style="color: #483d8b;">:email</span> <span style="color: #8b2252;">"NAME@email"</span>
+<span class="linenr">19: </span>         <span style="color: #483d8b;">:html-head</span> <span style="color: #8b2252;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/&gt;"</span>
+<span class="linenr">20: </span>         )
+<span class="linenr">21: </span>        (<span style="color: #8b2252;">"attachment"</span>
+<span class="linenr">22: </span>         <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/blog/org"</span>
+<span class="linenr">23: </span>         <span style="color: #483d8b;">:base-extension</span> <span style="color: #8b2252;">"css</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">js</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">png</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">jpg</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">gif</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">pdf</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">mp3</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">ogg</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">swf"</span>
+<span class="linenr">24: </span>         <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/blog/html"</span>
+<span class="linenr">25: </span>         <span style="color: #483d8b;">:recursive</span> t
+<span class="linenr">26: </span>         <span style="color: #483d8b;">:publishing-function</span> org-publish-attachment
+<span class="linenr">27: </span>         )
+<span class="linenr">28: </span>        (<span style="color: #8b2252;">"blog"</span> <span style="color: #483d8b;">:components</span> (<span style="color: #8b2252;">"org"</span> <span style="color: #8b2252;">"attachment"</span>))
+<span class="linenr">29: </span>        ))
+<span class="linenr">30: </span>...
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> GitHub</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Sign in GitHub with your account, and create a repository. What deserves notice, the repository used to store your posts <i>must</i> be named <code>USERNAME.github.io</code>. Otherwise, your blog site cannot be accessed via <code>http://USERNAME.github.io</code>.
+</p>
+
+<p>
+The repository can be accessed via a variety of protocols, e.g. <code>git</code>, <code>SSH</code>. Without loss of generality, taking <a href="./ssh.html">SSH</a> for instance, you should generate your ssh key pair by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ssh-keygen -t rsa
+</pre>
+</div>
+<p>
+and paste your public key to the <code>SSH key</code> tab in the setting. After this, you can access your repository via git client.
+</p>
+
+<p>
+In fact, you can only push the published html webpages to GitHub. Pushing the org source files is not necessary. However, we push both org source files and published webpages to GitHub, but in different branches. The published webpages are stored in <code>master</code> branch, while the org source files are stored in <code>org</code> branch.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Initialization</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Enter the local directory, e.g. <code>~/blog</code> and clone the both branches.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/blog
+git clone -b master git@github.com:USERNAME/USERNAME.github.io html
+git clone -b org git@github.com:USERNAME/USERNAME.github.io org
+</pre>
+</div>
+<p>
+For sake of publishing beautiful webpages, you can customize your css and drop it in the source subfolder, e.g. <code>~/blog/org/default.css</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Publish a new post</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Create and edit an org file, e.g. <code>~/blog/org/newpost.org</code>.
+</li>
+<li>Generate the corresponding webpage to html folder<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>, e.g. <code>~/blog/html/newpost.html</code>.
+</li>
+<li>Push to GitHub.
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/blog/org
+git commit -am <span style="color: #8b2252;">"A new blog post"</span>
+git push origin org
+<span style="color: #483d8b;">cd</span> ~/blog/html
+git commit -am <span style="color: #8b2252;">"A new blog post"</span>
+git push origin master
+</pre>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+The command is <code>M-x org-publish</code>. Fill the project name, e.g. <code>blog</code>, when asked for input.
+</p></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-30 Thu 01:12</p>
+<p class="date">Created: 2015-08-01 Sat 00:35</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
