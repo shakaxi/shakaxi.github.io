@@ -1,6 +1,90 @@
 #+TITLE: Deploy Blog Site on GitHub
 #+OPTIONS: num:6
 
-It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on [[https://github.com][GitHub]]. This page is just composed to summarize the detailed procedure.
+It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on [[https://github.com][GitHub]]. This page is just written to summarize the procedure.
 
-* Sign up an account on GitHub and create a repository
+* Preparation
+** Softwares
+Above all, you should have [[http://www.gnu.org/software/emacs/][Emacs]] and [[http://orgmode.org/][Orgmode]] installed. Taking ArchLinux for instance, Emacs can be installed as follows
+#+BEGIN_SRC sh
+pacman -S emacs
+#+END_SRC
+The installation of Orgmode can be avoided since it has been already included as a built-in plugin.
+
+In order to freely exchange data with GitHub, =git= is needed. Also taking ArchLinux for example, the installation can be performed by
+#+BEGIN_SRC sh
+pacman -S git
+#+END_SRC
+** Account on GitHub
+Of course, an account on GitHub is also indispensable. If you do not have an account, you have to sign up on http://github.com. According to the description of [[https://pages.github.com/][GitHub Pages]], if your account is =USERNAME=, your blog site can be accessed via [[http://USERNAME.github.io]].
+* Configuration
+** Emacs and Orgmode
+First, you should create a fold to store your data of your blog site, e.g. =~/blog=.
+
+In order to publish your webpages, i.e. html files, you should configure your Emacs. The =~/.emacs= should look like
+#+BEGIN_SRC elisp -n
+...
+(require 'ox-publish)
+(setq org-publish-project-alist
+      '(
+        ("org"
+         :base-directory "~/blog/org"
+         :base-extension "org"
+         :publishing-directory "~/blog/html"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :headline-levels 4
+         :section-numbers nil
+         :auto-preamble t
+         :auto-sitemap t
+         :sitemap-filename "index.org"
+         :sitemap-title "Blog Site"
+         :author "NAME"
+         :email "NAME@email"
+         :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/>"
+         )
+        ("attachment"
+         :base-directory "~/blog/org"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+         :publishing-directory "~/blog/html"
+         :recursive t
+         :publishing-function org-publish-attachment
+         )
+        ("blog" :components ("org" "attachment"))
+        ))
+...
+#+END_SRC
+** GitHub
+Sign in GitHub with your account, and create a repository. What deserves notice, the repository used to store your posts /must/ be named =USERNAME.github.io=. Otherwise, your blog site cannot be accessed via =http://USERNAME.github.io=.
+
+The repository can be accessed via a variety of protocols, e.g. =git=, =SSH=. Without loss of generality, taking [[./ssh.html][SSH]] for instance, you should generate your ssh key pair by
+#+BEGIN_SRC sh
+ssh-keygen -t rsa
+#+END_SRC
+and paste your public key to the =SSH key= tab in the setting. After this, you can access your repository via git client.
+
+In fact, you can only push the published html webpages to GitHub. Pushing the org source files is not necessary. However, we push both org source files and published webpages to GitHub, but in different branches. The published webpages are stored in =master= branch, while the org source files are stored in =org= branch.
+** Initialization
+Enter the local directory, e.g. =~/blog= and clone the both branches.
+#+BEGIN_SRC sh
+cd ~/blog
+git clone -b master git@github.com:USERNAME/USERNAME.github.io html
+git clone -b org git@github.com:USERNAME/USERNAME.github.io org
+#+END_SRC
+For sake of publishing beautiful webpages, you can customize your css and drop it in the source subfolder, e.g. =~/blog/org/default.css=.
+* Publish a new post
+- Create and edit an org file, e.g. =~/blog/org/newpost.org=.
+- Generate the corresponding webpage to html folder[fn:1], e.g. =~/blog/html/newpost.html=.
+- Push to GitHub.
+#+BEGIN_SRC sh
+cd ~/blog/org
+git commit -am "A new blog post"
+git push origin org
+cd ~/blog/html
+git commit -am "A new blog post"
+git push origin master
+#+END_SRC
+
+* Footnotes
+
+[fn:1] The command is =M-x org-publish=. Fill the project name, e.g. =blog=, when asked for input.
