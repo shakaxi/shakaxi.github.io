@@ -57,7 +57,7 @@ In order to publish your webpages, i.e. html files, you should configure your Em
 ** GitHub
 Sign in GitHub with your account, and create a repository. What deserves notice, the repository used to store your posts /must/ be named =USERNAME.github.io=. Otherwise, your blog site cannot be accessed via =http://USERNAME.github.io=.
 
-The repository can be accessed via a variety of protocols, e.g. =git=, =SSH=. Without loss of generality, taking [[./ssh.html][SSH]] for instance, you should generate your ssh key pair by
+The repository can be accessed via a variety of protocols, e.g. =git=, =SSH=. Without loss of generality, taking [[./ssh.org][SSH]] for instance, you should generate your ssh key pair by
 #+BEGIN_SRC sh
 ssh-keygen -t rsa
 #+END_SRC
