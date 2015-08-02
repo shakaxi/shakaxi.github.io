@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Drawing with DOT</title>
+<!-- 2015-08-03 Mon 00:24 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="shaka" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Drawing with DOT</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. graph</a>
+<ul>
+<li><a href="#sec-1-1">1.1. rankdir</a></li>
+<li><a href="#sec-1-2">1.2. size</a></li>
+<li><a href="#sec-1-3">1.3. ratio</a></li>
+<li><a href="#sec-1-4">1.4. rotate</a></li>
+<li><a href="#sec-1-5">1.5. nodesep</a></li>
+<li><a href="#sec-1-6">1.6. ranksep</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. node</a>
+<ul>
+<li><a href="#sec-2-1">2.1. shape</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. Polygon-based shapes</a></li>
+<li><a href="#sec-2-1-2">2.1.2. Record-based shapes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2. width</a></li>
+<li><a href="#sec-2-3">2.3. height</a></li>
+<li><a href="#sec-2-4">2.4. label</a></li>
+<li><a href="#sec-2-5">2.5. style</a></li>
+<li><a href="#sec-2-6">2.6. port</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. edge</a>
+<ul>
+<li><a href="#sec-3-1">3.1. label</a></li>
+<li><a href="#sec-3-2">3.2. dir</a></li>
+<li><a href="#sec-3-3">3.3. headport/tailport</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+<i>DOT/<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> is a language for drawing graphs. It has three main kinds of objects, /graph</i>, <i>node</i> and <i>edge</i>. Each object has a variety of attributes. Given a <code>node</code> or <code>edge</code>, its attribute(s) can be set as
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">NODE_NAME [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
+NODE_NAME1 -&gt; NODE_NAME2 [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
+</pre>
+</div>
+<p>
+And the default values can be specified as below. And they will take effect afterwards.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">node [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
+edge [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
+</pre>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> graph</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A graph can be directed or undirected, corresponding to <code>digraph</code> and <code>graph</code>, respectively. Within a graph, a <code>subgraph</code> can be defined as a subset of nodes and edges.
+</p>
+</div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> rankdir</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><code>TB</code>: from top to bottom (default value)
+</li>
+<li><code>BT</code>: from bottom to top
+</li>
+<li><code>LR</code>: from left to right
+</li>
+<li><code>RL</code>: from right to left
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> size</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #a0522d;">size</span>=<span style="color: #8b2252;">"x,y"</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> ratio</h3>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> rotate</h3>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> nodesep</h3>
+</div>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> ranksep</h3>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> node</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A node is created when its name first appears in the file. A node has following attributes
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> shape</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Node shapes fall into two categories, polygon-based shapes and record-based shapes as below.
+</p>
+</div>
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Polygon-based shapes</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li><code>ellipse</code> (default value)
+</li>
+<li><code>box</code>
+</li>
+<li><code>circle</code>
+</li>
+<li><code>plaintext</code>: a node without any outline
+</li>
+<li><code>point</code>: a reduced node to display minimal content
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Record-based shapes</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li><code>record</code>
+</li>
+<li><code>Mrecord</code>: rounded corners
+</li>
+</ul>
+<p>
+Record-based nodes represent recursive lists of fields, which are drawn as alternating horizontal and vertical rows of boxes. The recursive structure is determined by attribute <code>label</code> of the node.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> width</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+default value is 0.75
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> height</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+default value is 0.5
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> label</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+The default label for a node is its name.
+</p>
+
+<p>
+For <b>multiline labels</b>, any of the following escape symbols will kick off a new line
+</p>
+<ul class="org-ul">
+<li><code>\n</code>: center aligned
+</li>
+<li><code>\l</code>: left aligned
+</li>
+<li><code>\r</code>: right aligned
+</li>
+</ul>
+<p>
+The default font is 14pt Times Roman in black color. For other font families, sizes or colors, specify attributes <code>fontname</code>, <code>fontsize</code> or <code>fontcolor</code>, respectively.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> style</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li><code>solid</code>
+</li>
+<li><code>dashed</code>
+</li>
+<li><code>dotted</code>
+</li>
+<li><code>bold</code>
+</li>
+<li><code>invis</code>
+</li>
+<li><code>filled</code>: shade inside the node using =fillcolor=<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+</li>
+<li><code>diagonals</code>
+</li>
+<li><code>rounded</code>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> port</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+A node <i>port</i> is a point where edges can attach to a node<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>. For any nodes, 8 ports are defined, <code>e</code>, <code>s</code>, <code>w</code>, <code>n</code>, <code>se</code>, <code>sw</code>, <code>ne</code>, <code>nw</code>. They can be used in either of the both ways.
+</p>
+<ul class="org-ul">
+<li>Using the attribute of <code>headport</code> or <code>tailport</code> of a edge
+</li>
+<li>=NODE<sub>NAME</sub>:PORT<sub>NAME</sub>=<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> edge</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A edge is created when nodes are joined by the edge operator
+</p>
+<ul class="org-ul">
+<li>Directed graph: <code>-&gt;</code>
+</li>
+<li>Undirected graph: <code>--</code>
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> label</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Edges are unlabeled by default. As node label, an edge label can also be explicitly set using the <code>label</code> attribute. Specially, an edge can be given additional labels with attributes <code>headlabel</code> and <code>taillabel</code>. For edge labels, the font can be customized using the attributes <code>labelfontname</code>, <code>labelfontsize</code> and <code>labelfontcolor</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> dir</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+This attribute is used to set arrowheads, which can be
+</p>
+<ul class="org-ul">
+<li><code>forward</code> (default value)
+</li>
+<li><code>back</code>
+</li>
+<li><code>both</code>
+</li>
+<li><code>none</code>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> headport/tailport</h3>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="http://www.graphviz.org/pdf/dotguide.pdf">http://www.graphviz.org/pdf/dotguide.pdf</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+If not set, the value of <code>color</code> will be adopted.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+If no port is specified, it is aimed at the node's center and the edge is clipped at the node's boundary.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
+For record-based nodes, it can be <code>NODE_NAME:FIELD_NAME:PORT_NAME</code>.
+</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: shaka</p>
+<p class="date">Created: 2015-08-03 Mon 00:24</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
