@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Customize Emacs</title>
-<!-- 2015-08-04 Tue 23:28 -->
+<title>C/C++ Programming with Emacs</title>
+<!-- 2015-08-04 Tue 23:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -138,103 +138,95 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Customize Emacs</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. Set values for predefined variables</a></li>
-<li><a href="#sec-2">2. Bind shortcut keys</a>
-<ul>
-<li><a href="#sec-2-1">2.1. Set global shortcut key</a></li>
-<li><a href="#sec-2-2">2.2. Set shortcut key for specific modes</a></li>
-</ul>
-</li>
-<li><a href="#sec-3">3. Mode &amp; hook</a></li>
-<li><a href="#sec-4">4. Third party extension</a></li>
-</ul>
-</div>
-</div>
+<h1 class="title">C/C++ Programming with Emacs</h1>
 <p>
-As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a powerful editor. Due to its infinite customizability and extensibility, in some sense, it is an operation system (OS) rather than an editor. This page briefly introduces how to customize it.
+This page is written to summarize my configuration for C/C++ programming with Emacs.
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Set values for predefined variables</h2>
-<div class="outline-text-2" id="text-1">
-<div class="org-src-container">
-
-<pre class="src src-sh">(setq variable value)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Bind shortcut keys</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Set global shortcut key</h3>
-<div class="outline-text-3" id="text-2-1">
-<div class="org-src-container">
-
-<pre class="src src-sh">(global-set-key key command)
-</pre>
-</div>
 <p>
-where <code>key</code> is shortcut<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>, e.g. <code>M-SPC</code>, <code>&lt;f7&gt;</code>, and <code>command</code> is the command name with a prefix of single quotation mark.
-</p>
-</div>
-</div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Set shortcut key for specific modes</h3>
-<div class="outline-text-3" id="text-2-2">
-<div class="org-src-container">
-
-<pre class="src src-sh">(define-key keymap key command)
-</pre>
-</div>
-<p>
-where <code>keymap</code> is associated to some mode, e.g. <code>c-mode-map</code>. Usually, each mode has its own keymap, which is the mode name appended with <code>-map</code>.
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Mode &amp; hook</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Emacs uses different modes to provide different editing environment. Generally, each file type has its own <i>major-mode</i> <sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup> and one or more <i>minor-mode</i> <sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>. Usually, each major-mode provides <i>hook</i>, mode name appended with <code>-hook</code>. When entering some major-mode, the functions in the corresponding hook will be provoked.
-</p>
-</div>
-</div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Third party extension</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-After the installation, the configuration includes two steps
+Besides Emacs, following extensions are also needed. The installation can be finished by the built-in package manager, <code>elpa</code>. Before the installation, following configuration in <code>~/.emacs</code> for <code>elpa</code> is necessary.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">(add-to-list <span style="color: #8b2252;">'load-path path-of-the-extension)</span>
-<span style="color: #8b2252;">(require '</span>extension-name)
+<pre class="src src-elisp">(setq package-archives '((<span style="color: #8b2252;">"gnu"</span> . <span style="color: #8b2252;">"http://elpa.gnu.org/packages/"</span>)
+             (<span style="color: #8b2252;">"melpa"</span> . <span style="color: #8b2252;">"http://melpa.milkbox.net/packages/"</span>)))
+(package-initialize)
 </pre>
 </div>
+<p>
+Through <code>elpa</code>, install following extensions.
+</p>
+<dl class="org-dl">
+<dt> company </dt><dd>It represents <i>complete anything</i>. Just as its name implies, it is used for completion. It is similar to <code>auto complete</code>, but I prefer company. In order to enable automatical completion in C/C++ programming, I use <code>clang</code> <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> as backend in lieu of <code>semantic</code>, since semantic-based completion is too slow. However, as long as company is installed, semantic is already built-in, a.k.a. company-semantic. Moreover, it precedes clang-based backend. To deal with the problem, we remove semantic from the list of backend for company.
+</dd>
+</dl>
+<div class="org-src-container">
+
+<pre class="src src-elisp">(global-company-mode t)
+(setq company-idle-delay 0)
+(setq company-backends (delete 'company-semantic company-backends))
+(add-to-list 'company-backends 'company-c-headers)
+</pre>
 </div>
+<p>
+BTW, for sake of completion based on other third-party libraries, we can create an elisp file <code>.dir-locals.el</code> in the project root.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp">((nil . ((company-clang-arguments . (<span style="color: #8b2252;">"-I/opt/itpp/include"</span>)))))
+</pre>
 </div>
+<dl class="org-dl">
+<dt> yasnippet </dt><dd>It stands for <i>yet another snippet</i> and can be directly installed via <code>elpa</code>. As its name indicates, it provides a large number of useful snippets and templates.
+</dd>
+</dl>
+<div class="org-src-container">
+
+<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">yasnippet</span>)
+(yas-global-mode t)
+</pre>
+</div>
+<dl class="org-dl">
+<dt> doxymacs<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup> </dt><dd>This extension aims to integrate <code>doxygen</code> into emacs. The related functionalities are bound to keys with prefix <code>C-c C-d</code>.
+</dd>
+</dl>
+<div class="org-src-container">
+
+<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">doxymacs</span>)
+(add-hook 'c-mode-common-hook 'doxymacs-mode)
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">my-doxymacs-font-lock-hook</span> ()
+  (<span style="color: #a020f0;">if</span> (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+      (doxymacs-font-lock)))
+(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+</pre>
+</div>
+<dl class="org-dl">
+<dt> cscope<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup> </dt><dd>Index the source codes and enable freely jumping between definitions, declarations and provokings of variables or functions. The related functionalities are bound to keys with prefix <code>C-c C-s</code>.
+</dd>
+</dl>
+<div class="org-src-container">
+
+<pre class="src src-elisp">(add-hook 'c-mode-common-hook '(<span style="color: #a020f0;">lambda</span>() (<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">xcscope</span>) (cscope-setup)))
+</pre>
+</div>
+
+<p>
+What deserves notice, not only programming but also debugging can be finished in the Emacs. We can run <code>M-x gdb</code> to enter debug mode. Optionally, we can also start many window mode by <code>M-x gdb-many-windows</code>. In the debugging, many useful functions are bound to keys with prefix <code>C-x C-a</code>.
+</p>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
-The expressions of the shortcut key can be obtained by <code>C-h k</code> first and then treated as the input parameter of <code>kbd</code>, e.g. <code>(kbd "M-SPC")</code>.
+Clang must be installed in advance.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
-For the file type, define syntax highlight, indent, comment, etc.
+This extension, at least up to now, is not included into the elpa repository. For ArchLinux, it can be installed by <code>AUR</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
-It can be aded to <code>major-mode</code>. It defines the enhancement or decoration.
+Cscope is an independent software and needs to be installed in advance.
 </p></div>
 
 
@@ -242,7 +234,7 @@ It can be aded to <code>major-mode</code>. It defines the enhancement or decorat
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-04 Tue 23:28</p>
+<p class="date">Created: 2015-08-04 Tue 23:53</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
