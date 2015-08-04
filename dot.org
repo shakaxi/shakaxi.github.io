@@ -1,7 +1,7 @@
 #+TITLE: Drawing with DOT
 #+OPTIONS: num:6
 
-/DOT/[fn:4] is a language for drawing graphs. It has three main kinds of objects, /graph/, /node/ and /edge/. Each object has a variety of attributes. Given a =node= or =edge=, its attribute(s) can be set as
+/DOT/ [fn:4] is a language for drawing graphs. It has three main kinds of objects, =graph=, =node= and =edge=. Each object has a variety of attributes. Given a =node= or =edge=, its attribute(s) can be set as below respectively
 #+BEGIN_SRC sh
 NODE_NAME [ATTRIBUTE1=VALUE1, ATTRIBUTE2=VALUE2, ...];
 NODE_NAME1 -> NODE_NAME2 [ATTRIBUTE1=VALUE1, ATTRIBUTE2=VALUE2, ...];
@@ -11,7 +11,6 @@ And the default values can be specified as below. And they will take effect afte
 node [ATTRIBUTE1=VALUE1, ATTRIBUTE2=VALUE2, ...];
 edge [ATTRIBUTE1=VALUE1, ATTRIBUTE2=VALUE2, ...];
 #+END_SRC
-
 * graph
 A graph can be directed or undirected, corresponding to =digraph= and =graph=, respectively. Within a graph, a =subgraph= can be defined as a subset of nodes and edges.
 ** rankdir
@@ -26,7 +25,9 @@ size="x,y"
 ** ratio
 ** rotate
 ** nodesep
+Separation between nodes of the same rank in inches.
 ** ranksep
+Separation between ranks in inches.
 * node
 A node is created when its name first appears in the file. A node has following attributes
 ** shape
@@ -42,13 +43,11 @@ Node shapes fall into two categories, polygon-based shapes and record-based shap
 - =Mrecord=: rounded corners
 Record-based nodes represent recursive lists of fields, which are drawn as alternating horizontal and vertical rows of boxes. The recursive structure is determined by attribute =label= of the node.
 ** width
-default value is 0.75
+The default value is 0.75
 ** height
-default value is 0.5
+The default value is 0.5
 ** label
-The default label for a node is its name.
-
-For *multiline labels*, any of the following escape symbols will kick off a new line
+The default label for a node is its name. For *multiline labels*, any of the following escape symbols will kick off a new line
 - =\n=: center aligned
 - =\l=: left aligned
 - =\r=: right aligned
@@ -59,19 +58,19 @@ The default font is 14pt Times Roman in black color. For other font families, si
 - =dotted=
 - =bold=
 - =invis=
-- =filled=: shade inside the node using =fillcolor=[fn:1].
+- =filled=: shade inside the node using =fillcolor= [fn:1].
 - =diagonals=
 - =rounded=
 ** port
 A node /port/ is a point where edges can attach to a node[fn:2]. For any nodes, 8 ports are defined, =e=, =s=, =w=, =n=, =se=, =sw=, =ne=, =nw=. They can be used in either of the both ways.
 - Using the attribute of =headport= or =tailport= of a edge
-- =NODE_NAME:PORT_NAME=[fn:3]
+- =NODE_NAME:PORT_NAME= [fn:3]
 * edge
 A edge is created when nodes are joined by the edge operator
 - Directed graph: =->=
 - Undirected graph: =--=
 ** label
-Edges are unlabeled by default. As node label, an edge label can also be explicitly set using the =label= attribute. Specially, an edge can be given additional labels with attributes =headlabel= and =taillabel=. For edge labels, the font can be customized using the attributes =labelfontname=, =labelfontsize= and =labelfontcolor=.
+Edges are unlabeled by default. As the same as node label, an edge label can also be explicitly set using the =label= attribute. Specially, an edge can be given additional labels with attributes =headlabel= and =taillabel=. For edge labels, the font can be customized using the attributes =labelfontname=, =labelfontsize= and =labelfontcolor=.
 ** dir
 This attribute is used to set arrowheads, which can be
 - =forward= (default value)
@@ -79,6 +78,9 @@ This attribute is used to set arrowheads, which can be
 - =both=
 - =none=
 ** headport/tailport
+#+BEGIN_SRC sh
+NODE_NAME1 -> NODE_NAME2 [headport/tailport=e/w/n/s/se/sw/ne/nw, OTHER_ATTRIBUTE=VALUE, ...];
+#+END_SRC
 * Footnotes
 
 [fn:1] If not set, the value of =color= will be adopted.
