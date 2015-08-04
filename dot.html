@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Drawing with DOT</title>
-<!-- 2015-08-03 Mon 00:24 -->
+<!-- 2015-08-04 Tue 19:19 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -179,7 +179,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <p>
-<i>DOT/<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> is a language for drawing graphs. It has three main kinds of objects, /graph</i>, <i>node</i> and <i>edge</i>. Each object has a variety of attributes. Given a <code>node</code> or <code>edge</code>, its attribute(s) can be set as
+<i>DOT</i> <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> is a language for drawing graphs. It has three main kinds of objects, <code>graph</code>, <code>node</code> and <code>edge</code>. Each object has a variety of attributes. Given a <code>node</code> or <code>edge</code>, its attribute(s) can be set as below respectively
 </p>
 <div class="org-src-container">
 
@@ -196,7 +196,6 @@ And the default values can be specified as below. And they will take effect afte
 edge [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
 </pre>
 </div>
-
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> graph</h2>
 <div class="outline-text-2" id="text-1">
@@ -237,9 +236,19 @@ A graph can be directed or undirected, corresponding to <code>digraph</code> and
 </div>
 <div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5"><span class="section-number-3">1.5</span> nodesep</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Separation between nodes of the same rank in inches.
+</p>
+</div>
 </div>
 <div id="outline-container-sec-1-6" class="outline-3">
 <h3 id="sec-1-6"><span class="section-number-3">1.6</span> ranksep</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Separation between ranks in inches.
+</p>
+</div>
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
@@ -292,7 +301,7 @@ Record-based nodes represent recursive lists of fields, which are drawn as alter
 <h3 id="sec-2-2"><span class="section-number-3">2.2</span> width</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-default value is 0.75
+The default value is 0.75
 </p>
 </div>
 </div>
@@ -300,7 +309,7 @@ default value is 0.75
 <h3 id="sec-2-3"><span class="section-number-3">2.3</span> height</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-default value is 0.5
+The default value is 0.5
 </p>
 </div>
 </div>
@@ -308,11 +317,7 @@ default value is 0.5
 <h3 id="sec-2-4"><span class="section-number-3">2.4</span> label</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-The default label for a node is its name.
-</p>
-
-<p>
-For <b>multiline labels</b>, any of the following escape symbols will kick off a new line
+The default label for a node is its name. For <b>multiline labels</b>, any of the following escape symbols will kick off a new line
 </p>
 <ul class="org-ul">
 <li><code>\n</code>: center aligned
@@ -341,7 +346,7 @@ The default font is 14pt Times Roman in black color. For other font families, si
 </li>
 <li><code>invis</code>
 </li>
-<li><code>filled</code>: shade inside the node using =fillcolor=<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+<li><code>filled</code>: shade inside the node using <code>fillcolor</code> <sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>.
 </li>
 <li><code>diagonals</code>
 </li>
@@ -359,7 +364,7 @@ A node <i>port</i> is a point where edges can attach to a node<sup><a id="fnr.3"
 <ul class="org-ul">
 <li>Using the attribute of <code>headport</code> or <code>tailport</code> of a edge
 </li>
-<li>=NODE<sub>NAME</sub>:PORT<sub>NAME</sub>=<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup>
+<li><code>NODE_NAME:PORT_NAME</code> <sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup>
 </li>
 </ul>
 </div>
@@ -382,7 +387,7 @@ A edge is created when nodes are joined by the edge operator
 <h3 id="sec-3-1"><span class="section-number-3">3.1</span> label</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-Edges are unlabeled by default. As node label, an edge label can also be explicitly set using the <code>label</code> attribute. Specially, an edge can be given additional labels with attributes <code>headlabel</code> and <code>taillabel</code>. For edge labels, the font can be customized using the attributes <code>labelfontname</code>, <code>labelfontsize</code> and <code>labelfontcolor</code>.
+Edges are unlabeled by default. As the same as node label, an edge label can also be explicitly set using the <code>label</code> attribute. Specially, an edge can be given additional labels with attributes <code>headlabel</code> and <code>taillabel</code>. For edge labels, the font can be customized using the attributes <code>labelfontname</code>, <code>labelfontsize</code> and <code>labelfontcolor</code>.
 </p>
 </div>
 </div>
@@ -406,6 +411,13 @@ This attribute is used to set arrowheads, which can be
 </div>
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3"><span class="section-number-3">3.3</span> headport/tailport</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">NODE_NAME1 -&gt; NODE_NAME2 [headport/tailport=e/w/n/s/se/sw/ne/nw, <span style="color: #a0522d;">OTHER_ATTRIBUTE</span>=VALUE, ...];
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="footnotes">
@@ -433,7 +445,7 @@ For record-based nodes, it can be <code>NODE_NAME:FIELD_NAME:PORT_NAME</code>.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-03 Mon 00:24</p>
+<p class="date">Created: 2015-08-04 Tue 19:19</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
