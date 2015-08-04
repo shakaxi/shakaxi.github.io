@@ -2,7 +2,9 @@
 
    + [[file:mathematica.org][A Brief Summary of Mathematica]]
    + [[file:bash.org][Bash]]
+   + [[file:programming_emacs.org][C/C++ Programming with Emacs]]
    + [[file:pbs_maui.org][Cluster Deployment based on PBS and Maui]]
+   + [[file:convex_opt.org][Convex Optimization]]
    + [[file:customize_emacs.org][Customize Emacs]]
    + [[file:blog.org][Deploy Blog Site on GitHub]]
    + [[file:dot.org][Drawing with DOT]]

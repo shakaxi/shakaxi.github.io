@@ -1,0 +1,51 @@
+#+TITLE: C/C++ Programming with Emacs
+#+OPTIONS: num:6
+
+This page is written to summarize my configuration for C/C++ programming with Emacs.
+
+Besides Emacs, following extensions are also needed. The installation can be finished by the built-in package manager, =elpa=. Before the installation, following configuration in =~/.emacs= for =elpa= is necessary.
+#+BEGIN_SRC elisp
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+             ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
+#+END_SRC
+Through =elpa=, install following extensions.
+- company :: It represents /complete anything/. Just as its name implies, it is used for completion. It is similar to =auto complete=, but I prefer company. In order to enable automatical completion in C/C++ programming, I use =clang= [fn:2] as backend in lieu of =semantic=, since semantic-based completion is too slow. However, as long as company is installed, semantic is already built-in, a.k.a. company-semantic. Moreover, it precedes clang-based backend. To deal with the problem, we remove semantic from the list of backend for company.
+#+BEGIN_SRC elisp
+(global-company-mode t)
+(setq company-idle-delay 0)
+(setq company-backends (delete 'company-semantic company-backends))
+(add-to-list 'company-backends 'company-c-headers)
+#+END_SRC
+BTW, for sake of completion based on other third-party libraries, we can create an elisp file =.dir-locals.el= in the project root.
+#+BEGIN_SRC elisp
+((nil . ((company-clang-arguments . ("-I/opt/itpp/include")))))
+#+END_SRC
+- yasnippet :: It stands for /yet another snippet/ and can be directly installed via =elpa=. As its name indicates, it provides a large number of useful snippets and templates.
+#+BEGIN_SRC elisp
+(require 'yasnippet)
+(yas-global-mode t)
+#+END_SRC
+- doxymacs[fn:1] :: This extension aims to integrate =doxygen= into emacs. The related functionalities are bound to keys with prefix =C-c C-d=.
+#+BEGIN_SRC elisp
+(require 'doxymacs)
+(add-hook 'c-mode-common-hook 'doxymacs-mode)
+(defun my-doxymacs-font-lock-hook ()
+  (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+      (doxymacs-font-lock)))
+(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+#+END_SRC
+- cscope[fn:3] :: Index the source codes and enable freely jumping between definitions, declarations and provokings of variables or functions. The related functionalities are bound to keys with prefix =C-c C-s=.
+#+BEGIN_SRC elisp
+(add-hook 'c-mode-common-hook '(lambda() (require 'xcscope) (cscope-setup)))
+#+END_SRC
+
+What deserves notice, not only programming but also debugging can be finished in the Emacs. We can run =M-x gdb= to enter debug mode. Optionally, we can also start many window mode by =M-x gdb-many-windows=. In the debugging, many useful functions are bound to keys with prefix =C-x C-a=.
+
+* Footnotes
+
+[fn:1] This extension, at least up to now, is not included into the elpa repository. For ArchLinux, it can be installed by =AUR=.
+
+[fn:2] Clang must be installed in advance.
+
+[fn:3] Cscope is an independent software and needs to be installed in advance.
