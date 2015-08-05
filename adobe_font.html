@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>C/C++ Programming with Emacs</title>
+<title>Excellent Fonts from Adobe</title>
 <!-- 2015-08-05 Wed 22:10 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
@@ -138,100 +138,24 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">C/C++ Programming with Emacs</h1>
+<h1 class="title">Excellent Fonts from Adobe</h1>
 <p>
-This page is written to summarize my configuration for C/C++ programming with Emacs.
+Recently, I found several fonts from Adobe. What's beyond my expectation, they are so excellent and can meet all my requirements. They are <i>adobe-source-code-pro-fonts</i>, <i>adobe-source-sans-pro-fonts</i> and <i>adobe-source-serif-pro-fonts</i>.
 </p>
 
 <p>
-Besides Emacs, following extensions are also needed. The installation can be finished by the built-in package manager, <code>elpa</code>. Before the installation, following configuration in <code>~/.emacs</code> for <code>elpa</code> is necessary.
+For ArchLinux subscribers, the fonts can be easily installed via <code>pacman</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq package-archives '((<span style="color: #8b2252;">"gnu"</span> . <span style="color: #8b2252;">"http://elpa.gnu.org/packages/"</span>)
-             (<span style="color: #8b2252;">"melpa"</span> . <span style="color: #8b2252;">"http://melpa.milkbox.net/packages/"</span>)))
-(package-initialize)
-</pre>
-</div>
-<p>
-Through <code>elpa</code>, install following extensions.
-</p>
-<dl class="org-dl">
-<dt> company </dt><dd>It represents <i>complete anything</i>. Just as its name implies, it is used for completion. It is similar to <code>auto complete</code>, but I prefer company. In order to enable automatical completion in C/C++ programming, I use <code>clang</code> <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> as backend in lieu of <code>semantic</code>, since semantic-based completion is too slow. However, as long as company is installed, semantic is already built-in, a.k.a. company-semantic. Moreover, it precedes clang-based backend. To deal with the problem, we remove semantic from the list of backend for company.
-</dd>
-</dl>
-<div class="org-src-container">
-
-<pre class="src src-elisp">(global-company-mode t)
-(setq company-idle-delay 0)
-(setq company-backends (delete 'company-semantic company-backends))
-(add-to-list 'company-backends 'company-c-headers)
-</pre>
-</div>
-<p>
-BTW, for sake of completion based on other third-party libraries, we can create an elisp file <code>.dir-locals.el</code> in the project root.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-elisp">((nil . ((company-clang-arguments . (<span style="color: #8b2252;">"-I/opt/itpp/include"</span>)))))
-</pre>
-</div>
-<dl class="org-dl">
-<dt> yasnippet </dt><dd>It stands for <i>yet another snippet</i> and can be directly installed via <code>elpa</code>. As its name indicates, it provides a large number of useful snippets and templates.
-</dd>
-</dl>
-<div class="org-src-container">
-
-<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">yasnippet</span>)
-(yas-global-mode t)
-</pre>
-</div>
-<dl class="org-dl">
-<dt> doxymacs<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup> </dt><dd>This extension aims to integrate <code>doxygen</code> into emacs. The related functionalities are bound to keys with prefix <code>C-c C-d</code>.
-</dd>
-</dl>
-<div class="org-src-container">
-
-<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">doxymacs</span>)
-(add-hook 'c-mode-common-hook 'doxymacs-mode)
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">my-doxymacs-font-lock-hook</span> ()
-  (<span style="color: #a020f0;">if</span> (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
-      (doxymacs-font-lock)))
-(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
-</pre>
-</div>
-<dl class="org-dl">
-<dt> cscope<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup> </dt><dd>Index the source codes and enable freely jumping between definitions, declarations and provokings of variables or functions. The related functionalities are bound to keys with prefix <code>C-c s</code>.
-</dd>
-</dl>
-<div class="org-src-container">
-
-<pre class="src src-elisp">(add-hook 'c-mode-common-hook '(<span style="color: #a020f0;">lambda</span>() (<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">xcscope</span>) (cscope-setup)))
+<pre class="src src-sh">pacman -S adobe-source-{code,sans,serif}-pro-fonts
 </pre>
 </div>
 
 <p>
-What deserves notice, not only programming but also debugging can be finished in the Emacs. We can run <code>M-x gdb</code> to enter debug mode. Optionally, we can also start many window mode by <code>M-x gdb-many-windows</code>. In the debugging, many useful functions are bound to keys with prefix <code>C-x C-a</code>.
+After the installation, the fonts will be ready for use.
 </p>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
-Clang must be installed in advance.
-</p></div>
-
-<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
-This extension, at least up to now, is not included into the elpa repository. For ArchLinux, it can be installed by <code>AUR</code>.
-</p></div>
-
-<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
-Cscope is an independent software and needs to be installed in advance.
-</p></div>
-
-
 </div>
-</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
 <p class="date">Created: 2015-08-05 Wed 22:10</p>
