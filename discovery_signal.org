@@ -1,0 +1,17 @@
+#+TITLE: Discovery Signal
+#+OPTIONS: num:6
+
+Just as its name indicates, /discovery signal/ is transmitted by a cell to be discovered and measured by UE's. According to the standard[fn:1], a discovery signal occasion for a cell consists of
+- 1~5 consecutive subframes for FDD
+- 2~5 consecutive subframes for TDD
+Discovery signal is comprised of
+- CRS on antenna port 0 (R0)
+- PSS
+  + in the 1st subframe for FDD
+  + in the 2nd subframe for TDD
+- SSS in the 1st subframe
+- NZP CSI-RS in zero or more subframes
+
+* Footnotes
+
+[fn:1] Section 6.11A in 3GPP TS36.211

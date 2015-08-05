@@ -35,7 +35,7 @@ BTW, for sake of completion based on other third-party libraries, we can create 
       (doxymacs-font-lock)))
 (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
 #+END_SRC
-- cscope[fn:3] :: Index the source codes and enable freely jumping between definitions, declarations and provokings of variables or functions. The related functionalities are bound to keys with prefix =C-c C-s=.
+- cscope[fn:3] :: Index the source codes and enable freely jumping between definitions, declarations and provokings of variables or functions. The related functionalities are bound to keys with prefix =C-c s=.
 #+BEGIN_SRC elisp
 (add-hook 'c-mode-common-hook '(lambda() (require 'xcscope) (cscope-setup)))
 #+END_SRC
