@@ -17,7 +17,7 @@ Through =elpa=, install following extensions.
 (setq company-backends (delete 'company-semantic company-backends))
 (add-to-list 'company-backends 'company-c-headers)
 #+END_SRC
-BTW, for sake of completion based on other third-party libraries, we can create an elisp file =.dir-locals.el= in the project root.
+BTW, for sake of completion based on other third-party libraries, we can create an elisp file =.dir-locals.el= in the project root. E.g. /ITPP/ library installed in =/opt/itpp=.
 #+BEGIN_SRC elisp
 ((nil . ((company-clang-arguments . ("-I/opt/itpp/include")))))
 #+END_SRC

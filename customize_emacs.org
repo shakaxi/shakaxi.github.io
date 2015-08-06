@@ -4,17 +4,17 @@
 As is well-known, [[http://www.gnu.org/software/emacs][Emacs]] is a powerful editor. Due to its infinite customizability and extensibility, in some sense, it is an operation system (OS) rather than an editor. This page briefly introduces how to customize it.
 
 * Set values for predefined variables
-#+BEGIN_SRC sh
+#+BEGIN_SRC emacs-lisp
 (setq variable value)
 #+END_SRC
 * Bind shortcut keys
 ** Set global shortcut key
-#+BEGIN_SRC sh
+#+BEGIN_SRC emacs-lisp
 (global-set-key key command)
 #+END_SRC
 where =key= is shortcut[fn:1], e.g. =M-SPC=, =<f7>=, and =command= is the command name with a prefix of single quotation mark.
 ** Set shortcut key for specific modes
-#+BEGIN_SRC sh
+#+BEGIN_SRC emacs-lisp
 (define-key keymap key command)
 #+END_SRC
 where =keymap= is associated to some mode, e.g. =c-mode-map=. Usually, each mode has its own keymap, which is the mode name appended with =-map=.
@@ -22,7 +22,7 @@ where =keymap= is associated to some mode, e.g. =c-mode-map=. Usually, each mode
 Emacs uses different modes to provide different editing environment. Generally, each file type has its own /major-mode/ [fn:2] and one or more /minor-mode/ [fn:3]. Usually, each major-mode provides /hook/, mode name appended with =-hook=. When entering some major-mode, the functions in the corresponding hook will be provoked.
 * Third party extension
 After the installation, the configuration includes two steps
-#+BEGIN_SRC sh
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path path-of-the-extension)
 (require 'extension-name)
 #+END_SRC
