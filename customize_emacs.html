@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Customize Emacs</title>
-<!-- 2015-08-04 Tue 23:28 -->
+<!-- 2015-08-06 Thu 20:55 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -164,7 +164,7 @@ As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a pow
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">(setq variable value)
+<pre class="src src-emacs-lisp">(setq variable value)
 </pre>
 </div>
 </div>
@@ -177,7 +177,7 @@ As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a pow
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">(global-set-key key command)
+<pre class="src src-emacs-lisp">(global-set-key key command)
 </pre>
 </div>
 <p>
@@ -190,7 +190,7 @@ where <code>key</code> is shortcut<sup><a id="fnr.1" name="fnr.1" class="footref
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">(define-key keymap key command)
+<pre class="src src-emacs-lisp">(define-key keymap key command)
 </pre>
 </div>
 <p>
@@ -215,8 +215,8 @@ After the installation, the configuration includes two steps
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">(add-to-list <span style="color: #8b2252;">'load-path path-of-the-extension)</span>
-<span style="color: #8b2252;">(require '</span>extension-name)
+<pre class="src src-emacs-lisp">(add-to-list 'load-path path-of-the-extension)
+(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">extension-name</span>)
 </pre>
 </div>
 </div>
@@ -242,7 +242,7 @@ It can be aded to <code>major-mode</code>. It defines the enhancement or decorat
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-04 Tue 23:28</p>
+<p class="date">Created: 2015-08-06 Thu 20:55</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
