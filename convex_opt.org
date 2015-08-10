@@ -12,7 +12,7 @@ where
 - $f_i: \mathbf{R}^n \to \mathbf{R}, i=1,\ldots,m$: /constraints functions/
 Optimal solution $x^\star$ has the smallest value of $f_0$ among all vectors that satisfy the constraints.
 
-In fact, a general optimization problem is very difficult to solve. Its solution cannot always be found. Even it can, it suffers some compromise, e.g. very long computation time.
+In fact, a general optimization problem is very difficult to solve. Its solution cannot always be found. Even though it can, it suffers some compromise, e.g. very long computation time.
 
 Fortunately, following three problems can be efficiently and reliably solved.
 - /Least squares/

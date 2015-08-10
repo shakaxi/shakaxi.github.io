@@ -14,5 +14,6 @@
    + [[file:mobility_mgmt.org][Mobility Management in LTE]]
    + [[file:nfs.org][Network File System (NFS)]]
    + [[file:ntp.org][Network Time Protocol (NTP)]]
+   + [[file:slnr_bf.org][SLNR-based Beamforming]]
    + [[file:ssh.org][Secure Shell (SSH)]]
    + [[file:switch.org][关于switch语句]]
