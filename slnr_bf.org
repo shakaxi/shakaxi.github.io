@@ -38,7 +38,7 @@ where
 - $\mathbf{w}_0$ is the beamforming vector intended for =UE0=.
 - $\mathbf{H}_i$ is the channel matrix from the BS to =UEi=, $i=0,1,\ldots,n$.
 * SLNR-based beamforming
-The $\text{SLNR}_0$ above can further written as a /generalized Rayleigh quotient/ [fn:1].
+The $\text{SLNR}_0$ above can be further written as a /generalized Rayleigh quotient/ [fn:1].
 \begin{align}
 \text{SLNR}_0 = \frac{\mathbf{w}_0^H\mathbf{H}_0^H\mathbf{H}_0\mathbf{w}_0}{\mathbf{w}_0^H (P_N \mathbf{I} + \sum_{i\neq 0} \mathbf{H}_i^H \mathbf{H}_i) \mathbf{w}_0}
 \end{align}
