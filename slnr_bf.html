@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Convex Optimization</title>
-<!-- 2015-08-11 Tue 00:06 -->
+<title>SLNR-based Beamforming</title>
+<!-- 2015-08-11 Tue 01:28 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
@@ -180,127 +180,94 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Convex Optimization</h1>
+<h1 class="title">SLNR-based Beamforming</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Least squares (LS)</a></li>
-<li><a href="#sec-2">2. Linear programming (LP)</a></li>
-<li><a href="#sec-3">3. Convex optimization</a></li>
+<li><a href="#sec-1">1. Introduction</a></li>
+<li><a href="#sec-2">2. System model</a></li>
+<li><a href="#sec-3">3. SLNR-based beamforming</a></li>
 </ul>
 </div>
 </div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-A mathematical optimization problem can be expressed as
+In coordinatd scheduling and beamforming (CS/CB), one of coordinatd multipoint (CoMP) transmission schemes, signal leakage noise power ratio (SLNR)-based beamforming is widely used.
+</p>
+
+<p>
+Just as its name indicates, SLNR aims to maximize the ratio of desired signal power to the undesired leakage power and noise power.
+</p>
+
+<p>
+This page is just written to summarize this SLNR-based beamforming scheme.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> System model</h2>
+<div class="outline-text-2" id="text-2">
+
+<div class="figure">
+<p><img src="slnr.png" alt="slnr.png" />
+</p>
+</div>
+
+<p>
+Without loss of generality, we consider a simple scenario as shown in the figure above. Taking <code>UE0</code> for instance, the BS intends to send data to it, i.e. the received signals at other UE's, e.g. <code>UE1</code>, &#x2026;, <code>UEn</code> are all <i>leakage</i>. The SLNR can be expressed as
 </p>
 \begin{align}
-\min & f_0(x) \\
-\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
+\text{SLNR}_0 := \frac{\|\mathbf{H}_0 \mathbf{w}_0\|^2}{P_N + \sum_{i\neq 0}\|\mathbf{H}_i \mathbf{w}_0\|^2},
 \end{align}
 <p>
 where
 </p>
 <ul class="org-ul">
-<li>\(x = (x_1, \ldots, x_n)\): <i>optimization variables</i>
+<li>\(P_N\) is the noise power at <code>UE0</code>.
 </li>
-<li>\(f_0: \mathbf{R}^n \to \mathbf{R}\): <i>objective function</i>
+<li>\(\mathbf{w}_0\) is the beamforming vector intended for <code>UE0</code>.
 </li>
-<li>\(f_i: \mathbf{R}^n \to \mathbf{R}, i=1,\ldots,m\): <i>constraints functions</i>
-</li>
-</ul>
-<p>
-Optimal solution \(x^\star\) has the smallest value of \(f_0\) among all vectors that satisfy the constraints.
-</p>
-
-<p>
-In fact, a general optimization problem is very difficult to solve. Its solution cannot always be found. Even though it can, it suffers some compromise, e.g. very long computation time.
-</p>
-
-<p>
-Fortunately, following three problems can be efficiently and reliably solved.
-</p>
-<ul class="org-ul">
-<li><i>Least squares</i>
-</li>
-<li><i>Linear programming</i>
-</li>
-<li><i>Convex optimization</i>
-</li>
-</ul>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Least squares (LS)</h2>
-<div class="outline-text-2" id="text-1">
-\begin{align}
-\min \|Ax - b\|_2^2
-\end{align}
-<ul class="org-ul">
-<li>Analytical solution \(x^\star = (A^TA)^{-1}A^Tb\)
-</li>
-<li>Easy to recognize
-</li>
-<li>A mature solution with reliable and efficient algorithms and softwares
-</li>
-<li>Computation time proportional to \(n^2k\) (\(A\in \mathbf{R}^{k\times n}\))
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Linear programming (LP)</h2>
-<div class="outline-text-2" id="text-2">
-\begin{align}
-\min & c^Tx \\
-\text{subject to} & a_i^Tx \le b_i,\quad i=1, \ldots, m
-\end{align}
-<ul class="org-ul">
-<li>No analytical solution
-</li>
-<li>Not as easy to recognize as LS problems
-</li>
-<li>A mature solution with reliable and efficient algorithms and softwares
-</li>
-<li>Computation time proportional to \(n^2m\)
+<li>\(\mathbf{H}_i\) is the channel matrix from the BS to <code>UEi</code>, \(i=0,1,\ldots,n\).
 </li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Convex optimization</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> SLNR-based beamforming</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+The \(\text{SLNR}_0\) above can further written as a <i>generalized Rayleigh quotient</i> <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
 \begin{align}
-\min & f_0(x) \\
-\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
+\text{SLNR}_0 = \frac{\mathbf{w}_0^H\mathbf{H}_0^H\mathbf{H}_0\mathbf{w}_0}{\mathbf{w}_0^H (P_N \mathbf{I} + \sum_{i\neq 0} \mathbf{H}_i^H \mathbf{H}_i) \mathbf{w}_0}
 \end{align}
 <p>
-where
+According to <i>Rayleigh-Ritz theorem</i>, if and only if \(\mathbf{w}_0\) equals the eigen vectors corresponding to the largest and smallest eigen values of \((P_N\mathbf{I} + \sum_{i\neq 0}\mathbf{H}_i^H\mathbf{H}_i)^{-1}\mathbf{H}_0^H\mathbf{H}_0\), \(\text{SLNR}_0\) reaches its minimal and maximal values, respectively.
 </p>
-<ul class="org-ul">
-<li>Objective and constraint functions are <i>convex</i>, i.e. \(\forall \alpha,\beta \ge 0\), \(\alpha + \beta = 1\), \(f_i(\alpha x + \beta y) \le \alpha f_i(x) + \beta f_i(y)\), \(i = 0, \ldots, m\).
-</li>
-<li>LS and LP are included as special cases.
-</li>
-</ul>
+
 <p>
-Generally, for convex optimization problems,
+Therefore, in order to maximize \(\text{SLNR}_0\), the beamforming vector or equivalently the SLNR-based beamforming vector for <code>UE0</code>, \(\mathbf{w}_0\), is the dominant eigen vector of \((P_N\mathbf{I} + \sum_{i\neq 0}\mathbf{H}_i^H\mathbf{H}_i)^{-1}\mathbf{H}_0^H\mathbf{H}_0\).
 </p>
-<ul class="org-ul">
-<li>No analytical solution
-</li>
-<li>Ofen difficult to recognize
-</li>
-<li>Almost a technology with reliable and efficient algorithms
-</li>
-<li>Computation time roughly proportional to \(\max\{n^3, n^2m,F\}\), where \(F\) is cost of evaluating \(f_i\)'s and their first and second derivatives.
-</li>
-</ul>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Rayleigh_quotient">https://en.wikipedia.org/wiki/Rayleigh_quotient</a>
+</p></div>
+
+
 </div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-11 Tue 00:06</p>
+<p class="date">Created: 2015-08-11 Tue 01:28</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
