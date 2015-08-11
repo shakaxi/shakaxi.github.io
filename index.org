@@ -1,7 +1,7 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:convex_opt.org][2015-08-11 Convex Optimization]]
    + [[file:slnr_bf.org][2015-08-11 SLNR-based Beamforming]]
-   + [[file:convex_opt.org][2015-08-09 Convex Optimization]]
    + [[file:customize_emacs.org][2015-08-06 Customize Emacs]]
    + [[file:programming_emacs.org][2015-08-05 C/C++ Programming with Emacs]]
    + [[file:discovery_signal.org][2015-08-05 Discovery Signal]]

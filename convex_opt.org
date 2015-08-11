@@ -46,6 +46,6 @@ where
 - LS and LP are included as special cases.
 Generally, for convex optimization problems,
 - No analytical solution
-- Ofen difficult to recognize
+- Often difficult to recognize
 - Almost a technology with reliable and efficient algorithms
 - Computation time roughly proportional to $\max\{n^3, n^2m,F\}$, where $F$ is cost of evaluating $f_i$'s and their first and second derivatives.
