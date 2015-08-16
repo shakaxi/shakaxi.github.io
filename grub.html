@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-08-16 Sun 21:25 -->
+<!-- 2015-08-16 Sun 21:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>Repairing GRUB</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,38 +144,26 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
-<ul class="org-ul">
-<li><a href="gdb.html">2015-08-16 Debuging Programs with GDB</a></li>
-<li><a href="grub.html">2015-08-16 Repairing GRUB</a></li>
-<li><a href="abstract_data_from_matlab_fig.html">2015-08-16 Abstracting Original Data from MATLAB Figure File</a></li>
-<li><a href="rcs.html">2015-08-16 Using RCS</a></li>
-<li><a href="switch_virtual_console.html">2015-08-16 Switch between Textual and Graphical Interface</a></li>
-<li><a href="matlab_ssh.html">2015-08-16 Running MATLAB through SSH</a></li>
-<li><a href="mutt.html">2015-08-16 Mutt</a></li>
-<li><a href="makefile_c.html">2015-08-12 A Makefile for C Codes</a></li>
-<li><a href="convex_opt.html">2015-08-11 Convex Optimization</a></li>
-<li><a href="slnr_bf.html">2015-08-11 SLNR-based Beamforming</a></li>
-<li><a href="customize_emacs.html">2015-08-06 Customize Emacs</a></li>
-<li><a href="programming_emacs.html">2015-08-05 C/C++ Programming with Emacs</a></li>
-<li><a href="discovery_signal.html">2015-08-05 Discovery Signal</a></li>
-<li><a href="adobe_font.html">2015-08-05 Excellent Fonts from Adobe</a></li>
-<li><a href="dot.html">2015-08-04 Drawing with DOT</a></li>
-<li><a href="blog.html">2015-08-02 Deploy Blog Site on GitHub</a></li>
-<li><a href="switch.html">2015-07-30 关于switch语句</a></li>
-<li><a href="ssh.html">2015-07-30 Secure Shell (SSH)</a></li>
-<li><a href="pgf_tikz.html">2015-07-30 Drawing with PGF/Tikz</a></li>
-<li><a href="pbs_maui.html">2015-07-30 Cluster Deployment based on PBS and Maui</a></li>
-<li><a href="ntp.html">2015-07-30 Network Time Protocol (NTP)</a></li>
-<li><a href="nfs.html">2015-07-30 Network File System (NFS)</a></li>
-<li><a href="mobility_mgmt.html">2015-07-30 Mobility Management in LTE</a></li>
-<li><a href="mathematica.html">2015-07-30 A Brief Summary of Mathematica</a></li>
-<li><a href="bash.html">2015-07-30 Bash</a></li>
-</ul>
+<h1 class="title">Repairing GRUB</h1>
+<p>
+<i>GRUB</i> is a powerful bootloader which can boot a variety of operation systems, including Unix, Linux and Windows. It is usually intalled in the MBR of a disk. This article presents the method how to repair it if it is corrupted.
+</p>
+
+<p>
+Above all, open a terminal or switch to a tty, then input commands below step by step:
+</p>
+
+<ol class="org-ol">
+<li>type <code>grub</code> to enter the interface of GRUB.</li>
+<li>if separate <code>/boot</code> partition exists, input <code>find /grub/stage1</code>; otherwise, input <code>find /boot/grub/stage1</code> instead.</li>
+<li>indicate the location for GRUB installation, <code>root (hdX, Y)</code>.</li>
+<li>set up GRUB to <code>hdX</code> ’s <i>MBR</i>, <code>setup (hdX)</code>.</li>
+<li>quit the GRUB program, <code>quit</code>.</li>
+</ol>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-16 Sun 21:25</p>
+<p class="date">Created: 2015-08-16 Sun 21:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
