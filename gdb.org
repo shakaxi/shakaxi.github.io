@@ -1,0 +1,29 @@
+#+TITLE: Debuging Programs with GDB
+#+OPTIONS: num:6
+
+/GDB/ is the world famous GNU debugger, which is very powerful. In this article, its elementary usages can be listed as follows.
+- =b(reak) LINE_IDX=: set breakpoint in line =LINE_IDX=.
+- =b(reak) FUN_NAME=: set breakpoint at the begin of function =FUN_NAME=.
+- =b(reak) ... if ...=: set conditional breakpoint.
+- =delete breakpoints BP_IDX=: delete breakpoint =BP_IDX= (if =BP_IDX= is omitted, all the breakpoints will be deleted).
+- =disable breakpoints BP_IDX=: disable breakpoint =BP_IDX= (if =BP_IDX= is omitted, all the breakpoints will be disabled).
+- =enable breakpoints BP_IDX=: enable breakpoint =BP_IDX= (if =BP_IDX= is omitted, all the breakpoints will be enabled).
+- =display VAR_NAME=: track varable =VAR_NAME=, every time the program stops, its value will be displayed.
+- =undisplay VAR_NAME=: cancel tracking of variable =VAR_NAME=.
+- =start=: start to excute the program and stop at the first statement of main.
+- =r(un)=: excute the program from beginning continuously.
+- =c(ontinue)=: excute the program from current position contiously.
+- =s(tep)=: excute the program by one step and enter the function if available.
+- =n(ext)=: excute the program by one step and don’t enter any function.
+- =backtrace(or bt)=: view the function call of all the levels and their parameters.
+- =f(rame) FRM_IDX=: select the stack frame of index =FRM_IDX=.
+- =watch=: set observation point.
+- =i(nfo) locals=: view the values of local variables in current stack frame.
+- =i(nfo) b(reakpoints)=: view current breakpoints.
+- =i(nfo) watchpoints=: view current observation points.
+- =l(ist)=: list 10 lines of source code, continuing the last.
+- =l(ist) LINE_IDX=: list the source code around line =LINE_IDX=.
+- =l(ist) FUN_NAME=: list the source code of function =FUN_NAME=.
+- =x=: print part content of register from some position. All the contents are treated as bytes without consideration that which bytes correspond to which variable. For example, =x/7b p= will print the content of size 7 bytes after point variable =p=.
+- =p(rint) expr=: print the value of =expr=. This functionality can be used to change the values of variables or provoke a function.
+- =finish=: excute the current function until return, and then stop.

@@ -1,0 +1,10 @@
+#+TITLE: Running MATLAB through SSH
+#+OPTIONS: num:6
+
+If MATLAB is installed on a secure shell ([[./ssh.org][SSH]]) server, which is avaiable for access, we can run MATLAB remotely through SSH. In this way, MATLAB is running in symbol environment without X display, and the results can be saved in a file for further post-processing. What's important, MATLAB keeps running after logout (SSH) until the MATLAB script ends or error happens.
+
+Running MATLAB remotely can be realized by the command
+#+BEGIN_SRC sh
+nohup matlab -nodisplay < JOBSCRIPT.m 1> JOB.LOG 2> JOB.ERR &
+#+END_SRC
+where =JOBSCRIPT.m= is the MATLAB script to be run. The screen output and error information are redirected to log file =JOB.LOG= and =JOB.ERR=, respectively.

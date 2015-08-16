@@ -1,0 +1,11 @@
+#+TITLE: Abstracting Original Data from MATLAB Figure File
+#+OPTIONS: num:6
+
+If you have a MATLAB figure file, =FILE.fig=, and want to abstract the original data from it. The following procedures should be processed.
+
+#+BEGIN_SRC matlab
+open('FILE.fig'); % open the figure file
+fig_handle = findall(gca, 'type', 'line'); % get figure handle
+x = get(fig_handle, 'xdata'); % get data of X-axis
+y = get(fig_handle, 'ydata'); % get data of Y-axis
+#+END_SRC

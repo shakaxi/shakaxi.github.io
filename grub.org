@@ -1,0 +1,11 @@
+#+TITLE: Repairing GRUB
+
+/GRUB/ is a powerful bootloader which can boot a variety of operation systems, including Unix, Linux and Windows. It is usually intalled in the MBR of a disk. This article presents the method how to repair it if it is corrupted.
+
+Above all, open a terminal or switch to a tty, then input commands below step by step:
+
+1. type =grub= to enter the interface of GRUB.
+2. if separate =/boot= partition exists, input =find /grub/stage1=; otherwise, input =find /boot/grub/stage1= instead.
+3. indicate the location for GRUB installation, =root (hdX, Y)=.
+4. set up GRUB to =hdX= ’s /MBR/, =setup (hdX)=.
+5. quit the GRUB program, =quit=.

@@ -1,5 +1,11 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:gdb.org][2015-08-16 Debuging Programs with GDB]]
+   + [[file:grub.org][2015-08-16 Repairing GRUB]]
+   + [[file:abstract_data_from_matlab_fig.org][2015-08-16 Abstracting Original Data from MATLAB Figure File]]
+   + [[file:rcs.org][2015-08-16 Using RCS]]
+   + [[file:switch_virtual_console.org][2015-08-16 Switch between Textual and Graphical Interface]]
+   + [[file:matlab_ssh.org][2015-08-16 Running MATLAB through SSH]]
    + [[file:mutt.org][2015-08-16 Mutt]]
    + [[file:makefile_c.org][2015-08-12 A Makefile for C Codes]]
    + [[file:convex_opt.org][2015-08-11 Convex Optimization]]
