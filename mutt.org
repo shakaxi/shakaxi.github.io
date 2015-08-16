@@ -1,0 +1,45 @@
+#+TITLE: Mutt
+#+OPTIONS: num:6
+
+Mutt is a text-based but powerful mail user agent (MUA) in the world of Unix/Linux. Originally, it is nothing but a MUA. However, it can make use of other programs to edit, send and receive mails. For example, it uses vim to edit mails, msmtp to send mails and getmail to receive mails. This is just the philosophy of Unix.
+
+In ArchLinux operation system (OS), the mutt package is compiled with interactive mail access protocol (IMAP), post office protocol (POP) 3 and simple message transfer protocol (SMTP) support. In this case, mutt not only can manage mails, but also can send and receive mails. At least for me, it’s the best choice.
+
+Above all, the package can be installed by
+#+BEGIN_SRC sh
+pacman -S mutt
+#+END_SRC
+Then create a configuration file =muttrc= in =~/.mutt= with the content below:
+#+BEGIN_SRC sh
+## imap settings
+set folder="imaps://imap.gmail.com/"
+set spoolfile="+INBOX"
+set postponed="+[Gmail]/Drafts"
+set record="+[Gmail]/Sent Mail"
+mailboxes "+INBOX"
+set imap_user="ID@gmail.com"
+set imap_pass="PASSWORD"
+set imap_keepalive=300
+set mail_check=120
+
+## smtp settings
+set smtp_url="smtp://$imap_user:$imap_pass@smtp.gmail.com"
+set ssl_force_tls="yes"
+
+## other settings
+set realname="Shaka"
+set signature="~/.mutt/signature"
+set alias_file="~/.mutt/alias"
+source $alias_file
+set header_cache="~/.mutt/header_cache"
+set pager_stop="yes"
+set editor="emacs -nw"
+set indent_str=">"
+auto_view text/html
+#+END_SRC
+
+where, =ID= and =PASSWORD= are respectively ID and password for my Gmail account. =~/.mutt/signature= is my signature file, which will be appended at the end of each mail before sent. =~/.mutt/alias= is my contact list. The entry
+#+BEGIN_SRC sh
+set pager_stop="yes"
+#+END_SRC
+is used to stop pager to read next mail when it arrives at the end of current one. In addition, /emacs/ is the my favorite editor and I edit mails with it. 
