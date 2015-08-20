@@ -1,0 +1,29 @@
+#+TITLE: Sidelink for D2D Communication
+#+OPTIONS: num:6
+
+* Overview
+In LTE-Advanced systems, the link for D2D communication is termed /sidelink/ [fn:1]. A sidelink carries two physical signals
+- DMRS
+- Synchronization signal
+and four physical channels.
+- Physical sidelink shared channel (PSSCH)
+- Physical sidelink control channel (PSCCH)
+- Physical sidelink discovery channel (PSDCH)
+- Physical sidelink broadcast channel (PSBCH)
+PSSCH, PSCCH and PSDCH are all on the same antenna port, =R1000=. PSBCH and synchronization signals are on =R1010= and =R1020=, respectively.
+* PSSCH
+Above all, the bit stream is first scrambled by a random sequence. The random seed of the scrambling sequence shall be initialized at the beginning of every PSSCH subframe
+\begin{align*}
+c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510,
+\end{align*}
+where $n_\text{ID}^\text{SA}$ is destination ID which can be obtained from PSDCH.
+
+The scrambled sequence is then modulated as constellation symbols. The modulation schemes for PSSCH consists of /QPSK/ and /16QAM/.
+
+The modulated symbols are then directly mapped to antenna port R1000, since there is only one layer for PSSCH.
+
+After that, every $M_\text{sc}^\text{PSSCH}$ complex-valued symbols are FFT-processed and scaled before mapping to the $M_\text{sc}^\text{PSSCH}$ consecutive subcarriers of a symbol. The mapping is first performed in frequency domain and then in time domain. By the way, the RE's with reference signals will be avoided for mapping. Moreover, frequency hopping is supported. The details can be referred to the specification.
+
+* Footnotes
+
+[fn:1] Section 9 in 3GPP TS36.211.
