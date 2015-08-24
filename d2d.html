@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-08-20 Thu 22:27 -->
+<!-- 2015-08-24 Mon 23:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sidelink for D2D Communication</title>
@@ -173,6 +173,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgheadline1">1. Overview</a></li>
 <li><a href="#orgheadline2">2. PSSCH</a></li>
+<li><a href="#orgheadline3">3. PSCCH</a></li>
 </ul>
 </div>
 </div>
@@ -223,7 +224,28 @@ The modulated symbols are then directly mapped to antenna port R1000, since ther
 </p>
 
 <p>
-After that, every \(M_\text{sc}^\text{PSSCH}\) complex-valued symbols are FFT-processed and scaled before mapping to the \(M_\text{sc}^\text{PSSCH}\) consecutive subcarriers of a symbol. The mapping is first performed in frequency domain and then in time domain. By the way, the RE's with reference signals will be avoided for mapping. Moreover, frequency hopping is supported. The details can be referred to the specification.
+After that, every \(M_\text{sc}^\text{PSSCH}\) complex-valued symbols are FFT-processed and scaled before mapping to the \(M_\text{sc}^\text{PSSCH}\) consecutive subcarriers of a symbol. The mapping is first performed in frequency domain and then in time domain. By the way, the RE's with reference signals (RS's) will be avoided for mapping. Moreover, frequency hopping is supported. The details can be referred to the specification.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">3</span> PSCCH</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The processing of PSCCH is very similar to that of PSSCH. 
+</p>
+
+<p>
+The bit stream carried by PSCCH is scrambled by a scrambling sequence, which is initialized with \(c_\text{init} = 510\) at the beginning of every PSCCH subframe.
+</p>
+
+<p>
+After the scrambling, the bit stream is then modulated into <i>QPSK</i> symbols. Then, the constellation symbols are mapped to antenna port R1000 as one layer.
+</p>
+
+<p>
+After that, every \(M_\text{sc}^\text{PSCCH}\) QPSK symbols are FFT-processed and scaled before mapping to resource elements except RS, along with the frequency domain first and then the time domain.
 </p>
 </div>
 </div>
@@ -240,7 +262,7 @@ Section 9 in 3GPP TS36.211.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-20 Thu 22:27</p>
+<p class="date">Created: 2015-08-24 Mon 23:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
