@@ -22,7 +22,16 @@ The scrambled sequence is then modulated as constellation symbols. The modulatio
 
 The modulated symbols are then directly mapped to antenna port R1000, since there is only one layer for PSSCH.
 
-After that, every $M_\text{sc}^\text{PSSCH}$ complex-valued symbols are FFT-processed and scaled before mapping to the $M_\text{sc}^\text{PSSCH}$ consecutive subcarriers of a symbol. The mapping is first performed in frequency domain and then in time domain. By the way, the RE's with reference signals will be avoided for mapping. Moreover, frequency hopping is supported. The details can be referred to the specification.
+After that, every $M_\text{sc}^\text{PSSCH}$ complex-valued symbols are FFT-processed and scaled before mapping to the $M_\text{sc}^\text{PSSCH}$ consecutive subcarriers of a symbol. The mapping is first performed in frequency domain and then in time domain. By the way, the RE's with reference signals (RS's) will be avoided for mapping. Moreover, frequency hopping is supported. The details can be referred to the specification.
+
+* PSCCH
+The processing of PSCCH is very similar to that of PSSCH. 
+
+The bit stream carried by PSCCH is scrambled by a scrambling sequence, which is initialized with $c_\text{init} = 510$ at the beginning of every PSCCH subframe.
+
+After the scrambling, the bit stream is then modulated into /QPSK/ symbols. Then, the constellation symbols are mapped to antenna port R1000 as one layer.
+
+After that, every $M_\text{sc}^\text{PSCCH}$ QPSK symbols are FFT-processed and scaled before mapping to resource elements except RS, along with the frequency domain first and then the time domain.
 
 * Footnotes
 
