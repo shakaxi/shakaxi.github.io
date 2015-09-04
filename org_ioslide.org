@@ -14,3 +14,8 @@ After that, the backend can be automatically loaded by adding following line in 
 #+BEGIN_SRC emacs-lisp
 (require 'ox-ioslide)
 #+END_SRC
+* Usage
+After the installation, an org file can be exported to html5 slides through the built-in exporter.
+#+BEGIN_SRC emacs-lisp
+C-c C-e i h
+#+END_SRC
