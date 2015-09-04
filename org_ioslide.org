@@ -1,0 +1,16 @@
+#+TITLE: Export Org File to HTML5 Slide
+#+OPTIONS: num:6
+
+* Introduction
+As is well-known, [[http://orgmode.org][orgmode]] is a famous major mode of [[http://www.gnu.org/software/emacs/][Emacs]]. What deserves notice, it can export org files to a variety of formats, e.g. \LaTeX, pdf, text, freemind.
+
+Today, I found an interesting export backend, =ox-ioslide=, whereby org files can be directly exported to html5 slides.
+* Installation
+It can be easily installed via Emacs's =ELPA= system.
+#+BEGIN_SRC emacs-lisp
+M-x package-install ox-ioslide
+#+END_SRC
+After that, the backend can be automatically loaded by adding following line in =.emacs=.
+#+BEGIN_SRC emacs-lisp
+(require 'ox-ioslide)
+#+END_SRC
