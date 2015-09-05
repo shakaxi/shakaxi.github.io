@@ -5,7 +5,7 @@
 In LTE-Advanced systems, the link for D2D communication is termed /sidelink/ [fn:1]. A sidelink carries two physical signals
 - DMRS
 - Synchronization signal
-and four physical channels.
+and four physical channels
 - Physical sidelink shared channel (PSSCH)
 - Physical sidelink control channel (PSCCH)
 - Physical sidelink discovery channel (PSDCH)
@@ -16,7 +16,7 @@ PSSCH, PSCCH and PSDCH are all on the same antenna port, =R1000=. PSBCH and sync
 The data stream is first scrambled by a random sequence. The scrambling sequence shall be initialized at the beginning of every PSSCH/PSCCH/PSDCH/PSBCH subframe. The corresponding random seeds are
 - PSSCH :: $c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510$, where $n_\text{ID}^\text{SA}$ is destination ID which can be obtained from PSDCH.
 - PSCCH/PSDCH :: $c_\text{init} = 510$.
-- PSBCH :: $c_\text{init} = N_{ID}^{SL}$
+- PSBCH :: $c_\text{init} = N_\text{ID}^\text{SL}$
 ** Modulation
 The scrambled sequence is then modulated as constellation symbols. The modulation schemes for the physical channels are
 | Physical channel  | Modulation scheme |
@@ -26,11 +26,11 @@ The scrambled sequence is then modulated as constellation symbols. The modulatio
 ** Layer mapping
 There is only one layer for each physical channel above. Namely, for each physical channel, the single codeword is mapped to a single layer.
 ** Transform precoding
-Similar to uplink transmission, /SC-FDMA/ is adopted for sidelinks. For the 4 physical channels above, every $M_\text{sc}^\text{PSSCH}$/$M_\text{sc}^\text{PSCCH}$/$M_\text{sc}^\text{PSDCH}$/$M_\text{sc}^\text{PSBCH}$ complex-valued symbols are FFT-processed.
+Similar to uplink transmission, /SC-FDMA/ is adopted for sidelinks. For the 4 physical channels above, every $M_\text{sc}^\text{PSSCH}$ / $M_\text{sc}^\text{PSCCH}$ / $M_\text{sc}^\text{PSDCH}$ / $M_\text{sc}^\text{PSBCH}$ complex-valued symbols are FFT-processed.
 ** Precoding
 As mentioned above, there is only one layer for each physical channel over a sidelink. Therefore, the single layer can be directly mapped to the corresponding antenna port, i.e. =R1000= for PSSCH, and =R1010= for PSCCH/PSDCH/PSBCH.
 ** Mapping to physical resources
-The complex symbols are first scaled by \beta_\text{PSSCH}/\beta_\text{PSCCH}/\beta_\text{PSDCH}/\beta_\text{PSBCH} before mapping to the physical resource blocks (PRB's). The mapping shall be in increasing order of first the index $k$, and then the index $l$, starting with the first slot in the subframe. Moreover, the PRB's used for reference signal (RS's) will be avoided in the mapping. Resource elements in the last SC-FDMA symbol within a subframe shall be counted in the mapping process but not transmitted.
+The complex symbols are first scaled by $\beta_\text{PSSCH}$ / $\beta_\text{PSCCH}$ / $\beta_\text{PSDCH}$ / $\beta_\text{PSBCH}$ before mapping to the physical resource blocks (PRB's). The mapping shall be in increasing order of first the index /k/, and then the index /l/, starting with the first slot in the subframe. Moreover, the PRB's used for reference signal (RS's) will be avoided in the mapping. Resource elements in the last SC-FDMA symbol within a subframe shall be counted in the mapping process but not transmitted.
 
 Particularly for PSSCH, frequency hopping is supported. The details can be referred to the specification.
 
