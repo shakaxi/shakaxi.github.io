@@ -1,7 +1,7 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:d2d.org][2015-09-05 Sidelink for D2D Communication]]
    + [[file:org_ioslide.org][2015-09-04 Export Org File to HTML5 Slide]]
-   + [[file:d2d.org][2015-08-24 Sidelink for D2D Communication]]
    + [[file:gdb.org][2015-08-16 Debuging Programs with GDB]]
    + [[file:grub.org][2015-08-16 Repairing GRUB]]
    + [[file:abstract_data_from_matlab_fig.org][2015-08-16 Abstracting Original Data from MATLAB Figure File]]

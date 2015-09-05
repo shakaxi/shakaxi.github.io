@@ -11,27 +11,30 @@ and four physical channels.
 - Physical sidelink discovery channel (PSDCH)
 - Physical sidelink broadcast channel (PSBCH)
 PSSCH, PSCCH and PSDCH are all on the same antenna port, =R1000=. PSBCH and synchronization signals are on =R1010= and =R1020=, respectively.
-* PSSCH
-Above all, the bit stream is first scrambled by a random sequence. The random seed of the scrambling sequence shall be initialized at the beginning of every PSSCH subframe
-\begin{align*}
-c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510,
-\end{align*}
-where $n_\text{ID}^\text{SA}$ is destination ID which can be obtained from PSDCH.
+* Physical layers
+** Scrambling
+The data stream is first scrambled by a random sequence. The scrambling sequence shall be initialized at the beginning of every PSSCH/PSCCH/PSDCH/PSBCH subframe. The corresponding random seeds are
+- PSSCH :: $c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510$, where $n_\text{ID}^\text{SA}$ is destination ID which can be obtained from PSDCH.
+- PSCCH/PSDCH :: $c_\text{init} = 510$.
+- PSBCH :: $c_\text{init} = N_{ID}^{SL}$
+** Modulation
+The scrambled sequence is then modulated as constellation symbols. The modulation schemes for the physical channels are
+| Physical channel  | Modulation scheme |
+|-------------------+-------------------|
+| PSSCH             | QPSK/16QAM        |
+| PSCCH/PSDCH/PSBCH | QPSK              | 
+** Layer mapping
+There is only one layer for each physical channel above. Namely, for each physical channel, the single codeword is mapped to a single layer.
+** Transform precoding
+Similar to uplink transmission, /SC-FDMA/ is adopted for sidelinks. For the 4 physical channels above, every $M_\text{sc}^\text{PSSCH}$/$M_\text{sc}^\text{PSCCH}$/$M_\text{sc}^\text{PSDCH}$/$M_\text{sc}^\text{PSBCH}$ complex-valued symbols are FFT-processed.
+** Precoding
+As mentioned above, there is only one layer for each physical channel over a sidelink. Therefore, the single layer can be directly mapped to the corresponding antenna port, i.e. =R1000= for PSSCH, and =R1010= for PSCCH/PSDCH/PSBCH.
+** Mapping to physical resources
+The complex symbols are first scaled by \beta_\text{PSSCH}/\beta_\text{PSCCH}/\beta_\text{PSDCH}/\beta_\text{PSBCH} before mapping to the physical resource blocks (PRB's). The mapping shall be in increasing order of first the index $k$, and then the index $l$, starting with the first slot in the subframe. Moreover, the PRB's used for reference signal (RS's) will be avoided in the mapping. Resource elements in the last SC-FDMA symbol within a subframe shall be counted in the mapping process but not transmitted.
 
-The scrambled sequence is then modulated as constellation symbols. The modulation schemes for PSSCH consists of /QPSK/ and /16QAM/.
+Particularly for PSSCH, frequency hopping is supported. The details can be referred to the specification.
 
-The modulated symbols are then directly mapped to antenna port R1000, since there is only one layer for PSSCH.
-
-After that, every $M_\text{sc}^\text{PSSCH}$ complex-valued symbols are FFT-processed and scaled before mapping to the $M_\text{sc}^\text{PSSCH}$ consecutive subcarriers of a symbol. The mapping is first performed in frequency domain and then in time domain. By the way, the RE's with reference signals (RS's) will be avoided for mapping. Moreover, frequency hopping is supported. The details can be referred to the specification.
-
-* PSCCH
-The processing of PSCCH is very similar to that of PSSCH. 
-
-The bit stream carried by PSCCH is scrambled by a scrambling sequence, which is initialized with $c_\text{init} = 510$ at the beginning of every PSCCH subframe.
-
-After the scrambling, the bit stream is then modulated into /QPSK/ symbols. Then, the constellation symbols are mapped to antenna port R1000 as one layer.
-
-After that, every $M_\text{sc}^\text{PSCCH}$ QPSK symbols are FFT-processed and scaled before mapping to resource elements except RS, along with the frequency domain first and then the time domain.
+For PSBCH, the available PRB's are in the central 6 PRB's, i.e. 72 subcarriers, as synchronization signals.
 
 * Footnotes
 

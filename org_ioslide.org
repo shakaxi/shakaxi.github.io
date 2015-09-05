@@ -10,7 +10,7 @@ It can be easily installed via Emacs's =ELPA= system.
 #+BEGIN_SRC emacs-lisp
 M-x package-install ox-ioslide
 #+END_SRC
-After that, the backend can be automatically loaded by adding following line in =.emacs=.
+After that, the backend can be automatically loaded by adding the following line in =.emacs=.
 #+BEGIN_SRC emacs-lisp
 (require 'ox-ioslide)
 #+END_SRC
