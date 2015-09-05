@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-09-05 Sat 17:28 -->
+<!-- 2015-09-05 Sat 17:33 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sidelink for D2D Communication</title>
@@ -197,7 +197,7 @@ In LTE-Advanced systems, the link for D2D communication is termed <i>sidelink</i
 <li>Synchronization signal</li>
 </ul>
 <p>
-and four physical channels.
+and four physical channels
 </p>
 <ul class="org-ul">
 <li>Physical sidelink shared channel (PSSCH)</li>
@@ -222,7 +222,7 @@ The data stream is first scrambled by a random sequence. The scrambling sequence
 <dl class="org-dl">
 <dt>PSSCH</dt><dd>\(c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510\), where \(n_\text{ID}^\text{SA}\) is destination ID which can be obtained from PSDCH.</dd>
 <dt>PSCCH/PSDCH</dt><dd>\(c_\text{init} = 510\).</dd>
-<dt>PSBCH</dt><dd>\(c_\text{init} = N_{ID}^{SL}\)</dd>
+<dt>PSBCH</dt><dd>\(c_\text{init} = N_\text{ID}^\text{SL}\)</dd>
 </dl>
 </div>
 </div>
@@ -272,7 +272,7 @@ There is only one layer for each physical channel above. Namely, for each physic
 <h3 id="orgheadline5"><span class="section-number-3">2.4</span> Transform precoding</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-Similar to uplink transmission, <i>SC-FDMA</i> is adopted for sidelinks. For the 4 physical channels above, every $M<sub>\text</sub>{sc}^\text{PSSCH}$/$M<sub>\text</sub>{sc}^\text{PSCCH}$/$M<sub>\text</sub>{sc}^\text{PSDCH}$/\(M_\text{sc}^\text{PSBCH}\) complex-valued symbols are FFT-processed.
+Similar to uplink transmission, <i>SC-FDMA</i> is adopted for sidelinks. For the 4 physical channels above, every \(M_\text{sc}^\text{PSSCH}\) / \(M_\text{sc}^\text{PSCCH}\) / \(M_\text{sc}^\text{PSDCH}\) / \(M_\text{sc}^\text{PSBCH}\) complex-valued symbols are FFT-processed.
 </p>
 </div>
 </div>
@@ -288,7 +288,7 @@ As mentioned above, there is only one layer for each physical channel over a sid
 <h3 id="orgheadline7"><span class="section-number-3">2.6</span> Mapping to physical resources</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
-The complex symbols are first scaled by &beta;<sub>\text</sub>{PSSCH}/&beta;<sub>\text</sub>{PSCCH}/&beta;<sub>\text</sub>{PSDCH}/&beta;<sub>\text</sub>{PSBCH} before mapping to the physical resource blocks (PRB's). The mapping shall be in increasing order of first the index \(k\), and then the index \(l\), starting with the first slot in the subframe. Moreover, the PRB's used for reference signal (RS's) will be avoided in the mapping. Resource elements in the last SC-FDMA symbol within a subframe shall be counted in the mapping process but not transmitted.
+The complex symbols are first scaled by \(\beta_\text{PSSCH}\) / \(\beta_\text{PSCCH}\) / \(\beta_\text{PSDCH}\) / \(\beta_\text{PSBCH}\) before mapping to the physical resource blocks (PRB's). The mapping shall be in increasing order of first the index <i>k</i>, and then the index <i>l</i>, starting with the first slot in the subframe. Moreover, the PRB's used for reference signal (RS's) will be avoided in the mapping. Resource elements in the last SC-FDMA symbol within a subframe shall be counted in the mapping process but not transmitted.
 </p>
 
 <p>
@@ -314,7 +314,7 @@ Section 9 in 3GPP TS36.211.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-09-05 Sat 17:28</p>
+<p class="date">Created: 2015-09-05 Sat 17:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
