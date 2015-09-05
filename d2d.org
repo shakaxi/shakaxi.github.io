@@ -11,7 +11,7 @@ and four physical channels.
 - Physical sidelink discovery channel (PSDCH)
 - Physical sidelink broadcast channel (PSBCH)
 PSSCH, PSCCH and PSDCH are all on the same antenna port, =R1000=. PSBCH and synchronization signals are on =R1010= and =R1020=, respectively.
-* Physical layers
+* Physical channels
 ** Scrambling
 The data stream is first scrambled by a random sequence. The scrambling sequence shall be initialized at the beginning of every PSSCH/PSCCH/PSDCH/PSBCH subframe. The corresponding random seeds are
 - PSSCH :: $c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510$, where $n_\text{ID}^\text{SA}$ is destination ID which can be obtained from PSDCH.
