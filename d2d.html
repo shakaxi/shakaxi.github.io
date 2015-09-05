@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-08-24 Mon 23:04 -->
+<!-- 2015-09-05 Sat 17:26 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sidelink for D2D Communication</title>
@@ -172,8 +172,16 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. Overview</a></li>
-<li><a href="#orgheadline2">2. PSSCH</a></li>
-<li><a href="#orgheadline3">3. PSCCH</a></li>
+<li><a href="#orgheadline8">2. Physical layers</a>
+<ul>
+<li><a href="#orgheadline2">2.1. Scrambling</a></li>
+<li><a href="#orgheadline3">2.2. Modulation</a></li>
+<li><a href="#orgheadline4">2.3. Layer mapping</a></li>
+<li><a href="#orgheadline5">2.4. Transform precoding</a></li>
+<li><a href="#orgheadline6">2.5. Precoding</a></li>
+<li><a href="#orgheadline7">2.6. Mapping to physical resources</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -202,51 +210,95 @@ PSSCH, PSCCH and PSDCH are all on the same antenna port, <code>R1000</code>. PSB
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> PSSCH</h2>
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">2</span> Physical layers</h2>
 <div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> Scrambling</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
-Above all, the bit stream is first scrambled by a random sequence. The random seed of the scrambling sequence shall be initialized at the beginning of every PSSCH subframe
+The data stream is first scrambled by a random sequence. The scrambling sequence shall be initialized at the beginning of every PSSCH/PSCCH/PSDCH/PSBCH subframe. The corresponding random seeds are
 </p>
-\begin{align*}
-c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510,
-\end{align*}
+<dl class="org-dl">
+<dt>PSSCH</dt><dd>\(c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510\), where \(n_\text{ID}^\text{SA}\) is destination ID which can be obtained from PSDCH.</dd>
+<dt>PSCCH/PSDCH</dt><dd>\(c_\text{init} = 510\).</dd>
+<dt>PSBCH</dt><dd>\(c_\text{init} = N_{ID}^{SL}\)</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> Modulation</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
-where \(n_\text{ID}^\text{SA}\) is destination ID which can be obtained from PSDCH.
+The scrambled sequence is then modulated as constellation symbols. The modulation schemes for the physical channels are
 </p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<p>
-The scrambled sequence is then modulated as constellation symbols. The modulation schemes for PSSCH consists of <i>QPSK</i> and <i>16QAM</i>.
-</p>
 
-<p>
-The modulated symbols are then directly mapped to antenna port R1000, since there is only one layer for PSSCH.
-</p>
+<colgroup>
+<col  class="org-left" />
 
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Physical channel</th>
+<th scope="col" class="org-left">Modulation scheme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">PSSCH</td>
+<td class="org-left">QPSK/16QAM</td>
+</tr>
+
+<tr>
+<td class="org-left">PSCCH/PSDCH/PSBCH</td>
+<td class="org-left">QPSK</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.3</span> Layer mapping</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
-After that, every \(M_\text{sc}^\text{PSSCH}\) complex-valued symbols are FFT-processed and scaled before mapping to the \(M_\text{sc}^\text{PSSCH}\) consecutive subcarriers of a symbol. The mapping is first performed in frequency domain and then in time domain. By the way, the RE's with reference signals (RS's) will be avoided for mapping. Moreover, frequency hopping is supported. The details can be referred to the specification.
+There is only one layer for each physical channel above. Namely, for each physical channel, the single codeword is mapped to a single layer.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> PSCCH</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.4</span> Transform precoding</h3>
+<div class="outline-text-3" id="text-2-4">
 <p>
-The processing of PSCCH is very similar to that of PSSCH. 
+Similar to uplink transmission, <i>SC-FDMA</i> is adopted for sidelinks. For the 4 physical channels above, every $M<sub>\text</sub>{sc}^\text{PSSCH}$/$M<sub>\text</sub>{sc}^\text{PSCCH}$/$M<sub>\text</sub>{sc}^\text{PSDCH}$/\(M_\text{sc}^\text{PSBCH}\) complex-valued symbols are FFT-processed.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.5</span> Precoding</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+As mentioned above, there is only one layer for each physical channel over a sidelink. Therefore, the single layer can be directly mapped to the corresponding antenna port, i.e. <code>R1000</code> for PSSCH, and <code>R1010</code> for PSCCH/PSDCH/PSBCH.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.6</span> Mapping to physical resources</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+The complex symbols are first scaled by &beta;<sub>\text</sub>{PSSCH}/&beta;<sub>\text</sub>{PSCCH}/&beta;<sub>\text</sub>{PSDCH}/&beta;<sub>\text</sub>{PSBCH} before mapping to the physical resource blocks (PRB's). The mapping shall be in increasing order of first the index \(k\), and then the index \(l\), starting with the first slot in the subframe. Moreover, the PRB's used for reference signal (RS's) will be avoided in the mapping. Resource elements in the last SC-FDMA symbol within a subframe shall be counted in the mapping process but not transmitted.
 </p>
 
 <p>
-The bit stream carried by PSCCH is scrambled by a scrambling sequence, which is initialized with \(c_\text{init} = 510\) at the beginning of every PSCCH subframe.
+Particularly for PSSCH, frequency hopping is supported. The details can be referred to the specification.
 </p>
 
 <p>
-After the scrambling, the bit stream is then modulated into <i>QPSK</i> symbols. Then, the constellation symbols are mapped to antenna port R1000 as one layer.
+For PSBCH, the available PRB's are in the central 6 PRB's, i.e. 72 subcarriers, as synchronization signals.
 </p>
-
-<p>
-After that, every \(M_\text{sc}^\text{PSCCH}\) QPSK symbols are FFT-processed and scaled before mapping to resource elements except RS, along with the frequency domain first and then the time domain.
-</p>
+</div>
 </div>
 </div>
 <div id="footnotes">
@@ -262,7 +314,7 @@ Section 9 in 3GPP TS36.211.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-24 Mon 23:04</p>
+<p class="date">Created: 2015-09-05 Sat 17:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
