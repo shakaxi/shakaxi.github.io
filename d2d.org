@@ -16,7 +16,7 @@ PSSCH, PSCCH and PSDCH are all on the same antenna port, =R1000=. PSBCH and sync
 The data stream is first scrambled by a random sequence. The scrambling sequence shall be initialized at the beginning of every PSSCH/PSCCH/PSDCH/PSBCH subframe. The corresponding random seeds are
 - PSSCH :: $c_\text{init} = n_\text{ID}^\text{SA} \cdot 2^{14} + n_\text{ssf}^\text{PSSCH} \cdot 2^9 + 510$, where $n_\text{ID}^\text{SA}$ is destination ID which can be obtained from PSDCH.
 - PSCCH/PSDCH :: $c_\text{init} = 510$.
-- PSBCH :: $c_\text{init} = N_\text{ID}^\text{SL}$
+- PSBCH :: $c_\text{init} = N_\text{ID}^\text{SL}$.
 ** Modulation
 The scrambled sequence is then modulated as constellation symbols. The modulation schemes for the physical channels are
 | Physical channel  | Modulation scheme |
