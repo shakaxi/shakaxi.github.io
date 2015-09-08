@@ -1,13 +1,12 @@
 #+TITLE: Zadoff-Chu Sequence
 #+LATEX_HEADER: \\usepackage{amsmath, amsfont, amssym}
-#+DATE: <2015-09-08 Tue>
 
 * Introduction
 The /Zadoff-Chu/ sequence[fn:1] is named after Solomon A. Zadoff and D. C. Chu, which is a constant amplitude zero auto-correlation (CAZAC) sequence[fn:2]
 with its cylically shifted versions are zero correlated, i.e. orthogonal to each other. A ZC sequence without cyclic shift is termed a /root sequence/, which can be expressed as
-\begin{align*}
+\begin{align}
 x_u(n) = e^{-j\frac{\pi u n (n+1+2q)}{L}}, \quad n = 0, 1, \ldots, L-1,
-\end{align*}
+\end{align}
 where $L$ is the length of the sequence and $q \in \mathbb{Z}$.
 * Properties
 - The auto-correlation of a ZC sequence with one of its cyclically shifted version equals zero.
