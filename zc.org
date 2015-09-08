@@ -1,0 +1,27 @@
+#+TITLE: Zadoff-Chu Sequence
+#+DATE: <2015-09-08 Tue>
+
+* Introduction
+The /Zadoff-Chu/ sequence[fn:1] is named after Solomon A. Zadoff and D. C. Chu, which is a constant amplitude zero auto-correlation (CAZAC) sequence[fn:2]
+with its cylically shifted versions are zero correlated, i.e. orthogonal to each other. A ZC sequence without cyclic shift is termed a /root sequence/, which can be expressed as
+\begin{align*}
+x_u(n) = e^{-j\frac{\pi u n (n+1+2q)}{L}}, \quad n = 0, 1, \ldots, L-1,
+\end{align*}
+where $L$ is the length of the sequence and $q \in \mathbb{Z}$.
+* Properties
+- The auto-correlation of a ZC sequence with one of its cyclically shifted version equals zero.
+- ZC sequences with odd length are periodic, i.e. $x_u(n + L) = x_u(n)$.
+- For a ZC sequence with odd length, its DFT is another ZC sequence.
+- The cross-correlation between two prime length ZC sequences, $x_{u_1}(n)$ and $x_{u_2}(n)$, is constant $\sqrt{L}$, provided that $u_1 - u_2$ is relative prime to $L$.
+* Applications
+ZC sequences are widely used in 3GPP LTE/LTE-Advanced system
+- Primary synchronization signal (PSS)
+- Random access preamble
+- Uplink demodulation reference signal (DMRS)
+- Sounding reference signal (SRS)
+
+* Footnotes
+
+[fn:2] https://en.wikipedia.org/wiki/Constant_amplitude_zero_autocorrelation_waveform
+
+[fn:1] https://en.wikipedia.org/wiki/Zadoff-Chu_sequence
