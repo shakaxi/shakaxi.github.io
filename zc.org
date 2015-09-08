@@ -14,13 +14,15 @@ where $L$ is the length of the sequence and $q \in \mathbb{Z}$.
 - For a ZC sequence with odd length, its DFT is another ZC sequence.
 - The cross-correlation between two prime length ZC sequences, $x_{u_1}(n)$ and $x_{u_2}(n)$, is constant $\sqrt{L}$, provided that $u_1 - u_2$ is relative prime to $L$.
 * Applications
-ZC sequences are widely used in 3GPP LTE/LTE-Advanced system
+ZC sequences are widely used in 3GPP LTE/LTE-Advanced system[fn:3]
 - Primary synchronization signal (PSS)
 - Random access preamble
 - Uplink demodulation reference signal (DMRS)
 - Sounding reference signal (SRS)
 
 * Footnotes
+
+[fn:3] 3GPP TS36.211
 
 [fn:2] https://en.wikipedia.org/wiki/Constant_amplitude_zero_autocorrelation_waveform
 
