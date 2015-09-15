@@ -1,0 +1,48 @@
+#+TITLE: IT++
+#+OPTIONS: num:6
+
+* Introduction
+/IT++/[fn:1] is a powerful C++ library, which is widely employed in the area of communication, esp. in simulation programming and computing. It has provided a variety of useful /classes/, e.g. =vector=, =matrix=. With the aid of IT++, programming in C++ is very similar to programming in =MATLAB=.
+
+IT++ is released under /GPL/, and can work on all the platforms, including Unix/Linux, Windows an Mac OS X.
+* Installation
+Optionally, its functionality can be greatly extended based on existing open-source or commercial libraries, i.e.
+- Open-source libraries
+  + [[http://www.netlib.org/blas/][BLAS]]
+  + [[http://www.netlib.org/lapack/][LAPACK]]
+  + [[http://www.fftw.org/][FFTW]]
+- Commercial libraries
+  + [[http://math-atlas.sourceforge.net/][ATLAS]]
+  + [[http://software.intel.com/en-us/intel-mkl/][MKL]]
+  + [[http://developer.amd.com/acml.aspx][ACML]]
+** Install the third-party libraries
+Herein, we take the open-source libraries above for instance. For /ArchLinux/, the installation can be performed by
+#+BEGIN_SRC sh
+pacman -S blas lapack fftw
+#+END_SRC
+** Install IT++
+At this moment, the latest version of IT++ is 4.3.1. The source code can be downloaded from its [[http://itpp.sourceforge.net/][website]]. Suppose the archive =itpp-4.3.1.tar.bz2= is extracted to directory =itpp-4.3.1=. Following commands will install IT++ to =/opt/itpp=.
+#+BEGIN_SRC sh
+cd itpp-4.3.1
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/opt/itpp
+make
+make install
+make clean
+cd ..
+rm -rf build
+#+END_SRC
+
+What deserves notice, the commands above installs the /shared/ libraries. For the static version, option =-DITPP_SHARED_LIB=off= of =cmake= should be used.
+
+BTW, HTML documentation will be installed by default. Therefore, /doxygen/ needs to be installed in advance. Otherwise, the documentation installation should be disabled by =-DHTML_DOCS=off= option of =cmake=.
+* Usage
+IT++ provides a script =/opt/itpp/bin/itpp-config= to simplify the compilation and linking of IT++ based programs.
+* Interface
+IT++ has its own file format, with a suffix =.it=. Fortunately, for the sake of convenient file exchange, it provides
+- MATLAB functions =itload.m= and =itsave.m=.
+- Python module =pyitpp.py=
+* Footnotes
+
+[fn:1] http://itpp.sourceforge.net/
