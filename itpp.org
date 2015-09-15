@@ -2,7 +2,7 @@
 #+OPTIONS: num:6
 
 * Introduction
-/IT++/[fn:1] is a powerful C++ library, which is widely employed in the area of communication, esp. in simulation programming and computing. It has provided a variety of useful /classes/, e.g. =vector=, =matrix=. With the aid of IT++, programming in C++ is very similar to programming in =MATLAB=.
+/IT++/[fn:1] is a powerful C++ library, which is widely employed in the area of communication, esp. in simulation programming and computing. It has provided a variety of useful /classes/, e.g. =vector=, =matrix=. With the aid of IT++, programming in C++ is very similar to programming in /MATLAB/.
 
 IT++ is released under /GPL/, and can work on all the platforms, including Unix/Linux, Windows an Mac OS X.
 * Installation
