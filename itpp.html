@@ -6,7 +6,7 @@
 <!-- 2015-09-15 Tue 20:51 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zadoff-Chu Sequence</title>
+<title>IT++</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -141,79 +141,120 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Zadoff-Chu Sequence</h1>
+<h1 class="title">IT++</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Introduction</a></li>
-<li><a href="#orgheadline2">Properties</a></li>
-<li><a href="#orgheadline3">Applications</a></li>
+<li><a href="#orgheadline1">1. Introduction</a></li>
+<li><a href="#orgheadline4">2. Installation</a>
+<ul>
+<li><a href="#orgheadline2">2.1. Install the third-party libraries</a></li>
+<li><a href="#orgheadline3">2.2. Install IT++</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline5">3. Usage</a></li>
+<li><a href="#orgheadline6">4. Interface</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Introduction</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-The <i>Zadoff-Chu (ZC)</i> sequence<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is named after Solomon A. Zadoff and D. C. Chu, which is a constant amplitude zero auto-correlation (CAZAC) sequence<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> with its cylically shifted versions are zero correlated, i.e. orthogonal to each other. A ZC sequence without cyclic shift is termed a <i>root sequence</i>, which can be expressed as
+<i>IT++</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a powerful C++ library, which is widely employed in the area of communication, esp. in simulation programming and computing. It has provided a variety of useful <i>classes</i>, e.g. <code>vector</code>, <code>matrix</code>. With the aid of IT++, programming in C++ is very similar to programming in <code>MATLAB</code>.
 </p>
-\begin{align*}
-x_u(n) = e^{-j\frac{\pi u n (n+1+2q)}{L}}, \quad n = 0, 1, \ldots, L-1,
-\end{align*}
+
 <p>
-where \(u\) is the index of the root sequence, \(L\) is the length and \(q \in \mathbb{Z}\).
+IT++ is released under <i>GPL</i>, and can work on all the platforms, including Unix/Linux, Windows an Mac OS X.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Properties</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">2</span> Installation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Optionally, its functionality can be greatly extended based on existing open-source or commercial libraries, i.e.
+</p>
 <ul class="org-ul">
-<li>The auto-correlation of a ZC sequence is <i>delta function</i>, i.e. zero correlated.</li>
-<li>ZC sequences with odd length are periodic, i.e. \(x_u(n + L) = x_u(n)\).</li>
-<li>For a ZC sequence with odd length, its DFT is another ZC sequence.</li>
-<li>The cross-correlation between two prime length ZC sequences, \(x_{u_1}(n)\) and \(x_{u_2}(n)\), is constant \(\sqrt{L}\), provided that \(u_1 - u_2\) is relative prime to \(L\).</li>
+<li>Open-source libraries
+<ul class="org-ul">
+<li><a href="http://www.netlib.org/blas/">BLAS</a></li>
+<li><a href="http://www.netlib.org/lapack/">LAPACK</a></li>
+<li><a href="http://www.fftw.org/">FFTW</a></li>
+</ul></li>
+<li>Commercial libraries
+<ul class="org-ul">
+<li><a href="http://math-atlas.sourceforge.net/">ATLAS</a></li>
+<li><a href="http://software.intel.com/en-us/intel-mkl/">MKL</a></li>
+<li><a href="http://developer.amd.com/acml.aspx">ACML</a></li>
+</ul></li>
 </ul>
 </div>
-</div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Applications</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> Install the third-party libraries</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
-ZC sequences are widely used in 3GPP LTE/LTE-Advanced system<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>
+Herein, we take the open-source libraries above for instance. For <i>ArchLinux</i>, the installation can be performed by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">pacman -S blas lapack fftw
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> Install IT++</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+At this moment, the latest version of IT++ is 4.3.1. The source code can be downloaded from its <a href="http://itpp.sourceforge.net/">website</a>. Suppose the archive <code>itpp-4.3.1.tar.bz2</code> is extracted to directory <code>itpp-4.3.1</code>. Following commands will install IT++ to <code>/opt/itpp</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #483d8b;">cd</span> itpp-4.3.1
+mkdir build
+<span style="color: #483d8b;">cd</span> build
+cmake .. -DCMAKE_INSTALL_PREFIX=/opt/itpp
+make
+make install
+make clean
+<span style="color: #483d8b;">cd</span> ..
+rm -rf build
+</pre>
+</div>
+
+<p>
+What deserves notice, the commands above installs the <i>shared</i> libraries. For the static version, option <code>-DITPP_SHARED_LIB=off</code> of <code>cmake</code> should be used.
+</p>
+
+<p>
+BTW, HTML documentation will be installed by default. Therefore, <i>doxygen</i> needs to be installed in advance. Otherwise, the documentation installation should be disabled by <code>-DHTML_DOCS=off</code> option of <code>cmake</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">3</span> Usage</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+IT++ provides a script <code>/opt/itpp/bin/itpp-config</code> to simplify the compilation and linking of IT++ based programs.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">4</span> Interface</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+IT++ has its own file format, with a suffix <code>.it</code>. Fortunately, for the sake of convenient file exchange, it provides
 </p>
 <ul class="org-ul">
-<li>Primary synchronization signal (PSS)</li>
-<li>Random access preamble</li>
-<li>Uplink demodulation reference signal (DMRS)</li>
-<li>Sounding reference signal (SRS)</li>
+<li>MATLAB functions <code>itload.m</code> and <code>itsave.m</code>.</li>
+<li>Python module <code>pyitpp.py</code></li>
 </ul>
 </div>
 </div>
@@ -222,15 +263,7 @@ ZC sequences are widely used in 3GPP LTE/LTE-Advanced system<sup><a id="fnr.3" c
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://en.wikipedia.org/wiki/Zadoff-Chu_sequence">https://en.wikipedia.org/wiki/Zadoff-Chu_sequence</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://en.wikipedia.org/wiki/Constant_amplitude_zero_autocorrelation_waveform">https://en.wikipedia.org/wiki/Constant_amplitude_zero_autocorrelation_waveform</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-3GPP TS36.211
+<a href="http://itpp.sourceforge.net/">http://itpp.sourceforge.net/</a>
 </p></div></div>
 
 
