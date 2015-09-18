@@ -1,7 +1,8 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:latex_gantt.org][2015-09-18 Drawing Gantt Chart using LaTeX]]
+   + [[file:zc.org][2015-09-18 Zadoff-Chu Sequence]]
    + [[file:itpp.org][2015-09-15 IT++]]
-   + [[file:zc.org][2015-09-09 Zadoff-Chu Sequence]]
    + [[file:d2d.org][2015-09-05 Sidelink for D2D Communication]]
    + [[file:org_ioslide.org][2015-09-04 Export Org File to HTML5 Slide]]
    + [[file:gdb.org][2015-08-16 Debuging Programs with GDB]]

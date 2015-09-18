@@ -1,4 +1,5 @@
 #+TITLE: Drawing Gantt Chart using LaTeX
+#+OPTIONS: num:6
 
 * Introduction
 Today, I found an interesting $\LaTeX$ package, /gantt/[fn:1]. This package is developped based on /pgf/tikz/ and, as its name indicates, can produce /Gantt/ charts.
@@ -27,7 +28,7 @@ The framework of using the package can be illustrated as
 - =xunitlength= :: length of one time slot (default: 1 cm)
 - =fontsize= :: fontsize of labels (default: =\normalsize=)
 - =titlefontsize= :: fontsize of title section (default: =\small=)
-- =drawledgerline= :: switch to enable/disable the drawing of horizontal ledger lines (default value: =false=)
+- =drawledgerline= :: switch to enable/disable the drawing of horizontal ledger lines (default: =false=)
 ** Title
 =ganttitle= is the environment for drawing the title section, which is comprised of a series of =\titleelement= and/or =\numtitle=
 #+BEGIN_SRC latex
