@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-09-18 Fri 22:36 -->
+<!-- 2015-09-18 Fri 22:58 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zadoff-Chu Sequence</title>
+<title>Drawing Gantt Chart using LaTeX</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -166,14 +166,30 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Zadoff-Chu Sequence</h1>
+<h1 class="title">Drawing Gantt Chart using LaTeX</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. Introduction</a></li>
-<li><a href="#orgheadline2">2. Properties</a></li>
-<li><a href="#orgheadline3">3. Applications</a></li>
+<li><a href="#orgheadline2">2. Installation</a></li>
+<li><a href="#orgheadline12">3. Usage</a>
+<ul>
+<li><a href="#orgheadline3">3.1. Optional arguments</a></li>
+<li><a href="#orgheadline4">3.2. Title</a></li>
+<li><a href="#orgheadline11">3.3. Other commands</a>
+<ul>
+<li><a href="#orgheadline5">3.3.1. <code>\ganttbar</code></a></li>
+<li><a href="#orgheadline6">3.3.2. <code>\ganttcon</code></a></li>
+<li><a href="#orgheadline7">3.3.3. <code>\ganttbarcon</code></a></li>
+<li><a href="#orgheadline8">3.3.4. <code>\ganttgroup</code></a></li>
+<li><a href="#orgheadline9">3.3.5. <code>\ganttmilestone</code></a></li>
+<li><a href="#orgheadline10">3.3.6. <code>\ganttmilestonecon</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline13">4. An example</a></li>
 </ul>
 </div>
 </div>
@@ -182,55 +198,123 @@ for the JavaScript code in this tag.
 <h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The <i>Zadoff-Chu (ZC)</i> sequence<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is named after Solomon A. Zadoff and D. C. Chu, which is a constant amplitude zero auto-correlation (CAZAC) sequence<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> with its cylically shifted versions are zero correlated, i.e. orthogonal to each other. A ZC sequence without cyclic shift is termed a <i>root sequence</i>, which can be expressed as
-</p>
-\begin{align*}
-x_u(n) = e^{-j\frac{\pi u n (n+1+2q)}{L}}, \quad n = 0, 1, \ldots, L-1,
-\end{align*}
-<p>
-where \(u\) is the index of the root sequence, \(L\) is the length and \(q \in \mathbb{Z}\).
+Today, I found an interesting \(\LaTeX\) package, <i>gantt</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. This package is developped based on <i>pgf/tikz</i> and, as its name indicates, can produce <i>Gantt</i> charts.
 </p>
 </div>
 </div>
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Properties</h2>
+<h2 id="orgheadline2"><span class="section-number-2">2</span> Installation</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li>The auto-correlation of a ZC sequence is <i>delta function</i>, i.e. zero correlated.</li>
-<li>ZC sequences with odd length are periodic, i.e. \(x_u(n + L) = x_u(n)\).</li>
-<li>For a ZC sequence with odd length, its DFT is another ZC sequence.</li>
-<li>The cross-correlation between two prime length ZC sequences, \(x_{u_1}(n)\) and \(x_{u_2}(n)\), is constant \(\sqrt{L}\), provided that \(u_1 - u_2\) is relative prime to \(L\).</li>
-</ul>
+<p>
+For <i>ArchLinux</i>, the package can be simply installed via <i>yaourt</i>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">yaourt texlive-gantt
+</pre>
+</div>
+<p>
+Alternatively, the corresponding <i>style</i> file can be downloaded from the <a href="http://www.martin-kumm.de/tex/gantt.sty">webpage</a>.
+</p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> Applications</h2>
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">3</span> Usage</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-ZC sequences are widely used in 3GPP LTE/LTE-Advanced system<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>
+The framework of using the package can be illustrated as
+</p>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> Optional arguments</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<code>key_1, key_2, ...</code> are optional arguments, which can be
+</p>
+<dl class="org-dl">
+<dt><code>xunitlength</code></dt><dd>length of one time slot (default: 1 cm)</dd>
+<dt><code>fontsize</code></dt><dd>fontsize of labels (default: <code>\normalsize</code>)</dd>
+<dt><code>titlefontsize</code></dt><dd>fontsize of title section (default: <code>\small</code>)</dd>
+<dt><code>drawledgerline</code></dt><dd>switch to enable/disable the drawing of horizontal ledger lines (default: <code>false</code>)</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">3.2</span> Title</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<code>ganttitle</code> is the environment for drawing the title section, which is comprised of a series of <code>\titleelement</code> and/or <code>\numtitle</code>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">3.3</span> Other commands</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">3.3.1</span> <code>\ganttbar</code></h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+Draws a single, unconnected bar for a task.
+where
 </p>
 <ul class="org-ul">
-<li>Primary synchronization signal (PSS)</li>
-<li>Random access preamble</li>
-<li>Uplink demodulation reference signal (DMRS)</li>
-<li>Sounding reference signal (SRS)</li>
+<li><code>&lt;pattern&gt;</code> is a tikz pattern, e.g. north west lines (default), crosshatch, crosshatch dots, grid, etc.</li>
+<li><code>&lt;color&gt;</code> is a tikz color of the pattern, e.g. black (default), red, green, blue, gray, dark gray.</li>
 </ul>
 </div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">3.3.2</span> <code>\ganttcon</code></h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+Draw an arrow between two bars with specified coordinates.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">3.3.3</span> <code>\ganttbarcon</code></h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+Draw a single bar <b>and</b> connect it to the <b>previous</b> bar/milestone.
+where the optional pattern argument are the same as <code>\ganttbar</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">3.3.4</span> <code>\ganttgroup</code></h4>
+<div class="outline-text-4" id="text-3-3-4">
+<p>
+Draw a bar to group tasks.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">3.3.5</span> <code>\ganttmilestone</code></h4>
+<div class="outline-text-4" id="text-3-3-5">
+<p>
+Draw a milestone using a diamond.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">3.3.6</span> <code>\ganttmilestonecon</code></h4>
+<div class="outline-text-4" id="text-3-3-6">
+<p>
+Draw a milestone using a diamond <b>and</b> connect it to the previous bar/milestone.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">4</span> An example</h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://en.wikipedia.org/wiki/Zadoff-Chu_sequence">https://en.wikipedia.org/wiki/Zadoff-Chu_sequence</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://en.wikipedia.org/wiki/Constant_amplitude_zero_autocorrelation_waveform">https://en.wikipedia.org/wiki/Constant_amplitude_zero_autocorrelation_waveform</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-3GPP TS36.211
+<a href="http://www.martin-kumm.de/wiki/doku.php?id=Projects:A_LaTeX_package_for_gantt_plots">http://www.martin-kumm.de/wiki/doku.php?id=Projects:A_LaTeX_package_for_gantt_plots</a>
 </p></div></div>
 
 
@@ -238,7 +322,7 @@ ZC sequences are widely used in 3GPP LTE/LTE-Advanced system<sup><a id="fnr.3" c
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-09-18 Fri 22:36</p>
+<p class="date">Created: 2015-09-18 Fri 22:58</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
