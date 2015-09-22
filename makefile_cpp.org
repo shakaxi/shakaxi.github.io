@@ -1,0 +1,35 @@
+#+TITLE: A Makefile for C++ Projects
+#+OPTIONS: num:6
+
+#+BEGIN_SRC makefile
+CC := /usr/bin/clang++
+INC := $(foreach  dirs, $(shell find $(shell pwd) -iname '*.h'), $(dirs))
+SRC := $(foreach  dirs, $(shell find $(shell pwd) -iname '*.cpp'), $(dirs))
+OBJ := $(subst .cpp,.o, $(SRC))
+BIN := prj
+
+ifdef RELEASE
+	CFLAGS := `/opt/itpp/bin/itpp-config --cflags`
+	LFLAGS := `/opt/itpp/bin/itpp-config --libs`
+else
+	CFLAGS := `/opt/itpp/bin/itpp-config --debug --cflags`
+	LFLAGS := `/opt/itpp/bin/itpp-config --debug --libs`
+endif
+
+%.o: %.cpp
+	@echo "Building object file $@ ..."
+	@$(CC) -c -o $@ $< $(CFLAGS)
+
+$(BIN): $(OBJ)
+	@echo "Linking object files and creating binary program ..."
+	@$(CC) $^ -o $@ -lm $(LFLAGS)
+
+.phony: default doc clean
+default: $(BIN)
+doc:
+	@echo "Generating documentation ..."
+        @doxygen -s config .
+clean:
+	@echo "Removing all object files ..."
+	@-rm -f $(OBJ)
+#+END_SRC

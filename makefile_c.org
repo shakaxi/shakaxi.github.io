@@ -1,4 +1,4 @@
-#+TITLE: A Makefile for C Codes
+#+TITLE: A Makefile for C Projects
 #+OPTIONS: num:6
 
 #+BEGIN_SRC makefile

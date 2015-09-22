@@ -1,5 +1,7 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:makefile_cpp.org][2015-09-22 A Makefile for C++ Projects]]
+   + [[file:makefile_c.org][2015-09-22 A Makefile for C Projects]]
    + [[file:latex_gantt.org][2015-09-18 Drawing Gantt Chart using LaTeX]]
    + [[file:zc.org][2015-09-18 Zadoff-Chu Sequence]]
    + [[file:itpp.org][2015-09-15 IT++]]
@@ -12,7 +14,6 @@
    + [[file:switch_virtual_console.org][2015-08-16 Switch between Textual and Graphical Interface]]
    + [[file:matlab_ssh.org][2015-08-16 Running MATLAB through SSH]]
    + [[file:mutt.org][2015-08-16 Mutt]]
-   + [[file:makefile_c.org][2015-08-12 A Makefile for C Codes]]
    + [[file:convex_opt.org][2015-08-11 Convex Optimization]]
    + [[file:slnr_bf.org][2015-08-11 SLNR-based Beamforming]]
    + [[file:customize_emacs.org][2015-08-06 Customize Emacs]]
