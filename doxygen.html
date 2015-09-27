@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2015-09-28 Mon 01:08 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Documenting Codes with Doxygen</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="shaka" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Documenting Codes with Doxygen</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. Introduction</a></li>
+<li><a href="#orgheadline10">2. Syntax</a>
+<ul>
+<li><a href="#orgheadline2">2.1. Comment block</a></li>
+<li><a href="#orgheadline9">2.2. Special command</a>
+<ul>
+<li><a href="#orgheadline3">2.2.1. List</a></li>
+<li><a href="#orgheadline4">2.2.2. Group</a></li>
+<li><a href="#orgheadline5">2.2.3. Formula</a></li>
+<li><a href="#orgheadline6">2.2.4. Graph</a></li>
+<li><a href="#orgheadline7">2.2.5. Text</a></li>
+<li><a href="#orgheadline8">2.2.6. Section</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<i>Doxygen</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a powerful tool to document the source codes. In principle, it parses the specially formated comments from the source codes and then produces very professional documents. Up to now, it is able to support almost all the popular programming languages, e.g. C/C++, Java, Python, and etc.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">2</span> Syntax</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> Comment block</h3>
+<div class="outline-text-3" id="text-2-1">
+<dl class="org-dl">
+<dt>Multi-line comment blocks</dt><dd>Begin with <code>/**</code> or <code>/*!</code>, and end with <code>*/</code>.</dd>
+<dt>Single-line comment blocks</dt><dd>delimiters <code>///</code> or <code>//!</code>.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">2.2</span> Special command</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+With code blocks, <i>special commands</i> can be used. They begin with a prefix <code>@</code> or <code>\</code> and optionally have arguments enclosed in braces. Moreover, different braces mean different scopes.
+</p>
+<ul class="org-ul">
+<li>Angle braces <code>&lt; &gt;</code> mean the argument is a single word.</li>
+<li>Round braces <code>( )</code> mean the argument extends to end of line.</li>
+<li>Curly braces <code>{ }</code> mean the argument extends to next paragraph.</li>
+</ul>
+</div>
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">2.2.1</span> List</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ul class="org-ul">
+<li>Column aligned <code>-</code> &rarr; a unsorted/bulleted list item.</li>
+<li>Column aligned <code>-#</code> &rarr; a sorted list item.</li>
+</ul>
+<p>
+Hierachical lists can be created by using different indents for different levels.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">2.2.2</span> Group</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;title&gt;<span style="color: #8b2252;">''</span> */
+/* @{ */
+   // group memebers here ...
+/* @} */
+</pre>
+</div>
+<p>
+or
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;title&gt;<span style="color: #8b2252;">''</span> */
+// @{
+   // group memebers here ...
+// @}
+</pre>
+</div>
+<p>
+where the <code>title</code> is optional while the <code>label</code> is mandatory and can be used for reference by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">\ref &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;link&gt;<span style="color: #8b2252;">''</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5"><span class="section-number-4">2.2.3</span> Formula</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<ul class="org-ul">
+<li>Inline formula</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">\f$ ... \f$
+</pre>
+</div>
+<ul class="org-ul">
+<li>Centered formula</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">\f[ ... <span style="color: #8b2252;">\]</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><span class="section-number-4">2.2.4</span> Graph</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a> from Graphviz<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. Additionally, mannual dot commands are enclosed between <code>\dot</code> and <code>\enddot</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">2.2.5</span> Text</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<ul class="org-ul">
+<li><code>\a/\e &lt;word&gt;</code>: <i>word</i></li>
+<li><code>\b &lt;word&gt;</code>: <b>word</b></li>
+<li><code>\c &lt;word&gt;</code>: <code>word</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">2.2.6</span> Section</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<ul class="org-ul">
+<li><code>\attention {...}</code>: an <b>Attention</b> paragraph</li>
+<li><code>\author {...}</code>: author list</li>
+<li><code>\brief {...}</code>: a brief description</li>
+<li><code>\bug {...}</code>: a bug description</li>
+<li><code>\date {...}</code></li>
+<li><code>\deprecated {...}</code>: a <b>Deprecated</b> paragraph</li>
+<li><code>\note {...}</code>: a <b>Note</b> paragraph</li>
+<li><code>\par (title) {...}</code>: a paragraph with a optional title</li>
+<li><code>\param &lt;p&gt; {...}</code>: a description of <b>parameter</b> <code>p</code></li>
+<li><code>\return {...}</code>: a description of <b>return</b> values</li>
+<li><code>\remarks {...}</code>: a <b>Remarks</b> paragraph</li>
+<li><code>\sa/\see {ref}</code>: a <b>See Also</b> paragraph</li>
+<li><code>\todo {...}</code>: a <b>To Do</b> paragraph</li>
+<li><code>\version {...}</code>: a paragraph including the version string</li>
+<li><code>\warning {...}</code>: a paragraph for warning messages</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://www.doxygen.nl/">http://www.doxygen.nl/</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://www.graphviz.org/">http://www.graphviz.org/</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: shaka</p>
+<p class="date">Created: 2015-09-28 Mon 01:08</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
