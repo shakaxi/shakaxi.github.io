@@ -8,7 +8,7 @@
 - Multi-line comment blocks :: Begin with =/**= or =/*!=, and end with =*/=.
 - Single-line comment blocks :: delimiters =///= or =//!=.
 ** Special command
-With code blocks, /special commands/ can be used. They begin with a prefix =@= or =\= and optionally have arguments enclosed in braces. Moreover, different braces mean different scopes.
+Within code blocks, /special commands/ can be used. They begin with a prefix =@= or =\= and optionally have arguments enclosed in braces. Moreover, different braces mean different scopes.
 - Angle braces =< >= mean the argument is a single word.
 - Round braces =( )= mean the argument extends to end of line.
 - Curly braces ={ }= mean the argument extends to next paragraph.
@@ -65,6 +65,36 @@ Doxygen can automatically generate graphs by [[./dot.org][/dot/]] from Graphviz[
 - =\todo {...}=: a *To Do* paragraph
 - =\version {...}=: a paragraph including the version string
 - =\warning {...}=: a paragraph for warning messages
+* Doxymacs
+There is a doxygen extension for [[http://www.gnu.org/software/emacs][Emacs]], /doxymacs/, which provides a minor mode for doxygen =doxymacs-mode=. Clearly, it stands for =doxygen= + =emacs=. With it, comment blocks above can be conveniently inserted.
+** Installation
+For ArchLinux, doxymacs can be easily installed by AUR.
+#+BEGIN_SRC sh
+yaourt doxymacs
+#+END_SRC
+** Configuration
+After the installation, following configuration should be inserted into Emacs configuration file =.emacs=.
+#+BEGIN_SRC emacs-lisp
+(require 'doxymacs)                                                                                              
+(add-hook 'c-mode-common-hook 'doxymacs-mode)                                                                    
+(defun my-doxymacs-font-lock-hook ()                                                                             
+  (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+      (doxymacs-font-lock)))
+(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+#+END_SRC
+** Usage
+=Doxymacs-mode= provides following key bindings.
+| Key       | Binding                                  |
+|-----------+------------------------------------------|
+| =C-c d ;= | doxymacs-insert-member-comment           |
+| =C-c d ?= | doxymacs-lookup                          |
+| =C-c d @= | doxymacs-insert-grouping-comments        |
+| =C-c d f= | doxymacs-insert-function-comment         |
+| =C-c d i= | doxymacs-insert-file-comment             |
+| =C-c d m= | doxymacs-insert-blank-multiline-comment  |
+| =C-c d r= | doxymacs-rescan-tags                     |
+| =C-c d s= | doxymacs-insert-blank-singleline-comment |
+
 * Footnotes
 
 [fn:2] http://www.graphviz.org
