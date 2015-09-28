@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-09-28 Mon 01:08 -->
+<!-- 2015-09-28 Mon 23:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Documenting Codes with Doxygen</title>
@@ -165,6 +165,13 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
+<li><a href="#orgheadline14">3. Doxymacs</a>
+<ul>
+<li><a href="#orgheadline11">3.1. Installation</a></li>
+<li><a href="#orgheadline12">3.2. Configuration</a></li>
+<li><a href="#orgheadline13">3.3. Usage</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -193,7 +200,7 @@ for the JavaScript code in this tag.
 <h3 id="orgheadline9"><span class="section-number-3">2.2</span> Special command</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-With code blocks, <i>special commands</i> can be used. They begin with a prefix <code>@</code> or <code>\</code> and optionally have arguments enclosed in braces. Moreover, different braces mean different scopes.
+Within code blocks, <i>special commands</i> can be used. They begin with a prefix <code>@</code> or <code>\</code> and optionally have arguments enclosed in braces. Moreover, different braces mean different scopes.
 </p>
 <ul class="org-ul">
 <li>Angle braces <code>&lt; &gt;</code> mean the argument is a single word.</li>
@@ -308,6 +315,109 @@ Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a>
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">3</span> Doxymacs</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+There is a doxygen extension for <a href="http://www.gnu.org/software/emacs">Emacs</a>, <i>doxymacs</i>, which provides a minor mode for doxygen <code>doxymacs-mode</code>. Clearly, it stands for <code>doxygen</code> + <code>emacs</code>. With it, comment blocks above can be conveniently inserted.
+</p>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">3.1</span> Installation</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+For ArchLinux, doxymacs can be easily installed by AUR.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">yaourt doxymacs
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.2</span> Configuration</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+After the installation, following configuration should be inserted into Emacs configuration file <code>.emacs</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">doxymacs</span>)                                                                                              
+(add-hook 'c-mode-common-hook 'doxymacs-mode)                                                                    
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">my-doxymacs-font-lock-hook</span> ()                                                                             
+  (<span style="color: #a020f0;">if</span> (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+      (doxymacs-font-lock)))
+(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">3.3</span> Usage</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<code>Doxymacs-mode</code> provides following key bindings.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Binding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c d ;</code></td>
+<td class="org-left">doxymacs-insert-member-comment</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c d ?</code></td>
+<td class="org-left">doxymacs-lookup</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c d @</code></td>
+<td class="org-left">doxymacs-insert-grouping-comments</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c d f</code></td>
+<td class="org-left">doxymacs-insert-function-comment</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c d i</code></td>
+<td class="org-left">doxymacs-insert-file-comment</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c d m</code></td>
+<td class="org-left">doxymacs-insert-blank-multiline-comment</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c d r</code></td>
+<td class="org-left">doxymacs-rescan-tags</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c d s</code></td>
+<td class="org-left">doxymacs-insert-blank-singleline-comment</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
@@ -325,7 +435,7 @@ Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-09-28 Mon 01:08</p>
+<p class="date">Created: 2015-09-28 Mon 23:57</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
