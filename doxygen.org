@@ -41,7 +41,7 @@ where the =title= is optional while the =label= is mandatory and can be used for
 #+END_SRC
 - Centered formula
 #+BEGIN_SRC sh
-\f[ ... \]
+\f[ ... \f]
 #+END_SRC
 *** Graph
 Doxygen can automatically generate graphs by [[./dot.org][/dot/]] from Graphviz[fn:2]. Additionally, mannual dot commands are enclosed between =\dot= and =\enddot=.
