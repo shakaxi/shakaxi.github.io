@@ -1,5 +1,6 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:cpp_polymorphism.org][2015-09-30 C++中的多态]]
    + [[file:doxygen.org][2015-09-30 Documenting Codes with Doxygen]]
    + [[file:makefile_cpp.org][2015-09-22 A Makefile for C++ Projects]]
    + [[file:makefile_c.org][2015-09-22 A Makefile for C Projects]]
