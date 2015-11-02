@@ -12,8 +12,8 @@
 #+END_SRC
 * Style
 #+BEGIN_SRC latex
-\tikzstyle /newstylename/=[option1=value1, option2=value2, ...]
-\tikzstyle /existingstylename/+=[option1=value1, option2=value2, ...]
+\tikzstyle newstylename=[option1=value1, option2=value2, ...]
+\tikzstyle existingstylename+=[option1=value1, option2=value2, ...]
 #+END_SRC
 * Coordinate
 - (x0, y0)

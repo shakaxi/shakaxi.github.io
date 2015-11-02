@@ -1,5 +1,7 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:reg_exp.org][2015-11-02 Regular Expression]]
+   + [[file:pgf_tikz.org][2015-10-18 Drawing with PGF/Tikz]]
    + [[file:cpp_polymorphism.org][2015-09-30 C++中的多态]]
    + [[file:doxygen.org][2015-09-30 Documenting Codes with Doxygen]]
    + [[file:makefile_cpp.org][2015-09-22 A Makefile for C++ Projects]]
@@ -26,7 +28,6 @@
    + [[file:blog.org][2015-08-02 Deploy Blog Site on GitHub]]
    + [[file:switch.org][2015-07-30 关于switch语句]]
    + [[file:ssh.org][2015-07-30 Secure Shell (SSH)]]
-   + [[file:pgf_tikz.org][2015-07-30 Drawing with PGF/Tikz]]
    + [[file:pbs_maui.org][2015-07-30 Cluster Deployment based on PBS and Maui]]
    + [[file:ntp.org][2015-07-30 Network Time Protocol (NTP)]]
    + [[file:nfs.org][2015-07-30 Network File System (NFS)]]
