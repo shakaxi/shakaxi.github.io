@@ -1,0 +1,36 @@
+#+TITLE: Git
+#+OPTIONS: num:6
+
+
+* Introduction
+/Git/ is a famous and powerful open-source software for version control and management. It was developed by Linus Torvalds with C programing language. What is different from /subversion/, git adopts a completely distributed manner. Regarding its utilization, besides its built-in manual, there is also an excellent book, /Pro Git/, which can be obtained for free[fn:1]. This short blog just summarizes the preliminary usage of git, which is referred from the book.
+* Installation
+On Unix/Linux operation systems, git can be easily installed. Taking /ArchLinux/ for instance, git can be installed via following command.
+#+BEGIN_SRC sh
+pacman -S git
+#+END_SRC
+* Usage
+** Configuration
+Command =git config= can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or down to specific repositories.
+** Create repository
+Git repository can be created either from a local directory by running =git init= in it or clone from a remote repository by =git clone url=.
+** Basic snapshotting
+- =git add= adds content from the working directory into the staging area (or ``index'') for the next commit.
+- =git status= shows the different states of files in the working directory and staging area. Which files are modified and unstaged and which are staged but not yet committed.
+- =git diff= shows the differences between any two trees.
+  + =git diff= shows the difference between the working environment and the staging area.
+  + =git diff --staged= shows the difference between the staging area and the last commit.
+  + =git diff branchA branchB= shows the difference between two commits.
+- =git commit= takes all the file contents that have been staged with git add and records a new permanent snapshot in the database and then moves the branch pointer on the current branch up to it.
+- =git reset= resets current =HEAD= to the specified state. It moves around the =HEAD= pointer and optionally changes the index or staging area.
+  + =git reset --hard= resets the working directory.
+- =git rm= remove files from the staging area and working directory.
+- =git mv= moves/renames a file and then run =git add= on the new file and =git rm= on the old file.
+- =git clean= removes unwanted files from working directory.
+
+
+
+
+* Footnotes
+
+[fn:1] http://git-scm.com/book/en/v2
