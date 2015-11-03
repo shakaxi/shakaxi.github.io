@@ -1,5 +1,6 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:git.org][2015-11-03 Git]]
    + [[file:reg_exp.org][2015-11-02 Regular Expression]]
    + [[file:pgf_tikz.org][2015-10-18 Drawing with PGF/Tikz]]
    + [[file:cpp_polymorphism.org][2015-09-30 C++中的多态]]
