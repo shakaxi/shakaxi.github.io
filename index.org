@@ -1,5 +1,6 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:company.org][2015-11-17 Company in Emacs]]
    + [[file:git.org][2015-11-03 Git]]
    + [[file:reg_exp.org][2015-11-02 Regular Expression]]
    + [[file:pgf_tikz.org][2015-10-18 Drawing with PGF/Tikz]]
