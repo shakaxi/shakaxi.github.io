@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-17 Tue 00:28 -->
+<!-- 2015-11-17 Tue 22:24 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Company in Emacs</title>
@@ -150,8 +150,12 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">1. Introduction</a></li>
-<li><a href="#orgheadline2">2. Installation</a></li>
-<li><a href="#orgheadline3">3. Configuration</a></li>
+<li><a href="#orgheadline4">2. Installation and configuration</a>
+<ul>
+<li><a href="#orgheadline2">2.1. Company</a></li>
+<li><a href="#orgheadline3">2.2. LaTeX support</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -164,19 +168,26 @@ for the JavaScript code in this tag.
 </p>
 
 <p>
-Up to now, there are a couple of popular frontends, <i>auto-complete</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> and <i>company</i><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. "Company" stands for "complete anything". In fact, their functionalities are very similar. Both of them work well and their developments are fairly active. Both of them come with a variety of built-in backends. What deserves attention, for company, we can customize our own backends.
+Up to now, there are a couple of popular frontends, <code>auto-complete</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> and <code>company</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. The word "company" stands for "complete anything". In fact, their functionalities are very similar. Both of them work well and their developments are fairly active. Both of them come with a variety of built-in backends. What's more, you can customize your own backends for your special requirements.
 </p>
 
 <p>
-For myself, I have been using company. Its installation and configuration are briefly summarized in this blog.
+It should be noticed that each of the both above provides backend for C/C++ programming, e.g. <code>company-clang</code> is a powerful backend based on <code>clang</code>. It enables company completing based on the semantic analysis provided by clang. With the aid of this backend, the programming experience and efficiency can be remarkably improved.
+</p>
+
+<p>
+For myself, I have been using company since I began to use Emacs. Therefore, I just summarize the installation and configuration of company in this blog.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Installation</h2>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">2</span> Installation and configuration</h2>
 <div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">2.1</span> Company</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
-Company can be directly installed via ELPA.
+Company can be directly installed via <i>ELPA</i>.
 </p>
 <div class="org-src-container">
 
@@ -185,37 +196,43 @@ company
 </pre>
 </div>
 <p>
-For C/C++ programming, <code>company-clang</code> is an excellent backend, it can provide company with the completion candidates based on the analysis and parsing from <i>clang</i>.
+After the installation, following configurations should be added in <code>~/.emacs</code>.
 </p>
-
-<p>
-Addtionally, following two packages can be installed.
-</p>
-<dl class="org-dl">
-<dt>company-c-headers</dt><dd>It enables clang to access the system headers, i.e. <code>/usr/include</code> and <code>/usr/local/include</code>.</dd>
-<dt>company-auctex</dt><dd>It feeds company the completion from <i>auctex</i><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.</dd>
-</dl>
-</div>
-</div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3"><span class="section-number-2">3</span> Configuration</h2>
-<div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(global-company-mode 1)
+<pre class="src src-emacs-lisp">;; enable global company mode
+(global-company-mode 1)
+
+;; completion immediately
 (setq company-idle-delay -1)
-(setq company-backends (delete 'company-semantic company-backends))
-(add-to-list 'company-backends 'company-c-headers)
+
+;; make clang find the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.
+(setq company-clang-arguments (quote ("-I/usr/include" "-I/usr/local/include" "-I/opt/itpp/include")))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">2.2</span> LaTeX support</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+In order to enjoy the completion in LaTeX composition, package <code>company-auctex</code> can be installed<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">M-x package-install
+company-auctex
+</pre>
+</div>
+<p>
+Accordingly, append the following line to the configuration of company in <code>~/.emacs</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">;; enable company backends for LaTeX (based on AucTeX)
 (company-auctex-init)
 </pre>
 </div>
-<p>
-Given a project, in order to enable completion based on the 3rd party libaries. A Emacs-Lisp script <code>.dir-locals.el</code> can be created and placed in the root of the project. Taking IT++ for instace, the content of <code>.dir-locals.el</code> can be listed below.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp">((nil . ((company-clang-arguments . ("-I/opt/itpp/include")))))
-</pre>
 </div>
 </div>
 </div>
@@ -232,7 +249,7 @@ Given a project, in order to enable completion based on the 3rd party libaries. 
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-Auctex is also emacs package, and can be installed via ELPA.
+<i>AucTeX</i> will also be installed as a dependency.
 </p></div></div>
 
 
@@ -240,7 +257,7 @@ Auctex is also emacs package, and can be installed via ELPA.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-11-17 Tue 00:28</p>
+<p class="date">Created: 2015-11-17 Tue 22:24</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
