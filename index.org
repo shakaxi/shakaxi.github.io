@@ -1,5 +1,7 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:cedet.org][2015-11-24 About CEDET]]
+   + [[file:switch_window.org][2015-11-20 Switching Window in Emacs]]
    + [[file:company.org][2015-11-17 Company in Emacs]]
    + [[file:git.org][2015-11-03 Git]]
    + [[file:reg_exp.org][2015-11-02 Regular Expression]]

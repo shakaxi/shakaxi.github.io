@@ -1,0 +1,53 @@
+#+TITLE: About CEDET
+#+OPTIONS: num:6
+
+* Introduction
+CEDET[fn:1] stands for collection of Emacs development environment tools, which is written to make Emacs become a perfect development environment. With the aid of CEDET, a variety of amazing features can be provided, e.g. code completion, browsing, tag jumping, drawing UML diagram, etc.
+* Installation
+Through following commands, the latest version of CEDET can be installed into =~/.emacs.d/cedet=.
+#+BEGIN_SRC sh
+cd ~/.emacs.d
+git clone http://git.code.sf.net/p/cedet/git cedet
+make
+#+END_SRC
+* Configuration
+#+BEGIN_SRC emacs-lisp
+;; load CEDET
+(add-to-list 'load-path "~/.emacs.d/cedet")
+(load-file "~/.emacs.d/cedet/cedet-devel-load.el")
+
+;; enable the required features
+(semantic-load-enable-minimum-features)
+(semantic-load-enable-code-helpers)
+(semantic-load-enable-gaudy-code-helpers)
+(semantic-load-enable-excessive-code-helpers)
+(semantic-load-enable-semantic-debugging-helpers)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t) 
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t) 
+(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t) 
+(add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-show-unmatched-syntax-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-show-parser-state-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode t)
+
+;; enable semantic mode
+(semantic-mode 1)
+
+;; enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.
+(setq semantic-c-dependency-system-include-path (quote ("/usr/include" "/usr/local/include" "/opt/itpp/include")))
+(require 'semantic/ia)
+(require 'semantic/bovine/gcc)
+
+;; jump to tags
+(global-set-key (kbd "M-.") 'semantic-ia-fast-jump)
+
+;; jump back from tags
+(global-set-key (kbd "M-*") 'semantic-mrub-switch-tags)
+#+END_SRC
+
+* Footnotes
+
+[fn:1] http://cedet.sourceforge.net/
