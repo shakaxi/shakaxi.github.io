@@ -1,5 +1,6 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:beamer.org][2015-12-27 A Template for Beamer Slide]]
    + [[file:cedet.org][2015-11-24 About CEDET]]
    + [[file:switch_window.org][2015-11-20 Switching Window in Emacs]]
    + [[file:company.org][2015-11-17 Company in Emacs]]
