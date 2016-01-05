@@ -1,5 +1,7 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:ycmd.org][2016-01-05 YCMD-based Completion]]
+   + [[file:capslk_ctrl.org][2016-01-05 Turn CapsLock into Control]]
    + [[file:beamer.org][2015-12-27 A Template for Beamer Slide]]
    + [[file:cedet.org][2015-11-24 About CEDET]]
    + [[file:switch_window.org][2015-11-20 Switching Window in Emacs]]

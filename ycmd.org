@@ -1,0 +1,49 @@
+#+TITLE: YCMD-based Completion
+
+* Introduction
+YouCompleteMe (YCM) is originally a completion framework for VIM[fn:2], and afterwards splitted into a general server and a client. The general server, namely YCM daemon (YCMD)[fn:1], is able to provide interface to a variety of clients beyond VIM, e.g. Emacs. Moreover, both =company= and =auto-complete= can directly utilize what the server/daemon provides.
+* Installation
+** Emacs packages
+Install the Emacs packages via ELPA, =ycmd=, =company-ycmd=, =company=.
+** Dependency
+#+BEGIN_SRC sh
+pacman -S boost
+#+END_SRC
+** YCMD
+Install the =YCMD= to =~/.emacs.d/ycmd=.
+#+BEGIN_SRC sh
+cd ~/.emacs.d
+git clone https://github.com/Valloric/ycmd.git
+cd ycmd
+git submodule update --init --recursive
+python2 ./build.py --clang-completer --system-libclang --system-boost
+#+END_SRC
+** Configurations
+- =~/.emacs.d/ycmd/global_config.py=
+#+BEGIN_SRC sh
+cp ~/.emacs.d/ycmd/examples/.ycm_extra_conf.py ~/.emacs.d/ycmd/global_config.py
+#+END_SRC
+After that, customize it to meet your requirements.
+- =~/.emacs=
+#+BEGIN_SRC emacs-lisp
+...
+
+;;; Company
+(add-hook 'after-init-hook 'global-company-mode) 
+(setq company-idle-delay 0) 
+(company-auctex-init) 
+
+;;; Ycmd
+(add-hook 'after-init-hook #'global-ycmd-mode)
+(set-variable 'ycmd-server-command '("python2" "/home/shaka/.emacs.d/ycmd/ycmd"))
+(set-variable 'ycmd-global-config "/home/shaka/.emacs.d/ycmd/global_config.py") 
+(company-ycmd-setup)
+
+...
+#+END_SRC
+
+* Footnotes
+
+[fn:2] http://valloric.github.io/YouCompleteMe/
+
+[fn:1] https://github.com/Valloric/ycmd

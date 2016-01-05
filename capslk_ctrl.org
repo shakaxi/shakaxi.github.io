@@ -1,0 +1,21 @@
+#+TITLE: Turn CapsLock into Control
+
+* Background
+Usually, key /CapsLock/ is seldom used in our daily utilization, while key /Control/ is frequently used, esp. for Emacs users. Therefore, we can turn /Capslock/ into an additional /Control/.
+* Installation and configuration
+Install /xmodmap/ software, e.g. run the following command for ArchLinux.
+#+BEGIN_SRC sh
+pacman -S xorg-xmodmap
+#+END_SRC
+
+Create a =~/.Xmodmap= with its contents as follows
+#+BEGIN_SRC sh
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+#+END_SRC
+
+Make it take effect at every boot by appending the following line to =~/.xprofile=.
+#+BEGIN_SRC sh
+xmodmap ~/.Xmodmap
+#+END_SRC
