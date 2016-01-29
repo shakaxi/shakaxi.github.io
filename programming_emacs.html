@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>C/C++ Programming with Emacs</title>
-<!-- 2015-08-05 Wed 23:55 -->
+<!-- 2016-01-29 Fri 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>C/C++ Programming with Emacs</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -148,8 +154,8 @@ Besides Emacs, following extensions are also needed. The installation can be fin
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(setq package-archives '((<span style="color: #8b2252;">"gnu"</span> . <span style="color: #8b2252;">"http://elpa.gnu.org/packages/"</span>)
-             (<span style="color: #8b2252;">"melpa"</span> . <span style="color: #8b2252;">"http://melpa.milkbox.net/packages/"</span>)))
+<pre class="src src-elisp">(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+             ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 </pre>
 </div>
@@ -157,8 +163,7 @@ Besides Emacs, following extensions are also needed. The installation can be fin
 Through <code>elpa</code>, install following extensions.
 </p>
 <dl class="org-dl">
-<dt> company </dt><dd>It represents <i>complete anything</i>. Just as its name implies, it is used for completion. It is similar to <code>auto complete</code>, but I prefer company. In order to enable automatical completion in C/C++ programming, I use <code>clang</code> <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup> as backend in lieu of <code>semantic</code>, since semantic-based completion is too slow. However, as long as company is installed, semantic is already built-in, a.k.a. company-semantic. Moreover, it precedes clang-based backend. To deal with the problem, we remove semantic from the list of backend for company.
-</dd>
+<dt>company</dt><dd>It represents <i>complete anything</i>. Just as its name implies, it is used for completion. It is similar to <code>auto complete</code>, but I prefer company. In order to enable automatical completion in C/C++ programming, I use <code>clang</code> <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> as backend in lieu of <code>semantic</code>, since semantic-based completion is too slow. However, as long as company is installed, semantic is already built-in, a.k.a. company-semantic. Moreover, it precedes clang-based backend. To deal with the problem, we remove semantic from the list of backend for company.</dd>
 </dl>
 <div class="org-src-container">
 
@@ -173,40 +178,37 @@ BTW, for sake of completion based on other third-party libraries, we can create 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp">((nil . ((company-clang-arguments . (<span style="color: #8b2252;">"-I/opt/itpp/include"</span>)))))
+<pre class="src src-elisp">((nil . ((company-clang-arguments . ("-I/opt/itpp/include")))))
 </pre>
 </div>
 <dl class="org-dl">
-<dt> yasnippet </dt><dd>It stands for <i>yet another snippet</i> and can be directly installed via <code>elpa</code>. As its name indicates, it provides a large number of useful snippets and templates.
-</dd>
+<dt>yasnippet</dt><dd>It stands for <i>yet another snippet</i> and can be directly installed via <code>elpa</code>. As its name indicates, it provides a large number of useful snippets and templates.</dd>
 </dl>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">yasnippet</span>)
+<pre class="src src-elisp">(require 'yasnippet)
 (yas-global-mode t)
 </pre>
 </div>
 <dl class="org-dl">
-<dt> doxymacs<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup> </dt><dd>This extension aims to integrate <code>doxygen</code> into emacs. The related functionalities are bound to keys with prefix <code>C-c C-d</code>.
-</dd>
+<dt>doxymacs<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></dt><dd>This extension aims to integrate <code>doxygen</code> into emacs. The related functionalities are bound to keys with prefix <code>C-c C-d</code>.</dd>
 </dl>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">doxymacs</span>)
+<pre class="src src-elisp">(require 'doxymacs)
 (add-hook 'c-mode-common-hook 'doxymacs-mode)
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">my-doxymacs-font-lock-hook</span> ()
-  (<span style="color: #a020f0;">if</span> (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+(defun my-doxymacs-font-lock-hook ()
+  (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
       (doxymacs-font-lock)))
 (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
 </pre>
 </div>
 <dl class="org-dl">
-<dt> cscope<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup> </dt><dd>Index the source codes and enable freely jumping between definitions, declarations and provokings of variables or functions. The related functionalities are bound to keys with prefix <code>C-c s</code>.
-</dd>
+<dt>cscope<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></dt><dd>Index the source codes and enable freely jumping between definitions, declarations and provokings of variables or functions. The related functionalities are bound to keys with prefix <code>C-c s</code>.</dd>
 </dl>
 <div class="org-src-container">
 
-<pre class="src src-elisp">(add-hook 'c-mode-common-hook '(<span style="color: #a020f0;">lambda</span>() (<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">xcscope</span>) (cscope-setup)))
+<pre class="src src-elisp">(add-hook 'c-mode-common-hook '(lambda() (require 'xcscope) (cscope-setup)))
 </pre>
 </div>
 
@@ -217,25 +219,24 @@ What deserves notice, not only programming but also debugging can be finished in
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 Clang must be installed in advance.
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
 This extension, at least up to now, is not included into the elpa repository. For ArchLinux, it can be installed by <code>AUR</code>.
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
 Cscope is an independent software and needs to be installed in advance.
-</p></div>
+</p></div></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-05 Wed 23:55</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-01-29 Fri 20:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

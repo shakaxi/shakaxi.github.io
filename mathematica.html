@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>A Brief Summary of Mathematica</title>
-<!-- 2015-07-30 Thu 01:12 -->
+<!-- 2016-01-29 Fri 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>A Brief Summary of Mathematica</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -135,48 +141,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
         displayAlign: "center",
-        displayIndent: "2em",
+        displayIndent: "0em",
 
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
              }
-        }
-    });
-/*]]>*///-->
+});
 </script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -185,494 +171,477 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Bracketing</a></li>
-<li><a href="#sec-2">2. Constants</a></li>
-<li><a href="#sec-3">3. Data objects</a></li>
-<li><a href="#sec-4">4. Defining variables, functions, and rules</a></li>
-<li><a href="#sec-5">5. Linear algebra</a></li>
-<li><a href="#sec-6">6. Algebraic calculation</a></li>
-<li><a href="#sec-7">7. Calculus</a></li>
-<li><a href="#sec-8">8. Input and output</a></li>
-<li><a href="#sec-9">9. Expression in different formats</a></li>
-<li><a href="#sec-10">10. Programming</a></li>
+<li><a href="#orgheadline1">Bracketing</a></li>
+<li><a href="#orgheadline2">Constants</a></li>
+<li><a href="#orgheadline3">Data objects</a></li>
+<li><a href="#orgheadline4">Defining variables, functions, and rules</a></li>
+<li><a href="#orgheadline5">Linear algebra</a></li>
+<li><a href="#orgheadline6">Algebraic calculation</a></li>
+<li><a href="#orgheadline7">Calculus</a></li>
+<li><a href="#orgheadline8">Input and output</a></li>
+<li><a href="#orgheadline9">Expression in different formats</a></li>
+<li><a href="#orgheadline10">Programming</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Bracketing</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Bracketing</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <dl class="org-dl">
-<dt> Parenthesis () </dt><dd>change the priorities in computing.
-</dd>
-<dt> Square bracket [] </dt><dd>function parameters, e.g. <code>f[x]</code>.
-</dd>
-<dt> Curly brace {} </dt><dd>list, e.g. <code>{a, b, c}</code>.
-</dd>
-<dt> Double bracket [[]] </dt><dd>abbreviation of <code>Part</code>, e.g. <code>v[[i]]</code>.
-</dd>
+<dt>Parenthesis ()</dt><dd>change the priorities in computing.</dd>
+<dt>Square bracket []</dt><dd>function parameters, e.g. <code>f[x]</code>.</dd>
+<dt>Curly brace {}</dt><dd>list, e.g. <code>{a, b, c}</code>.</dd>
+<dt>Double bracket [[]]</dt><dd>abbreviation of <code>Part</code>, e.g. <code>v[[i]]</code>.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Constants</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Constants</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Command</th>
-<th scope="col" class="left">Value</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">Pi</td>
-<td class="left">\(\pi\)</td>
+<td class="org-left">Pi</td>
+<td class="org-left">\(\pi\)</td>
 </tr>
 
 <tr>
-<td class="left">E</td>
-<td class="left">\(e\)</td>
+<td class="org-left">E</td>
+<td class="org-left">\(e\)</td>
 </tr>
 
 <tr>
-<td class="left">I</td>
-<td class="left">\(i = \sqrt{-1}\)</td>
+<td class="org-left">I</td>
+<td class="org-left">\(i = \sqrt{-1}\)</td>
 </tr>
 
 <tr>
-<td class="left">Infinity</td>
-<td class="left">\(\infty\)</td>
+<td class="org-left">Infinity</td>
+<td class="org-left">\(\infty\)</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Data objects</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Data objects</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Command</th>
-<th scope="col" class="left">Meaning</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">2 + 8 I</td>
-<td class="left">complex</td>
+<td class="org-left">2 + 8 I</td>
+<td class="org-left">complex</td>
 </tr>
 
 <tr>
-<td class="left">"text"</td>
-<td class="left">string</td>
+<td class="org-left">"text"</td>
+<td class="org-left">string</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Defining variables, functions, and rules</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">Defining variables, functions, and rules</h2>
+<div class="outline-text-2" id="text-orgheadline4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Command</th>
-<th scope="col" class="left">Meaning</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">x = value</td>
-<td class="left">assignment</td>
+<td class="org-left">x = value</td>
+<td class="org-left">assignment</td>
 </tr>
 
 <tr>
-<td class="left">x := value</td>
-<td class="left">delayed assignment</td>
+<td class="org-left">x := value</td>
+<td class="org-left">delayed assignment</td>
 </tr>
 
 <tr>
-<td class="left">x = . or Clear[x]</td>
-<td class="left">remove value assigned to <code>x</code></td>
+<td class="org-left">x = . or Clear[x]</td>
+<td class="org-left">remove value assigned to <code>x</code></td>
 </tr>
 
 <tr>
-<td class="left">f[x_] := expression</td>
-<td class="left">define a function <code>f(x)</code></td>
+<td class="org-left">f[x_] := expression</td>
+<td class="org-left">define a function <code>f(x)</code></td>
 </tr>
 
 <tr>
-<td class="left">expression /. x-&gt;a</td>
-<td class="left">replace <code>x</code> by a in expression</td>
+<td class="org-left">expression /. x-&gt;a</td>
+<td class="org-left">replace <code>x</code> by a in expression</td>
 </tr>
 
 <tr>
-<td class="left">expression //. x-&gt;a</td>
-<td class="left">replace repeatedly</td>
+<td class="org-left">expression //. x-&gt;a</td>
+<td class="org-left">replace repeatedly</td>
 </tr>
 
 <tr>
-<td class="left">lhs :&gt; rhs /; test</td>
-<td class="left">apply rule if <code>test</code> is True</td>
+<td class="org-left">lhs :&gt; rhs /; test</td>
+<td class="org-left">apply rule if <code>test</code> is True</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Linear algebra</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">Linear algebra</h2>
+<div class="outline-text-2" id="text-orgheadline5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Command</th>
-<th scope="col" class="left">Meaning</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">{a, b, c}</td>
-<td class="left">vector, list</td>
+<td class="org-left">{a, b, c}</td>
+<td class="org-left">vector, list</td>
 </tr>
 
 <tr>
-<td class="left">{{a, b}, {c, d}}</td>
-<td class="left">2 &times; 2 matrix</td>
+<td class="org-left">{{a, b}, {c, d}}</td>
+<td class="org-left">2 &times; 2 matrix</td>
 </tr>
 
 <tr>
-<td class="left">n.m</td>
-<td class="left">matrix multiply</td>
+<td class="org-left">n.m</td>
+<td class="org-left">matrix multiply</td>
 </tr>
 
 <tr>
-<td class="left">Inverse[m]</td>
-<td class="left">inverse of matrix</td>
+<td class="org-left">Inverse[m]</td>
+<td class="org-left">inverse of matrix</td>
 </tr>
 
 <tr>
-<td class="left">Transpose[m]</td>
-<td class="left">transpose</td>
+<td class="org-left">Transpose[m]</td>
+<td class="org-left">transpose</td>
 </tr>
 
 <tr>
-<td class="left">Det[m]</td>
-<td class="left">determinant</td>
+<td class="org-left">Det[m]</td>
+<td class="org-left">determinant</td>
 </tr>
 
 <tr>
-<td class="left">MatrixPower[m, n]</td>
-<td class="left">m^n</td>
+<td class="org-left">MatrixPower[m, n]</td>
+<td class="org-left">m^n</td>
 </tr>
 
 <tr>
-<td class="left">MatrixExp[m]</td>
-<td class="left">e^m</td>
+<td class="org-left">MatrixExp[m]</td>
+<td class="org-left">e^m</td>
 </tr>
 
 <tr>
-<td class="left">LinearSolve[m, b]</td>
-<td class="left">solve mx = b</td>
+<td class="org-left">LinearSolve[m, b]</td>
+<td class="org-left">solve mx = b</td>
 </tr>
 
 <tr>
-<td class="left">Eigenvalues[m]</td>
-<td class="left">eigenvalues</td>
+<td class="org-left">Eigenvalues[m]</td>
+<td class="org-left">eigenvalues</td>
 </tr>
 
 <tr>
-<td class="left">Eigenvectors[m]</td>
-<td class="left">eigenvectors</td>
+<td class="org-left">Eigenvectors[m]</td>
+<td class="org-left">eigenvectors</td>
 </tr>
 
 <tr>
-<td class="left">Eigensystem[m]</td>
-<td class="left">eigenvalues and eigenvectors</td>
+<td class="org-left">Eigensystem[m]</td>
+<td class="org-left">eigenvalues and eigenvectors</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Algebraic calculation</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Algebraic calculation</h2>
+<div class="outline-text-2" id="text-orgheadline6">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Command</th>
-<th scope="col" class="left">Meaning</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">Solve[lhs==rhs, x]</td>
-<td class="left">solve algebraic equation for x</td>
+<td class="org-left">Solve[lhs==rhs, x]</td>
+<td class="org-left">solve algebraic equation for x</td>
 </tr>
 
 <tr>
-<td class="left">DSolve[eqn, y[x], x]</td>
-<td class="left">solve differential equation</td>
+<td class="org-left">DSolve[eqn, y[x], x]</td>
+<td class="org-left">solve differential equation</td>
 </tr>
 
 <tr>
-<td class="left">Reduce[eqn, x]</td>
-<td class="left">reduce equations</td>
+<td class="org-left">Reduce[eqn, x]</td>
+<td class="org-left">reduce equations</td>
 </tr>
 
 <tr>
-<td class="left">Eliminate[eqn, x]</td>
-<td class="left">eliminate variable x</td>
+<td class="org-left">Eliminate[eqn, x]</td>
+<td class="org-left">eliminate variable x</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> Calculus</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">Calculus</h2>
+<div class="outline-text-2" id="text-orgheadline7">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Command</th>
-<th scope="col" class="left">Meaning</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">D[f, x]</td>
-<td class="left">\(\partial f/\partial x\)</td>
+<td class="org-left">D[f, x]</td>
+<td class="org-left">\(\partial f/\partial x\)</td>
 </tr>
 
 <tr>
-<td class="left">D[f, {x,n}</td>
-<td class="left">\(\partial^n f/\partial x^n\)</td>
+<td class="org-left">D[f, {x,n}</td>
+<td class="org-left">\(\partial^n f/\partial x^n\)</td>
 </tr>
 
 <tr>
-<td class="left">Dt[f]</td>
-<td class="left">\(df\)</td>
+<td class="org-left">Dt[f]</td>
+<td class="org-left">\(df\)</td>
 </tr>
 
 <tr>
-<td class="left">Integrate[f, x]</td>
-<td class="left">\(\int fdx\)</td>
+<td class="org-left">Integrate[f, x]</td>
+<td class="org-left">\(\int fdx\)</td>
 </tr>
 
 <tr>
-<td class="left">Integrate[f, {x, a, b}]</td>
-<td class="left">\(\int_a^b f dx\)</td>
+<td class="org-left">Integrate[f, {x, a, b}]</td>
+<td class="org-left">\(\int_a^b f dx\)</td>
 </tr>
 
 <tr>
-<td class="left">Sum[f, {i, m, n}]</td>
-<td class="left">\(\sum_{i=m}^n f\)</td>
+<td class="org-left">Sum[f, {i, m, n}]</td>
+<td class="org-left">\(\sum_{i=m}^n f\)</td>
 </tr>
 
 <tr>
-<td class="left">Product[f, {i, m, n}]</td>
-<td class="left">\(\prod_{i=m}^n f\)</td>
+<td class="org-left">Product[f, {i, m, n}]</td>
+<td class="org-left">\(\prod_{i=m}^n f\)</td>
 </tr>
 
 <tr>
-<td class="left">Limit[f, x-&gt;a]</td>
-<td class="left">\(\lim_{x\to a} f\)</td>
+<td class="org-left">Limit[f, x-&gt;a]</td>
+<td class="org-left">\(\lim_{x\to a} f\)</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> Input and output</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8">Input and output</h2>
+<div class="outline-text-2" id="text-orgheadline8">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Command</th>
-<th scope="col" class="left">Meaning</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">&lt;&lt;file</td>
-<td class="left">read expressions from <code>file</code>, return last expression.</td>
+<td class="org-left">&lt;&lt;file</td>
+<td class="org-left">read expressions from <code>file</code>, return last expression.</td>
 </tr>
 
 <tr>
-<td class="left">expression&gt;&gt;file</td>
-<td class="left">write <code>expression</code> to <code>file</code>.</td>
+<td class="org-left">expression&gt;&gt;file</td>
+<td class="org-left">write <code>expression</code> to <code>file</code>.</td>
 </tr>
 
 <tr>
-<td class="left">expression&gt;&gt;&gt;file</td>
-<td class="left">append <code>expression</code> to <code>file</code>.</td>
+<td class="org-left">expression&gt;&gt;&gt;file</td>
+<td class="org-left">append <code>expression</code> to <code>file</code>.</td>
 </tr>
 
 <tr>
-<td class="left">!!file</td>
-<td class="left">display the content of <code>file</code>.</td>
+<td class="org-left">!!file</td>
+<td class="org-left">display the content of <code>file</code>.</td>
 </tr>
 
 <tr>
-<td class="left">Save["file", x]</td>
-<td class="left">save the definition of <code>x</code> to <code>file</code>.</td>
+<td class="org-left">Save["file", x]</td>
+<td class="org-left">save the definition of <code>x</code> to <code>file</code>.</td>
 </tr>
 
 <tr>
-<td class="left">!command</td>
-<td class="left">issue a UNIX command.</td>
+<td class="org-left">!command</td>
+<td class="org-left">issue a UNIX command.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> Expression in different formats</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9">Expression in different formats</h2>
+<div class="outline-text-2" id="text-orgheadline9">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Command</th>
-<th scope="col" class="left">Meaning</th>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">FullForm[e]</td>
-<td class="left">full form</td>
+<td class="org-left">FullForm[e]</td>
+<td class="org-left">full form</td>
 </tr>
 
 <tr>
-<td class="left">InputForm[e]</td>
-<td class="left">input</td>
+<td class="org-left">InputForm[e]</td>
+<td class="org-left">input</td>
 </tr>
 
 <tr>
-<td class="left">OutputForm[e]</td>
-<td class="left">out</td>
+<td class="org-left">OutputForm[e]</td>
+<td class="org-left">out</td>
 </tr>
 
 <tr>
-<td class="left">CForm[e]</td>
-<td class="left">C codes</td>
+<td class="org-left">CForm[e]</td>
+<td class="org-left">C codes</td>
 </tr>
 
 <tr>
-<td class="left">FortranForm</td>
-<td class="left">fortran</td>
+<td class="org-left">FortranForm</td>
+<td class="org-left">fortran</td>
 </tr>
 
 <tr>
-<td class="left">MatrixForm[e]</td>
-<td class="left">matrix</td>
+<td class="org-left">MatrixForm[e]</td>
+<td class="org-left">matrix</td>
 </tr>
 
 <tr>
-<td class="left">StandardForm[e]</td>
-<td class="left">math</td>
+<td class="org-left">StandardForm[e]</td>
+<td class="org-left">math</td>
 </tr>
 
 <tr>
-<td class="left">TeXForm[e]</td>
-<td class="left">TEX</td>
+<td class="org-left">TeXForm[e]</td>
+<td class="org-left">TEX</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> Programming</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">Programming</h2>
+<div class="outline-text-2" id="text-orgheadline10">
 <dl class="org-dl">
-<dt> Table[expression, {i, max}] </dt><dd>make a list of values of <code>expression</code> with <code>i</code> from <code>1</code> to <code>max</code>.
-</dd>
-<dt> Module[{a, b, c}, expression1; expression2;&#x2026;] </dt><dd>a procedure with local variables <code>a</code>, <code>b</code>, <code>c</code> return value of last expression.
-</dd>
-<dt> Do[expression, {i, min, max, di}] </dt><dd>evaluate <code>expression</code> with <code>i</code> run from <code>min</code> to <code>max</code> in steps of <code>di</code>.
-</dd>
-<dt> While[test, body] </dt><dd>evaluate <code>body</code> repeatedly, so long as <code>test</code> is <code>True</code>.
-</dd>
-<dt> For[star,test,inc,body] </dt><dd>evaluate <code>start</code>, then repeatedly evaluate <code>body</code> and <code>inc</code>, until <code>test</code> fails.
-</dd>
-<dt> If[test, then, else] </dt><dd>evaluate <code>then</code> if <code>test</code> is <code>True</code>, and <code>else</code> if it is <code>False</code>.
-</dd>
-<dt> Which[test1,value1,test2,value2,&#x2026;] </dt><dd>give the value associated with the first <code>test</code> that is <code>True</code>.
-</dd>
-<dt> Switch[expression, form1, value1, form2, value2, &#x2026;] </dt><dd>give the value associated with first <code>form</code> matching <code>expression</code>.
-</dd>
-<dt> Function[x, body] </dt><dd>specify a pure function.
-</dd>
-<dt> Nest[f, x, n] </dt><dd>apply the function <code>f</code> nested <code>n</code> times to <code>x</code>.
-</dd>
-<dt> Apply[f, {a, b, c}] </dt><dd><code>f(a, b, c)</code>.
-</dd>
-<dt> Map[f, {a, b, c}] </dt><dd>apply <code>f</code> to each elements, <code>{f(a), f(b), f(c)}</code>.
-</dd>
+<dt>Table[expression, {i, max}]</dt><dd>make a list of values of <code>expression</code> with <code>i</code> from <code>1</code> to <code>max</code>.</dd>
+<dt>Module[{a, b, c}, expression1; expression2;&#x2026;]</dt><dd>a procedure with local variables <code>a</code>, <code>b</code>, <code>c</code> return value of last expression.</dd>
+<dt>Do[expression, {i, min, max, di}]</dt><dd>evaluate <code>expression</code> with <code>i</code> run from <code>min</code> to <code>max</code> in steps of <code>di</code>.</dd>
+<dt>While[test, body]</dt><dd>evaluate <code>body</code> repeatedly, so long as <code>test</code> is <code>True</code>.</dd>
+<dt>For[star,test,inc,body]</dt><dd>evaluate <code>start</code>, then repeatedly evaluate <code>body</code> and <code>inc</code>, until <code>test</code> fails.</dd>
+<dt>If[test, then, else]</dt><dd>evaluate <code>then</code> if <code>test</code> is <code>True</code>, and <code>else</code> if it is <code>False</code>.</dd>
+<dt>Which[test1,value1,test2,value2,&#x2026;]</dt><dd>give the value associated with the first <code>test</code> that is <code>True</code>.</dd>
+<dt>Switch[expression, form1, value1, form2, value2, &#x2026;]</dt><dd>give the value associated with first <code>form</code> matching <code>expression</code>.</dd>
+<dt>Function[x, body]</dt><dd>specify a pure function.</dd>
+<dt>Nest[f, x, n]</dt><dd>apply the function <code>f</code> nested <code>n</code> times to <code>x</code>.</dd>
+<dt>Apply[f, {a, b, c}]</dt><dd><code>f(a, b, c)</code>.</dd>
+<dt>Map[f, {a, b, c}]</dt><dd>apply <code>f</code> to each elements, <code>{f(a), f(b), f(c)}</code>.</dd>
 </dl>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-07-30 Thu 01:12</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-01-29 Fri 20:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

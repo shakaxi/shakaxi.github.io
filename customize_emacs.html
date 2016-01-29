@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Customize Emacs</title>
-<!-- 2015-08-06 Thu 20:55 -->
+<!-- 2016-01-29 Fri 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Customize Emacs</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -143,15 +149,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Set values for predefined variables</a></li>
-<li><a href="#sec-2">2. Bind shortcut keys</a>
+<li><a href="#orgheadline1">Set values for predefined variables</a></li>
+<li><a href="#orgheadline4">Bind shortcut keys</a>
 <ul>
-<li><a href="#sec-2-1">2.1. Set global shortcut key</a></li>
-<li><a href="#sec-2-2">2.2. Set shortcut key for specific modes</a></li>
+<li><a href="#orgheadline2">Set global shortcut key</a></li>
+<li><a href="#orgheadline3">Set shortcut key for specific modes</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. Mode &amp; hook</a></li>
-<li><a href="#sec-4">4. Third party extension</a></li>
+<li><a href="#orgheadline5">Mode &amp; hook</a></li>
+<li><a href="#orgheadline6">Third party extension</a></li>
 </ul>
 </div>
 </div>
@@ -159,9 +165,9 @@ for the JavaScript code in this tag.
 As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a powerful editor. Due to its infinite customizability and extensibility, in some sense, it is an operation system (OS) rather than an editor. This page briefly introduces how to customize it.
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Set values for predefined variables</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Set values for predefined variables</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(setq variable value)
@@ -169,25 +175,25 @@ As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a pow
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Bind shortcut keys</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Set global shortcut key</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">Bind shortcut keys</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">Set global shortcut key</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(global-set-key key command)
 </pre>
 </div>
 <p>
-where <code>key</code> is shortcut<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>, e.g. <code>M-SPC</code>, <code>&lt;f7&gt;</code>, and <code>command</code> is the command name with a prefix of single quotation mark.
+where <code>key</code> is shortcut<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, e.g. <code>M-SPC</code>, <code>&lt;f7&gt;</code>, and <code>command</code> is the command name with a prefix of single quotation mark.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Set shortcut key for specific modes</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Set shortcut key for specific modes</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(define-key keymap key command)
@@ -199,24 +205,24 @@ where <code>keymap</code> is associated to some mode, e.g. <code>c-mode-map</cod
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Mode &amp; hook</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">Mode &amp; hook</h2>
+<div class="outline-text-2" id="text-orgheadline5">
 <p>
-Emacs uses different modes to provide different editing environment. Generally, each file type has its own <i>major-mode</i> <sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup> and one or more <i>minor-mode</i> <sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>. Usually, each major-mode provides <i>hook</i>, mode name appended with <code>-hook</code>. When entering some major-mode, the functions in the corresponding hook will be provoked.
+Emacs uses different modes to provide different editing environment. Generally, each file type has its own <i>major-mode</i> <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> and one or more <i>minor-mode</i> <sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. Usually, each major-mode provides <i>hook</i>, mode name appended with <code>-hook</code>. When entering some major-mode, the functions in the corresponding hook will be provoked.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Third party extension</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Third party extension</h2>
+<div class="outline-text-2" id="text-orgheadline6">
 <p>
 After the installation, the configuration includes two steps
 </p>
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(add-to-list 'load-path path-of-the-extension)
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">extension-name</span>)
+(require 'extension-name)
 </pre>
 </div>
 </div>
@@ -225,25 +231,24 @@ After the installation, the configuration includes two steps
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 The expressions of the shortcut key can be obtained by <code>C-h k</code> first and then treated as the input parameter of <code>kbd</code>, e.g. <code>(kbd "M-SPC")</code>.
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
 For the file type, define syntax highlight, indent, comment, etc.
-</p></div>
+</p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
 It can be aded to <code>major-mode</code>. It defines the enhancement or decoration.
-</p></div>
+</p></div></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-06 Thu 20:55</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-01-29 Fri 20:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

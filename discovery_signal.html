@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Discovery Signal</title>
-<!-- 2015-08-05 Wed 22:34 -->
+<!-- 2016-01-29 Fri 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Discovery Signal</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -58,15 +65,14 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -140,48 +146,39 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Discovery Signal</h1>
 <p>
-Just as its name indicates, <i>discovery signal</i> is transmitted by a cell to be discovered and measured by UE's. According to the standard<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>, a discovery signal occasion for a cell consists of
+Just as its name indicates, <i>discovery signal</i> is transmitted by a cell to be discovered and measured by UE's. According to the standard<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, a discovery signal occasion for a cell consists of
 </p>
 <ul class="org-ul">
-<li>1~5 consecutive subframes for FDD
-</li>
-<li>2~5 consecutive subframes for TDD
-</li>
+<li>1~5 consecutive subframes for FDD</li>
+<li>2~5 consecutive subframes for TDD</li>
 </ul>
 <p>
 Discovery signal is comprised of
 </p>
 <ul class="org-ul">
-<li>CRS on antenna port 0 (R0)
-</li>
+<li>CRS on antenna port 0 (R0)</li>
 <li>PSS
 <ul class="org-ul">
-<li>in the 1st subframe for FDD
-</li>
-<li>in the 2nd subframe for TDD
-</li>
-</ul>
-</li>
-<li>SSS in the 1st subframe
-</li>
-<li>NZP CSI-RS in zero or more subframes
-</li>
+<li>in the 1st subframe for FDD</li>
+<li>in the 2nd subframe for TDD</li>
+</ul></li>
+<li>SSS in the 1st subframe</li>
+<li>NZP CSI-RS in zero or more subframes</li>
 </ul>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 Section 6.11A in 3GPP TS36.211
-</p></div>
+</p></div></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-05 Wed 22:34</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2016-01-29 Fri 20:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

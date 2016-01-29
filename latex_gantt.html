@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-09-18 Fri 23:12 -->
+<!-- 2016-01-29 Fri 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Drawing Gantt Chart using LaTeX</title>
@@ -171,40 +171,40 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. Introduction</a></li>
-<li><a href="#orgheadline2">2. Installation</a></li>
-<li><a href="#orgheadline12">3. Usage</a>
+<li><a href="#orgheadline1">Introduction</a></li>
+<li><a href="#orgheadline2">Installation</a></li>
+<li><a href="#orgheadline3">Usage</a>
 <ul>
-<li><a href="#orgheadline3">3.1. Optional arguments</a></li>
-<li><a href="#orgheadline4">3.2. Title</a></li>
-<li><a href="#orgheadline11">3.3. Other commands</a>
+<li><a href="#orgheadline4">Optional arguments</a></li>
+<li><a href="#orgheadline5">Title</a></li>
+<li><a href="#orgheadline12">Other commands</a>
 <ul>
-<li><a href="#orgheadline5">3.3.1. <code>\ganttbar</code></a></li>
-<li><a href="#orgheadline6">3.3.2. <code>\ganttcon</code></a></li>
-<li><a href="#orgheadline7">3.3.3. <code>\ganttbarcon</code></a></li>
-<li><a href="#orgheadline8">3.3.4. <code>\ganttgroup</code></a></li>
-<li><a href="#orgheadline9">3.3.5. <code>\ganttmilestone</code></a></li>
-<li><a href="#orgheadline10">3.3.6. <code>\ganttmilestonecon</code></a></li>
+<li><a href="#orgheadline6"><code>\ganttbar</code></a></li>
+<li><a href="#orgheadline7"><code>\ganttcon</code></a></li>
+<li><a href="#orgheadline8"><code>\ganttbarcon</code></a></li>
+<li><a href="#orgheadline9"><code>\ganttgroup</code></a></li>
+<li><a href="#orgheadline10"><code>\ganttmilestone</code></a></li>
+<li><a href="#orgheadline11"><code>\ganttmilestonecon</code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline13">4. An example</a></li>
+<li><a href="#orgheadline13">An example</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> Introduction</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="orgheadline1">Introduction</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 Today, I found an interesting \(\LaTeX\) package, <i>gantt</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. This package is developped based on <i>pgf/tikz</i> and, as its name indicates, can produce <i>Gantt</i> charts.
 </p>
 </div>
 </div>
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2"><span class="section-number-2">2</span> Installation</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="orgheadline2">Installation</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
 For <i>ArchLinux</i>, the package can be simply installed via <i>yaourt</i>.
 </p>
@@ -218,30 +218,30 @@ Alternatively, the corresponding <i>style</i> file can be downloaded from the <a
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-2">
-<h2 id="orgheadline12"><span class="section-number-2">3</span> Usage</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Usage</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>
 The framework of using the package can be illustrated as
 </p>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">gantt</span>}
+<pre class="src src-latex">\usepackage{tikz}
+\usepackage{gantt}
 ...
 
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">gantt</span>}[key_1=value_1, key_2=value_2, ...]{number of task}{number of time slots}
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">ganttitle</span>}
+\begin{gantt}[key_1=value_1, key_2=value_2, ...]{number of task}{number of time slots}
+\begin{ganttitle}
 ...
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">ganttitle</span>}
+\end{ganttitle}
 ...
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">gantt</span>}
+\end{gantt}
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">3.1</span> Optional arguments</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">Optional arguments</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <p>
 <code>key_1, key_2, ...</code> are optional arguments, which can be
 </p>
@@ -253,33 +253,33 @@ The framework of using the package can be illustrated as
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4"><span class="section-number-3">3.2</span> Title</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">Title</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <p>
 <code>ganttitle</code> is the environment for drawing the title section, which is comprised of a series of <code>\titleelement</code> and/or <code>\numtitle</code>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #696969;">\numtitle</span>{start number}{increment}{end number}{length of each title element}
+<pre class="src src-latex">\numtitle{start number}{increment}{end number}{length of each title element}
 ...
-<span style="color: #696969;">\titleelement</span>{label}{length}
+\titleelement{label}{length}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11"><span class="section-number-3">3.3</span> Other commands</h3>
-<div class="outline-text-3" id="text-3-3">
-</div><div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5"><span class="section-number-4">3.3.1</span> <code>\ganttbar</code></h4>
-<div class="outline-text-4" id="text-3-3-1">
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">Other commands</h3>
+<div class="outline-text-3" id="text-orgheadline12">
+</div><div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6"><code>\ganttbar</code></h4>
+<div class="outline-text-4" id="text-orgheadline6">
 <p>
 Draws a single, unconnected bar for a task.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #696969;">\ganttbar</span>[pattern=&lt;pattern&gt;,color=&lt;color&gt;]{label}{start}{length}
+<pre class="src src-latex">\ganttbar[pattern=&lt;pattern&gt;,color=&lt;color&gt;]{label}{start}{length}
 </pre>
 </div>
 <p>
@@ -291,28 +291,28 @@ where
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6"><span class="section-number-4">3.3.2</span> <code>\ganttcon</code></h4>
-<div class="outline-text-4" id="text-3-3-2">
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><code>\ganttcon</code></h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <p>
 Draw an arrow between two bars with specified coordinates.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #696969;">\ganttcon</span>{startx}{starty}{endx}{endy}
+<pre class="src src-latex">\ganttcon{startx}{starty}{endx}{endy}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7"><span class="section-number-4">3.3.3</span> <code>\ganttbarcon</code></h4>
-<div class="outline-text-4" id="text-3-3-3">
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><code>\ganttbarcon</code></h4>
+<div class="outline-text-4" id="text-orgheadline8">
 <p>
 Draw a single bar <b>and</b> connect it to the <b>previous</b> bar/milestone.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #696969;">\ganttbarcon</span>[pattern=&lt;pattern&gt;,color=&lt;color&gt;]{label}{start}{length}
+<pre class="src src-latex">\ganttbarcon[pattern=&lt;pattern&gt;,color=&lt;color&gt;]{label}{start}{length}
 </pre>
 </div>
 <p>
@@ -320,41 +320,41 @@ where the optional pattern argument are the same as <code>\ganttbar</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8"><span class="section-number-4">3.3.4</span> <code>\ganttgroup</code></h4>
-<div class="outline-text-4" id="text-3-3-4">
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><code>\ganttgroup</code></h4>
+<div class="outline-text-4" id="text-orgheadline9">
 <p>
 Draw a bar to group tasks.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #696969;">\ganttgroup</span>{label}{start}{length}
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9"><span class="section-number-4">3.3.5</span> <code>\ganttmilestone</code></h4>
-<div class="outline-text-4" id="text-3-3-5">
-<p>
-Draw a milestone using a diamond.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-latex"><span style="color: #696969;">\ganttmilestone</span>[color=&lt;color&gt;]{label}{start}
+<pre class="src src-latex">\ganttgroup{label}{start}{length}
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10"><span class="section-number-4">3.3.6</span> <code>\ganttmilestonecon</code></h4>
-<div class="outline-text-4" id="text-3-3-6">
+<h4 id="orgheadline10"><code>\ganttmilestone</code></h4>
+<div class="outline-text-4" id="text-orgheadline10">
+<p>
+Draw a milestone using a diamond.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-latex">\ganttmilestone[color=&lt;color&gt;]{label}{start}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><code>\ganttmilestonecon</code></h4>
+<div class="outline-text-4" id="text-orgheadline11">
 <p>
 Draw a milestone using a diamond <b>and</b> connect it to the previous bar/milestone.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #696969;">\ganttmilestonecon</span>[color=&lt;color&gt;]{label}{start}
+<pre class="src src-latex">\ganttmilestonecon[color=&lt;color&gt;]{label}{start}
 </pre>
 </div>
 </div>
@@ -362,39 +362,39 @@ Draw a milestone using a diamond <b>and</b> connect it to the previous bar/miles
 </div>
 </div>
 <div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13"><span class="section-number-2">4</span> An example</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="orgheadline13">An example</h2>
+<div class="outline-text-2" id="text-orgheadline13">
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #a020f0;">\documentclass</span>{<span style="color: #0000ff;">article</span>}
+<pre class="src src-latex">\documentclass{article}
 
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">gantt</span>}
+\usepackage{tikz}
+\usepackage{gantt}
 
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">document</span>}
- <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">gantt</span>}[xunitlength=0.3cm,fontsize=<span style="color: #228b22;">\small</span>,titlefontsize=<span style="color: #228b22;">\small</span>,drawledgerline=true]{10}{36}
-    <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">ganttitle</span>}
-      <span style="color: #696969;">\titleelement</span>{2012}{7}
-      <span style="color: #696969;">\numtitle</span>{2013}{1}{2014}{12}
-      <span style="color: #696969;">\titleelement</span>{2015}{5}
-    <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">ganttitle</span>}
-    <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">ganttitle</span>}
-      <span style="color: #696969;">\numtitle</span>{6}{1}{12}{1}
-      <span style="color: #696969;">\numtitle</span>{1}{1}{12}{1}
-      <span style="color: #696969;">\numtitle</span>{1}{1}{12}{1}
-      <span style="color: #696969;">\numtitle</span>{1}{1}{5}{1}
-    <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">ganttitle</span>}
-    <span style="color: #696969;">\ganttbar</span>{task 1}{2}{17}
-    <span style="color: #696969;">\ganttgroup</span>{a group of tasks}{6}{18}
-    <span style="color: #696969;">\ganttbar</span>{task 2}{5}{10}
-    <span style="color: #696969;">\ganttbar</span>[pattern=crosshatch,color=blue]{task 3}{15}{3}
-    <span style="color: #696969;">\ganttbar</span>{task 4}{20}{3}
-    <span style="color: #696969;">\ganttcon</span>{15}{4}{20}{6}
-    <span style="color: #696969;">\ganttbar</span>{task 5}{15}{5}
-    <span style="color: #696969;">\ganttbarcon</span>[color=red]{task 6}{20}{5}
-    <span style="color: #696969;">\ganttbarcon</span>{task 7}{30}{5}
-  <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">gantt</span>}
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">document</span>}
+\begin{document}
+ \begin{gantt}[xunitlength=0.3cm,fontsize=\small,titlefontsize=\small,drawledgerline=true]{10}{36}
+    \begin{ganttitle}
+      \titleelement{2012}{7}
+      \numtitle{2013}{1}{2014}{12}
+      \titleelement{2015}{5}
+    \end{ganttitle}
+    \begin{ganttitle}
+      \numtitle{6}{1}{12}{1}
+      \numtitle{1}{1}{12}{1}
+      \numtitle{1}{1}{12}{1}
+      \numtitle{1}{1}{5}{1}
+    \end{ganttitle}
+    \ganttbar{task 1}{2}{17}
+    \ganttgroup{a group of tasks}{6}{18}
+    \ganttbar{task 2}{5}{10}
+    \ganttbar[pattern=crosshatch,color=blue]{task 3}{15}{3}
+    \ganttbar{task 4}{20}{3}
+    \ganttcon{15}{4}{20}{6}
+    \ganttbar{task 5}{15}{5}
+    \ganttbarcon[color=red]{task 6}{20}{5}
+    \ganttbarcon{task 7}{30}{5}
+  \end{gantt}
+\end{document}
 </pre>
 </div>
 </div>
@@ -412,7 +412,7 @@ Draw a milestone using a diamond <b>and</b> connect it to the previous bar/miles
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-09-18 Fri 23:12</p>
+<p class="date">Created: 2016-01-29 Fri 20:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

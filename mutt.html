@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-08-16 Sun 20:06 -->
+<!-- 2016-01-29 Fri 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mutt</title>
@@ -166,30 +166,30 @@ Then create a configuration file <code>muttrc</code> in <code>~/.mutt</code> wit
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #b22222;">## </span><span style="color: #b22222;">imap settings</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">folder</span>=<span style="color: #8b2252;">"imaps://imap.gmail.com/"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">spoolfile</span>=<span style="color: #8b2252;">"+INBOX"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">postponed</span>=<span style="color: #8b2252;">"+[Gmail]/Drafts"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">record</span>=<span style="color: #8b2252;">"+[Gmail]/Sent Mail"</span>
-mailboxes <span style="color: #8b2252;">"+INBOX"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">imap_user</span>=<span style="color: #8b2252;">"ID@gmail.com"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">imap_pass</span>=<span style="color: #8b2252;">"PASSWORD"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">imap_keepalive</span>=300
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">mail_check</span>=120
+<pre class="src src-sh">## imap settings
+set folder="imaps://imap.gmail.com/"
+set spoolfile="+INBOX"
+set postponed="+[Gmail]/Drafts"
+set record="+[Gmail]/Sent Mail"
+mailboxes "+INBOX"
+set imap_user="ID@gmail.com"
+set imap_pass="PASSWORD"
+set imap_keepalive=300
+set mail_check=120
 
-<span style="color: #b22222;">## </span><span style="color: #b22222;">smtp settings</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">smtp_url</span>=<span style="color: #8b2252;">"smtp://$imap_user:$imap_pass@smtp.gmail.com"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">ssl_force_tls</span>=<span style="color: #8b2252;">"yes"</span>
+## smtp settings
+set smtp_url="smtp://$imap_user:$imap_pass@smtp.gmail.com"
+set ssl_force_tls="yes"
 
-<span style="color: #b22222;">## </span><span style="color: #b22222;">other settings</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">realname</span>=<span style="color: #8b2252;">"Shaka"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">signature</span>=<span style="color: #8b2252;">"~/.mutt/signature"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">alias_file</span>=<span style="color: #8b2252;">"~/.mutt/alias"</span>
-<span style="color: #483d8b;">source</span> $<span style="color: #a0522d;">alias_file</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">header_cache</span>=<span style="color: #8b2252;">"~/.mutt/header_cache"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">pager_stop</span>=<span style="color: #8b2252;">"yes"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">editor</span>=<span style="color: #8b2252;">"emacs -nw"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">indent_str</span>=<span style="color: #8b2252;">"&gt;"</span>
+## other settings
+set realname="Shaka"
+set signature="~/.mutt/signature"
+set alias_file="~/.mutt/alias"
+source $alias_file
+set header_cache="~/.mutt/header_cache"
+set pager_stop="yes"
+set editor="emacs -nw"
+set indent_str="&gt;"
 auto_view text/html
 </pre>
 </div>
@@ -199,7 +199,7 @@ where, <code>ID</code> and <code>PASSWORD</code> are respectively ID and passwor
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #483d8b;">set</span> <span style="color: #a0522d;">pager_stop</span>=<span style="color: #8b2252;">"yes"</span>
+<pre class="src src-sh">set pager_stop="yes"
 </pre>
 </div>
 <p>
@@ -208,7 +208,7 @@ is used to stop pager to read next mail when it arrives at the end of current on
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-16 Sun 20:06</p>
+<p class="date">Created: 2016-01-29 Fri 20:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

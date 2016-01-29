@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-09-30 Wed 21:40 -->
+<!-- 2016-01-29 Fri 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++中的多态</title>
@@ -149,11 +149,11 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">1. 简介</a></li>
-<li><a href="#orgheadline4">2. 虚函数</a>
+<li><a href="#orgheadline1">简介</a></li>
+<li><a href="#orgheadline2">虚函数</a>
 <ul>
-<li><a href="#orgheadline2">2.1. 纯虚函数</a></li>
-<li><a href="#orgheadline3">2.2. 抽象类</a></li>
+<li><a href="#orgheadline3">纯虚函数</a></li>
+<li><a href="#orgheadline4">抽象类</a></li>
 </ul>
 </li>
 </ul>
@@ -161,17 +161,17 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1"><span class="section-number-2">1</span> 简介</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="orgheadline1">简介</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 <b>多态</b> 是C++语言的一大特色。一个操作随着所传递或捆绑的对象类型的不同能够做出不同的反应，其行为模式称为多态<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。而且，仅仅对于对象的指针和引用的间接访问，才会发生多态。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">2</span> 虚函数</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">虚函数</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
 在使用类的C++语言中，抽象编程需要使用 <b>虚函数</b> 机制。基类与派生类的同名操作，只要标记上 <b>virtual</b><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> ，则该操作（虚函数）便具有多态性。一旦标记基类的函数为虚函数，便有连锁反应，后面继承的类中一切同名成员函数都变成了虚函数。这样一来，如果实际对象是基类对象，那么调用的就是基类成员函数；如果实际对象是派生类对象，那么调用的就是派生类成员函数。
 </p>
@@ -187,17 +187,17 @@ for the JavaScript code in this tag.
 <li>析构函数可以是且通常声明为虚函数。</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">2.1</span> 纯虚函数</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">纯虚函数</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <p>
 纯虚函数是指被标明为不具体实现的虚函数。纯虚函数一旦声明，就不用定义。声明形式是在虚函数声明形式后跟“ = 0”。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">2.2</span> 抽象类</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">抽象类</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <p>
 抽象类是指在类定义中至少声明一个纯虚函数的类。抽象类是不允许有实例对象的，即不能由抽象类创建实例对象，其用途就是为了继承。
 </p>
@@ -225,7 +225,7 @@ for the JavaScript code in this tag.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-09-30 Wed 21:40</p>
+<p class="date">Created: 2016-01-29 Fri 20:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

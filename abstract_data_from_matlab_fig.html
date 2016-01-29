@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-08-16 Sun 20:58 -->
+<!-- 2016-01-29 Fri 20:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Abstracting Original Data from MATLAB Figure File</title>
@@ -151,16 +151,16 @@ If you have a MATLAB figure file, <code>FILE.fig</code>, and want to abstract th
 
 <div class="org-src-container">
 
-<pre class="src src-matlab">open(<span style="color: #8b2252;">'FILE.fig'</span>); <span style="color: #b22222;">% open the figure file</span>
-fig_handle = findall(gca, <span style="color: #8b2252;">'type'</span>, <span style="color: #8b2252;">'line'</span>); <span style="color: #b22222;">% get figure handle</span>
-x = <span style="color: #228b22;">get</span>(<span style="color: #a0522d;">fig_handle</span>, <span style="color: #8b2252;">'xdata'</span>); <span style="color: #b22222;">% get data of X-axis</span>
-y = <span style="color: #228b22;">get</span>(<span style="color: #a0522d;">fig_handle</span>, <span style="color: #8b2252;">'ydata'</span>); <span style="color: #b22222;">% get data of Y-axis</span>
+<pre class="src src-matlab">open('FILE.fig'); % open the figure file
+fig_handle = findall(gca, 'type', 'line'); % get figure handle
+x = get(fig_handle, 'xdata'); % get data of X-axis
+y = get(fig_handle, 'ydata'); % get data of Y-axis
 </pre>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2015-08-16 Sun 20:58</p>
+<p class="date">Created: 2016-01-29 Fri 20:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
