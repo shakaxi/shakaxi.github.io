@@ -1,5 +1,4 @@
 #+TITLE: 关于switch语句
-#+OPTIONS: num:6
 
 在C/C++语言中， =switch= 语句的通用格式为
 #+BEGIN_SRC c -n

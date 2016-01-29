@@ -1,5 +1,4 @@
 #+TITLE: Drawing with PGF/Tikz
-#+OPTIONS: num:6
 
 * Setting
 #+BEGIN_SRC latex

@@ -1,5 +1,4 @@
 #+TITLE: C/C++ Programming with Emacs
-#+OPTIONS: num:6
 
 This page is written to summarize my configuration for C/C++ programming with Emacs.
 

@@ -1,5 +1,4 @@
 #+TITLE: Regular Expression
-#+OPTIONS: num:6
 
 正则表达式是指用于字符串匹配的一种模式,最早出现于20世纪40年代.
 

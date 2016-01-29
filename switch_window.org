@@ -1,5 +1,4 @@
 #+TITLE: Switching Window in Emacs
-#+OPTIONS: num:6
 
 In Emacs, multi-window editing is usually the case in our routine utilization. Fast and convenient switch among multiple windows is very necessary. So long as I am concerned, there are at least three methods.
 - Legacy method :: built-in elisp function =other-window=, binded to key =C-x o=.

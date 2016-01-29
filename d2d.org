@@ -1,5 +1,4 @@
 #+TITLE: Sidelink for D2D Communication
-#+OPTIONS: num:6
 
 * Overview
 In LTE-Advanced systems, the link for D2D communication is termed /sidelink/ [fn:1]. A sidelink carries two physical signals

@@ -1,5 +1,4 @@
 #+TITLE: SLNR-based Beamforming
-#+OPTIONS: num:6
 
 * Introduction
 In coordinatd scheduling and beamforming (CS/CB), one of coordinatd multipoint (CoMP) transmission schemes, signal leakage noise power ratio (SLNR)-based beamforming is widely used.

@@ -1,5 +1,4 @@
 #+TITLE: Bash
-#+OPTIONS: num:6
 
 * Running ways
 - Make the shell script executable :: The script should begin with the shebang (e.g. =#!/bin/bash=).

@@ -1,5 +1,4 @@
 #+TITLE: Deploy Blog Site on GitHub
-#+OPTIONS: num:6
 
 It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on [[https://github.com][GitHub]]. This page is just written to summarize the procedure.
 

@@ -1,5 +1,4 @@
 #+TITLE: Mutt
-#+OPTIONS: num:6
 
 Mutt is a text-based but powerful mail user agent (MUA) in the world of Unix/Linux. Originally, it is nothing but a MUA. However, it can make use of other programs to edit, send and receive mails. For example, it uses vim to edit mails, msmtp to send mails and getmail to receive mails. This is just the philosophy of Unix.
 

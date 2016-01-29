@@ -1,5 +1,4 @@
 #+TITLE: Customize Emacs
-#+OPTIONS: num:6
 
 As is well-known, [[http://www.gnu.org/software/emacs][Emacs]] is a powerful editor. Due to its infinite customizability and extensibility, in some sense, it is an operation system (OS) rather than an editor. This page briefly introduces how to customize it.
 

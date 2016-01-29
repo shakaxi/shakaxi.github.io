@@ -1,5 +1,4 @@
 #+TITLE: Convex Optimization
-#+OPTIONS: num:6
 
 A mathematical optimization problem can be expressed as
 \begin{align}

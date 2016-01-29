@@ -1,5 +1,4 @@
 #+TITLE: Debuging Programs with GDB
-#+OPTIONS: num:6
 
 /GDB/ is the world famous GNU debugger, which is very powerful. In this article, its elementary usages can be listed as follows.
 - =b(reak) LINE_IDX=: set breakpoint in line =LINE_IDX=.

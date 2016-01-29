@@ -1,5 +1,4 @@
 #+TITLE: Drawing with DOT
-#+OPTIONS: num:6
 
 /DOT/ [fn:4] is a language for drawing graphs. It has three main kinds of objects, =graph=, =node= and =edge=. Each object has a variety of attributes. Given a =node= or =edge=, its attribute(s) can be set as below respectively
 #+BEGIN_SRC sh
