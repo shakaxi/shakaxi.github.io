@@ -6,7 +6,7 @@
 <!-- 2016-03-23 Wed 22:50 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Repairing GRUB</title>
+<title>A Pacman Source from Chinese BBS of ArchLinux</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,22 +144,16 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Repairing GRUB</h1>
+<h1 class="title">A Pacman Source from Chinese BBS of ArchLinux</h1>
 <p>
-<i>GRUB</i> is a powerful bootloader which can boot a variety of operation systems, including Unix, Linux and Windows. It is usually intalled in the MBR of a disk. This article presents the method how to repair it if it is corrupted.
+Append following two lines to <code>/etc/pacman.conf</code>.
 </p>
+<div class="org-src-container">
 
-<p>
-Above all, open a terminal or switch to a tty, then input commands below step by step:
-</p>
-
-<ol class="org-ol">
-<li>type <code>grub</code> to enter the interface of GRUB.</li>
-<li>if separate <code>/boot</code> partition exists, input <code>find /grub/stage1</code>; otherwise, input <code>find /boot/grub/stage1</code> instead.</li>
-<li>indicate the location for GRUB installation, <code>root (hdX, Y)</code>.</li>
-<li>set up GRUB to <code>hdX</code> ’s <i>MBR</i>, <code>setup (hdX)</code>.</li>
-<li>quit the GRUB program, <code>quit</code>.</li>
-</ol>
+<pre class="src src-sh">[archlinuxcn]
+Server = http://mirrors.163.com/archlinux-cn/$arch
+</pre>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
