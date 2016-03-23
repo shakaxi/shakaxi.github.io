@@ -1,0 +1,7 @@
+#+TITLE: A Pacman Source from Chinese BBS of ArchLinux
+
+Append following two lines to =/etc/pacman.conf=.
+#+BEGIN_SRC sh
+[archlinuxcn]
+Server = http://mirrors.163.com/archlinux-cn/$arch
+#+END_SRC
