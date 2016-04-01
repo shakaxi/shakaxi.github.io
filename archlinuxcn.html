@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-23 Wed 22:50 -->
+<!-- 2016-03-24 Thu 22:12 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>A Pacman Source from Chinese BBS of ArchLinux</title>
+<title>A Source of ArchLinux</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,20 +144,52 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">A Pacman Source from Chinese BBS of ArchLinux</h1>
+<h1 class="title">A Source of ArchLinux</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">Introducation</a></li>
+<li><a href="#orgheadline2">Configuration</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Introducation</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
-Append following two lines to <code>/etc/pacman.conf</code>.
+Chinese community of ArchLinux provides a non-official source for ArchLinux.
 </p>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Configuration</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<ul class="org-ul">
+<li>Append following lines to <code>/etc/pacman.conf</code>.</li>
+</ul>
 <div class="org-src-container">
 
 <pre class="src src-sh">[archlinuxcn]
+SigLevel = Optional TrustedOnly
 Server = http://mirrors.163.com/archlinux-cn/$arch
 </pre>
+</div>
+<ul class="org-ul">
+<li>Import the corresponding PGP keys by installing package <code>archlinuxcn-keyring</code>.</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">pacman -S archlinuxcn-keyring
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2016-03-23 Wed 22:50</p>
+<p class="date">Created: 2016-03-24 Thu 22:12</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

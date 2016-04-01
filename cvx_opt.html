@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-23 Wed 22:50 -->
+<!-- 2016-04-01 Fri 22:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Convex Optimization</title>
@@ -180,17 +180,17 @@ for the JavaScript code in this tag.
 <p>
 A mathematical optimization problem can be expressed as
 </p>
-\begin{align}
+\begin{align*}
 \min & f_0(x) \\
-\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
-\end{align}
+\text{subject to } & f_i(x) \le b_i, \quad i=1, \ldots, m
+\end{align*}
 <p>
 where
 </p>
 <ul class="org-ul">
-<li>\(x = (x_1, \ldots, x_n)\): <i>optimization variables</i></li>
-<li>\(f_0: \mathbf{R}^n \to \mathbf{R}\): <i>objective function</i></li>
-<li>\(f_i: \mathbf{R}^n \to \mathbf{R}, i=1,\ldots,m\): <i>constraints functions</i></li>
+<li>\(x = (x_1, \ldots, x_n)\) are <i>optimization variables</i>.</li>
+<li>\(f_0: \mathbf{R}^n \to \mathbf{R}\) is <i>objective function</i>.</li>
+<li>\(f_i: \mathbf{R}^n \to \mathbf{R}, i=1, \ldots, m\) are <i>constraints functions</i>.</li>
 </ul>
 <p>
 Optimal solution \(x^\star\) has the smallest value of \(f_0\) among all vectors that satisfy the constraints.
@@ -212,9 +212,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">Least squares (LS)</h2>
 <div class="outline-text-2" id="text-orgheadline1">
-\begin{align}
+\begin{align*}
 \min \|Ax - b\|_2^2
-\end{align}
+\end{align*}
 <ul class="org-ul">
 <li>Analytical solution \(x^\star = (A^TA)^{-1}A^Tb\)</li>
 <li>Easy to recognize</li>
@@ -226,10 +226,10 @@ Fortunately, following three problems can be efficiently and reliably solved.
 <div id="outline-container-orgheadline2" class="outline-2">
 <h2 id="orgheadline2">Linear programming (LP)</h2>
 <div class="outline-text-2" id="text-orgheadline2">
-\begin{align}
+\begin{align*}
 \min & c^Tx \\
 \text{subject to} & a_i^Tx \le b_i,\quad i=1, \ldots, m
-\end{align}
+\end{align*}
 <ul class="org-ul">
 <li>No analytical solution</li>
 <li>Not as easy to recognize as LS problems</li>
@@ -241,10 +241,10 @@ Fortunately, following three problems can be efficiently and reliably solved.
 <div id="outline-container-orgheadline3" class="outline-2">
 <h2 id="orgheadline3">Convex optimization</h2>
 <div class="outline-text-2" id="text-orgheadline3">
-\begin{align}
+\begin{align*}
 \min & f_0(x) \\
 \text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
-\end{align}
+\end{align*}
 <p>
 where
 </p>
@@ -259,14 +259,14 @@ Generally, for convex optimization problems,
 <li>No analytical solution</li>
 <li>Often difficult to recognize</li>
 <li>Almost a technology with reliable and efficient algorithms</li>
-<li>Computation time roughly proportional to \(\max\{n^3, n^2m,F\}\), where \(F\) is cost of evaluating $f<sub>i</sub>$'s and their first and second derivatives.</li>
+<li>Computation time roughly proportional to \(\max\{n^3, n^2m,F\}\), where \(F\) is cost of evaluating \(f_i\) 's and their first and second derivatives.</li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2016-03-23 Wed 22:50</p>
+<p class="date">Created: 2016-04-01 Fri 22:32</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
