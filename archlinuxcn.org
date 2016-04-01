@@ -1,7 +1,15 @@
-#+TITLE: A Pacman Source from Chinese BBS of ArchLinux
+#+TITLE: A Source of ArchLinux
 
-Append following two lines to =/etc/pacman.conf=.
+* Introducation
+Chinese community of ArchLinux provides a non-official source for ArchLinux.
+* Configuration
+- Append following lines to =/etc/pacman.conf=.
 #+BEGIN_SRC sh
 [archlinuxcn]
+SigLevel = Optional TrustedOnly
 Server = http://mirrors.163.com/archlinux-cn/$arch
+#+END_SRC
+- Import the corresponding PGP keys by installing package =archlinuxcn-keyring=.
+#+BEGIN_SRC sh
+pacman -S archlinuxcn-keyring
 #+END_SRC

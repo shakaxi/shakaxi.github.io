@@ -1,14 +1,14 @@
 #+TITLE: Convex Optimization
 
 A mathematical optimization problem can be expressed as
-\begin{align}
+\begin{align*}
 \min & f_0(x) \\
-\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
-\end{align}
+\text{subject to } & f_i(x) \le b_i, \quad i=1, \ldots, m
+\end{align*}
 where
-- $x = (x_1, \ldots, x_n)$: /optimization variables/
-- $f_0: \mathbf{R}^n \to \mathbf{R}$: /objective function/
-- $f_i: \mathbf{R}^n \to \mathbf{R}, i=1,\ldots,m$: /constraints functions/
+- $x = (x_1, \ldots, x_n)$ are /optimization variables/.
+- $f_0: \mathbf{R}^n \to \mathbf{R}$ is /objective function/.
+- $f_i: \mathbf{R}^n \to \mathbf{R}, i=1, \ldots, m$ are /constraints functions/.
 Optimal solution $x^\star$ has the smallest value of $f_0$ among all vectors that satisfy the constraints.
 
 In fact, a general optimization problem is very difficult to solve. Its solution cannot always be found. Even though it can, it suffers some compromise, e.g. very long computation time.
@@ -19,27 +19,27 @@ Fortunately, following three problems can be efficiently and reliably solved.
 - /Convex optimization/
 
 * Least squares (LS)
-\begin{align}
+\begin{align*}
 \min \|Ax - b\|_2^2
-\end{align}
+\end{align*}
 - Analytical solution $x^\star = (A^TA)^{-1}A^Tb$
 - Easy to recognize
 - A mature solution with reliable and efficient algorithms and softwares
 - Computation time proportional to $n^2k$ ($A\in \mathbf{R}^{k\times n}$)
 * Linear programming (LP)
-\begin{align}
+\begin{align*}
 \min & c^Tx \\
 \text{subject to} & a_i^Tx \le b_i,\quad i=1, \ldots, m
-\end{align}
+\end{align*}
 - No analytical solution
 - Not as easy to recognize as LS problems
 - A mature solution with reliable and efficient algorithms and softwares
 - Computation time proportional to $n^2m$
 * Convex optimization
-\begin{align}
+\begin{align*}
 \min & f_0(x) \\
 \text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
-\end{align}
+\end{align*}
 where
 - Objective and constraint functions are /convex/, i.e. $\forall \alpha,\beta \ge 0$, $\alpha + \beta = 1$, $f_i(\alpha x + \beta y) \le \alpha f_i(x) + \beta f_i(y)$, $i = 0, \ldots, m$.
 - LS and LP are included as special cases.
@@ -47,4 +47,4 @@ Generally, for convex optimization problems,
 - No analytical solution
 - Often difficult to recognize
 - Almost a technology with reliable and efficient algorithms
-- Computation time roughly proportional to $\max\{n^3, n^2m,F\}$, where $F$ is cost of evaluating $f_i$'s and their first and second derivatives.
+- Computation time roughly proportional to $\max\{n^3, n^2m,F\}$, where $F$ is cost of evaluating $f_i$ 's and their first and second derivatives.

@@ -1,6 +1,7 @@
 #+TITLE: Shaka's Blog Site
 
-   + [[file:archlinuxcn.org][2016-03-23 A Pacman Source from Chinese BBS of ArchLinux]]
+   + [[file:cvx_opt.org][2016-04-01 Convex Optimization]]
+   + [[file:archlinuxcn.org][2016-03-24 A Source of ArchLinux]]
    + [[file:switch_window.org][2016-02-10 Switching Window in Emacs]]
    + [[file:switch_virtual_console.org][2016-02-10 Switch between Textual and Graphical Interface]]
    + [[file:switch.org][2016-02-10 关于switch语句]]
@@ -35,7 +36,6 @@
    + [[file:d2d.org][2015-12-05 Sidelink for D2D Communication]]
    + [[file:customize_emacs.org][2015-12-02 Customize Emacs]]
    + [[file:cpp_polymorphism.org][2015-12-02 C++中的多态]]
-   + [[file:convex_opt.org][2015-12-02 Convex Optimization]]
    + [[file:company.org][2015-12-02 Company in Emacs]]
    + [[file:cedet.org][2015-12-02 About CEDET]]
    + [[file:capslk_ctrl.org][2015-12-02 Turn CapsLock into Control]]
