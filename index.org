@@ -1,5 +1,6 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:git.org][2016-04-10 Git]]
    + [[file:cvx_opt.org][2016-04-01 Convex Optimization]]
    + [[file:archlinuxcn.org][2016-03-24 A Source of ArchLinux]]
    + [[file:switch_window.org][2016-02-10 Switching Window in Emacs]]
@@ -28,7 +29,6 @@
    + [[file:makefile_c.org][2015-12-20 A Makefile for C Projects]]
    + [[file:itpp.org][2015-12-10 IT++]]
    + [[file:grub.org][2015-12-08 Repairing GRUB]]
-   + [[file:git.org][2015-12-08 Git]]
    + [[file:gdb.org][2015-12-08 Debuging Programs with GDB]]
    + [[file:doxygen.org][2015-12-05 Documenting Codes with Doxygen]]
    + [[file:dot.org][2015-12-05 Drawing with DOT]]

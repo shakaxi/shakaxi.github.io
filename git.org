@@ -7,27 +7,244 @@ On Unix/Linux operation systems, git can be easily installed. Taking /ArchLinux/
 #+BEGIN_SRC sh
 pacman -S git
 #+END_SRC
+For GUI, package /tk/ needs to be installed additionally.
+#+BEGIN_SRC sh
+pacman -S tk
+#+END_SRC
 * Usage
+In the utilization of git, there are four important areas for storage, /workspace/, /index/ (or /stage/), /repository/ and /remote/. Their relationship can be illustrated by the figure below.
+#+BEGIN_SRC dot :file git.png
+  digraph G
+  {
+  rankdir = LR;
+  workspace -> index [label = "add"];
+  index -> repository [label = "commit"];
+  repository -> remote [label = "push"];
+  remote -> repository [label = "fetch/clone"];
+  repository -> workspace [label = "checkout"];
+  remote -> workspace [label = "pull"];
+  workspace [style = filled, color = yellow];
+  index [label = "index/stage", style = filled, color = lightblue];
+  repository [style = filled, color = green];
+  remote [ style = filled, color = red];
+  }
+#+END_SRC
+
+#+RESULTS:
+[[file:git.png]]
+** Create repositories
+- Create a repository
+#+BEGIN_SRC sh
+git init /path/to/project
+#+END_SRC
+- Initialize the belonging directory as a repository
+#+BEGIN_SRC sh
+git init
+#+END_SRC
+- Download from a remote repository
+#+BEGIN_SRC sh
+git clone url
+#+END_SRC
 ** Configuration
 Command =git config= can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or down to specific repositories.
-** Create repository
-Git repository can be created either from a local directory by running =git init= in it or clone from a remote repository by =git clone url=.
+- List the configuration
+#+BEGIN_SRC sh
+git config --list
+#+END_SRC
+- Repository-specific configuration
+#+BEGIN_SRC sh
+git config -e
+#+END_SRC
+- Global configuration
+#+BEGIN_SRC sh
+git config -e --global
+#+END_SRC
 ** Basic snapshotting
-- =git add= adds content from the working directory into the staging area (or ``index'') for the next commit.
-- =git status= shows the different states of files in the working directory and staging area. Which files are modified and unstaged and which are staged but not yet committed.
-- =git diff= shows the differences between any two trees.
-  + =git diff= shows the difference between the working environment and the staging area.
-  + =git diff --staged= shows the difference between the staging area and the last commit.
-  + =git diff branchA branchB= shows the difference between two commits.
-- =git commit= takes all the file contents that have been staged with git add and records a new permanent snapshot in the database and then moves the branch pointer on the current branch up to it.
-- =git reset= resets current =HEAD= to the specified state. It moves around the =HEAD= pointer and optionally changes the index or staging area.
-  + =git reset --hard= resets the working directory.
-- =git rm= remove files from the staging area and working directory.
-- =git mv= moves/renames a file and then run =git add= on the new file and =git rm= on the old file.
-- =git clean= removes unwanted files from working directory.
-
-
-
+*** Add file(s)
+Add the content from the workspace into index area for the next commit.
+#+BEGIN_SRC sh
+git add file1 [file2]
+git add directory
+#+END_SRC
+*** Remove file(s)
+- Stop tracking file(s)
+#+BEGIN_SRC sh
+git rm --cached file1 [file2]
+#+END_SRC
+- Remove file(s) in workspace and index the removal in index
+#+BEGIN_SRC sh
+git rm file1 [file2]
+#+END_SRC
+*** Commit the revision(s)
+The commands take the all/or the specific file(s) that have been staged with =git add= and record a new permanent snapshot in the repository and then moves the branch pointer on the current branch up to it.
+- Commit all the files in the index
+#+BEGIN_SRC sh
+git commit [-m message]
+#+END_SRC
+- Commit specific file(s) in the index
+#+BEGIN_SRC sh
+git commit file1 [file2] [-m message]
+#+END_SRC
+- Replace the last commit with the new commit. If no changes for the codes compared to the last commit, only commit message will be updated.
+#+BEGIN_SRC sh
+git commit --amend [-m message]
+git commit --amend [file]
+#+END_SRC
+*** Branch operations
+- List all the local branches
+#+BEGIN_SRC sh
+git branch
+#+END_SRC
+- List all the remote branches
+#+BEGIN_SRC sh
+git branch -r
+#+END_SRC
+- List all the branch including both local and remote ones
+#+BEGIN_SRC sh
+git branch -a
+#+END_SRC
+- Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is =HEAD=.
+#+BEGIN_SRC sh
+git branch branch_name [commit_name]
+#+END_SRC
+- Switch to an existing branch
+#+BEGIN_SRC sh
+git checkout branch_name
+#+END_SRC
+- Create a new branch and switch to it
+#+BEGIN_SRC sh
+git checkout -b branch_name
+#+END_SRC
+- Associate a local branch to a remote branch
+#+BEGIN_SRC sh
+git branch --set-upstream local_branch_name remote_branch_name
+#+END_SRC
+- Create a new branch and associate it to a remote branch
+#+BEGIN_SRC sh
+git branch --track branch_name remote_branch_name
+#+END_SRC
+- Merge a given branch into the current branch
+#+BEGIN_SRC sh
+git merge branch_name
+#+END_SRC
+- Remove a local branch
+#+BEGIN_SRC sh
+git branch -d branch_name
+#+END_SRC
+- Remove a remote branch
+#+BEGIN_SRC sh
+git push origin --delete branch_name
+git branch -dr remote_name/branch_name
+#+END_SRC
+*** Tag operations
+- List all tags
+#+BEGIN_SRC sh
+git tag
+#+END_SRC
+- Create a new tag for a commit. If not provided, the tag is labeled on =HEAD=.
+#+BEGIN_SRC sh
+git tag tag_name commit_name
+#+END_SRC
+- Show information of a tag
+#+BEGIN_SRC sh
+git show tag_name
+#+END_SRC
+- Commit a tag
+#+BEGIN_SRC sh
+git push remote_name tag_name
+#+END_SRC
+- Commit all tags
+#+BEGIN_SRC sh
+git push remote_name --tags
+#+END_SRC
+- Create a new branch pointing to a tag
+#+BEGIN_SRC sh
+git checkout -b branch_name tag_name
+#+END_SRC
+*** Information query
+- Show revised file(s) in workspace compared to those in index
+#+BEGIN_SRC sh
+git status
+#+END_SRC
+- Show the revisions in a commit
+#+BEGIN_SRC sh
+git show commit_name
+#+END_SRC
+- Show the history of current branch (option =--stat= can list the revised files)
+#+BEGIN_SRC sh
+git log [--stat]
+#+END_SRC
+- Show the modifier and time of a file
+#+BEGIN_SRC sh
+git blame file_name
+#+END_SRC
+*** Show the difference
+- Show the difference between the workspace and the index
+#+BEGIN_SRC sh
+git diff
+#+END_SRC
+- Show the difference between the index and the last commit
+#+BEGIN_SRC sh
+git diff --cached
+#+END_SRC
+- Show the difference between two commits
+#+BEGIN_SRC sh
+git diff commit1 commit2
+#+END_SRC
+*** Remote operation
+- List all the remote repositories
+#+BEGIN_SRC sh
+git remote [-v]
+#+END_SRC
+- Show the information of a remote repository
+#+BEGIN_SRC sh
+git remote show remote_name
+#+END_SRC
+- Add a remote repository
+#+BEGIN_SRC sh
+git remote add remote_alias remote_url
+#+END_SRC
+- Remove a remote repository
+#+BEGIN_SRC sh
+git remote remove remote_alias
+#+END_SRC
+- Download all the commit records from a remote repository
+#+BEGIN_SRC sh
+git fetch remote_name
+#+END_SRC
+- Download all the commit records from a remote repository and merge it into a local branch
+#+BEGIN_SRC sh
+git pull remote_name remote_branch_name
+#+END_SRC
+- Upload the local branch to a remote repository. If not provided, it will push to =master= of =origin=.
+#+BEGIN_SRC sh
+git push remote_name remote_branch_name
+#+END_SRC
+- Upload all the local branches to a remote repository.
+#+BEGIN_SRC sh
+git push remote_name --all
+#+END_SRC
+*** Cancellation
+- Recover the workspace from index
+#+BEGIN_SRC sh
+git checkout [file1]
+#+END_SRC
+- Recover the workspace from a commit
+#+BEGIN_SRC sh
+git checkout commit_name [file1]
+#+END_SRC
+- Recover index from a commit
+#+BEGIN_SRC sh
+git reset commit_name
+#+END_SRC
+- Recover index and workspace from a commit
+#+BEGIN_SRC sh
+git reset --hard commit_name
+#+END_SRC
+- Move pointer =HEAD= to a commit
+#+BEGIN_SRC sh
+git reset --keep commit_name
+#+END_SRC
 
 * Footnotes
 
