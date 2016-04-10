@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-03-23 Wed 22:50 -->
+<!-- 2016-04-10 Sun 12:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git</title>
@@ -151,11 +151,23 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgheadline1">Introduction</a></li>
 <li><a href="#orgheadline2">Installation</a></li>
-<li><a href="#orgheadline6">Usage</a>
+<li><a href="#orgheadline3">Usage</a>
 <ul>
-<li><a href="#orgheadline3">Configuration</a></li>
-<li><a href="#orgheadline4">Create repository</a></li>
-<li><a href="#orgheadline5">Basic snapshotting</a></li>
+<li><a href="#orgheadline4">Create repositories</a></li>
+<li><a href="#orgheadline5">Configuration</a></li>
+<li><a href="#orgheadline15">Basic snapshotting</a>
+<ul>
+<li><a href="#orgheadline6">Add file(s)</a></li>
+<li><a href="#orgheadline7">Remove file(s)</a></li>
+<li><a href="#orgheadline8">Commit the revision(s)</a></li>
+<li><a href="#orgheadline9">Branch operations</a></li>
+<li><a href="#orgheadline10">Tag operations</a></li>
+<li><a href="#orgheadline11">Information query</a></li>
+<li><a href="#orgheadline12">Show the difference</a></li>
+<li><a href="#orgheadline13">Remote operation</a></li>
+<li><a href="#orgheadline14">Cancellation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -181,48 +193,486 @@ On Unix/Linux operation systems, git can be easily installed. Taking <i>ArchLinu
 <pre class="src src-sh">pacman -S git
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-orgheadline6" class="outline-2">
-<h2 id="orgheadline6">Usage</h2>
-<div class="outline-text-2" id="text-orgheadline6">
-</div><div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Configuration</h3>
-<div class="outline-text-3" id="text-orgheadline3">
 <p>
-Command <code>git config</code> can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or down to specific repositories.
+For GUI, package <i>tk</i> needs to be installed additionally.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">pacman -S tk
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Usage</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+In the utilization of git, there are four important areas for storage, <i>workspace</i>, <i>index</i> (or <i>stage</i>), <i>repository</i> and <i>remote</i>. Their relationship can be illustrated by the figure below.
+</p>
+
+<div class="figure">
+<p><img src="git.png" alt="git.png" />
 </p>
 </div>
 </div>
 <div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Create repository</h3>
+<h3 id="orgheadline4">Create repositories</h3>
 <div class="outline-text-3" id="text-orgheadline4">
-<p>
-Git repository can be created either from a local directory by running <code>git init</code> in it or clone from a remote repository by <code>git clone url</code>.
-</p>
+<ul class="org-ul">
+<li>Create a repository</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git init /path/to/project
+</pre>
+</div>
+<ul class="org-ul">
+<li>Initialize the belonging directory as a repository</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git init
+</pre>
+</div>
+<ul class="org-ul">
+<li>Download from a remote repository</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git clone url
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Basic snapshotting</h3>
+<h3 id="orgheadline5">Configuration</h3>
 <div class="outline-text-3" id="text-orgheadline5">
+<p>
+Command <code>git config</code> can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or down to specific repositories.
+</p>
 <ul class="org-ul">
-<li><code>git add</code> adds content from the working directory into the staging area (or ``index'') for the next commit.</li>
-<li><code>git status</code> shows the different states of files in the working directory and staging area. Which files are modified and unstaged and which are staged but not yet committed.</li>
-<li><code>git diff</code> shows the differences between any two trees.
-<ul class="org-ul">
-<li><code>git diff</code> shows the difference between the working environment and the staging area.</li>
-<li><code>git diff --staged</code> shows the difference between the staging area and the last commit.</li>
-<li><code>git diff branchA branchB</code> shows the difference between two commits.</li>
-</ul></li>
-<li><code>git commit</code> takes all the file contents that have been staged with git add and records a new permanent snapshot in the database and then moves the branch pointer on the current branch up to it.</li>
-<li><code>git reset</code> resets current <code>HEAD</code> to the specified state. It moves around the <code>HEAD</code> pointer and optionally changes the index or staging area.
-<ul class="org-ul">
-<li><code>git reset --hard</code> resets the working directory.</li>
-</ul></li>
-<li><code>git rm</code> remove files from the staging area and working directory.</li>
-<li><code>git mv</code> moves/renames a file and then run <code>git add</code> on the new file and <code>git rm</code> on the old file.</li>
-<li><code>git clean</code> removes unwanted files from working directory.</li>
+<li>List the configuration</li>
 </ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git config --list
+</pre>
+</div>
+<ul class="org-ul">
+<li>Repository-specific configuration</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git config -e
+</pre>
+</div>
+<ul class="org-ul">
+<li>Global configuration</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git config -e --global
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">Basic snapshotting</h3>
+<div class="outline-text-3" id="text-orgheadline15">
+</div><div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">Add file(s)</h4>
+<div class="outline-text-4" id="text-orgheadline6">
+<p>
+Add the content from the workspace into index area for the next commit.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git add file1 [file2]
+git add directory
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">Remove file(s)</h4>
+<div class="outline-text-4" id="text-orgheadline7">
+<ul class="org-ul">
+<li>Stop tracking file(s)</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git rm --cached file1 [file2]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Remove file(s) in workspace and index the removal in index</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git rm file1 [file2]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8">Commit the revision(s)</h4>
+<div class="outline-text-4" id="text-orgheadline8">
+<p>
+The commands take the all/or the specific file(s) that have been staged with <code>git add</code> and record a new permanent snapshot in the repository and then moves the branch pointer on the current branch up to it.
+</p>
+<ul class="org-ul">
+<li>Commit all the files in the index</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git commit [-m message]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Commit specific file(s) in the index</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git commit file1 [file2] [-m message]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Replace the last commit with the new commit. If no changes for the codes compared to the last commit, only commit message will be updated.</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git commit --amend [-m message]
+git commit --amend [file]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9">Branch operations</h4>
+<div class="outline-text-4" id="text-orgheadline9">
+<ul class="org-ul">
+<li>List all the local branches</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch
+</pre>
+</div>
+<ul class="org-ul">
+<li>List all the remote branches</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch -r
+</pre>
+</div>
+<ul class="org-ul">
+<li>List all the branch including both local and remote ones</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch -a
+</pre>
+</div>
+<ul class="org-ul">
+<li>Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is <code>HEAD</code>.</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch branch_name [commit_name]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Switch to an existing branch</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Create a new branch and switch to it</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout -b branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Associate a local branch to a remote branch</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch --set-upstream local_branch_name remote_branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Create a new branch and associate it to a remote branch</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch --track branch_name remote_branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Merge a given branch into the current branch</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git merge branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Remove a local branch</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch -d branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Remove a remote branch</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git push origin --delete branch_name
+git branch -dr remote_name/branch_name
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10">Tag operations</h4>
+<div class="outline-text-4" id="text-orgheadline10">
+<ul class="org-ul">
+<li>List all tags</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git tag
+</pre>
+</div>
+<ul class="org-ul">
+<li>Create a new tag for a commit. If not provided, the tag is labeled on <code>HEAD</code>.</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git tag tag_name commit_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Show information of a tag</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git show tag_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Commit a tag</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git push remote_name tag_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Commit all tags</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git push remote_name --tags
+</pre>
+</div>
+<ul class="org-ul">
+<li>Create a new branch pointing to a tag</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout -b branch_name tag_name
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">Information query</h4>
+<div class="outline-text-4" id="text-orgheadline11">
+<ul class="org-ul">
+<li>Show revised file(s) in workspace compared to those in index</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git status
+</pre>
+</div>
+<ul class="org-ul">
+<li>Show the revisions in a commit</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git show commit_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Show the history of current branch (option <code>--stat</code> can list the revised files)</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git log [--stat]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Show the modifier and time of a file</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git blame file_name
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12">Show the difference</h4>
+<div class="outline-text-4" id="text-orgheadline12">
+<ul class="org-ul">
+<li>Show the difference between the workspace and the index</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git diff
+</pre>
+</div>
+<ul class="org-ul">
+<li>Show the difference between the index and the last commit</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git diff --cached
+</pre>
+</div>
+<ul class="org-ul">
+<li>Show the difference between two commits</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git diff commit1 commit2
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13">Remote operation</h4>
+<div class="outline-text-4" id="text-orgheadline13">
+<ul class="org-ul">
+<li>List all the remote repositories</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git remote [-v]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Show the information of a remote repository</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git remote show remote_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Add a remote repository</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git remote add remote_alias remote_url
+</pre>
+</div>
+<ul class="org-ul">
+<li>Remove a remote repository</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git remote remove remote_alias
+</pre>
+</div>
+<ul class="org-ul">
+<li>Download all the commit records from a remote repository</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git fetch remote_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Download all the commit records from a remote repository and merge it into a local branch</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git pull remote_name remote_branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Upload the local branch to a remote repository. If not provided, it will push to <code>master</code> of <code>origin</code>.</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git push remote_name remote_branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Upload all the local branches to a remote repository.</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git push remote_name --all
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14">Cancellation</h4>
+<div class="outline-text-4" id="text-orgheadline14">
+<ul class="org-ul">
+<li>Recover the workspace from index</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout [file1]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Recover the workspace from a commit</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout commit_name [file1]
+</pre>
+</div>
+<ul class="org-ul">
+<li>Recover index from a commit</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git reset commit_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Recover index and workspace from a commit</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git reset --hard commit_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Move pointer <code>HEAD</code> to a commit</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">git reset --keep commit_name
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -239,7 +689,7 @@ Git repository can be created either from a local directory by running <code>git
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2016-03-23 Wed 22:50</p>
+<p class="date">Created: 2016-04-10 Sun 12:04</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
