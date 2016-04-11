@@ -14,20 +14,20 @@ pacman -S tk
 * Usage
 In the utilization of git, there are four important areas for storage, /workspace/, /index/ (or /stage/), /repository/ and /remote/. Their relationship can be illustrated by the figure below.
 #+BEGIN_SRC dot :file git.png
-  digraph G
-  {
-  rankdir = LR;
-  workspace -> index [label = "add"];
-  index -> repository [label = "commit"];
-  repository -> remote [label = "push"];
-  remote -> repository [label = "fetch/clone"];
-  repository -> workspace [label = "checkout"];
-  remote -> workspace [label = "pull"];
-  workspace [style = filled, color = yellow];
-  index [label = "index/stage", style = filled, color = lightblue];
-  repository [style = filled, color = green];
-  remote [ style = filled, color = red];
-  }
+digraph G
+{
+rankdir = LR;
+workspace -> index [label = "add"];
+index -> repository [label = "commit"];
+repository -> remote [label = "push"];
+remote -> repository [label = "fetch/clone"];
+repository -> workspace [label = "checkout"];
+remote -> workspace [label = "pull"];
+workspace [style = filled, color = yellow];
+index [label = "index/stage", style = filled, color = lightblue];
+repository [style = filled, color = green];
+remote [ style = filled, color = red];
+}
 #+END_SRC
 
 #+RESULTS:
