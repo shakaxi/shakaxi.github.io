@@ -1,7 +1,8 @@
 #+TITLE: Shaka's Blog Site
 
-   + [[file:git.org][Git]]
+   + [[file:infinalty.org][Excellent Fonts for Linux]]
    + [[file:cvx_opt.org][Convex Optimization]]
+   + [[file:git.org][Git]]
    + [[file:archlinuxcn.org][A Source of ArchLinux]]
    + [[file:switch_window.org][Switching Window in Emacs]]
    + [[file:switch_virtual_console.org][Switch between Textual and Graphical Interface]]

@@ -3,7 +3,7 @@
 A mathematical optimization problem can be expressed as
 \begin{align*}
 \min & f_0(x) \\
-\text{subject to } & f_i(x) \le b_i, \quad i=1, \ldots, m
+\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
 \end{align*}
 where
 - $x = (x_1, \ldots, x_n)$ are /optimization variables/.
