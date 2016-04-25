@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-04-15 Fri 00:20 -->
+<!-- 2016-04-26 Tue 00:26 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Convex Optimization</title>
+<title>Excellent Fonts for Linux</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -141,132 +141,70 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Convex Optimization</h1>
+<h1 class="title">Excellent Fonts for Linux</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Least squares (LS)</a></li>
-<li><a href="#orgheadline2">Linear programming (LP)</a></li>
-<li><a href="#orgheadline3">Convex optimization</a></li>
+<li><a href="#orgheadline1">Append following repositories to <code>/etc/pacman.conf</code>.</a></li>
+<li><a href="#orgheadline4">Install infinality fonts</a>
+<ul>
+<li><a href="#orgheadline2">For x86-64</a></li>
+<li><a href="#orgheadline3">For x86-32</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <p>
-A mathematical optimization problem can be expressed as
+Taking ArchLinux for example, following steps are needed to install the infinality fonts.
 </p>
-\begin{align*}
-\min & f_0(x) \\
-\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
-\end{align*}
-<p>
-where
-</p>
-<ul class="org-ul">
-<li>\(x = (x_1, \ldots, x_n)\) are <i>optimization variables</i>.</li>
-<li>\(f_0: \mathbf{R}^n \to \mathbf{R}\) is <i>objective function</i>.</li>
-<li>\(f_i: \mathbf{R}^n \to \mathbf{R}, i=1, \ldots, m\) are <i>constraints functions</i>.</li>
-</ul>
-<p>
-Optimal solution \(x^\star\) has the smallest value of \(f_0\) among all vectors that satisfy the constraints.
-</p>
-
-<p>
-In fact, a general optimization problem is very difficult to solve. Its solution cannot always be found. Even though it can, it suffers some compromise, e.g. very long computation time.
-</p>
-
-<p>
-Fortunately, following three problems can be efficiently and reliably solved.
-</p>
-<ul class="org-ul">
-<li><i>Least squares</i></li>
-<li><i>Linear programming</i></li>
-<li><i>Convex optimization</i></li>
-</ul>
-
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Least squares (LS)</h2>
+<h2 id="orgheadline1">Append following repositories to <code>/etc/pacman.conf</code>.</h2>
 <div class="outline-text-2" id="text-orgheadline1">
-\begin{align*}
-\min \|Ax - b\|_2^2
-\end{align*}
-<ul class="org-ul">
-<li>Analytical solution \(x^\star = (A^TA)^{-1}A^Tb\)</li>
-<li>Easy to recognize</li>
-<li>A mature solution with reliable and efficient algorithms and softwares</li>
-<li>Computation time proportional to \(n^2k\) (\(A\in \mathbf{R}^{k\times n}\))</li>
-</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">[infinality-bundle]
+Server= http://bohoomil.com/repo/$arch
+[infinality-bundle-multilib]
+Server= http://bohoomil.com/repo/multilib/$arch
+[infinality-bundle-fonts]
+Server= http://bohoomil.com/repo/fonts
+</pre>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Linear programming (LP)</h2>
-<div class="outline-text-2" id="text-orgheadline2">
-\begin{align*}
-\min & c^Tx \\
-\text{subject to} & a_i^Tx \le b_i,\quad i=1, \ldots, m
-\end{align*}
-<ul class="org-ul">
-<li>No analytical solution</li>
-<li>Not as easy to recognize as LS problems</li>
-<li>A mature solution with reliable and efficient algorithms and softwares</li>
-<li>Computation time proportional to \(n^2m\)</li>
-</ul>
+</div>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">Install infinality fonts</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">For x86-64</h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<div class="org-src-container">
+
+<pre class="src src-sh">pacman -S infinality-bundle ibfonts-meta-extended infinality-bundle-multilib
+</pre>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Convex optimization</h2>
-<div class="outline-text-2" id="text-orgheadline3">
-\begin{align*}
-\min & f_0(x) \\
-\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
-\end{align*}
-<p>
-where
-</p>
-<ul class="org-ul">
-<li>Objective and constraint functions are <i>convex</i>, i.e. \(\forall \alpha,\beta \ge 0\), \(\alpha + \beta = 1\), \(f_i(\alpha x + \beta y) \le \alpha f_i(x) + \beta f_i(y)\), \(i = 0, \ldots, m\).</li>
-<li>LS and LP are included as special cases.</li>
-</ul>
-<p>
-Generally, for convex optimization problems,
-</p>
-<ul class="org-ul">
-<li>No analytical solution</li>
-<li>Often difficult to recognize</li>
-<li>Almost a technology with reliable and efficient algorithms</li>
-<li>Computation time roughly proportional to \(\max\{n^3, n^2m,F\}\), where \(F\) is cost of evaluating \(f_i\) 's and their first and second derivatives.</li>
-</ul>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">For x86-32</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<div class="org-src-container">
+
+<pre class="src src-sh">pacman -S infinality-bundle ibfonts-meta-extended
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: shaka</p>
-<p class="date">Created: 2016-04-15 Fri 00:20</p>
+<p class="date">Created: 2016-04-26 Tue 00:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
