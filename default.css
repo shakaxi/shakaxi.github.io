@@ -1,10 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=Noto Sans CJK SC);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
 @media all
 {
     html {
 	margin: 0;
-	font: 300 .9em/1.6em "Noto Sans CJK SC";
+	font: 300 .9em/1.6em "Ubuntu";
     }
 
     body {
@@ -79,7 +79,7 @@
     }
 
     h2 {
-	font-family:Noto Sans CJK SC;
+	font-family:Ubuntu;
 	font-size:1.45em;
 	line-height:16px;
 	padding:10px 0 10px 0;
@@ -88,25 +88,25 @@
     }
 
     h3 {
-	font-family:Noto Sans CJK SC;
+	font-family:Ubuntu;
 	font-size:1.3em;
 	color: grey;
     }
 
     h4 {
-	font-family:Noto Sans CJK SC;
+	font-family:Ubuntu;
 	font-size:1.2em;
 	color: #A5573E;
     }
 
     h5 {
-	font-family:Noto Sans CJK SC;
+	font-family:Ubuntu;
 	font-size:1.1em;
 	color: grey;
     }
     
     h6 {
-	font-family:Noto Sans CJK SC;
+	font-family:Ubuntu;
 	font-size:1em;
 	color: purple;
     }
@@ -171,7 +171,7 @@
     }
 
     pre {
-	font-family:Noto Sans CJK SC
+	font-family:Ubuntu
 	color: black;
 	font-size: 90%;
 	background-color: #ffffff;
