@@ -20,9 +20,10 @@ Herein, we take the open-source libraries above for instance. For /ArchLinux/, t
 pacman -S blas lapack fftw
 #+END_SRC
 ** Install IT++
-At this moment, the latest version of IT++ is 4.3.1. The source code can be downloaded from its [[http://itpp.sourceforge.net/][website]]. Suppose the archive =itpp-4.3.1.tar.bz2= is extracted to directory =itpp-4.3.1=. Following commands will install IT++ to =/opt/itpp=.
+The lastest version of IT++ can be obtained via git, and installed to =/opt/itpp= by following commands.
 #+BEGIN_SRC sh
-cd itpp-4.3.1
+git clone git://git.code.sf.net/p/itpp/git itpp-git
+cd itpp-git
 mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/opt/itpp

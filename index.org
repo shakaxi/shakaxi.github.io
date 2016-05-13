@@ -1,5 +1,6 @@
 #+TITLE: Shaka's Blog Site
 
+   + [[file:itpp.org][IT++]]
    + [[file:infinalty.org][Excellent Fonts for Linux]]
    + [[file:cvx_opt.org][Convex Optimization]]
    + [[file:git.org][Git]]
@@ -28,7 +29,6 @@
    + [[file:mathematica.org][A Brief Summary of Mathematica]]
    + [[file:makefile_cpp.org][A Makefile for C++ Projects]]
    + [[file:makefile_c.org][A Makefile for C Projects]]
-   + [[file:itpp.org][IT++]]
    + [[file:grub.org][Repairing GRUB]]
    + [[file:gdb.org][Debuging Programs with GDB]]
    + [[file:doxygen.org][Documenting Codes with Doxygen]]
