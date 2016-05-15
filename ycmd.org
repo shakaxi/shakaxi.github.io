@@ -16,7 +16,7 @@ cd ~/.emacs.d
 git clone https://github.com/Valloric/ycmd.git
 cd ycmd
 git submodule update --init --recursive
-python2 ./build.py --clang-completer --system-libclang --system-boost
+./build.py --clang-completer --system-libclang --system-boost
 #+END_SRC
 ** Configurations
 - =~/.emacs.d/ycmd/global_config.py=
