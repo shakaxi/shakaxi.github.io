@@ -154,7 +154,7 @@
         background-color: lightgray;
     }
 
-    src {
+    .src {
         font-size: 100%;
         font-weight: bold;
         font-family: Ubuntu Mono;
