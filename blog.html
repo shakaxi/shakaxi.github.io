@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-20 Fri 00:34 -->
+<!-- 2016-05-20 Fri 23:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Deploy Blog Site on GitHub</title>
+<title>Blog on GitHub</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,7 +144,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Deploy Blog Site on GitHub</h1>
+<h1 class="title">Blog on GitHub</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -167,7 +167,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <p>
-It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on <a href="https://github.com/">GitHub</a>. This page is just written to summarize the procedure.
+It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on <a href="https://github.com/">GitHub</a>. This post is just written to summarize the procedure.
 </p>
 
 <div id="outline-container-orgheadline3" class="outline-2">
@@ -227,31 +227,32 @@ In order to publish your webpages, i.e. html files, you should configure your Em
 <span class="linenr"> 3: </span>(setq org-publish-project-alist
 <span class="linenr"> 4: </span>      '(
 <span class="linenr"> 5: </span>        ("org"
-<span class="linenr"> 6: </span>         :base-directory "~/blog/org"
-<span class="linenr"> 7: </span>         :base-extension "org"
-<span class="linenr"> 8: </span>         :publishing-directory "~/blog/html"
-<span class="linenr"> 9: </span>         :recursive t
-<span class="linenr">10: </span>         :publishing-function org-html-publish-to-html
-<span class="linenr">11: </span>         :headline-levels 4
-<span class="linenr">12: </span>         :section-numbers nil
-<span class="linenr">13: </span>         :auto-preamble t
-<span class="linenr">14: </span>         :auto-sitemap t
-<span class="linenr">15: </span>         :sitemap-filename "index.org"
-<span class="linenr">16: </span>         :sitemap-title "Blog Site"
-<span class="linenr">17: </span>         :author "NAME"
-<span class="linenr">18: </span>         :email "NAME@email"
-<span class="linenr">19: </span>         :html-head "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/&gt;"
-<span class="linenr">20: </span>         )
-<span class="linenr">21: </span>        ("attachment"
-<span class="linenr">22: </span>         :base-directory "~/blog/org"
-<span class="linenr">23: </span>         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-<span class="linenr">24: </span>         :publishing-directory "~/blog/html"
-<span class="linenr">25: </span>         :recursive t
-<span class="linenr">26: </span>         :publishing-function org-publish-attachment
-<span class="linenr">27: </span>         )
-<span class="linenr">28: </span>        ("blog" :components ("org" "attachment"))
-<span class="linenr">29: </span>        ))
-<span class="linenr">30: </span>...
+<span class="linenr"> 6: </span>        :base-directory "~/blog/org"
+<span class="linenr"> 7: </span>        :publishing-directory "~/blog/html"
+<span class="linenr"> 8: </span>        :recursive t
+<span class="linenr"> 9: </span>        :publishing-function org-html-publish-to-html
+<span class="linenr">10: </span>        :headline-levels 6
+<span class="linenr">11: </span>        :section-numbers nil
+<span class="linenr">12: </span>        :auto-sitemap t
+<span class="linenr">13: </span>        :sitemap-filename "index.org"
+<span class="linenr">14: </span>        :sitemap-title "Blog Site"
+<span class="linenr">15: </span>        :sitemap-style "list"
+<span class="linenr">16: </span>        :sitemap-sort-folders "first"
+<span class="linenr">17: </span>        :author "AUTHOR"
+<span class="linenr">18: </span>        :email "NAME@email"
+<span class="linenr">19: </span>        :html-head "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/&gt;"
+<span class="linenr">20: </span>        :html-postamble nil
+<span class="linenr">21: </span>        )
+<span class="linenr">22: </span>        ("attachment"
+<span class="linenr">23: </span>         :base-directory "~/blog/org"
+<span class="linenr">24: </span>         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+<span class="linenr">25: </span>         :publishing-directory "~/blog/html"
+<span class="linenr">26: </span>         :recursive t
+<span class="linenr">27: </span>         :publishing-function org-publish-attachment
+<span class="linenr">28: </span>         )
+<span class="linenr">29: </span>        ("blog" :components ("org" "attachment"))
+<span class="linenr">30: </span>        ))
+<span class="linenr">31: </span>...
 </pre>
 </div>
 </div>

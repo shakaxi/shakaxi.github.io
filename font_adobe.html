@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-20 Fri 00:34 -->
+<!-- 2016-05-20 Fri 23:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>SLNR-based Beamforming</title>
+<title>Fonts from Adobe</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -141,112 +141,26 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">SLNR-based Beamforming</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgheadline1">Introduction</a></li>
-<li><a href="#orgheadline2">System model</a></li>
-<li><a href="#orgheadline3">SLNR-based beamforming</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Introduction</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<h1 class="title">Fonts from Adobe</h1>
 <p>
-In coordinatd scheduling and beamforming (CS/CB), one of coordinatd multipoint (CoMP) transmission schemes, signal leakage noise power ratio (SLNR)-based beamforming is widely used.
+Recently, I found several fonts from Adobe. What's beyond my expectation, they are so excellent and can meet all my requirements. They are <i>adobe-source-code-pro-fonts</i>, <i>adobe-source-sans-pro-fonts</i> and <i>adobe-source-serif-pro-fonts</i>.
 </p>
 
 <p>
-Just as its name indicates, SLNR aims to maximize the ratio of desired signal power to the undesired leakage power and noise power.
+For ArchLinux subscribers, the fonts can be easily installed via <code>pacman</code>.
 </p>
+<div class="org-src-container">
 
-<p>
-This page is just written to summarize this SLNR-based beamforming scheme.
-</p>
-</div>
-</div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">System model</h2>
-<div class="outline-text-2" id="text-orgheadline2">
-
-<div class="figure">
-<p><img src="slnr.png" alt="slnr.png" />
-</p>
+<pre class="src src-sh">pacman -S adobe-source-{code,sans,serif}-pro-fonts
+</pre>
 </div>
 
 <p>
-Without loss of generality, we consider a simple scenario as shown in the figure above. Taking <code>UE0</code> for instance, the BS intends to send data to it, i.e. the received signals at other UE's, e.g. <code>UE1</code>, &#x2026;, <code>UEn</code> are all <i>leakage</i>. The SLNR can be expressed as
-</p>
-\begin{align}
-\text{SLNR}_0 := \frac{\|\mathbf{H}_0 \mathbf{w}_0\|^2}{P_N + \sum_{i\neq 0}\|\mathbf{H}_i \mathbf{w}_0\|^2},
-\end{align}
-<p>
-where
-</p>
-<ul class="org-ul">
-<li>\(P_N\) is the noise power at <code>UE0</code>.</li>
-<li>\(\mathbf{w}_0\) is the beamforming vector intended for <code>UE0</code>.</li>
-<li>\(\mathbf{H}_i\) is the channel matrix from the BS to <code>UEi</code>, \(i=0,1,\ldots,n\).</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">SLNR-based beamforming</h2>
-<div class="outline-text-2" id="text-orgheadline3">
-<p>
-The \(\text{SLNR}_0\) above can be further written as a <i>generalized Rayleigh quotient</i> <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
-</p>
-\begin{align}
-\text{SLNR}_0 = \frac{\mathbf{w}_0^H\mathbf{H}_0^H\mathbf{H}_0\mathbf{w}_0}{\mathbf{w}_0^H (P_N \mathbf{I} + \sum_{i\neq 0} \mathbf{H}_i^H \mathbf{H}_i) \mathbf{w}_0}
-\end{align}
-<p>
-According to <i>Rayleigh-Ritz theorem</i>, if and only if \(\mathbf{w}_0\) equals the eigen vectors corresponding to the largest and smallest eigen values of \((P_N\mathbf{I} + \sum_{i\neq 0}\mathbf{H}_i^H\mathbf{H}_i)^{-1}\mathbf{H}_0^H\mathbf{H}_0\), \(\text{SLNR}_0\) reaches its minimal and maximal values, respectively.
-</p>
-
-<p>
-Therefore, in order to maximize \(\text{SLNR}_0\), the beamforming vector or equivalently the SLNR-based beamforming vector for <code>UE0</code>, \(\mathbf{w}_0\), is the dominant eigen vector of \((P_N\mathbf{I} + \sum_{i\neq 0}\mathbf{H}_i^H\mathbf{H}_i)^{-1}\mathbf{H}_0^H\mathbf{H}_0\).
+After the installation, the fonts will be ready for use.
 </p>
 </div>
-</div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-<a href="https://en.wikipedia.org/wiki/Rayleigh_quotient">https://en.wikipedia.org/wiki/Rayleigh_quotient</a>
-</p></div></div>
-
-
-</div>
-</div></div>
 </body>
 </html>

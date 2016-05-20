@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-20 Fri 00:34 -->
+<!-- 2016-05-20 Fri 23:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Discovery Signal</title>
+<title>C/C++ - switch</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,37 +144,28 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Discovery Signal</h1>
+<h1 class="title">C/C++ - switch</h1>
 <p>
-Just as its name indicates, <i>discovery signal</i> is transmitted by a cell to be discovered and measured by UE's. According to the standard<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, a discovery signal occasion for a cell consists of
+在C/C++语言中， <code>switch</code> 语句的通用格式为
 </p>
-<ul class="org-ul">
-<li>1~5 consecutive subframes for FDD</li>
-<li>2~5 consecutive subframes for TDD</li>
-</ul>
-<p>
-Discovery signal is comprised of
-</p>
-<ul class="org-ul">
-<li>CRS on antenna port 0 (R0)</li>
-<li>PSS
-<ul class="org-ul">
-<li>in the 1st subframe for FDD</li>
-<li>in the 2nd subframe for TDD</li>
-</ul></li>
-<li>SSS in the 1st subframe</li>
-<li>NZP CSI-RS in zero or more subframes</li>
-</ul>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
+<div class="org-src-container">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-Section 6.11A in 3GPP TS36.211
-</p></div></div>
-
-
+<pre class="src src-c"><span class="linenr">1: </span>switch (int_expr)
+<span class="linenr">2: </span>{
+<span class="linenr">3: </span>        case label1: statement(s)
+<span class="linenr">4: </span>        case label2: statement(s)
+<span class="linenr">5: </span>        ...
+<span class="linenr">6: </span>        default: statement(s)
+<span class="linenr">7: </span>}
+</pre>
 </div>
-</div></div>
+<p>
+顾名思义， <code>int_expr</code> 必须是一个结果为整数值的表达式。另外，每个标签都必须是整数常量表达式。最常见的标签是 <code>int</code> 或 <code>char</code> 常量（如1或‘a’），也可以是枚举常量。C++中的 <code>case</code> 标签只是行标签，而不是选项之间的界限。也就是说，程序跳到 <code>switch</code> 中特定代码后，将依次执行之后的所有语句，除非有明确的其他指示。程序不会执行到下一个 <code>case</code> 处自动停止，要让程序执行完一组特定语句后停止，必须使用 <code>break</code> 语句。这将导致程序跳到 <code>switch</code> 后面的语句处执行。
+</p>
+
+<p>
+关于将枚举量用作标签，通常， <code>cin</code> 无法识别枚举类型（它不知道程序员是如何定义它们的），因此程序要求用户选择选项时输入整数。当 <code>switch</code> 语句将 <code>int</code> 值和枚举量标签进行比较时，将枚举量提升为 <code>int</code> 。另外，在 <code>while</code> 循环测试条件中，也会将枚举量提升为 <code>int</code> 类型。
+</p>
+</div>
 </body>
 </html>
