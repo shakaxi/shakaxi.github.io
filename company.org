@@ -1,4 +1,4 @@
-#+TITLE: Company in Emacs
+#+TITLE: Company
 
 * Introduction
 /Auto-completion/ is an important functionality in Emacs. It can greatly speed up our editing and programming. Generally speaking, the auto-completion can be divided into two parts, /frontend/ and /backend/. As their names indicate, the former presents interface, while the latter provides contents. In a nutshell, the backend generates completion contents and feeds them to the frontend; then the frontend presents completion candidates to us for selection.
@@ -7,7 +7,7 @@ Up to now, there are a couple of popular frontends, =auto-complete=[fn:2] and =c
 
 It should be noticed that each of the both above provides backend for C/C++ programming, e.g. =company-clang= is a powerful backend based on =clang=. It enables company completing based on the semantic analysis provided by clang. With the aid of this backend, the programming experience and efficiency can be remarkably improved.
 
-For myself, I have been using company since I began to use Emacs. Therefore, I just summarize the installation and configuration of company in this blog.
+For myself, I have been using company since I began to use Emacs. Therefore, I just summarize the installation and configuration of company in this post.
 * Installation and configuration
 ** Company
 Company can be directly installed via /ELPA/.

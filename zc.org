@@ -1,4 +1,4 @@
-#+TITLE: Zadoff-Chu Sequence
+#+TITLE: ZC
 
 * Introduction
 The /Zadoff-Chu (ZC)/ sequence[fn:1] is named after Solomon A. Zadoff and D. C. Chu, which is a constant amplitude zero auto-correlation (CAZAC) sequence[fn:2] with its cylically shifted versions are zero correlated, i.e. orthogonal to each other. A ZC sequence without cyclic shift is termed a /root sequence/, which can be expressed as

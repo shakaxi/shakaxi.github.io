@@ -1,4 +1,4 @@
-#+TITLE: Drawing Gantt Chart using LaTeX
+#+TITLE: LaTeX - Gantt Chart
 
 * Introduction
 Today, I found an interesting $\LaTeX$ package, /gantt/[fn:1]. This package is developped based on /pgf/tikz/ and, as its name indicates, can produce /Gantt/ charts.

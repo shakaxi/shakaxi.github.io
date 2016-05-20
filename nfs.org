@@ -1,5 +1,6 @@
-#+TITLE: Network File System (NFS)
+#+TITLE: NFS
 
+Network file system (NFS) is a simple approach for share and exchange files in Unix/Linux. This post summarizes its installation and configuration.
 * Installation
 #+BEGIN_SRC sh
 pacman -S nfs-utils

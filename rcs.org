@@ -1,4 +1,4 @@
-#+TITLE: Using RCS
+#+TITLE: RCS
 
 /RCS/ is the abbreviation of revision control system, which is efficient and easy to use. This article, taking ArchLinux for example, aims to illustrate how to install and use it.
 

@@ -1,6 +1,6 @@
-#+TITLE: Abstracting Original Data from MATLAB Figure File
+#+TITLE: Data Abstraction from MATLAB Figure Files
 
-If you have a MATLAB figure file, =FILE.fig=, and want to abstract the original data from it. The following procedures should be processed.
+Provided a MATLAB figure file, e.g. =FILE.fig=, the original data can be abstracted by following procedure.
 
 #+BEGIN_SRC matlab
 open('FILE.fig'); % open the figure file

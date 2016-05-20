@@ -1,5 +1,6 @@
-#+TITLE: Secure Shell (SSH)
+#+TITLE: SSH
 
+Secure shell (SSH) is the most popular and efficient method for remote access. This post introduces SSH relevant issues, from installation to configuration.
 * Installation
 Take Archlinux for instance here.
 #+BEGIN_SRC sh

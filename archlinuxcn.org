@@ -1,4 +1,4 @@
-#+TITLE: A Source of ArchLinux
+#+TITLE: ArchLinuxcn
 
 * Introducation
 Chinese community of ArchLinux provides a non-official source for ArchLinux.

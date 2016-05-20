@@ -1,4 +1,4 @@
-#+TITLE: Deploy Cloud Computing Platform based on PBS and Maui
+#+TITLE: PBS and Maui
 
 * Introduction
 Portable batch system (PBS) was originally developed by NASA, which is comprised of a /resource manager/, a /scheduler/ and a /client/. What is different, a resource manager and a scheduler are usually running on server side, while clients running on computing nodes. For the softwares, both commercial /PBS Pro/ and open-source /Torque/ are available. But herein, we consider the open-source Torque only.

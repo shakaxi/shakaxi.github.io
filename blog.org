@@ -1,6 +1,6 @@
-#+TITLE: Deploy Blog Site on GitHub
+#+TITLE: Blog on GitHub
 
-It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on [[https://github.com][GitHub]]. This page is just written to summarize the procedure.
+It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on [[https://github.com][GitHub]]. This post is just written to summarize the procedure.
 
 * Preparation
 ** Softwares
@@ -27,21 +27,22 @@ In order to publish your webpages, i.e. html files, you should configure your Em
 (setq org-publish-project-alist
       '(
         ("org"
-         :base-directory "~/blog/org"
-         :base-extension "org"
-         :publishing-directory "~/blog/html"
-         :recursive t
-         :publishing-function org-html-publish-to-html
-         :headline-levels 4
-         :section-numbers nil
-         :auto-preamble t
-         :auto-sitemap t
-         :sitemap-filename "index.org"
-         :sitemap-title "Blog Site"
-         :author "NAME"
-         :email "NAME@email"
-         :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/>"
-         )
+        :base-directory "~/blog/org"
+        :publishing-directory "~/blog/html"
+        :recursive t
+        :publishing-function org-html-publish-to-html
+        :headline-levels 6
+        :section-numbers nil
+        :auto-sitemap t
+        :sitemap-filename "index.org"
+        :sitemap-title "Blog Site"
+        :sitemap-style "list"
+        :sitemap-sort-folders "first"
+        :author "AUTHOR"
+        :email "NAME@email"
+        :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/>"
+        :html-postamble nil
+        )
         ("attachment"
          :base-directory "~/blog/org"
          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"

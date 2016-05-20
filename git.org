@@ -1,7 +1,7 @@
 #+TITLE: Git
 
 * Introduction
-/Git/ is a famous and powerful open-source software for version control and management. It was developed by Linus Torvalds with C programing language. What is different from /subversion/, git adopts a completely distributed manner. Regarding its utilization, besides its built-in manual, there is also an excellent book, /Pro Git/, which can be obtained for free[fn:1]. This short blog just summarizes the preliminary usage of git, which is referred from the book.
+/Git/ is a famous and powerful open-source software for version control and management. It was developed by Linus Torvalds with C programing language. What is different from /subversion/, git adopts a completely distributed manner. Regarding its utilization, besides its built-in manual, there is also an excellent book, /Pro Git/, which can be obtained for free[fn:1]. This post just summarizes the preliminary usage of git, which is referred from the book.
 * Installation
 On Unix/Linux operation systems, git can be easily installed. Taking /ArchLinux/ for instance, git can be installed via following command.
 #+BEGIN_SRC sh

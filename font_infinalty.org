@@ -1,4 +1,4 @@
-#+TITLE: Excellent Fonts for Linux
+#+TITLE: Fonts for Linux
 
 Taking ArchLinux for example, following steps are needed to install the infinality fonts.
 * Append following repositories to =/etc/pacman.conf=.

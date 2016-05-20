@@ -1,4 +1,4 @@
-#+TITLE: A Brief Summary of Mathematica
+#+TITLE: Mathematica
 #+OPTIONS: ^:nil
 
 * Bracketing

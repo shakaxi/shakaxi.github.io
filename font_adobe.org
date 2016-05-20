@@ -1,4 +1,4 @@
-#+TITLE: Excellent Fonts from Adobe
+#+TITLE: Fonts from Adobe
 
 Recently, I found several fonts from Adobe. What's beyond my expectation, they are so excellent and can meet all my requirements. They are /adobe-source-code-pro-fonts/, /adobe-source-sans-pro-fonts/ and /adobe-source-serif-pro-fonts/.
 

@@ -1,6 +1,6 @@
-#+TITLE: Switch between Textual and Graphical Interface
+#+TITLE: Virtual Console Switch
 
-Unix and Linux operation systems (OS) originally provided textual interfaces only, but now, we can already enjoy the perfect graphic experience through their desktop systems, e.g. /Gnome/, /KDE/, /XFCE/. This document only aims to present the methods of switching between textual and graphical interfaces.
+Unix and Linux operation systems (OS) originally provided textual interfaces only, but now, we can already enjoy the perfect graphic experience through their desktop systems, e.g. /Gnome/, /KDE/, /XFCE/. This post only aims to present the methods of switching between textual and graphical interfaces.
 
 - switch from graphical interface to textual interface: press =Ctrl + Alt + Fn=, where =n = 1, 2, ...=
 - switch from textual interface to graphical interface: press =Alt + Fm=, where the value of integer =m= is different from OS to OS. For most Linux OS, =m = 7=.

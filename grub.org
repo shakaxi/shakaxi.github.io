@@ -1,4 +1,4 @@
-#+TITLE: Repairing GRUB
+#+TITLE: GRUB
 
 /GRUB/ is a powerful bootloader which can boot a variety of operation systems, including Unix, Linux and Windows. It is usually intalled in the MBR of a disk. This article presents the method how to repair it if it is corrupted.
 
