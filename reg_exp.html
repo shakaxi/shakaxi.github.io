@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-20 Fri 23:48 -->
+<!-- 2016-05-22 Sun 16:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Data Abstraction from MATLAB Figure Files</title>
+<title>Regular Expression</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,19 +144,83 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Data Abstraction from MATLAB Figure Files</h1>
+<h1 class="title">Regular Expression</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">字符集(字符组) <code>[]</code></a></li>
+<li><a href="#orgheadline2">通配符</a></li>
+<li><a href="#orgheadline3">捕获与反向引用</a></li>
+<li><a href="#orgheadline4">量词</a></li>
+</ul>
+</div>
+</div>
 <p>
-Provided a MATLAB figure file, e.g. <code>FILE.fig</code>, the original data can be abstracted by following procedure.
+正则表达式是指用于字符串匹配的一种模式,最早出现于20世纪40年代.
 </p>
 
-<div class="org-src-container">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">字符集(字符组) <code>[]</code></h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<ul class="org-ul">
+<li><code>[0-9]</code> 可以匹配0到9范围内的任意数字.可以简写为 <code>\d</code>.</li>
+<li><code>\D</code> 可以匹配非数字字符.相当于 <code>[^0-9]</code> 或 <code>[^\d]</code>.</li>
+<li><code>\t</code> 可以匹配水平制表符.</li>
+<li><code>\v</code> 可以匹配垂直制表符.</li>
+<li><code>\f</code> 可以匹配换页符.</li>
+<li><code>\n</code> 可以匹配换行符.</li>
+<li><code>\r</code> 可以匹配回车符.</li>
+<li><code>\s</code> 可以匹配空白字符.相当于 <code>[\t\n\r]</code>.</li>
+<li><code>\S</code> 可以匹配非空白字符.相当于 <code>[^\t\n\r]</code> 或 <code>[^\s]</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">通配符</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<ul class="org-ul">
+<li><code>.</code> 可以匹配任意字符<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.</li>
+<li><code>^</code> 行起始符.</li>
+<li><code>$</code> 行结束符.</li>
+<li><code>\b</code> 单词边界<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</li>
+<li><code>\B</code> 非单词边界.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">捕获与反向引用</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<ul class="org-ul">
+<li>可以使用圆括号 <code>()</code> 创建捕获分组,之后可以对其进行反向引用,如 <code>$1</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">量词</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+<ul class="org-ul">
+<li><code>{}</code> 中的数字表示确切的匹配次数.</li>
+<li><code>+</code> 表示一次或者多次.</li>
+<li><code>?</code> 表示零次或者一次.</li>
+<li><code>*</code> 表示零次或者多次.</li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
 
-<pre class="src src-matlab">open('FILE.fig'); % open the figure file
-fig_handle = findall(gca, 'type', 'line'); % get figure handle
-x = get(fig_handle, 'xdata'); % get data of X-axis
-y = get(fig_handle, 'ydata'); % get data of Y-axis
-</pre>
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+某些情况下不能匹配行起始符.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+在旧语法中,指定单词首尾边界分别使用 <code>\&lt;</code> 和 <code>\&gt;</code>.
+</p></div></div>
+
+
 </div>
-</div>
+</div></div>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <!-- 2016-05-22 Sun 16:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>MATLAB over SSH</title>
+<title>Discovery Signal</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,22 +144,37 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">MATLAB over SSH</h1>
+<h1 class="title">Discovery Signal</h1>
 <p>
-If MATLAB is installed on a secure shell (<a href="./ssh.html">SSH</a>) server, which is avaiable for access, we can run MATLAB remotely through SSH. In this way, MATLAB is running in symbol environment without X display, and the results can be saved in a file for further post-processing. What's important, MATLAB keeps running after logout (SSH) until the MATLAB script ends or error happens.
+Just as its name indicates, <i>discovery signal</i> is transmitted by a cell to be discovered and measured by UE's. According to the standard<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, a discovery signal occasion for a cell consists of
 </p>
+<ul class="org-ul">
+<li>1~5 consecutive subframes for FDD</li>
+<li>2~5 consecutive subframes for TDD</li>
+</ul>
+<p>
+Discovery signal is comprised of
+</p>
+<ul class="org-ul">
+<li>CRS on antenna port 0 (R0)</li>
+<li>PSS
+<ul class="org-ul">
+<li>in the 1st subframe for FDD</li>
+<li>in the 2nd subframe for TDD</li>
+</ul></li>
+<li>SSS in the 1st subframe</li>
+<li>NZP CSI-RS in zero or more subframes</li>
+</ul>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
 
-<p>
-Running MATLAB remotely can be realized by the command
-</p>
-<div class="org-src-container">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Section 6.11A in 3GPP TS36.211
+</p></div></div>
 
-<pre class="src src-sh">nohup matlab -nodisplay &lt; JOBSCRIPT.m 1&gt; JOB.LOG 2&gt; JOB.ERR &amp;
-</pre>
+
 </div>
-<p>
-where <code>JOBSCRIPT.m</code> is the MATLAB script to be run. The screen output and error information are redirected to log file <code>JOB.LOG</code> and <code>JOB.ERR</code>, respectively.
-</p>
-</div>
+</div></div>
 </body>
 </html>

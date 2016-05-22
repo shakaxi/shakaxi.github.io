@@ -6,7 +6,7 @@
 <!-- 2016-05-22 Sun 16:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>MATLAB over SSH</title>
+<title>A Makefile for C Projects</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,22 +144,36 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">MATLAB over SSH</h1>
-<p>
-If MATLAB is installed on a secure shell (<a href="./ssh.html">SSH</a>) server, which is avaiable for access, we can run MATLAB remotely through SSH. In this way, MATLAB is running in symbol environment without X display, and the results can be saved in a file for further post-processing. What's important, MATLAB keeps running after logout (SSH) until the MATLAB script ends or error happens.
-</p>
-
-<p>
-Running MATLAB remotely can be realized by the command
-</p>
+<h1 class="title">A Makefile for C Projects</h1>
 <div class="org-src-container">
 
-<pre class="src src-sh">nohup matlab -nodisplay &lt; JOBSCRIPT.m 1&gt; JOB.LOG 2&gt; JOB.ERR &amp;
+<pre class="src src-makefile">CC := /usr/bin/clang
+INC := $(foreach dirs, $(shell find $(shell pwd) -iname '*.h'), $(dirs))
+SRC := $(foreach dirs, $(shell find $(shell pwd) -iname '*.c'), $(dirs))
+OBJ := $(subst .c,.o, $(SRC))
+BIN := sls
+
+ifdef RELEASE
+        FLAGS := -O2
+else
+        FLAGS := -g
+endif
+
+%.o: %.c
+        @echo "Building object file $@ ..."
+        @$(CC) -c -o $@ $&lt; $(FLAGS)
+
+$(BIN): $(OBJ)
+        @echo "Linking object files and creating binary program ..."
+        @$(CC) $^ -o $@ -lm -lgsl -lgslcblas
+
+.phony: default clean
+default all: $(BIN)
+clean:
+        @echo "Removing all object files ..."
+        @-rm -f $(OBJ)
 </pre>
 </div>
-<p>
-where <code>JOBSCRIPT.m</code> is the MATLAB script to be run. The screen output and error information are redirected to log file <code>JOB.LOG</code> and <code>JOB.ERR</code>, respectively.
-</p>
 </div>
 </body>
 </html>

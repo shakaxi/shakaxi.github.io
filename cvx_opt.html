@@ -6,7 +6,7 @@
 <!-- 2016-05-22 Sun 16:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>MATLAB over SSH</title>
+<title>Convex Optimization</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -141,25 +141,128 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">MATLAB over SSH</h1>
-<p>
-If MATLAB is installed on a secure shell (<a href="./ssh.html">SSH</a>) server, which is avaiable for access, we can run MATLAB remotely through SSH. In this way, MATLAB is running in symbol environment without X display, and the results can be saved in a file for further post-processing. What's important, MATLAB keeps running after logout (SSH) until the MATLAB script ends or error happens.
-</p>
-
-<p>
-Running MATLAB remotely can be realized by the command
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">nohup matlab -nodisplay &lt; JOBSCRIPT.m 1&gt; JOB.LOG 2&gt; JOB.ERR &amp;
-</pre>
+<h1 class="title">Convex Optimization</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">Least squares (LS)</a></li>
+<li><a href="#orgheadline2">Linear programming (LP)</a></li>
+<li><a href="#orgheadline3">Convex optimization</a></li>
+</ul>
+</div>
 </div>
 <p>
-where <code>JOBSCRIPT.m</code> is the MATLAB script to be run. The screen output and error information are redirected to log file <code>JOB.LOG</code> and <code>JOB.ERR</code>, respectively.
+A mathematical optimization problem can be expressed as
 </p>
+\begin{align*}
+\min & f_0(x) \\
+\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(x = (x_1, \ldots, x_n)\) are <i>optimization variables</i>.</li>
+<li>\(f_0: \mathbf{R}^n \to \mathbf{R}\) is <i>objective function</i>.</li>
+<li>\(f_i: \mathbf{R}^n \to \mathbf{R}, i=1, \ldots, m\) are <i>constraints functions</i>.</li>
+</ul>
+<p>
+Optimal solution \(x^\star\) has the smallest value of \(f_0\) among all vectors that satisfy the constraints.
+</p>
+
+<p>
+In fact, a general optimization problem is very difficult to solve. Its solution cannot always be found. Even though it can, it suffers some compromise, e.g. very long computation time.
+</p>
+
+<p>
+Fortunately, following three problems can be efficiently and reliably solved.
+</p>
+<ul class="org-ul">
+<li><i>Least squares</i></li>
+<li><i>Linear programming</i></li>
+<li><i>Convex optimization</i></li>
+</ul>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Least squares (LS)</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+\begin{align*}
+\min \|Ax - b\|_2^2
+\end{align*}
+<ul class="org-ul">
+<li>Analytical solution \(x^\star = (A^TA)^{-1}A^Tb\)</li>
+<li>Easy to recognize</li>
+<li>A mature solution with reliable and efficient algorithms and softwares</li>
+<li>Computation time proportional to \(n^2k\) (\(A\in \mathbf{R}^{k\times n}\))</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Linear programming (LP)</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+\begin{align*}
+\min & c^Tx \\
+\text{subject to} & a_i^Tx \le b_i,\quad i=1, \ldots, m
+\end{align*}
+<ul class="org-ul">
+<li>No analytical solution</li>
+<li>Not as easy to recognize as LS problems</li>
+<li>A mature solution with reliable and efficient algorithms and softwares</li>
+<li>Computation time proportional to \(n^2m\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Convex optimization</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+\begin{align*}
+\min & f_0(x) \\
+\text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>Objective and constraint functions are <i>convex</i>, i.e. \(\forall \alpha,\beta \ge 0\), \(\alpha + \beta = 1\), \(f_i(\alpha x + \beta y) \le \alpha f_i(x) + \beta f_i(y)\), \(i = 0, \ldots, m\).</li>
+<li>LS and LP are included as special cases.</li>
+</ul>
+<p>
+Generally, for convex optimization problems,
+</p>
+<ul class="org-ul">
+<li>No analytical solution</li>
+<li>Often difficult to recognize</li>
+<li>Almost a technology with reliable and efficient algorithms</li>
+<li>Computation time roughly proportional to \(\max\{n^3, n^2m,F\}\), where \(F\) is cost of evaluating \(f_i\) 's and their first and second derivatives.</li>
+</ul>
+</div>
+</div>
 </div>
 </body>
 </html>
