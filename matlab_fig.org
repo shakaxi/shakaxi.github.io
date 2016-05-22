@@ -1,4 +1,4 @@
-#+TITLE: Data Abstraction from MATLAB Figure Files
+#+TITLE: MATLAB - Figure Data Abstraction
 
 Provided a MATLAB figure file, e.g. =FILE.fig=, the original data can be abstracted by following procedure.
 
