@@ -1,7 +1,5 @@
 #+TITLE: Shaka's Blog Site
 
-   + [[file:makefile_c.org][A Makefile for C Projects]]
-   + [[file:makefile_cpp.org][A Makefile for C++ Projects]]
    + [[file:archlinuxcn.org][ArchLinuxcn]]
    + [[file:bash.org][Bash]]
    + [[file:beamer.org][Beamer]]
@@ -27,6 +25,7 @@
    + [[file:latex_gantt.org][LaTeX - Gantt Chart]]
    + [[file:matlab_fig.org][MATLAB - Figure Data Abstraction]]
    + [[file:matlab_ssh.org][MATLAB over SSH]]
+   + [[file:makefile.org][Makefile]]
    + [[file:math.org][Mathematica]]
    + [[file:mobility_mgmt.org][Mobility Management in LTE]]
    + [[file:mutt.org][Mutt]]
