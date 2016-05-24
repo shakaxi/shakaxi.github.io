@@ -15,7 +15,7 @@ nodesep = 1;
 node[shape=rectangle];
 BS -> UE0:n[fontcolor=blue, color=blue, label="desired\nsignal\n"];
 BS -> UE1:n[style=dashed, label="leakage"];
-BS -> sep[style=dashed, color=invisible];
+BS -> sep[color=white];
 BS -> UEn:n[style=dashed, label="leakage"];
 BS[style=filled, fillcolor=grey];
 UE0[style=bold,color=blue,fontcolor=blue,label="UE0"];
