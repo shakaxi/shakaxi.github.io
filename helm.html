@@ -6,7 +6,7 @@
 <!-- 2016-06-12 Sun 22:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>Emacs - Helm</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,51 +144,80 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
-<ul class="org-ul">
-<li><a href="archlinuxcn.html">ArchLinuxcn</a></li>
-<li><a href="bash.html">Bash</a></li>
-<li><a href="beamer.html">Beamer</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cedet.html">CEDET</a></li>
-<li><a href="capslk_ctrl.html">CapsLock as Control</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="d2d.html">D2D</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="discovery_signal.html">Discovery Signal</a></li>
-<li><a href="doxygen.html">Doxygen</a></li>
-<li><a href="emacs.html">Emacs</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="company.html">Emacs - Company</a></li>
-<li><a href="helm.html">Emacs - Helm</a></li>
-<li><a href="font_infinalty.html">Fonts for Linux</a></li>
-<li><a href="font_adobe.html">Fonts from Adobe</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="itpp.html">IT++</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="mobility_mgmt.html">Mobility Management in LTE</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="org_ioslide.html">Orgmode - Export to HTML5 Slide</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="pgf_tikz.html">PGF/Tikz</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="ycmd.html">YCMD</a></li>
-<li><a href="zc.html">ZC</a></li>
-</ul>
+<h1 class="title">Emacs - Helm</h1>
+<p>
+<i>Helm</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a framework to narrow selection. It can be installed by ELPA
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">M-x package-install
+helm
+</pre>
 </div>
+<p>
+After that, it should be configured accordingly. Without loss of generality, following configurations can be used.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(require 'helm-config)
+(helm-mode 1)
+(define-key global-map [remap find-file] 'helm-find-files)
+(define-key global-map [remap occur] 'helm-occur)
+(define-key global-map [remap list-buffers] 'helm-buffers-list)
+(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+(define-key global-map [remap switch-to-buffer] 'helm-mini)
+(define-key global-map [remap yank-pop] 'helm-show-kill-ring)
+(define-key global-map [remap execute-extended-command] 'helm-M-x)
+
+;; fuzzy match
+(setq helm-M-x-fuzzy-match t
+      helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match t)
+
+;; follow mode
+(helm-follow-mode-persistent t)
+</pre>
+</div>
+<p>
+Alternatively, package <code>helm-ag</code> can be installed to accelerate the match, which is a <code>the-silver-searcher</code>-based multithread counterpart of <code>isearch</code>. <code>Helm-ag</code> and <code>the-silver-searcher</code> can be installed by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">M-x package-install
+helm-ag
+</pre>
+</div>
+<p>
+and
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell">pacman -S the_silver_searcher
+</pre>
+</div>
+<p>
+Then, following two lines of configurations can be inserted to the configuration file of emacs.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
+(setq helm-ag-command-option "--ignore *~ --ignore *html --ignore *o")
+(setq helm-ag-insert-at-point (quote symbol))
+
+(global-set-key (kbd "M-i") 'helm-do-ag-this-file)
+(global-set-key (kbd "M-I") 'helm-do-ag-project-root)
+</pre>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://emacs-helm.github.io/helm/">https://emacs-helm.github.io/helm/</a>
+</p></div></div>
+
+
+</div>
+</div></div>
 </body>
 </html>

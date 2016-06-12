@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-23 Mon 22:17 -->
+<!-- 2016-06-12 Sun 21:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Company</title>
+<title>Emacs - Company</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,16 +144,19 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Company</h1>
+<h1 class="title">Emacs - Company</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">Introduction</a></li>
-<li><a href="#orgheadline4">Installation and configuration</a>
+<li><a href="#orgheadline7">Installation and configuration</a>
 <ul>
 <li><a href="#orgheadline2">Company</a></li>
-<li><a href="#orgheadline3">LaTeX support</a></li>
+<li><a href="#orgheadline3">Clang support</a></li>
+<li><a href="#orgheadline4">C headers support</a></li>
+<li><a href="#orgheadline5">LaTeX support</a></li>
+<li><a href="#orgheadline6">Python support</a></li>
 </ul>
 </li>
 </ul>
@@ -180,9 +183,9 @@ For myself, I have been using company since I began to use Emacs. Therefore, I j
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">Installation and configuration</h2>
-<div class="outline-text-2" id="text-orgheadline4">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">Installation and configuration</h2>
+<div class="outline-text-2" id="text-orgheadline7">
 </div><div id="outline-container-orgheadline2" class="outline-3">
 <h3 id="orgheadline2">Company</h3>
 <div class="outline-text-3" id="text-orgheadline2">
@@ -201,10 +204,30 @@ After the installation, following configurations should be added in <code>~/.ema
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">;; enable global company mode
-(global-company-mode 1)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; completion immediately
-(setq company-idle-delay -1)
+(setq company-idle-delay 0)
+
+;; move the selection to the next/previous candidate using C-n/p instead of M-n/p
+(with-eval-after-load 'company  (define-key company-active-map (kbd "M-n") nil)
+                      (define-key company-active-map (kbd "M-p") nil)
+                      (define-key company-active-map (kbd "C-n") #'company-select-next)
+                      (define-key company-active-map (kbd "C-p") #'company-select-previous))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Clang support</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<p>
+Clang support is out-of-the-box. Additional package installation is not necessary. However, company-semantic is also built-in and precedes company-clang. Therefore, it is necessary to remove company-semantic. To this end, following configurations are needed.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">;; remove company-semantic from company-backends.
+(setq company-backends (delete 'company-semantic company-backends))
 
 ;; make clang find the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.
 (setq company-clang-arguments (quote ("-I/usr/include" "-I/usr/local/include" "-I/opt/itpp/include")))
@@ -212,9 +235,32 @@ After the installation, following configurations should be added in <code>~/.ema
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">LaTeX support</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">C headers support</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<p>
+For the sake of completing C/C++ header files while input, package <code>company-c-headers</code> can be installed by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">M-x package-install
+company-c-headers
+</pre>
+</div>
+<p>
+and configured by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(add-to-list 'company-backends 'company-c-headers)
+(setq company-c-headers-path-system (quote ("/usr/include/" "/usr/local/include/" "/usr/include/c++/6.1.1/" "/opt/itpp/include/")))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">LaTeX support</h3>
+<div class="outline-text-3" id="text-orgheadline5">
 <p>
 In order to enjoy the completion in LaTeX composition, package <code>company-auctex</code> can be installed<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.
 </p>
@@ -231,6 +277,28 @@ Accordingly, append the following line to the configuration of company in <code>
 
 <pre class="src src-emacs-lisp">;; enable company backends for LaTeX (based on AucTeX)
 (company-auctex-init)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">Python support</h3>
+<div class="outline-text-3" id="text-orgheadline6">
+<p>
+Targetting for Python support, package <code>company-jedi</code> needs to be installed.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">M-x package-install
+company-jedi
+</pre>
+</div>
+<p>
+Likewise, add following lines to the configuration of company in <code>~/.emacs</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(add-to-list 'company-backends 'company-jedi)
 </pre>
 </div>
 </div>
