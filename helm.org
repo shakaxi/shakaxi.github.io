@@ -31,7 +31,7 @@ M-x package-install
 helm-ag
 #+END_SRC
 and
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
 pacman -S the_silver_searcher
 #+END_SRC
 Then, following two lines of configurations can be inserted to the configuration file of emacs.
