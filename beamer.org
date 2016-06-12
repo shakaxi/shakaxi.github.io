@@ -3,7 +3,7 @@
 /Beamer/ is a convenient \LaTeX package for high quality slides. A template can be shown as follows.
 
 #+BEGIN_SRC latex
-\documentclass[compress, red, 10pt]{beamer}
+\documentclass[compress, red, 10pt, aspectratio=169]{beamer}
 
 \usepackage{hyperref}
 \usepackage{enumerate}
