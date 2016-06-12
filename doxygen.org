@@ -1,4 +1,4 @@
-#+TITLE: Doxygen
+#+TITLE: Emacs - Doxygen
 
 * Introduction
 /Doxygen/[fn:1] is a powerful tool to document the source codes. In principle, it parses the specially formated comments from the source codes and then produces very professional documents. Up to now, it is able to support almost all the popular programming languages, e.g. C/C++, Java, Python, and etc.

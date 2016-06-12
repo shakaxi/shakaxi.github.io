@@ -1,4 +1,4 @@
-#+TITLE: YCMD
+#+TITLE: Emacs - YCMD
 
 * Introduction
 YouCompleteMe (YCM) is originally a completion framework for VIM[fn:2], and afterwards splitted into a general server and a client. The general server, namely YCM daemon (YCMD)[fn:1], is able to provide interface to a variety of clients beyond VIM, e.g. Emacs. Moreover, both =company= and =auto-complete= can directly utilize what the server/daemon provides.

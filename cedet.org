@@ -1,4 +1,4 @@
-#+TITLE: CEDET
+#+TITLE: Emacs - CEDET
 
 * Introduction
 CEDET[fn:1] stands for collection of Emacs development environment tools, which is written to make Emacs become a perfect development environment. With the aid of CEDET, a variety of amazing features can be provided, e.g. code completion, browsing, tag jumping, drawing UML diagram, etc.
