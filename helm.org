@@ -25,7 +25,7 @@ After that, it should be configured accordingly. Without loss of generality, fol
 ;; follow mode
 (helm-follow-mode-persistent t)
 #+END_SRC
-Alternatively, package =helm-ag= can be installed to accelerate the match, which is a =the-silver-searcher=-based multithread counterpart of =isearch=. =Helm-ag= and =the-silver-searcher= can be installed by
+Alternatively, package =helm-ag= can be installed to accelerate the match, which is a =the-silver-searcher=-based multithread counterpart of =ack=. =Helm-ag= and =the-silver-searcher= can be installed by
 #+BEGIN_SRC emacs-lisp
 M-x package-install
 helm-ag
