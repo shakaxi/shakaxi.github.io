@@ -1,0 +1,45 @@
+#+TITLE: Fonts for Linux
+
+In Unix/Linux desktop, there are a rich number of open source projects for font rendering. This post lists some pretty excellent choices. Taking ArchLinux for instance, the installations are presented.
+
+* Infinality
+** Append following repositories to =/etc/pacman.conf=.
+#+BEGIN_SRC sh
+[infinality-bundle]
+Server= http://bohoomil.com/repo/$arch
+[infinality-bundle-multilib]
+Server= http://bohoomil.com/repo/multilib/$arch
+[infinality-bundle-fonts]
+Server= http://bohoomil.com/repo/fonts
+#+END_SRC
+** Install infinality fonts
+*** For x86-64
+#+BEGIN_SRC sh
+pacman -S infinality-bundle ibfonts-meta-extended infinality-bundle-multilib
+#+END_SRC
+*** For x86-32
+#+BEGIN_SRC sh
+pacman -S infinality-bundle ibfonts-meta-extended
+#+END_SRC
+* Adobe
+#+BEGIN_SRC sh
+pacman -S adobe-source-{code,sans,serif}-pro-fonts
+#+END_SRC
+* Fira
+Fira font is dedicated for Firefox operation system (OS).
+#+BEGIN_SRC sh
+pacman -S ttf-fira-{mono,sans}
+#+END_SRC
+* Ubuntu
+#+BEGIN_SRC sh
+pacman -S ttf-ubuntu-font-family
+#+END_SRC
+* Google
+Google archives a lot of open source fonts.
+#+BEGIN_SRC sh
+pacman -S ttf-google-fonts-git
+#+END_SRC
+* WenQuanYi
+#+BEGIN_SRC sh
+pacman -S wqy-{bitmapfont,microhei,microhei-lite,zenhei}
+#+END_SRC
