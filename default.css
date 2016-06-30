@@ -1,10 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+@import url(http://fonts.googleapis.com/css?family=Fira Sans);
 
 @media all
 {
     html {
 	margin: 0;
-	font: 300 .9em/1.6em "Ubuntu";
+	font: 300 .9em/1.6em "Fira Sans";
     }
 
     body {
@@ -79,7 +79,7 @@
     }
 
     h2 {
-	font-family:Ubuntu;
+	font-family:Fira Sans;
 	font-size:1.45em;
 	line-height:16px;
 	padding:10px 0 10px 0;
@@ -88,25 +88,25 @@
     }
 
     h3 {
-	font-family:Ubuntu;
+	font-family:Fira Sans;
 	font-size:1.3em;
 	color: grey;
     }
 
     h4 {
-	font-family:Ubuntu;
+	font-family:Fira Sans;
 	font-size:1.2em;
 	color: #A5573E;
     }
 
     h5 {
-	font-family:Ubuntu;
+	font-family:Fira Sans;
 	font-size:1.1em;
 	color: grey;
     }
     
     h6 {
-	font-family:Ubuntu;
+	font-family:Fira Sans;
 	font-size:1em;
 	color: purple;
     }
@@ -150,14 +150,14 @@
     code {
 	font-size: 100%;
         font-weight: bold;
-        font-family: Ubuntu Mono;
+        font-family: Fira Mono;
         background-color: lightgray;
     }
 
     .src {
         font-size: 100%;
         font-weight: bold;
-        font-family: Ubuntu Mono;
+        font-family: Fira Mono;
         background-color: lightgray;
         border: none;
     }
@@ -179,7 +179,7 @@
     }
 
     pre {
-	font-family:Ubuntu
+	font-family:Fira Sans
 	color: black;
 	font-size: 90%;
 	background-color: #ffffff;
