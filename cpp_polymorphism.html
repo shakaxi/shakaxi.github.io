@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-30 Thu 21:43 -->
+<!-- 2016-08-01 Mon 23:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Polymorphism</title>
@@ -156,6 +156,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgheadline4">抽象类</a></li>
 </ul>
 </li>
+<li><a href="#orgheadline5">总结</a></li>
 </ul>
 </div>
 </div>
@@ -183,7 +184,7 @@ for the JavaScript code in this tag.
 <li>只有类的成员函数才能声明为虚函数。</li>
 <li>静态成员函数不能是虚函数。</li>
 <li>内联函数不能是虚函数。</li>
-<li>构造函数不能是需函数。</li>
+<li>构造函数不能是虚函数。</li>
 <li>析构函数可以是且通常声明为虚函数。</li>
 </ul>
 </div>
@@ -199,9 +200,18 @@ for the JavaScript code in this tag.
 <h3 id="orgheadline4">抽象类</h3>
 <div class="outline-text-3" id="text-orgheadline4">
 <p>
-抽象类是指在类定义中至少声明一个纯虚函数的类。抽象类是不允许有实例对象的，即不能由抽象类创建实例对象，其用途就是为了继承。
+抽象类是指在类定义中至少声明一个纯虚函数的类。抽象类是不允许有实例对象的，即不能由抽象类创建实例对象，其用途只是为了继承。
 </p>
 </div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">总结</h2>
+<div class="outline-text-2" id="text-orgheadline5">
+<p>
+总之, 要想实现多态, 必须用虚函数(在基类中用关键字virtual). 对于派生类, 必须对虚函数进行实现. 对于基类, 有两个选择: 第一, 实现虚函数; 第二, 将虚函数声明为纯虚函数(相应地, 基类也就变成了抽象类).
+</p>
 </div>
 </div>
 <div id="footnotes">
