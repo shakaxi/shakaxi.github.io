@@ -9,7 +9,7 @@ Besides Emacs, following extensions are also needed. The installation can be fin
 (package-initialize)
 #+END_SRC
 Through =elpa=, install following extensions.
-- company :: It represents /complete anything/. Just as its name implies, it is used for completion. It is similar to =auto complete=, but I prefer company. In order to enable automatical completion in C/C++ programming, I use =clang= [fn:2] as backend in lieu of =semantic=, since semantic-based completion is too slow. However, as long as company is installed, semantic is already built-in, a.k.a. company-semantic. Moreover, it precedes clang-based backend. To deal with the problem, we remove semantic from the list of backend for company.
+- company :: It represents /complete anything/. Just as its name implies, it is used for completion. It is similar to =auto-complete=, but I prefer company. In order to enable automatical completion in C/C++ programming, I use =clang= [fn:2] as backend in lieu of =semantic=, since semantic-based completion is too slow. However, as long as company is installed, semantic is already built-in, a.k.a. company-semantic. Moreover, it precedes clang-based backend. To deal with the problem, we remove semantic from the list of backend for company.
 #+BEGIN_SRC elisp
 (global-company-mode t)
 (setq company-idle-delay 0)

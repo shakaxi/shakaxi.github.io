@@ -11,7 +11,7 @@
    + [[file:d2d.org][D2D]]
    + [[file:dot.org][DOT]]
    + [[file:discovery_signal.org][Discovery Signal]]
-   + [[file:emacs.org][Emacs]]
+   + [[file:emacs_config.org][Emacs - Basic Configuration]]
    + [[file:emacs_cpp.org][Emacs - C/C++ Programming]]
    + [[file:cedet.org][Emacs - CEDET]]
    + [[file:company.org][Emacs - Company]]
