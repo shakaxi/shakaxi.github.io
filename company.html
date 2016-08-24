@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-30 Thu 21:43 -->
+<!-- 2016-08-24 Wed 22:17 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Company</title>
@@ -229,8 +229,8 @@ Clang support is out-of-the-box. Additional package installation is not necessar
 <pre class="src src-emacs-lisp">;; remove company-semantic from company-backends.
 (setq company-backends (delete 'company-semantic company-backends))
 
-;; make clang find the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.
-(setq company-clang-arguments (quote ("-I/usr/include" "-I/usr/local/include" "-I/opt/itpp/include")))
+;; make company-clang find IT++ headers and support c++11.
+(setq company-clang-arguments (quote ("-I/opt/itpp/include/" "-std=c++11")))
 </pre>
 </div>
 </div>
