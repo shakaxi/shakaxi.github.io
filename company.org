@@ -35,8 +35,8 @@ Clang support is out-of-the-box. Additional package installation is not necessar
 ;; remove company-semantic from company-backends.
 (setq company-backends (delete 'company-semantic company-backends))
 
-;; make clang find the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.
-(setq company-clang-arguments (quote ("-I/usr/include" "-I/usr/local/include" "-I/opt/itpp/include")))
+;; make company-clang find IT++ headers and support c++11.
+(setq company-clang-arguments (quote ("-I/opt/itpp/include/" "-std=c++11")))
 #+END_SRC
 ** C headers support
 For the sake of completing C/C++ header files while input, package =company-c-headers= can be installed by
