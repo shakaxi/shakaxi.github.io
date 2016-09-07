@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-30 Thu 21:43 -->
+<!-- 2016-09-07 Wed 19:35 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Beamer</title>
@@ -170,86 +170,6 @@ for the JavaScript code in this tag.
 <p>
 <i>Beamer</i> is a convenient \LaTeX package for high quality slides. A template can be shown as follows.
 </p>
-
-<div class="org-src-container">
-
-<pre class="src src-latex">\documentclass[compress, red, 10pt, aspectratio=169]{beamer}
-
-\usepackage{hyperref}
-\usepackage{enumerate}
-\usepackage{cite}
-\usepackage{graphicx, subfigure}
-\usepackage{tabularx}
-\usepackage{amsmath, amssymb, amsfonts}
-\usepackage{fancybox}
-\usepackage{tikz}
-\usepackage{marvosym}
-\usepackage{booktabs}
-% \usepackage{xeCJK}
-% \setCJKsansfont{WenQuanYi Micro Hei}
-% \usepackage{helvet}
-% \usepackage{charter}
-% \usepackage{fourier}
-% \usepackage{Minion Pro}
-% \usepackage{mathdesign}
-% \usepackage{mathpazo}
-% \usepackage{newcent}
-% \usepackage{avant}
-% \usepackage{bookman}
-\usetikzlibrary{arrows,shapes}
-\tikzstyle{every picture}+=[remember picture]
-\DeclareMathOperator{\diag}{diag}
-\renewcommand{\emph}[1]{\textit{\textcolor{blue}{#1}}}
-
-%% Insert logo at top right corner of each slide
-% LaTeX
-\logo{\pgfputat{\pgfxy(0, 8.2)}{\pgfbox[right,bottom]{\includegraphics[height=0.8cm]{logo.png}}}}
-% XeLaTeX
-%\logo{\pgfputat{\pgfxy(0, 8.2)}{\includegraphics[height=0.7cm]{logo.jpg}}}
-
-%% Custom footer
-\usefoottemplate{\rightline{\textbf{\insertframenumber}}}
-
-%% Theme setting
-%\setbeamercolor{frametitle}{fg=black}
-\setbeamercovered{transparent}
-\hypersetup{pdfpagemode=FullScreen}
-\setbeamertemplate{caption}[numbered]
-\useinnertheme{circles}
-\useoutertheme{default}
-\usefonttheme{professionalfonts}
-\setbeamerfont{title}{shape=\scshape,series=\bfseries}
-\setbeamerfont{frametitle}{shape=\scshape,series=\bfseries}
-\usetheme{default}
-
-\begin{document}
-
-\title{Title}
-\author{Author}
-\date{\textbf{\today}}
-\institute{Institute}
-\titlepage
-
-\begin{frame}
-   \frametitle{Outline}
-   \tableofcontents
-\end{frame}
-
-\AtBeginSection
-{
-   \begin{frame}
-      \frametitle{Outline}
-      \tableofcontents[currentsection, hideallsubsections]
-   \end{frame}
-}
-
-\begin{frame}
-   \frametitle{}
-\end{frame}
-
-\end{document}
-</pre>
-</div>
 </div>
 </body>
 </html>
