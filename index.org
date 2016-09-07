@@ -39,5 +39,6 @@
    + [[file:reg_exp.org][Regular Expression]]
    + [[file:slnr_bf.org][SLNR-based Beamforming]]
    + [[file:ssh.org][SSH]]
+   + [[file:sim_large_scale_model.org][Simulation - Large Scale Modelling]]
    + [[file:switch_virtual_console.org][Virtual Console Switch]]
    + [[file:zc.org][ZC]]
