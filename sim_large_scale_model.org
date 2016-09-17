@@ -1,7 +1,7 @@
 #+TITLE: Simulation - Large Scale Modelling
 #+OPTIONS: ^:nil
 
-In the system-level simulation (SLS), large scale attenuation needs to be modelled. /Coupling loss/ is defined as the combination of distance-dependent path loss, shadow fading, antenna gain at the transmitter and receiver, Outdoor-to-indoor (O2I) penetration loss[fn:5].
+In the system-level simulation (SLS), large scale attenuation needs to be modelled. /Coupling loss/ is defined as the combination of distance-dependent path loss, shadow fading, antenna gain at the transmitter and receiver, outdoor-to-indoor (O2I) penetration loss[fn:5].
 - Path loss is usually dependent on propagation types, i.e. line-of-sight (LOS) or non-line-of-sight (NLOS).
 - Propagation type, LOS/NLOS, is per site[fn:1].
 - Location type, i.e. indoor or outdoor, is per user[fn:2].

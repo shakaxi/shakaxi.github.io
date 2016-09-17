@@ -1,0 +1,59 @@
+#+TITLE: Emacs - Movement
+
+* Character-wise movement
+| Key binding | Purpose                      |
+|-------------+------------------------------|
+| =C-f=       | Move forward by a character  |
+| =C-b=       | Move backward by a character |
+| =C-p=       | Move to previous line     |
+| =C-n=       | Move to next line         |
+* Word-wise movement
+| Key binding | Purpose               |
+|-------------+-----------------------|
+| =M-f=       | Move forward by a word |
+| =M-b=       | Move backward by a word |
+* Line-wise movement
+| Key binding | Purpose                                                       |
+|-------------+---------------------------------------------------------------|
+| =C-a=       | Move point to the beginning of the line                       |
+| =C-e=       | Move point to the end of the line                             |
+| =M-m=       | Move point to the first non-whitespace character on this line |
+* Sexp-wise movement
+| Key binding | Purpose                             |
+|-------------+-------------------------------------|
+| =C-M-f=     | Move forward by a s-expression (/sexp/) |
+| =C-M-b=     | Move backward by a sexp             |
+* List-wise movement
+| Key binding | Purpose                            |
+|-------------+------------------------------------|
+| =C-M-p=     | Move backward to the previous list |
+| =C-M-n=     | Move forward to the next list      |
+| =C-M-u=     | Move up out of a list              |
+| =C-M-d=     | Move down into a list              |
+* Sentence-wise movement
+| Key binding | Purpose                             |
+|-------------+-------------------------------------|
+| =M-a=       | Move to the beginning of a sentence |
+| =M-e=       | Move to the end of a sentence       |
+* Paragraph-wise movement
+| Key binding | Purpose                             |
+|-------------+-------------------------------------|
+| =M-{=       | Move to the beginning of a paragraph |
+| =M-}=       | Move to the end of a paragraph       |
+* Defun-wise movement
+| Key binding | Purpose                             |
+|-------------+-------------------------------------|
+| =C-M-a=     | Move to the beginning of a defun |
+| =C-M-e=     | Move to the end of a defun  |
+* Page-wise movement
+| Key binding | Purpose                             |
+|-------------+-------------------------------------|
+| =C-x [=     | Move backward by a page             |
+| =C-x ]=     | Move forward by a page              |
+| =C-v=       | Scroll down a page                  |
+| =M-v=       | Scroll up a page                    |
+| =C-M-v=     | Scroll down the other window        |
+| =C-M-S-v=   | Scroll up the other window          |
+| =M-<=       | Move to the beginning of the buffer |
+| =M->=       | Move to the end of the buffer       |
+

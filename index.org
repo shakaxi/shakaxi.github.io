@@ -17,6 +17,7 @@
    + [[file:company.org][Emacs - Company]]
    + [[file:doxygen.org][Emacs - Doxygen]]
    + [[file:helm.org][Emacs - Helm]]
+   + [[file:emacs_movement.org][Emacs - Movement]]
    + [[file:ycmd.org][Emacs - YCMD]]
    + [[file:font.org][Fonts for Linux]]
    + [[file:gdb.org][GDB]]
