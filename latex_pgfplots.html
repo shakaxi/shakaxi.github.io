@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 19:46 -->
+<!-- 2016-09-24 Sat 22:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>LaTeX - Pgfplots</title>
@@ -141,28 +141,6 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -270,7 +248,7 @@ The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis</code>.
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #696969;">\addplot</span> coordinates{(x1,y1)(x2,y2)...(xn,yn)}
+<pre class="src src-latex"><span style="color: #696969;">\addplot</span> coordinates{(x1, y1)(x2, y2)...(xn, yn)}
 </pre>
 </div>
 <ul class="org-ul">
@@ -278,48 +256,20 @@ The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis</code>.
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-latex"><span style="color: #696969;">\addplot</span> table [x = COLUMN1, y = COLUMN2]{DATA_FILE};
+<pre class="src src-latex"><span style="color: #696969;">\addplot</span> table [x = COLUMN1, y = COLUMN2]{DATA-FILE};
 </pre>
 </div>
 <p>
-with the content of <code>DATA_FILE</code> as below.
+with the content of <code>DATA-FILE</code> as below.
 </p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div class="org-src-container">
 
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">COLUMN1</td>
-<td class="org-left">COLUMN2</td>
-<td class="org-left">COLUMN3</td>
-</tr>
-
-<tr>
-<td class="org-left">a1</td>
-<td class="org-left">b1</td>
-<td class="org-left">c1</td>
-</tr>
-
-<tr>
-<td class="org-left">a2</td>
-<td class="org-left">b2</td>
-<td class="org-left">c2</td>
-</tr>
-
-<tr>
-<td class="org-left">&#x2026;</td>
-<td class="org-left">&#x2026;</td>
-<td class="org-left">&#x2026;</td>
-</tr>
-</tbody>
-</table>
+<pre class="src src-text">COLUMN1 COLUMN2 COLUMN3
+a1 b1 c1
+a2 b2 c2
+... ... ...
+</pre>
+</div>
 <ul class="org-ul">
 <li>shade a region, e.g.</li>
 </ul>
@@ -338,16 +288,16 @@ with the content of <code>DATA_FILE</code> as below.
 </p>
 <ul class="org-ul">
 <li><code>title={TITLE}</code></li>
-<li><code>domain=START: END</code> specifies the range of the variable \(x\).</li>
-<li><code>blue/red/brown/green/cyan/magenta/yellow/black/gray/white/darkgray/lightgray/lime/olive/orange/pink/purple/teal/violet</code>. can be mixed by <code>COLOR1!PERCENTAGE!COLOR2</code>.</li>
+<li><code>domain=START: END</code> specifies the range of the variable <code>x</code>.</li>
+<li><code>blue/red/brown/green/cyan/magenta/yellow/black/gray/white/darkgray/lightgray/lime/olive/orange/pink/purple/teal/violet</code> can be mixed by <code>COLOR1!PERCENTAGE!COLOR2</code>.</li>
 <li><code>xlabel/ylabel={LABEL}</code></li>
 <li><code>xtick/ytick={START, START+DELTA, ..., END}</code> separates the ticks between <code>START</code> and <code>END</code> with step length <code>DELTA</code>.</li>
-<li><code>xticklabels/yticklabels={a,b,c,...}</code></li>
+<li><code>xticklabels/yticklabels={a, b, c, ...}</code></li>
 <li><code>axis equal image</code> equally scales the axes, and trims the width or height to suit.</li>
 <li><code>axis lines=box/left/middle/center/right/none</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> specified the way the axes are drawn, e.g. <code>middle</code> make the axes intersect at the origin.</li>
 <li><code>xmajorgrids/ymajorgrids=true/false</code> enables/disables grid lines at the tick positions on the x/y axis.</li>
 <li><code>grid style=solid/dashed</code></li>
-<li><code>legend pos=north/south west/east or outer north east</code></li>
+<li><code>legend pos=outer north east/north west/north east/south west/south east</code></li>
 <li><code>xmin/xmax/ymin/ymax=BOUND</code></li>
 <li><code>grid</code></li>
 <li><code>thick</code></li>
