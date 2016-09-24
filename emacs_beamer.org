@@ -1,4 +1,4 @@
-#+TITLE: Beamer
+#+TITLE: LaTeX - Beamer
 
 /Beamer/ is a convenient \LaTeX package for high quality slides. A template can be shown as follows.
 
