@@ -1,0 +1,154 @@
+#+TITLE: Installation Guide for Arch Linux
+
+* Preparation
+1) Insert the DVD into the optical driver and reboot the computer.
+2) In the power-on self-test (POST) stage, press =F11= [fn:1] on the screen of BIOS splash to boot the computer from the DVD.
+* Installation
+** Select the suitable architecture
+When Arch Linux splash appears, choose =Boot Arch Linux (x86_64)=.
+** Partition disk
+Divide the entire disk into several partitions, e.g. four partitions for =/=, =/var=, =/tmp=, =/home=, respectively. What deserves your attention, =/= should be set bootable. With respect to the partition tool, you have so many choices, e.g. =fdisk=, =cfdisk=. Without loss of generality, we take =cfdisk= for instance here.
+#+BEGIN_SRC sh
+cfdisk /dev/sda
+#+END_SRC
+For example, we have divided the disk into four partitions, e.g. =/sda1=, =/sda5=, =/sda6=, =/sda7= [fn:2].
+** Format the partitions
+#+BEGIN_SRC sh
+mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda5
+mkfs.ext4 /dev/sda6
+mkfs.ext4 /dev/sda7
+#+END_SRC
+** Mount the partitions
+#+BEGIN_SRC sh
+mount -t ext4 /dev/sda1 /mnt
+mkdir -p /mnt/{var,tmp,home}
+mount -t ext4 /dev/sda5 /mnt/var
+mount -t ext4 /dev/sda6 /mnt/tmp
+mount -t ext4 /dev/sda7 /mnt/home
+#+END_SRC
+** Configure network
+#+BEGIN_SRC sh
+systemctl stop dhcpcd
+ip addr add IP_ADDR/24 broadcast BROADCAST_ADDR dev eth0
+ip route add default via GATEWAY_IP_ADDR
+export http_proxy="http://PROXY_IP_ADDR:PORT"
+export https_proxy="https://PROXY_IP_ADDR:PORT"
+echo nameserver DNS_SERVER_IP_ADDR >> /etc/resolv.conf
+#+END_SRC
+** Select nearest mirror
+Edit =/etc/pacman.d/mirrorlist= as
+#+BEGIN_SRC sh
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+#+END_SRC
+** Install the base system and necessary applications
+#+BEGIN_SRC sh
+pacstrap /mnt base base-devel os-prober grub openssh nfs-utils boost cpupower libxml2 ntp
+#+END_SRC
+** Generate fstab file
+#+BEGIN_SRC sh
+  genfstab -p /mnt >> /mnt/etc/fstab
+#+END_SRC
+** Chroot into the newly installed system
+#+BEGIN_SRC sh
+arch-chroot /mnt
+#+END_SRC
+** Set hostname
+#+BEGIN_SRC sh
+  echo COMPUTER_NAME > /etc/hostname
+#+END_SRC
+** Set time zone
+#+BEGIN_SRC sh
+  ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#+END_SRC
+** Set system time
+Prepend following line to =/etc/ntp.conf=
+#+BEGIN_SRC sh
+server head
+#+END_SRC
+Enable the network time service
+#+BEGIN_SRC sh
+systemctl enable ntpd.service
+systemctl start ntpd.service
+#+END_SRC
+** Set locale
+Edit =/etc/locale.gen= and uncomment the following lines
+#+BEGIN_SRC sh
+...
+en_US.UTF-8 UTF-8
+en_US ISO-8859-1
+...
+zh_CN.GB18030 GB18030
+zh_CN.GBK GBK
+zh_CN.UTF-8 UTF-8
+zh_CN GB2312
+...
+#+END_SRC
+Generate and set locales
+#+BEGIN_SRC sh
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+#+END_SRC
+** Create an initial RAM disk
+#+BEGIN_SRC sh
+mkinitcpio -p linux
+#+END_SRC
+** Install bootloader
+#+BEGIN_SRC sh
+grub-install --recheck /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+#+END_SRC
+** Configure network for the newly installed OS
+Edit =/etc/profile= and append following two lines to configure the proxy server.
+#+BEGIN_SRC sh
+...
+export http_proxy="http://202.108.92.171:8080"
+export https_proxy="https://202.108.92.171:8080"
+#+END_SRC
+Create file =/etc/netctl/ethernet_static= with its content
+#+BEGIN_SRC sh
+Description='A static ethernet connection'
+Interface=enp1s0f0
+Connection=ethernet
+IP=static
+Address=('IP_ADDR/24')
+Gateway='GATEWAY_ADDR'
+DNS=('DNS_SERVER_IP_ADDR')
+#+END_SRC
+Enable the network configuration
+#+BEGIN_SRC sh
+netctl enable ethernet_static
+#+END_SRC
+** Configure SSH service                                            :server:
+Edit file =/etc/ssh/sshd_config= as below
+#+BEGIN_SRC sh
+...
+PermitRootLogin yes
+...
+#+END_SRC
+Enable the SSH service
+#+BEGIN_SRC sh
+systemctl enable sshd.service
+#+END_SRC
+** Configure CPU frequency scaling
+#+BEGIN_SRC sh
+systemctl enable cpupower
+#+END_SRC
+** Set password for root
+#+BEGIN_SRC sh
+passwd
+#+END_SRC
+** Unmount and reboot
+#+BEGIN_SRC sh
+exit
+umount -R /mnt
+reboot
+#+END_SRC
+Congratulation! So far, you have finished the installation of the base system of Arch Linux as a server. You can leave the server room and access the newly installed Linux server remotely for further configuration.
+
+* Footnotes
+
+[fn:1] For some BIOS, it maybe =F1=, =F2=, =F12= or other keys.
+
+[fn:2] Possibly, the partitions are not exactly the same as the case you encountered, esp. in the case of co-existence with Windows OS.
+

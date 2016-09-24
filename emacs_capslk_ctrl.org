@@ -1,4 +1,4 @@
-#+TITLE: CapsLock as Control
+#+TITLE: Emacs - CapsLock as Control
 
 * Background
 Usually, key /CapsLock/ is seldom used in our daily utilization, while key /Control/ is frequently used, esp. for Emacs users. Therefore, we can turn /Capslock/ into an additional /Control/.

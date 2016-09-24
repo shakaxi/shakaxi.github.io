@@ -1,0 +1,95 @@
+#+TITLE: LaTeX - Pgfplots
+
+* Introduction
+/Pgfplots/ is an excellent /LaTeX/ package to plot high quality graphs. This post just summaries its basic usages.
+* Installation
+Pgfplots is a built-in package in the [[http://tug.org][texlive]]. As long as texlive is ready, pgfplots is out-of-the-box.
+* Usage
+Pgfplots depends on [[./latex_pgf_tikz.org][pgf/tikz]], and the statements are encapsulated in the environment of /tikzpicture/. The basic plot commands are =\addplot= and =\addplot3= for 2D or 3D plot purpose, respectively. It should be noticed that each of them has a variant, i.e. =\addplot+= and =\addplot3+=. =\addplot/\addplot3= uses the provided local options only, while =\addplot+/\addplot3+= adopts both the global and local options.
+
+Templates for pgfplots usage can be presented as follows.
+#+BEGIN_SRC latex
+  \usepackage{pgfplots}
+  \pgfplotsset{GLOBAL-OPTIONS}
+  ...
+  % For single curve plot
+  \begin{tikzpicture}
+    \begin{AXIS-TYPE}[AXIS-OPTIONS]
+    \addplot/\addplot3[PLOT-OPTIONS] {FORMULA};
+    \legend{LABEL};
+    \end{AXIS-TYPE}
+  \end{tikzpicture}
+
+  % For multi-curve plot
+  \begin{tikzpicture}
+    \begin{AXIS-TYPE}[AXIS-OPTIONS]
+    \addplot/\addplot3[PLOT-OPTIONS] {FORMULA1};
+    \addlegendentry{LABEL1};
+    \node at (AXIS-TYPE cs:x1,y1) {TEXT}; % Annotation for the curve.
+    
+    \addplot/\addplot3[PLOT-OPTIONS] {FORMULA2};
+    \addlegendentry{LABEL2};
+    ...
+    \end{AXIS-TYPE}
+  \end{tikzpicture}
+#+END_SRC
+** =AXIS-TYPE=
+The candidate values are =axis/semilogxaxis/semilogyaxis/loglogaxis=.
+** =FORMULA=
+- plain function[fn:1], e.g.
+#+BEGIN_SRC latex
+\addplot {f(x)};
+#+END_SRC
+- parameter function, e.g.
+#+BEGIN_SRC latex
+\addplot ({x(t)}, {y(t)});
+#+END_SRC
+- coordinates, e.g.
+#+BEGIN_SRC latex
+\addplot coordinates{(x1,y1)(x2,y2)...(xn,yn)}
+#+END_SRC
+- data in a file, e.g.
+#+BEGIN_SRC latex
+\addplot table [x = COLUMN1, y = COLUMN2]{DATA_FILE};
+#+END_SRC
+with the content of =DATA_FILE= as below.
+| COLUMN1 | COLUMN2 | COLUMN3 |
+| a1      | b1      | c1      |
+| a2      | b2      | c2      |
+| ...     | ...     | ...     |
+- shade a region, e.g.
+#+BEGIN_SRC latex
+\addplot [...] {...} \closedcycle;
+#+END_SRC
+** Options
+=AXIS-OPTIONS= and =PLOT-OPTIONS= are basically the same, and the latter overrides the former.
+- =title={TITLE}=
+- =domain=START: END= specifies the range of the variable $x$.
+- =blue/red/brown/green/cyan/magenta/yellow/black/gray/white/darkgray/lightgray/lime/olive/orange/pink/purple/teal/violet=. can be mixed by =COLOR1!PERCENTAGE!COLOR2=.
+- =xlabel/ylabel={LABEL}=
+- =xtick/ytick={START, START+DELTA, ..., END}= separates the ticks between =START= and =END= with step length =DELTA=.
+- =xticklabels/yticklabels={a,b,c,...}=
+- =axis equal image= equally scales the axes, and trims the width or height to suit.
+- =axis lines=box/left/middle/center/right/none=[fn:3] specified the way the axes are drawn, e.g. =middle= make the axes intersect at the origin.
+- =xmajorgrids/ymajorgrids=true/false= enables/disables grid lines at the tick positions on the x/y axis.
+- =grid style=solid/dashed=
+- =legend pos=north/south west/east or outer north east=
+- =xmin/xmax/ymin/ymax=BOUND=
+- =grid=
+- =thick=
+- =solid/dashed/dotted/dashdotted/dashdotdotted=
+- =samples=SAMPLE_NUMBER= defines the number of points in the =domain=.
+- =smooth= is an alternative to =samples=, which makes a smooth curves between data points.
+- =mark=*/x/+/|/o/asterisk/star/10-pointed star/oplus/oplus*/otimes/otimes*/square/square*/triangle/triangle*/diamond/halfdiamond*/halfsquare*/right*/left*/halfcircle/halfcircle*/pentagon/pentagon*/cubes=[fn:2]
+- =no marks=
+- =mark repeat=N= marks the data points every =N= ones instead of every one.
+- =only marks= hides the line joining the data points.
+- =opacity=FRACTION= makes something not transparent, e.g. =fill opacity=0.6=.
+- =xbar/ybar= for bar plot.
+* Footnotes
+
+[fn:3] The default value is =box=.
+
+[fn:2] Usually =\usetikzlibrary{plotmarks}= is needed. =cubes= is only for 3D plots.
+
+[fn:1] Transformation from radian to degree, i.e. =deg()=, is needed for trigonometric functions, which accepts degree only.
