@@ -26,7 +26,7 @@
    + [[file:itpp.org][IT++]]
    + [[file:arch_inst.org][Installation Guide for Arch Linux]]
    + [[file:latex_gantt.org][LaTeX - Gantt Chart]]
-   + [[file:latex_pgf_tikz.org][LaTeX - PGF/Tikz]]
+   + [[file:latex_pgf_tikz.org][LaTeX - Pgf/Tikz]]
    + [[file:latex_pgfplots.org][LaTeX - Pgfplots]]
    + [[file:matlab_fig.org][MATLAB - Figure Data Abstraction]]
    + [[file:matlab_ssh.org][MATLAB over SSH]]

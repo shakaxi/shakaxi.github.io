@@ -1,6 +1,11 @@
-#+TITLE: LaTeX - PGF/Tikz
+#+TITLE: LaTeX - Pgf/Tikz
 
-* Setting
+* Introduction
+/Pgf/tikz/ is an excellent /LaTeX/ package to plot high quality graphs. This post just summaries its basic usages.
+* Installation
+Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as texlive is ready, pgf/tikz is out-of-the-box.
+* Usage
+** Setting
 #+BEGIN_SRC latex
 \usepackage{tikz}
 ...
@@ -9,15 +14,15 @@
 ...
 \end{tikzpicture}
 #+END_SRC
-* Style
+** Style
 #+BEGIN_SRC latex
 \tikzstyle newstylename=[option1=value1, option2=value2, ...]
 \tikzstyle existingstylename+=[option1=value1, option2=value2, ...]
 #+END_SRC
-* Coordinate
+** Coordinate
 - (x0, y0)
 - (angle, radius)
-* List
+** List
 #+BEGIN_SRC latex
 % step length = 1
 {a, ..., b}
@@ -25,32 +30,32 @@
 % step length = d
 {a, a + d, ..., b}
 #+END_SRC
-* Arrow
+** Arrow
 - -
 - ->
 - <-
 - <->
 - ->>
-* Draw
-** Line
+** Draw
+*** Line
 #+BEGIN_SRC latex
 \draw (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
 #+END_SRC
-** Curve
+*** Curve
 #+BEGIN_SRC latex
 \draw (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
 \draw (x1, y1) .. controls (x2, y2) .. (x3, y3);
 #+END_SRC
-** Grid
+*** Grid
 #+BEGIN_SRC latex
 \draw [step=s] (x1, y1) grid (x2, y2);
 \draw [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
 #+END_SRC
-** Arc
+*** Arc
 #+BEGIN_SRC latex
 \draw (x1, y1) arc (start_angle: end_angle: radius);
 #+END_SRC
-** Rectangle
+*** Rectangle
 #+BEGIN_SRC latex
 \draw (x1, y1) rectangle (x2, y2);
 \fill [color] (x1, y1) rectangle (x2, y2);
@@ -59,7 +64,7 @@
 \shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) rectangle (x2, y2);
 \clip (x1, y1) rectangle (x2, y2);
 #+END_SRC
-** Circle
+*** Circle
 #+BEGIN_SRC latex
 \draw (x1, y1) circle (radius);
 \fill [color] (x1, y1) circle (radius);
@@ -68,7 +73,7 @@
 \shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) circle (radius);
 \clip (x1, y1) circle (radius);
 #+END_SRC
-** Ellipse
+*** Ellipse
 #+BEGIN_SRC latex
 \draw (x1, y1) ellipse (x_radius and y_radius);
 \fill [color] (x1, y1) ellipse (x_radius and y_radius);
@@ -77,13 +82,13 @@
 \shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) ellipse (x_radius and y_radius);
 \clip (x1, y1) ellipse (x_radius and y_radius);
 #+END_SRC
-** Node
+*** Node
 #+BEGIN_SRC latex
 (x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
 ...
 \node at (x0, y0) (node_name) {node_label};
 #+END_SRC
-*** Connecting nodes with
+**** Connecting nodes with
 - Lines
 #+BEGIN_SRC latex
 \draw [arrow] (node_name_A) to (node_name_B);
@@ -96,7 +101,7 @@
 \draw (node_name_A) edge [arrow, color, in=30, out=60] (node_name_B);
 \draw (node_name_A) edge [arrow, color, bend left/right=30] (node_name_B);
 #+END_SRC
-* Refer to nodes outside current picture
+** Refer to nodes outside current picture
 #+BEGIN_SRC latex
 \tikzstyle{every picture}+=[remember picture]
 ...
@@ -105,7 +110,7 @@
 ...
 \end{tikzpicture}
 #+END_SRC
-* Mix tikz command with LaTeX
+** Mix tikz command with LaTeX
 #+BEGIN_SRC latex
 \tikz [baseline] ...
 #+END_SRC

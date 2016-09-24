@@ -46,17 +46,19 @@ The candidate values are =axis/semilogxaxis/semilogyaxis/loglogaxis=.
 #+END_SRC
 - coordinates, e.g.
 #+BEGIN_SRC latex
-\addplot coordinates{(x1,y1)(x2,y2)...(xn,yn)}
+\addplot coordinates{(x1, y1)(x2, y2)...(xn, yn)}
 #+END_SRC
 - data in a file, e.g.
 #+BEGIN_SRC latex
-\addplot table [x = COLUMN1, y = COLUMN2]{DATA_FILE};
+\addplot table [x = COLUMN1, y = COLUMN2]{DATA-FILE};
 #+END_SRC
-with the content of =DATA_FILE= as below.
-| COLUMN1 | COLUMN2 | COLUMN3 |
-| a1      | b1      | c1      |
-| a2      | b2      | c2      |
-| ...     | ...     | ...     |
+with the content of =DATA-FILE= as below.
+#+BEGIN_SRC text
+COLUMN1 COLUMN2 COLUMN3
+a1 b1 c1
+a2 b2 c2
+... ... ...
+#+END_SRC
 - shade a region, e.g.
 #+BEGIN_SRC latex
 \addplot [...] {...} \closedcycle;
@@ -64,16 +66,16 @@ with the content of =DATA_FILE= as below.
 ** Options
 =AXIS-OPTIONS= and =PLOT-OPTIONS= are basically the same, and the latter overrides the former.
 - =title={TITLE}=
-- =domain=START: END= specifies the range of the variable $x$.
-- =blue/red/brown/green/cyan/magenta/yellow/black/gray/white/darkgray/lightgray/lime/olive/orange/pink/purple/teal/violet=. can be mixed by =COLOR1!PERCENTAGE!COLOR2=.
+- =domain=START: END= specifies the range of the variable =x=.
+- =blue/red/brown/green/cyan/magenta/yellow/black/gray/white/darkgray/lightgray/lime/olive/orange/pink/purple/teal/violet= can be mixed by =COLOR1!PERCENTAGE!COLOR2=.
 - =xlabel/ylabel={LABEL}=
 - =xtick/ytick={START, START+DELTA, ..., END}= separates the ticks between =START= and =END= with step length =DELTA=.
-- =xticklabels/yticklabels={a,b,c,...}=
+- =xticklabels/yticklabels={a, b, c, ...}=
 - =axis equal image= equally scales the axes, and trims the width or height to suit.
 - =axis lines=box/left/middle/center/right/none=[fn:3] specified the way the axes are drawn, e.g. =middle= make the axes intersect at the origin.
 - =xmajorgrids/ymajorgrids=true/false= enables/disables grid lines at the tick positions on the x/y axis.
 - =grid style=solid/dashed=
-- =legend pos=north/south west/east or outer north east=
+- =legend pos=outer north east/north west/north east/south west/south east=
 - =xmin/xmax/ymin/ymax=BOUND=
 - =grid=
 - =thick=
