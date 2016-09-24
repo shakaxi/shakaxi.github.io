@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blog on GitHub</title>
@@ -167,7 +167,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <p>
-It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on <a href="https://github.com/">GitHub</a>. This post is just written to summarize the procedure.
+It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on <a href="https://github.com">GitHub</a>. This post is just written to summarize the procedure.
 </p>
 
 <div id="outline-container-orgheadline3" class="outline-2">
@@ -202,7 +202,7 @@ In order to freely exchange data with GitHub, <code>git</code> is needed. Also t
 <h3 id="orgheadline2">Account on GitHub</h3>
 <div class="outline-text-3" id="text-orgheadline2">
 <p>
-Of course, an account on GitHub is also indispensable. If you do not have an account, you have to sign up on <a href="http://github.com/">http://github.com/</a>. According to the description of <a href="https://pages.github.com/">GitHub Pages</a>, if your account is <code>USERNAME</code>, your blog site can be accessed via <a href="http://username.github.io/">http://username.github.io/</a>.
+Of course, an account on GitHub is also indispensable. If you do not have an account, you have to sign up on <a href="http://github.com">http://github.com</a>. According to the description of <a href="https://pages.github.com/">GitHub Pages</a>, if your account is <code>USERNAME</code>, your blog site can be accessed via <a href="http://username.github.io">http://username.github.io</a>.
 </p>
 </div>
 </div>
@@ -223,34 +223,34 @@ In order to publish your webpages, i.e. html files, you should configure your Em
 <div class="org-src-container">
 
 <pre class="src src-elisp"><span class="linenr"> 1: </span>...
-<span class="linenr"> 2: </span>(require 'ox-publish)
-<span class="linenr"> 3: </span>(setq org-publish-project-alist
+<span class="linenr"> 2: </span>(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
+<span class="linenr"> 3: </span>(<span style="color: #a020f0;">setq</span> org-publish-project-alist
 <span class="linenr"> 4: </span>      '(
-<span class="linenr"> 5: </span>        ("org"
-<span class="linenr"> 6: </span>        :base-directory "~/blog/org"
-<span class="linenr"> 7: </span>        :publishing-directory "~/blog/html"
-<span class="linenr"> 8: </span>        :recursive t
-<span class="linenr"> 9: </span>        :publishing-function org-html-publish-to-html
-<span class="linenr">10: </span>        :headline-levels 6
-<span class="linenr">11: </span>        :section-numbers nil
-<span class="linenr">12: </span>        :auto-sitemap t
-<span class="linenr">13: </span>        :sitemap-filename "index.org"
-<span class="linenr">14: </span>        :sitemap-title "Blog Site"
-<span class="linenr">15: </span>        :sitemap-style "list"
-<span class="linenr">16: </span>        :sitemap-sort-folders "first"
-<span class="linenr">17: </span>        :author "AUTHOR"
-<span class="linenr">18: </span>        :email "NAME@email"
-<span class="linenr">19: </span>        :html-head "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/&gt;"
-<span class="linenr">20: </span>        :html-postamble nil
+<span class="linenr"> 5: </span>        (<span style="color: #8b2252;">"org"</span>
+<span class="linenr"> 6: </span>        <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/blog/org"</span>
+<span class="linenr"> 7: </span>        <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/blog/html"</span>
+<span class="linenr"> 8: </span>        <span style="color: #483d8b;">:recursive</span> t
+<span class="linenr"> 9: </span>        <span style="color: #483d8b;">:publishing-function</span> org-html-publish-to-html
+<span class="linenr">10: </span>        <span style="color: #483d8b;">:headline-levels</span> 6
+<span class="linenr">11: </span>        <span style="color: #483d8b;">:section-numbers</span> nil
+<span class="linenr">12: </span>        <span style="color: #483d8b;">:auto-sitemap</span> t
+<span class="linenr">13: </span>        <span style="color: #483d8b;">:sitemap-filename</span> <span style="color: #8b2252;">"index.org"</span>
+<span class="linenr">14: </span>        <span style="color: #483d8b;">:sitemap-title</span> <span style="color: #8b2252;">"Blog Site"</span>
+<span class="linenr">15: </span>        <span style="color: #483d8b;">:sitemap-style</span> <span style="color: #8b2252;">"list"</span>
+<span class="linenr">16: </span>        <span style="color: #483d8b;">:sitemap-sort-folders</span> <span style="color: #8b2252;">"first"</span>
+<span class="linenr">17: </span>        <span style="color: #483d8b;">:author</span> <span style="color: #8b2252;">"AUTHOR"</span>
+<span class="linenr">18: </span>        <span style="color: #483d8b;">:email</span> <span style="color: #8b2252;">"NAME@email"</span>
+<span class="linenr">19: </span>        <span style="color: #483d8b;">:html-head</span> <span style="color: #8b2252;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/&gt;"</span>
+<span class="linenr">20: </span>        <span style="color: #483d8b;">:html-postamble</span> nil
 <span class="linenr">21: </span>        )
-<span class="linenr">22: </span>        ("attachment"
-<span class="linenr">23: </span>         :base-directory "~/blog/org"
-<span class="linenr">24: </span>         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-<span class="linenr">25: </span>         :publishing-directory "~/blog/html"
-<span class="linenr">26: </span>         :recursive t
-<span class="linenr">27: </span>         :publishing-function org-publish-attachment
+<span class="linenr">22: </span>        (<span style="color: #8b2252;">"attachment"</span>
+<span class="linenr">23: </span>         <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/blog/org"</span>
+<span class="linenr">24: </span>         <span style="color: #483d8b;">:base-extension</span> <span style="color: #8b2252;">"css</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">js</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">png</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">jpg</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">gif</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">pdf</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">mp3</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">ogg</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">swf"</span>
+<span class="linenr">25: </span>         <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/blog/html"</span>
+<span class="linenr">26: </span>         <span style="color: #483d8b;">:recursive</span> t
+<span class="linenr">27: </span>         <span style="color: #483d8b;">:publishing-function</span> org-publish-attachment
 <span class="linenr">28: </span>         )
-<span class="linenr">29: </span>        ("blog" :components ("org" "attachment"))
+<span class="linenr">29: </span>        (<span style="color: #8b2252;">"blog"</span> <span style="color: #483d8b;">:components</span> (<span style="color: #8b2252;">"org"</span> <span style="color: #8b2252;">"attachment"</span>))
 <span class="linenr">30: </span>        ))
 <span class="linenr">31: </span>...
 </pre>
@@ -289,7 +289,7 @@ Enter the local directory, e.g. <code>~/blog</code> and clone the both branches.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">cd ~/blog
+<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/blog
 git clone -b master git@github.com:USERNAME/USERNAME.github.io html
 git clone -b org git@github.com:USERNAME/USERNAME.github.io org
 </pre>
@@ -310,11 +310,11 @@ For sake of publishing beautiful webpages, you can customize your css and drop i
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sh">cd ~/blog/org
-git commit -am "A new blog post"
+<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/blog/org
+git commit -am <span style="color: #8b2252;">"A new blog post"</span>
 git push origin org
-cd ~/blog/html
-git commit -am "A new blog post"
+<span style="color: #483d8b;">cd</span> ~/blog/html
+git commit -am <span style="color: #8b2252;">"A new blog post"</span>
 git push origin master
 </pre>
 </div>

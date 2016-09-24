@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - YCMD</title>
@@ -199,9 +199,9 @@ Install the <code>YCMD</code> to <code>~/.emacs.d/ycmd</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">cd ~/.emacs.d
+<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/.emacs.d
 git clone https://github.com/Valloric/ycmd.git
-cd ycmd
+<span style="color: #483d8b;">cd</span> ycmd
 git submodule update --init --recursive
 ./build.py --clang-completer --system-libclang --system-boost
 </pre>
@@ -229,15 +229,15 @@ After that, customize it to meet your requirements.
 
 <pre class="src src-emacs-lisp">...
 
-;;; Company
+<span style="color: #b22222;">;;; </span><span style="color: #b22222;">Company</span>
 (add-hook 'after-init-hook 'global-company-mode) 
-(setq company-idle-delay 0) 
+(<span style="color: #a020f0;">setq</span> company-idle-delay 0) 
 (company-auctex-init) 
 
-;;; Ycmd
+<span style="color: #b22222;">;;; </span><span style="color: #b22222;">Ycmd</span>
 (add-hook 'after-init-hook #'global-ycmd-mode)
-(set-variable 'ycmd-server-command '("python2" "/home/shaka/.emacs.d/ycmd/ycmd"))
-(set-variable 'ycmd-global-config "/home/shaka/.emacs.d/ycmd/global_config.py") 
+(set-variable 'ycmd-server-command '(<span style="color: #8b2252;">"python2"</span> <span style="color: #8b2252;">"/home/shaka/.emacs.d/ycmd/ycmd"</span>))
+(set-variable 'ycmd-global-config <span style="color: #8b2252;">"/home/shaka/.emacs.d/ycmd/global_config.py"</span>) 
 (company-ycmd-setup)
 
 ...

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>NFS</title>
@@ -183,18 +183,18 @@ Edit <code>/etc/exports</code>, e.g.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"># /etc/exports - exports(5) - directories exported to NFS clients
-#
-# Example for NFSv2 and NFSv3:
-#  /srv/home        hostname1(rw,sync) hostname2(ro,sync)
-# Example for NFSv4:
-#  /srv/nfs4        hostname1(rw,sync,fsid=0)
-#  /srv/nfs4/home   hostname1(rw,sync,nohide)
-# Using Kerberos and integrity checking:
-#  /srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)
-#  /srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)
-#
-# Use `exportfs -arv` to reload.
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">/etc/exports - exports(5) - directories exported to NFS clients</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Example for NFSv2 and NFSv3:</span>
+<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/home        hostname1(rw,sync) hostname2(ro,sync)</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Example for NFSv4:</span>
+<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/nfs4        hostname1(rw,sync,fsid=0)</span>
+<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/nfs4/home   hostname1(rw,sync,nohide)</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Using Kerberos and integrity checking:</span>
+<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)</span>
+<span style="color: #b22222;">#  </span><span style="color: #b22222;">/srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Use `exportfs -arv` to reload.</span>
 
 /home 192.168.2.0/24(rw,async,subtree_check,no_root_squash)
 /opt 192.168.2.0/24(ro,async,subtree_check,no_root_squash)

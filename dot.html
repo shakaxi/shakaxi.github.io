@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>DOT</title>
@@ -189,8 +189,8 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">NODE_NAME [ATTRIBUTE1=VALUE1, ATTRIBUTE2=VALUE2, ...];
-NODE_NAME1 -&gt; NODE_NAME2 [ATTRIBUTE1=VALUE1, ATTRIBUTE2=VALUE2, ...];
+<pre class="src src-sh">NODE_NAME [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
+NODE_NAME1 -&gt; NODE_NAME2 [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
 </pre>
 </div>
 <p>
@@ -198,8 +198,8 @@ And the default values can be specified as below. And they will take effect afte
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">node [ATTRIBUTE1=VALUE1, ATTRIBUTE2=VALUE2, ...];
-edge [ATTRIBUTE1=VALUE1, ATTRIBUTE2=VALUE2, ...];
+<pre class="src src-sh">node [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
+edge [<span style="color: #a0522d;">ATTRIBUTE1</span>=VALUE1, <span style="color: #a0522d;">ATTRIBUTE2</span>=VALUE2, ...];
 </pre>
 </div>
 <div id="outline-container-orgheadline1" class="outline-2">
@@ -225,7 +225,7 @@ A graph can be directed or undirected, corresponding to <code>digraph</code> and
 <div class="outline-text-3" id="text-orgheadline3">
 <div class="org-src-container">
 
-<pre class="src src-sh">size="x,y"
+<pre class="src src-sh"><span style="color: #a0522d;">size</span>=<span style="color: #8b2252;">"x,y"</span>
 </pre>
 </div>
 </div>
@@ -390,7 +390,7 @@ This attribute is used to set arrowheads, which can be
 <div class="outline-text-3" id="text-orgheadline20">
 <div class="org-src-container">
 
-<pre class="src src-sh">NODE_NAME1 -&gt; NODE_NAME2 [headport/tailport=e/w/n/s/se/sw/ne/nw, OTHER_ATTRIBUTE=VALUE, ...];
+<pre class="src src-sh">NODE_NAME1 -&gt; NODE_NAME2 [headport/tailport=e/w/n/s/se/sw/ne/nw, <span style="color: #a0522d;">OTHER_ATTRIBUTE</span>=VALUE, ...];
 </pre>
 </div>
 </div>

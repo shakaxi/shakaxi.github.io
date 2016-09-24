@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>PBS and Maui</title>
@@ -218,7 +218,7 @@ The built-in scheduler is a simple FIFO scheduler. However, other schedulers can
 <h2 id="orgheadline2">Installation</h2>
 <div class="outline-text-2" id="text-orgheadline2">
 <p>
-For <a href="https://wiki.archlinux.org/">ArchLinux</a>, Torque and Maui can be easily installed from <i>AUR</i>.
+For <a href="https://wiki.archlinux.org">ArchLinux</a>, Torque and Maui can be easily installed from <i>AUR</i>.
 </p>
 <div class="org-src-container">
 
@@ -241,8 +241,8 @@ yaourt maui
 <div class="outline-text-4" id="text-orgheadline3">
 <div class="org-src-container">
 
-<pre class="src src-sh">node1 np=2
-node2 np=4
+<pre class="src src-sh">node1 <span style="color: #a0522d;">np</span>=2
+node2 <span style="color: #a0522d;">np</span>=4
 ...
 </pre>
 </div>
@@ -253,48 +253,48 @@ node2 np=4
 <div class="outline-text-4" id="text-orgheadline4">
 <div class="org-src-container">
 
-<pre class="src src-sh">qmgr -c 'p s'
-#
-# Create queues and set their attributes.
-#
-#
-# Create and define queue COMMON
-#
+<pre class="src src-sh">qmgr -c <span style="color: #8b2252;">'p s'</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Create queues and set their attributes.</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Create and define queue COMMON</span>
+<span style="color: #b22222;">#</span>
 create queue COMMON
-set queue COMMON queue_type = Execution
-set queue COMMON resources_default.nodes = 1
-set queue COMMON resources_default.walltime = 240:00:00
-set queue COMMON enabled = True
-set queue COMMON started = True
-#
-# Create and define queue VIP
-#
+<span style="color: #483d8b;">set</span> queue COMMON queue_type = Execution
+<span style="color: #483d8b;">set</span> queue COMMON resources_default.nodes = 1
+<span style="color: #483d8b;">set</span> queue COMMON resources_default.walltime = 240:00:00
+<span style="color: #483d8b;">set</span> queue COMMON enabled = True
+<span style="color: #483d8b;">set</span> queue COMMON started = True
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Create and define queue VIP</span>
+<span style="color: #b22222;">#</span>
 create queue VIP
-set queue VIP queue_type = Execution
-set queue VIP resources_default.nodes = 1
-set queue VIP resources_default.walltime = 240:00:00
-set queue VIP enabled = True
-set queue VIP started = True
-#
-# Set server attributes.
-#
-set server scheduling = True
-set server acl_hosts = head
-set server default_queue = COMMON
-set server log_events = 511
-set server mail_from = server
-set server query_other_jobs = True
-set server scheduler_iteration = 600
-set server node_check_rate = 150
-set server tcp_timeout = 300
-set server job_stat_rate = 45
-set server poll_jobs = True
-set server mom_job_sync = True
-set server mail_domain = example.com
-set server keep_completed = 0
-set server next_job_number = 1
-set server moab_array_compatible = True
-set server nppcu = 1
+<span style="color: #483d8b;">set</span> queue VIP queue_type = Execution
+<span style="color: #483d8b;">set</span> queue VIP resources_default.nodes = 1
+<span style="color: #483d8b;">set</span> queue VIP resources_default.walltime = 240:00:00
+<span style="color: #483d8b;">set</span> queue VIP enabled = True
+<span style="color: #483d8b;">set</span> queue VIP started = True
+<span style="color: #b22222;">#</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Set server attributes.</span>
+<span style="color: #b22222;">#</span>
+<span style="color: #483d8b;">set</span> server scheduling = True
+<span style="color: #483d8b;">set</span> server acl_hosts = head
+<span style="color: #483d8b;">set</span> server default_queue = COMMON
+<span style="color: #483d8b;">set</span> server log_events = 511
+<span style="color: #483d8b;">set</span> server mail_from = server
+<span style="color: #483d8b;">set</span> server query_other_jobs = True
+<span style="color: #483d8b;">set</span> server scheduler_iteration = 600
+<span style="color: #483d8b;">set</span> server node_check_rate = 150
+<span style="color: #483d8b;">set</span> server tcp_timeout = 300
+<span style="color: #483d8b;">set</span> server job_stat_rate = 45
+<span style="color: #483d8b;">set</span> server poll_jobs = True
+<span style="color: #483d8b;">set</span> server mom_job_sync = True
+<span style="color: #483d8b;">set</span> server mail_domain = example.com
+<span style="color: #483d8b;">set</span> server keep_completed = 0
+<span style="color: #483d8b;">set</span> server next_job_number = 1
+<span style="color: #483d8b;">set</span> server moab_array_compatible = True
+<span style="color: #483d8b;">set</span> server nppcu = 1
 </pre>
 </div>
 </div>
@@ -308,8 +308,8 @@ Append following lines to <code>maui.cfg</code>.
 <div class="org-src-container">
 
 <pre class="src src-sh">CLASSWEIGHT   1
-CLASSCFG[COMMON]   PRIORITY=1
-CLASSCFG[VIP]   PRIORITY=100000
+CLASSCFG[COMMON]   <span style="color: #a0522d;">PRIORITY</span>=1
+CLASSCFG[VIP]   <span style="color: #a0522d;">PRIORITY</span>=100000
 CLASSLIST   [COMMON VIP]
 </pre>
 </div>
@@ -334,8 +334,8 @@ CLASSLIST   [COMMON VIP]
 <div class="outline-text-4" id="text-orgheadline8">
 <div class="org-src-container">
 
-<pre class="src src-sh">$pbssever head
-$logevent 255
+<pre class="src src-sh">$<span style="color: #a0522d;">pbssever</span> head
+$<span style="color: #a0522d;">logevent</span> 255
 </pre>
 </div>
 </div>
@@ -357,17 +357,17 @@ Create <code>/etc/systemd/system/torque-server.service</code>
 <div class="org-src-container">
 
 <pre class="src src-sh">[Unit]
-Description=TORQUE server
-Wants=basic.target
-After=basic.target network.target
+<span style="color: #a0522d;">Description</span>=TORQUE server
+<span style="color: #a0522d;">Wants</span>=basic.target
+<span style="color: #a0522d;">After</span>=basic.target network.target
 
 [Service]
-Type=forking
-PIDFile=/var/spool/torque/server_priv/server.lock
-ExecStart=/usr/local/sbin/pbs_server
+<span style="color: #a0522d;">Type</span>=forking
+<span style="color: #a0522d;">PIDFile</span>=/var/spool/torque/server_priv/server.lock
+<span style="color: #a0522d;">ExecStart</span>=/usr/local/sbin/pbs_server
 
 [Install]
-WantedBy=multi-user.target
+<span style="color: #a0522d;">WantedBy</span>=multi-user.target
 </pre>
 </div>
 </div>
@@ -384,17 +384,17 @@ Create <code>/etc/systemd/system/torque-maui.service</code>
 <div class="org-src-container">
 
 <pre class="src src-sh">[Unit]
-Description=Maui scheduler
-Wants=torque-server.service
-After=torque-server.service
+<span style="color: #a0522d;">Description</span>=Maui scheduler
+<span style="color: #a0522d;">Wants</span>=torque-server.service
+<span style="color: #a0522d;">After</span>=torque-server.service
 
 [Service]
-Type=forking
-PIDFile=/usr/local/maui/maui.pid
-ExecStart=/usr/local/maui/sbin/maui
+<span style="color: #a0522d;">Type</span>=forking
+<span style="color: #a0522d;">PIDFile</span>=/usr/local/maui/maui.pid
+<span style="color: #a0522d;">ExecStart</span>=/usr/local/maui/sbin/maui
 
 [Install]
-WantedBy=multi-user.target
+<span style="color: #a0522d;">WantedBy</span>=multi-user.target
 </pre>
 </div>
 </div>
@@ -408,17 +408,17 @@ Create <code>/etc/systemd/system/torque-scheduler.service</code>
 <div class="org-src-container">
 
 <pre class="src src-sh">[Unit]
-Description=TORQUE scheduler
-Wants=torque-server.service
-After=torque-server.service
+<span style="color: #a0522d;">Description</span>=TORQUE scheduler
+<span style="color: #a0522d;">Wants</span>=torque-server.service
+<span style="color: #a0522d;">After</span>=torque-server.service
 
 [Service]
-Type=forking
-PIDFile=/var/spool/torque/sched_priv/sched.lock
-ExecStart=/usr/local/sbin/pbs_sched
+<span style="color: #a0522d;">Type</span>=forking
+<span style="color: #a0522d;">PIDFile</span>=/var/spool/torque/sched_priv/sched.lock
+<span style="color: #a0522d;">ExecStart</span>=/usr/local/sbin/pbs_sched
 
 [Install]
-WantedBy=multi-user.target
+<span style="color: #a0522d;">WantedBy</span>=multi-user.target
 </pre>
 </div>
 </div>
@@ -437,17 +437,17 @@ Create <code>/etc/systemd/system/torque-node.service</code>
 <div class="org-src-container">
 
 <pre class="src src-sh">[Unit]
-Description=TORQUE node
-Wants=basic.target
-After=basic.target network.target
+<span style="color: #a0522d;">Description</span>=TORQUE node
+<span style="color: #a0522d;">Wants</span>=basic.target
+<span style="color: #a0522d;">After</span>=basic.target network.target
 
 [Service]
-Type=forking
-PIDFile=/var/spool/torque/mom_priv/mom.lock
-ExecStart=/usr/local/sbin/pbs_mom
+<span style="color: #a0522d;">Type</span>=forking
+<span style="color: #a0522d;">PIDFile</span>=/var/spool/torque/mom_priv/mom.lock
+<span style="color: #a0522d;">ExecStart</span>=/usr/local/sbin/pbs_mom
 
 [Install]
-WantedBy=multi-user.target
+<span style="color: #a0522d;">WantedBy</span>=multi-user.target
 </pre>
 </div>
 </div>

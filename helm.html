@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Helm</title>
@@ -159,7 +159,7 @@ After that, it should be configured accordingly. Without loss of generality, fol
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(require 'helm-config)
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">helm-config</span>)
 (helm-mode 1)
 (define-key global-map [remap find-file] 'helm-find-files)
 (define-key global-map [remap occur] 'helm-occur)
@@ -169,12 +169,12 @@ After that, it should be configured accordingly. Without loss of generality, fol
 (define-key global-map [remap yank-pop] 'helm-show-kill-ring)
 (define-key global-map [remap execute-extended-command] 'helm-M-x)
 
-;; fuzzy match
-(setq helm-M-x-fuzzy-match t
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">fuzzy match</span>
+(<span style="color: #a020f0;">setq</span> helm-M-x-fuzzy-match t
       helm-buffers-fuzzy-matching t
       helm-recentf-fuzzy-match t)
 
-;; follow mode
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">follow mode</span>
 (helm-follow-mode-persistent t)
 </pre>
 </div>
@@ -200,12 +200,12 @@ Then, following two lines of configurations can be inserted to the configuration
 </p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
-(setq helm-ag-command-option "--ignore *~ --ignore *html --ignore *o")
-(setq helm-ag-insert-at-point (quote symbol))
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">setq</span> helm-ag-base-command <span style="color: #8b2252;">"ag --nocolor --nogroup --ignore-case"</span>)
+(<span style="color: #a020f0;">setq</span> helm-ag-command-option <span style="color: #8b2252;">"--ignore *~ --ignore *html --ignore *o"</span>)
+(<span style="color: #a020f0;">setq</span> helm-ag-insert-at-point (<span style="color: #a020f0;">quote</span> symbol))
 
-(global-set-key (kbd "M-i") 'helm-do-ag-this-file)
-(global-set-key (kbd "M-I") 'helm-do-ag-project-root)
+(global-set-key (kbd <span style="color: #8b2252;">"M-i"</span>) 'helm-do-ag-this-file)
+(global-set-key (kbd <span style="color: #8b2252;">"M-I"</span>) 'helm-do-ag-project-root)
 </pre>
 </div>
 <div id="footnotes">

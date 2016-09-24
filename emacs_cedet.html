@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>CapsLock as Control</title>
+<title>Emacs - CEDET</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,58 +144,94 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">CapsLock as Control</h1>
+<h1 class="title">Emacs - CEDET</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Background</a></li>
-<li><a href="#orgheadline2">Installation and configuration</a></li>
+<li><a href="#orgheadline1">Introduction</a></li>
+<li><a href="#orgheadline2">Installation</a></li>
+<li><a href="#orgheadline3">Configuration</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Background</h2>
+<h2 id="orgheadline1">Introduction</h2>
 <div class="outline-text-2" id="text-orgheadline1">
 <p>
-Usually, key <i>CapsLock</i> is seldom used in our daily utilization, while key <i>Control</i> is frequently used, esp. for Emacs users. Therefore, we can turn <i>Capslock</i> into an additional <i>Control</i>.
+CEDET<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> stands for collection of Emacs development environment tools, which is written to make Emacs become a perfect development environment. With the aid of CEDET, a variety of amazing features can be provided, e.g. code completion, browsing, tag jumping, drawing UML diagram, etc.
 </p>
 </div>
 </div>
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Installation and configuration</h2>
+<h2 id="orgheadline2">Installation</h2>
 <div class="outline-text-2" id="text-orgheadline2">
 <p>
-Install <i>xmodmap</i> software, e.g. run the following command for ArchLinux.
+Through following commands, the latest version of CEDET can be installed into <code>~/.emacs.d/cedet</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">pacman -S xorg-xmodmap
-</pre>
-</div>
-
-<p>
-Create a <code>~/.Xmodmap</code> with its contents as follows
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">remove Lock = Caps_Lock
-keysym Caps_Lock = Control_L
-add Control = Control_L
-</pre>
-</div>
-
-<p>
-Make it take effect at every boot by appending the following line to <code>~/.xprofile</code>.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">xmodmap ~/.Xmodmap
+<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/.emacs.d
+git clone http://git.code.sf.net/p/cedet/git cedet
+make
 </pre>
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Configuration</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">load CEDET</span>
+(add-to-list 'load-path <span style="color: #8b2252;">"~/.emacs.d/cedet"</span>)
+(load-file <span style="color: #8b2252;">"~/.emacs.d/cedet/cedet-devel-load.el"</span>)
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable the required features</span>
+(semantic-load-enable-minimum-features)
+(semantic-load-enable-code-helpers)
+(semantic-load-enable-gaudy-code-helpers)
+(semantic-load-enable-excessive-code-helpers)
+(semantic-load-enable-semantic-debugging-helpers)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t) 
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t) 
+(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t) 
+(add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-show-unmatched-syntax-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-show-parser-state-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode t)
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable semantic mode</span>
+(semantic-mode 1)
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.</span>
+(<span style="color: #a020f0;">setq</span> semantic-c-dependency-system-include-path (<span style="color: #a020f0;">quote</span> (<span style="color: #8b2252;">"/usr/include"</span> <span style="color: #8b2252;">"/usr/local/include"</span> <span style="color: #8b2252;">"/opt/itpp/include"</span>)))
+(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">semantic/ia</span>)
+(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">semantic/bovine/gcc</span>)
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">jump to tags</span>
+(global-set-key (kbd <span style="color: #8b2252;">"M-."</span>) 'semantic-ia-fast-jump)
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">jump back from tags</span>
+(global-set-key (kbd <span style="color: #8b2252;">"M-*"</span>) 'semantic-mrub-switch-tags)
+</pre>
 </div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://cedet.sourceforge.net/">http://cedet.sourceforge.net/</a>
+</p></div></div>
+
+
+</div>
+</div></div>
 </body>
 </html>

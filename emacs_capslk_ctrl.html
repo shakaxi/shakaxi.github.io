@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Emacs - CEDET</title>
+<title>Emacs - CapsLock as Control</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,94 +144,58 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Emacs - CEDET</h1>
+<h1 class="title">Emacs - CapsLock as Control</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Introduction</a></li>
-<li><a href="#orgheadline2">Installation</a></li>
-<li><a href="#orgheadline3">Configuration</a></li>
+<li><a href="#orgheadline1">Background</a></li>
+<li><a href="#orgheadline2">Installation and configuration</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Introduction</h2>
+<h2 id="orgheadline1">Background</h2>
 <div class="outline-text-2" id="text-orgheadline1">
 <p>
-CEDET<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> stands for collection of Emacs development environment tools, which is written to make Emacs become a perfect development environment. With the aid of CEDET, a variety of amazing features can be provided, e.g. code completion, browsing, tag jumping, drawing UML diagram, etc.
+Usually, key <i>CapsLock</i> is seldom used in our daily utilization, while key <i>Control</i> is frequently used, esp. for Emacs users. Therefore, we can turn <i>Capslock</i> into an additional <i>Control</i>.
 </p>
 </div>
 </div>
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Installation</h2>
+<h2 id="orgheadline2">Installation and configuration</h2>
 <div class="outline-text-2" id="text-orgheadline2">
 <p>
-Through following commands, the latest version of CEDET can be installed into <code>~/.emacs.d/cedet</code>.
+Install <i>xmodmap</i> software, e.g. run the following command for ArchLinux.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">cd ~/.emacs.d
-git clone http://git.code.sf.net/p/cedet/git cedet
-make
+<pre class="src src-sh">pacman -S xorg-xmodmap
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Configuration</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+
+<p>
+Create a <code>~/.Xmodmap</code> with its contents as follows
+</p>
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">;; load CEDET
-(add-to-list 'load-path "~/.emacs.d/cedet")
-(load-file "~/.emacs.d/cedet/cedet-devel-load.el")
+<pre class="src src-sh">remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+</pre>
+</div>
 
-;; enable the required features
-(semantic-load-enable-minimum-features)
-(semantic-load-enable-code-helpers)
-(semantic-load-enable-gaudy-code-helpers)
-(semantic-load-enable-excessive-code-helpers)
-(semantic-load-enable-semantic-debugging-helpers)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t) 
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t) 
-(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t) 
-(add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-show-unmatched-syntax-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-show-parser-state-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode t)
+<p>
+Make it take effect at every boot by appending the following line to <code>~/.xprofile</code>.
+</p>
+<div class="org-src-container">
 
-;; enable semantic mode
-(semantic-mode 1)
-
-;; enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.
-(setq semantic-c-dependency-system-include-path (quote ("/usr/include" "/usr/local/include" "/opt/itpp/include")))
-(require 'semantic/ia)
-(require 'semantic/bovine/gcc)
-
-;; jump to tags
-(global-set-key (kbd "M-.") 'semantic-ia-fast-jump)
-
-;; jump back from tags
-(global-set-key (kbd "M-*") 'semantic-mrub-switch-tags)
+<pre class="src src-sh">xmodmap ~/.Xmodmap
 </pre>
 </div>
 </div>
 </div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-<a href="http://cedet.sourceforge.net/">http://cedet.sourceforge.net/</a>
-</p></div></div>
-
-
 </div>
-</div></div>
 </body>
 </html>

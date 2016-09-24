@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-07 Wed 19:35 -->
+<!-- 2016-09-24 Sat 19:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>PGF/Tikz</title>
+<title>LaTeX - PGF/Tikz</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,7 +144,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">PGF/Tikz</h1>
+<h1 class="title">LaTeX - PGF/Tikz</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -179,15 +179,29 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">Setting</h2>
 <div class="outline-text-2" id="text-orgheadline1">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
+...
+<span style="color: #696969;">\tikz</span> ...
+<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}
+...
+<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline2" class="outline-2">
 <h2 id="orgheadline2">Style</h2>
 <div class="outline-text-2" id="text-orgheadline2">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\tikzstyle</span> newstylename=[option1=value1, option2=value2, ...]
+<span style="color: #696969;">\tikzstyle</span> existingstylename+=[option1=value1, option2=value2, ...]
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline3" class="outline-2">
 <h2 id="orgheadline3">Coordinate</h2>
 <div class="outline-text-2" id="text-orgheadline3">
@@ -200,9 +214,17 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgheadline4" class="outline-2">
 <h2 id="orgheadline4">List</h2>
 <div class="outline-text-2" id="text-orgheadline4">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #b22222;">% </span><span style="color: #b22222;">step length = 1</span>
+{a, ..., b}
+...
+<span style="color: #b22222;">% </span><span style="color: #b22222;">step length = d</span>
+{a, a + d, ..., b}
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline5" class="outline-2">
 <h2 id="orgheadline5">Arrow</h2>
 <div class="outline-text-2" id="text-orgheadline5">
@@ -221,73 +243,151 @@ for the JavaScript code in this tag.
 </div><div id="outline-container-orgheadline6" class="outline-3">
 <h3 id="orgheadline6">Line</h3>
 <div class="outline-text-3" id="text-orgheadline6">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline7" class="outline-3">
 <h3 id="orgheadline7">Curve</h3>
 <div class="outline-text-3" id="text-orgheadline7">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
+<span style="color: #696969;">\draw</span> (x1, y1) .. controls (x2, y2) .. (x3, y3);
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline8" class="outline-3">
 <h3 id="orgheadline8">Grid</h3>
 <div class="outline-text-3" id="text-orgheadline8">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> [step=s] (x1, y1) grid (x2, y2);
+<span style="color: #696969;">\draw</span> [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline9" class="outline-3">
 <h3 id="orgheadline9">Arc</h3>
 <div class="outline-text-3" id="text-orgheadline9">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) arc (start_angle: end_angle: radius);
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline10" class="outline-3">
 <h3 id="orgheadline10">Rectangle</h3>
 <div class="outline-text-3" id="text-orgheadline10">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) rectangle (x2, y2);
+<span style="color: #696969;">\fill</span> [color] (x1, y1) rectangle (x2, y2);
+<span style="color: #696969;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) rectangle (x2, y2);
+<span style="color: #696969;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) rectangle (x2, y2);
+<span style="color: #696969;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) rectangle (x2, y2);
+<span style="color: #696969;">\clip</span> (x1, y1) rectangle (x2, y2);
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline11" class="outline-3">
 <h3 id="orgheadline11">Circle</h3>
 <div class="outline-text-3" id="text-orgheadline11">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) circle (radius);
+<span style="color: #696969;">\fill</span> [color] (x1, y1) circle (radius);
+<span style="color: #696969;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) circle (radius);
+<span style="color: #696969;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) circle (radius);
+<span style="color: #696969;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) circle (radius);
+<span style="color: #696969;">\clip</span> (x1, y1) circle (radius);
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline12" class="outline-3">
 <h3 id="orgheadline12">Ellipse</h3>
 <div class="outline-text-3" id="text-orgheadline12">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #696969;">\fill</span> [color] (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #696969;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #696969;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #696969;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #696969;">\clip</span> (x1, y1) ellipse (x_radius and y_radius);
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline13" class="outline-3">
 <h3 id="orgheadline13">Node</h3>
 <div class="outline-text-3" id="text-orgheadline13">
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex">(x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
+...
+<span style="color: #696969;">\node</span> at (x0, y0) (node_name) {node_label};
+</pre>
+</div>
+</div>
 <div id="outline-container-orgheadline14" class="outline-4">
 <h4 id="orgheadline14">Connecting nodes with</h4>
 <div class="outline-text-4" id="text-orgheadline14">
 <ul class="org-ul">
 <li>Lines</li>
 </ul>
+<div class="org-src-container">
+
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> [arrow] (node_name_A) to (node_name_B);
+<span style="color: #696969;">\draw</span> (node_name_A) edge [arrow, color] (node_name_B);
+</pre>
+</div>
 <ul class="org-ul">
 <li>Curves</li>
 </ul>
-</div>
-</div>
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\draw</span> [arrow] (node_name_A) to [bend left/right=30] (node_name_B);
+<span style="color: #696969;">\draw</span> [arrow] (node_name_A) to [in=30, out=60] (node_name_B);
+<span style="color: #696969;">\draw</span> (node_name_A) edge [arrow, color, in=30, out=60] (node_name_B);
+<span style="color: #696969;">\draw</span> (node_name_A) edge [arrow, color, bend left/right=30] (node_name_B);
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline16" class="outline-2">
 <h2 id="orgheadline16">Refer to nodes outside current picture</h2>
 <div class="outline-text-2" id="text-orgheadline16">
-</div>
-</div>
+<div class="org-src-container">
 
+<pre class="src src-latex"><span style="color: #696969;">\tikzstyle</span>{every picture}+=[remember picture]
+...
+<span style="color: #696969;">\tikz</span>[overlay]
+<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}[overlay]
+...
+<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgheadline17" class="outline-2">
 <h2 id="orgheadline17">Mix tikz command with LaTeX</h2>
 <div class="outline-text-2" id="text-orgheadline17">
+<div class="org-src-container">
+
+<pre class="src src-latex"><span style="color: #696969;">\tikz</span> [baseline] ...
+</pre>
+</div>
 </div>
 </div>
 </div>
