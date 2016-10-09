@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 22:58 -->
+<!-- 2016-10-09 Sun 21:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Company</title>
@@ -210,10 +210,11 @@ After the installation, following configurations should be added in <code>~/.ema
 (<span style="color: #a020f0;">setq</span> company-idle-delay 0)
 
 <span style="color: #b22222;">;; </span><span style="color: #b22222;">move the selection to the next/previous candidate using C-n/p instead of M-n/p</span>
-(<span style="color: #a020f0;">with-eval-after-load</span> 'company  (define-key company-active-map (kbd <span style="color: #8b2252;">"M-n"</span>) nil)
-                      (define-key company-active-map (kbd <span style="color: #8b2252;">"M-p"</span>) nil)
-                      (define-key company-active-map (kbd <span style="color: #8b2252;">"C-n"</span>) #'company-select-next)
-                      (define-key company-active-map (kbd <span style="color: #8b2252;">"C-p"</span>) #'company-select-previous))
+(<span style="color: #a020f0;">with-eval-after-load</span> 'company
+  (define-key company-active-map (kbd <span style="color: #8b2252;">"M-n"</span>) nil)
+  (define-key company-active-map (kbd <span style="color: #8b2252;">"M-p"</span>) nil)
+  (define-key company-active-map (kbd <span style="color: #8b2252;">"C-n"</span>) #'company-select-next)
+  (define-key company-active-map (kbd <span style="color: #8b2252;">"C-p"</span>) #'company-select-previous))
 </pre>
 </div>
 </div>
@@ -230,7 +231,7 @@ Clang support is out-of-the-box. Additional package installation is not necessar
 (<span style="color: #a020f0;">setq</span> company-backends (delete 'company-semantic company-backends))
 
 <span style="color: #b22222;">;; </span><span style="color: #b22222;">make company-clang find IT++ headers and support c++11.</span>
-(<span style="color: #a020f0;">setq</span> company-clang-arguments (<span style="color: #a020f0;">quote</span> (<span style="color: #8b2252;">"-I/opt/itpp/include/"</span> <span style="color: #8b2252;">"-std=c++11"</span>)))
+(<span style="color: #a020f0;">setq</span> company-clang-arguments (<span style="color: #a020f0;">quote</span> (<span style="color: #8b2252;">"-I/opt/itpp/include/"</span> <span style="color: #8b2252;">"-std=c++14"</span>)))
 </pre>
 </div>
 </div>

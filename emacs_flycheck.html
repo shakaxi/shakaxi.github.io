@@ -6,7 +6,7 @@
 <!-- 2016-10-09 Sun 21:38 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>Emacs - Flycheck</title>
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="shaka" />
 <style type="text/css">
@@ -144,55 +144,68 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
-<ul class="org-ul">
-<li><a href="archlinuxcn.html">ArchLinuxcn</a></li>
-<li><a href="bash.html">Bash</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="d2d.html">D2D</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="discovery_signal.html">Discovery Signal</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_capslk_ctrl.html">Emacs - CapsLock as Control</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_org_ioslide.html">Emacs - Orgmode Export to HTML5 Slide</a></li>
-<li><a href="ycmd.html">Emacs - YCMD</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="itpp.html">IT++</a></li>
-<li><a href="arch_inst.html">Installation Guide for Arch Linux</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="mobility_mgmt.html">Mobility Management in LTE</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="zc.html">ZC</a></li>
+<h1 class="title">Emacs - Flycheck</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">Introduction</a></li>
+<li><a href="#orgheadline2">Installation</a></li>
+<li><a href="#orgheadline3">Configuration</a></li>
 </ul>
 </div>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Introduction</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+<i>Flycheck</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a on-the-fly syntax checking extension of Emacs, which supports a variety number of programming languages. It greatly facilitates the programming experience.
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Installation</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+Flycheck can be directly installed via <i>ELPA</i>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">M-x package-install
+flycheck
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Configuration</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">Enable global flycheck mode</span>
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Clang support (C++14)</span>
+(<span style="color: #a020f0;">setq</span> flycheck-clang-language-standard <span style="color: #8b2252;">"c++14"</span>)
+
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Elpy support (use flycheck instead of flymake)</span>
+(<span style="color: #a020f0;">setq</span> elpy-modules (delete 'elpy-module-flymake elpy-modules))
+(add-hook 'elpy-mode-hook 'flycheck-mode)
+</pre>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://www.flycheck.org/">http://www.flycheck.org/</a>
+</p></div></div>
+
+
+</div>
+</div></div>
 </body>
 </html>

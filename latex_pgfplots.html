@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 22:57 -->
+<!-- 2016-09-25 Sun 17:22 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>LaTeX - Pgfplots</title>
@@ -220,7 +220,7 @@ Templates for pgfplots usage can be presented as follows.
 <h3 id="orgheadline4"><code>AXIS-TYPE</code></h3>
 <div class="outline-text-3" id="text-orgheadline4">
 <p>
-The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis</code>.
+The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis/polaraxis</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>
 </div>
 </div>
@@ -228,7 +228,7 @@ The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis</code>.
 <h3 id="orgheadline5"><code>FORMULA</code></h3>
 <div class="outline-text-3" id="text-orgheadline5">
 <ul class="org-ul">
-<li>plain function<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, e.g.</li>
+<li>plain function<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, e.g.</li>
 </ul>
 <div class="org-src-container">
 
@@ -294,17 +294,30 @@ a2 b2 c2
 <li><code>xtick/ytick={START, START+DELTA, ..., END}</code> separates the ticks between <code>START</code> and <code>END</code> with step length <code>DELTA</code>.</li>
 <li><code>xticklabels/yticklabels={a, b, c, ...}</code></li>
 <li><code>axis equal image</code> equally scales the axes, and trims the width or height to suit.</li>
-<li><code>axis lines=box/left/middle/center/right/none</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> specified the way the axes are drawn, e.g. <code>middle</code> make the axes intersect at the origin.</li>
-<li><code>xmajorgrids/ymajorgrids=true/false</code> enables/disables grid lines at the tick positions on the x/y axis.</li>
-<li><code>grid style=solid/dashed</code></li>
-<li><code>legend pos=outer north east/north west/north east/south west/south east</code></li>
-<li><code>xmin/xmax/ymin/ymax=BOUND</code></li>
+<li><code>axis lines=box/left/middle/center/right/none</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> specified the way the axes are drawn, e.g. <code>middle</code> make the axes intersect at the origin.</li>
 <li><code>grid</code></li>
-<li><code>thick</code></li>
+<li><code>grid style=solid/dashed</code></li>
+<li><code>xmajorgrids/ymajorgrids=true/false</code> enables/disables grid lines at the tick positions on the x/y axis.</li>
+<li><code>legend pos=outer north east/north west/north east/south west/south east</code></li>
+<li><code>legend cell align=left/right</code></li>
+<li><code>xmin/xmax/ymin/ymax=BOUND</code></li>
+<li><code>data cs=cart/polar</code> specifies the coordinate, e.g. <code>(x, y)</code> or <code>(angle, radius)</code>.</li>
+<li><code>line width=WIDTH</code>, e.g. <code>line width=1pt</code>.</li>
+<li><code>thin/ultra thin/very thin/thick/semithick/ultra thick/very thick</code></li>
 <li><code>solid/dashed/dotted/dashdotted/dashdotdotted</code></li>
+<li>customize font size</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-latex">tick label style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
+label style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
+legend style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
+</pre>
+</div>
+<ul class="org-ul">
 <li><code>samples=SAMPLE_NUMBER</code> defines the number of points in the <code>domain</code>.</li>
 <li><code>smooth</code> is an alternative to <code>samples</code>, which makes a smooth curves between data points.</li>
-<li><code>mark=*/x/+/|/o/asterisk/star/10-pointed star/oplus/oplus*/otimes/otimes*/square/square*/triangle/triangle*/diamond/halfdiamond*/halfsquare*/right*/left*/halfcircle/halfcircle*/pentagon/pentagon*/cubes</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></li>
+<li><code>mark=*/x/+/|/o/asterisk/star/10-pointed star/oplus/oplus*/otimes/otimes*/square/square*/triangle/triangle*/diamond/halfdiamond*/halfsquare*/right*/left*/halfcircle/halfcircle*/pentagon/pentagon*/cubes</code><sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></li>
 <li><code>no marks</code></li>
 <li><code>mark repeat=N</code> marks the data points every <code>N</code> ones instead of every one.</li>
 <li><code>only marks</code> hides the line joining the data points.</li>
@@ -319,14 +332,18 @@ a2 b2 c2
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-Transformation from radian to degree, i.e. <code>deg()</code>, is needed for trigonometric functions, which accepts degree only.
+For <code>polaraxis</code>, <code>\usepgfplotslibrary{polar}</code> in preamble is required.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-The default value is <code>box</code>.
+Transformation from radian to degree, i.e. <code>deg()</code>, is needed for trigonometric functions, which accepts degree only.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+The default value is <code>box</code>.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
 Usually <code>\usetikzlibrary{plotmarks}</code> is needed. <code>cubes</code> is only for 3D plots.
 </p></div></div>
 
