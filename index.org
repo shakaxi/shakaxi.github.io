@@ -15,6 +15,7 @@
    + [[file:emacs_capslk_ctrl.org][Emacs - CapsLock as Control]]
    + [[file:emacs_company.org][Emacs - Company]]
    + [[file:doxygen.org][Emacs - Doxygen]]
+   + [[file:emacs_flycheck.org][Emacs - Flycheck]]
    + [[file:helm.org][Emacs - Helm]]
    + [[file:emacs_movement.org][Emacs - Movement]]
    + [[file:emacs_org_ioslide.org][Emacs - Orgmode Export to HTML5 Slide]]

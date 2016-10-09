@@ -24,10 +24,11 @@ After the installation, following configurations should be added in =~/.emacs=.
 (setq company-idle-delay 0)
 
 ;; move the selection to the next/previous candidate using C-n/p instead of M-n/p
-(with-eval-after-load 'company  (define-key company-active-map (kbd "M-n") nil)
-		      (define-key company-active-map (kbd "M-p") nil)
-		      (define-key company-active-map (kbd "C-n") #'company-select-next)
-		      (define-key company-active-map (kbd "C-p") #'company-select-previous))
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 #+END_SRC
 ** Clang support
 Clang support is out-of-the-box. Additional package installation is not necessary. However, company-semantic is also built-in and precedes company-clang. Therefore, it is necessary to remove company-semantic. To this end, following configurations are needed.
@@ -36,7 +37,7 @@ Clang support is out-of-the-box. Additional package installation is not necessar
 (setq company-backends (delete 'company-semantic company-backends))
 
 ;; make company-clang find IT++ headers and support c++11.
-(setq company-clang-arguments (quote ("-I/opt/itpp/include/" "-std=c++11")))
+(setq company-clang-arguments (quote ("-I/opt/itpp/include/" "-std=c++14")))
 #+END_SRC
 ** C headers support
 For the sake of completing C/C++ header files while input, package =company-c-headers= can be installed by

@@ -1,0 +1,26 @@
+#+TITLE: Emacs - Flycheck
+
+* Introduction
+/Flycheck/[fn:1] is a on-the-fly syntax checking extension of Emacs, which supports a variety number of programming languages. It greatly facilitates the programming experience.
+* Installation
+Flycheck can be directly installed via /ELPA/.
+#+BEGIN_SRC emacs-lisp
+M-x package-install
+flycheck
+#+END_SRC
+* Configuration
+#+BEGIN_SRC emacs-lisp
+;; Enable global flycheck mode
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Clang support (C++14)
+(setq flycheck-clang-language-standard "c++14")
+
+;; Elpy support (use flycheck instead of flymake)
+(setq elpy-modules (delete 'elpy-module-flymake elpy-modules))
+(add-hook 'elpy-mode-hook 'flycheck-mode)
+#+END_SRC
+
+* Footnotes
+
+[fn:1] http://www.flycheck.org/

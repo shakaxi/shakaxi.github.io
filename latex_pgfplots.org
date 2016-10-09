@@ -34,7 +34,7 @@ Templates for pgfplots usage can be presented as follows.
   \end{tikzpicture}
 #+END_SRC
 ** =AXIS-TYPE=
-The candidate values are =axis/semilogxaxis/semilogyaxis/loglogaxis=.
+The candidate values are =axis/semilogxaxis/semilogyaxis/loglogaxis/polaraxis=[fn:4].
 ** =FORMULA=
 - plain function[fn:1], e.g.
 #+BEGIN_SRC latex
@@ -73,13 +73,22 @@ a2 b2 c2
 - =xticklabels/yticklabels={a, b, c, ...}=
 - =axis equal image= equally scales the axes, and trims the width or height to suit.
 - =axis lines=box/left/middle/center/right/none=[fn:3] specified the way the axes are drawn, e.g. =middle= make the axes intersect at the origin.
-- =xmajorgrids/ymajorgrids=true/false= enables/disables grid lines at the tick positions on the x/y axis.
-- =grid style=solid/dashed=
-- =legend pos=outer north east/north west/north east/south west/south east=
-- =xmin/xmax/ymin/ymax=BOUND=
 - =grid=
-- =thick=
+- =grid style=solid/dashed=
+- =xmajorgrids/ymajorgrids=true/false= enables/disables grid lines at the tick positions on the x/y axis.
+- =legend pos=outer north east/north west/north east/south west/south east=
+- =legend cell align=left/right=
+- =xmin/xmax/ymin/ymax=BOUND=
+- =data cs=cart/polar= specifies the coordinate, e.g. =(x, y)= or =(angle, radius)=.
+- =line width=WIDTH=, e.g. =line width=1pt=.
+- =thin/ultra thin/very thin/thick/semithick/ultra thick/very thick=
 - =solid/dashed/dotted/dashdotted/dashdotdotted=
+- customize font size
+#+BEGIN_SRC latex
+tick label style={font=\normalsize\small\footnotesize\tiny}
+label style={font=\normalsize\small\footnotesize\tiny}
+legend style={font=\normalsize\small\footnotesize\tiny}
+#+END_SRC
 - =samples=SAMPLE_NUMBER= defines the number of points in the =domain=.
 - =smooth= is an alternative to =samples=, which makes a smooth curves between data points.
 - =mark=*/x/+/|/o/asterisk/star/10-pointed star/oplus/oplus*/otimes/otimes*/square/square*/triangle/triangle*/diamond/halfdiamond*/halfsquare*/right*/left*/halfcircle/halfcircle*/pentagon/pentagon*/cubes=[fn:2]
@@ -89,6 +98,8 @@ a2 b2 c2
 - =opacity=FRACTION= makes something not transparent, e.g. =fill opacity=0.6=.
 - =xbar/ybar= for bar plot.
 * Footnotes
+
+[fn:4] For =polaraxis=, =\usepgfplotslibrary{polar}= in preamble is required.
 
 [fn:3] The default value is =box=.
 
