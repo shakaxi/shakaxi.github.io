@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 22:58 -->
+<!-- 2016-10-14 Fri 21:21 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - CapsLock as Control</title>
@@ -150,7 +150,12 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">Background</a></li>
-<li><a href="#orgheadline2">Installation and configuration</a></li>
+<li><a href="#orgheadline2">Configuration</a>
+<ul>
+<li><a href="#orgheadline3">Installation</a></li>
+<li><a href="#orgheadline4">Configuration</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -159,40 +164,33 @@ for the JavaScript code in this tag.
 <h2 id="orgheadline1">Background</h2>
 <div class="outline-text-2" id="text-orgheadline1">
 <p>
-Usually, key <i>CapsLock</i> is seldom used in our daily utilization, while key <i>Control</i> is frequently used, esp. for Emacs users. Therefore, we can turn <i>Capslock</i> into an additional <i>Control</i>.
+Usually, key <code>CapsLock</code> is seldom used in our daily utilization, while key <code>Control</code> is frequently used, esp. for Emacs users. Therefore, we can turn <code>Capslock</code> into an additional <code>Control</code>.
 </p>
 </div>
 </div>
 <div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Installation and configuration</h2>
+<h2 id="orgheadline2">Configuration</h2>
 <div class="outline-text-2" id="text-orgheadline2">
 <p>
-Install <i>xmodmap</i> software, e.g. run the following command for ArchLinux.
+Regarding Gnome and KDE, it is extremely easy to turn <code>CapsLock</code> into an additional <code>Control</code>. Taking Gnome for instance, following two steps are required.
 </p>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Installation</h3>
+<div class="outline-text-3" id="text-orgheadline3">
 <div class="org-src-container">
 
-<pre class="src src-sh">pacman -S xorg-xmodmap
+<pre class="src src-sh">pacman -S gnome-tweak-tool
 </pre>
 </div>
-
-<p>
-Create a <code>~/.Xmodmap</code> with its contents as follows
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">remove Lock = Caps_Lock
-keysym Caps_Lock = Control_L
-add Control = Control_L
-</pre>
 </div>
-
+</div>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">Configuration</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <p>
-Make it take effect at every boot by appending the following line to <code>~/.xprofile</code>.
+Open the installed <code>Tweak Tool</code>. Enter <code>Typing</code> -&gt; <code>Caps Lock key behavior</code> and tick the radio <code>Caps Lock is also a Ctrl</code>.
 </p>
-<div class="org-src-container">
-
-<pre class="src src-sh">xmodmap ~/.Xmodmap
-</pre>
 </div>
 </div>
 </div>
