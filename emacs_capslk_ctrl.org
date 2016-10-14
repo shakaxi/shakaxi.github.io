@@ -1,21 +1,12 @@
 #+TITLE: Emacs - CapsLock as Control
 
 * Background
-Usually, key /CapsLock/ is seldom used in our daily utilization, while key /Control/ is frequently used, esp. for Emacs users. Therefore, we can turn /Capslock/ into an additional /Control/.
-* Installation and configuration
-Install /xmodmap/ software, e.g. run the following command for ArchLinux.
+Usually, key =CapsLock= is seldom used in our daily utilization, while key =Control= is frequently used, esp. for Emacs users. Therefore, we can turn =Capslock= into an additional =Control=.
+* Configuration
+Regarding Gnome and KDE, it is extremely easy to turn =CapsLock= into an additional =Control=. Taking Gnome for instance, following two steps are required.
+** Installation
 #+BEGIN_SRC sh
-pacman -S xorg-xmodmap
+pacman -S gnome-tweak-tool
 #+END_SRC
-
-Create a =~/.Xmodmap= with its contents as follows
-#+BEGIN_SRC sh
-remove Lock = Caps_Lock
-keysym Caps_Lock = Control_L
-add Control = Control_L
-#+END_SRC
-
-Make it take effect at every boot by appending the following line to =~/.xprofile=.
-#+BEGIN_SRC sh
-xmodmap ~/.Xmodmap
-#+END_SRC
+** Configuration
+Open the installed =Tweak Tool=. Enter =Typing= -> =Caps Lock key behavior= and tick the radio =Caps Lock is also a Ctrl=.
