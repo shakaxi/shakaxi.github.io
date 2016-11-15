@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-11-15 Tue 19:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LTE - PDCCH &amp; EPDCCH</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="shaka" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">LTE - PDCCH &amp; EPDCCH</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org34b9b5d">Introduction</a></li>
+<li><a href="#org2748a13">PDCCH</a></li>
+<li><a href="#orgb827240">EPDCCH</a></li>
+<li><a href="#org79b22f9">Blind decoding of PDCCH and EPDCCH</a>
+<ul>
+<li><a href="#org9220f2e">PDCCH</a></li>
+<li><a href="#org0c8b481">EPDCCH</a></li>
+<li><a href="#org13fa53a">Blind decoding attempts</a></li>
+</ul>
+</li>
+<li><a href="#org69c88df">Transmission mode (TM) signalling</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org34b9b5d" class="outline-2">
+<h2 id="org34b9b5d">Introduction</h2>
+<div class="outline-text-2" id="text-org34b9b5d">
+<p>
+This post provides a brief summary on <i>physical downlink control channel (PDCCH)</i> and <i>enhanced physical downlink control channel (EPDCCH)</i> in long term evolution (LTE). Note the summary is based on the famous book, <i>4G, LTE-Advanced Pro and the Road to 5G</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2748a13" class="outline-2">
+<h2 id="org2748a13">PDCCH</h2>
+<div class="outline-text-2" id="text-org2748a13">
+<p>
+PDCCH carries <i>downlink control information (DCI)</i>, e.g. scheduling decisions and power control commands. Since each scheduling message is transmitted on a separate PDCCH, there are multiple simultaneous PDCCH transmission within each cell. From a UE perspective, each UE can receive multiple DCI messages in the same subframe, e.g. it is scheduled simultaneously in uplink and downlink.
+</p>
+
+<p>
+Different control information can be categorized into different <i>DCI formats</i>, each of which corresponds with a certain message size<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> and usage.
+</p>
+
+<p>
+A DCI payload is first attached with a CRC which is scrambled by a <i>radio network temporary identifier (RNTI)</i><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>, and then coded with a 1/3 tail-biting convolutional code<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup> and rate-matched to fit the amount of resources for PDCCH transmission. After the rate matching, the bit sequence is scrambled by a cell-specific and subframe-specific scrambling sequence to whiten and randomize the inter-cell interference (ICI) before QPSK modulation and mapping to resource elements (RE's).
+</p>
+
+<p>
+The mapping of PDCCH is based on a conception of <i>control channel element (CCE)</i>, which is essentially a simple representation of 9 REG's, i.e. 36 RE's. Each PDCCH can take up 1, 2, 4 or 8 CCE's for link adaptation. The number of CCE's used for a PDCCH is termed <i>aggregation level</i>. The number of CCE's available for PDCCH depends on the size of control region, the cell bandwidth, the number of antenna ports in the downlink, and the resources occupied by PHICH.
+</p>
+
+<p>
+Since a UE is not signalled about the aggregation level of each PDCCH, it has to blindly decode it. In order to reduce the computational complexity, some restrictions are imposed, e.g. each aggregated CCE can only start with the CCE's with their indices divisible by its aggregation level.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb827240" class="outline-2">
+<h2 id="orgb827240">EPDCCH</h2>
+<div class="outline-text-2" id="text-orgb827240">
+<p>
+EPDCCH was introduced as a complementary control channel in release 11. Different from PDCCH, EPDCCH can use precoding and be detected based on DMRS. Moreover, EPDCCH is mapped to PDSCH region.
+</p>
+
+<p>
+Correspondingly, the mapping of EPDCCH is based on <i>enhanced control channel element (ECCE)</i> and <i>enhanced resource elements group (EREG)</i>. Each ECCE comprises of 4 EREG's<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>, and each EREG consists on 9 RE's<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup> in one PRB pair. To define an EREG, number all the RE's in a PRB pair cyclically in a frequency-first manner from 0 to 15, excluding the RE's for DMRS. EREG \(i\) consists of all RE's with number \(i\) in that PRB pair<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>. Therefore, there are 16 EREG's in one PRB pair.
+</p>
+
+<p>
+For link adaptation, each EPDCCH can correspond with one or more ECCE's, and the aggregation level can be 1, 2, 4, 8, 16 or 32.
+</p>
+
+<p>
+The mapping of ECCE to EREG is different for localized and distributed transmission. For localized transmission, an ECCE is mapped to EREG's in the same PRB pair. Only if one PRB pair is not sufficient to carry one EPDCCH, e.g. for the highest aggregation levels, a second PRB pair is used. A single antenna port is adopted for EPDCCH transmission. The associated DMRS is a function of the ECCE index and the C-RNTI. At most 4 UE's can be multiplexed for MU-MIMO transmission. For distributed transmission, an ECCE is mapped to EREG's in different PRB pairs.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org79b22f9" class="outline-2">
+<h2 id="org79b22f9">Blind decoding of PDCCH and EPDCCH</h2>
+<div class="outline-text-2" id="text-org79b22f9">
+<p>
+A <i>search space</i> is a set of candidate control channels formed by CCE's/ECCE's at a given aggregation level, which a UE attempts to decode. 
+</p>
+</div>
+
+<div id="outline-container-org9220f2e" class="outline-3">
+<h3 id="org9220f2e">PDCCH</h3>
+<div class="outline-text-3" id="text-org9220f2e">
+<p>
+Each UE has a <i>UE-specific search space</i> at each aggregation level. UE-specific search spaces for PDCCH are defined as a function of the UE identity and the subframe number. Thus, UE-specific search space is different from one subframe to another.
+</p>
+
+<p>
+Besides, <i>common search spaces</i> are defined for PDCCH, which is allowed to address a group of or all the UE's in the system, e.g. the dynamic scheduling of system information, paging transmission, power control commands. Clearly, common search spaces are primarily defined for system-wide information and consequently only the DCI formats with smallest payload sizes (0/1A/3/3A and 1C) and the aggregation levels of 4 and 8 are supported only for better reliability and coverage. However, the common search spaces can also be used to schedule individual UE's, especially when the scheduling of a UE is blocked due to the lack of available resources in the UE-specific search space of the UE.
+</p>
+
+<p>
+There are 16 and 9 PDCCH candidates in the UE-specific and common search spaces, respectively.
+</p>
+</div>
+</div>
+<div id="outline-container-org0c8b481" class="outline-3">
+<h3 id="org0c8b481">EPDCCH</h3>
+<div class="outline-text-3" id="text-org0c8b481">
+<p>
+Basically, EPDCCH blind decoding follows the same principles as PDCCH. What is different, only UE-specific search spaces are supported<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>. Given a UE configured to use EPDCCH, it monitors the EPDCCH UE-specific search spaces in lieu of PDCCH UE-specific search spaces. The common search spaces of PDCCH are always monitored regardless whether an EPDCCH is configured.
+</p>
+</div>
+</div>
+<div id="outline-container-org13fa53a" class="outline-3">
+<h3 id="org13fa53a">Blind decoding attempts</h3>
+<div class="outline-text-3" id="text-org13fa53a">
+<p>
+The number of blind decoding attempts is the same for PDCCH and EPDCCH. Hence, a UE needs to carry out \(2 \times 16 + 2 \times 6 = 44\) blind decoding attempts. With uplink spatial multiplexing introduced in release 10, an additional uplink DCI format needs to be monitored in the UE-specific search space, i.e. \(3 \times 16 + 2 \times 6 = 60\) attempts.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org69c88df" class="outline-2">
+<h2 id="org69c88df">Transmission mode (TM) signalling</h2>
+<div class="outline-text-2" id="text-org69c88df">
+<p>
+TM is configured by RRC signalling, but the exact subframe number from which the configuration takes effect is not specified. Therefore, there is confusion of TM between network and UE at least in a duration. In this case,  it is necessary to define a TM-independent DCI format, i.e. 1A.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Erik Dahlman, Stefan Parkvall and Johan Sköld. "4G, LTE-Advanced Pro and the Road to 5G", 3rd edition.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+The actual message size of DCI depends on DCI format and cell bandwidth.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+Different RNTI's are used for different purpose of the DCI messages, e.g. UE-specific C-RNTI is used for normal unicast data transmission.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+Instead of using tail bits, the convolutional code encoder is initialized with the last bits of the message before encoding. Therefore, the starting and ending states in the trellis in an Viterbi decoder are identical.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+Each ECCE has 4 EREG's for normal CP, and 8 EREG's for extended CP and some special subframe configurations in normal CP.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+Each EREG has 9 RE's for normal CP and 8 RE's for extended CP.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+Note that not all the RE's in an EREG are available for EPDCCH since some RE's are occupied, e.g. by PDCCH control region, CRS, or CSI-RS.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara"><p class="footpara">
+Because system information should be provided to all the UE's, including the legacy ones not supporting EPDCCH, common search spaces for PDCCH is enough and the counterpart for EPDCCH is not necessary.
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>

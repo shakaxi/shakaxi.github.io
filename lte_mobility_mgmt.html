@@ -6,7 +6,7 @@
 <!-- 2016-11-15 Tue 19:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>LTE - Mobility Management</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="shaka" />
 <style type="text/css">
@@ -229,57 +229,14 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
-<ul class="org-ul">
-<li><a href="archlinuxcn.html">ArchLinuxcn</a></li>
-<li><a href="bash.html">Bash</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="d2d.html">D2D</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="discovery_signal.html">Discovery Signal</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_capslk_ctrl.html">Emacs - CapsLk as Ctrl</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="emacs_helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_org_ioslide.html">Emacs - Orgmode Export to HTML5 Slide</a></li>
-<li><a href="ycmd.html">Emacs - YCMD</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="itpp.html">IT++</a></li>
-<li><a href="arch_inst.html">Installation Guide for Arch Linux</a></li>
-<li><a href="lte_mobility_mgmt.html">LTE - Mobility Management</a></li>
-<li><a href="lte_pcfich.html">LTE - PCFICH</a></li>
-<li><a href="lte_pdcch_epdcch.html">LTE - PDCCH &amp; EPDCCH</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="zc.html">ZC</a></li>
-</ul>
+<h1 class="title">LTE - Mobility Management</h1>
+<p>
+The most remarkable character of mobile communication, which differs from other communication methods, is its mobility. The mobility can fall into two categories, intra-radio access technology (RAT) and inter-RAT mobility. Just as its name indicates, intra-RAT mobility means that the UE moves within one RAT, while inter-RAT mobility is the case that the UE move from one RAT to another. Namely, the source cell and the destination cell belong to two different RATs. Moreover, according to whether the destination cell operates on the same frequency as the serving cell, intra-RAT mobility can be further divided into intra-frequency and inter-frequency mobility two types.
+</p>
+
+<p>
+In long term evolution (LTE) system, user equipment (UE)'s mobility depends on the state of radio resource control (RRC). For RRC, there are totally two states, idle (<i>RRC_IDLE</i>) and connected (<i>RRC_CONNECTED</i>). In idle state, there isn't any RRC connection between UE and evolved universal terrestrial radio access network (E-UTRAN). And the UE's mobility can be described as cell selection/reselection. What's different, in connected state, dedicated RRC connection exists between E-UTRAN and UE. The mobility of UE can be correspondingly expressed as cell handover.
+</p>
 </div>
 </body>
 </html>
