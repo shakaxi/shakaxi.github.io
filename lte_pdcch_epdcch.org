@@ -1,0 +1,58 @@
+#+TITLE: LTE - PDCCH & EPDCCH
+
+* Introduction
+This post provides a brief summary on /physical downlink control channel (PDCCH)/ and /enhanced physical downlink control channel (EPDCCH)/ in long term evolution (LTE). Note the summary is based on the famous book, /4G, LTE-Advanced Pro and the Road to 5G/[fn:8].
+
+* PDCCH
+PDCCH carries /downlink control information (DCI)/, e.g. scheduling decisions and power control commands. Since each scheduling message is transmitted on a separate PDCCH, there are multiple simultaneous PDCCH transmission within each cell. From a UE perspective, each UE can receive multiple DCI messages in the same subframe, e.g. it is scheduled simultaneously in uplink and downlink.
+
+Different control information can be categorized into different /DCI formats/, each of which corresponds with a certain message size[fn:1] and usage.
+
+A DCI payload is first attached with a CRC which is scrambled by a /radio network temporary identifier (RNTI)/[fn:2], and then coded with a 1/3 tail-biting convolutional code[fn:3] and rate-matched to fit the amount of resources for PDCCH transmission. After the rate matching, the bit sequence is scrambled by a cell-specific and subframe-specific scrambling sequence to whiten and randomize the inter-cell interference (ICI) before QPSK modulation and mapping to resource elements (RE's).
+
+The mapping of PDCCH is based on a conception of /control channel element (CCE)/, which is essentially a simple representation of 9 REG's, i.e. 36 RE's. Each PDCCH can take up 1, 2, 4 or 8 CCE's for link adaptation. The number of CCE's used for a PDCCH is termed /aggregation level/. The number of CCE's available for PDCCH depends on the size of control region, the cell bandwidth, the number of antenna ports in the downlink, and the resources occupied by PHICH.
+
+Since a UE is not signalled about the aggregation level of each PDCCH, it has to blindly decode it. In order to reduce the computational complexity, some restrictions are imposed, e.g. each aggregated CCE can only start with the CCE's with their indices divisible by its aggregation level.
+
+* EPDCCH
+EPDCCH was introduced as a complementary control channel in release 11. Different from PDCCH, EPDCCH can use precoding and be detected based on DMRS. Moreover, EPDCCH is mapped to PDSCH region.
+
+Correspondingly, the mapping of EPDCCH is based on /enhanced control channel element (ECCE)/ and /enhanced resource elements group (EREG)/. Each ECCE comprises of 4 EREG's[fn:4], and each EREG consists on 9 RE's[fn:5] in one PRB pair. To define an EREG, number all the RE's in a PRB pair cyclically in a frequency-first manner from 0 to 15, excluding the RE's for DMRS. EREG $i$ consists of all RE's with number $i$ in that PRB pair[fn:6]. Therefore, there are 16 EREG's in one PRB pair.
+
+For link adaptation, each EPDCCH can correspond with one or more ECCE's, and the aggregation level can be 1, 2, 4, 8, 16 or 32.
+
+The mapping of ECCE to EREG is different for localized and distributed transmission. For localized transmission, an ECCE is mapped to EREG's in the same PRB pair. Only if one PRB pair is not sufficient to carry one EPDCCH, e.g. for the highest aggregation levels, a second PRB pair is used. A single antenna port is adopted for EPDCCH transmission. The associated DMRS is a function of the ECCE index and the C-RNTI. At most 4 UE's can be multiplexed for MU-MIMO transmission. For distributed transmission, an ECCE is mapped to EREG's in different PRB pairs.
+
+* Blind decoding of PDCCH and EPDCCH
+A /search space/ is a set of candidate control channels formed by CCE's/ECCE's at a given aggregation level, which a UE attempts to decode. 
+
+** PDCCH
+Each UE has a /UE-specific search space/ at each aggregation level. UE-specific search spaces for PDCCH are defined as a function of the UE identity and the subframe number. Thus, UE-specific search space is different from one subframe to another.
+
+Besides, /common search spaces/ are defined for PDCCH, which is allowed to address a group of or all the UE's in the system, e.g. the dynamic scheduling of system information, paging transmission, power control commands. Clearly, common search spaces are primarily defined for system-wide information and consequently only the DCI formats with smallest payload sizes (0/1A/3/3A and 1C) and the aggregation levels of 4 and 8 are supported only for better reliability and coverage. However, the common search spaces can also be used to schedule individual UE's, especially when the scheduling of a UE is blocked due to the lack of available resources in the UE-specific search space of the UE.
+
+There are 16 and 9 PDCCH candidates in the UE-specific and common search spaces, respectively.
+** EPDCCH
+Basically, EPDCCH blind decoding follows the same principles as PDCCH. What is different, only UE-specific search spaces are supported[fn:7]. Given a UE configured to use EPDCCH, it monitors the EPDCCH UE-specific search spaces in lieu of PDCCH UE-specific search spaces. The common search spaces of PDCCH are always monitored regardless whether an EPDCCH is configured.
+** Blind decoding attempts
+The number of blind decoding attempts is the same for PDCCH and EPDCCH. Hence, a UE needs to carry out $2 \times 16 + 2 \times 6 = 44$ blind decoding attempts. With uplink spatial multiplexing introduced in release 10, an additional uplink DCI format needs to be monitored in the UE-specific search space, i.e. $3 \times 16 + 2 \times 6 = 60$ attempts.
+* Transmission mode (TM) signalling
+TM is configured by RRC signalling, but the exact subframe number from which the configuration takes effect is not specified. Therefore, there is confusion of TM between network and UE at least in a duration. In this case,  it is necessary to define a TM-independent DCI format, i.e. 1A.
+
+* Footnotes
+
+[fn:8] Erik Dahlman, Stefan Parkvall and Johan Sköld. "4G, LTE-Advanced Pro and the Road to 5G", 3rd edition.
+
+[fn:7] Because system information should be provided to all the UE's, including the legacy ones not supporting EPDCCH, common search spaces for PDCCH is enough and the counterpart for EPDCCH is not necessary.
+
+[fn:6] Note that not all the RE's in an EREG are available for EPDCCH since some RE's are occupied, e.g. by PDCCH control region, CRS, or CSI-RS.
+
+[fn:5] Each EREG has 9 RE's for normal CP and 8 RE's for extended CP.
+
+[fn:4] Each ECCE has 4 EREG's for normal CP, and 8 EREG's for extended CP and some special subframe configurations in normal CP.
+
+[fn:3] Instead of using tail bits, the convolutional code encoder is initialized with the last bits of the message before encoding. Therefore, the starting and ending states in the trellis in an Viterbi decoder are identical.
+
+[fn:2] Different RNTI's are used for different purpose of the DCI messages, e.g. UE-specific C-RNTI is used for normal unicast data transmission.
+
+[fn:1] The actual message size of DCI depends on DCI format and cell bandwidth.

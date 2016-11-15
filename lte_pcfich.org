@@ -1,0 +1,19 @@
+#+TITLE: LTE - PCFICH
+
+As its name implies, physical control format indicator channel (PCFICH) indicates the size of the control region, or equivalently the position where data region starts, of the instant subframe in terms of the number of OFDM symbols.
+
+There are totally 2 bits for PCFICH corresponding to the three candidate control region size. The 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the inter-cell interference (ICI). After that, the codeword is modulated into 16 QPSK symbols and mapped to 4 /resource element groups (REG's)/[fn:1] in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 bandwidth.
+
+#+BEGIN_SRC dot :file pcfich.png
+  digraph A
+  {
+	  start -> block_code:w [label="2 bits"];
+	  block_code -> scrambling:w [label="Scrambling"];
+	  scrambling -> mod:w [label="QPSK\nmodulation"];
+	  mod -> end [label="16 symbols"];
+  }
+#+END_SRC
+
+* Footnotes
+
+[fn:1] One REG means 4 resource elements (RE's) in frequency domain.

@@ -1,4 +1,4 @@
-#+TITLE: Mobility Management in LTE
+#+TITLE: LTE - Mobility Management
 #+OPTIONS: ^:nil
 
 The most remarkable character of mobile communication, which differs from other communication methods, is its mobility. The mobility can fall into two categories, intra-radio access technology (RAT) and inter-RAT mobility. Just as its name indicates, intra-RAT mobility means that the UE moves within one RAT, while inter-RAT mobility is the case that the UE move from one RAT to another. Namely, the source cell and the destination cell belong to two different RATs. Moreover, according to whether the destination cell operates on the same frequency as the serving cell, intra-RAT mobility can be further divided into intra-frequency and inter-frequency mobility two types.

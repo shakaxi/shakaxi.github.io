@@ -1,4 +1,4 @@
-#+TITLE: Emacs - CapsLk as Control
+#+TITLE: Emacs - CapsLk as Ctrl
 
 * Background
 Usually, key =CapsLk= is seldom used in our daily utilization, while key =Ctrl= is frequently used, esp. for Emacs users. Therefore, we can turn =CapsLk= into an additional =Ctrl=.
