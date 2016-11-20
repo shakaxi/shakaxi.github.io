@@ -3,6 +3,7 @@
    + [[file:archlinuxcn.org][ArchLinuxcn]]
    + [[file:bash.org][Bash]]
    + [[file:blog.org][Blog on GitHub]]
+   + [[file:cpp_basic.org][C++ - Basic]]
    + [[file:cpp_polymorphism.org][C++ - Polymorphism]]
    + [[file:cpp_switch.org][C/C++ - switch]]
    + [[file:cvx_opt.org][Convex Optimization]]

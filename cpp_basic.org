@@ -1,0 +1,99 @@
+#+TITLE: C++ - Basic
+
+本文是阅读 /Professional C++, third edition/ 中文版[fn:1]的读书笔记.
+
+* 预处理指令
+- 预处理指令以#字符开始. 如 =#pragma once= 可以防止文件被包含多次.
+- 头文件最常见的用途是声明在其他地方定义的函数.
+* 函数
+- 函数声明通常称为"函数原型"或"签名", 以强调其代表函数的访问方式, 而不是具体的代码.
+- 函数参数的默认值只能存在于函数声明中, 不能放在函数定义中.
+- 与C不同, 在C++中没有形参的函数仅需要一个空的圆括号, 不需要使用 =void= 指出此处没有形参. 然而, 如果没有返回值, 仍需要使用 =void= 来指明这一点.
+- =main()= 函数是程序的入口. =main()= 函数返回一个 =int= 值以指示程序的最终执行状态. =main()= 函数或者没有参数, 或者具有两个参数.
+#+BEGIN_SRC c++
+  int main(int argc, char* argv[])
+#+END_SRC
+- 自C++11以来, C++通过拖尾返回类型(trailing return type)支持一种替代的函数语法. 函数的返回类型不再位于开头, 而放在行尾的箭头 =->= 后面. 这在指定模板函数的返回类型时非常有用.
+#+BEGIN_SRC c++
+  auto func(int i) -> int
+  {
+      return i + 1;
+  }
+#+END_SRC
+- C++14允许要求编译器自动推断出函数的返回类型. 为此, 需要指定返回类型为 =auto=, 并忽略所有拖尾返回类型.
+* 类型推断
+类型推断允许编译器自动推断出表达式的类型. 类型推断有两个关键字: =auto= 和 =decltype=.
+** =auto=
+- 告诉编译器, 在编译时自动推断变量的类型.
+- 用于替代函数语法.
+- 用于函数返回类型的推断.
+- 用于通用的 =lambda= 表达式.
+** =decltype=
+- 关键字 =decltype= 把表达式作为实参, 可以计算出该表达式的类型.
+- 使用 =auto= 推断表达式的类型, 就不需要引用限定符和 =const= 限定符了. C++14引入了 =decltype(auto)= 来解决这个问题.
+* 指针
+- 堆是与当前函数或堆栈帧完全没有关系的内存区域. 如果想在函数调用结束之后仍然保存其中声明的变量, 可以将变量放到堆中.
+- 在C++中, 应避免C中的 =malloc()= 和 =free()=, 而使用 =new= 和 =delete=, 或者 =new[]= 和 =delete[]=. 每次调用 =new/new[]=, 都必须相应地调用 =delete/delete[]=, 以避免内存泄漏. 必须确保释放(删除)在堆上分配的任何内存, 这个过程不会自动完成, 除非使用了智能指针.
+- 在任何时候都应避免使用未初始化的变量, 尤其是未初始化的指针, 因为它们会指向内存中的每个随意位置. 使用这种指针很可能导致程序崩溃. 因此, 必须显示地同时声明和初始化指针. 如果不希望立即分配内存, 可以将其初始化为空指针(nullptr).
+- 从技术角度看, 如果指针指向某个结构, 可以首先用 =*= 对指针解除引用, 然后使用 =.= 访问结构中的字段. 箭头运算符 =->= 允许同时对指针解除引用并访问字段.
+** 智能指针
+为了避免常见的内存问题, 应使用智能指针替代通常C风格的"裸"指针. 智能指针对象在超出作用域时, 例如在函数执行完毕后, 会自动释放内存. C++中有如下三种智能指针, 定义在头文件 =<memory>= 中.
+- =std::unique_ptr= :: 通用的智能指针, 可以指向任意类型的内存, 是一个模板. 自从C++14以来, 可以使用 =std::make_unique<>()= 创建. 在尖括号中必须指定 =unique_ptr= 要指向的内存类型.
+- =std::shared_ptr= :: 可以使用 =std::make_shared<>()= 创建.
+- =std::weak_ptr= :: 
+* 名称空间
+- =::= 称为作用域解析运算符.
+- =using= 指令可以用来引用名称空间的所有项或者特定项.
+- 切勿在头文件中使用 =using= 指令或者 =using= 声明.
+* 数组
+- 在C++中声明数组时, 必须声明数组的大小. 数组的大小不能用变量来表示--必须用常量或常量表达式(constexpr)来表示数组大小.
+- 数组也可以用初始化列表来初始化, 此时编译器可以自动推断出数组的大小.
+- C++有一种大小固定的特殊容器 =std::array=, 定义在 =<array>= 头文件中, 其具有迭代器, 可以方便地遍历元素. 必须在尖括号中指定两个参数, 第一个表示数组中元素的类型, 第二个参数表示数组的大小.
+* 字符串
+- 在C语言中, 字符串表示为字符的数组. 字符串中的最后一个字符是空字符(=\0=), 官方将这个空字符定义为 =NUL=. 这样, 操作字符串的代码就知道字符串在哪里结束.
+- 与字面量(literal)关联的真正内存在内存的只读部分中.
+- 原始字符串字面量(raw string literal)是可以跨越多行代码的字符串字面量, 形式为 =R"d(character sequence)d"=, 其中 =d= 表示分隔符序列, 无歧义(字符串字面量中无特殊符号, 如 ="=)时可以省略.
+- C++的 =string= 类定义在 =std= 名称空间的头文件 =<string>= 中. 此外, C++还包含了一些来自C语言的字符串操作函数, 定义在头文件 =<cstring>= 中.
+- 为了兼容, 可以使用 =string= 的 =c_str()= 方法获得一个表示C风格字符串的 =const= 字符指针. 不过, 一旦 =string= 对象被销毁或执行了任何内存重分配, 这个返回的 =const= 字符指针就失效了.
+- 数值转换
+#+BEGIN_SRC c++
+  // Transformation to string
+  string to_string(int val);
+  string to_string(unsigned val);
+  string to_string(long val);
+  string to_string(unsigned long val);
+  string to_string(long long val);
+  string to_string(unsigned long long val);
+  string to_string(float val);
+  string to_string(double val);
+  string to_string(long double val);
+
+  // Transformation from string
+  int stoi(const string &str, size_t *idx = 0, int base = 10);
+  long stol(const string &str, size_t *idx = 0, int base = 10);
+  unsigned long stoul(const string &str, size_t *idx = 0, int base = 10);
+  long long stoll(const string &str, size_t *idx = 0, int base = 10);
+  unsigned long long stoll(const string &str, size_t *idx = 0, int base = 10);
+  float stof(const string &str, size_t *idx = 0, int base = 10);
+  double stof(const string &str, size_t *idx = 0, int base = 10);
+  long double stof(const string &str, size_t *idx = 0, int base = 10);
+#+END_SRC
+* =switch=
+在 =switch= 语句中, 表达式必须是整型或能转换为整型的类型, 必须与一个常量进行比较.
+* 基于区间的 =for= 循环
+基于区间的 =for= 循环(range-based for loop)允许方便地迭代容器中的元素. 这种循环类型可以用于C风格的数组, 初始化列表, 也可以用于具有返回迭代器的 =begin()= 和 =end()= 函数的类型, 如 =std::array= 和其他所有STL容器.
+#+BEGIN_SRC c++
+  std::array<int, 3> arr = {1, 2, 3};
+  for (int i : arr)
+      std::cout << i << std::endl;
+#+END_SRC
+* 异常
+当某段代码检测到异常时, 就会抛出一个异常. 另一段代码会捕获这个异常并执行相应的操作.
+* =const=
+1. 取代 =#define= 定义常量.
+2. 保护参数(如引用参数).
+3. 在类的定义中, 最好将不改变对象的任何数据成员的成员函数声明为 =const=.
+
+* Footnotes
+
+[fn:1] Marc Gregoire著, 张永强译. C++高级编程(第3版), 清华大学出版社, 2015.
