@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-22 Tue 23:39 -->
+<!-- 2016-11-24 Thu 22:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -270,6 +270,7 @@ for the JavaScript code in this tag.
 <li><a href="#org45f461b">构造函数(<code>constructor</code>)</a></li>
 </ul>
 </li>
+<li><a href="#org73bc55a"><code>lambda</code> 表达式</a></li>
 </ul>
 </div>
 </div>
@@ -566,6 +567,35 @@ for the JavaScript code in this tag.
 <li>如果类中的数据成员是没有构造函数的对象, 必须使用构造函数初始化器正确地构造这个对象.</li>
 </ul>
 </div>
+</div>
+</div>
+<div id="outline-container-org73bc55a" class="outline-2">
+<h2 id="org73bc55a"><code>lambda</code> 表达式</h2>
+<div class="outline-text-2" id="text-org73bc55a">
+<p>
+<code>lambda</code> 表达式可以编写内嵌的匿名函数, 而不必编写独立函数或函数对象, 使代码更容易阅读和理解. <code>lambda</code> 表达式以方括号 <code>[]</code> 开始, 其后是花括号 <code>{}</code>, 其中包含了 <code>lambda</code> 表达式体. 完整的语法为
+</p>
+<div class="org-src-container">
+<pre class="src src-c++">[capture_block] (parameters) <span style="color: #a020f0;">mutable</span> <span style="color: #228b22;">exception_specification</span> <span style="color: #a0522d;">attribute_specifier</span> -&gt; return_type {body}
+</pre>
+</div>
+<p>
+除 <code>[capture_block]</code> 和 <code>{body}</code> 外, 其他参数均为可选参数.
+</p>
+<ul class="org-ul">
+<li><code>lambda</code> 表达式可以接受参数. 参数在圆括号中指定, 用逗号分隔开, 与普通函数相同.</li>
+<li>如果 <code>lambda</code> 表达式不接受参数, 就可以指定空圆括号或忽略它们.</li>
+<li><code>lambda</code> 表达式可以返回值. 返回类型在箭头后面指定, 也即拖尾返回类型. 即使 <code>lambda</code> 表达式返回了值, 也可以忽略返回类型, 此时编译器就根据函数返回类型推断规则来推断 <code>lambda</code> 表达式的返回类型.</li>
+<li><code>lambda</code> 表达式可以在其封装的作用域内捕捉变量. 方括号部分称为 <code>lambda</code> 捕捉块(capture block), 可以指定任何从 <code>lambda</code> 表达式所在的作用域中捕捉变量. 这里捕捉变量指可以在 <code>lambda</code> 表达式体中使用这个变量. 空白的捕捉块表示不从所在作用域中捕捉变量. 捕捉方式可以是按值捕捉, 也可以按引用捕捉(<code>lambda</code> 表达式可以在其内部作用域修改 <code>lambda</code> 表达式所在作用域内的变量). 捕捉的对象既可以是所在作用域中的所有变量, 也可以通过捕捉列表酌情捕捉需要的变量以及相应的捕捉方法. 例如:
+<dl class="org-dl">
+<dt><code>[=]</code></dt><dd>通过值捕捉所有变量.</dd>
+<dt><code>[&amp;]</code></dt><dd>通过引用捕捉所有变量.</dd>
+<dt><code>[x]</code></dt><dd>只通过值捕捉变量 <code>x</code>.</dd>
+<dt><code>[&amp;x]</code></dt><dd>只通过引用捕捉变量 <code>x</code>.</dd>
+<dt><code>[&amp;, x]</code></dt><dd>默认通过引用捕捉, 但 <code>x</code> 是按值捕捉.</dd>
+<dt><code>[this]</code></dt><dd>捕捉周围的对象. 即使没有使用 <code>this-&gt;</code>, 也可以在 <code>lambda</code> 表达式体中访问这个对象.</dd>
+</dl></li>
+</ul>
 </div>
 </div>
 <div id="footnotes">
