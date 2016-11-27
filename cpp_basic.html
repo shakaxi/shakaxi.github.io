@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-24 Thu 22:42 -->
+<!-- 2016-11-28 Mon 01:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -262,12 +262,23 @@ for the JavaScript code in this tag.
 <li><a href="#org1b7a1bc">代码重用</a></li>
 </ul>
 </li>
-<li><a href="#org44c7661">类</a>
+<li><a href="#org0b852e6">类和对象</a>
 <ul>
 <li><a href="#org4936e06">定义</a></li>
 <li><a href="#orgda1167d">访问控制</a></li>
 <li><a href="#orgcd749fc"><code>this</code></a></li>
-<li><a href="#org45f461b">构造函数(<code>constructor</code>)</a></li>
+<li><a href="#org45f461b">构造函数(<code>constructor</code>)</a>
+<ul>
+<li><a href="#org7362504">基本概念</a></li>
+<li><a href="#org6c846a2">构造函数初始化器</a></li>
+<li><a href="#orgff459f3">复制构造函数</a></li>
+<li><a href="#orgb3345fe">初始化列表构造函数</a></li>
+<li><a href="#org75a4b98">类内成员初始化器</a></li>
+<li><a href="#orge56ec83">委托构造函数</a></li>
+<li><a href="#orgd11ca80">编译器自动生成的构造函数</a></li>
+</ul>
+</li>
+<li><a href="#org81e6717">销毁对象</a></li>
 </ul>
 </li>
 <li><a href="#org73bc55a"><code>lambda</code> 表达式</a></li>
@@ -512,9 +523,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org44c7661" class="outline-2">
-<h2 id="org44c7661">类</h2>
-<div class="outline-text-2" id="text-org44c7661">
+<div id="outline-container-org0b852e6" class="outline-2">
+<h2 id="org0b852e6">类和对象</h2>
+<div class="outline-text-2" id="text-org0b852e6">
 </div><div id="outline-container-org4936e06" class="outline-3">
 <h3 id="org4936e06">定义</h3>
 <div class="outline-text-3" id="text-org4936e06">
@@ -551,6 +562,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-org45f461b" class="outline-3">
 <h3 id="org45f461b">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-org45f461b">
+</div><div id="outline-container-org7362504" class="outline-4">
+<h4 id="org7362504">基本概念</h4>
+<div class="outline-text-4" id="text-org7362504">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -558,14 +572,93 @@ for the JavaScript code in this tag.
 <li>在堆栈中创建对象时, 调用默认构造函数不需要使用圆括号.</li>
 <li>如果没有指定任何构造函数, 编译器将自动生成一个默认构造函数. 然而, 如果声明了构造函数(默认构造函数或者其他构造函数), 编译器就不会再自动生成默认构造函数.</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org6c846a2" class="outline-4">
+<h4 id="org6c846a2">构造函数初始化器</h4>
+<div class="outline-text-4" id="text-org6c846a2">
+<p>
+除了构造函数体内, C++还支持在构造函数初始化器中初始化数据成员. 构造函数初始化器出现在构造函数参数列表和构造函数函数体之间, 以冒号开始, 由逗号分隔, 允许在创建数据成员时执行初始化. 值得注意的是, 初始化数据成员的顺序是按照在类定义中出现的顺序, 而不是在构造函数初始化器中的顺序. 
+</p>
 
 <p>
-除了构造函数体内, C++还支持在构造函数初始化器中初始化数据成员.
+但是, 下列数据类型必须在构造函数初始化器中初始化.
 </p>
 <ul class="org-ul">
-<li>构造函数初始化器出现在构造函数参数列表和构造函数函数体之间, 以冒号开始, 由逗号分隔.</li>
-<li>如果类中的数据成员是没有构造函数的对象, 必须使用构造函数初始化器正确地构造这个对象.</li>
+<li><code>const</code> 数据成员. 因为 <code>const</code> 变量创建之后无法对其正确赋值, 所以必须在创建时赋值.</li>
+<li>引用数据成员. 因为不指向一个量, 引用将无法存在.</li>
+<li>没有默认构造函数的对象数据成员.</li>
+<li>没有默认构造函数的基类.</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-orgff459f3" class="outline-4">
+<h4 id="orgff459f3">复制构造函数</h4>
+<div class="outline-text-4" id="text-orgff459f3">
+<p>
+复制构造函数(copy constructor)是一种特殊的构造函数, 允许所创建的对象是另一个对象的精确副本. 如果没有定义复制构造函数, C++会自动生成一个, 用源对象中相应数据成员的值初始化新对象的每个数据成员. 如果数据成员是对象, 初始化意味着调用它们的复制构造函数.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb3345fe" class="outline-4">
+<h4 id="orgb3345fe">初始化列表构造函数</h4>
+<div class="outline-text-4" id="text-orgb3345fe">
+<p>
+初始化列表构造函数将初始化列表作为第一个参数, 并且没有任何其他参数(或者其他参数有默认值). C++11 STL完全支持初始化列表构造函数.
+</p>
+
+<p>
+初始化列表 <code>std::initializer_list&lt;T&gt;</code> 定义在头文件 <code>&lt;initializer_list&gt;</code> 中, 简化了参数数量可变函数的编写. 与变长参数列表不同, 初始化列表中所与的元素都应该是同一种与定义类型. 由于定义了列表中允许的类型, 初始化列表是类型安全的.
+</p>
+</div>
+</div>
+<div id="outline-container-org75a4b98" class="outline-4">
+<h4 id="org75a4b98">类内成员初始化器</h4>
+<div class="outline-text-4" id="text-org75a4b98">
+<p>
+在C++11之前, 只有在构造函数体内或者构造函数初始化器中才能初始化成员变量, 只有 <code>static const</code> 整形成员变量才能在类定义中初始化. 从C++11开始, 允许在定义类时直接初始化成员变量.
+</p>
+</div>
+</div>
+<div id="outline-container-orge56ec83" class="outline-4">
+<h4 id="orge56ec83">委托构造函数</h4>
+<div class="outline-text-4" id="text-orge56ec83">
+<p>
+委托构造函数(delegating constructor)允许构造函数调用同一个类的其他构造构造函数. 但是, 该调用不能放在构造函数体内, 而必须放在构造函数初始化器中, 且必须是构造函数初始化列表中唯一的成员初始化器.
+</p>
+
+<p>
+当使用委托构造函数是, 要避免出现构造函数的递归, 如两个构造函数互相委托.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd11ca80" class="outline-4">
+<h4 id="orgd11ca80">编译器自动生成的构造函数</h4>
+<div class="outline-text-4" id="text-orgd11ca80">
+<p>
+默认构造函数和复制构造函数之间缺少对称性, 即
+</p>
+<ul class="org-ul">
+<li>只要定义了任何构造函数, 编译器就不会再自动生成默认构造函数.</li>
+<li>只要没有显示定义复制构造函数, 编译器就会自动生成一个.</li>
+</ul>
+
+<p>
+但是, 可以通过定义显示默认构造或者显示删除构造函数, 来影响自动生成的默认构造函数和复制构造函数.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org81e6717" class="outline-3">
+<h3 id="org81e6717">销毁对象</h3>
+<div class="outline-text-3" id="text-org81e6717">
+<p>
+销毁对象时会发生两件事: 调用对象的析构函数, 释放对象占用的内存. 如果没有声明析构函数, 编译器会自动生成一个, 析构函数会逐一销毁成员, 然后删除对象.
+</p>
+
+<p>
+当堆栈中的对象超出作用域时, 意味着当前的函数, 方法或者其他执行代码块结束, 对象会被销毁. 换句话说, 当代码遇到结束花括号时, 这个花括号中所有创建在堆栈上的对象都会被销毁. 堆栈上对象的销毁顺序与声明顺序(也即构建顺序)相反.
+</p>
 </div>
 </div>
 </div>
