@@ -7,12 +7,21 @@ There are totally 2 bits for PCFICH corresponding to the three candidate control
 #+BEGIN_SRC dot :file pcfich.png
   digraph A
   {
-	  start -> block_code:w [label="2 bits"];
-	  block_code -> scrambling:w [label="Scrambling"];
-	  scrambling -> mod:w [label="QPSK\nmodulation"];
-	  mod -> end [label="16 symbols"];
+	  rankdir=LR;
+	  node [shape=box];
+	  start [shape=plaintext, label="2 bits"];
+          end [shape=plaintext, label = "16 symbols"];
+          block_code [label="block coding"];
+          mod [label="QPSK\nmodulation"]
+	  start -> block_code:w;
+	  block_code:e -> scrambling:w [label="32 bits"];
+	  scrambling:e -> mod:w;
+	  mod:e -> end;
   }
 #+END_SRC
+
+#+RESULTS:
+[[file:pcfich.png]]
 
 * Footnotes
 

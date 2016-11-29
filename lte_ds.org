@@ -1,4 +1,4 @@
-#+TITLE: Discovery Signal
+#+TITLE: LTE - Discovery Signal
 
 Just as its name indicates, /discovery signal/ is transmitted by a cell to be discovered and measured by UE's. According to the standard[fn:1], a discovery signal occasion for a cell consists of
 - 1~5 consecutive subframes for FDD
