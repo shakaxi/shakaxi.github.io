@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 22:57 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-29 Tue 22:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Installation Guide for Arch Linux</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="shaka" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -149,63 +234,62 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Preparation</a></li>
-<li><a href="#orgheadline22">Installation</a>
+<li><a href="#orgdb65453">Preparation</a></li>
+<li><a href="#orgb3dfd6d">Installation</a>
 <ul>
-<li><a href="#orgheadline2">Select the suitable architecture</a></li>
-<li><a href="#orgheadline3">Partition disk</a></li>
-<li><a href="#orgheadline4">Format the partitions</a></li>
-<li><a href="#orgheadline5">Mount the partitions</a></li>
-<li><a href="#orgheadline6">Configure network</a></li>
-<li><a href="#orgheadline7">Select nearest mirror</a></li>
-<li><a href="#orgheadline8">Install the base system and necessary applications</a></li>
-<li><a href="#orgheadline9">Generate fstab file</a></li>
-<li><a href="#orgheadline10">Chroot into the newly installed system</a></li>
-<li><a href="#orgheadline11">Set hostname</a></li>
-<li><a href="#orgheadline12">Set time zone</a></li>
-<li><a href="#orgheadline13">Set system time</a></li>
-<li><a href="#orgheadline14">Set locale</a></li>
-<li><a href="#orgheadline15">Create an initial RAM disk</a></li>
-<li><a href="#orgheadline16">Install bootloader</a></li>
-<li><a href="#orgheadline17">Configure network for the newly installed OS</a></li>
-<li><a href="#orgheadline18">Configure SSH service&#xa0;&#xa0;&#xa0;<span class="tag"><span class="server">server</span></span></a></li>
-<li><a href="#orgheadline19">Configure CPU frequency scaling</a></li>
-<li><a href="#orgheadline20">Set password for root</a></li>
-<li><a href="#orgheadline21">Unmount and reboot</a></li>
+<li><a href="#org856d20c">Select the suitable architecture</a></li>
+<li><a href="#org2555713">Partition disk</a></li>
+<li><a href="#org1346c04">Format the partitions</a></li>
+<li><a href="#org7b5ecbb">Mount the partitions</a></li>
+<li><a href="#orgfcd6696">Configure network</a></li>
+<li><a href="#orgc153deb">Select nearest mirror</a></li>
+<li><a href="#org6b92379">Install the base system and necessary applications</a></li>
+<li><a href="#org43aa9cf">Generate fstab file</a></li>
+<li><a href="#orgb7f20e7">Chroot into the newly installed system</a></li>
+<li><a href="#org0d7d6e0">Set hostname</a></li>
+<li><a href="#org0e1fe6a">Set time zone</a></li>
+<li><a href="#org3a71296">Set system time</a></li>
+<li><a href="#org9121766">Set locale</a></li>
+<li><a href="#orgc24b34f">Create an initial RAM disk</a></li>
+<li><a href="#org57048a5">Install bootloader</a></li>
+<li><a href="#org6c2e97c">Configure network for the newly installed OS</a></li>
+<li><a href="#org13589f5">Configure SSH service&#xa0;&#xa0;&#xa0;<span class="tag"><span class="server">server</span></span></a></li>
+<li><a href="#orgbb5ad1e">Configure CPU frequency scaling</a></li>
+<li><a href="#org9fccee4">Set password for root</a></li>
+<li><a href="#org955a1fc">Unmount and reboot</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Preparation</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-orgdb65453" class="outline-2">
+<h2 id="orgdb65453">Preparation</h2>
+<div class="outline-text-2" id="text-orgdb65453">
 <ol class="org-ol">
 <li>Insert the DVD into the optical driver and reboot the computer.</li>
 <li>In the power-on self-test (POST) stage, press <code>F11</code> <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> on the screen of BIOS splash to boot the computer from the DVD.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgheadline22" class="outline-2">
-<h2 id="orgheadline22">Installation</h2>
-<div class="outline-text-2" id="text-orgheadline22">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">Select the suitable architecture</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-orgb3dfd6d" class="outline-2">
+<h2 id="orgb3dfd6d">Installation</h2>
+<div class="outline-text-2" id="text-orgb3dfd6d">
+</div><div id="outline-container-org856d20c" class="outline-3">
+<h3 id="org856d20c">Select the suitable architecture</h3>
+<div class="outline-text-3" id="text-org856d20c">
 <p>
 When Arch Linux splash appears, choose <code>Boot Arch Linux (x86_64)</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Partition disk</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org2555713" class="outline-3">
+<h3 id="org2555713">Partition disk</h3>
+<div class="outline-text-3" id="text-org2555713">
 <p>
 Divide the entire disk into several partitions, e.g. four partitions for <code>/</code>, <code>/var</code>, <code>/tmp</code>, <code>/home</code>, respectively. What deserves your attention, <code>/</code> should be set bootable. With respect to the partition tool, you have so many choices, e.g. <code>fdisk</code>, <code>cfdisk</code>. Without loss of generality, we take <code>cfdisk</code> for instance here.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">cfdisk /dev/sda
 </pre>
 </div>
@@ -214,11 +298,10 @@ For example, we have divided the disk into four partitions, e.g. <code>/sda1</co
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Format the partitions</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org1346c04" class="outline-3">
+<h3 id="org1346c04">Format the partitions</h3>
+<div class="outline-text-3" id="text-org1346c04">
 <div class="org-src-container">
-
 <pre class="src src-sh">mkfs.ext4 /dev/sda1
 mkfs.ext4 /dev/sda5
 mkfs.ext4 /dev/sda6
@@ -227,11 +310,10 @@ mkfs.ext4 /dev/sda7
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Mount the partitions</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org7b5ecbb" class="outline-3">
+<h3 id="org7b5ecbb">Mount the partitions</h3>
+<div class="outline-text-3" id="text-org7b5ecbb">
 <div class="org-src-container">
-
 <pre class="src src-sh">mount -t ext4 /dev/sda1 /mnt
 mkdir -p /mnt/{var,tmp,home}
 mount -t ext4 /dev/sda5 /mnt/var
@@ -241,11 +323,10 @@ mount -t ext4 /dev/sda7 /mnt/home
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">Configure network</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-orgfcd6696" class="outline-3">
+<h3 id="orgfcd6696">Configure network</h3>
+<div class="outline-text-3" id="text-orgfcd6696">
 <div class="org-src-container">
-
 <pre class="src src-sh">systemctl stop dhcpcd
 ip addr add IP_ADDR/24 broadcast BROADCAST_ADDR dev eth0
 ip route add default via GATEWAY_IP_ADDR
@@ -256,77 +337,70 @@ ip route add default via GATEWAY_IP_ADDR
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">Select nearest mirror</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-orgc153deb" class="outline-3">
+<h3 id="orgc153deb">Select nearest mirror</h3>
+<div class="outline-text-3" id="text-orgc153deb">
 <p>
 Edit <code>/etc/pacman.d/mirrorlist</code> as
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">Server = http://mirrors.163.com/archlinux/$<span style="color: #a0522d;">repo</span>/os/$<span style="color: #a0522d;">arch</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">Install the base system and necessary applications</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-org6b92379" class="outline-3">
+<h3 id="org6b92379">Install the base system and necessary applications</h3>
+<div class="outline-text-3" id="text-org6b92379">
 <div class="org-src-container">
-
 <pre class="src src-sh">pacstrap /mnt base base-devel os-prober grub openssh nfs-utils boost cpupower libxml2 ntp
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">Generate fstab file</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-org43aa9cf" class="outline-3">
+<h3 id="org43aa9cf">Generate fstab file</h3>
+<div class="outline-text-3" id="text-org43aa9cf">
 <div class="org-src-container">
-
 <pre class="src src-sh">genfstab -p /mnt &gt;&gt; /mnt/etc/fstab
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">Chroot into the newly installed system</h3>
-<div class="outline-text-3" id="text-orgheadline10">
+<div id="outline-container-orgb7f20e7" class="outline-3">
+<h3 id="orgb7f20e7">Chroot into the newly installed system</h3>
+<div class="outline-text-3" id="text-orgb7f20e7">
 <div class="org-src-container">
-
 <pre class="src src-sh">arch-chroot /mnt
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-3">
-<h3 id="orgheadline11">Set hostname</h3>
-<div class="outline-text-3" id="text-orgheadline11">
+<div id="outline-container-org0d7d6e0" class="outline-3">
+<h3 id="org0d7d6e0">Set hostname</h3>
+<div class="outline-text-3" id="text-org0d7d6e0">
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #483d8b;">echo</span> COMPUTER_NAME &gt; /etc/hostname
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">Set time zone</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-org0e1fe6a" class="outline-3">
+<h3 id="org0e1fe6a">Set time zone</h3>
+<div class="outline-text-3" id="text-org0e1fe6a">
 <div class="org-src-container">
-
 <pre class="src src-sh">ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">Set system time</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-org3a71296" class="outline-3">
+<h3 id="org3a71296">Set system time</h3>
+<div class="outline-text-3" id="text-org3a71296">
 <p>
 Prepend following line to <code>/etc/ntp.conf</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">server head
 </pre>
 </div>
@@ -334,21 +408,19 @@ Prepend following line to <code>/etc/ntp.conf</code>
 Enable the network time service
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">systemctl enable ntpd.service
 systemctl start ntpd.service
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">Set locale</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org9121766" class="outline-3">
+<h3 id="org9121766">Set locale</h3>
+<div class="outline-text-3" id="text-org9121766">
 <p>
 Edit <code>/etc/locale.gen</code> and uncomment the following lines
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">...
 en_US.UTF-8 UTF-8
 en_US ISO-8859-1
@@ -364,42 +436,38 @@ zh_CN GB2312
 Generate and set locales
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">locale-gen
 <span style="color: #483d8b;">echo</span> <span style="color: #a0522d;">LANG</span>=en_US.UTF-8 &gt; /etc/locale.conf
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">Create an initial RAM disk</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-orgc24b34f" class="outline-3">
+<h3 id="orgc24b34f">Create an initial RAM disk</h3>
+<div class="outline-text-3" id="text-orgc24b34f">
 <div class="org-src-container">
-
 <pre class="src src-sh">mkinitcpio -p linux
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">Install bootloader</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-org57048a5" class="outline-3">
+<h3 id="org57048a5">Install bootloader</h3>
+<div class="outline-text-3" id="text-org57048a5">
 <div class="org-src-container">
-
 <pre class="src src-sh">grub-install --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">Configure network for the newly installed OS</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-org6c2e97c" class="outline-3">
+<h3 id="org6c2e97c">Configure network for the newly installed OS</h3>
+<div class="outline-text-3" id="text-org6c2e97c">
 <p>
 Edit <code>/etc/profile</code> and append following two lines to configure the proxy server.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">...
 <span style="color: #483d8b;">export</span> <span style="color: #a0522d;">http_proxy</span>=<span style="color: #8b2252;">"http://202.108.92.171:8080"</span>
 <span style="color: #483d8b;">export</span> <span style="color: #a0522d;">https_proxy</span>=<span style="color: #8b2252;">"https://202.108.92.171:8080"</span>
@@ -409,7 +477,6 @@ Edit <code>/etc/profile</code> and append following two lines to configure the p
 Create file <code>/etc/netctl/ethernet_static</code> with its content
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #a0522d;">Description</span>=<span style="color: #8b2252;">'A static ethernet connection'</span>
 <span style="color: #a0522d;">Interface</span>=enp1s0f0
 <span style="color: #a0522d;">Connection</span>=ethernet
@@ -423,20 +490,18 @@ Create file <code>/etc/netctl/ethernet_static</code> with its content
 Enable the network configuration
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">netctl enable ethernet_static
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">Configure SSH service&#xa0;&#xa0;&#xa0;<span class="tag"><span class="server">server</span></span></h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-org13589f5" class="outline-3">
+<h3 id="org13589f5">Configure SSH service&#xa0;&#xa0;&#xa0;<span class="tag"><span class="server">server</span></span></h3>
+<div class="outline-text-3" id="text-org13589f5">
 <p>
 Edit file <code>/etc/ssh/sshd_config</code> as below
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">...
 PermitRootLogin yes
 ...
@@ -446,37 +511,33 @@ PermitRootLogin yes
 Enable the SSH service
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">systemctl enable sshd.service
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline19" class="outline-3">
-<h3 id="orgheadline19">Configure CPU frequency scaling</h3>
-<div class="outline-text-3" id="text-orgheadline19">
+<div id="outline-container-orgbb5ad1e" class="outline-3">
+<h3 id="orgbb5ad1e">Configure CPU frequency scaling</h3>
+<div class="outline-text-3" id="text-orgbb5ad1e">
 <div class="org-src-container">
-
 <pre class="src src-sh">systemctl enable cpupower
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">Set password for root</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-org9fccee4" class="outline-3">
+<h3 id="org9fccee4">Set password for root</h3>
+<div class="outline-text-3" id="text-org9fccee4">
 <div class="org-src-container">
-
 <pre class="src src-sh">passwd
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">Unmount and reboot</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-org955a1fc" class="outline-3">
+<h3 id="org955a1fc">Unmount and reboot</h3>
+<div class="outline-text-3" id="text-org955a1fc">
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #a020f0;">exit</span>
 umount -R /mnt
 reboot

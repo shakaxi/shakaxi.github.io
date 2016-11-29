@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 22:58 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-29 Tue 22:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Polymorphism</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="shaka" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -149,30 +234,30 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">简介</a></li>
-<li><a href="#orgheadline2">虚函数</a>
+<li><a href="#org3b4f2db">简介</a></li>
+<li><a href="#org96bf4a5">虚函数</a>
 <ul>
-<li><a href="#orgheadline3">纯虚函数</a></li>
-<li><a href="#orgheadline4">抽象类</a></li>
+<li><a href="#orge5e7c31">纯虚函数</a></li>
+<li><a href="#org6465dc1">抽象类</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline5">总结</a></li>
+<li><a href="#org18cbb9f">总结</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">简介</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org3b4f2db" class="outline-2">
+<h2 id="org3b4f2db">简介</h2>
+<div class="outline-text-2" id="text-org3b4f2db">
 <p>
 <b>多态</b> 是C++语言的一大特色。一个操作随着所传递或捆绑的对象类型的不同能够做出不同的反应，其行为模式称为多态<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。而且，仅仅对于对象的指针和引用的间接访问，才会发生多态。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">虚函数</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org96bf4a5" class="outline-2">
+<h2 id="org96bf4a5">虚函数</h2>
+<div class="outline-text-2" id="text-org96bf4a5">
 <p>
 在使用类的C++语言中，抽象编程需要使用 <b>虚函数</b> 机制。基类与派生类的同名操作，只要标记上 <b>virtual</b><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> ，则该操作（虚函数）便具有多态性。一旦标记基类的函数为虚函数，便有连锁反应，后面继承的类中一切同名成员函数都变成了虚函数。这样一来，如果实际对象是基类对象，那么调用的就是基类成员函数；如果实际对象是派生类对象，那么调用的就是派生类成员函数。
 </p>
@@ -188,17 +273,17 @@ for the JavaScript code in this tag.
 <li>析构函数可以是且通常声明为虚函数。</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">纯虚函数</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orge5e7c31" class="outline-3">
+<h3 id="orge5e7c31">纯虚函数</h3>
+<div class="outline-text-3" id="text-orge5e7c31">
 <p>
 纯虚函数是指被标明为不具体实现的虚函数。纯虚函数一旦声明，就不用定义。声明形式是在虚函数声明形式后跟“ = 0”。
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">抽象类</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org6465dc1" class="outline-3">
+<h3 id="org6465dc1">抽象类</h3>
+<div class="outline-text-3" id="text-org6465dc1">
 <p>
 抽象类是指在类定义中至少声明一个纯虚函数的类。抽象类是不允许有实例对象的，即不能由抽象类创建实例对象，其用途只是为了继承。
 </p>
@@ -206,9 +291,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-2">
-<h2 id="orgheadline5">总结</h2>
-<div class="outline-text-2" id="text-orgheadline5">
+<div id="outline-container-org18cbb9f" class="outline-2">
+<h2 id="org18cbb9f">总结</h2>
+<div class="outline-text-2" id="text-org18cbb9f">
 <p>
 总之, 要想实现多态, 必须用虚函数(在基类中用关键字virtual). 对于派生类, 必须对虚函数进行实现. 对于基类, 有两个选择: 第一, 实现虚函数; 第二, 将虚函数声明为纯虚函数(相应地, 基类也就变成了抽象类).
 </p>

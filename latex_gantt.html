@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 22:57 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-29 Tue 22:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LaTeX - Gantt Chart</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="shaka" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -171,45 +256,44 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Introduction</a></li>
-<li><a href="#orgheadline2">Installation</a></li>
-<li><a href="#orgheadline3">Usage</a>
+<li><a href="#org2b62002">Introduction</a></li>
+<li><a href="#org34dceb1">Installation</a></li>
+<li><a href="#orgce3e870">Usage</a>
 <ul>
-<li><a href="#orgheadline4">Optional arguments</a></li>
-<li><a href="#orgheadline5">Title</a></li>
-<li><a href="#orgheadline12">Other commands</a>
+<li><a href="#orgb3b8f52">Optional arguments</a></li>
+<li><a href="#org2800667">Title</a></li>
+<li><a href="#org0a9d364">Other commands</a>
 <ul>
-<li><a href="#orgheadline6"><code>\ganttbar</code></a></li>
-<li><a href="#orgheadline7"><code>\ganttcon</code></a></li>
-<li><a href="#orgheadline8"><code>\ganttbarcon</code></a></li>
-<li><a href="#orgheadline9"><code>\ganttgroup</code></a></li>
-<li><a href="#orgheadline10"><code>\ganttmilestone</code></a></li>
-<li><a href="#orgheadline11"><code>\ganttmilestonecon</code></a></li>
+<li><a href="#org404a2e8"><code>\ganttbar</code></a></li>
+<li><a href="#orgd2a6942"><code>\ganttcon</code></a></li>
+<li><a href="#orgcc551f0"><code>\ganttbarcon</code></a></li>
+<li><a href="#org7013e21"><code>\ganttgroup</code></a></li>
+<li><a href="#org277193e"><code>\ganttmilestone</code></a></li>
+<li><a href="#orgfb2dcc3"><code>\ganttmilestonecon</code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline13">An example</a></li>
+<li><a href="#orgeb37894">An example</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Introduction</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org2b62002" class="outline-2">
+<h2 id="org2b62002">Introduction</h2>
+<div class="outline-text-2" id="text-org2b62002">
 <p>
 Today, I found an interesting \(\LaTeX\) package, <i>gantt</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. This package is developped based on <i>pgf/tikz</i> and, as its name indicates, can produce <i>Gantt</i> charts.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Installation</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org34dceb1" class="outline-2">
+<h2 id="org34dceb1">Installation</h2>
+<div class="outline-text-2" id="text-org34dceb1">
 <p>
 For <i>ArchLinux</i>, the package can be simply installed via <i>yaourt</i>.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">yaourt texlive-gantt
 </pre>
 </div>
@@ -218,14 +302,13 @@ Alternatively, the corresponding <i>style</i> file can be downloaded from the <a
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Usage</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgce3e870" class="outline-2">
+<h2 id="orgce3e870">Usage</h2>
+<div class="outline-text-2" id="text-orgce3e870">
 <p>
 The framework of using the package can be illustrated as
 </p>
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
 <span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">gantt</span>}
 ...
@@ -239,9 +322,9 @@ The framework of using the package can be illustrated as
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Optional arguments</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orgb3b8f52" class="outline-3">
+<h3 id="orgb3b8f52">Optional arguments</h3>
+<div class="outline-text-3" id="text-orgb3b8f52">
 <p>
 <code>key_1, key_2, ...</code> are optional arguments, which can be
 </p>
@@ -253,14 +336,13 @@ The framework of using the package can be illustrated as
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Title</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org2800667" class="outline-3">
+<h3 id="org2800667">Title</h3>
+<div class="outline-text-3" id="text-org2800667">
 <p>
 <code>ganttitle</code> is the environment for drawing the title section, which is comprised of a series of <code>\titleelement</code> and/or <code>\numtitle</code>
 </p>
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #696969;">\numtitle</span>{start number}{increment}{end number}{length of each title element}
 ...
 <span style="color: #696969;">\titleelement</span>{label}{length}
@@ -268,17 +350,16 @@ The framework of using the package can be illustrated as
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">Other commands</h3>
-<div class="outline-text-3" id="text-orgheadline12">
-</div><div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6"><code>\ganttbar</code></h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org0a9d364" class="outline-3">
+<h3 id="org0a9d364">Other commands</h3>
+<div class="outline-text-3" id="text-org0a9d364">
+</div><div id="outline-container-org404a2e8" class="outline-4">
+<h4 id="org404a2e8"><code>\ganttbar</code></h4>
+<div class="outline-text-4" id="text-org404a2e8">
 <p>
 Draws a single, unconnected bar for a task.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #696969;">\ganttbar</span>[pattern=&lt;pattern&gt;,color=&lt;color&gt;]{label}{start}{length}
 </pre>
 </div>
@@ -291,27 +372,25 @@ where
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7"><code>\ganttcon</code></h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-orgd2a6942" class="outline-4">
+<h4 id="orgd2a6942"><code>\ganttcon</code></h4>
+<div class="outline-text-4" id="text-orgd2a6942">
 <p>
 Draw an arrow between two bars with specified coordinates.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #696969;">\ganttcon</span>{startx}{starty}{endx}{endy}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8"><code>\ganttbarcon</code></h4>
-<div class="outline-text-4" id="text-orgheadline8">
+<div id="outline-container-orgcc551f0" class="outline-4">
+<h4 id="orgcc551f0"><code>\ganttbarcon</code></h4>
+<div class="outline-text-4" id="text-orgcc551f0">
 <p>
 Draw a single bar <b>and</b> connect it to the <b>previous</b> bar/milestone.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #696969;">\ganttbarcon</span>[pattern=&lt;pattern&gt;,color=&lt;color&gt;]{label}{start}{length}
 </pre>
 </div>
@@ -320,40 +399,37 @@ where the optional pattern argument are the same as <code>\ganttbar</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9"><code>\ganttgroup</code></h4>
-<div class="outline-text-4" id="text-orgheadline9">
+<div id="outline-container-org7013e21" class="outline-4">
+<h4 id="org7013e21"><code>\ganttgroup</code></h4>
+<div class="outline-text-4" id="text-org7013e21">
 <p>
 Draw a bar to group tasks.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #696969;">\ganttgroup</span>{label}{start}{length}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10"><code>\ganttmilestone</code></h4>
-<div class="outline-text-4" id="text-orgheadline10">
+<div id="outline-container-org277193e" class="outline-4">
+<h4 id="org277193e"><code>\ganttmilestone</code></h4>
+<div class="outline-text-4" id="text-org277193e">
 <p>
 Draw a milestone using a diamond.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #696969;">\ganttmilestone</span>[color=&lt;color&gt;]{label}{start}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11"><code>\ganttmilestonecon</code></h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-orgfb2dcc3" class="outline-4">
+<h4 id="orgfb2dcc3"><code>\ganttmilestonecon</code></h4>
+<div class="outline-text-4" id="text-orgfb2dcc3">
 <p>
 Draw a milestone using a diamond <b>and</b> connect it to the previous bar/milestone.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #696969;">\ganttmilestonecon</span>[color=&lt;color&gt;]{label}{start}
 </pre>
 </div>
@@ -361,11 +437,10 @@ Draw a milestone using a diamond <b>and</b> connect it to the previous bar/miles
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13">An example</h2>
-<div class="outline-text-2" id="text-orgheadline13">
+<div id="outline-container-orgeb37894" class="outline-2">
+<h2 id="orgeb37894">An example</h2>
+<div class="outline-text-2" id="text-orgeb37894">
 <div class="org-src-container">
-
 <pre class="src src-latex"><span style="color: #a020f0;">\documentclass</span>{<span style="color: #0000ff;">article</span>}
 
 <span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-15 Tue 19:42 -->
+<!-- 2016-11-29 Tue 22:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LTE - PCFICH</title>
@@ -237,6 +237,12 @@ As its name implies, physical control format indicator channel (PCFICH) indicate
 <p>
 There are totally 2 bits for PCFICH corresponding to the three candidate control region size. The 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the inter-cell interference (ICI). After that, the codeword is modulated into 16 QPSK symbols and mapped to 4 <i>resource element groups (REG's)</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 bandwidth.
 </p>
+
+
+<div class="figure">
+<p><img src="pcfich.png" alt="pcfich.png" />
+</p>
+</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">

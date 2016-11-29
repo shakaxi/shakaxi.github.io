@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 22:57 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-29 Tue 22:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="shaka" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -149,23 +234,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Introduction</a></li>
-<li><a href="#orgheadline2">Installation</a></li>
-<li><a href="#orgheadline3">Usage</a>
+<li><a href="#org24f27dd">Introduction</a></li>
+<li><a href="#org6d0a326">Installation</a></li>
+<li><a href="#orgb18ebc7">Usage</a>
 <ul>
-<li><a href="#orgheadline4">Create repositories</a></li>
-<li><a href="#orgheadline5">Configuration</a></li>
-<li><a href="#orgheadline15">Basic snapshotting</a>
+<li><a href="#org67a41b4">Create repositories</a></li>
+<li><a href="#orgf9fa004">Configuration</a></li>
+<li><a href="#org6306a9d">Basic snapshotting</a>
 <ul>
-<li><a href="#orgheadline6">Add file(s)</a></li>
-<li><a href="#orgheadline7">Remove file(s)</a></li>
-<li><a href="#orgheadline8">Commit the revision(s)</a></li>
-<li><a href="#orgheadline9">Branch operations</a></li>
-<li><a href="#orgheadline10">Tag operations</a></li>
-<li><a href="#orgheadline11">Information query</a></li>
-<li><a href="#orgheadline12">Show the difference</a></li>
-<li><a href="#orgheadline13">Remote operation</a></li>
-<li><a href="#orgheadline14">Cancellation</a></li>
+<li><a href="#org0f2fa29">Add file(s)</a></li>
+<li><a href="#org46ec096">Remove file(s)</a></li>
+<li><a href="#orga8734db">Commit the revision(s)</a></li>
+<li><a href="#orgeeb1160">Branch operations</a></li>
+<li><a href="#orgdcc253b">Tag operations</a></li>
+<li><a href="#org5561303">Information query</a></li>
+<li><a href="#org0eec70f">Show the difference</a></li>
+<li><a href="#orgdb022b7">Remote operation</a></li>
+<li><a href="#orgc7cf644">Cancellation</a></li>
 </ul>
 </li>
 </ul>
@@ -174,22 +259,21 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Introduction</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org24f27dd" class="outline-2">
+<h2 id="org24f27dd">Introduction</h2>
+<div class="outline-text-2" id="text-org24f27dd">
 <p>
 <i>Git</i> is a famous and powerful open-source software for version control and management. It was developed by Linus Torvalds with C programing language. What is different from <i>subversion</i>, git adopts a completely distributed manner. Regarding its utilization, besides its built-in manual, there is also an excellent book, <i>Pro Git</i>, which can be obtained for free<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. This post just summarizes the preliminary usage of git, which is referred from the book.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Installation</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org6d0a326" class="outline-2">
+<h2 id="org6d0a326">Installation</h2>
+<div class="outline-text-2" id="text-org6d0a326">
 <p>
 On Unix/Linux operation systems, git can be easily installed. Taking <i>ArchLinux</i> for instance, git can be installed via following command.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">pacman -S git
 </pre>
 </div>
@@ -197,15 +281,14 @@ On Unix/Linux operation systems, git can be easily installed. Taking <i>ArchLinu
 For GUI, package <i>tk</i> needs to be installed additionally.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">pacman -S tk
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Usage</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgb18ebc7" class="outline-2">
+<h2 id="orgb18ebc7">Usage</h2>
+<div class="outline-text-2" id="text-orgb18ebc7">
 <p>
 In the utilization of git, there are four important areas for storage, <i>workspace</i>, <i>index</i> (or <i>stage</i>), <i>repository</i> and <i>remote</i>. Their relationship can be illustrated by the figure below.
 </p>
@@ -215,14 +298,13 @@ In the utilization of git, there are four important areas for storage, <i>worksp
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Create repositories</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-org67a41b4" class="outline-3">
+<h3 id="org67a41b4">Create repositories</h3>
+<div class="outline-text-3" id="text-org67a41b4">
 <ul class="org-ul">
 <li>Create a repository</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git init /path/to/project
 </pre>
 </div>
@@ -230,7 +312,6 @@ In the utilization of git, there are four important areas for storage, <i>worksp
 <li>Initialize the belonging directory as a repository</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git init
 </pre>
 </div>
@@ -238,15 +319,14 @@ In the utilization of git, there are four important areas for storage, <i>worksp
 <li>Download from a remote repository</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git clone url
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Configuration</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-orgf9fa004" class="outline-3">
+<h3 id="orgf9fa004">Configuration</h3>
+<div class="outline-text-3" id="text-orgf9fa004">
 <p>
 Command <code>git config</code> can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or down to specific repositories.
 </p>
@@ -254,7 +334,6 @@ Command <code>git config</code> can define the default preference or behavior of
 <li>List the configuration</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git config --list
 </pre>
 </div>
@@ -262,7 +341,6 @@ Command <code>git config</code> can define the default preference or behavior of
 <li>Repository-specific configuration</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git config -e
 </pre>
 </div>
@@ -270,37 +348,34 @@ Command <code>git config</code> can define the default preference or behavior of
 <li>Global configuration</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git config -e --global
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">Basic snapshotting</h3>
-<div class="outline-text-3" id="text-orgheadline15">
-</div><div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">Add file(s)</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-org6306a9d" class="outline-3">
+<h3 id="org6306a9d">Basic snapshotting</h3>
+<div class="outline-text-3" id="text-org6306a9d">
+</div><div id="outline-container-org0f2fa29" class="outline-4">
+<h4 id="org0f2fa29">Add file(s)</h4>
+<div class="outline-text-4" id="text-org0f2fa29">
 <p>
 Add the content from the workspace into index area for the next commit.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">git add file1 [file2]
 git add directory
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">Remove file(s)</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org46ec096" class="outline-4">
+<h4 id="org46ec096">Remove file(s)</h4>
+<div class="outline-text-4" id="text-org46ec096">
 <ul class="org-ul">
 <li>Stop tracking file(s)</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git rm --cached file1 [file2]
 </pre>
 </div>
@@ -308,15 +383,14 @@ git add directory
 <li>Remove file(s) in workspace and index the removal in index</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git rm file1 [file2]
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">Commit the revision(s)</h4>
-<div class="outline-text-4" id="text-orgheadline8">
+<div id="outline-container-orga8734db" class="outline-4">
+<h4 id="orga8734db">Commit the revision(s)</h4>
+<div class="outline-text-4" id="text-orga8734db">
 <p>
 The commands take the all/or the specific file(s) that have been staged with <code>git add</code> and record a new permanent snapshot in the repository and then moves the branch pointer on the current branch up to it.
 </p>
@@ -324,7 +398,6 @@ The commands take the all/or the specific file(s) that have been staged with <co
 <li>Commit all the files in the index</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git commit [-m message]
 </pre>
 </div>
@@ -332,7 +405,6 @@ The commands take the all/or the specific file(s) that have been staged with <co
 <li>Commit specific file(s) in the index</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git commit file1 [file2] [-m message]
 </pre>
 </div>
@@ -340,21 +412,19 @@ The commands take the all/or the specific file(s) that have been staged with <co
 <li>Replace the last commit with the new commit. If no changes for the codes compared to the last commit, only commit message will be updated.</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git commit --amend [-m message]
 git commit --amend [file]
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9">Branch operations</h4>
-<div class="outline-text-4" id="text-orgheadline9">
+<div id="outline-container-orgeeb1160" class="outline-4">
+<h4 id="orgeeb1160">Branch operations</h4>
+<div class="outline-text-4" id="text-orgeeb1160">
 <ul class="org-ul">
 <li>List all the local branches</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git branch
 </pre>
 </div>
@@ -362,7 +432,6 @@ git commit --amend [file]
 <li>List all the remote branches</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git branch -r
 </pre>
 </div>
@@ -370,7 +439,6 @@ git commit --amend [file]
 <li>List all the branch including both local and remote ones</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git branch -a
 </pre>
 </div>
@@ -378,7 +446,6 @@ git commit --amend [file]
 <li>Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is <code>HEAD</code>.</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git branch branch_name [commit_name]
 </pre>
 </div>
@@ -386,7 +453,6 @@ git commit --amend [file]
 <li>Switch to an existing branch</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git checkout branch_name
 </pre>
 </div>
@@ -394,7 +460,6 @@ git commit --amend [file]
 <li>Create a new branch and switch to it</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git checkout -b branch_name
 </pre>
 </div>
@@ -402,7 +467,6 @@ git commit --amend [file]
 <li>Associate a local branch to a remote branch</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git branch --set-upstream local_branch_name remote_branch_name
 </pre>
 </div>
@@ -410,7 +474,6 @@ git commit --amend [file]
 <li>Create a new branch and associate it to a remote branch</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git branch --track branch_name remote_branch_name
 </pre>
 </div>
@@ -418,7 +481,6 @@ git commit --amend [file]
 <li>Merge a given branch into the current branch</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git merge branch_name
 </pre>
 </div>
@@ -426,7 +488,6 @@ git commit --amend [file]
 <li>Remove a local branch</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git branch -d branch_name
 </pre>
 </div>
@@ -434,21 +495,19 @@ git commit --amend [file]
 <li>Remove a remote branch</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git push origin --delete branch_name
 git branch -dr remote_name/branch_name
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10">Tag operations</h4>
-<div class="outline-text-4" id="text-orgheadline10">
+<div id="outline-container-orgdcc253b" class="outline-4">
+<h4 id="orgdcc253b">Tag operations</h4>
+<div class="outline-text-4" id="text-orgdcc253b">
 <ul class="org-ul">
 <li>List all tags</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git tag
 </pre>
 </div>
@@ -456,7 +515,6 @@ git branch -dr remote_name/branch_name
 <li>Create a new tag for a commit. If not provided, the tag is labeled on <code>HEAD</code>.</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git tag tag_name commit_name
 </pre>
 </div>
@@ -464,7 +522,6 @@ git branch -dr remote_name/branch_name
 <li>Show information of a tag</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git show tag_name
 </pre>
 </div>
@@ -472,7 +529,6 @@ git branch -dr remote_name/branch_name
 <li>Commit a tag</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git push remote_name tag_name
 </pre>
 </div>
@@ -480,7 +536,6 @@ git branch -dr remote_name/branch_name
 <li>Commit all tags</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git push remote_name --tags
 </pre>
 </div>
@@ -488,20 +543,18 @@ git branch -dr remote_name/branch_name
 <li>Create a new branch pointing to a tag</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git checkout -b branch_name tag_name
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">Information query</h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-org5561303" class="outline-4">
+<h4 id="org5561303">Information query</h4>
+<div class="outline-text-4" id="text-org5561303">
 <ul class="org-ul">
 <li>Show revised file(s) in workspace compared to those in index</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git status
 </pre>
 </div>
@@ -509,7 +562,6 @@ git branch -dr remote_name/branch_name
 <li>Show the revisions in a commit</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git show commit_name
 </pre>
 </div>
@@ -517,7 +569,6 @@ git branch -dr remote_name/branch_name
 <li>Show the history of current branch (option <code>--stat</code> can list the revised files)</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git log [--stat]
 </pre>
 </div>
@@ -525,20 +576,18 @@ git branch -dr remote_name/branch_name
 <li>Show the modifier and time of a file</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git blame file_name
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12">Show the difference</h4>
-<div class="outline-text-4" id="text-orgheadline12">
+<div id="outline-container-org0eec70f" class="outline-4">
+<h4 id="org0eec70f">Show the difference</h4>
+<div class="outline-text-4" id="text-org0eec70f">
 <ul class="org-ul">
 <li>Show the difference between the workspace and the index</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git diff
 </pre>
 </div>
@@ -546,7 +595,6 @@ git branch -dr remote_name/branch_name
 <li>Show the difference between the index and the last commit</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git diff --cached
 </pre>
 </div>
@@ -554,20 +602,18 @@ git branch -dr remote_name/branch_name
 <li>Show the difference between two commits</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git diff commit1 commit2
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13">Remote operation</h4>
-<div class="outline-text-4" id="text-orgheadline13">
+<div id="outline-container-orgdb022b7" class="outline-4">
+<h4 id="orgdb022b7">Remote operation</h4>
+<div class="outline-text-4" id="text-orgdb022b7">
 <ul class="org-ul">
 <li>List all the remote repositories</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git remote [-v]
 </pre>
 </div>
@@ -575,7 +621,6 @@ git branch -dr remote_name/branch_name
 <li>Show the information of a remote repository</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git remote show remote_name
 </pre>
 </div>
@@ -583,7 +628,6 @@ git branch -dr remote_name/branch_name
 <li>Add a remote repository</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git remote add remote_alias remote_url
 </pre>
 </div>
@@ -591,7 +635,6 @@ git branch -dr remote_name/branch_name
 <li>Remove a remote repository</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git remote remove remote_alias
 </pre>
 </div>
@@ -599,7 +642,6 @@ git branch -dr remote_name/branch_name
 <li>Download all the commit records from a remote repository</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git fetch remote_name
 </pre>
 </div>
@@ -607,7 +649,6 @@ git branch -dr remote_name/branch_name
 <li>Download all the commit records from a remote repository and merge it into a local branch</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git pull remote_name remote_branch_name
 </pre>
 </div>
@@ -615,7 +656,6 @@ git branch -dr remote_name/branch_name
 <li>Upload the local branch to a remote repository. If not provided, it will push to <code>master</code> of <code>origin</code>.</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git push remote_name remote_branch_name
 </pre>
 </div>
@@ -623,20 +663,18 @@ git branch -dr remote_name/branch_name
 <li>Upload all the local branches to a remote repository.</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git push remote_name --all
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-4">
-<h4 id="orgheadline14">Cancellation</h4>
-<div class="outline-text-4" id="text-orgheadline14">
+<div id="outline-container-orgc7cf644" class="outline-4">
+<h4 id="orgc7cf644">Cancellation</h4>
+<div class="outline-text-4" id="text-orgc7cf644">
 <ul class="org-ul">
 <li>Recover the workspace from index</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git checkout [file1]
 </pre>
 </div>
@@ -644,7 +682,6 @@ git branch -dr remote_name/branch_name
 <li>Recover the workspace from a commit</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git checkout commit_name [file1]
 </pre>
 </div>
@@ -652,7 +689,6 @@ git branch -dr remote_name/branch_name
 <li>Recover index from a commit</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git reset commit_name
 </pre>
 </div>
@@ -660,7 +696,6 @@ git branch -dr remote_name/branch_name
 <li>Recover index and workspace from a commit</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git reset --hard commit_name
 </pre>
 </div>
@@ -668,7 +703,6 @@ git branch -dr remote_name/branch_name
 <li>Move pointer <code>HEAD</code> to a commit</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">git reset --keep commit_name
 </pre>
 </div>

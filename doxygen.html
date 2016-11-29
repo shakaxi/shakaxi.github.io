@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-09-24 Sat 22:58 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2016-11-29 Tue 22:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Doxygen</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="shaka" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="shaka" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,97 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,6 +176,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
@@ -149,56 +234,56 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Introduction</a></li>
-<li><a href="#orgheadline10">Syntax</a>
+<li><a href="#org5c2a757">Introduction</a></li>
+<li><a href="#org74dc856">Syntax</a>
 <ul>
-<li><a href="#orgheadline2">Comment block</a></li>
-<li><a href="#orgheadline3">Special command</a>
+<li><a href="#org3f52aa8">Comment block</a></li>
+<li><a href="#org58d5d3b">Special command</a>
 <ul>
-<li><a href="#orgheadline4">List</a></li>
-<li><a href="#orgheadline5">Group</a></li>
-<li><a href="#orgheadline6">Formula</a></li>
-<li><a href="#orgheadline7">Graph</a></li>
-<li><a href="#orgheadline8">Text</a></li>
-<li><a href="#orgheadline9">Section</a></li>
+<li><a href="#org51aba65">List</a></li>
+<li><a href="#org55a23b3">Group</a></li>
+<li><a href="#orgf15216c">Formula</a></li>
+<li><a href="#org728f915">Graph</a></li>
+<li><a href="#orgf16d194">Text</a></li>
+<li><a href="#org1c697a0">Section</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline11">Doxymacs</a>
+<li><a href="#orgb560e24">Doxymacs</a>
 <ul>
-<li><a href="#orgheadline12">Installation</a></li>
-<li><a href="#orgheadline13">Configuration</a></li>
-<li><a href="#orgheadline14">Usage</a></li>
+<li><a href="#org02b1d4e">Installation</a></li>
+<li><a href="#orgdc0bcb8">Configuration</a></li>
+<li><a href="#org0efda55">Usage</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Introduction</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org5c2a757" class="outline-2">
+<h2 id="org5c2a757">Introduction</h2>
+<div class="outline-text-2" id="text-org5c2a757">
 <p>
 <i>Doxygen</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a powerful tool to document the source codes. In principle, it parses the specially formated comments from the source codes and then produces very professional documents. Up to now, it is able to support almost all the popular programming languages, e.g. C/C++, Java, Python, and etc.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-2">
-<h2 id="orgheadline10">Syntax</h2>
-<div class="outline-text-2" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">Comment block</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+<div id="outline-container-org74dc856" class="outline-2">
+<h2 id="org74dc856">Syntax</h2>
+<div class="outline-text-2" id="text-org74dc856">
+</div><div id="outline-container-org3f52aa8" class="outline-3">
+<h3 id="org3f52aa8">Comment block</h3>
+<div class="outline-text-3" id="text-org3f52aa8">
 <dl class="org-dl">
 <dt>Multi-line comment blocks</dt><dd>Begin with <code>/**</code> or <code>/*!</code>, and end with <code>*/</code>.</dd>
 <dt>Single-line comment blocks</dt><dd>delimiters <code>///</code> or <code>//!</code>.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Special command</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-org58d5d3b" class="outline-3">
+<h3 id="org58d5d3b">Special command</h3>
+<div class="outline-text-3" id="text-org58d5d3b">
 <p>
 Within code blocks, <i>special commands</i> can be used. They begin with a prefix <code>@</code> or <code>\</code> and optionally have arguments enclosed in braces. Moreover, different braces mean different scopes.
 </p>
@@ -208,9 +293,9 @@ Within code blocks, <i>special commands</i> can be used. They begin with a prefi
 <li>Curly braces <code>{ }</code> mean the argument extends to next paragraph.</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">List</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+<div id="outline-container-org51aba65" class="outline-4">
+<h4 id="org51aba65">List</h4>
+<div class="outline-text-4" id="text-org51aba65">
 <ul class="org-ul">
 <li>Column aligned <code>-</code> &rarr; a unsorted/bulleted list item.</li>
 <li>Column aligned <code>-#</code> &rarr; a sorted list item.</li>
@@ -220,11 +305,10 @@ Hierachical lists can be created by using different indents for different levels
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">Group</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-org55a23b3" class="outline-4">
+<h4 id="org55a23b3">Group</h4>
+<div class="outline-text-4" id="text-org55a23b3">
 <div class="org-src-container">
-
 <pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;title&gt;<span style="color: #8b2252;">''</span> */
 /* @{ */
    // group memebers here ...
@@ -235,7 +319,6 @@ Hierachical lists can be created by using different indents for different levels
 or
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;title&gt;<span style="color: #8b2252;">''</span> */
 // @{
    // group memebers here ...
@@ -246,20 +329,18 @@ or
 where the <code>title</code> is optional while the <code>label</code> is mandatory and can be used for reference by
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">\ref &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;link&gt;<span style="color: #8b2252;">''</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">Formula</h4>
-<div class="outline-text-4" id="text-orgheadline6">
+<div id="outline-container-orgf15216c" class="outline-4">
+<h4 id="orgf15216c">Formula</h4>
+<div class="outline-text-4" id="text-orgf15216c">
 <ul class="org-ul">
 <li>Inline formula</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">\f$ ... \f$
 </pre>
 </div>
@@ -267,23 +348,22 @@ where the <code>title</code> is optional while the <code>label</code> is mandato
 <li>Centered formula</li>
 </ul>
 <div class="org-src-container">
-
 <pre class="src src-sh">\f[ ... \f]
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">Graph</h4>
-<div class="outline-text-4" id="text-orgheadline7">
+<div id="outline-container-org728f915" class="outline-4">
+<h4 id="org728f915">Graph</h4>
+<div class="outline-text-4" id="text-org728f915">
 <p>
 Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a> from Graphviz<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. Additionally, mannual dot commands are enclosed between <code>\dot</code> and <code>\enddot</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">Text</h4>
-<div class="outline-text-4" id="text-orgheadline8">
+<div id="outline-container-orgf16d194" class="outline-4">
+<h4 id="orgf16d194">Text</h4>
+<div class="outline-text-4" id="text-orgf16d194">
 <ul class="org-ul">
 <li><code>\a/\e &lt;word&gt;</code>: <i>word</i></li>
 <li><code>\b &lt;word&gt;</code>: <b>word</b></li>
@@ -291,9 +371,9 @@ Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9">Section</h4>
-<div class="outline-text-4" id="text-orgheadline9">
+<div id="outline-container-org1c697a0" class="outline-4">
+<h4 id="org1c697a0">Section</h4>
+<div class="outline-text-4" id="text-org1c697a0">
 <ul class="org-ul">
 <li><code>\attention {...}</code>: an <b>Attention</b> paragraph</li>
 <li><code>\author {...}</code>: author list</li>
@@ -315,34 +395,32 @@ Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">Doxymacs</h2>
-<div class="outline-text-2" id="text-orgheadline11">
+<div id="outline-container-orgb560e24" class="outline-2">
+<h2 id="orgb560e24">Doxymacs</h2>
+<div class="outline-text-2" id="text-orgb560e24">
 <p>
 There is a doxygen extension for <a href="http://www.gnu.org/software/emacs">Emacs</a>, <i>doxymacs</i>, which provides a minor mode for doxygen <code>doxymacs-mode</code>. Clearly, it stands for <code>doxygen</code> + <code>emacs</code>. With it, comment blocks above can be conveniently inserted.
 </p>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">Installation</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-org02b1d4e" class="outline-3">
+<h3 id="org02b1d4e">Installation</h3>
+<div class="outline-text-3" id="text-org02b1d4e">
 <p>
 For ArchLinux, doxymacs can be easily installed by AUR.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">yaourt doxymacs
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">Configuration</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-orgdc0bcb8" class="outline-3">
+<h3 id="orgdc0bcb8">Configuration</h3>
+<div class="outline-text-3" id="text-orgdc0bcb8">
 <p>
 After the installation, following configuration should be inserted into Emacs configuration file <code>.emacs</code>.
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">doxymacs</span>)                                                                                              
 (add-hook 'c-mode-common-hook 'doxymacs-mode)                                                                    
 (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">my-doxymacs-font-lock-hook</span> ()                                                                             
@@ -353,9 +431,9 @@ After the installation, following configuration should be inserted into Emacs co
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-3">
-<h3 id="orgheadline14">Usage</h3>
-<div class="outline-text-3" id="text-orgheadline14">
+<div id="outline-container-org0efda55" class="outline-3">
+<h3 id="org0efda55">Usage</h3>
+<div class="outline-text-3" id="text-org0efda55">
 <p>
 <code>Doxymacs-mode</code> provides following key bindings.
 </p>

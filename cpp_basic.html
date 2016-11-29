@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-28 Mon 01:03 -->
+<!-- 2016-11-29 Tue 22:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -234,54 +234,54 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0205188">预处理指令</a></li>
-<li><a href="#orgd66f50f">函数</a></li>
-<li><a href="#org61e6146">类型推断</a>
+<li><a href="#orgdc300d8">预处理指令</a></li>
+<li><a href="#org5b9cad3">函数</a></li>
+<li><a href="#org406ed47">类型推断</a>
 <ul>
-<li><a href="#org4fc1044"><code>auto</code></a></li>
-<li><a href="#org078013c"><code>decltype</code></a></li>
+<li><a href="#orgeea2515"><code>auto</code></a></li>
+<li><a href="#org2e271f8"><code>decltype</code></a></li>
 </ul>
 </li>
-<li><a href="#org5949756">指针</a>
+<li><a href="#org33148c5">指针</a>
 <ul>
-<li><a href="#org6b32c8e">智能指针</a></li>
+<li><a href="#orga86fa73">智能指针</a></li>
 </ul>
 </li>
-<li><a href="#orgf35d62c">名称空间</a></li>
-<li><a href="#org7e72fe1">数组</a></li>
-<li><a href="#org9606463">字符串</a></li>
-<li><a href="#orgc9138e4"><code>switch</code></a></li>
-<li><a href="#org4c085b0">基于区间的 <code>for</code> 循环</a></li>
-<li><a href="#org41cea73">异常</a></li>
-<li><a href="#orgebbf2d9"><code>const</code></a></li>
-<li><a href="#org23c4bac">面向对象思想</a>
+<li><a href="#orgdbd8ffc">名称空间</a></li>
+<li><a href="#org9a57c1e">数组</a></li>
+<li><a href="#org8c5c35c">字符串</a></li>
+<li><a href="#orgecbc314"><code>switch</code></a></li>
+<li><a href="#org84761a7">基于区间的 <code>for</code> 循环</a></li>
+<li><a href="#org3cfff30">异常</a></li>
+<li><a href="#orgf31cd3b"><code>const</code></a></li>
+<li><a href="#orged532dc">面向对象思想</a>
 <ul>
-<li><a href="#org4fdb61b">对象之间的关系</a></li>
-<li><a href="#org16a4a6c">层次结构</a></li>
-<li><a href="#orgb2d1c1d">抽象</a></li>
-<li><a href="#org1b7a1bc">代码重用</a></li>
+<li><a href="#org2670813">对象之间的关系</a></li>
+<li><a href="#orgd3a9228">层次结构</a></li>
+<li><a href="#org50be9b3">抽象</a></li>
+<li><a href="#orga011aa2">代码重用</a></li>
 </ul>
 </li>
-<li><a href="#org0b852e6">类和对象</a>
+<li><a href="#org9654732">类和对象</a>
 <ul>
-<li><a href="#org4936e06">定义</a></li>
-<li><a href="#orgda1167d">访问控制</a></li>
-<li><a href="#orgcd749fc"><code>this</code></a></li>
-<li><a href="#org45f461b">构造函数(<code>constructor</code>)</a>
+<li><a href="#orgc5d0d42">定义</a></li>
+<li><a href="#org03d333f">访问控制</a></li>
+<li><a href="#org7868c92"><code>this</code></a></li>
+<li><a href="#orgea06e9c">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#org7362504">基本概念</a></li>
-<li><a href="#org6c846a2">构造函数初始化器</a></li>
-<li><a href="#orgff459f3">复制构造函数</a></li>
-<li><a href="#orgb3345fe">初始化列表构造函数</a></li>
-<li><a href="#org75a4b98">类内成员初始化器</a></li>
-<li><a href="#orge56ec83">委托构造函数</a></li>
-<li><a href="#orgd11ca80">编译器自动生成的构造函数</a></li>
+<li><a href="#orgf50e6cc">基本概念</a></li>
+<li><a href="#orgf4de8be">构造函数初始化器</a></li>
+<li><a href="#org37d4b41">复制构造函数</a></li>
+<li><a href="#orgb0ab6bd">初始化列表构造函数</a></li>
+<li><a href="#org01bb544">类内成员初始化器</a></li>
+<li><a href="#org3dab020">委托构造函数</a></li>
+<li><a href="#org5942f15">编译器自动生成的构造函数</a></li>
 </ul>
 </li>
-<li><a href="#org81e6717">销毁对象</a></li>
+<li><a href="#orgf97f269">销毁对象</a></li>
 </ul>
 </li>
-<li><a href="#org73bc55a"><code>lambda</code> 表达式</a></li>
+<li><a href="#orgde1e13d"><code>lambda</code> 表达式</a></li>
 </ul>
 </div>
 </div>
@@ -289,18 +289,18 @@ for the JavaScript code in this tag.
 本文是阅读 <i>Professional C++, third edition</i> 中文版<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>的读书笔记.
 </p>
 
-<div id="outline-container-org0205188" class="outline-2">
-<h2 id="org0205188">预处理指令</h2>
-<div class="outline-text-2" id="text-org0205188">
+<div id="outline-container-orgdc300d8" class="outline-2">
+<h2 id="orgdc300d8">预处理指令</h2>
+<div class="outline-text-2" id="text-orgdc300d8">
 <ul class="org-ul">
 <li>预处理指令以#字符开始. 如 <code>#pragma once</code> 可以防止文件被包含多次.</li>
 <li>头文件最常见的用途是声明在其他地方定义的函数.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd66f50f" class="outline-2">
-<h2 id="orgd66f50f">函数</h2>
-<div class="outline-text-2" id="text-orgd66f50f">
+<div id="outline-container-org5b9cad3" class="outline-2">
+<h2 id="org5b9cad3">函数</h2>
+<div class="outline-text-2" id="text-org5b9cad3">
 <ul class="org-ul">
 <li>函数声明通常称为"函数原型"或"签名", 以强调其代表函数的访问方式, 而不是具体的代码.</li>
 <li>函数参数的默认值只能存在于函数声明中, 不能放在函数定义中.</li>
@@ -326,16 +326,16 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org61e6146" class="outline-2">
-<h2 id="org61e6146">类型推断</h2>
-<div class="outline-text-2" id="text-org61e6146">
+<div id="outline-container-org406ed47" class="outline-2">
+<h2 id="org406ed47">类型推断</h2>
+<div class="outline-text-2" id="text-org406ed47">
 <p>
 类型推断允许编译器自动推断出表达式的类型. 类型推断有两个关键字: <code>auto</code> 和 <code>decltype</code>.
 </p>
 </div>
-<div id="outline-container-org4fc1044" class="outline-3">
-<h3 id="org4fc1044"><code>auto</code></h3>
-<div class="outline-text-3" id="text-org4fc1044">
+<div id="outline-container-orgeea2515" class="outline-3">
+<h3 id="orgeea2515"><code>auto</code></h3>
+<div class="outline-text-3" id="text-orgeea2515">
 <ul class="org-ul">
 <li>告诉编译器, 在编译时自动推断变量的类型.</li>
 <li>用于替代函数语法.</li>
@@ -344,9 +344,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org078013c" class="outline-3">
-<h3 id="org078013c"><code>decltype</code></h3>
-<div class="outline-text-3" id="text-org078013c">
+<div id="outline-container-org2e271f8" class="outline-3">
+<h3 id="org2e271f8"><code>decltype</code></h3>
+<div class="outline-text-3" id="text-org2e271f8">
 <ul class="org-ul">
 <li>关键字 <code>decltype</code> 把表达式作为实参, 可以计算出该表达式的类型.</li>
 <li>使用 <code>auto</code> 推断表达式的类型, 就不需要引用限定符和 <code>const</code> 限定符了. C++14引入了 <code>decltype(auto)</code> 来解决这个问题.</li>
@@ -354,9 +354,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org5949756" class="outline-2">
-<h2 id="org5949756">指针</h2>
-<div class="outline-text-2" id="text-org5949756">
+<div id="outline-container-org33148c5" class="outline-2">
+<h2 id="org33148c5">指针</h2>
+<div class="outline-text-2" id="text-org33148c5">
 <ul class="org-ul">
 <li>堆是与当前函数或堆栈帧完全没有关系的内存区域. 如果想在函数调用结束之后仍然保存其中声明的变量, 可以将变量放到堆中.</li>
 <li>在C++中, 应避免C中的 <code>malloc()</code> 和 <code>free()</code>, 而使用 <code>new</code> 和 <code>delete</code>, 或者 <code>new[]</code> 和 <code>delete[]</code>. 每次调用 <code>new/new[]</code>, 都必须相应地调用 <code>delete/delete[]</code> 确保释放(删除)在堆上分配的任何内存以避免内存泄漏. 此外, 最好将指针重置为 <code>nullptr</code>, 这并非强制要求, 但这样做可以防止在删除内存后意外使用这个指针. 这个过程不会自动完成, 除非使用了智能指针.</li>
@@ -364,9 +364,9 @@ for the JavaScript code in this tag.
 <li>从技术角度看, 如果指针指向某个结构, 可以首先用 <code>*</code> 对指针解除引用, 然后使用 <code>.</code> 访问结构中的字段. 箭头运算符 <code>-&gt;</code> 允许同时对指针解除引用并访问字段.</li>
 </ul>
 </div>
-<div id="outline-container-org6b32c8e" class="outline-3">
-<h3 id="org6b32c8e">智能指针</h3>
-<div class="outline-text-3" id="text-org6b32c8e">
+<div id="outline-container-orga86fa73" class="outline-3">
+<h3 id="orga86fa73">智能指针</h3>
+<div class="outline-text-3" id="text-orga86fa73">
 <p>
 为了避免常见的内存问题, 应使用智能指针替代通常C风格的"裸"指针. 智能指针是指向动态分配内存的一个指针, 当超出作用域时(如在函数执行完毕后), 会自动释放内存. C++中有如下三种智能指针, 定义在头文件 <code>&lt;memory&gt;</code> 中.
 </p>
@@ -378,9 +378,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf35d62c" class="outline-2">
-<h2 id="orgf35d62c">名称空间</h2>
-<div class="outline-text-2" id="text-orgf35d62c">
+<div id="outline-container-orgdbd8ffc" class="outline-2">
+<h2 id="orgdbd8ffc">名称空间</h2>
+<div class="outline-text-2" id="text-orgdbd8ffc">
 <ul class="org-ul">
 <li><code>::</code> 称为作用域解析运算符.</li>
 <li><code>using</code> 指令可以用来引用名称空间的所有项或者特定项.</li>
@@ -388,9 +388,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org7e72fe1" class="outline-2">
-<h2 id="org7e72fe1">数组</h2>
-<div class="outline-text-2" id="text-org7e72fe1">
+<div id="outline-container-org9a57c1e" class="outline-2">
+<h2 id="org9a57c1e">数组</h2>
+<div class="outline-text-2" id="text-org9a57c1e">
 <ul class="org-ul">
 <li>在C++中声明数组时, 必须声明数组的大小. 数组的大小不能用变量来表示&#x2013;必须用常量或常量表达式(constexpr)来表示数组大小.</li>
 <li>数组也可以用初始化列表来初始化, 此时编译器可以自动推断出数组的大小.</li>
@@ -398,9 +398,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org9606463" class="outline-2">
-<h2 id="org9606463">字符串</h2>
-<div class="outline-text-2" id="text-org9606463">
+<div id="outline-container-org8c5c35c" class="outline-2">
+<h2 id="org8c5c35c">字符串</h2>
+<div class="outline-text-2" id="text-org8c5c35c">
 <ul class="org-ul">
 <li>在C语言中, 字符串表示为字符的数组. 字符串中的最后一个字符是空字符(<code>\0</code>), 官方将这个空字符定义为 <code>NUL</code>. 这样, 操作字符串的代码就知道字符串在哪里结束.</li>
 <li>与字面量(literal)关联的真正内存在内存的只读部分中.</li>
@@ -434,17 +434,17 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc9138e4" class="outline-2">
-<h2 id="orgc9138e4"><code>switch</code></h2>
-<div class="outline-text-2" id="text-orgc9138e4">
+<div id="outline-container-orgecbc314" class="outline-2">
+<h2 id="orgecbc314"><code>switch</code></h2>
+<div class="outline-text-2" id="text-orgecbc314">
 <p>
 在 <code>switch</code> 语句中, 表达式必须是整型或能转换为整型的类型, 必须与一个常量进行比较.
 </p>
 </div>
 </div>
-<div id="outline-container-org4c085b0" class="outline-2">
-<h2 id="org4c085b0">基于区间的 <code>for</code> 循环</h2>
-<div class="outline-text-2" id="text-org4c085b0">
+<div id="outline-container-org84761a7" class="outline-2">
+<h2 id="org84761a7">基于区间的 <code>for</code> 循环</h2>
+<div class="outline-text-2" id="text-org84761a7">
 <p>
 基于区间的 <code>for</code> 循环(range-based for loop)允许方便地迭代容器中的元素. 这种循环类型可以用于C风格的数组, 初始化列表, 也可以用于具有返回迭代器的 <code>begin()</code> 和 <code>end()</code> 函数的类型, 如 <code>std::array</code> 和其他所有STL容器.
 </p>
@@ -456,17 +456,17 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org41cea73" class="outline-2">
-<h2 id="org41cea73">异常</h2>
-<div class="outline-text-2" id="text-org41cea73">
+<div id="outline-container-org3cfff30" class="outline-2">
+<h2 id="org3cfff30">异常</h2>
+<div class="outline-text-2" id="text-org3cfff30">
 <p>
 当某段代码检测到异常时, 就会抛出一个异常. 另一段代码会捕获这个异常并执行相应的操作.
 </p>
 </div>
 </div>
-<div id="outline-container-orgebbf2d9" class="outline-2">
-<h2 id="orgebbf2d9"><code>const</code></h2>
-<div class="outline-text-2" id="text-orgebbf2d9">
+<div id="outline-container-orgf31cd3b" class="outline-2">
+<h2 id="orgf31cd3b"><code>const</code></h2>
+<div class="outline-text-2" id="text-orgf31cd3b">
 <ol class="org-ol">
 <li>取代 <code>#define</code> 定义常量.</li>
 <li>保护参数(如引用参数).</li>
@@ -475,25 +475,25 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org23c4bac" class="outline-2">
-<h2 id="org23c4bac">面向对象思想</h2>
-<div class="outline-text-2" id="text-org23c4bac">
+<div id="outline-container-orged532dc" class="outline-2">
+<h2 id="orged532dc">面向对象思想</h2>
+<div class="outline-text-2" id="text-orged532dc">
 <p>
 面向对象编程(object oriented programming, OOP)的基本观念不是将程序分割为若干任务, 而是将其分为自然对象的模型.
 </p>
 </div>
-<div id="outline-container-org4fdb61b" class="outline-3">
-<h3 id="org4fdb61b">对象之间的关系</h3>
-<div class="outline-text-3" id="text-org4fdb61b">
+<div id="outline-container-org2670813" class="outline-3">
+<h3 id="org2670813">对象之间的关系</h3>
+<div class="outline-text-3" id="text-org2670813">
 <dl class="org-dl">
 <dt>"有一个(has a)"</dt><dd>"有一个"关系或者聚合关系的模式是A有一个B, 或者A包含一个B. 可以认为一个对象是另外一个对象的一部分.</dd>
 <dt>"是一个(is a)"</dt><dd>"是一个"关系或者派生或者子类或者扩展或者继承, 表明一种层次关系. 当需要提供相关类型的不同行为时, 应该使用继承.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org16a4a6c" class="outline-3">
-<h3 id="org16a4a6c">层次结构</h3>
-<div class="outline-text-3" id="text-org16a4a6c">
+<div id="outline-container-orgd3a9228" class="outline-3">
+<h3 id="orgd3a9228">层次结构</h3>
+<div class="outline-text-3" id="text-orgd3a9228">
 <p>
 优秀的面向对象层次结构能够做到以下几点
 </p>
@@ -504,17 +504,17 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb2d1c1d" class="outline-3">
-<h3 id="orgb2d1c1d">抽象</h3>
-<div class="outline-text-3" id="text-orgb2d1c1d">
+<div id="outline-container-org50be9b3" class="outline-3">
+<h3 id="org50be9b3">抽象</h3>
+<div class="outline-text-3" id="text-org50be9b3">
 <p>
 抽象的关键在于有效地分离接口和实现. 实现是用来完成任务的代码, 接口是其他用户使用代码的方式. 优秀的接口只包含公有行为, 类的属性/变量绝不应该是公有, 但是可以通过 <code>getter</code> 和 <code>setter</code> 公有行为公开.
 </p>
 </div>
 </div>
-<div id="outline-container-org1b7a1bc" class="outline-3">
-<h3 id="org1b7a1bc">代码重用</h3>
-<div class="outline-text-3" id="text-org1b7a1bc">
+<div id="outline-container-orga011aa2" class="outline-3">
+<h3 id="orga011aa2">代码重用</h3>
+<div class="outline-text-3" id="text-orga011aa2">
 <dl class="org-dl">
 <dt>高聚合</dt><dd>当设计库或者框架时, 应该关注单个任务或者一组任务. 避免组合不相干的概念或者逻辑上独立的概念.</dd>
 <dt>低耦合</dt><dd>将子系统设计为可以单独重用的分立组件.</dd>
@@ -523,20 +523,20 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org0b852e6" class="outline-2">
-<h2 id="org0b852e6">类和对象</h2>
-<div class="outline-text-2" id="text-org0b852e6">
-</div><div id="outline-container-org4936e06" class="outline-3">
-<h3 id="org4936e06">定义</h3>
-<div class="outline-text-3" id="text-org4936e06">
+<div id="outline-container-org9654732" class="outline-2">
+<h2 id="org9654732">类和对象</h2>
+<div class="outline-text-2" id="text-org9654732">
+</div><div id="outline-container-orgc5d0d42" class="outline-3">
+<h3 id="orgc5d0d42">定义</h3>
+<div class="outline-text-3" id="text-orgc5d0d42">
 <p>
 类可以有许多成员, 可以是成员变量(数据成员), 也可以是成员函数(方法, 构造函数或析构函数). 成员函数和成员变量不能同名. 最好将不改变对象的成员函数声明为 <code>const</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgda1167d" class="outline-3">
-<h3 id="orgda1167d">访问控制</h3>
-<div class="outline-text-3" id="text-orgda1167d">
+<div id="outline-container-org03d333f" class="outline-3">
+<h3 id="org03d333f">访问控制</h3>
+<div class="outline-text-3" id="text-org03d333f">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -551,20 +551,20 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcd749fc" class="outline-3">
-<h3 id="orgcd749fc"><code>this</code></h3>
-<div class="outline-text-3" id="text-orgcd749fc">
+<div id="outline-container-org7868c92" class="outline-3">
+<h3 id="org7868c92"><code>this</code></h3>
+<div class="outline-text-3" id="text-org7868c92">
 <p>
 每个普通的方法调用都会传递一个指向对象的指针, 即称为隐藏参数的 <code>this</code> 指针.
 </p>
 </div>
 </div>
-<div id="outline-container-org45f461b" class="outline-3">
-<h3 id="org45f461b">构造函数(<code>constructor</code>)</h3>
-<div class="outline-text-3" id="text-org45f461b">
-</div><div id="outline-container-org7362504" class="outline-4">
-<h4 id="org7362504">基本概念</h4>
-<div class="outline-text-4" id="text-org7362504">
+<div id="outline-container-orgea06e9c" class="outline-3">
+<h3 id="orgea06e9c">构造函数(<code>constructor</code>)</h3>
+<div class="outline-text-3" id="text-orgea06e9c">
+</div><div id="outline-container-orgf50e6cc" class="outline-4">
+<h4 id="orgf50e6cc">基本概念</h4>
+<div class="outline-text-4" id="text-orgf50e6cc">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -574,9 +574,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org6c846a2" class="outline-4">
-<h4 id="org6c846a2">构造函数初始化器</h4>
-<div class="outline-text-4" id="text-org6c846a2">
+<div id="outline-container-orgf4de8be" class="outline-4">
+<h4 id="orgf4de8be">构造函数初始化器</h4>
+<div class="outline-text-4" id="text-orgf4de8be">
 <p>
 除了构造函数体内, C++还支持在构造函数初始化器中初始化数据成员. 构造函数初始化器出现在构造函数参数列表和构造函数函数体之间, 以冒号开始, 由逗号分隔, 允许在创建数据成员时执行初始化. 值得注意的是, 初始化数据成员的顺序是按照在类定义中出现的顺序, 而不是在构造函数初始化器中的顺序. 
 </p>
@@ -592,37 +592,37 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgff459f3" class="outline-4">
-<h4 id="orgff459f3">复制构造函数</h4>
-<div class="outline-text-4" id="text-orgff459f3">
+<div id="outline-container-org37d4b41" class="outline-4">
+<h4 id="org37d4b41">复制构造函数</h4>
+<div class="outline-text-4" id="text-org37d4b41">
 <p>
 复制构造函数(copy constructor)是一种特殊的构造函数, 允许所创建的对象是另一个对象的精确副本. 如果没有定义复制构造函数, C++会自动生成一个, 用源对象中相应数据成员的值初始化新对象的每个数据成员. 如果数据成员是对象, 初始化意味着调用它们的复制构造函数.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb3345fe" class="outline-4">
-<h4 id="orgb3345fe">初始化列表构造函数</h4>
-<div class="outline-text-4" id="text-orgb3345fe">
+<div id="outline-container-orgb0ab6bd" class="outline-4">
+<h4 id="orgb0ab6bd">初始化列表构造函数</h4>
+<div class="outline-text-4" id="text-orgb0ab6bd">
 <p>
 初始化列表构造函数将初始化列表作为第一个参数, 并且没有任何其他参数(或者其他参数有默认值). C++11 STL完全支持初始化列表构造函数.
 </p>
 
 <p>
-初始化列表 <code>std::initializer_list&lt;T&gt;</code> 定义在头文件 <code>&lt;initializer_list&gt;</code> 中, 简化了参数数量可变函数的编写. 与变长参数列表不同, 初始化列表中所与的元素都应该是同一种与定义类型. 由于定义了列表中允许的类型, 初始化列表是类型安全的.
+初始化列表 <code>std::initializer_list&lt;T&gt;</code> 定义在头文件 <code>&lt;initializer_list&gt;</code> 中, 简化了参数数量可变函数的编写. 与变长参数列表不同, 初始化列表中所有的元素都应该是同一种预定义类型. 由于定义了列表中允许的类型, 初始化列表是类型安全的.
 </p>
 </div>
 </div>
-<div id="outline-container-org75a4b98" class="outline-4">
-<h4 id="org75a4b98">类内成员初始化器</h4>
-<div class="outline-text-4" id="text-org75a4b98">
+<div id="outline-container-org01bb544" class="outline-4">
+<h4 id="org01bb544">类内成员初始化器</h4>
+<div class="outline-text-4" id="text-org01bb544">
 <p>
 在C++11之前, 只有在构造函数体内或者构造函数初始化器中才能初始化成员变量, 只有 <code>static const</code> 整形成员变量才能在类定义中初始化. 从C++11开始, 允许在定义类时直接初始化成员变量.
 </p>
 </div>
 </div>
-<div id="outline-container-orge56ec83" class="outline-4">
-<h4 id="orge56ec83">委托构造函数</h4>
-<div class="outline-text-4" id="text-orge56ec83">
+<div id="outline-container-org3dab020" class="outline-4">
+<h4 id="org3dab020">委托构造函数</h4>
+<div class="outline-text-4" id="text-org3dab020">
 <p>
 委托构造函数(delegating constructor)允许构造函数调用同一个类的其他构造构造函数. 但是, 该调用不能放在构造函数体内, 而必须放在构造函数初始化器中, 且必须是构造函数初始化列表中唯一的成员初始化器.
 </p>
@@ -632,9 +632,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd11ca80" class="outline-4">
-<h4 id="orgd11ca80">编译器自动生成的构造函数</h4>
-<div class="outline-text-4" id="text-orgd11ca80">
+<div id="outline-container-org5942f15" class="outline-4">
+<h4 id="org5942f15">编译器自动生成的构造函数</h4>
+<div class="outline-text-4" id="text-org5942f15">
 <p>
 默认构造函数和复制构造函数之间缺少对称性, 即
 </p>
@@ -649,9 +649,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org81e6717" class="outline-3">
-<h3 id="org81e6717">销毁对象</h3>
-<div class="outline-text-3" id="text-org81e6717">
+<div id="outline-container-orgf97f269" class="outline-3">
+<h3 id="orgf97f269">销毁对象</h3>
+<div class="outline-text-3" id="text-orgf97f269">
 <p>
 销毁对象时会发生两件事: 调用对象的析构函数, 释放对象占用的内存. 如果没有声明析构函数, 编译器会自动生成一个, 析构函数会逐一销毁成员, 然后删除对象.
 </p>
@@ -662,9 +662,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org73bc55a" class="outline-2">
-<h2 id="org73bc55a"><code>lambda</code> 表达式</h2>
-<div class="outline-text-2" id="text-org73bc55a">
+<div id="outline-container-orgde1e13d" class="outline-2">
+<h2 id="orgde1e13d"><code>lambda</code> 表达式</h2>
+<div class="outline-text-2" id="text-orgde1e13d">
 <p>
 <code>lambda</code> 表达式可以编写内嵌的匿名函数, 而不必编写独立函数或函数对象, 使代码更容易阅读和理解. <code>lambda</code> 表达式以方括号 <code>[]</code> 开始, 其后是花括号 <code>{}</code>, 其中包含了 <code>lambda</code> 表达式体. 完整的语法为
 </p>
