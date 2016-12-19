@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-12-18 Sun 01:21 -->
+<!-- 2016-12-19 Mon 23:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -269,7 +269,7 @@ for the JavaScript code in this tag.
 <li><a href="#org7868c92"><code>this</code></a></li>
 <li><a href="#orgea06e9c">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#orgf50e6cc">基本概念</a></li>
+<li><a href="#orgcc04869">基本概念</a></li>
 <li><a href="#orgf4de8be">构造函数初始化器</a></li>
 <li><a href="#org37d4b41">复制构造函数</a></li>
 <li><a href="#orgb0ab6bd">初始化列表构造函数</a></li>
@@ -280,13 +280,21 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org48922b2">析构函数</a>
 <ul>
-<li><a href="#orgcc04869">基本概念</a></li>
+<li><a href="#orgeae42d1">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#org6845100">对象赋值</a></li>
 <li><a href="#org969bd02">数据成员</a>
 <ul>
 <li><a href="#orgf8cf476">静态数据成员</a></li>
+<li><a href="#org1db1756">常量数据成员</a></li>
+<li><a href="#org73193f0">引用数据成员</a></li>
+</ul>
+</li>
+<li><a href="#orgffaaca9">方法</a>
+<ul>
+<li><a href="#orgb7b4695"><code>static</code> 方法</a></li>
+<li><a href="#orgae4c551"><code>const</code> 方法</a></li>
 </ul>
 </li>
 </ul>
@@ -576,9 +584,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgea06e9c" class="outline-3">
 <h3 id="orgea06e9c">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-orgea06e9c">
-</div><div id="outline-container-orgf50e6cc" class="outline-4">
-<h4 id="orgf50e6cc">基本概念</h4>
-<div class="outline-text-4" id="text-orgf50e6cc">
+</div><div id="outline-container-orgcc04869" class="outline-4">
+<h4 id="orgcc04869">基本概念</h4>
+<div class="outline-text-4" id="text-orgcc04869">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -666,9 +674,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-org48922b2" class="outline-3">
 <h3 id="org48922b2">析构函数</h3>
 <div class="outline-text-3" id="text-org48922b2">
-</div><div id="outline-container-orgcc04869" class="outline-4">
-<h4 id="orgcc04869">基本概念</h4>
-<div class="outline-text-4" id="text-orgcc04869">
+</div><div id="outline-container-orgeae42d1" class="outline-4">
+<h4 id="orgeae42d1">基本概念</h4>
+<div class="outline-text-4" id="text-orgeae42d1">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -711,6 +719,50 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <li>静态(<code>static</code>)数据成员是属于类而不是对象的数据成员, 可将静态数据成员当作类的全局变量.</li>
 <li>不仅要在类定义中列出静态成员, 还需要在源文件(通常是定义类方法的那个源文件)中为其分配内存(与声明全局变量类似, 但是需要使用作用域解析运算符 <code>::</code>), 还可以对其进行初始化. 与普通的变量和数据成员不同, 在默认情况下, 静态数据成员会初始化为0, 静态指针会初始化为 <code>nullptr</code>.</li>
 <li>在类方法内部, 可以像使用普通数据成员那样使用静态数据成员. 类方法外的访问取决于访问控制限定符: 如果是 <code>private</code>, 不能在类方法外访问; 如果是 <code>public</code>, 就可以在类方法外访问(需要使用作用域解析运算符 <code>::</code>).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1db1756" class="outline-4">
+<h4 id="org1db1756">常量数据成员</h4>
+<div class="outline-text-4" id="text-org1db1756">
+<p>
+类中的数据成员可以声明为 <code>const</code>, 意味着在创建并初始化之后, 数据成员的值不能再改变.
+</p>
+</div>
+</div>
+<div id="outline-container-org73193f0" class="outline-4">
+<h4 id="org73193f0">引用数据成员</h4>
+<div class="outline-text-4" id="text-org73193f0">
+<p>
+在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgffaaca9" class="outline-3">
+<h3 id="orgffaaca9">方法</h3>
+<div class="outline-text-3" id="text-orgffaaca9">
+</div><div id="outline-container-orgb7b4695" class="outline-4">
+<h4 id="orgb7b4695"><code>static</code> 方法</h4>
+<div class="outline-text-4" id="text-orgb7b4695">
+<ul class="org-ul">
+<li>静态方法就像一个普通函数, 唯一区别在于这个方法可以访问类的 <code>private</code> 和 <code>protected</code> 静态数据成员.</li>
+<li>类中任何方法都可以像调用普通函数那样调用静态方法. 如果要在类的外面调用静态方法, 需要使用类名称和作用域解析运算符来限定方法的名称(就像静态数据成员那样). 静态方法的访问控制和普通方法一样.</li>
+<li>在方法定义前不需要重复 <code>static</code> 关键字.</li>
+<li>静态方法不属于特定对象, 因此没有 <code>this</code> 指针. 当用某个特定对象调用静态方法时, 静态方法不会访问这个对象的非静态数据成员.</li>
+<li>如果同一类型的其他对象对于静态方法可见(例如传递了对象的指针或者引用), 静态方法也可以访问其他对象的 <code>private</code> 和 <code>protected</code> 非静态数据成员.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgae4c551" class="outline-4">
+<h4 id="orgae4c551"><code>const</code> 方法</h4>
+<div class="outline-text-4" id="text-orgae4c551">
+<ul class="org-ul">
+<li>为了保证方法不改变数据成员, 可以用 <code>const</code> 关键字标记方法本身. 应该将不修改对象的所有方法声明为 <code>const</code>.</li>
+<li>不能将静态方法声明为 <code>const</code>, 因为这是多余的. 静态方法没有类的实例, 因此不可能改变内部的值.</li>
+<li><code>const</code> 的工作原理是将方法内用到的数据成员都标记为 <code>const</code> 引用, 因此如果试图修改数据成员, 编译器会报错.</li>
+<li>非 <code>const</code> 对象可以调用 <code>const</code> 方法和非 <code>const</code> 方法; 然而, <code>const</code> 对象只能调用 <code>const</code> 方法.</li>
+<li><code>const</code> 也会被销毁, 它们的析构函数也会被调用, 因此不应该将析构函数标记为 <code>const</code>.</li>
 </ul>
 </div>
 </div>
