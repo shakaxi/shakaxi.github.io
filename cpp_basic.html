@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-12-19 Mon 23:58 -->
+<!-- 2016-12-21 Wed 00:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -269,7 +269,7 @@ for the JavaScript code in this tag.
 <li><a href="#org7868c92"><code>this</code></a></li>
 <li><a href="#orgea06e9c">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#orgcc04869">基本概念</a></li>
+<li><a href="#orgb72a032">基本概念</a></li>
 <li><a href="#orgf4de8be">构造函数初始化器</a></li>
 <li><a href="#org37d4b41">复制构造函数</a></li>
 <li><a href="#orgb0ab6bd">初始化列表构造函数</a></li>
@@ -280,7 +280,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org48922b2">析构函数</a>
 <ul>
-<li><a href="#orgeae42d1">基本概念</a></li>
+<li><a href="#org5d15b13">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#org6845100">对象赋值</a></li>
@@ -295,6 +295,11 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgb7b4695"><code>static</code> 方法</a></li>
 <li><a href="#orgae4c551"><code>const</code> 方法</a></li>
+<li><a href="#orgfa5c96f">重载</a></li>
+<li><a href="#org56af5a0">运算符重载</a></li>
+<li><a href="#org78a9ff5">默认参数</a></li>
+<li><a href="#org6513267">内联(<code>inline</code>)</a></li>
+<li><a href="#org4fba418">友元(<code>friend</code>)</a></li>
 </ul>
 </li>
 </ul>
@@ -584,9 +589,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgea06e9c" class="outline-3">
 <h3 id="orgea06e9c">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-orgea06e9c">
-</div><div id="outline-container-orgcc04869" class="outline-4">
-<h4 id="orgcc04869">基本概念</h4>
-<div class="outline-text-4" id="text-orgcc04869">
+</div><div id="outline-container-orgb72a032" class="outline-4">
+<h4 id="orgb72a032">基本概念</h4>
+<div class="outline-text-4" id="text-orgb72a032">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -674,9 +679,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-org48922b2" class="outline-3">
 <h3 id="org48922b2">析构函数</h3>
 <div class="outline-text-3" id="text-org48922b2">
-</div><div id="outline-container-orgeae42d1" class="outline-4">
-<h4 id="orgeae42d1">基本概念</h4>
-<div class="outline-text-4" id="text-orgeae42d1">
+</div><div id="outline-container-org5d15b13" class="outline-4">
+<h4 id="org5d15b13">基本概念</h4>
+<div class="outline-text-4" id="text-org5d15b13">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -766,6 +771,63 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
+<div id="outline-container-orgfa5c96f" class="outline-4">
+<h4 id="orgfa5c96f">重载</h4>
+<div class="outline-text-4" id="text-orgfa5c96f">
+<ul class="org-ul">
+<li>将函数或者方法的名称用于多个函数, 但是参数的类型或者数目不同.</li>
+<li>C++不允许仅根据方法的返回类型重载方法名称, 但是可以根据 <code>const</code> 重载方法<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</li>
+<li>重载参数可以被显式地删除, 可以用这种方法禁止调用具有特定参数的成员函数.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org56af5a0" class="outline-4">
+<h4 id="org56af5a0">运算符重载</h4>
+<div class="outline-text-4" id="text-org56af5a0">
+<ul class="org-ul">
+<li>当C++编译器分析一个程序, 遇到运算符(如 +/-/=/&lt;&lt;)时, 就会试着查找名为 operator+/-/=/&lt;&lt;, 且具有适当参数的函数或者方法.</li>
+<li>在C++中, 无法改变运算符的优先级. 例如, *和/总是在+和-之前求值. 用于定义的运算符唯一能做的就是在运算符优先级已经确定的情况下编写实现. 而且, C++还不允许开发新的运算符符号.</li>
+<li>运算符重载是函数重载的一种形式. 编译器允许用作 <code>operator+</code> 参数的对象类型与编写 <code>operator+</code> 的类不同. 也可以任意指定 <code>operator+</code> 的返回值类型.</li>
+<li>当编写运算符重载的对象在运算符的左边时, 可以隐式转换; 但是当对象在运算符右边时, 不能隐式转换. 除非使用全局友元函数.</li>
+<li>编写了基本运算符(如+和-), 并没有提供相应的简写运算符(如+=和-=). 必须显式地重载简写运算符.</li>
+<li>简写运算符与基本运算符不同, 它们会改变运算符左边的对象, 而不是创建一个新对象. 它们生成的结果是对被修改对象的引用, 这一点与赋值运算符类似.</li>
+<li>比较运算符(如&gt;,&lt;,==)与基本的算术运算符类似, 它们也应该是全局友元函数.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org78a9ff5" class="outline-4">
+<h4 id="org78a9ff5">默认参数</h4>
+<div class="outline-text-4" id="text-org78a9ff5">
+<ul class="org-ul">
+<li>在原型中可以指定函数或者方法的参数默认值.</li>
+<li>只能从最右边的参数开始提供连续的默认参数列表.</li>
+<li>默认参数可以用于函数, 方法和构造函数.</li>
+<li>所有参数都有默认值的构造函数等同于默认构造函数. 如果试图同时声明默认构造函数和有参数但所有参数都有默认值的构造函数, 编译器会报错. 因为如果不指定任何参数, 编译器不知道该调用哪个构造函数.</li>
+<li>任何默认参数能做到的事情, 都可以用方法重载做到.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6513267" class="outline-4">
+<h4 id="org6513267">内联(<code>inline</code>)</h4>
+<div class="outline-text-4" id="text-org6513267">
+<ul class="org-ul">
+<li>内联指编译器将方法体或者函数体直接插入到调用方法或者函数的位置.</li>
+<li>在方法或者函数定义的名称之前使用 <code>inline</code> 关键字. 注意, <code>inline</code> 关键字仅仅是提示编译器, 如果编译器认为这会降低性能, 就会忽略该关键字.</li>
+<li>如果编写了内联函数或方法, 应将定义与原型一起放在头文件中.</li>
+<li>C++提供了另一种声明内联函数的语法: 直接将方法定义放在类定义中, 不使用 <code>inline</code> 关键字.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4fba418" class="outline-4">
+<h4 id="org4fba418">友元(<code>friend</code>)</h4>
+<div class="outline-text-4" id="text-org4fba418">
+<ul class="org-ul">
+<li>C++允许某个类将其他类, 其他类的成员函数或者非成员函数声明为友元. 友元可以访问类的 <code>private</code>, <code>protected</code> 数据成员和方法.</li>
+<li>在函数定义中不需要再使用 <code>friend</code> 关键字.</li>
+<li>友元可以违反封装的原则.</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="outline-container-orgde1e13d" class="outline-2">
@@ -803,6 +865,10 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 Marc Gregoire著, 张永强译. C++高级编程(第3版), 清华大学出版社, 2015.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+例如可以编写两个名称, 参数均相同的两个方法, 一个是 <code>const</code>, 另一个不是. 如果是 <code>const</code> 对象, 就调用 <code>const</code> 方法; 如果是非 <code>const</code> 对象, 就调用非 <code>const</code> 方法.
 </p></div></div>
 
 
