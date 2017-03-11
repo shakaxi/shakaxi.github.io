@@ -21,6 +21,7 @@
    + [[file:emacs_org_ioslide.org][Emacs - Orgmode Export to HTML5 Slide]]
    + [[file:emacs_ycmd.org][Emacs - YCMD]]
    + [[file:font.org][Fonts for Linux]]
+   + [[file:lte_carrier_fd_loc.org][Frequency Domain Location of LTE Carriers]]
    + [[file:gdb.org][GDB]]
    + [[file:grub.org][GRUB]]
    + [[file:git.org][Git]]

@@ -1,0 +1,11 @@
+#+TITLE: Frequency Domain Location of LTE Carriers
+
+An LTE carrier, in principle, can be positioned anywhere within the spectrum range. In order to save the time consumption of carrier search for UE's, it is necessary to introduce additional restrictions on top of the specification.
+
+Within each supported frequency band, LTE carriers always exist on a 100 kHz carrier grid/raster, i.e., the center of a carrier frequency can be written as $n \cdot 100$ kHz, where $n$ is an integer.
+
+In the case of carrier aggregation (CA), a multiplicity of carriers can be transmitted to or from the same device. For the sake of transmission/reception within a single FFT, the spacing between two adjacent component carriers ought to be a multiple of 15 kHz. Hence, in CA case, the spacing between two adjacent component carriers should be a multiple of 300 kHz, the least common multiple of 100 kHz and 15 kHz.
+
+* References
+
+[1] Erik Dahlman, Stefan Parkvall, Johan Skold. 4G, LTE-Advanced Pro and The Road to 5G.
