@@ -1,4 +1,4 @@
-#+TITLE: Frequency Domain Location of LTE Carriers
+#+TITLE: LTE - Frequency Domain Location of Carriers
 
 An LTE carrier, in principle, can be positioned anywhere within the spectrum range. In order to save the time consumption of carrier search for UE's, it is necessary to introduce additional restrictions on top of the specification.
 
