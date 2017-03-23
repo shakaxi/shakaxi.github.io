@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-06 Mon 22:07 -->
+<!-- 2017-03-23 Thu 21:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -247,6 +247,15 @@ for the JavaScript code in this tag.
 <li><a href="#org9df30a9">智能指针</a></li>
 </ul>
 </li>
+<li><a href="#org7bae442">引用</a>
+<ul>
+<li><a href="#orgab5d834">引用变量</a></li>
+<li><a href="#org81f09fc">引用数据成员</a></li>
+<li><a href="#org5ee9488">引用参数</a></li>
+<li><a href="#org4387313">引用返回值</a></li>
+<li><a href="#orgf5aa20c">引用与指针</a></li>
+</ul>
+</li>
 <li><a href="#org81799cc">名称空间</a></li>
 <li><a href="#org7e9c113">数组</a></li>
 <li><a href="#orgb07cba0">字符串</a></li>
@@ -265,11 +274,11 @@ for the JavaScript code in this tag.
 <li><a href="#orgb0f5c4d">类和对象</a>
 <ul>
 <li><a href="#org78091f0">定义</a></li>
-<li><a href="#org5f50e51">访问控制</a></li>
+<li><a href="#org36babb6">访问控制</a></li>
 <li><a href="#org7868c92"><code>this</code></a></li>
 <li><a href="#orgb106361">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#org202574c">基本概念</a></li>
+<li><a href="#org3af4e27">基本概念</a></li>
 <li><a href="#orgd06c349">构造函数初始化器</a></li>
 <li><a href="#org9df5145">复制构造函数</a></li>
 <li><a href="#org700f3a9">初始化列表构造函数</a></li>
@@ -280,7 +289,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org6ccaba0">析构函数</a>
 <ul>
-<li><a href="#org4d9cf15">基本概念</a></li>
+<li><a href="#org4c93d39">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#org9d6257b">对象赋值</a></li>
@@ -288,7 +297,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgae4ae96">静态数据成员</a></li>
 <li><a href="#orgf998486">常量数据成员</a></li>
-<li><a href="#org81f09fc">引用数据成员</a></li>
+<li><a href="#org655dc9d">引用数据成员</a></li>
 </ul>
 </li>
 <li><a href="#orgfaaad9b">方法</a>
@@ -306,8 +315,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org10cdb9c">继承</a>
 <ul>
-<li><a href="#org3af4e27">基本概念</a></li>
-<li><a href="#org36babb6">访问控制</a></li>
+<li><a href="#org76fcfb5">基本概念</a></li>
+<li><a href="#orgac72a63">访问控制</a></li>
 <li><a href="#orgd39a41b">禁止继承</a></li>
 <li><a href="#org805cca6">方法和类的虚化</a></li>
 <li><a href="#org46fbb2a">向上转型和向下转型</a></li>
@@ -412,6 +421,73 @@ for the JavaScript code in this tag.
 <dt><code>std::shared_ptr</code></dt><dd>可以使用 <code>std::make_shared&lt;&gt;()</code> 创建.</dd>
 <dt><code>std::weak_ptr</code></dt><dd></dd>
 </dl>
+</div>
+</div>
+</div>
+<div id="outline-container-org7bae442" class="outline-2">
+<h2 id="org7bae442">引用</h2>
+<div class="outline-text-2" id="text-org7bae442">
+<p>
+在C++中, 引用是变量的别名. 所有对引用的修改都会改变被引用的变量的值. 可将引用当作隐式指针, 这个指针没有取变量地址和解除引用的麻烦.
+</p>
+<ul class="org-ul">
+<li>在初始化引用之后无法改变引用所指的变量; 但可以改变该变量的值.</li>
+<li>无法声明引用的引用, 或者指向引用的指针.</li>
+</ul>
+</div>
+<div id="outline-container-orgab5d834" class="outline-3">
+<h3 id="orgab5d834">引用变量</h3>
+<div class="outline-text-3" id="text-orgab5d834">
+<ul class="org-ul">
+<li>可以创建单独的引用变量, 当作原始变量的另一个名称. 因此对引用取地址的结果与对被引用变量取地址的结果相同.</li>
+<li>创建引用时, 必须总是初始化它, 通常会在声明引用时对其初始化.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org81f09fc" class="outline-3">
+<h3 id="org81f09fc">引用数据成员</h3>
+<div class="outline-text-3" id="text-org81f09fc">
+<p>
+引用可以作为类的数据成员, 也即引用数据成员. 引用数据成员必须在类的构造函数初始化器中初始化它, 而不是在构造函数体内.
+</p>
+</div>
+</div>
+<div id="outline-container-org5ee9488" class="outline-3">
+<h3 id="org5ee9488">引用参数</h3>
+<div class="outline-text-3" id="text-org5ee9488">
+<p>
+引用经常作为函数和方法的参数. 默认的参数传递机制是按值传递: 函数接受参数的副本. 修改这些副本时, 原始的参数保持不变. 引用允许指定另一种向函数传递参数的语义: 按引用传递. 当使用引用参数时, 不需要将参数的副本复制到函数. 而且如果引用被修改, 原始的参数也会被修改.
+</p>
+
+<p>
+只有在参数是简单的内建类型, 如 <code>int</code> 或者 <code>double</code>, 且不需要修改参数的情况下, 才应该使用按值传递. 在其他所有情况下都应该使用按引用传递.
+</p>
+</div>
+</div>
+<div id="outline-container-org4387313" class="outline-3">
+<h3 id="org4387313">引用返回值</h3>
+<div class="outline-text-3" id="text-org4387313">
+<ul class="org-ul">
+<li>可以让函数或方法返回引用. 这样做的主要原因是提高效率, 因为返回对象的引用而不是返回整个对象可以避免不必要的复制.</li>
+<li>如果变量的作用域局限于函数或者方法(如堆栈中自动分配的变量, 在函数结束时会被销毁), 绝不能返回这个变量的引用.</li>
+<li>如果从函数返回的类型支持移动语义, 按值返回就几乎和按引用返回一样高效.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf5aa20c" class="outline-3">
+<h3 id="orgf5aa20c">引用与指针</h3>
+<div class="outline-text-3" id="text-orgf5aa20c">
+<p>
+在C++中, 引用可以认为是多余的, 因为几乎所有使用引用可以完成的任务都可以用指针完成. 然而, 引用比指针安全: 不可能存在无效引用, 也不需要显式地解除引用. 对象的引用甚至可以像指向对象的指针那样支持多态性. 因此, 除了以下两种情况需要使用指针而非引用外, 其他大多数情况应该使用引用而不是指针. 也即如果不需要改变所指的地址, 就应该使用引用而不是指针.
+</p>
+<ol class="org-ol">
+<li>只有在需要改变所指的地址时, 才需要使用指针, 因为无法改变引用所指的对象.</li>
+<li>需要使用指针的第二种情况是可选参数, 如指针参数可以定义默认值为 <code>nullptr</code> 的可选参数, 而引用参数不能这样定义.</li>
+</ol>
+
+<p>
+关于使用引用还是指针作为参数和返回类型, 主要取决于是否拥有内存: 如果接受变量的代码负责释放相关对象的内存, 必须使用指向对象的指针, 最好是智能指针, 这是传递所有权的推荐方式. 如果接受变量的代码不需要释放内存, 那么应该使用引用.
+</p>
 </div>
 </div>
 </div>
@@ -571,9 +647,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org5f50e51" class="outline-3">
-<h3 id="org5f50e51">访问控制</h3>
-<div class="outline-text-3" id="text-org5f50e51">
+<div id="outline-container-org36babb6" class="outline-3">
+<h3 id="org36babb6">访问控制</h3>
+<div class="outline-text-3" id="text-org36babb6">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -603,9 +679,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgb106361" class="outline-3">
 <h3 id="orgb106361">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-orgb106361">
-</div><div id="outline-container-org202574c" class="outline-4">
-<h4 id="org202574c">基本概念</h4>
-<div class="outline-text-4" id="text-org202574c">
+</div><div id="outline-container-org3af4e27" class="outline-4">
+<h4 id="org3af4e27">基本概念</h4>
+<div class="outline-text-4" id="text-org3af4e27">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -693,9 +769,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-org6ccaba0" class="outline-3">
 <h3 id="org6ccaba0">析构函数</h3>
 <div class="outline-text-3" id="text-org6ccaba0">
-</div><div id="outline-container-org4d9cf15" class="outline-4">
-<h4 id="org4d9cf15">基本概念</h4>
-<div class="outline-text-4" id="text-org4d9cf15">
+</div><div id="outline-container-org4c93d39" class="outline-4">
+<h4 id="org4c93d39">基本概念</h4>
+<div class="outline-text-4" id="text-org4c93d39">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -749,9 +825,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </p>
 </div>
 </div>
-<div id="outline-container-org81f09fc" class="outline-4">
-<h4 id="org81f09fc">引用数据成员</h4>
-<div class="outline-text-4" id="text-org81f09fc">
+<div id="outline-container-org655dc9d" class="outline-4">
+<h4 id="org655dc9d">引用数据成员</h4>
+<div class="outline-text-4" id="text-org655dc9d">
 <p>
 在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
 </p>
@@ -847,9 +923,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <div id="outline-container-org10cdb9c" class="outline-2">
 <h2 id="org10cdb9c">继承</h2>
 <div class="outline-text-2" id="text-org10cdb9c">
-</div><div id="outline-container-org3af4e27" class="outline-3">
-<h3 id="org3af4e27">基本概念</h3>
-<div class="outline-text-3" id="text-org3af4e27">
+</div><div id="outline-container-org76fcfb5" class="outline-3">
+<h3 id="org76fcfb5">基本概念</h3>
+<div class="outline-text-3" id="text-org76fcfb5">
 <ul class="org-ul">
 <li>继承的运行方式是单向的. 基类并不知道派生类的任何信息.</li>
 <li>指向某个对象的指针或者引用可以指向声明类的对象, 也可以指向其任意派生类的对象. 指向基类对象的指针可以指向派生类对象, 对于引用也是如此. 然而, 不能通过基类对象的指针调用派生类的方法. 即使基类的引用或者指针知道所指的是一个派生类, 也无法访问没有在基类中定义的派生类方法或者成员.</li>
@@ -857,9 +933,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org36babb6" class="outline-3">
-<h3 id="org36babb6">访问控制</h3>
-<div class="outline-text-3" id="text-org36babb6">
+<div id="outline-container-orgac72a63" class="outline-3">
+<h3 id="orgac72a63">访问控制</h3>
+<div class="outline-text-3" id="text-orgac72a63">
 <p>
 派生类可以访问基类中声明为 <code>public</code>, <code>protected</code> 的数据成员和方法, 就好像这些数据成员和方法是派生类自己的. 如果类将数据成员和方法声明为 <code>protected</code>, 派生类就可以访问它们; 如果声明为 <code>private</code>, 派生类就不能访问它们. 建议将所有数据成员都默认声明为 <code>private</code>, 这会提供最高级别的封装. 如果希望任何代码都能访问这些数据成员, 就可以提供 <code>public</code> 的 <code>getter/setter</code>; 如果只希望派生类访问它们, 就可以提供 <code>protected</code> 的 <code>getter/setter</code>.
 </p>
