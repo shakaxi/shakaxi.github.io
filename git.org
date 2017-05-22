@@ -46,7 +46,7 @@ git init
 git clone url
 #+END_SRC
 ** Configuration
-Command =git config= can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or down to specific repositories.
+Command =git config= can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or repository-specifically.
 - List the configuration
 #+BEGIN_SRC sh
 git config --list
@@ -99,11 +99,11 @@ git branch
 #+BEGIN_SRC sh
 git branch -r
 #+END_SRC
-- List all the branch including both local and remote ones
+- List all the branches including both local and remote ones
 #+BEGIN_SRC sh
 git branch -a
 #+END_SRC
-- Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is =HEAD=.
+- Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is =HEAD=[fn:2].
 #+BEGIN_SRC sh
 git branch branch_name [commit_name]
 #+END_SRC
@@ -113,11 +113,11 @@ git checkout branch_name
 #+END_SRC
 - Create a new branch and switch to it
 #+BEGIN_SRC sh
-git checkout -b branch_name
+git checkout -b branch_name [remote_name/remote_branch_name]
 #+END_SRC
 - Associate a local branch to a remote branch
 #+BEGIN_SRC sh
-git branch --set-upstream local_branch_name remote_branch_name
+git branch --set-upstream local_branch_name remote_name/remote_branch_name
 #+END_SRC
 - Create a new branch and associate it to a remote branch
 #+BEGIN_SRC sh
@@ -125,11 +125,29 @@ git branch --track branch_name remote_branch_name
 #+END_SRC
 - Merge a given branch into the current branch
 #+BEGIN_SRC sh
-git merge branch_name
+git merge -m message branch_name
+#+END_SRC
+Git labels the difference between branches, e.g.,
+#+BEGIN_SRC sh
+...
+<<<<<<< HEAD
+ABCDEFG
+=======
+abcdefg
+>>>>>>> branch_name
+...
+#+END_SRC
+In this case, manual merge (edit) is necessary. After that, add the merged files into index area (=git add=) and commit them (=git commit=). At the stage of merge, if possible, git always tries to merge branches using =fast forward= by default. However, it can be disabled by option =--no-ff=, i.e.,
+#+BEGIN_SRC sh
+git merge --no-ff branch_name
 #+END_SRC
 - Remove a local branch
 #+BEGIN_SRC sh
 git branch -d branch_name
+#+END_SRC
+- Remove a local (not merged) branch forcely
+#+BEGIN_SRC sh
+git branch -D branch_name
 #+END_SRC
 - Remove a remote branch
 #+BEGIN_SRC sh
@@ -144,6 +162,15 @@ git tag
 - Create a new tag for a commit. If not provided, the tag is labeled on =HEAD=.
 #+BEGIN_SRC sh
 git tag tag_name commit_name
+#+END_SRC
+- Remove a tag
+#+BEGIN_SRC sh
+git tag -d tag_name
+#+END_SRC
+- Remove a remote tag
+#+BEGIN_SRC sh
+git tag -d tag_name
+git push origin :refs/tags/tag_name
 #+END_SRC
 - Show information of a tag
 #+BEGIN_SRC sh
@@ -170,9 +197,13 @@ git status
 #+BEGIN_SRC sh
 git show commit_name
 #+END_SRC
-- Show the history of current branch (option =--stat= can list the revised files)
+- Show the history of current branch (option =--stat= can list the revised files, and option =--graph= can show the merging of branches.)
 #+BEGIN_SRC sh
-git log [--stat]
+git log [--stat] [--graph]
+#+END_SRC
+- List the command record
+#+BEGIN_SRC sh
+git reflog
 #+END_SRC
 - Show the modifier and time of a file
 #+BEGIN_SRC sh
@@ -227,7 +258,7 @@ git push remote_name --all
 *** Cancellation
 - Recover the workspace from index
 #+BEGIN_SRC sh
-git checkout [file1]
+git checkout -- [file1]
 #+END_SRC
 - Recover the workspace from a commit
 #+BEGIN_SRC sh
@@ -246,6 +277,29 @@ git reset --hard commit_name
 git reset --keep commit_name
 #+END_SRC
 
+** Temporary switch
+- Buffer the workspace temporarily
+#+BEGIN_SRC sh
+git stash
+#+END_SRC
+- List the buffered workspace
+#+BEGIN_SRC sh
+git stash list
+#+END_SRC
+- Recover the buffered workspace
+#+BEGIN_SRC sh
+git stash apply
+#+END_SRC
+- Remove the buffer or the buffered workspace
+#+BEGIN_SRC sh
+git stash drop
+#+END_SRC
+- Recover the buffered workspace and remove the buffer
+#+BEGIN_SRC sh
+git stash pop
+#+END_SRC
 * Footnotes
+
+[fn:2] =HEAD= is essentially a pointer, which always points the active branch at the time.
 
 [fn:1] http://git-scm.com/book/en/v2
