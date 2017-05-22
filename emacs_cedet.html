@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - CEDET</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,44 +234,44 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdef0076">Introduction</a></li>
-<li><a href="#org7017e83">Installation</a></li>
-<li><a href="#orga79376b">Configuration</a></li>
+<li><a href="#orgd0b8be6">Introduction</a></li>
+<li><a href="#org0dea940">Installation</a></li>
+<li><a href="#org8bfdf04">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdef0076" class="outline-2">
-<h2 id="orgdef0076">Introduction</h2>
-<div class="outline-text-2" id="text-orgdef0076">
+<div id="outline-container-orgd0b8be6" class="outline-2">
+<h2 id="orgd0b8be6">Introduction</h2>
+<div class="outline-text-2" id="text-orgd0b8be6">
 <p>
 CEDET<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> stands for collection of Emacs development environment tools, which is written to make Emacs become a perfect development environment. With the aid of CEDET, a variety of amazing features can be provided, e.g. code completion, browsing, tag jumping, drawing UML diagram, etc.
 </p>
 </div>
 </div>
-<div id="outline-container-org7017e83" class="outline-2">
-<h2 id="org7017e83">Installation</h2>
-<div class="outline-text-2" id="text-org7017e83">
+<div id="outline-container-org0dea940" class="outline-2">
+<h2 id="org0dea940">Installation</h2>
+<div class="outline-text-2" id="text-org0dea940">
 <p>
 Through following commands, the latest version of CEDET can be installed into <code>~/.emacs.d/cedet</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/.emacs.d
+<pre class="src src-sh"><span style="color: #e090d7;">cd</span> ~/.emacs.d
 git clone http://git.code.sf.net/p/cedet/git cedet
 make
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orga79376b" class="outline-2">
-<h2 id="orga79376b">Configuration</h2>
-<div class="outline-text-2" id="text-orga79376b">
+<div id="outline-container-org8bfdf04" class="outline-2">
+<h2 id="org8bfdf04">Configuration</h2>
+<div class="outline-text-2" id="text-org8bfdf04">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">load CEDET</span>
-(add-to-list 'load-path <span style="color: #8b2252;">"~/.emacs.d/cedet"</span>)
-(load-file <span style="color: #8b2252;">"~/.emacs.d/cedet/cedet-devel-load.el"</span>)
+<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">load CEDET</span>
+(add-to-list 'load-path <span style="color: #e9b96e;">"~/.emacs.d/cedet"</span>)
+(load-file <span style="color: #e9b96e;">"~/.emacs.d/cedet/cedet-devel-load.el"</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable the required features</span>
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable the required features</span>
 (semantic-load-enable-minimum-features)
 (semantic-load-enable-code-helpers)
 (semantic-load-enable-gaudy-code-helpers)
@@ -288,19 +288,19 @@ make
 (add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode t)
 (add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode t)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable semantic mode</span>
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable semantic mode</span>
 (semantic-mode 1)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.</span>
-(<span style="color: #a020f0;">setq</span> semantic-c-dependency-system-include-path (<span style="color: #a020f0;">quote</span> (<span style="color: #8b2252;">"/usr/include"</span> <span style="color: #8b2252;">"/usr/local/include"</span> <span style="color: #8b2252;">"/opt/itpp/include"</span>)))
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">semantic/ia</span>)
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">semantic/bovine/gcc</span>)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.</span>
+(<span style="color: #b4fa70;">setq</span> semantic-c-dependency-system-include-path (<span style="color: #b4fa70;">quote</span> (<span style="color: #e9b96e;">"/usr/include"</span> <span style="color: #e9b96e;">"/usr/local/include"</span> <span style="color: #e9b96e;">"/opt/itpp/include"</span>)))
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">semantic/ia</span>)
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">semantic/bovine/gcc</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">jump to tags</span>
-(global-set-key (kbd <span style="color: #8b2252;">"M-."</span>) 'semantic-ia-fast-jump)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">jump to tags</span>
+(global-set-key (kbd <span style="color: #e9b96e;">"M-."</span>) 'semantic-ia-fast-jump)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">jump back from tags</span>
-(global-set-key (kbd <span style="color: #8b2252;">"M-*"</span>) 'semantic-mrub-switch-tags)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">jump back from tags</span>
+(global-set-key (kbd <span style="color: #e9b96e;">"M-*"</span>) 'semantic-mrub-switch-tags)
 </pre>
 </div>
 </div>

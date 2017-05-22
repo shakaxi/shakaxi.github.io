@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LaTeX - Beamer</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -247,7 +247,7 @@ for the JavaScript code in this tag.
 });
 </script>
 <script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -257,81 +257,81 @@ for the JavaScript code in this tag.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #a020f0;">\documentclass</span>[<span style="color: #a0522d;">compress, red, 10pt, aspectratio=169</span>]{<span style="color: #0000ff;">beamer</span>}
+<pre class="src src-latex"><span style="color: #b4fa70;">\documentclass</span>[<span style="color: #fcaf3e;">compress, red, 10pt, aspectratio=169</span>]{<span style="color: #fce94f;">beamer</span>}
 
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">hyperref</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">enumerate</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">cite</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">graphicx, subfigure</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tabularx</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">amsmath, amssymb, amsfonts</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">fancybox</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">marvosym</span>}
-<span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">booktabs</span>}
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{xeCJK}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\setCJKsansfont</span><span style="color: #b22222;">{WenQuanYi Micro Hei}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{helvet}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{charter}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{fourier}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{Minion Pro}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{mathdesign}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{mathpazo}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{newcent}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{avant}</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">\usepackage</span><span style="color: #b22222;">{bookman}</span>
-<span style="color: #696969;">\usetikzlibrary</span>{arrows,shapes}
-<span style="color: #696969;">\tikzstyle</span>{every picture}+=[remember picture]
-<span style="color: #696969;">\DeclareMathOperator</span>{<span style="color: #696969;">\diag</span>}{diag}
-<span style="color: #a020f0;">\renewcommand</span>{<span style="color: #0000ff; font-weight: bold;">\</span><span style="color: #0000ff;">emph</span>}[<span style="color: #a0522d;">1</span>]{<span style="color: #0000ff;">\textit</span><span style="color: #0000ff;">{</span><span style="color: #0000ff; font-style: italic;">\textcolor</span><span style="color: #0000ff; font-style: italic;">{blue}{#1}</span><span style="color: #0000ff;">}</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">hyperref</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">enumerate</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">cite</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">graphicx, subfigure</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">tabularx</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">amsmath, amssymb, amsfonts</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">fancybox</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">tikz</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">marvosym</span>}
+<span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">booktabs</span>}
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{xeCJK}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\setCJKsansfont</span><span style="color: #73d216;">{WenQuanYi Micro Hei}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{helvet}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{charter}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{fourier}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{Minion Pro}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{mathdesign}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{mathpazo}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{newcent}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{avant}</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">\usepackage</span><span style="color: #73d216;">{bookman}</span>
+<span style="color: #d3d3d3;">\usetikzlibrary</span>{arrows,shapes}
+<span style="color: #d3d3d3;">\tikzstyle</span>{every picture}+=[remember picture]
+<span style="color: #d3d3d3;">\DeclareMathOperator</span>{<span style="color: #d3d3d3;">\diag</span>}{diag}
+<span style="color: #b4fa70;">\renewcommand</span>{<span style="color: #fce94f; font-weight: bold;">\</span><span style="color: #fce94f;">emph</span>}[<span style="color: #fcaf3e;">1</span>]{<span style="color: #fce94f;">\textit</span><span style="color: #fce94f;">{</span><span style="color: #fce94f; text-decoration: underline;">\textcolor</span><span style="color: #fce94f; text-decoration: underline;">{blue}{#1}</span><span style="color: #fce94f;">}</span>}
 
-<span style="color: #b22222;">%% </span><span style="color: #b22222;">Insert logo at top right corner of each slide</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">LaTeX</span>
-<span style="color: #696969;">\logo</span>{<span style="color: #696969;">\pgfputat</span>{<span style="color: #696969;">\pgfxy</span>(0, 8.2)}{<span style="color: #696969;">\pgfbox</span>[right,bottom]{<span style="color: #696969;">\includegraphics</span>[height=0.8cm]{logo.png}}}}
-<span style="color: #b22222;">% </span><span style="color: #b22222;">XeLaTeX</span>
-<span style="color: #b22222;">%</span><span style="color: #b22222;">\logo</span><span style="color: #b22222;">{</span><span style="color: #b22222;">\pgfputat</span><span style="color: #b22222;">{</span><span style="color: #b22222;">\pgfxy</span><span style="color: #b22222;">(0, 8.2)}{</span><span style="color: #b22222;">\includegraphics</span><span style="color: #b22222;">[height=0.7cm]{logo.jpg}}}</span>
+<span style="color: #73d216;">%% </span><span style="color: #73d216;">Insert logo at top right corner of each slide</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">LaTeX</span>
+<span style="color: #d3d3d3;">\logo</span>{<span style="color: #d3d3d3;">\pgfputat</span>{<span style="color: #d3d3d3;">\pgfxy</span>(0, 8.2)}{<span style="color: #d3d3d3;">\pgfbox</span>[right,bottom]{<span style="color: #d3d3d3;">\includegraphics</span>[height=0.8cm]{logo.png}}}}
+<span style="color: #73d216;">% </span><span style="color: #73d216;">XeLaTeX</span>
+<span style="color: #73d216;">%</span><span style="color: #73d216;">\logo</span><span style="color: #73d216;">{</span><span style="color: #73d216;">\pgfputat</span><span style="color: #73d216;">{</span><span style="color: #73d216;">\pgfxy</span><span style="color: #73d216;">(0, 8.2)}{</span><span style="color: #73d216;">\includegraphics</span><span style="color: #73d216;">[height=0.7cm]{logo.jpg}}}</span>
 
-<span style="color: #b22222;">%% </span><span style="color: #b22222;">Custom footer</span>
-<span style="color: #696969;">\usefoottemplate</span>{<span style="color: #696969;">\rightline</span>{<span style="color: #a020f0;">\textbf</span>{<span style="color: #556b2f; font-weight: bold;">\insertframenumber</span>}}}
+<span style="color: #73d216;">%% </span><span style="color: #73d216;">Custom footer</span>
+<span style="color: #d3d3d3;">\usefoottemplate</span>{<span style="color: #d3d3d3;">\rightline</span>{<span style="color: #b4fa70;">\textbf</span>{<span style="color: #6b8e23; font-weight: bold;">\insertframenumber</span>}}}
 
-<span style="color: #b22222;">%% </span><span style="color: #b22222;">Theme setting</span>
-<span style="color: #b22222;">%</span><span style="color: #b22222;">\setbeamercolor</span><span style="color: #b22222;">{frametitle}{fg=black}</span>
-<span style="color: #696969;">\setbeamercovered</span>{transparent}
-<span style="color: #696969;">\hypersetup</span>{pdfpagemode=FullScreen}
-<span style="color: #696969;">\setbeamertemplate</span>{caption}[numbered]
-<span style="color: #696969;">\useinnertheme</span>{circles}
-<span style="color: #696969;">\useoutertheme</span>{default}
-<span style="color: #696969;">\usefonttheme</span>{professionalfonts}
-<span style="color: #696969;">\setbeamerfont</span>{title}{shape=<span style="color: #556b2f; font-weight: bold;">\scshape</span>,series=<span style="color: #556b2f; font-weight: bold;">\bfseries</span>}
-<span style="color: #696969;">\setbeamerfont</span>{frametitle}{shape=<span style="color: #556b2f; font-weight: bold;">\scshape</span>,series=<span style="color: #556b2f; font-weight: bold;">\bfseries</span>}
-<span style="color: #696969;">\usetheme</span>{default}
+<span style="color: #73d216;">%% </span><span style="color: #73d216;">Theme setting</span>
+<span style="color: #73d216;">%</span><span style="color: #73d216;">\setbeamercolor</span><span style="color: #73d216;">{frametitle}{fg=black}</span>
+<span style="color: #d3d3d3;">\setbeamercovered</span>{transparent}
+<span style="color: #d3d3d3;">\hypersetup</span>{pdfpagemode=FullScreen}
+<span style="color: #d3d3d3;">\setbeamertemplate</span>{caption}[numbered]
+<span style="color: #d3d3d3;">\useinnertheme</span>{circles}
+<span style="color: #d3d3d3;">\useoutertheme</span>{default}
+<span style="color: #d3d3d3;">\usefonttheme</span>{professionalfonts}
+<span style="color: #d3d3d3;">\setbeamerfont</span>{title}{shape=<span style="color: #6b8e23; font-weight: bold;">\scshape</span>,series=<span style="color: #6b8e23; font-weight: bold;">\bfseries</span>}
+<span style="color: #d3d3d3;">\setbeamerfont</span>{frametitle}{shape=<span style="color: #6b8e23; font-weight: bold;">\scshape</span>,series=<span style="color: #6b8e23; font-weight: bold;">\bfseries</span>}
+<span style="color: #d3d3d3;">\usetheme</span>{default}
 
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">document</span>}
+<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">document</span>}
 
-<span style="color: #a020f0;">\title</span>{<span style="color: #228b22;">Title</span>}
-<span style="color: #a020f0;">\author</span>{<span style="color: #228b22;">Author</span>}
-<span style="color: #a020f0;">\date</span>{<span style="color: #228b22;">\textbf</span><span style="color: #228b22;">{</span><span style="color: #228b22; font-weight: bold;">\today</span><span style="color: #228b22;">}</span>}
-<span style="color: #696969;">\institute</span>{Institute}
-<span style="color: #696969;">\titlepage</span>
+<span style="color: #b4fa70;">\title</span>{<span style="color: #8cc4ff;">Title</span>}
+<span style="color: #b4fa70;">\author</span>{<span style="color: #8cc4ff;">Author</span>}
+<span style="color: #b4fa70;">\date</span>{<span style="color: #8cc4ff;">\textbf</span><span style="color: #8cc4ff;">{</span><span style="color: #8cc4ff; font-weight: bold;">\today</span><span style="color: #8cc4ff;">}</span>}
+<span style="color: #d3d3d3;">\institute</span>{Institute}
+<span style="color: #d3d3d3;">\titlepage</span>
 
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">frame</span>}
-   <span style="color: #696969;">\frametitle</span>{Outline}
-   <span style="color: #696969;">\tableofcontents</span>
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">frame</span>}
+<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">frame</span>}
+   <span style="color: #d3d3d3;">\frametitle</span>{Outline}
+   <span style="color: #d3d3d3;">\tableofcontents</span>
+<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">frame</span>}
 
-<span style="color: #696969;">\AtBeginSection</span>
+<span style="color: #d3d3d3;">\AtBeginSection</span>
 {
-   <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">frame</span>}
-      <span style="color: #696969;">\frametitle</span>{Outline}
-      <span style="color: #696969;">\tableofcontents</span>[currentsection, hideallsubsections]
-   <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">frame</span>}
+   <span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">frame</span>}
+      <span style="color: #d3d3d3;">\frametitle</span>{Outline}
+      <span style="color: #d3d3d3;">\tableofcontents</span>[currentsection, hideallsubsections]
+   <span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">frame</span>}
 }
 
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">frame</span>}
-   <span style="color: #696969;">\frametitle</span>{}
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">frame</span>}
+<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">frame</span>}
+   <span style="color: #d3d3d3;">\frametitle</span>{}
+<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">frame</span>}
 
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">document</span>}
+<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">document</span>}
 </pre>
 </div>
 </div>

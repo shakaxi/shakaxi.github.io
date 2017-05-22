@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NTP</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,11 +234,11 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org293d2ed">Installation</a></li>
-<li><a href="#org2f850ee">Configuration</a>
+<li><a href="#orgd3c99bc">Installation</a></li>
+<li><a href="#org29e8f60">Configuration</a>
 <ul>
-<li><a href="#org4bd8118">Prepend following line(s) to <code>/etc/ntp.conf</code>.</a></li>
-<li><a href="#orgb4a370f">Start and enable the service</a></li>
+<li><a href="#org85d5c1d">Prepend following line(s) to <code>/etc/ntp.conf</code>.</a></li>
+<li><a href="#orgb12b9c4">Start and enable the service</a></li>
 </ul>
 </li>
 </ul>
@@ -247,9 +247,9 @@ for the JavaScript code in this tag.
 <p>
 Network time protocol (NTP) is a very convenient service which can provide network time synchronized automatically and periodically. This post briefly describes the installation and configuration of NTP on Linux OS.
 </p>
-<div id="outline-container-org293d2ed" class="outline-2">
-<h2 id="org293d2ed">Installation</h2>
-<div class="outline-text-2" id="text-org293d2ed">
+<div id="outline-container-orgd3c99bc" class="outline-2">
+<h2 id="orgd3c99bc">Installation</h2>
+<div class="outline-text-2" id="text-orgd3c99bc">
 <p>
 Without loss of generality, we take Arch Linux for instance here.
 </p>
@@ -259,12 +259,12 @@ Without loss of generality, we take Arch Linux for instance here.
 </div>
 </div>
 </div>
-<div id="outline-container-org2f850ee" class="outline-2">
-<h2 id="org2f850ee">Configuration</h2>
-<div class="outline-text-2" id="text-org2f850ee">
-</div><div id="outline-container-org4bd8118" class="outline-3">
-<h3 id="org4bd8118">Prepend following line(s) to <code>/etc/ntp.conf</code>.</h3>
-<div class="outline-text-3" id="text-org4bd8118">
+<div id="outline-container-org29e8f60" class="outline-2">
+<h2 id="org29e8f60">Configuration</h2>
+<div class="outline-text-2" id="text-org29e8f60">
+</div><div id="outline-container-org85d5c1d" class="outline-3">
+<h3 id="org85d5c1d">Prepend following line(s) to <code>/etc/ntp.conf</code>.</h3>
+<div class="outline-text-3" id="text-org85d5c1d">
 <ul class="org-ul">
 <li>As server</li>
 </ul>
@@ -282,9 +282,9 @@ fudge 127.127.1.1 stratum 12
 </div>
 </div>
 </div>
-<div id="outline-container-orgb4a370f" class="outline-3">
-<h3 id="orgb4a370f">Start and enable the service</h3>
-<div class="outline-text-3" id="text-orgb4a370f">
+<div id="outline-container-orgb12b9c4" class="outline-3">
+<h3 id="orgb12b9c4">Start and enable the service</h3>
+<div class="outline-text-3" id="text-orgb12b9c4">
 <div class="org-src-container">
 <pre class="src src-sh">systemctl enable ntpd.service
 systemctl start ntpd.service

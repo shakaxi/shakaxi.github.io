@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LaTeX - Pgf/Tikz</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,107 +234,107 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8a116cf">Introduction</a></li>
-<li><a href="#org3641761">Installation</a></li>
-<li><a href="#org02d0339">Usage</a>
+<li><a href="#orgb35a40b">Introduction</a></li>
+<li><a href="#orga7ccbef">Installation</a></li>
+<li><a href="#orgc971eb3">Usage</a>
 <ul>
-<li><a href="#org23d8403">Setting</a></li>
-<li><a href="#org16467c2">Style</a></li>
-<li><a href="#org8341460">Coordinate</a></li>
-<li><a href="#orga8bee08">List</a></li>
-<li><a href="#org3f48885">Arrow</a></li>
-<li><a href="#org6ab039a">Draw</a>
+<li><a href="#org18f860a">Setting</a></li>
+<li><a href="#org0248f47">Style</a></li>
+<li><a href="#org395ab04">Coordinate</a></li>
+<li><a href="#org2eeb795">List</a></li>
+<li><a href="#orgf6fd1b2">Arrow</a></li>
+<li><a href="#org43a187f">Draw</a>
 <ul>
-<li><a href="#orgd85aa42">Line</a></li>
-<li><a href="#org7242581">Curve</a></li>
-<li><a href="#orgfcf75bd">Grid</a></li>
-<li><a href="#org42132f1">Arc</a></li>
-<li><a href="#org9963b2b">Rectangle</a></li>
-<li><a href="#org133b73f">Circle</a></li>
-<li><a href="#org73e0244">Ellipse</a></li>
-<li><a href="#org78c4080">Node</a>
+<li><a href="#orgce6bff1">Line</a></li>
+<li><a href="#orgeb6d314">Curve</a></li>
+<li><a href="#org808f6b4">Grid</a></li>
+<li><a href="#org0141301">Arc</a></li>
+<li><a href="#org6e99054">Rectangle</a></li>
+<li><a href="#orgcf4aa40">Circle</a></li>
+<li><a href="#org5a9bc15">Ellipse</a></li>
+<li><a href="#org421549d">Node</a>
 <ul>
-<li><a href="#org6935b30">Connecting nodes with</a></li>
+<li><a href="#org24650da">Connecting nodes with</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org8734c34">Refer to nodes outside current picture</a></li>
-<li><a href="#org1be3019">Mix tikz command with LaTeX</a></li>
+<li><a href="#orgc673b8c">Refer to nodes outside current picture</a></li>
+<li><a href="#org13e6ad4">Mix tikz command with LaTeX</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8a116cf" class="outline-2">
-<h2 id="org8a116cf">Introduction</h2>
-<div class="outline-text-2" id="text-org8a116cf">
+<div id="outline-container-orgb35a40b" class="outline-2">
+<h2 id="orgb35a40b">Introduction</h2>
+<div class="outline-text-2" id="text-orgb35a40b">
 <p>
 <i>Pgf/tikz</i> is an excellent <i>LaTeX</i> package to plot high quality graphs. This post just summaries its basic usages.
 </p>
 </div>
 </div>
-<div id="outline-container-org3641761" class="outline-2">
-<h2 id="org3641761">Installation</h2>
-<div class="outline-text-2" id="text-org3641761">
+<div id="outline-container-orga7ccbef" class="outline-2">
+<h2 id="orga7ccbef">Installation</h2>
+<div class="outline-text-2" id="text-orga7ccbef">
 <p>
 Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As long as texlive is ready, pgf/tikz is out-of-the-box.
 </p>
 </div>
 </div>
-<div id="outline-container-org02d0339" class="outline-2">
-<h2 id="org02d0339">Usage</h2>
-<div class="outline-text-2" id="text-org02d0339">
-</div><div id="outline-container-org23d8403" class="outline-3">
-<h3 id="org23d8403">Setting</h3>
-<div class="outline-text-3" id="text-org23d8403">
+<div id="outline-container-orgc971eb3" class="outline-2">
+<h2 id="orgc971eb3">Usage</h2>
+<div class="outline-text-2" id="text-orgc971eb3">
+</div><div id="outline-container-org18f860a" class="outline-3">
+<h3 id="org18f860a">Setting</h3>
+<div class="outline-text-3" id="text-org18f860a">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">tikz</span>}
+<pre class="src src-latex"><span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">tikz</span>}
 ...
-<span style="color: #696969;">\tikz</span> ...
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}
+<span style="color: #d3d3d3;">\tikz</span> ...
+<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">tikzpicture</span>}
 ...
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
+<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">tikzpicture</span>}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org16467c2" class="outline-3">
-<h3 id="org16467c2">Style</h3>
-<div class="outline-text-3" id="text-org16467c2">
+<div id="outline-container-org0248f47" class="outline-3">
+<h3 id="org0248f47">Style</h3>
+<div class="outline-text-3" id="text-org0248f47">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\tikzstyle</span> newstylename=[option1=value1, option2=value2, ...]
-<span style="color: #696969;">\tikzstyle</span> existingstylename+=[option1=value1, option2=value2, ...]
+<pre class="src src-latex"><span style="color: #d3d3d3;">\tikzstyle</span> newstylename=[option1=value1, option2=value2, ...]
+<span style="color: #d3d3d3;">\tikzstyle</span> existingstylename+=[option1=value1, option2=value2, ...]
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org8341460" class="outline-3">
-<h3 id="org8341460">Coordinate</h3>
-<div class="outline-text-3" id="text-org8341460">
+<div id="outline-container-org395ab04" class="outline-3">
+<h3 id="org395ab04">Coordinate</h3>
+<div class="outline-text-3" id="text-org395ab04">
 <ul class="org-ul">
 <li>(x0, y0)</li>
 <li>(angle, radius)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga8bee08" class="outline-3">
-<h3 id="orga8bee08">List</h3>
-<div class="outline-text-3" id="text-orga8bee08">
+<div id="outline-container-org2eeb795" class="outline-3">
+<h3 id="org2eeb795">List</h3>
+<div class="outline-text-3" id="text-org2eeb795">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #b22222;">% </span><span style="color: #b22222;">step length = 1</span>
+<pre class="src src-latex"><span style="color: #73d216;">% </span><span style="color: #73d216;">step length = 1</span>
 {a, ..., b}
 ...
-<span style="color: #b22222;">% </span><span style="color: #b22222;">step length = d</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">step length = d</span>
 {a, a + d, ..., b}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org3f48885" class="outline-3">
-<h3 id="org3f48885">Arrow</h3>
-<div class="outline-text-3" id="text-org3f48885">
+<div id="outline-container-orgf6fd1b2" class="outline-3">
+<h3 id="orgf6fd1b2">Arrow</h3>
+<div class="outline-text-3" id="text-orgf6fd1b2">
 <ul class="org-ul">
 <li>-</li>
 <li>-&gt;</li>
@@ -344,143 +344,143 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </ul>
 </div>
 </div>
-<div id="outline-container-org6ab039a" class="outline-3">
-<h3 id="org6ab039a">Draw</h3>
-<div class="outline-text-3" id="text-org6ab039a">
-</div><div id="outline-container-orgd85aa42" class="outline-4">
-<h4 id="orgd85aa42">Line</h4>
-<div class="outline-text-4" id="text-orgd85aa42">
+<div id="outline-container-org43a187f" class="outline-3">
+<h3 id="org43a187f">Draw</h3>
+<div class="outline-text-3" id="text-org43a187f">
+</div><div id="outline-container-orgce6bff1" class="outline-4">
+<h4 id="orgce6bff1">Line</h4>
+<div class="outline-text-4" id="text-orgce6bff1">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org7242581" class="outline-4">
-<h4 id="org7242581">Curve</h4>
-<div class="outline-text-4" id="text-org7242581">
+<div id="outline-container-orgeb6d314" class="outline-4">
+<h4 id="orgeb6d314">Curve</h4>
+<div class="outline-text-4" id="text-orgeb6d314">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
-<span style="color: #696969;">\draw</span> (x1, y1) .. controls (x2, y2) .. (x3, y3);
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
+<span style="color: #d3d3d3;">\draw</span> (x1, y1) .. controls (x2, y2) .. (x3, y3);
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfcf75bd" class="outline-4">
-<h4 id="orgfcf75bd">Grid</h4>
-<div class="outline-text-4" id="text-orgfcf75bd">
+<div id="outline-container-org808f6b4" class="outline-4">
+<h4 id="org808f6b4">Grid</h4>
+<div class="outline-text-4" id="text-org808f6b4">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> [step=s] (x1, y1) grid (x2, y2);
-<span style="color: #696969;">\draw</span> [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> [step=s] (x1, y1) grid (x2, y2);
+<span style="color: #d3d3d3;">\draw</span> [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org42132f1" class="outline-4">
-<h4 id="org42132f1">Arc</h4>
-<div class="outline-text-4" id="text-org42132f1">
+<div id="outline-container-org0141301" class="outline-4">
+<h4 id="org0141301">Arc</h4>
+<div class="outline-text-4" id="text-org0141301">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) arc (start_angle: end_angle: radius);
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) arc (start_angle: end_angle: radius);
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org9963b2b" class="outline-4">
-<h4 id="org9963b2b">Rectangle</h4>
-<div class="outline-text-4" id="text-org9963b2b">
+<div id="outline-container-org6e99054" class="outline-4">
+<h4 id="org6e99054">Rectangle</h4>
+<div class="outline-text-4" id="text-org6e99054">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) rectangle (x2, y2);
-<span style="color: #696969;">\fill</span> [color] (x1, y1) rectangle (x2, y2);
-<span style="color: #696969;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) rectangle (x2, y2);
-<span style="color: #696969;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) rectangle (x2, y2);
-<span style="color: #696969;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) rectangle (x2, y2);
-<span style="color: #696969;">\clip</span> (x1, y1) rectangle (x2, y2);
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) rectangle (x2, y2);
+<span style="color: #d3d3d3;">\fill</span> [color] (x1, y1) rectangle (x2, y2);
+<span style="color: #d3d3d3;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) rectangle (x2, y2);
+<span style="color: #d3d3d3;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) rectangle (x2, y2);
+<span style="color: #d3d3d3;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) rectangle (x2, y2);
+<span style="color: #d3d3d3;">\clip</span> (x1, y1) rectangle (x2, y2);
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org133b73f" class="outline-4">
-<h4 id="org133b73f">Circle</h4>
-<div class="outline-text-4" id="text-org133b73f">
+<div id="outline-container-orgcf4aa40" class="outline-4">
+<h4 id="orgcf4aa40">Circle</h4>
+<div class="outline-text-4" id="text-orgcf4aa40">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) circle (radius);
-<span style="color: #696969;">\fill</span> [color] (x1, y1) circle (radius);
-<span style="color: #696969;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) circle (radius);
-<span style="color: #696969;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) circle (radius);
-<span style="color: #696969;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) circle (radius);
-<span style="color: #696969;">\clip</span> (x1, y1) circle (radius);
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) circle (radius);
+<span style="color: #d3d3d3;">\fill</span> [color] (x1, y1) circle (radius);
+<span style="color: #d3d3d3;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) circle (radius);
+<span style="color: #d3d3d3;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) circle (radius);
+<span style="color: #d3d3d3;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) circle (radius);
+<span style="color: #d3d3d3;">\clip</span> (x1, y1) circle (radius);
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org73e0244" class="outline-4">
-<h4 id="org73e0244">Ellipse</h4>
-<div class="outline-text-4" id="text-org73e0244">
+<div id="outline-container-org5a9bc15" class="outline-4">
+<h4 id="org5a9bc15">Ellipse</h4>
+<div class="outline-text-4" id="text-org5a9bc15">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> (x1, y1) ellipse (x_radius and y_radius);
-<span style="color: #696969;">\fill</span> [color] (x1, y1) ellipse (x_radius and y_radius);
-<span style="color: #696969;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) ellipse (x_radius and y_radius);
-<span style="color: #696969;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) ellipse (x_radius and y_radius);
-<span style="color: #696969;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) ellipse (x_radius and y_radius);
-<span style="color: #696969;">\clip</span> (x1, y1) ellipse (x_radius and y_radius);
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #d3d3d3;">\fill</span> [color] (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #d3d3d3;">\filldraw</span> [fill=color1, draw=color2] (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #d3d3d3;">\shade</span> [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #d3d3d3;">\shadedraw</span> [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) ellipse (x_radius and y_radius);
+<span style="color: #d3d3d3;">\clip</span> (x1, y1) ellipse (x_radius and y_radius);
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org78c4080" class="outline-4">
-<h4 id="org78c4080">Node</h4>
-<div class="outline-text-4" id="text-org78c4080">
+<div id="outline-container-org421549d" class="outline-4">
+<h4 id="org421549d">Node</h4>
+<div class="outline-text-4" id="text-org421549d">
 <div class="org-src-container">
 <pre class="src src-latex">(x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
 ...
-<span style="color: #696969;">\node</span> at (x0, y0) (node_name) {node_label};
+<span style="color: #d3d3d3;">\node</span> at (x0, y0) (node_name) {node_label};
 </pre>
 </div>
 </div>
-<div id="outline-container-org6935b30" class="outline-5">
-<h5 id="org6935b30">Connecting nodes with</h5>
-<div class="outline-text-5" id="text-org6935b30">
+<div id="outline-container-org24650da" class="outline-5">
+<h5 id="org24650da">Connecting nodes with</h5>
+<div class="outline-text-5" id="text-org24650da">
 <ul class="org-ul">
 <li>Lines</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> [arrow] (node_name_A) to (node_name_B);
-<span style="color: #696969;">\draw</span> (node_name_A) edge [arrow, color] (node_name_B);
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> [arrow] (node_name_A) to (node_name_B);
+<span style="color: #d3d3d3;">\draw</span> (node_name_A) edge [arrow, color] (node_name_B);
 </pre>
 </div>
 <ul class="org-ul">
 <li>Curves</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\draw</span> [arrow] (node_name_A) to [bend left/right=30] (node_name_B);
-<span style="color: #696969;">\draw</span> [arrow] (node_name_A) to [in=30, out=60] (node_name_B);
-<span style="color: #696969;">\draw</span> (node_name_A) edge [arrow, color, in=30, out=60] (node_name_B);
-<span style="color: #696969;">\draw</span> (node_name_A) edge [arrow, color, bend left/right=30] (node_name_B);
+<pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> [arrow] (node_name_A) to [bend left/right=30] (node_name_B);
+<span style="color: #d3d3d3;">\draw</span> [arrow] (node_name_A) to [in=30, out=60] (node_name_B);
+<span style="color: #d3d3d3;">\draw</span> (node_name_A) edge [arrow, color, in=30, out=60] (node_name_B);
+<span style="color: #d3d3d3;">\draw</span> (node_name_A) edge [arrow, color, bend left/right=30] (node_name_B);
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org8734c34" class="outline-3">
-<h3 id="org8734c34">Refer to nodes outside current picture</h3>
-<div class="outline-text-3" id="text-org8734c34">
+<div id="outline-container-orgc673b8c" class="outline-3">
+<h3 id="orgc673b8c">Refer to nodes outside current picture</h3>
+<div class="outline-text-3" id="text-orgc673b8c">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\tikzstyle</span>{every picture}+=[remember picture]
+<pre class="src src-latex"><span style="color: #d3d3d3;">\tikzstyle</span>{every picture}+=[remember picture]
 ...
-<span style="color: #696969;">\tikz</span>[overlay]
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}[overlay]
+<span style="color: #d3d3d3;">\tikz</span>[overlay]
+<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">tikzpicture</span>}[overlay]
 ...
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
+<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">tikzpicture</span>}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org1be3019" class="outline-3">
-<h3 id="org1be3019">Mix tikz command with LaTeX</h3>
-<div class="outline-text-3" id="text-org1be3019">
+<div id="outline-container-org13e6ad4" class="outline-3">
+<h3 id="org13e6ad4">Mix tikz command with LaTeX</h3>
+<div class="outline-text-3" id="text-org13e6ad4">
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\tikz</span> [baseline] ...
+<pre class="src src-latex"><span style="color: #d3d3d3;">\tikz</span> [baseline] ...
 </pre>
 </div>
 </div>

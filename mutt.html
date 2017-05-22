@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mutt</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -249,30 +249,30 @@ Above all, the package can be installed by
 Then create a configuration file <code>muttrc</code> in <code>~/.mutt</code> with the content below:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;">## </span><span style="color: #b22222;">imap settings</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">folder</span>=<span style="color: #8b2252;">"imaps://imap.gmail.com/"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">spoolfile</span>=<span style="color: #8b2252;">"+INBOX"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">postponed</span>=<span style="color: #8b2252;">"+[Gmail]/Drafts"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">record</span>=<span style="color: #8b2252;">"+[Gmail]/Sent Mail"</span>
-mailboxes <span style="color: #8b2252;">"+INBOX"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">imap_user</span>=<span style="color: #8b2252;">"ID@gmail.com"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">imap_pass</span>=<span style="color: #8b2252;">"PASSWORD"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">imap_keepalive</span>=300
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">mail_check</span>=120
+<pre class="src src-sh"><span style="color: #73d216;">## </span><span style="color: #73d216;">imap settings</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">folder</span>=<span style="color: #e9b96e;">"imaps://imap.gmail.com/"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">spoolfile</span>=<span style="color: #e9b96e;">"+INBOX"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">postponed</span>=<span style="color: #e9b96e;">"+[Gmail]/Drafts"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">record</span>=<span style="color: #e9b96e;">"+[Gmail]/Sent Mail"</span>
+mailboxes <span style="color: #e9b96e;">"+INBOX"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">imap_user</span>=<span style="color: #e9b96e;">"ID@gmail.com"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">imap_pass</span>=<span style="color: #e9b96e;">"PASSWORD"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">imap_keepalive</span>=300
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">mail_check</span>=120
 
-<span style="color: #b22222;">## </span><span style="color: #b22222;">smtp settings</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">smtp_url</span>=<span style="color: #8b2252;">"smtp://$imap_user:$imap_pass@smtp.gmail.com"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">ssl_force_tls</span>=<span style="color: #8b2252;">"yes"</span>
+<span style="color: #73d216;">## </span><span style="color: #73d216;">smtp settings</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">smtp_url</span>=<span style="color: #e9b96e;">"smtp://$imap_user:$imap_pass@smtp.gmail.com"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">ssl_force_tls</span>=<span style="color: #e9b96e;">"yes"</span>
 
-<span style="color: #b22222;">## </span><span style="color: #b22222;">other settings</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">realname</span>=<span style="color: #8b2252;">"Shaka"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">signature</span>=<span style="color: #8b2252;">"~/.mutt/signature"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">alias_file</span>=<span style="color: #8b2252;">"~/.mutt/alias"</span>
-<span style="color: #483d8b;">source</span> $<span style="color: #a0522d;">alias_file</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">header_cache</span>=<span style="color: #8b2252;">"~/.mutt/header_cache"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">pager_stop</span>=<span style="color: #8b2252;">"yes"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">editor</span>=<span style="color: #8b2252;">"emacs -nw"</span>
-<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">indent_str</span>=<span style="color: #8b2252;">"&gt;"</span>
+<span style="color: #73d216;">## </span><span style="color: #73d216;">other settings</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">realname</span>=<span style="color: #e9b96e;">"Shaka"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">signature</span>=<span style="color: #e9b96e;">"~/.mutt/signature"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">alias_file</span>=<span style="color: #e9b96e;">"~/.mutt/alias"</span>
+<span style="color: #e090d7;">source</span> $<span style="color: #fcaf3e;">alias_file</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">header_cache</span>=<span style="color: #e9b96e;">"~/.mutt/header_cache"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">pager_stop</span>=<span style="color: #e9b96e;">"yes"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">editor</span>=<span style="color: #e9b96e;">"emacs -nw"</span>
+<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">indent_str</span>=<span style="color: #e9b96e;">"&gt;"</span>
 auto_view text/html
 </pre>
 </div>
@@ -281,7 +281,7 @@ auto_view text/html
 where, <code>ID</code> and <code>PASSWORD</code> are respectively ID and password for my Gmail account. <code>~/.mutt/signature</code> is my signature file, which will be appended at the end of each mail before sent. <code>~/.mutt/alias</code> is my contact list. The entry
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #483d8b;">set</span> <span style="color: #a0522d;">pager_stop</span>=<span style="color: #8b2252;">"yes"</span>
+<pre class="src src-sh"><span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">pager_stop</span>=<span style="color: #e9b96e;">"yes"</span>
 </pre>
 </div>
 <p>

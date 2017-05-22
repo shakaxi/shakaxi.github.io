@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-22 Mon 23:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,42 +234,43 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org24f27dd">Introduction</a></li>
-<li><a href="#org6d0a326">Installation</a></li>
-<li><a href="#orgb18ebc7">Usage</a>
+<li><a href="#orga536233">Introduction</a></li>
+<li><a href="#org3725c53">Installation</a></li>
+<li><a href="#org3ffadea">Usage</a>
 <ul>
-<li><a href="#org67a41b4">Create repositories</a></li>
-<li><a href="#orgf9fa004">Configuration</a></li>
-<li><a href="#org6306a9d">Basic snapshotting</a>
+<li><a href="#org1bfa16f">Create repositories</a></li>
+<li><a href="#org5c04e70">Configuration</a></li>
+<li><a href="#org88e852c">Basic snapshotting</a>
 <ul>
-<li><a href="#org0f2fa29">Add file(s)</a></li>
-<li><a href="#org46ec096">Remove file(s)</a></li>
-<li><a href="#orga8734db">Commit the revision(s)</a></li>
-<li><a href="#orgeeb1160">Branch operations</a></li>
-<li><a href="#orgdcc253b">Tag operations</a></li>
-<li><a href="#org5561303">Information query</a></li>
-<li><a href="#org0eec70f">Show the difference</a></li>
-<li><a href="#orgdb022b7">Remote operation</a></li>
-<li><a href="#orgc7cf644">Cancellation</a></li>
+<li><a href="#org4233683">Add file(s)</a></li>
+<li><a href="#org951caf9">Remove file(s)</a></li>
+<li><a href="#org70ab24b">Commit the revision(s)</a></li>
+<li><a href="#orgaf35cfe">Branch operations</a></li>
+<li><a href="#orgcd63188">Tag operations</a></li>
+<li><a href="#org4b5c514">Information query</a></li>
+<li><a href="#orgd9b57b3">Show the difference</a></li>
+<li><a href="#org6a200c8">Remote operation</a></li>
+<li><a href="#org4475590">Cancellation</a></li>
 </ul>
 </li>
+<li><a href="#orgb7732c2">Temporary switch</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org24f27dd" class="outline-2">
-<h2 id="org24f27dd">Introduction</h2>
-<div class="outline-text-2" id="text-org24f27dd">
+<div id="outline-container-orga536233" class="outline-2">
+<h2 id="orga536233">Introduction</h2>
+<div class="outline-text-2" id="text-orga536233">
 <p>
 <i>Git</i> is a famous and powerful open-source software for version control and management. It was developed by Linus Torvalds with C programing language. What is different from <i>subversion</i>, git adopts a completely distributed manner. Regarding its utilization, besides its built-in manual, there is also an excellent book, <i>Pro Git</i>, which can be obtained for free<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. This post just summarizes the preliminary usage of git, which is referred from the book.
 </p>
 </div>
 </div>
-<div id="outline-container-org6d0a326" class="outline-2">
-<h2 id="org6d0a326">Installation</h2>
-<div class="outline-text-2" id="text-org6d0a326">
+<div id="outline-container-org3725c53" class="outline-2">
+<h2 id="org3725c53">Installation</h2>
+<div class="outline-text-2" id="text-org3725c53">
 <p>
 On Unix/Linux operation systems, git can be easily installed. Taking <i>ArchLinux</i> for instance, git can be installed via following command.
 </p>
@@ -286,9 +287,9 @@ For GUI, package <i>tk</i> needs to be installed additionally.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb18ebc7" class="outline-2">
-<h2 id="orgb18ebc7">Usage</h2>
-<div class="outline-text-2" id="text-orgb18ebc7">
+<div id="outline-container-org3ffadea" class="outline-2">
+<h2 id="org3ffadea">Usage</h2>
+<div class="outline-text-2" id="text-org3ffadea">
 <p>
 In the utilization of git, there are four important areas for storage, <i>workspace</i>, <i>index</i> (or <i>stage</i>), <i>repository</i> and <i>remote</i>. Their relationship can be illustrated by the figure below.
 </p>
@@ -298,9 +299,9 @@ In the utilization of git, there are four important areas for storage, <i>worksp
 </p>
 </div>
 </div>
-<div id="outline-container-org67a41b4" class="outline-3">
-<h3 id="org67a41b4">Create repositories</h3>
-<div class="outline-text-3" id="text-org67a41b4">
+<div id="outline-container-org1bfa16f" class="outline-3">
+<h3 id="org1bfa16f">Create repositories</h3>
+<div class="outline-text-3" id="text-org1bfa16f">
 <ul class="org-ul">
 <li>Create a repository</li>
 </ul>
@@ -324,11 +325,11 @@ In the utilization of git, there are four important areas for storage, <i>worksp
 </div>
 </div>
 </div>
-<div id="outline-container-orgf9fa004" class="outline-3">
-<h3 id="orgf9fa004">Configuration</h3>
-<div class="outline-text-3" id="text-orgf9fa004">
+<div id="outline-container-org5c04e70" class="outline-3">
+<h3 id="org5c04e70">Configuration</h3>
+<div class="outline-text-3" id="text-org5c04e70">
 <p>
-Command <code>git config</code> can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or down to specific repositories.
+Command <code>git config</code> can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or repository-specifically.
 </p>
 <ul class="org-ul">
 <li>List the configuration</li>
@@ -353,12 +354,12 @@ Command <code>git config</code> can define the default preference or behavior of
 </div>
 </div>
 </div>
-<div id="outline-container-org6306a9d" class="outline-3">
-<h3 id="org6306a9d">Basic snapshotting</h3>
-<div class="outline-text-3" id="text-org6306a9d">
-</div><div id="outline-container-org0f2fa29" class="outline-4">
-<h4 id="org0f2fa29">Add file(s)</h4>
-<div class="outline-text-4" id="text-org0f2fa29">
+<div id="outline-container-org88e852c" class="outline-3">
+<h3 id="org88e852c">Basic snapshotting</h3>
+<div class="outline-text-3" id="text-org88e852c">
+</div><div id="outline-container-org4233683" class="outline-4">
+<h4 id="org4233683">Add file(s)</h4>
+<div class="outline-text-4" id="text-org4233683">
 <p>
 Add the content from the workspace into index area for the next commit.
 </p>
@@ -369,9 +370,9 @@ git add directory
 </div>
 </div>
 </div>
-<div id="outline-container-org46ec096" class="outline-4">
-<h4 id="org46ec096">Remove file(s)</h4>
-<div class="outline-text-4" id="text-org46ec096">
+<div id="outline-container-org951caf9" class="outline-4">
+<h4 id="org951caf9">Remove file(s)</h4>
+<div class="outline-text-4" id="text-org951caf9">
 <ul class="org-ul">
 <li>Stop tracking file(s)</li>
 </ul>
@@ -388,9 +389,9 @@ git add directory
 </div>
 </div>
 </div>
-<div id="outline-container-orga8734db" class="outline-4">
-<h4 id="orga8734db">Commit the revision(s)</h4>
-<div class="outline-text-4" id="text-orga8734db">
+<div id="outline-container-org70ab24b" class="outline-4">
+<h4 id="org70ab24b">Commit the revision(s)</h4>
+<div class="outline-text-4" id="text-org70ab24b">
 <p>
 The commands take the all/or the specific file(s) that have been staged with <code>git add</code> and record a new permanent snapshot in the repository and then moves the branch pointer on the current branch up to it.
 </p>
@@ -418,9 +419,9 @@ git commit --amend [file]
 </div>
 </div>
 </div>
-<div id="outline-container-orgeeb1160" class="outline-4">
-<h4 id="orgeeb1160">Branch operations</h4>
-<div class="outline-text-4" id="text-orgeeb1160">
+<div id="outline-container-orgaf35cfe" class="outline-4">
+<h4 id="orgaf35cfe">Branch operations</h4>
+<div class="outline-text-4" id="text-orgaf35cfe">
 <ul class="org-ul">
 <li>List all the local branches</li>
 </ul>
@@ -436,14 +437,14 @@ git commit --amend [file]
 </pre>
 </div>
 <ul class="org-ul">
-<li>List all the branch including both local and remote ones</li>
+<li>List all the branches including both local and remote ones</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch -a
 </pre>
 </div>
 <ul class="org-ul">
-<li>Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is <code>HEAD</code>.</li>
+<li>Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is <code>HEAD</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch branch_name [commit_name]
@@ -460,14 +461,14 @@ git commit --amend [file]
 <li>Create a new branch and switch to it</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">git checkout -b branch_name
+<pre class="src src-sh">git checkout -b branch_name [remote_name/remote_branch_name]
 </pre>
 </div>
 <ul class="org-ul">
 <li>Associate a local branch to a remote branch</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">git branch --set-upstream local_branch_name remote_branch_name
+<pre class="src src-sh">git branch --set-upstream local_branch_name remote_name/remote_branch_name
 </pre>
 </div>
 <ul class="org-ul">
@@ -481,7 +482,27 @@ git commit --amend [file]
 <li>Merge a given branch into the current branch</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">git merge branch_name
+<pre class="src src-sh">git merge -m message branch_name
+</pre>
+</div>
+<p>
+Git labels the difference between branches, e.g.,
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">...
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+ABCDEFG
+=======
+abcdefg
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch_name
+...
+</pre>
+</div>
+<p>
+In this case, manual merge (edit) is necessary. After that, add the merged files into index area (<code>git add</code>) and commit them (<code>git commit</code>). At the stage of merge, if possible, git always tries to merge branches using <code>fast forward</code> by default. However, it can be disabled by option <code>--no-ff</code>, i.e.,
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git merge --no-ff branch_name
 </pre>
 </div>
 <ul class="org-ul">
@@ -489,6 +510,13 @@ git commit --amend [file]
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch -d branch_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Remove a local (not merged) branch forcely</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git branch -D branch_name
 </pre>
 </div>
 <ul class="org-ul">
@@ -501,9 +529,9 @@ git branch -dr remote_name/branch_name
 </div>
 </div>
 </div>
-<div id="outline-container-orgdcc253b" class="outline-4">
-<h4 id="orgdcc253b">Tag operations</h4>
-<div class="outline-text-4" id="text-orgdcc253b">
+<div id="outline-container-orgcd63188" class="outline-4">
+<h4 id="orgcd63188">Tag operations</h4>
+<div class="outline-text-4" id="text-orgcd63188">
 <ul class="org-ul">
 <li>List all tags</li>
 </ul>
@@ -516,6 +544,21 @@ git branch -dr remote_name/branch_name
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git tag tag_name commit_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Remove a tag</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git tag -d tag_name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Remove a remote tag</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git tag -d tag_name
+git push origin :refs/tags/tag_name
 </pre>
 </div>
 <ul class="org-ul">
@@ -548,9 +591,9 @@ git branch -dr remote_name/branch_name
 </div>
 </div>
 </div>
-<div id="outline-container-org5561303" class="outline-4">
-<h4 id="org5561303">Information query</h4>
-<div class="outline-text-4" id="text-org5561303">
+<div id="outline-container-org4b5c514" class="outline-4">
+<h4 id="org4b5c514">Information query</h4>
+<div class="outline-text-4" id="text-org4b5c514">
 <ul class="org-ul">
 <li>Show revised file(s) in workspace compared to those in index</li>
 </ul>
@@ -566,10 +609,17 @@ git branch -dr remote_name/branch_name
 </pre>
 </div>
 <ul class="org-ul">
-<li>Show the history of current branch (option <code>--stat</code> can list the revised files)</li>
+<li>Show the history of current branch (option <code>--stat</code> can list the revised files, and option <code>--graph</code> can show the merging of branches.)</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">git log [--stat]
+<pre class="src src-sh">git log [--stat] [--graph]
+</pre>
+</div>
+<ul class="org-ul">
+<li>List the command record</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git reflog
 </pre>
 </div>
 <ul class="org-ul">
@@ -581,9 +631,9 @@ git branch -dr remote_name/branch_name
 </div>
 </div>
 </div>
-<div id="outline-container-org0eec70f" class="outline-4">
-<h4 id="org0eec70f">Show the difference</h4>
-<div class="outline-text-4" id="text-org0eec70f">
+<div id="outline-container-orgd9b57b3" class="outline-4">
+<h4 id="orgd9b57b3">Show the difference</h4>
+<div class="outline-text-4" id="text-orgd9b57b3">
 <ul class="org-ul">
 <li>Show the difference between the workspace and the index</li>
 </ul>
@@ -607,9 +657,9 @@ git branch -dr remote_name/branch_name
 </div>
 </div>
 </div>
-<div id="outline-container-orgdb022b7" class="outline-4">
-<h4 id="orgdb022b7">Remote operation</h4>
-<div class="outline-text-4" id="text-orgdb022b7">
+<div id="outline-container-org6a200c8" class="outline-4">
+<h4 id="org6a200c8">Remote operation</h4>
+<div class="outline-text-4" id="text-org6a200c8">
 <ul class="org-ul">
 <li>List all the remote repositories</li>
 </ul>
@@ -668,14 +718,14 @@ git branch -dr remote_name/branch_name
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7cf644" class="outline-4">
-<h4 id="orgc7cf644">Cancellation</h4>
-<div class="outline-text-4" id="text-orgc7cf644">
+<div id="outline-container-org4475590" class="outline-4">
+<h4 id="org4475590">Cancellation</h4>
+<div class="outline-text-4" id="text-org4475590">
 <ul class="org-ul">
 <li>Recover the workspace from index</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">git checkout [file1]
+<pre class="src src-sh">git checkout -- [file1]
 </pre>
 </div>
 <ul class="org-ul">
@@ -709,6 +759,47 @@ git branch -dr remote_name/branch_name
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgb7732c2" class="outline-3">
+<h3 id="orgb7732c2">Temporary switch</h3>
+<div class="outline-text-3" id="text-orgb7732c2">
+<ul class="org-ul">
+<li>Buffer the workspace temporarily</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git stash
+</pre>
+</div>
+<ul class="org-ul">
+<li>List the buffered workspace</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git stash list
+</pre>
+</div>
+<ul class="org-ul">
+<li>Recover the buffered workspace</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git stash apply
+</pre>
+</div>
+<ul class="org-ul">
+<li>Remove the buffer or the buffered workspace</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git stash drop
+</pre>
+</div>
+<ul class="org-ul">
+<li>Recover the buffered workspace and remove the buffer</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git stash pop
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
@@ -716,6 +807,10 @@ git branch -dr remote_name/branch_name
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 <a href="http://git-scm.com/book/en/v2">http://git-scm.com/book/en/v2</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<code>HEAD</code> is essentially a pointer, which always points the active branch at the time.
 </p></div></div>
 
 

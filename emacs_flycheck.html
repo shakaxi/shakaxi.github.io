@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Flycheck</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,24 +234,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga409bce">Introduction</a></li>
-<li><a href="#org94ed5b7">Installation</a></li>
-<li><a href="#org1e5974a">Configuration</a></li>
+<li><a href="#orgce2fb89">Introduction</a></li>
+<li><a href="#orgeea7a14">Installation</a></li>
+<li><a href="#org9e6aa5a">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga409bce" class="outline-2">
-<h2 id="orga409bce">Introduction</h2>
-<div class="outline-text-2" id="text-orga409bce">
+<div id="outline-container-orgce2fb89" class="outline-2">
+<h2 id="orgce2fb89">Introduction</h2>
+<div class="outline-text-2" id="text-orgce2fb89">
 <p>
 <i>Flycheck</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a on-the-fly syntax checking extension of Emacs, which supports a variety number of programming languages. It greatly facilitates the programming experience.
 </p>
 </div>
 </div>
-<div id="outline-container-org94ed5b7" class="outline-2">
-<h2 id="org94ed5b7">Installation</h2>
-<div class="outline-text-2" id="text-org94ed5b7">
+<div id="outline-container-orgeea7a14" class="outline-2">
+<h2 id="orgeea7a14">Installation</h2>
+<div class="outline-text-2" id="text-orgeea7a14">
 <p>
 Flycheck can be directly installed via <i>ELPA</i>.
 </p>
@@ -262,18 +262,18 @@ flycheck
 </div>
 </div>
 </div>
-<div id="outline-container-org1e5974a" class="outline-2">
-<h2 id="org1e5974a">Configuration</h2>
-<div class="outline-text-2" id="text-org1e5974a">
+<div id="outline-container-org9e6aa5a" class="outline-2">
+<h2 id="org9e6aa5a">Configuration</h2>
+<div class="outline-text-2" id="text-org9e6aa5a">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">Enable global flycheck mode</span>
+<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">Enable global flycheck mode</span>
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Clang support (C++14)</span>
-(<span style="color: #a020f0;">setq</span> flycheck-clang-language-standard <span style="color: #8b2252;">"c++14"</span>)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">Clang support (C++14)</span>
+(<span style="color: #b4fa70;">setq</span> flycheck-clang-language-standard <span style="color: #e9b96e;">"c++14"</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Elpy support (use flycheck instead of flymake)</span>
-(<span style="color: #a020f0;">setq</span> elpy-modules (delete 'elpy-module-flymake elpy-modules))
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">Elpy support (use flycheck instead of flymake)</span>
+(<span style="color: #b4fa70;">setq</span> elpy-modules (delete 'elpy-module-flymake elpy-modules))
 (add-hook 'elpy-mode-hook 'flycheck-mode)
 </pre>
 </div>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Basic Configuration</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,15 +234,15 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9a4f362">Set values for predefined variables</a></li>
-<li><a href="#orge599750">Bind shortcut keys</a>
+<li><a href="#orgee40a2d">Set values for predefined variables</a></li>
+<li><a href="#org616da66">Bind shortcut keys</a>
 <ul>
-<li><a href="#org93b9515">Set global shortcut key</a></li>
-<li><a href="#orge40af29">Set shortcut key for specific modes</a></li>
+<li><a href="#orga8eb219">Set global shortcut key</a></li>
+<li><a href="#org12ec9bb">Set shortcut key for specific modes</a></li>
 </ul>
 </li>
-<li><a href="#org0a9ed89">Mode &amp; hook</a></li>
-<li><a href="#org14ae104">Third party extension</a></li>
+<li><a href="#org0894e0f">Mode &amp; hook</a></li>
+<li><a href="#org1d1fb03">Third party extension</a></li>
 </ul>
 </div>
 </div>
@@ -250,21 +250,21 @@ for the JavaScript code in this tag.
 As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a powerful editor. Due to its infinite customizability and extensibility, in some sense, it is an operation system (OS) rather than an editor. This page briefly introduces how to customize it.
 </p>
 
-<div id="outline-container-org9a4f362" class="outline-2">
-<h2 id="org9a4f362">Set values for predefined variables</h2>
-<div class="outline-text-2" id="text-org9a4f362">
+<div id="outline-container-orgee40a2d" class="outline-2">
+<h2 id="orgee40a2d">Set values for predefined variables</h2>
+<div class="outline-text-2" id="text-orgee40a2d">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">setq</span> variable value)
+<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">setq</span> variable value)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge599750" class="outline-2">
-<h2 id="orge599750">Bind shortcut keys</h2>
-<div class="outline-text-2" id="text-orge599750">
-</div><div id="outline-container-org93b9515" class="outline-3">
-<h3 id="org93b9515">Set global shortcut key</h3>
-<div class="outline-text-3" id="text-org93b9515">
+<div id="outline-container-org616da66" class="outline-2">
+<h2 id="org616da66">Bind shortcut keys</h2>
+<div class="outline-text-2" id="text-org616da66">
+</div><div id="outline-container-orga8eb219" class="outline-3">
+<h3 id="orga8eb219">Set global shortcut key</h3>
+<div class="outline-text-3" id="text-orga8eb219">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(global-set-key key command)
 </pre>
@@ -274,9 +274,9 @@ where <code>key</code> is shortcut<sup><a id="fnr.1" class="footref" href="#fn.1
 </p>
 </div>
 </div>
-<div id="outline-container-orge40af29" class="outline-3">
-<h3 id="orge40af29">Set shortcut key for specific modes</h3>
-<div class="outline-text-3" id="text-orge40af29">
+<div id="outline-container-org12ec9bb" class="outline-3">
+<h3 id="org12ec9bb">Set shortcut key for specific modes</h3>
+<div class="outline-text-3" id="text-org12ec9bb">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(define-key keymap key command)
 </pre>
@@ -287,23 +287,23 @@ where <code>keymap</code> is associated to some mode, e.g. <code>c-mode-map</cod
 </div>
 </div>
 </div>
-<div id="outline-container-org0a9ed89" class="outline-2">
-<h2 id="org0a9ed89">Mode &amp; hook</h2>
-<div class="outline-text-2" id="text-org0a9ed89">
+<div id="outline-container-org0894e0f" class="outline-2">
+<h2 id="org0894e0f">Mode &amp; hook</h2>
+<div class="outline-text-2" id="text-org0894e0f">
 <p>
 Emacs uses different modes to provide different editing environment. Generally, each file type has its own <i>major-mode</i> <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> and one or more <i>minor-mode</i> <sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. Usually, each major-mode provides <i>hook</i>, mode name appended with <code>-hook</code>. When entering some major-mode, the functions in the corresponding hook will be provoked.
 </p>
 </div>
 </div>
-<div id="outline-container-org14ae104" class="outline-2">
-<h2 id="org14ae104">Third party extension</h2>
-<div class="outline-text-2" id="text-org14ae104">
+<div id="outline-container-org1d1fb03" class="outline-2">
+<h2 id="org1d1fb03">Third party extension</h2>
+<div class="outline-text-2" id="text-org1d1fb03">
 <p>
 After the installation, the configuration includes two steps
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'load-path path-of-the-extension)
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">extension-name</span>)
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">extension-name</span>)
 </pre>
 </div>
 </div>

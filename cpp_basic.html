@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-23 Thu 21:41 -->
+<!-- 2017-05-22 Mon 23:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,100 +234,106 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd771c5b">预处理指令</a></li>
-<li><a href="#org197c266">函数</a></li>
-<li><a href="#org4ca579d">类型推断</a>
+<li><a href="#org4b7e7aa">预处理指令</a></li>
+<li><a href="#org055e499">函数</a></li>
+<li><a href="#org9f186fa">类型推断</a>
 <ul>
-<li><a href="#orgeea2515"><code>auto</code></a></li>
-<li><a href="#org2e271f8"><code>decltype</code></a></li>
+<li><a href="#orgf3d71b9"><code>auto</code></a></li>
+<li><a href="#org75be5b6"><code>decltype</code></a></li>
 </ul>
 </li>
-<li><a href="#orgfab3e9c">指针</a>
+<li><a href="#org555afff">指针</a>
 <ul>
-<li><a href="#org9df30a9">智能指针</a></li>
+<li><a href="#org866d4c3">智能指针</a></li>
 </ul>
 </li>
-<li><a href="#org7bae442">引用</a>
+<li><a href="#org1650f40">引用</a>
 <ul>
-<li><a href="#orgab5d834">引用变量</a></li>
-<li><a href="#org81f09fc">引用数据成员</a></li>
-<li><a href="#org5ee9488">引用参数</a></li>
-<li><a href="#org4387313">引用返回值</a></li>
-<li><a href="#orgf5aa20c">引用与指针</a></li>
+<li><a href="#org1753997">引用变量</a></li>
+<li><a href="#org2745e99">引用数据成员</a></li>
+<li><a href="#orgc91526d">引用参数</a></li>
+<li><a href="#orgb42ba31">引用返回值</a></li>
+<li><a href="#org3959b47">引用与指针</a></li>
+<li><a href="#orgea15a3b">右值引用</a></li>
 </ul>
 </li>
-<li><a href="#org81799cc">名称空间</a></li>
-<li><a href="#org7e9c113">数组</a></li>
-<li><a href="#orgb07cba0">字符串</a></li>
-<li><a href="#orgecbc314"><code>switch</code></a></li>
-<li><a href="#org465eb0b">基于区间的 <code>for</code> 循环</a></li>
-<li><a href="#orgf444604">异常</a></li>
-<li><a href="#orgf31cd3b"><code>const</code></a></li>
-<li><a href="#org7906cf1">面向对象思想</a>
+<li><a href="#org314dc45">名称空间</a></li>
+<li><a href="#orgba6e9f8">数组</a></li>
+<li><a href="#org2f640dd">字符串</a></li>
+<li><a href="#org885958a"><code>switch</code></a></li>
+<li><a href="#org99206fb">基于区间的 <code>for</code> 循环</a></li>
+<li><a href="#orgea7cf7b">异常</a></li>
+<li><a href="#orge8a249f">关键字</a>
 <ul>
-<li><a href="#org8d09373">对象之间的关系</a></li>
-<li><a href="#org9cc61bc">层次结构</a></li>
-<li><a href="#org399c2ef">抽象</a></li>
-<li><a href="#orgc9ef839">代码重用</a></li>
+<li><a href="#orgd37560d"><code>const</code></a></li>
 </ul>
 </li>
-<li><a href="#orgb0f5c4d">类和对象</a>
+<li><a href="#orge57eee3">面向对象思想</a>
 <ul>
-<li><a href="#org78091f0">定义</a></li>
-<li><a href="#org36babb6">访问控制</a></li>
-<li><a href="#org7868c92"><code>this</code></a></li>
-<li><a href="#orgb106361">构造函数(<code>constructor</code>)</a>
-<ul>
-<li><a href="#org3af4e27">基本概念</a></li>
-<li><a href="#orgd06c349">构造函数初始化器</a></li>
-<li><a href="#org9df5145">复制构造函数</a></li>
-<li><a href="#org700f3a9">初始化列表构造函数</a></li>
-<li><a href="#org227d2a1">类内成员初始化</a></li>
-<li><a href="#org976721b">委托构造函数</a></li>
-<li><a href="#org5134083">编译器自动生成的构造函数</a></li>
+<li><a href="#org5efd3db">对象之间的关系</a></li>
+<li><a href="#org2c35759">层次结构</a></li>
+<li><a href="#org504c656">抽象</a></li>
+<li><a href="#orgb94427f">代码重用</a></li>
 </ul>
 </li>
-<li><a href="#org6ccaba0">析构函数</a>
+<li><a href="#org610ed15">类和对象</a>
 <ul>
-<li><a href="#org4c93d39">基本概念</a></li>
-</ul>
-</li>
-<li><a href="#org9d6257b">对象赋值</a></li>
-<li><a href="#orgc2ef7fc">数据成员</a>
+<li><a href="#org984590b">定义</a></li>
+<li><a href="#org10a1851">访问控制</a></li>
+<li><a href="#orgb0de803"><code>this</code></a></li>
+<li><a href="#org6153095">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#orgae4ae96">静态数据成员</a></li>
-<li><a href="#orgf998486">常量数据成员</a></li>
-<li><a href="#org655dc9d">引用数据成员</a></li>
+<li><a href="#org1b720da">基本概念</a></li>
+<li><a href="#org6c64a99">构造函数初始化器</a></li>
+<li><a href="#org9b8fb2f">复制构造函数</a></li>
+<li><a href="#org30381cf">初始化列表构造函数</a></li>
+<li><a href="#org887cd2f">类内成员初始化</a></li>
+<li><a href="#org8712821">委托构造函数</a></li>
+<li><a href="#org10f6dd9">编译器自动生成的构造函数</a></li>
 </ul>
 </li>
-<li><a href="#orgfaaad9b">方法</a>
+<li><a href="#orgc7caa57">析构函数</a>
 <ul>
-<li><a href="#orge08a381"><code>static</code> 方法</a></li>
-<li><a href="#orge95fe37"><code>const</code> 方法</a></li>
-<li><a href="#org33fef1c">重载</a></li>
-<li><a href="#org1fdfdbd">运算符重载</a></li>
-<li><a href="#org2eba8f6">默认参数</a></li>
-<li><a href="#org22f915a">内联(<code>inline</code>)</a></li>
-<li><a href="#org8644c1e">友元(<code>friend</code>)</a></li>
+<li><a href="#org5d44035">基本概念</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#org10cdb9c">继承</a>
+<li><a href="#org85f0d25">对象赋值</a></li>
+<li><a href="#orgb2e5bd9">数据成员</a>
 <ul>
-<li><a href="#org76fcfb5">基本概念</a></li>
-<li><a href="#orgac72a63">访问控制</a></li>
-<li><a href="#orgd39a41b">禁止继承</a></li>
-<li><a href="#org805cca6">方法和类的虚化</a></li>
-<li><a href="#org46fbb2a">向上转型和向下转型</a></li>
-<li><a href="#org92d6c73">基类的构造函数</a></li>
-<li><a href="#org45940b3">基类的析构函数</a></li>
-<li><a href="#org57fc10b">多重继承</a></li>
-<li><a href="#orgd74cf6e">派生类中的复制构造函数和赋值运算符</a></li>
-<li><a href="#orge315a32">运行时类型工具</a></li>
+<li><a href="#org4c6d71e">静态数据成员</a></li>
+<li><a href="#org138a392">常量数据成员</a></li>
+<li><a href="#org9c63d66">引用数据成员</a></li>
 </ul>
 </li>
-<li><a href="#org10a71cc"><code>lambda</code> 表达式</a></li>
+<li><a href="#org0e9b9a7">方法</a>
+<ul>
+<li><a href="#org773e8dd"><code>static</code> 方法</a></li>
+<li><a href="#org69ccf56"><code>const</code> 方法</a></li>
+<li><a href="#orgbc6fe58">重载</a></li>
+<li><a href="#org119ef5c">运算符重载</a></li>
+<li><a href="#orgdcb6fe9">默认参数</a></li>
+<li><a href="#org2d5523e">内联(<code>inline</code>)</a></li>
+<li><a href="#orgeb54479">友元(<code>friend</code>)</a></li>
+</ul>
+</li>
+<li><a href="#orge5e3604">移动语义</a></li>
+</ul>
+</li>
+<li><a href="#org9aa636a">继承</a>
+<ul>
+<li><a href="#orgbd951cd">基本概念</a></li>
+<li><a href="#org52df880">访问控制</a></li>
+<li><a href="#orgc72e961">禁止继承</a></li>
+<li><a href="#org16c27d1">方法和类的虚化</a></li>
+<li><a href="#org21c3279">向上转型和向下转型</a></li>
+<li><a href="#org34dddf2">基类的构造函数</a></li>
+<li><a href="#org84dadce">基类的析构函数</a></li>
+<li><a href="#orgd8336e7">多重继承</a></li>
+<li><a href="#org72bfed5">派生类中的复制构造函数和赋值运算符</a></li>
+<li><a href="#org4ecd6a7">运行时类型工具</a></li>
+</ul>
+</li>
+<li><a href="#org7e6e1a2"><code>lambda</code> 表达式</a></li>
 </ul>
 </div>
 </div>
@@ -335,18 +341,18 @@ for the JavaScript code in this tag.
 本文是阅读 <i>Professional C++, third edition</i> 中文版<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>的读书笔记.
 </p>
 
-<div id="outline-container-orgd771c5b" class="outline-2">
-<h2 id="orgd771c5b">预处理指令</h2>
-<div class="outline-text-2" id="text-orgd771c5b">
+<div id="outline-container-org4b7e7aa" class="outline-2">
+<h2 id="org4b7e7aa">预处理指令</h2>
+<div class="outline-text-2" id="text-org4b7e7aa">
 <ul class="org-ul">
 <li>预处理指令以#字符开始. 如 <code>#pragma once</code> 可以防止文件被包含多次.</li>
 <li>头文件最常见的用途是声明在其他地方定义的函数.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org197c266" class="outline-2">
-<h2 id="org197c266">函数</h2>
-<div class="outline-text-2" id="text-org197c266">
+<div id="outline-container-org055e499" class="outline-2">
+<h2 id="org055e499">函数</h2>
+<div class="outline-text-2" id="text-org055e499">
 <ul class="org-ul">
 <li>函数声明通常称为"函数原型"或"签名", 以强调其代表函数的访问方式, 而不是具体的代码.</li>
 <li>函数参数的默认值只能存在于函数声明中, 不能放在函数定义中.</li>
@@ -372,16 +378,16 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org4ca579d" class="outline-2">
-<h2 id="org4ca579d">类型推断</h2>
-<div class="outline-text-2" id="text-org4ca579d">
+<div id="outline-container-org9f186fa" class="outline-2">
+<h2 id="org9f186fa">类型推断</h2>
+<div class="outline-text-2" id="text-org9f186fa">
 <p>
 类型推断允许编译器自动推断出表达式的类型. 类型推断有两个关键字: <code>auto</code> 和 <code>decltype</code>.
 </p>
 </div>
-<div id="outline-container-orgeea2515" class="outline-3">
-<h3 id="orgeea2515"><code>auto</code></h3>
-<div class="outline-text-3" id="text-orgeea2515">
+<div id="outline-container-orgf3d71b9" class="outline-3">
+<h3 id="orgf3d71b9"><code>auto</code></h3>
+<div class="outline-text-3" id="text-orgf3d71b9">
 <ul class="org-ul">
 <li>告诉编译器, 在编译时自动推断变量的类型.</li>
 <li>用于替代函数语法.</li>
@@ -390,9 +396,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org2e271f8" class="outline-3">
-<h3 id="org2e271f8"><code>decltype</code></h3>
-<div class="outline-text-3" id="text-org2e271f8">
+<div id="outline-container-org75be5b6" class="outline-3">
+<h3 id="org75be5b6"><code>decltype</code></h3>
+<div class="outline-text-3" id="text-org75be5b6">
 <ul class="org-ul">
 <li>关键字 <code>decltype</code> 把表达式作为实参, 可以计算出该表达式的类型.</li>
 <li>使用 <code>auto</code> 推断表达式的类型, 就不需要引用限定符和 <code>const</code> 限定符了. C++14引入了 <code>decltype(auto)</code> 来解决这个问题.</li>
@@ -400,9 +406,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgfab3e9c" class="outline-2">
-<h2 id="orgfab3e9c">指针</h2>
-<div class="outline-text-2" id="text-orgfab3e9c">
+<div id="outline-container-org555afff" class="outline-2">
+<h2 id="org555afff">指针</h2>
+<div class="outline-text-2" id="text-org555afff">
 <ul class="org-ul">
 <li>堆是与当前函数或堆栈帧完全没有关系的内存区域. 如果想在函数调用结束之后仍然保存其中声明的变量, 可以将变量放到堆中.</li>
 <li>在C++中, 应避免C中的 <code>malloc()</code> 和 <code>free()</code>, 而使用 <code>new</code> 和 <code>delete</code>, 或者 <code>new[]</code> 和 <code>delete[]</code>. 每次调用 <code>new/new[]</code>, 都必须相应地调用 <code>delete/delete[]</code> 确保释放(删除)在堆上分配的任何内存以避免内存泄漏. 此外, 最好将指针重置为 <code>nullptr</code>, 这并非强制要求, 但这样做可以防止在删除内存后意外使用这个指针. 这个过程不会自动完成, 除非使用了智能指针.</li>
@@ -410,9 +416,9 @@ for the JavaScript code in this tag.
 <li>从技术角度看, 如果指针指向某个结构, 可以首先用 <code>*</code> 对指针解除引用, 然后使用 <code>.</code> 访问结构中的字段. 箭头运算符 <code>-&gt;</code> 允许同时对指针解除引用并访问字段.</li>
 </ul>
 </div>
-<div id="outline-container-org9df30a9" class="outline-3">
-<h3 id="org9df30a9">智能指针</h3>
-<div class="outline-text-3" id="text-org9df30a9">
+<div id="outline-container-org866d4c3" class="outline-3">
+<h3 id="org866d4c3">智能指针</h3>
+<div class="outline-text-3" id="text-org866d4c3">
 <p>
 为了避免常见的内存问题, 应使用智能指针替代通常C风格的"裸"指针. 智能指针是指向动态分配内存的一个指针, 当超出作用域时(如在函数执行完毕后), 会自动释放内存. C++中有如下三种智能指针, 定义在头文件 <code>&lt;memory&gt;</code> 中.
 </p>
@@ -424,9 +430,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org7bae442" class="outline-2">
-<h2 id="org7bae442">引用</h2>
-<div class="outline-text-2" id="text-org7bae442">
+<div id="outline-container-org1650f40" class="outline-2">
+<h2 id="org1650f40">引用</h2>
+<div class="outline-text-2" id="text-org1650f40">
 <p>
 在C++中, 引用是变量的别名. 所有对引用的修改都会改变被引用的变量的值. 可将引用当作隐式指针, 这个指针没有取变量地址和解除引用的麻烦.
 </p>
@@ -435,26 +441,26 @@ for the JavaScript code in this tag.
 <li>无法声明引用的引用, 或者指向引用的指针.</li>
 </ul>
 </div>
-<div id="outline-container-orgab5d834" class="outline-3">
-<h3 id="orgab5d834">引用变量</h3>
-<div class="outline-text-3" id="text-orgab5d834">
+<div id="outline-container-org1753997" class="outline-3">
+<h3 id="org1753997">引用变量</h3>
+<div class="outline-text-3" id="text-org1753997">
 <ul class="org-ul">
 <li>可以创建单独的引用变量, 当作原始变量的另一个名称. 因此对引用取地址的结果与对被引用变量取地址的结果相同.</li>
 <li>创建引用时, 必须总是初始化它, 通常会在声明引用时对其初始化.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org81f09fc" class="outline-3">
-<h3 id="org81f09fc">引用数据成员</h3>
-<div class="outline-text-3" id="text-org81f09fc">
+<div id="outline-container-org2745e99" class="outline-3">
+<h3 id="org2745e99">引用数据成员</h3>
+<div class="outline-text-3" id="text-org2745e99">
 <p>
 引用可以作为类的数据成员, 也即引用数据成员. 引用数据成员必须在类的构造函数初始化器中初始化它, 而不是在构造函数体内.
 </p>
 </div>
 </div>
-<div id="outline-container-org5ee9488" class="outline-3">
-<h3 id="org5ee9488">引用参数</h3>
-<div class="outline-text-3" id="text-org5ee9488">
+<div id="outline-container-orgc91526d" class="outline-3">
+<h3 id="orgc91526d">引用参数</h3>
+<div class="outline-text-3" id="text-orgc91526d">
 <p>
 引用经常作为函数和方法的参数. 默认的参数传递机制是按值传递: 函数接受参数的副本. 修改这些副本时, 原始的参数保持不变. 引用允许指定另一种向函数传递参数的语义: 按引用传递. 当使用引用参数时, 不需要将参数的副本复制到函数. 而且如果引用被修改, 原始的参数也会被修改.
 </p>
@@ -464,9 +470,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org4387313" class="outline-3">
-<h3 id="org4387313">引用返回值</h3>
-<div class="outline-text-3" id="text-org4387313">
+<div id="outline-container-orgb42ba31" class="outline-3">
+<h3 id="orgb42ba31">引用返回值</h3>
+<div class="outline-text-3" id="text-orgb42ba31">
 <ul class="org-ul">
 <li>可以让函数或方法返回引用. 这样做的主要原因是提高效率, 因为返回对象的引用而不是返回整个对象可以避免不必要的复制.</li>
 <li>如果变量的作用域局限于函数或者方法(如堆栈中自动分配的变量, 在函数结束时会被销毁), 绝不能返回这个变量的引用.</li>
@@ -474,9 +480,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf5aa20c" class="outline-3">
-<h3 id="orgf5aa20c">引用与指针</h3>
-<div class="outline-text-3" id="text-orgf5aa20c">
+<div id="outline-container-org3959b47" class="outline-3">
+<h3 id="org3959b47">引用与指针</h3>
+<div class="outline-text-3" id="text-org3959b47">
 <p>
 在C++中, 引用可以认为是多余的, 因为几乎所有使用引用可以完成的任务都可以用指针完成. 然而, 引用比指针安全: 不可能存在无效引用, 也不需要显式地解除引用. 对象的引用甚至可以像指向对象的指针那样支持多态性. 因此, 除了以下两种情况需要使用指针而非引用外, 其他大多数情况应该使用引用而不是指针. 也即如果不需要改变所指的地址, 就应该使用引用而不是指针.
 </p>
@@ -490,10 +496,26 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
+<div id="outline-container-orgea15a3b" class="outline-3">
+<h3 id="orgea15a3b">右值引用</h3>
+<div class="outline-text-3" id="text-orgea15a3b">
+<p>
+在C++中, 左值(lvalue)是可以获取其地址的一个量, 例如一个有名称的变量. 由于经常出现在赋值语句的左边, 因此将其称作左值. 另一方面, 所有不是左值的量都是右值(rvalue), 通常右值位于赋值运算符的右边, 例如常量值, 临时对象或者临时值.
+</p>
+
+<p>
+右值引用是一个对右值(rvalue)的引用. 特别地, 这是一个当右值是临时对象时适用的概念. 右值引用的目的是提供在涉及临时对象时可以选用的特定方法. 函数可将 <code>&amp;&amp;</code> 作为参数说明的一部分(例如 <code>type&amp;&amp;</code>)来指定右值引用参数. 通常, 临时对象被当作 <code>const type&amp;</code>, 但当函数重载使用了右值引用时, 可以解析临时对象, 用于该重载.
+</p>
+
+<p>
+右值引用并不局限于函数的参数. 可以声明右值引用类型的变量, 并对其赋值.
+</p>
 </div>
-<div id="outline-container-org81799cc" class="outline-2">
-<h2 id="org81799cc">名称空间</h2>
-<div class="outline-text-2" id="text-org81799cc">
+</div>
+</div>
+<div id="outline-container-org314dc45" class="outline-2">
+<h2 id="org314dc45">名称空间</h2>
+<div class="outline-text-2" id="text-org314dc45">
 <ul class="org-ul">
 <li><code>::</code> 称为作用域解析运算符.</li>
 <li><code>using</code> 指令可以用来引用名称空间的所有项或者特定项.</li>
@@ -501,9 +523,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org7e9c113" class="outline-2">
-<h2 id="org7e9c113">数组</h2>
-<div class="outline-text-2" id="text-org7e9c113">
+<div id="outline-container-orgba6e9f8" class="outline-2">
+<h2 id="orgba6e9f8">数组</h2>
+<div class="outline-text-2" id="text-orgba6e9f8">
 <ul class="org-ul">
 <li>在C++中声明数组时, 必须声明数组的大小. 数组的大小不能用变量来表示&#x2013;必须用常量或常量表达式(constexpr)来表示数组大小.</li>
 <li>数组也可以用初始化列表来初始化, 此时编译器可以自动推断出数组的大小.</li>
@@ -511,9 +533,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb07cba0" class="outline-2">
-<h2 id="orgb07cba0">字符串</h2>
-<div class="outline-text-2" id="text-orgb07cba0">
+<div id="outline-container-org2f640dd" class="outline-2">
+<h2 id="org2f640dd">字符串</h2>
+<div class="outline-text-2" id="text-org2f640dd">
 <ul class="org-ul">
 <li>在C语言中, 字符串表示为字符的数组. 字符串中的最后一个字符是空字符(<code>\0</code>), 官方将这个空字符定义为 <code>NUL</code>. 这样, 操作字符串的代码就知道字符串在哪里结束.</li>
 <li>与字面量(literal)关联的真正内存在内存的只读部分中.</li>
@@ -547,17 +569,17 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgecbc314" class="outline-2">
-<h2 id="orgecbc314"><code>switch</code></h2>
-<div class="outline-text-2" id="text-orgecbc314">
+<div id="outline-container-org885958a" class="outline-2">
+<h2 id="org885958a"><code>switch</code></h2>
+<div class="outline-text-2" id="text-org885958a">
 <p>
 在 <code>switch</code> 语句中, 表达式必须是整型或能转换为整型的类型, 必须与一个常量进行比较.
 </p>
 </div>
 </div>
-<div id="outline-container-org465eb0b" class="outline-2">
-<h2 id="org465eb0b">基于区间的 <code>for</code> 循环</h2>
-<div class="outline-text-2" id="text-org465eb0b">
+<div id="outline-container-org99206fb" class="outline-2">
+<h2 id="org99206fb">基于区间的 <code>for</code> 循环</h2>
+<div class="outline-text-2" id="text-org99206fb">
 <p>
 基于区间的 <code>for</code> 循环(range-based for loop)允许方便地迭代容器中的元素. 这种循环类型可以用于C风格的数组, 初始化列表, 也可以用于具有返回迭代器的 <code>begin()</code> 和 <code>end()</code> 函数的类型, 如 <code>std::array</code> 和其他所有STL容器.
 </p>
@@ -569,44 +591,66 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf444604" class="outline-2">
-<h2 id="orgf444604">异常</h2>
-<div class="outline-text-2" id="text-orgf444604">
+<div id="outline-container-orgea7cf7b" class="outline-2">
+<h2 id="orgea7cf7b">异常</h2>
+<div class="outline-text-2" id="text-orgea7cf7b">
 <p>
 当某段代码检测到异常时, 就会抛出一个异常. 另一段代码会捕获这个异常并执行相应的操作.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf31cd3b" class="outline-2">
-<h2 id="orgf31cd3b"><code>const</code></h2>
-<div class="outline-text-2" id="text-orgf31cd3b">
-<ol class="org-ol">
-<li>取代 <code>#define</code> 定义常量.</li>
-<li>保护参数(如引用参数).</li>
-<li>在类的定义中, 最好将不改变对象的任何数据成员的成员函数声明为 <code>const</code>.</li>
-</ol>
+<div id="outline-container-orge8a249f" class="outline-2">
+<h2 id="orge8a249f">关键字</h2>
+<div class="outline-text-2" id="text-orge8a249f">
+</div><div id="outline-container-orgd37560d" class="outline-3">
+<h3 id="orgd37560d"><code>const</code></h3>
+<div class="outline-text-3" id="text-orgd37560d">
+<p>
+<code>const</code> 是constant的缩写, 指保持不变的量. 编译器会执行这一要求, 任何尝试改变常量的行为都会被当做错误处理. 此外, 当启用了优化时, 编译器可以利用此信息生成更好的代码. <code>const</code> 关键字可以用来标记变量或者参数, 也可以用来标记方法.
+</p>
+
+<p>
+可以使用 <code>const</code> 来"保护"变量不被修改. 可以取代 <code>#define</code> 来定义常量. 可以将任何变量标记为 <code>const</code>, 包括全局变量和类数据成员. <code>const</code> 关键字采用右置修饰, 也即应用于直接位于它左边的任何内容.
+</p>
+
+<p>
+<code>const</code> 应用于引用通常比应用于指针更简单, 因为
+</p>
+<ul class="org-ul">
+<li>引用默认为 <code>const</code>, 无法改变引用所指的对象. 因此, 无需显式地将引用标记为 <code>const</code>.</li>
+<li>无法创建一个引用的引用, 所以引用通常只有一层间接取值. 获取多层间接取值的唯一方法是创建指针的引用.</li>
+</ul>
+
+<p>
+<code>const</code> 引用经常用作参数. 如果按引用传递某个值(比如为了提高效率), 但不想修改这个值, 可将其标记为 <code>const</code> 引用. 将对象作为参数传递时, 默认选择应该是 <code>const</code> 引用. 只有在明确需要修改对象时, 才能忽略 <code>const</code>.
+</p>
+
+<p>
+在类的定义中, 可以将类方法标记为 <code>const</code>, 以禁止方法修改类的任何非可变(<code>non-mutable</code>)数据成员. 因此, 最好将不改变对象的任何数据成员的成员函数声明为 <code>const</code>.
+</p>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org7906cf1" class="outline-2">
-<h2 id="org7906cf1">面向对象思想</h2>
-<div class="outline-text-2" id="text-org7906cf1">
+<div id="outline-container-orge57eee3" class="outline-2">
+<h2 id="orge57eee3">面向对象思想</h2>
+<div class="outline-text-2" id="text-orge57eee3">
 <p>
 面向对象编程(object oriented programming, OOP)的基本观念不是将程序分割为若干任务, 而是将其分为自然对象的模型.
 </p>
 </div>
-<div id="outline-container-org8d09373" class="outline-3">
-<h3 id="org8d09373">对象之间的关系</h3>
-<div class="outline-text-3" id="text-org8d09373">
+<div id="outline-container-org5efd3db" class="outline-3">
+<h3 id="org5efd3db">对象之间的关系</h3>
+<div class="outline-text-3" id="text-org5efd3db">
 <dl class="org-dl">
 <dt>"有一个(has a)"</dt><dd>"有一个"关系或者聚合关系的模式是A有一个B, 或者A包含一个B. 可以认为一个对象是另外一个对象的一部分.</dd>
 <dt>"是一个(is a)"</dt><dd>"是一个"关系或者派生或者子类或者扩展或者继承, 表明一种层次关系. 当需要提供相关类型的不同行为时, 应该使用继承.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org9cc61bc" class="outline-3">
-<h3 id="org9cc61bc">层次结构</h3>
-<div class="outline-text-3" id="text-org9cc61bc">
+<div id="outline-container-org2c35759" class="outline-3">
+<h3 id="org2c35759">层次结构</h3>
+<div class="outline-text-3" id="text-org2c35759">
 <p>
 优秀的面向对象层次结构能够做到以下几点
 </p>
@@ -617,17 +661,17 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org399c2ef" class="outline-3">
-<h3 id="org399c2ef">抽象</h3>
-<div class="outline-text-3" id="text-org399c2ef">
+<div id="outline-container-org504c656" class="outline-3">
+<h3 id="org504c656">抽象</h3>
+<div class="outline-text-3" id="text-org504c656">
 <p>
 抽象的关键在于有效地分离接口和实现. 实现是用来完成任务的代码, 接口是其他用户使用代码的方式. 优秀的接口只包含公有行为, 类的属性/变量绝不应该是公有, 但是可以通过 <code>getter</code> 和 <code>setter</code> 公有行为公开.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc9ef839" class="outline-3">
-<h3 id="orgc9ef839">代码重用</h3>
-<div class="outline-text-3" id="text-orgc9ef839">
+<div id="outline-container-orgb94427f" class="outline-3">
+<h3 id="orgb94427f">代码重用</h3>
+<div class="outline-text-3" id="text-orgb94427f">
 <dl class="org-dl">
 <dt>高聚合</dt><dd>当设计库或者框架时, 应该关注单个任务或者一组任务. 避免组合不相干的概念或者逻辑上独立的概念.</dd>
 <dt>低耦合</dt><dd>将子系统设计为可以单独重用的分立组件.</dd>
@@ -636,20 +680,20 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb0f5c4d" class="outline-2">
-<h2 id="orgb0f5c4d">类和对象</h2>
-<div class="outline-text-2" id="text-orgb0f5c4d">
-</div><div id="outline-container-org78091f0" class="outline-3">
-<h3 id="org78091f0">定义</h3>
-<div class="outline-text-3" id="text-org78091f0">
+<div id="outline-container-org610ed15" class="outline-2">
+<h2 id="org610ed15">类和对象</h2>
+<div class="outline-text-2" id="text-org610ed15">
+</div><div id="outline-container-org984590b" class="outline-3">
+<h3 id="org984590b">定义</h3>
+<div class="outline-text-3" id="text-org984590b">
 <p>
 类可以有许多成员, 可以是成员变量(数据成员), 也可以是成员函数(方法, 构造函数或析构函数). 成员函数和成员变量不能同名. 最好将不改变对象的成员函数声明为 <code>const</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org36babb6" class="outline-3">
-<h3 id="org36babb6">访问控制</h3>
-<div class="outline-text-3" id="text-org36babb6">
+<div id="outline-container-org10a1851" class="outline-3">
+<h3 id="org10a1851">访问控制</h3>
+<div class="outline-text-3" id="text-org10a1851">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -668,20 +712,20 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org7868c92" class="outline-3">
-<h3 id="org7868c92"><code>this</code></h3>
-<div class="outline-text-3" id="text-org7868c92">
+<div id="outline-container-orgb0de803" class="outline-3">
+<h3 id="orgb0de803"><code>this</code></h3>
+<div class="outline-text-3" id="text-orgb0de803">
 <p>
 每个普通的方法调用都会传递一个指向对象的指针, 即称为隐藏参数的 <code>this</code> 指针.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb106361" class="outline-3">
-<h3 id="orgb106361">构造函数(<code>constructor</code>)</h3>
-<div class="outline-text-3" id="text-orgb106361">
-</div><div id="outline-container-org3af4e27" class="outline-4">
-<h4 id="org3af4e27">基本概念</h4>
-<div class="outline-text-4" id="text-org3af4e27">
+<div id="outline-container-org6153095" class="outline-3">
+<h3 id="org6153095">构造函数(<code>constructor</code>)</h3>
+<div class="outline-text-3" id="text-org6153095">
+</div><div id="outline-container-org1b720da" class="outline-4">
+<h4 id="org1b720da">基本概念</h4>
+<div class="outline-text-4" id="text-org1b720da">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -691,9 +735,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd06c349" class="outline-4">
-<h4 id="orgd06c349">构造函数初始化器</h4>
-<div class="outline-text-4" id="text-orgd06c349">
+<div id="outline-container-org6c64a99" class="outline-4">
+<h4 id="org6c64a99">构造函数初始化器</h4>
+<div class="outline-text-4" id="text-org6c64a99">
 <p>
 除了构造函数体内, C++还支持在构造函数初始化器中初始化数据成员. 构造函数初始化器出现在构造函数参数列表和构造函数函数体之间, 以冒号开始, 由逗号分隔, 允许在创建数据成员时执行初始化. 值得注意的是, 初始化数据成员的顺序是按照在类定义中出现的顺序, 而不是在构造函数初始化器中的顺序. 
 </p>
@@ -709,17 +753,17 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org9df5145" class="outline-4">
-<h4 id="org9df5145">复制构造函数</h4>
-<div class="outline-text-4" id="text-org9df5145">
+<div id="outline-container-org9b8fb2f" class="outline-4">
+<h4 id="org9b8fb2f">复制构造函数</h4>
+<div class="outline-text-4" id="text-org9b8fb2f">
 <p>
 复制构造函数(copy constructor)是一种特殊的构造函数, 允许所创建的对象是另一个对象的精确副本. 如果没有定义复制构造函数, C++会自动生成一个, 用源对象中相应数据成员的值初始化新对象的每个数据成员. 如果数据成员是对象, 初始化意味着调用它们的复制构造函数.
 </p>
 </div>
 </div>
-<div id="outline-container-org700f3a9" class="outline-4">
-<h4 id="org700f3a9">初始化列表构造函数</h4>
-<div class="outline-text-4" id="text-org700f3a9">
+<div id="outline-container-org30381cf" class="outline-4">
+<h4 id="org30381cf">初始化列表构造函数</h4>
+<div class="outline-text-4" id="text-org30381cf">
 <p>
 初始化列表构造函数将初始化列表作为第一个参数, 并且没有任何其他参数(或者其他参数有默认值). C++11 STL完全支持初始化列表构造函数.
 </p>
@@ -729,17 +773,17 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org227d2a1" class="outline-4">
-<h4 id="org227d2a1">类内成员初始化</h4>
-<div class="outline-text-4" id="text-org227d2a1">
+<div id="outline-container-org887cd2f" class="outline-4">
+<h4 id="org887cd2f">类内成员初始化</h4>
+<div class="outline-text-4" id="text-org887cd2f">
 <p>
 在C++11之前, 只有在构造函数体内或者构造函数初始化器中才能初始化成员变量, 只有 <code>static const</code> 整形成员变量才能在类定义中初始化. 从C++11开始, 允许在定义类时直接初始化成员变量.
 </p>
 </div>
 </div>
-<div id="outline-container-org976721b" class="outline-4">
-<h4 id="org976721b">委托构造函数</h4>
-<div class="outline-text-4" id="text-org976721b">
+<div id="outline-container-org8712821" class="outline-4">
+<h4 id="org8712821">委托构造函数</h4>
+<div class="outline-text-4" id="text-org8712821">
 <p>
 委托构造函数(delegating constructor)允许构造函数调用同一个类的其他构造构造函数. 但是, 该调用不能放在构造函数体内, 而必须放在构造函数初始化器中, 且必须是构造函数初始化列表中唯一的成员初始化器.
 </p>
@@ -749,9 +793,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org5134083" class="outline-4">
-<h4 id="org5134083">编译器自动生成的构造函数</h4>
-<div class="outline-text-4" id="text-org5134083">
+<div id="outline-container-org10f6dd9" class="outline-4">
+<h4 id="org10f6dd9">编译器自动生成的构造函数</h4>
+<div class="outline-text-4" id="text-org10f6dd9">
 <p>
 默认构造函数和复制构造函数之间缺少对称性, 即
 </p>
@@ -766,12 +810,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org6ccaba0" class="outline-3">
-<h3 id="org6ccaba0">析构函数</h3>
-<div class="outline-text-3" id="text-org6ccaba0">
-</div><div id="outline-container-org4c93d39" class="outline-4">
-<h4 id="org4c93d39">基本概念</h4>
-<div class="outline-text-4" id="text-org4c93d39">
+<div id="outline-container-orgc7caa57" class="outline-3">
+<h3 id="orgc7caa57">析构函数</h3>
+<div class="outline-text-3" id="text-orgc7caa57">
+</div><div id="outline-container-org5d44035" class="outline-4">
+<h4 id="org5d44035">基本概念</h4>
+<div class="outline-text-4" id="text-org5d44035">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -789,9 +833,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org9d6257b" class="outline-3">
-<h3 id="org9d6257b">对象赋值</h3>
-<div class="outline-text-3" id="text-org9d6257b">
+<div id="outline-container-org85f0d25" class="outline-3">
+<h3 id="org85f0d25">对象赋值</h3>
+<div class="outline-text-3" id="text-org85f0d25">
 <p>
 C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator=</code> (<code>assignment operator</code>), 其本质是对类重载了运算符=.
 </p>
@@ -804,12 +848,12 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc2ef7fc" class="outline-3">
-<h3 id="orgc2ef7fc">数据成员</h3>
-<div class="outline-text-3" id="text-orgc2ef7fc">
-</div><div id="outline-container-orgae4ae96" class="outline-4">
-<h4 id="orgae4ae96">静态数据成员</h4>
-<div class="outline-text-4" id="text-orgae4ae96">
+<div id="outline-container-orgb2e5bd9" class="outline-3">
+<h3 id="orgb2e5bd9">数据成员</h3>
+<div class="outline-text-3" id="text-orgb2e5bd9">
+</div><div id="outline-container-org4c6d71e" class="outline-4">
+<h4 id="org4c6d71e">静态数据成员</h4>
+<div class="outline-text-4" id="text-org4c6d71e">
 <ul class="org-ul">
 <li>静态(<code>static</code>)数据成员是属于类而不是对象的数据成员, 可将静态数据成员当作类的全局变量.</li>
 <li>不仅要在类定义中列出静态成员, 还需要在源文件(通常是定义类方法的那个源文件)中为其分配内存(与声明全局变量类似, 但是需要使用作用域解析运算符 <code>::</code>), 还可以对其进行初始化. 与普通的变量和数据成员不同, 在默认情况下, 静态数据成员会初始化为0, 静态指针会初始化为 <code>nullptr</code>.</li>
@@ -817,29 +861,29 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf998486" class="outline-4">
-<h4 id="orgf998486">常量数据成员</h4>
-<div class="outline-text-4" id="text-orgf998486">
+<div id="outline-container-org138a392" class="outline-4">
+<h4 id="org138a392">常量数据成员</h4>
+<div class="outline-text-4" id="text-org138a392">
 <p>
 类中的数据成员可以声明为 <code>const</code>, 意味着在创建并初始化之后, 数据成员的值不能再改变.
 </p>
 </div>
 </div>
-<div id="outline-container-org655dc9d" class="outline-4">
-<h4 id="org655dc9d">引用数据成员</h4>
-<div class="outline-text-4" id="text-org655dc9d">
+<div id="outline-container-org9c63d66" class="outline-4">
+<h4 id="org9c63d66">引用数据成员</h4>
+<div class="outline-text-4" id="text-org9c63d66">
 <p>
 在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfaaad9b" class="outline-3">
-<h3 id="orgfaaad9b">方法</h3>
-<div class="outline-text-3" id="text-orgfaaad9b">
-</div><div id="outline-container-orge08a381" class="outline-4">
-<h4 id="orge08a381"><code>static</code> 方法</h4>
-<div class="outline-text-4" id="text-orge08a381">
+<div id="outline-container-org0e9b9a7" class="outline-3">
+<h3 id="org0e9b9a7">方法</h3>
+<div class="outline-text-3" id="text-org0e9b9a7">
+</div><div id="outline-container-org773e8dd" class="outline-4">
+<h4 id="org773e8dd"><code>static</code> 方法</h4>
+<div class="outline-text-4" id="text-org773e8dd">
 <ul class="org-ul">
 <li>静态方法就像一个普通函数, 唯一区别在于这个方法可以访问类的 <code>private</code> 和 <code>protected</code> 静态数据成员.</li>
 <li>类中任何方法都可以像调用普通函数那样调用静态方法. 如果要在类的外面调用静态方法, 需要使用类名称和作用域解析运算符来限定方法的名称(就像静态数据成员那样). 静态方法的访问控制和普通方法一样.</li>
@@ -849,9 +893,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-orge95fe37" class="outline-4">
-<h4 id="orge95fe37"><code>const</code> 方法</h4>
-<div class="outline-text-4" id="text-orge95fe37">
+<div id="outline-container-org69ccf56" class="outline-4">
+<h4 id="org69ccf56"><code>const</code> 方法</h4>
+<div class="outline-text-4" id="text-org69ccf56">
 <ul class="org-ul">
 <li>为了保证方法不改变数据成员, 可以用 <code>const</code> 关键字标记方法本身. 应该将不修改对象的所有方法声明为 <code>const</code>.</li>
 <li>不能将静态方法声明为 <code>const</code>, 因为这是多余的. 静态方法没有类的实例, 因此不可能改变内部的值.</li>
@@ -861,9 +905,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org33fef1c" class="outline-4">
-<h4 id="org33fef1c">重载</h4>
-<div class="outline-text-4" id="text-org33fef1c">
+<div id="outline-container-orgbc6fe58" class="outline-4">
+<h4 id="orgbc6fe58">重载</h4>
+<div class="outline-text-4" id="text-orgbc6fe58">
 <ul class="org-ul">
 <li>将函数或者方法的名称用于多个函数, 但是参数的类型或者数目不同.</li>
 <li>C++不允许仅根据方法的返回类型重载方法名称, 但是可以根据 <code>const</code> 重载方法<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</li>
@@ -871,9 +915,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org1fdfdbd" class="outline-4">
-<h4 id="org1fdfdbd">运算符重载</h4>
-<div class="outline-text-4" id="text-org1fdfdbd">
+<div id="outline-container-org119ef5c" class="outline-4">
+<h4 id="org119ef5c">运算符重载</h4>
+<div class="outline-text-4" id="text-org119ef5c">
 <ul class="org-ul">
 <li>当C++编译器分析一个程序, 遇到运算符(如 +/-/=/&lt;&lt;)时, 就会试着查找名为 operator+/-/=/&lt;&lt;, 且具有适当参数的函数或者方法.</li>
 <li>在C++中, 无法改变运算符的优先级. 例如, *和/总是在+和-之前求值. 用于定义的运算符唯一能做的就是在运算符优先级已经确定的情况下编写实现. 而且, C++还不允许开发新的运算符符号.</li>
@@ -885,9 +929,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org2eba8f6" class="outline-4">
-<h4 id="org2eba8f6">默认参数</h4>
-<div class="outline-text-4" id="text-org2eba8f6">
+<div id="outline-container-orgdcb6fe9" class="outline-4">
+<h4 id="orgdcb6fe9">默认参数</h4>
+<div class="outline-text-4" id="text-orgdcb6fe9">
 <ul class="org-ul">
 <li>在原型中可以指定函数或者方法的参数默认值.</li>
 <li>只能从最右边的参数开始提供连续的默认参数列表.</li>
@@ -897,9 +941,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org22f915a" class="outline-4">
-<h4 id="org22f915a">内联(<code>inline</code>)</h4>
-<div class="outline-text-4" id="text-org22f915a">
+<div id="outline-container-org2d5523e" class="outline-4">
+<h4 id="org2d5523e">内联(<code>inline</code>)</h4>
+<div class="outline-text-4" id="text-org2d5523e">
 <ul class="org-ul">
 <li>内联指编译器将方法体或者函数体直接插入到调用方法或者函数的位置.</li>
 <li>在方法或者函数定义的名称之前使用 <code>inline</code> 关键字. 注意, <code>inline</code> 关键字仅仅是提示编译器, 如果编译器认为这会降低性能, 就会忽略该关键字.</li>
@@ -908,9 +952,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org8644c1e" class="outline-4">
-<h4 id="org8644c1e">友元(<code>friend</code>)</h4>
-<div class="outline-text-4" id="text-org8644c1e">
+<div id="outline-container-orgeb54479" class="outline-4">
+<h4 id="orgeb54479">友元(<code>friend</code>)</h4>
+<div class="outline-text-4" id="text-orgeb54479">
 <ul class="org-ul">
 <li>C++允许某个类将其他类, 其他类的成员函数或者非成员函数声明为友元. 友元可以访问类的 <code>private</code>, <code>protected</code> 数据成员和方法.</li>
 <li>在函数定义中不需要再使用 <code>friend</code> 关键字.</li>
@@ -919,13 +963,29 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </div>
 </div>
 </div>
+<div id="outline-container-orge5e3604" class="outline-3">
+<h3 id="orge5e3604">移动语义</h3>
+<div class="outline-text-3" id="text-orge5e3604">
+<p>
+对象的移动语义(move semantics)需要实现移动构造函数(move constructor)和移动赋值运算符(move assignment operator). 移动构造函数和移动赋值运算符将成员变量从源对象复制/移动到新对象, 然后将源对象的变量设置为空值. 这样做实际上将内存的所有权从一个对象移动到另一个对象. 这两个方法基本上只对成员变量进行表层复制(shallow copy), 然后转换已分配内存的所有权, 从而防止了悬挂指针和内存泄漏.
+</p>
+
+<p>
+移动语义是通过右值引用实现的. 为了对类增加移动语义, 需要实现移动构造函数和移动赋值运算符. 移动构造函数和移动赋值运算符应使用限定符 <code>noexcept</code> 标记(于声明末尾), 这告诉编译器, 它们不会抛出任何异常.
+</p>
+
+<p>
+与普通的构造函数和复制赋值运算符一样, 还可将移动构造函数和移动赋值运算符显示删除或者设置为默认.
+</p>
 </div>
-<div id="outline-container-org10cdb9c" class="outline-2">
-<h2 id="org10cdb9c">继承</h2>
-<div class="outline-text-2" id="text-org10cdb9c">
-</div><div id="outline-container-org76fcfb5" class="outline-3">
-<h3 id="org76fcfb5">基本概念</h3>
-<div class="outline-text-3" id="text-org76fcfb5">
+</div>
+</div>
+<div id="outline-container-org9aa636a" class="outline-2">
+<h2 id="org9aa636a">继承</h2>
+<div class="outline-text-2" id="text-org9aa636a">
+</div><div id="outline-container-orgbd951cd" class="outline-3">
+<h3 id="orgbd951cd">基本概念</h3>
+<div class="outline-text-3" id="text-orgbd951cd">
 <ul class="org-ul">
 <li>继承的运行方式是单向的. 基类并不知道派生类的任何信息.</li>
 <li>指向某个对象的指针或者引用可以指向声明类的对象, 也可以指向其任意派生类的对象. 指向基类对象的指针可以指向派生类对象, 对于引用也是如此. 然而, 不能通过基类对象的指针调用派生类的方法. 即使基类的引用或者指针知道所指的是一个派生类, 也无法访问没有在基类中定义的派生类方法或者成员.</li>
@@ -933,26 +993,26 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-orgac72a63" class="outline-3">
-<h3 id="orgac72a63">访问控制</h3>
-<div class="outline-text-3" id="text-orgac72a63">
+<div id="outline-container-org52df880" class="outline-3">
+<h3 id="org52df880">访问控制</h3>
+<div class="outline-text-3" id="text-org52df880">
 <p>
 派生类可以访问基类中声明为 <code>public</code>, <code>protected</code> 的数据成员和方法, 就好像这些数据成员和方法是派生类自己的. 如果类将数据成员和方法声明为 <code>protected</code>, 派生类就可以访问它们; 如果声明为 <code>private</code>, 派生类就不能访问它们. 建议将所有数据成员都默认声明为 <code>private</code>, 这会提供最高级别的封装. 如果希望任何代码都能访问这些数据成员, 就可以提供 <code>public</code> 的 <code>getter/setter</code>; 如果只希望派生类访问它们, 就可以提供 <code>protected</code> 的 <code>getter/setter</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd39a41b" class="outline-3">
-<h3 id="orgd39a41b">禁止继承</h3>
-<div class="outline-text-3" id="text-orgd39a41b">
+<div id="outline-container-orgc72e961" class="outline-3">
+<h3 id="orgc72e961">禁止继承</h3>
+<div class="outline-text-3" id="text-orgc72e961">
 <ul class="org-ul">
 <li>C++允许通过将类标记为 <code>final</code> 来禁止继承: 在类名的后面加上关键字 <code>final</code>, 继承这个类就会导致编译错误.</li>
 <li>类似地, 也可以将方法标记为 <code>final</code>, 这意味着无法在派生类中重写这个方法.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org805cca6" class="outline-3">
-<h3 id="org805cca6">方法和类的虚化</h3>
-<div class="outline-text-3" id="text-org805cca6">
+<div id="outline-container-org16c27d1" class="outline-3">
+<h3 id="org16c27d1">方法和类的虚化</h3>
+<div class="outline-text-3" id="text-org16c27d1">
 <p>
 从某个类继承的主要原因是为了添加或者替换功能. 在许多情况下, 可能需要替换或者重写某个方法来修改类的行为. 只有在基类中声明为 <code>virtual</code> 的方法才能被派生类正确地重写. 为了重写某个方法, 需要在派生类定义中重新声明这个方法, 就像在基类中声明的那样, 并在派生类的实现文件中提供新的定义. 建议在派生类对重写方法的声明末尾添加 <code>override</code> 关键字, 但不需要再重复使用 <code>virtual</code> 关键字<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. 根据经验, 为了避免遗漏 <code>virtual</code> 关键字引发的问题, 可将所有方法设置为 <code>virtual</code> (包括析构函数, 但不包括构造函数).
 </p>
@@ -998,9 +1058,9 @@ C++根据描述对象的表达式类型在编译时绑定默认参数, 而不是
 </p>
 </div>
 </div>
-<div id="outline-container-org46fbb2a" class="outline-3">
-<h3 id="org46fbb2a">向上转型和向下转型</h3>
-<div class="outline-text-3" id="text-org46fbb2a">
+<div id="outline-container-org21c3279" class="outline-3">
+<h3 id="org21c3279">向上转型和向下转型</h3>
+<div class="outline-text-3" id="text-org21c3279">
 <ul class="org-ul">
 <li>基类的指针或者引用指向派生类对象时, 派生类保留其重写方法. 但是通过类型转换将派生类对象转换为基类对象时, 就会丢失其特征. 重写方法和派生类数据的丢失称为截断(<b>slicing</b>).</li>
 <li>对象可以转换为其基类对象, 或者赋值给基类. 如果类型转换或者赋值是对某个普通对象执行, 会产生截断; 如果用派生类对基类的指针或者引用赋值, 则不会产生截断.</li>
@@ -1009,9 +1069,9 @@ C++根据描述对象的表达式类型在编译时绑定默认参数, 而不是
 </ul>
 </div>
 </div>
-<div id="outline-container-org92d6c73" class="outline-3">
-<h3 id="org92d6c73">基类的构造函数</h3>
-<div class="outline-text-3" id="text-org92d6c73">
+<div id="outline-container-org34dddf2" class="outline-3">
+<h3 id="org34dddf2">基类的构造函数</h3>
+<div class="outline-text-3" id="text-org34dddf2">
 <p>
 创建对象时必须同时创建基类和包含于其中的对象. C++定义了如下的创建顺序:
 </p>
@@ -1022,9 +1082,9 @@ C++根据描述对象的表达式类型在编译时绑定默认参数, 而不是
 </ol>
 </div>
 </div>
-<div id="outline-container-org45940b3" class="outline-3">
-<h3 id="org45940b3">基类的析构函数</h3>
-<div class="outline-text-3" id="text-org45940b3">
+<div id="outline-container-org84dadce" class="outline-3">
+<h3 id="org84dadce">基类的析构函数</h3>
+<div class="outline-text-3" id="text-org84dadce">
 <p>
 由于析构函数没有参数, 因此始终可以自动调用基类的析构函数. 析构函数的调用顺序刚好与构造函数相反:
 </p>
@@ -1039,9 +1099,9 @@ C++根据描述对象的表达式类型在编译时绑定默认参数, 而不是
 </p>
 </div>
 </div>
-<div id="outline-container-org57fc10b" class="outline-3">
-<h3 id="org57fc10b">多重继承</h3>
-<div class="outline-text-3" id="text-org57fc10b">
+<div id="outline-container-orgd8336e7" class="outline-3">
+<h3 id="orgd8336e7">多重继承</h3>
+<div class="outline-text-3" id="text-orgd8336e7">
 <p>
 当定义一个既"是一个"事物A, 又"是一个"事物B的时候, 就会用到多重继承, 同时从类A和类B派生, 记为类C. 多重继承通常被认为是面向对象编程中一种复杂且不必要的部分.
 </p>
@@ -1074,17 +1134,17 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 </div>
 </div>
 </div>
-<div id="outline-container-orgd74cf6e" class="outline-3">
-<h3 id="orgd74cf6e">派生类中的复制构造函数和赋值运算符</h3>
-<div class="outline-text-3" id="text-orgd74cf6e">
+<div id="outline-container-org72bfed5" class="outline-3">
+<h3 id="org72bfed5">派生类中的复制构造函数和赋值运算符</h3>
+<div class="outline-text-3" id="text-org72bfed5">
 <p>
 当在类中使用了动态内存分配时, 提供复制构造函数和赋值运算符是一个好的编程习惯. 如果在派生类中指定了复制构造函数, 就需要显式地链接到基类的复制构造函数, 否则将使用默认构造函数初始化对象的基类部分.
 </p>
 </div>
 </div>
-<div id="outline-container-orge315a32" class="outline-3">
-<h3 id="orge315a32">运行时类型工具</h3>
-<div class="outline-text-3" id="text-orge315a32">
+<div id="outline-container-org4ecd6a7" class="outline-3">
+<h3 id="org4ecd6a7">运行时类型工具</h3>
+<div class="outline-text-3" id="text-org4ecd6a7">
 <p>
 在C++中, 有些特性提供了对象的运行时视角. 这些特性通常归属于一个名为运行时类型信息(run time type information, RTTI)的特性集. RTTI提供了许多有用的特性, 来判断对象所属的类. 其中一种特性是 <code>dynamic_cast</code>, 可以在面向对象层次结构中进行安全的类型转换. 另一种特性是 <code>typeid</code> 运算符, 这个运算符可以在运行时查询对象, 从而判别对象的类型. 多数情况下, 不应该使用 <code>typeid</code>, 因为最好用虚方法处理对象类型运行的代码, 虚基类是在类层次结构中避免歧义的好方法.
 </p>
@@ -1095,9 +1155,9 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 </div>
 </div>
 </div>
-<div id="outline-container-org10a71cc" class="outline-2">
-<h2 id="org10a71cc"><code>lambda</code> 表达式</h2>
-<div class="outline-text-2" id="text-org10a71cc">
+<div id="outline-container-org7e6e1a2" class="outline-2">
+<h2 id="org7e6e1a2"><code>lambda</code> 表达式</h2>
+<div class="outline-text-2" id="text-org7e6e1a2">
 <p>
 <code>lambda</code> 表达式可以编写内嵌的匿名函数, 而不必编写独立函数或函数对象, 使代码更容易阅读和理解. <code>lambda</code> 表达式以方括号 <code>[]</code> 开始, 其后是花括号 <code>{}</code>, 其中包含了 <code>lambda</code> 表达式体. 完整的语法为
 </p>

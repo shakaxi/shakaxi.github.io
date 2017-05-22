@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Company</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,23 +234,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3173918">Introduction</a></li>
-<li><a href="#org11f41ea">Installation and configuration</a>
+<li><a href="#org2e0ecb3">Introduction</a></li>
+<li><a href="#org37d70dc">Installation and configuration</a>
 <ul>
-<li><a href="#org9d014c7">Company</a></li>
-<li><a href="#orgde51815">Clang support</a></li>
-<li><a href="#org2390330">C headers support</a></li>
-<li><a href="#orged12460">LaTeX support</a></li>
-<li><a href="#org411ab92">Python support</a></li>
+<li><a href="#org485bce9">Company</a></li>
+<li><a href="#orgf8186a8">Clang support</a></li>
+<li><a href="#org8fb19fe">C headers support</a></li>
+<li><a href="#org1e5050a">LaTeX support</a></li>
+<li><a href="#org3f2feca">Python support</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3173918" class="outline-2">
-<h2 id="org3173918">Introduction</h2>
-<div class="outline-text-2" id="text-org3173918">
+<div id="outline-container-org2e0ecb3" class="outline-2">
+<h2 id="org2e0ecb3">Introduction</h2>
+<div class="outline-text-2" id="text-org2e0ecb3">
 <p>
 <i>Auto-completion</i> is an important functionality in Emacs. It can greatly speed up our editing and programming. Generally speaking, the auto-completion can be divided into two parts, <i>frontend</i> and <i>backend</i>. As their names indicate, the former presents interface, while the latter provides contents. In a nutshell, the backend generates completion contents and feeds them to the frontend; then the frontend presents completion candidates to us for selection.
 </p>
@@ -268,12 +268,12 @@ For myself, I have been using company since I began to use Emacs. Therefore, I j
 </p>
 </div>
 </div>
-<div id="outline-container-org11f41ea" class="outline-2">
-<h2 id="org11f41ea">Installation and configuration</h2>
-<div class="outline-text-2" id="text-org11f41ea">
-</div><div id="outline-container-org9d014c7" class="outline-3">
-<h3 id="org9d014c7">Company</h3>
-<div class="outline-text-3" id="text-org9d014c7">
+<div id="outline-container-org37d70dc" class="outline-2">
+<h2 id="org37d70dc">Installation and configuration</h2>
+<div class="outline-text-2" id="text-org37d70dc">
+</div><div id="outline-container-org485bce9" class="outline-3">
+<h3 id="org485bce9">Company</h3>
+<div class="outline-text-3" id="text-org485bce9">
 <p>
 Company can be directly installed via <i>ELPA</i>.
 </p>
@@ -286,41 +286,41 @@ company
 After the installation, following configurations should be added in <code>~/.emacs</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">enable global company mode</span>
+<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">enable global company mode</span>
 (add-hook 'after-init-hook 'global-company-mode)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">completion immediately</span>
-(<span style="color: #a020f0;">setq</span> company-idle-delay 0)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">completion immediately</span>
+(<span style="color: #b4fa70;">setq</span> company-idle-delay 0)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">move the selection to the next/previous candidate using C-n/p instead of M-n/p</span>
-(<span style="color: #a020f0;">with-eval-after-load</span> 'company
-  (define-key company-active-map (kbd <span style="color: #8b2252;">"M-n"</span>) nil)
-  (define-key company-active-map (kbd <span style="color: #8b2252;">"M-p"</span>) nil)
-  (define-key company-active-map (kbd <span style="color: #8b2252;">"C-n"</span>) #'company-select-next)
-  (define-key company-active-map (kbd <span style="color: #8b2252;">"C-p"</span>) #'company-select-previous))
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">move the selection to the next/previous candidate using C-n/p instead of M-n/p</span>
+(<span style="color: #b4fa70;">with-eval-after-load</span> 'company
+  (define-key company-active-map (kbd <span style="color: #e9b96e;">"M-n"</span>) nil)
+  (define-key company-active-map (kbd <span style="color: #e9b96e;">"M-p"</span>) nil)
+  (define-key company-active-map (kbd <span style="color: #e9b96e;">"C-n"</span>) #'company-select-next)
+  (define-key company-active-map (kbd <span style="color: #e9b96e;">"C-p"</span>) #'company-select-previous))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgde51815" class="outline-3">
-<h3 id="orgde51815">Clang support</h3>
-<div class="outline-text-3" id="text-orgde51815">
+<div id="outline-container-orgf8186a8" class="outline-3">
+<h3 id="orgf8186a8">Clang support</h3>
+<div class="outline-text-3" id="text-orgf8186a8">
 <p>
 Clang support is out-of-the-box. Additional package installation is not necessary. However, company-semantic is also built-in and precedes company-clang. Therefore, it is necessary to remove company-semantic. To this end, following configurations are needed.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">remove company-semantic from company-backends.</span>
-(<span style="color: #a020f0;">setq</span> company-backends (delete 'company-semantic company-backends))
+<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">remove company-semantic from company-backends.</span>
+(<span style="color: #b4fa70;">setq</span> company-backends (delete 'company-semantic company-backends))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">make company-clang find IT++ headers and support c++11.</span>
-(<span style="color: #a020f0;">setq</span> company-clang-arguments (<span style="color: #a020f0;">quote</span> (<span style="color: #8b2252;">"-I/opt/itpp/include/"</span> <span style="color: #8b2252;">"-std=c++14"</span>)))
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">make company-clang find IT++ headers and support c++11.</span>
+(<span style="color: #b4fa70;">setq</span> company-clang-arguments (<span style="color: #b4fa70;">quote</span> (<span style="color: #e9b96e;">"-I/opt/itpp/include/"</span> <span style="color: #e9b96e;">"-std=c++14"</span>)))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org2390330" class="outline-3">
-<h3 id="org2390330">C headers support</h3>
-<div class="outline-text-3" id="text-org2390330">
+<div id="outline-container-org8fb19fe" class="outline-3">
+<h3 id="org8fb19fe">C headers support</h3>
+<div class="outline-text-3" id="text-org8fb19fe">
 <p>
 For the sake of completing C/C++ header files while input, package <code>company-c-headers</code> can be installed by
 </p>
@@ -334,14 +334,14 @@ and configured by
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'company-backends 'company-c-headers)
-(<span style="color: #a020f0;">setq</span> company-c-headers-path-system (<span style="color: #a020f0;">quote</span> (<span style="color: #8b2252;">"/usr/include/"</span> <span style="color: #8b2252;">"/usr/local/include/"</span> <span style="color: #8b2252;">"/usr/include/c++/6.1.1/"</span> <span style="color: #8b2252;">"/opt/itpp/include/"</span>)))
+(<span style="color: #b4fa70;">setq</span> company-c-headers-path-system (<span style="color: #b4fa70;">quote</span> (<span style="color: #e9b96e;">"/usr/include/"</span> <span style="color: #e9b96e;">"/usr/local/include/"</span> <span style="color: #e9b96e;">"/usr/include/c++/6.1.1/"</span> <span style="color: #e9b96e;">"/opt/itpp/include/"</span>)))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orged12460" class="outline-3">
-<h3 id="orged12460">LaTeX support</h3>
-<div class="outline-text-3" id="text-orged12460">
+<div id="outline-container-org1e5050a" class="outline-3">
+<h3 id="org1e5050a">LaTeX support</h3>
+<div class="outline-text-3" id="text-org1e5050a">
 <p>
 In order to enjoy the completion in LaTeX composition, package <code>company-auctex</code> can be installed<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.
 </p>
@@ -354,15 +354,15 @@ company-auctex
 Accordingly, append the following line to the configuration of company in <code>~/.emacs</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">enable company backends for LaTeX (based on AucTeX)</span>
+<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">enable company backends for LaTeX (based on AucTeX)</span>
 (company-auctex-init)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org411ab92" class="outline-3">
-<h3 id="org411ab92">Python support</h3>
-<div class="outline-text-3" id="text-org411ab92">
+<div id="outline-container-org3f2feca" class="outline-3">
+<h3 id="org3f2feca">Python support</h3>
+<div class="outline-text-3" id="text-org3f2feca">
 <p>
 Targetting for Python support, package <code>company-jedi</code> needs to be installed.
 </p>

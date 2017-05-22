@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-29 Tue 22:06 -->
+<!-- 2017-05-17 Wed 13:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SSH</title>
@@ -185,7 +185,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -234,12 +234,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf84dcc0">Installation</a></li>
-<li><a href="#org89f4036">Transmission over asymmetrical encryption</a></li>
-<li><a href="#org04ea088">Enable <code>X11 forwarding</code> to run GUI programs over SSH</a>
+<li><a href="#org46ecc4b">Installation</a></li>
+<li><a href="#orgafa2f12">Transmission over asymmetrical encryption</a></li>
+<li><a href="#orgac50f37">Enable <code>X11 forwarding</code> to run GUI programs over SSH</a>
 <ul>
-<li><a href="#org6cd3a9a">On server</a></li>
-<li><a href="#orgb77b1b4">On client</a></li>
+<li><a href="#org919647f">On server</a></li>
+<li><a href="#org569f110">On client</a></li>
 </ul>
 </li>
 </ul>
@@ -248,9 +248,9 @@ for the JavaScript code in this tag.
 <p>
 Secure shell (SSH) is the most popular and efficient method for remote access. This post introduces SSH relevant issues, from installation to configuration.
 </p>
-<div id="outline-container-orgf84dcc0" class="outline-2">
-<h2 id="orgf84dcc0">Installation</h2>
-<div class="outline-text-2" id="text-orgf84dcc0">
+<div id="outline-container-org46ecc4b" class="outline-2">
+<h2 id="org46ecc4b">Installation</h2>
+<div class="outline-text-2" id="text-org46ecc4b">
 <p>
 Take Archlinux for instance here.
 </p>
@@ -260,9 +260,9 @@ Take Archlinux for instance here.
 </div>
 </div>
 </div>
-<div id="outline-container-org89f4036" class="outline-2">
-<h2 id="org89f4036">Transmission over asymmetrical encryption</h2>
-<div class="outline-text-2" id="text-org89f4036">
+<div id="outline-container-orgafa2f12" class="outline-2">
+<h2 id="orgafa2f12">Transmission over asymmetrical encryption</h2>
+<div class="outline-text-2" id="text-orgafa2f12">
 <ul class="org-ul">
 <li>Generate key pair on the client</li>
 </ul>
@@ -275,18 +275,18 @@ Take Archlinux for instance here.
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">scp ~/.ssh/id_rsa.pub USERNAME@SERVER:~/.ssh/authorized_keys
-<span style="color: #b22222;">#</span><span style="color: #b22222;">or</span>
+<span style="color: #73d216;">#</span><span style="color: #73d216;">or</span>
 ssh-copy-id -i ~/.ssh/id_rsa.pub USERNAME@SERVER
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org04ea088" class="outline-2">
-<h2 id="org04ea088">Enable <code>X11 forwarding</code> to run GUI programs over SSH</h2>
-<div class="outline-text-2" id="text-org04ea088">
-</div><div id="outline-container-org6cd3a9a" class="outline-3">
-<h3 id="org6cd3a9a">On server</h3>
-<div class="outline-text-3" id="text-org6cd3a9a">
+<div id="outline-container-orgac50f37" class="outline-2">
+<h2 id="orgac50f37">Enable <code>X11 forwarding</code> to run GUI programs over SSH</h2>
+<div class="outline-text-2" id="text-orgac50f37">
+</div><div id="outline-container-org919647f" class="outline-3">
+<h3 id="org919647f">On server</h3>
+<div class="outline-text-3" id="text-org919647f">
 <ul class="org-ul">
 <li>Installation</li>
 </ul>
@@ -306,9 +306,9 @@ Add following line in <code>/etc/ssh/sshd_config</code>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb77b1b4" class="outline-3">
-<h3 id="orgb77b1b4">On client</h3>
-<div class="outline-text-3" id="text-orgb77b1b4">
+<div id="outline-container-org569f110" class="outline-3">
+<h3 id="org569f110">On client</h3>
+<div class="outline-text-3" id="text-org569f110">
 <p>
 Add following lines in <code>/etc/ssh/ssh_config</code>
 </p>
