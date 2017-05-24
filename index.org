@@ -24,6 +24,7 @@
    + [[file:gdb.org][GDB]]
    + [[file:grub.org][GRUB]]
    + [[file:git.org][Git]]
+   + [[file:gitlab.org][GitLab]]
    + [[file:arch_inst.org][Installation Guide for Arch Linux]]
    + [[file:lte_d2d.org][LTE - D2D]]
    + [[file:lte_ds.org][LTE - Discovery Signal]]
