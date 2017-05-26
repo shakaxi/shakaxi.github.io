@@ -6,7 +6,7 @@
 <!-- 2017-05-27 Sat 00:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Virtual Console Switch</title>
+<title>Customize Console</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="shaka" />
 <style type="text/css">
@@ -229,16 +229,14 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Virtual Console Switch</h1>
+<h1 class="title">Customize Console</h1>
 <p>
-Unix and Linux operation systems (OS) originally provided textual interfaces only, but now, we can already enjoy the perfect graphic experience through their desktop systems, e.g. <i>Gnome</i>, <i>KDE</i>, <i>XFCE</i>. This post only aims to present the methods of switching between textual and graphical interfaces.
+Nowdays, a modern console can display many colors other than black and white. For example, 256-color can be enabled by adding the following entry into <code>~/.bashrc</code>.
 </p>
-
-<ul class="org-ul">
-<li>Switch from graphical interface to textual interface: press <code>Ctrl + Alt + Fn</code>, where <code>n = 1, 2, ...</code></li>
-<li>Switch from textual interface to graphical interface: press <code>Alt + Fm</code>, where the value of integer <code>m</code> is different from OS to OS. For most Linux OS, <code>m = 7</code>.</li>
-<li>Switch from textual interface <code>i</code> to textual interface <code>j</code>: press <code>Alt + Fj</code>.</li>
-</ul>
+<div class="org-src-container">
+<pre class="src src-sh">[[ $<span style="color: #fcaf3e;">TERM</span>==<span style="color: #e9b96e;">"xterm"</span> ]] &amp;&amp; <span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">TERM</span>=xterm-256color
+</pre>
+</div>
 </div>
 </body>
 </html>
