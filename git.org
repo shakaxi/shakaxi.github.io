@@ -7,6 +7,10 @@ On Unix/Linux operation systems, git can be easily installed. Taking /ArchLinux/
 #+BEGIN_SRC sh
 pacman -S git
 #+END_SRC
+In order to enable bash-like auto completion, add following entry to =~/.bashrc=
+#+BEGIN_SRC sh
+source /usr/share/git/completion/git-completion.bash
+#+END_SRC
 For GUI, package /tk/ needs to be installed additionally.
 #+BEGIN_SRC sh
 pacman -S tk

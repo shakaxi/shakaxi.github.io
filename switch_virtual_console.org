@@ -2,6 +2,6 @@
 
 Unix and Linux operation systems (OS) originally provided textual interfaces only, but now, we can already enjoy the perfect graphic experience through their desktop systems, e.g. /Gnome/, /KDE/, /XFCE/. This post only aims to present the methods of switching between textual and graphical interfaces.
 
-- switch from graphical interface to textual interface: press =Ctrl + Alt + Fn=, where =n = 1, 2, ...=
-- switch from textual interface to graphical interface: press =Alt + Fm=, where the value of integer =m= is different from OS to OS. For most Linux OS, =m = 7=.
-- switch from textual interface =i= to textual interface =j=: press =Alt + Fj=.
+- Switch from graphical interface to textual interface: press =Ctrl + Alt + Fn=, where =n = 1, 2, ...=
+- Switch from textual interface to graphical interface: press =Alt + Fm=, where the value of integer =m= is different from OS to OS. For most Linux OS, =m = 7=.
+- Switch from textual interface =i= to textual interface =j=: press =Alt + Fj=.

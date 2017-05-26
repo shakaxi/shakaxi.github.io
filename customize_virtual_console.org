@@ -1,0 +1,6 @@
+#+TITLE: Customize Console
+
+Nowdays, a modern console can display many colors other than black and white. For example, 256-color can be enabled by adding the following entry into =~/.bashrc=.
+#+BEGIN_SRC sh
+[[ $TERM=="xterm" ]] && export TERM=xterm-256color
+#+END_SRC
