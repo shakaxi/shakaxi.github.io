@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-05-22 Mon 23:45 -->
+<!-- 2017-05-31 Wed 23:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -236,6 +236,20 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org4b7e7aa">预处理指令</a></li>
 <li><a href="#org055e499">函数</a></li>
+<li><a href="#org6ab9e7a">类型</a>
+<ul>
+<li><a href="#orgcbb7968"><code>typedef</code></a></li>
+<li><a href="#org23efed9">类型别名</a></li>
+</ul>
+</li>
+<li><a href="#org54fdcd7">类型转换</a>
+<ul>
+<li><a href="#org28e2d3c"><code>const_cast</code></a></li>
+<li><a href="#org01f8bc1"><code>static_cast</code></a></li>
+<li><a href="#org1e9054e"><code>reinterpret_cast</code></a></li>
+<li><a href="#org24fb7e0"><code>dynamic_cast</code></a></li>
+</ul>
+</li>
 <li><a href="#org9f186fa">类型推断</a>
 <ul>
 <li><a href="#orgf3d71b9"><code>auto</code></a></li>
@@ -250,7 +264,7 @@ for the JavaScript code in this tag.
 <li><a href="#org1650f40">引用</a>
 <ul>
 <li><a href="#org1753997">引用变量</a></li>
-<li><a href="#org2745e99">引用数据成员</a></li>
+<li><a href="#org9c63d66">引用数据成员</a></li>
 <li><a href="#orgc91526d">引用参数</a></li>
 <li><a href="#orgb42ba31">引用返回值</a></li>
 <li><a href="#org3959b47">引用与指针</a></li>
@@ -266,6 +280,14 @@ for the JavaScript code in this tag.
 <li><a href="#orge8a249f">关键字</a>
 <ul>
 <li><a href="#orgd37560d"><code>const</code></a></li>
+<li><a href="#org2f7325c"><code>static</code></a>
+<ul>
+<li><a href="#org0bd6c00">静态数据成员和方法</a></li>
+<li><a href="#orgccc6b61">静态链接(static linkage)</a></li>
+<li><a href="#org8a46e52">函数中的静态变量</a></li>
+</ul>
+</li>
+<li><a href="#orgdcdb7aa"><code>extern</code></a></li>
 </ul>
 </li>
 <li><a href="#orge57eee3">面向对象思想</a>
@@ -279,11 +301,11 @@ for the JavaScript code in this tag.
 <li><a href="#org610ed15">类和对象</a>
 <ul>
 <li><a href="#org984590b">定义</a></li>
-<li><a href="#org10a1851">访问控制</a></li>
+<li><a href="#org52df880">访问控制</a></li>
 <li><a href="#orgb0de803"><code>this</code></a></li>
 <li><a href="#org6153095">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#org1b720da">基本概念</a></li>
+<li><a href="#orgbd951cd">基本概念</a></li>
 <li><a href="#org6c64a99">构造函数初始化器</a></li>
 <li><a href="#org9b8fb2f">复制构造函数</a></li>
 <li><a href="#org30381cf">初始化列表构造函数</a></li>
@@ -294,7 +316,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgc7caa57">析构函数</a>
 <ul>
-<li><a href="#org5d44035">基本概念</a></li>
+<li><a href="#org32631fa">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#org85f0d25">对象赋值</a></li>
@@ -302,7 +324,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org4c6d71e">静态数据成员</a></li>
 <li><a href="#org138a392">常量数据成员</a></li>
-<li><a href="#org9c63d66">引用数据成员</a></li>
+<li><a href="#org9e3b314">引用数据成员</a></li>
 </ul>
 </li>
 <li><a href="#org0e9b9a7">方法</a>
@@ -321,8 +343,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org9aa636a">继承</a>
 <ul>
-<li><a href="#orgbd951cd">基本概念</a></li>
-<li><a href="#org52df880">访问控制</a></li>
+<li><a href="#org7891c7e">基本概念</a></li>
+<li><a href="#org9880815">访问控制</a></li>
 <li><a href="#orgc72e961">禁止继承</a></li>
 <li><a href="#org16c27d1">方法和类的虚化</a></li>
 <li><a href="#org21c3279">向上转型和向下转型</a></li>
@@ -376,6 +398,64 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>C++14允许要求编译器自动推断出函数的返回类型. 为此, 需要指定返回类型为 <code>auto</code>, 并忽略所有拖尾返回类型.</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org6ab9e7a" class="outline-2">
+<h2 id="org6ab9e7a">类型</h2>
+<div class="outline-text-2" id="text-org6ab9e7a">
+</div><div id="outline-container-orgcbb7968" class="outline-3">
+<h3 id="orgcbb7968"><code>typedef</code></h3>
+<div class="outline-text-3" id="text-orgcbb7968">
+<p>
+<code>typedef</code> 为已有的类型声明提供一个新名称. 可将 <code>typedef</code> 看成已有类型声明的同义词, <code>typedef</code> 不会创建新的类型.
+</p>
+<ul class="org-ul">
+<li><code>typedef</code> 的最常见用法是当实际类型的声明过于笨拙时, 提供易于管理的名称, 这一情形通常出现在模板中. STL广泛使用 <code>typedef</code> 提供类型的简短名称. 如 <code>string</code> 实际上是一个 <code>typedef</code>.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #b4fa70;">typedef</span> <span style="color: #8cc4ff;">basic_string</span>&lt;<span style="color: #8cc4ff;">char</span>, <span style="color: #8cc4ff;">char_traits</span>&lt;<span style="color: #8cc4ff;">char</span>&gt;, <span style="color: #8cc4ff;">allocator</span>&lt;<span style="color: #8cc4ff;">char</span>&gt;&gt; <span style="color: #8cc4ff;">string</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>typedef</code> 可以包括作用域限定符.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org23efed9" class="outline-3">
+<h3 id="org23efed9">类型别名</h3>
+<div class="outline-text-3" id="text-org23efed9">
+<p>
+某些情况下, 类型别名比 <code>typedef</code> 更容易理解. 例如,
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #b4fa70;">typedef</span> <span style="color: #8cc4ff;">int</span> <span style="color: #8cc4ff;">my_int</span>;
+</pre>
+</div>
+<p>
+可以重写为
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #b4fa70;">using</span> <span style="color: #8cc4ff;">my_int</span> = <span style="color: #8cc4ff;">int</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org54fdcd7" class="outline-2">
+<h2 id="org54fdcd7">类型转换</h2>
+<div class="outline-text-2" id="text-org54fdcd7">
+</div><div id="outline-container-org28e2d3c" class="outline-3">
+<h3 id="org28e2d3c"><code>const_cast</code></h3>
+</div>
+
+<div id="outline-container-org01f8bc1" class="outline-3">
+<h3 id="org01f8bc1"><code>static_cast</code></h3>
+</div>
+<div id="outline-container-org1e9054e" class="outline-3">
+<h3 id="org1e9054e"><code>reinterpret_cast</code></h3>
+</div>
+<div id="outline-container-org24fb7e0" class="outline-3">
+<h3 id="org24fb7e0"><code>dynamic_cast</code></h3>
 </div>
 </div>
 <div id="outline-container-org9f186fa" class="outline-2">
@@ -450,9 +530,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org2745e99" class="outline-3">
-<h3 id="org2745e99">引用数据成员</h3>
-<div class="outline-text-3" id="text-org2745e99">
+<div id="outline-container-org9c63d66" class="outline-3">
+<h3 id="org9c63d66">引用数据成员</h3>
+<div class="outline-text-3" id="text-org9c63d66">
 <p>
 引用可以作为类的数据成员, 也即引用数据成员. 引用数据成员必须在类的构造函数初始化器中初始化它, 而不是在构造函数体内.
 </p>
@@ -527,7 +607,7 @@ for the JavaScript code in this tag.
 <h2 id="orgba6e9f8">数组</h2>
 <div class="outline-text-2" id="text-orgba6e9f8">
 <ul class="org-ul">
-<li>在C++中声明数组时, 必须声明数组的大小. 数组的大小不能用变量来表示&#x2013;必须用常量或常量表达式(constexpr)来表示数组大小.</li>
+<li>在C++中声明数组时, 必须声明数组的大小. 数组的大小不能用变量来表示&#x2013;必须用常量或常量表达式(<code>constexpr</code>)来表示数组大小.</li>
 <li>数组也可以用初始化列表来初始化, 此时编译器可以自动推断出数组的大小.</li>
 <li>C++有一种大小固定的特殊容器 <code>std::array</code>, 定义在 <code>&lt;array&gt;</code> 头文件中, 其具有迭代器, 可以方便地遍历元素. 必须在尖括号中指定两个参数, 第一个表示数组中元素的类型, 第二个参数表示数组的大小.</li>
 </ul>
@@ -630,8 +710,59 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-</div>
+<div id="outline-container-org2f7325c" class="outline-3">
+<h3 id="org2f7325c"><code>static</code></h3>
+<div class="outline-text-3" id="text-org2f7325c">
+<p>
+C++中 <code>static</code> 关键字的最终目的是创建离开和进入作用域时都可以保留值的局部变量.
+</p>
 
+<p>
+程序中所有的全局变量和类的静态数据成员都会在 <code>main()</code> 开始之前初始化. 给定源文件中的变量以在源文件中出现的顺序初始化. 不同源文件中非局部变量的初始化顺序是不确定的.
+</p>
+
+<p>
+非局部变量按照其初始化的逆序进行销毁.由于不同源文件中非局部变量的初始化顺序是不确定的, 所以其销毁顺序也是不确定的.
+</p>
+</div>
+<div id="outline-container-org0bd6c00" class="outline-4">
+<h4 id="org0bd6c00">静态数据成员和方法</h4>
+<div class="outline-text-4" id="text-org0bd6c00">
+<p>
+可以声明类的静态数据成员和方法.
+</p>
+<ul class="org-ul">
+<li>静态数据成员与非静态数据成员不同, 它不是对象的一部分, 而是类的一部分. 静态数据成员只有一个副本, 而且该副本存在于类的任何对象之外.</li>
+<li>类似地, 静态方法也是存在于类层次(而不是对象层次). 静态方法不会在某个特定对象环境中执行.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgccc6b61" class="outline-4">
+<h4 id="orgccc6b61">静态链接(static linkage)</h4>
+<div class="outline-text-4" id="text-orgccc6b61">
+<p>
+C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链接. C++源文件中的每个名称(包括函数和全局变量), 都有一个内部或者外部的链接. 外部链接意味着这个名称在其他源文件中也有效, 内部链接(也称为静态链接)意味着在其他源文件中无效. 默认情况下, 函数和全局变量都拥有外部链接. 然而, 可在声明前使用关键字 <code>static</code> 指定内部链接.
+</p>
+</div>
+</div>
+<div id="outline-container-org8a46e52" class="outline-4">
+<h4 id="org8a46e52">函数中的静态变量</h4>
+<div class="outline-text-4" id="text-org8a46e52">
+<p>
+函数中的静态变量就像是一个只能在函数内部访问的全局变量.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdcdb7aa" class="outline-3">
+<h3 id="orgdcdb7aa"><code>extern</code></h3>
+<div class="outline-text-3" id="text-orgdcdb7aa">
+<p>
+关键字 <code>extern</code> 好像是 <code>static</code> 的反义词, 将它后面的名称指定为外部链接. 例如, <code>const</code> 和 <code>typedef</code> 在默认情况下是内部链接, 可以使用 <code>extern</code> 使其变为外部链接.
+</p>
+</div>
+</div>
+</div>
 <div id="outline-container-orge57eee3" class="outline-2">
 <h2 id="orge57eee3">面向对象思想</h2>
 <div class="outline-text-2" id="text-orge57eee3">
@@ -691,9 +822,9 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org10a1851" class="outline-3">
-<h3 id="org10a1851">访问控制</h3>
-<div class="outline-text-3" id="text-org10a1851">
+<div id="outline-container-org52df880" class="outline-3">
+<h3 id="org52df880">访问控制</h3>
+<div class="outline-text-3" id="text-org52df880">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -723,9 +854,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-org6153095" class="outline-3">
 <h3 id="org6153095">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-org6153095">
-</div><div id="outline-container-org1b720da" class="outline-4">
-<h4 id="org1b720da">基本概念</h4>
-<div class="outline-text-4" id="text-org1b720da">
+</div><div id="outline-container-orgbd951cd" class="outline-4">
+<h4 id="orgbd951cd">基本概念</h4>
+<div class="outline-text-4" id="text-orgbd951cd">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -813,9 +944,9 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgc7caa57" class="outline-3">
 <h3 id="orgc7caa57">析构函数</h3>
 <div class="outline-text-3" id="text-orgc7caa57">
-</div><div id="outline-container-org5d44035" class="outline-4">
-<h4 id="org5d44035">基本概念</h4>
-<div class="outline-text-4" id="text-org5d44035">
+</div><div id="outline-container-org32631fa" class="outline-4">
+<h4 id="org32631fa">基本概念</h4>
+<div class="outline-text-4" id="text-org32631fa">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -869,9 +1000,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </p>
 </div>
 </div>
-<div id="outline-container-org9c63d66" class="outline-4">
-<h4 id="org9c63d66">引用数据成员</h4>
-<div class="outline-text-4" id="text-org9c63d66">
+<div id="outline-container-org9e3b314" class="outline-4">
+<h4 id="org9e3b314">引用数据成员</h4>
+<div class="outline-text-4" id="text-org9e3b314">
 <p>
 在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
 </p>
@@ -983,9 +1114,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <div id="outline-container-org9aa636a" class="outline-2">
 <h2 id="org9aa636a">继承</h2>
 <div class="outline-text-2" id="text-org9aa636a">
-</div><div id="outline-container-orgbd951cd" class="outline-3">
-<h3 id="orgbd951cd">基本概念</h3>
-<div class="outline-text-3" id="text-orgbd951cd">
+</div><div id="outline-container-org7891c7e" class="outline-3">
+<h3 id="org7891c7e">基本概念</h3>
+<div class="outline-text-3" id="text-org7891c7e">
 <ul class="org-ul">
 <li>继承的运行方式是单向的. 基类并不知道派生类的任何信息.</li>
 <li>指向某个对象的指针或者引用可以指向声明类的对象, 也可以指向其任意派生类的对象. 指向基类对象的指针可以指向派生类对象, 对于引用也是如此. 然而, 不能通过基类对象的指针调用派生类的方法. 即使基类的引用或者指针知道所指的是一个派生类, 也无法访问没有在基类中定义的派生类方法或者成员.</li>
@@ -993,9 +1124,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org52df880" class="outline-3">
-<h3 id="org52df880">访问控制</h3>
-<div class="outline-text-3" id="text-org52df880">
+<div id="outline-container-org9880815" class="outline-3">
+<h3 id="org9880815">访问控制</h3>
+<div class="outline-text-3" id="text-org9880815">
 <p>
 派生类可以访问基类中声明为 <code>public</code>, <code>protected</code> 的数据成员和方法, 就好像这些数据成员和方法是派生类自己的. 如果类将数据成员和方法声明为 <code>protected</code>, 派生类就可以访问它们; 如果声明为 <code>private</code>, 派生类就不能访问它们. 建议将所有数据成员都默认声明为 <code>private</code>, 这会提供最高级别的封装. 如果希望任何代码都能访问这些数据成员, 就可以提供 <code>public</code> 的 <code>getter/setter</code>; 如果只希望派生类访问它们, 就可以提供 <code>protected</code> 的 <code>getter/setter</code>.
 </p>
