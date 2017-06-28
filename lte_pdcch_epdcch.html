@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-05-17 Wed 13:31 -->
+<!-- 2017-06-28 Wed 08:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LTE - PDCCH &amp; EPDCCH</title>
@@ -257,12 +257,12 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org1ffe848">Introduction</a></li>
-<li><a href="#org12c6893">PDCCH</a></li>
-<li><a href="#orga800016">EPDCCH</a></li>
-<li><a href="#org5b5afe9">Blind decoding of PDCCH and EPDCCH</a>
-<ul>
 <li><a href="#orga74771c">PDCCH</a></li>
 <li><a href="#org4bc4a05">EPDCCH</a></li>
+<li><a href="#org5b5afe9">Blind decoding of PDCCH and EPDCCH</a>
+<ul>
+<li><a href="#org0b4bb0b">PDCCH</a></li>
+<li><a href="#org999b0b0">EPDCCH</a></li>
 <li><a href="#orge6af2b3">Blind decoding attempts</a></li>
 </ul>
 </li>
@@ -280,9 +280,9 @@ This post provides a brief summary on <i>physical downlink control channel (PDCC
 </div>
 </div>
 
-<div id="outline-container-org12c6893" class="outline-2">
-<h2 id="org12c6893">PDCCH</h2>
-<div class="outline-text-2" id="text-org12c6893">
+<div id="outline-container-orga74771c" class="outline-2">
+<h2 id="orga74771c">PDCCH</h2>
+<div class="outline-text-2" id="text-orga74771c">
 <p>
 PDCCH carries <i>downlink control information (DCI)</i>, e.g. scheduling decisions and power control commands. Since each scheduling message is transmitted on a separate PDCCH, there are multiple simultaneous PDCCH transmission within each cell. From a UE perspective, each UE can receive multiple DCI messages in the same subframe, e.g. it is scheduled simultaneously in uplink and downlink.
 </p>
@@ -305,9 +305,9 @@ Since a UE is not signalled about the aggregation level of each PDCCH, it has to
 </div>
 </div>
 
-<div id="outline-container-orga800016" class="outline-2">
-<h2 id="orga800016">EPDCCH</h2>
-<div class="outline-text-2" id="text-orga800016">
+<div id="outline-container-org4bc4a05" class="outline-2">
+<h2 id="org4bc4a05">EPDCCH</h2>
+<div class="outline-text-2" id="text-org4bc4a05">
 <p>
 EPDCCH was introduced as a complementary control channel in release 11. Different from PDCCH, EPDCCH can use precoding and be detected based on DMRS. Moreover, EPDCCH is mapped to PDSCH region.
 </p>
@@ -334,9 +334,9 @@ A <i>search space</i> is a set of candidate control channels formed by CCE's/ECC
 </p>
 </div>
 
-<div id="outline-container-orga74771c" class="outline-3">
-<h3 id="orga74771c">PDCCH</h3>
-<div class="outline-text-3" id="text-orga74771c">
+<div id="outline-container-org0b4bb0b" class="outline-3">
+<h3 id="org0b4bb0b">PDCCH</h3>
+<div class="outline-text-3" id="text-org0b4bb0b">
 <p>
 Each UE has a <i>UE-specific search space</i> at each aggregation level. UE-specific search spaces for PDCCH are defined as a function of the UE identity and the subframe number. Thus, UE-specific search space is different from one subframe to another.
 </p>
@@ -350,9 +350,9 @@ There are 16 and 9 PDCCH candidates in the UE-specific and common search spaces,
 </p>
 </div>
 </div>
-<div id="outline-container-org4bc4a05" class="outline-3">
-<h3 id="org4bc4a05">EPDCCH</h3>
-<div class="outline-text-3" id="text-org4bc4a05">
+<div id="outline-container-org999b0b0" class="outline-3">
+<h3 id="org999b0b0">EPDCCH</h3>
+<div class="outline-text-3" id="text-org999b0b0">
 <p>
 Basically, EPDCCH blind decoding follows the same principles as PDCCH. What is different, only UE-specific search spaces are supported<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>. Given a UE configured to use EPDCCH, it monitors the EPDCCH UE-specific search spaces in lieu of PDCCH UE-specific search spaces. The common search spaces of PDCCH are always monitored regardless whether an EPDCCH is configured.
 </p>
