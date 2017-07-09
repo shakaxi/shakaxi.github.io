@@ -6,7 +6,7 @@
 <!-- 2017-07-09 Sun 23:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>Emacs - Mu4e</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="shaka" />
 <style type="text/css">
@@ -229,62 +229,231 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
-<ul class="org-ul">
-<li><a href="archlinuxcn.html">ArchLinuxcn</a></li>
-<li><a href="bash.html">Bash</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_basic.html">C++ - Basic</a></li>
-<li><a href="cpp_itpp.html">C++ - IT++</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="customize_virtual_console.html">Customize Console</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_capslk_ctrl.html">Emacs - CapsLk as Ctrl</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="emacs_helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_mu4e.html">Emacs - Mu4e</a></li>
-<li><a href="emacs_org_ioslide.html">Emacs - Orgmode Export to HTML5 Slide</a></li>
-<li><a href="emacs_ycmd.html">Emacs - YCMD</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="gitlab.html">GitLab</a></li>
-<li><a href="arch_inst.html">Installation Guide for Arch Linux</a></li>
-<li><a href="lte_d2d.html">LTE - D2D</a></li>
-<li><a href="lte_ds.html">LTE - Discovery Signal</a></li>
-<li><a href="lte_fc_loc.html">LTE - Frequency Domain Location of Carriers</a></li>
-<li><a href="lte_mobility_mgmt.html">LTE - Mobility Management</a></li>
-<li><a href="lte_pcfich.html">LTE - PCFICH</a></li>
-<li><a href="lte_pdcch_epdcch.html">LTE - PDCCH &amp; EPDCCH</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="zc.html">ZC</a></li>
+<h1 class="title">Emacs - Mu4e</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8111c86">Introduction</a></li>
+<li><a href="#orgeaa316e">Installation</a>
+<ul>
+<li><a href="#orgabdf765">Dependencies</a></li>
+<li><a href="#orgb1c7bf7"><code>mu</code></a></li>
+</ul>
+</li>
+<li><a href="#org5826019">Configuration</a>
+<ul>
+<li><a href="#org3a5b10a"><code>mbsync</code></a></li>
+<li><a href="#org5172b2d"><code>~/.emacs.d/init.el</code></a></li>
+<li><a href="#orgb510618"><code>~/.authinfo</code></a></li>
+<li><a href="#org58e2f24">Others</a>
+<ul>
+<li><a href="#orgaa15d60">Create a maildir</a></li>
+<li><a href="#org23d2e6f">Get the mails</a></li>
+<li><a href="#org2bbe957">Index the mails</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
+</div>
+
+<div id="outline-container-org8111c86" class="outline-2">
+<h2 id="org8111c86">Introduction</h2>
+<div class="outline-text-2" id="text-org8111c86">
+<p>
+<a href="http://www.djcbsoftware.nl/code/mu/mu4e/index.html">mu4e</a> is an excellent mail client for Emacs whereby sending/getting mails can be carried out in Emacs. For an Emacs user, the deep integration gives rise to great convenience and efficiency. This post provides a brief summary for the utilization of mu4e.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeaa316e" class="outline-2">
+<h2 id="orgeaa316e">Installation</h2>
+<div class="outline-text-2" id="text-orgeaa316e">
+</div><div id="outline-container-orgabdf765" class="outline-3">
+<h3 id="orgabdf765">Dependencies</h3>
+<div class="outline-text-3" id="text-orgabdf765">
+<p>
+<code>mu</code> depends on <a href="http://xapian.org">xapian</a> and <a href="http://spruce.sourceforge.net/gmime">gmime</a>, which should be installed in advance.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S xapian-core gmime
+</pre>
+</div>
+<p>
+Additionally, <code>mbsync</code> can be installed to synchronize the mailboxes.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S isync
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb1c7bf7" class="outline-3">
+<h3 id="orgb1c7bf7"><code>mu</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
+<div class="outline-text-3" id="text-orgb1c7bf7">
+<div class="org-src-container">
+<pre class="src src-sh">git clone --depth=1 git://github.com/djcb/mu.git
+<span style="color: #e090d7;">cd</span> mu
+autoreconf -i
+./configure --prefix=/opt/mu
+make
+make install
+ln -s /opt/mu/bin/mu /usr/local/bin
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5826019" class="outline-2">
+<h2 id="org5826019">Configuration</h2>
+<div class="outline-text-2" id="text-org5826019">
+</div><div id="outline-container-org3a5b10a" class="outline-3">
+<h3 id="org3a5b10a"><code>mbsync</code></h3>
+<div class="outline-text-3" id="text-org3a5b10a">
+<div class="org-src-container">
+<pre class="src src-sh">IMAPaccount HOME
+Host IMAP_SERVER_HOME
+User NAME
+Pass PASSWORD
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPAccount OFFICE
+Host IMAP_SERVER_OFFICE
+User NAME
+Pass PASSWORD
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore HOME-REMOTE
+Account HOME
+
+IMAPStore OFFICE-REMOTE
+Account OFFICE
+
+MaildirStore HOME-LOCAL
+Path ~/.Mail
+
+MaildirStore OFFICE-LOCAL
+Path ~/.Mail
+
+Channel HOME
+Master  :HOME-REMOTE:
+Slave   :HOME-LOCAL:
+Create Both
+Expunge Both
+SyncState *
+
+Channel OFFICE
+Master :OFFICE-REMOTE:
+Slave  :OFFICE-LOCAL:
+Create Both
+Expunge Both
+SyncState *
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5172b2d" class="outline-3">
+<h3 id="org5172b2d"><code>~/.emacs.d/init.el</code></h3>
+<div class="outline-text-3" id="text-org5172b2d">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-to-list 'load-path <span style="color: #e9b96e;">"/opt/mu/share/emacs/site-lisp/mu4e"</span>)
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">mu4e</span>)
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">org-mu4e</span>)
+
+(<span style="color: #b4fa70;">setq</span> user-full-name <span style="color: #e9b96e;">"NAME"</span>
+      user-mail-address <span style="color: #e9b96e;">"EMAIL_ADDRESS"</span>
+      mu4e-compose-signature <span style="color: #e9b96e;">"SIGNATURE"</span>)
+
+(<span style="color: #b4fa70;">setq</span> mu4e-maildir <span style="color: #e9b96e;">"~/.Mail"</span>
+      mu4e-drafts-folder <span style="color: #e9b96e;">"/drafts"</span>
+      mu4e-sent-folder <span style="color: #e9b96e;">"/sent"</span>
+      mu4e-trash-folder <span style="color: #e9b96e;">"/trash"</span>)
+
+(<span style="color: #b4fa70;">setq</span> mu4e-headers-fields '((<span style="color: #e090d7;">:human-date</span> . 12)
+                            (<span style="color: #e090d7;">:flags</span> . 6)
+                            (<span style="color: #e090d7;">:mailing-list</span> . 10)
+                            (<span style="color: #e090d7;">:from</span> . 22)
+                            (<span style="color: #e090d7;">:thread-subject</span>)))
+
+(<span style="color: #b4fa70;">setq</span> message-send-mail-function 'smtpmail-send-it
+      smtpmail-default-smtp-server <span style="color: #e9b96e;">"SMTP_SERVER"</span>
+      smtpmail-smtp-server <span style="color: #e9b96e;">"SMTP_SERVER"</span>
+      smtpmail-stream-type 'starttls
+      smtpmail-smtp-service 587)
+
+(<span style="color: #b4fa70;">setq</span> mu4e-get-mail-command <span style="color: #e9b96e;">"mbsync -c MBSYNC_CONFIG_FILE ACCOUNT"</span>)
+
+(<span style="color: #b4fa70;">setq</span> mail-user-agent 'mu4e-user-agent
+      mu4e-user-mail-address-list '(<span style="color: #e9b96e;">"EMAIL_ADDRESS"</span>)
+      mu4e-completing-read-function (<span style="color: #b4fa70;">quote</span> completing-read)
+      mu4e-confirm-quit nil
+      mu4e-attachment-dir <span style="color: #e9b96e;">"~/Downloads"</span>
+      mu4e-html2text-command <span style="color: #e9b96e;">"w3m -dump -T text/html -M"</span>
+      mu4e-use-fancy-chars t
+      mu4e-view-show-images t
+      mu4e-view-show-addresses t
+      mu4e-update-interval 180
+      mu4e-change-filenames-when-moving t
+      message-kill-buffer-on-exit t
+      org-mu4e-convert-to-html t)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb510618" class="outline-3">
+<h3 id="orgb510618"><code>~/.authinfo</code></h3>
+<div class="outline-text-3" id="text-orgb510618">
+<div class="org-src-container">
+<pre class="src src-sh">machine SMTP_SERVER login USER password PASSWORD port 587
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org58e2f24" class="outline-3">
+<h3 id="org58e2f24">Others</h3>
+<div class="outline-text-3" id="text-org58e2f24">
+</div><div id="outline-container-orgaa15d60" class="outline-4">
+<h4 id="orgaa15d60">Create a maildir</h4>
+<div class="outline-text-4" id="text-orgaa15d60">
+<div class="org-src-container">
+<pre class="src src-sh">mkdir .Mail
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org23d2e6f" class="outline-4">
+<h4 id="org23d2e6f">Get the mails</h4>
+<div class="outline-text-4" id="text-org23d2e6f">
+<div class="org-src-container">
+<pre class="src src-sh">mbsync -c MBSYNC_CONFIG_FILE ACCOUNT
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2bbe957" class="outline-4">
+<h4 id="org2bbe957">Index the mails</h4>
+<div class="outline-text-4" id="text-org2bbe957">
+<div class="org-src-container">
+<pre class="src src-sh">mu index --maildir=~/.Mail
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<code>mu4e</code> is essentially a part of <code>mu</code>.
+</p></div></div>
+
+
+</div>
+</div></div>
 </body>
 </html>
