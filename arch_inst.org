@@ -102,8 +102,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 Edit =/etc/profile= and append following two lines to configure the proxy server.
 #+BEGIN_SRC sh
 ...
-export http_proxy="http://202.108.92.171:8080"
-export https_proxy="https://202.108.92.171:8080"
+export http_proxy="http://PROXY_IP_ADDR:PORT"
+export https_proxy="https://PROXY_IP_ADDR:PORT"
 #+END_SRC
 Create file =/etc/netctl/ethernet_static= with its content
 #+BEGIN_SRC sh

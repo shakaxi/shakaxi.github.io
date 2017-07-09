@@ -1,0 +1,130 @@
+#+TITLE: Emacs - Mu4e
+
+* Introduction
+[[http://www.djcbsoftware.nl/code/mu/mu4e/index.html][mu4e]] is an excellent mail client for Emacs whereby sending/getting mails can be carried out in Emacs. For an Emacs user, the deep integration gives rise to great convenience and efficiency. This post provides a brief summary for the utilization of mu4e.
+* Installation
+** Dependencies
+=mu= depends on [[http://xapian.org][xapian]] and [[http://spruce.sourceforge.net/gmime][gmime]], which should be installed in advance.
+#+BEGIN_SRC sh
+pacman -S xapian-core gmime
+#+END_SRC
+Additionally, =mbsync= can be installed to synchronize the mailboxes.
+#+BEGIN_SRC sh
+pacman -S isync
+#+END_SRC
+** =mu=[fn:1]
+#+BEGIN_SRC sh
+git clone --depth=1 git://github.com/djcb/mu.git
+cd mu
+autoreconf -i
+./configure --prefix=/opt/mu
+make
+make install
+ln -s /opt/mu/bin/mu /usr/local/bin
+#+END_SRC
+* Configuration
+** =mbsync=
+#+BEGIN_SRC sh
+  IMAPaccount HOME
+  Host IMAP_SERVER_HOME
+  User NAME
+  Pass PASSWORD
+  SSLType IMAPS
+  CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+  IMAPAccount OFFICE
+  Host IMAP_SERVER_OFFICE
+  User NAME
+  Pass PASSWORD
+  SSLType IMAPS
+  CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+  IMAPStore HOME-REMOTE
+  Account HOME
+
+  IMAPStore OFFICE-REMOTE
+  Account OFFICE
+
+  MaildirStore HOME-LOCAL
+  Path ~/.Mail
+
+  MaildirStore OFFICE-LOCAL
+  Path ~/.Mail
+
+  Channel HOME
+  Master	:HOME-REMOTE:
+  Slave	:HOME-LOCAL:
+  Create Both
+  Expunge Both
+  SyncState *
+
+  Channel OFFICE
+  Master :OFFICE-REMOTE:
+  Slave  :OFFICE-LOCAL:
+  Create Both
+  Expunge Both
+  SyncState *
+#+END_SRC
+** =~/.emacs.d/init.el=
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "/opt/mu/share/emacs/site-lisp/mu4e")
+  (require 'mu4e)
+  (require 'org-mu4e)
+
+  (setq user-full-name "NAME"
+        user-mail-address "EMAIL_ADDRESS"
+        mu4e-compose-signature "SIGNATURE")
+
+  (setq mu4e-maildir "~/.Mail"
+        mu4e-drafts-folder "/drafts"
+        mu4e-sent-folder "/sent"
+        mu4e-trash-folder "/trash")
+
+  (setq mu4e-headers-fields '((:human-date . 12)
+                              (:flags . 6)
+                              (:mailing-list . 10)
+                              (:from . 22)
+                              (:thread-subject)))
+
+  (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-default-smtp-server "SMTP_SERVER"
+        smtpmail-smtp-server "SMTP_SERVER"
+        smtpmail-stream-type 'starttls
+        smtpmail-smtp-service 587)
+
+  (setq mu4e-get-mail-command "mbsync -c MBSYNC_CONFIG_FILE ACCOUNT")
+
+  (setq mail-user-agent 'mu4e-user-agent
+        mu4e-user-mail-address-list '("EMAIL_ADDRESS")
+        mu4e-completing-read-function (quote completing-read)
+        mu4e-confirm-quit nil
+        mu4e-attachment-dir "~/Downloads"
+        mu4e-html2text-command "w3m -dump -T text/html -M"
+        mu4e-use-fancy-chars t
+        mu4e-view-show-images t
+        mu4e-view-show-addresses t
+        mu4e-update-interval 180
+        mu4e-change-filenames-when-moving t
+        message-kill-buffer-on-exit t
+        org-mu4e-convert-to-html t)
+#+END_SRC
+** =~/.authinfo=
+#+BEGIN_SRC sh
+machine SMTP_SERVER login USER password PASSWORD port 587
+#+END_SRC
+** Others
+*** Create a maildir
+#+BEGIN_SRC sh
+mkdir .Mail
+#+END_SRC
+*** Get the mails
+#+BEGIN_SRC sh
+mbsync -c MBSYNC_CONFIG_FILE ACCOUNT
+#+END_SRC
+*** Index the mails
+#+BEGIN_SRC sh
+mu index --maildir=~/.Mail
+#+END_SRC
+* Footnotes
+
+[fn:1] =mu4e= is essentially a part of =mu=.

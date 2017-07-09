@@ -22,7 +22,7 @@ pacman -S blas lapack fftw
 ** Install IT++
 The lastest version of IT++ can be obtained via git, and installed to =/opt/itpp= by following commands.
 #+BEGIN_SRC sh
-git clone git://git.code.sf.net/p/itpp/git itpp-git
+git clone --depth=1 git://git.code.sf.net/p/itpp/git itpp-git
 cd itpp-git
 mkdir build
 cd build
@@ -39,6 +39,13 @@ What deserves notice, the commands above installs the /shared/ libraries. For th
 BTW, HTML documentation will be installed by default. Therefore, /doxygen/ needs to be installed in advance. Otherwise, the documentation installation should be disabled by =-DHTML_DOCS=off= option of =cmake=.
 * Usage
 IT++ provides a script =/opt/itpp/bin/itpp-config= to simplify the compilation and linking of IT++ based programs.
+
+Targetting better utilization, creating following soft links is necessary.
+#+BEGIN_SRC sh
+ln -s /opt/itpp/bin/itpp-config /usr/local/bin
+ln -s /opt/itpp/include/itpp /usr/local/include
+ln -s /opt/itpp/lib/libitpp.so.8 /usr/local/lib
+#+END_SRC
 * Interface
 IT++ has its own file format, with a suffix =.it=. Fortunately, for the sake of convenient file exchange, it provides
 - MATLAB functions =itload.m= and =itsave.m=.
