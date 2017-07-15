@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-09 Sun 23:44 -->
+<!-- 2017-07-15 Sat 16:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Mu4e</title>
@@ -239,11 +239,13 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#orgabdf765">Dependencies</a></li>
 <li><a href="#orgb1c7bf7"><code>mu</code></a></li>
+<li><a href="#org2006548"><code>getmail</code> and <code>procmail</code></a></li>
 </ul>
 </li>
 <li><a href="#org5826019">Configuration</a>
 <ul>
-<li><a href="#org3a5b10a"><code>mbsync</code></a></li>
+<li><a href="#org4e3b15b"><code>getmailrc</code></a></li>
+<li><a href="#orga241a67"><code>~/.procmailrc</code></a></li>
 <li><a href="#org5172b2d"><code>~/.emacs.d/init.el</code></a></li>
 <li><a href="#orgb510618"><code>~/.authinfo</code></a></li>
 <li><a href="#org58e2f24">Others</a>
@@ -280,13 +282,6 @@ for the JavaScript code in this tag.
 <pre class="src src-sh">pacman -S xapian-core gmime
 </pre>
 </div>
-<p>
-Additionally, <code>mbsync</code> can be installed to synchronize the mailboxes.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">pacman -S isync
-</pre>
-</div>
 </div>
 </div>
 <div id="outline-container-orgb1c7bf7" class="outline-3">
@@ -304,53 +299,63 @@ ln -s /opt/mu/bin/mu /usr/local/bin
 </div>
 </div>
 </div>
+<div id="outline-container-org2006548" class="outline-3">
+<h3 id="org2006548"><code>getmail</code> and <code>procmail</code></h3>
+<div class="outline-text-3" id="text-org2006548">
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S getmail procmail
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-org5826019" class="outline-2">
 <h2 id="org5826019">Configuration</h2>
 <div class="outline-text-2" id="text-org5826019">
-</div><div id="outline-container-org3a5b10a" class="outline-3">
-<h3 id="org3a5b10a"><code>mbsync</code></h3>
-<div class="outline-text-3" id="text-org3a5b10a">
+</div><div id="outline-container-org4e3b15b" class="outline-3">
+<h3 id="org4e3b15b"><code>getmailrc</code></h3>
+<div class="outline-text-3" id="text-org4e3b15b">
 <div class="org-src-container">
-<pre class="src src-sh">IMAPaccount HOME
-Host IMAP_SERVER_HOME
-User NAME
-Pass PASSWORD
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+<pre class="src src-sh">[retriever]
+<span style="color: #e090d7;">type</span> = SimplePOP3SSLRetriever
+server = POP_SERVER
+port = PORT_NUM
+username = USER_NAME
+password = PASSWORD
 
-IMAPAccount OFFICE
-Host IMAP_SERVER_OFFICE
-User NAME
-Pass PASSWORD
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+[destination]
+<span style="color: #e090d7;">type</span> = MDA_external
+path = /usr/bin/procmail
 
-IMAPStore HOME-REMOTE
-Account HOME
+[options]
+read_all = false
+delete = false
+verbose = 0
+message_log = $<span style="color: #fcaf3e;">HOME</span>/.Mail/getmail.log
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga241a67" class="outline-3">
+<h3 id="orga241a67"><code>~/.procmailrc</code></h3>
+<div class="outline-text-3" id="text-orga241a67">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #fcaf3e;">MAILDIR</span>=$<span style="color: #fcaf3e;">HOME</span>/.Mail
+<span style="color: #fcaf3e;">DEFAULT</span>=$<span style="color: #fcaf3e;">MAILDIR</span>/inbox/
+<span style="color: #fcaf3e;">LOGFILE</span>=$<span style="color: #fcaf3e;">MAILDIR</span>/procmail.log
+<span style="color: #fcaf3e;">VERBOSE</span>=yes
 
-IMAPStore OFFICE-REMOTE
-Account OFFICE
+:0:
+* ^(To|Cc): 3GPP_TSG_RAN_WG1@LIST.ETSI.ORG
+r1/
 
-MaildirStore HOME-LOCAL
-Path ~/.Mail
+:0:
+* ^(To|Cc): 3GPP_TSG_RAN_WG1_NR@LIST.ETSI.ORG
+r1nr/
 
-MaildirStore OFFICE-LOCAL
-Path ~/.Mail
-
-Channel HOME
-Master  :HOME-REMOTE:
-Slave   :HOME-LOCAL:
-Create Both
-Expunge Both
-SyncState *
-
-Channel OFFICE
-Master :OFFICE-REMOTE:
-Slave  :OFFICE-LOCAL:
-Create Both
-Expunge Both
-SyncState *
+:0:
+* ^(To|Cc): 3GPP_TSG_RAN@LIST.ETSI.ORG
+rp/
 </pre>
 </div>
 </div>
@@ -382,9 +387,9 @@ SyncState *
       smtpmail-default-smtp-server <span style="color: #e9b96e;">"SMTP_SERVER"</span>
       smtpmail-smtp-server <span style="color: #e9b96e;">"SMTP_SERVER"</span>
       smtpmail-stream-type 'starttls
-      smtpmail-smtp-service 587)
+      smtpmail-smtp-service PORT_NUM)
 
-(<span style="color: #b4fa70;">setq</span> mu4e-get-mail-command <span style="color: #e9b96e;">"mbsync -c MBSYNC_CONFIG_FILE ACCOUNT"</span>)
+(<span style="color: #b4fa70;">setq</span> mu4e-get-mail-command <span style="color: #e9b96e;">"getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc"</span>)
 
 (<span style="color: #b4fa70;">setq</span> mail-user-agent 'mu4e-user-agent
       mu4e-user-mail-address-list '(<span style="color: #e9b96e;">"EMAIL_ADDRESS"</span>)
@@ -407,7 +412,7 @@ SyncState *
 <h3 id="orgb510618"><code>~/.authinfo</code></h3>
 <div class="outline-text-3" id="text-orgb510618">
 <div class="org-src-container">
-<pre class="src src-sh">machine SMTP_SERVER login USER password PASSWORD port 587
+<pre class="src src-sh">machine SMTP_SERVER login USER password PASSWORD port PORT_NUM
 </pre>
 </div>
 </div>
@@ -428,7 +433,7 @@ SyncState *
 <h4 id="org23d2e6f">Get the mails</h4>
 <div class="outline-text-4" id="text-org23d2e6f">
 <div class="org-src-container">
-<pre class="src src-sh">mbsync -c MBSYNC_CONFIG_FILE ACCOUNT
+<pre class="src src-sh">getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc
 </pre>
 </div>
 </div>
