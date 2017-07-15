@@ -259,7 +259,7 @@ git push remote_name remote_branch_name
 #+BEGIN_SRC sh
 git push remote_name --all
 #+END_SRC
-*** Cancellation
+*** Undo operation
 - Recover the workspace from index
 #+BEGIN_SRC sh
 git checkout -- [file1]

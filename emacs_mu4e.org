@@ -8,10 +8,6 @@
 #+BEGIN_SRC sh
 pacman -S xapian-core gmime
 #+END_SRC
-Additionally, =mbsync= can be installed to synchronize the mailboxes.
-#+BEGIN_SRC sh
-pacman -S isync
-#+END_SRC
 ** =mu=[fn:1]
 #+BEGIN_SRC sh
 git clone --depth=1 git://github.com/djcb/mu.git
@@ -22,48 +18,48 @@ make
 make install
 ln -s /opt/mu/bin/mu /usr/local/bin
 #+END_SRC
-* Configuration
-** =mbsync=
+** =getmail= and =procmail=
 #+BEGIN_SRC sh
-  IMAPaccount HOME
-  Host IMAP_SERVER_HOME
-  User NAME
-  Pass PASSWORD
-  SSLType IMAPS
-  CertificateFile /etc/ssl/certs/ca-certificates.crt
+pacman -S getmail procmail
+#+END_SRC
+* Configuration
+** =getmailrc=
+#+BEGIN_SRC sh
+  [retriever]
+  type = SimplePOP3SSLRetriever
+  server = POP_SERVER
+  port = PORT_NUM
+  username = USER_NAME
+  password = PASSWORD
 
-  IMAPAccount OFFICE
-  Host IMAP_SERVER_OFFICE
-  User NAME
-  Pass PASSWORD
-  SSLType IMAPS
-  CertificateFile /etc/ssl/certs/ca-certificates.crt
+  [destination]
+  type = MDA_external
+  path = /usr/bin/procmail
 
-  IMAPStore HOME-REMOTE
-  Account HOME
+  [options]
+  read_all = false
+  delete = false
+  verbose = 0
+  message_log = $HOME/.Mail/getmail.log
+#+END_SRC
+** =~/.procmailrc=
+#+BEGIN_SRC sh
+  MAILDIR=$HOME/.Mail
+  DEFAULT=$MAILDIR/inbox/
+  LOGFILE=$MAILDIR/procmail.log
+  VERBOSE=yes
 
-  IMAPStore OFFICE-REMOTE
-  Account OFFICE
+  :0:
+  ,* ^(To|Cc): 3GPP_TSG_RAN_WG1@LIST.ETSI.ORG
+  r1/
 
-  MaildirStore HOME-LOCAL
-  Path ~/.Mail
+  :0:
+  ,* ^(To|Cc): 3GPP_TSG_RAN_WG1_NR@LIST.ETSI.ORG
+  r1nr/
 
-  MaildirStore OFFICE-LOCAL
-  Path ~/.Mail
-
-  Channel HOME
-  Master	:HOME-REMOTE:
-  Slave	:HOME-LOCAL:
-  Create Both
-  Expunge Both
-  SyncState *
-
-  Channel OFFICE
-  Master :OFFICE-REMOTE:
-  Slave  :OFFICE-LOCAL:
-  Create Both
-  Expunge Both
-  SyncState *
+  :0:
+  ,* ^(To|Cc): 3GPP_TSG_RAN@LIST.ETSI.ORG
+  rp/
 #+END_SRC
 ** =~/.emacs.d/init.el=
 #+BEGIN_SRC emacs-lisp
@@ -90,9 +86,9 @@ ln -s /opt/mu/bin/mu /usr/local/bin
         smtpmail-default-smtp-server "SMTP_SERVER"
         smtpmail-smtp-server "SMTP_SERVER"
         smtpmail-stream-type 'starttls
-        smtpmail-smtp-service 587)
+        smtpmail-smtp-service PORT_NUM)
 
-  (setq mu4e-get-mail-command "mbsync -c MBSYNC_CONFIG_FILE ACCOUNT")
+  (setq mu4e-get-mail-command "getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc")
 
   (setq mail-user-agent 'mu4e-user-agent
         mu4e-user-mail-address-list '("EMAIL_ADDRESS")
@@ -110,7 +106,7 @@ ln -s /opt/mu/bin/mu /usr/local/bin
 #+END_SRC
 ** =~/.authinfo=
 #+BEGIN_SRC sh
-machine SMTP_SERVER login USER password PASSWORD port 587
+machine SMTP_SERVER login USER password PASSWORD port PORT_NUM
 #+END_SRC
 ** Others
 *** Create a maildir
@@ -119,7 +115,7 @@ mkdir .Mail
 #+END_SRC
 *** Get the mails
 #+BEGIN_SRC sh
-mbsync -c MBSYNC_CONFIG_FILE ACCOUNT
+getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc
 #+END_SRC
 *** Index the mails
 #+BEGIN_SRC sh
