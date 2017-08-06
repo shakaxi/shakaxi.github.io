@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-15 Sat 16:36 -->
+<!-- 2017-08-06 Sun 16:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git</title>
@@ -238,8 +238,8 @@ for the JavaScript code in this tag.
 <li><a href="#org3725c53">Installation</a></li>
 <li><a href="#org3ffadea">Usage</a>
 <ul>
-<li><a href="#org1bfa16f">Create repositories</a></li>
 <li><a href="#org5c04e70">Configuration</a></li>
+<li><a href="#org1bfa16f">Create repositories</a></li>
 <li><a href="#org88e852c">Basic snapshotting</a>
 <ul>
 <li><a href="#org4233683">Add file(s)</a></li>
@@ -306,32 +306,6 @@ In the utilization of git, there are four important areas for storage, <i>worksp
 </p>
 </div>
 </div>
-<div id="outline-container-org1bfa16f" class="outline-3">
-<h3 id="org1bfa16f">Create repositories</h3>
-<div class="outline-text-3" id="text-org1bfa16f">
-<ul class="org-ul">
-<li>Create a repository</li>
-</ul>
-<div class="org-src-container">
-<pre class="src src-sh">git init /path/to/project
-</pre>
-</div>
-<ul class="org-ul">
-<li>Initialize the belonging directory as a repository</li>
-</ul>
-<div class="org-src-container">
-<pre class="src src-sh">git init
-</pre>
-</div>
-<ul class="org-ul">
-<li>Download from a remote repository</li>
-</ul>
-<div class="org-src-container">
-<pre class="src src-sh">git clone url
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-org5c04e70" class="outline-3">
 <h3 id="org5c04e70">Configuration</h3>
 <div class="outline-text-3" id="text-org5c04e70">
@@ -357,6 +331,39 @@ Command <code>git config</code> can define the default preference or behavior of
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git config -e --global
+</pre>
+</div>
+<ul class="org-ul">
+<li>Store password to avoid repeated password input</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git config --global credential.helper store
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1bfa16f" class="outline-3">
+<h3 id="org1bfa16f">Create repositories</h3>
+<div class="outline-text-3" id="text-org1bfa16f">
+<ul class="org-ul">
+<li>Create a repository</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git init /path/to/project
+</pre>
+</div>
+<ul class="org-ul">
+<li>Initialize the belonging directory as a repository</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git init
+</pre>
+</div>
+<ul class="org-ul">
+<li>Download from a remote repository</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git clone url
 </pre>
 </div>
 </div>
@@ -483,6 +490,10 @@ git commit --amend [file]
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch --track branch_name remote_branch_name
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-sh">git fetch remote_name remote_branch_name:branch_name
 </pre>
 </div>
 <ul class="org-ul">
