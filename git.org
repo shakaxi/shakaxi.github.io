@@ -36,19 +36,6 @@ remote [ style = filled, color = red];
 
 #+RESULTS:
 [[file:git.png]]
-** Create repositories
-- Create a repository
-#+BEGIN_SRC sh
-git init /path/to/project
-#+END_SRC
-- Initialize the belonging directory as a repository
-#+BEGIN_SRC sh
-git init
-#+END_SRC
-- Download from a remote repository
-#+BEGIN_SRC sh
-git clone url
-#+END_SRC
 ** Configuration
 Command =git config= can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or repository-specifically.
 - List the configuration
@@ -62,6 +49,23 @@ git config -e
 - Global configuration
 #+BEGIN_SRC sh
 git config -e --global
+#+END_SRC
+- Store password to avoid repeated password input
+#+BEGIN_SRC sh
+git config --global credential.helper store
+#+END_SRC
+** Create repositories
+- Create a repository
+#+BEGIN_SRC sh
+git init /path/to/project
+#+END_SRC
+- Initialize the belonging directory as a repository
+#+BEGIN_SRC sh
+git init
+#+END_SRC
+- Download from a remote repository
+#+BEGIN_SRC sh
+git clone url
 #+END_SRC
 ** Basic snapshotting
 *** Add file(s)
@@ -126,6 +130,9 @@ git branch --set-upstream local_branch_name remote_name/remote_branch_name
 - Create a new branch and associate it to a remote branch
 #+BEGIN_SRC sh
 git branch --track branch_name remote_branch_name
+#+END_SRC
+#+BEGIN_SRC sh
+git fetch remote_name remote_branch_name:branch_name
 #+END_SRC
 - Merge a given branch into the current branch
 #+BEGIN_SRC sh
