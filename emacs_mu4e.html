@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-15 Sat 16:37 -->
+<!-- 2017-09-17 Sun 22:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Mu4e</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -272,15 +273,16 @@ for the JavaScript code in this tag.
 <div id="outline-container-orgeaa316e" class="outline-2">
 <h2 id="orgeaa316e">Installation</h2>
 <div class="outline-text-2" id="text-orgeaa316e">
-</div><div id="outline-container-orgabdf765" class="outline-3">
+</div>
+<div id="outline-container-orgabdf765" class="outline-3">
 <h3 id="orgabdf765">Dependencies</h3>
 <div class="outline-text-3" id="text-orgabdf765">
 <p>
 <code>mu</code> depends on <a href="http://xapian.org">xapian</a> and <a href="http://spruce.sourceforge.net/gmime">gmime</a>, which should be installed in advance.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">pacman -S xapian-core gmime
-</pre>
+<pre><code class="src src-sh">pacman -S xapian-core gmime
+</code></pre>
 </div>
 </div>
 </div>
@@ -288,14 +290,14 @@ for the JavaScript code in this tag.
 <h3 id="orgb1c7bf7"><code>mu</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
 <div class="outline-text-3" id="text-orgb1c7bf7">
 <div class="org-src-container">
-<pre class="src src-sh">git clone --depth=1 git://github.com/djcb/mu.git
+<pre><code class="src src-sh">git clone --depth=1 git://github.com/djcb/mu.git
 <span style="color: #e090d7;">cd</span> mu
 autoreconf -i
 ./configure --prefix=/opt/mu
 make
 make install
 ln -s /opt/mu/bin/mu /usr/local/bin
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -303,8 +305,8 @@ ln -s /opt/mu/bin/mu /usr/local/bin
 <h3 id="org2006548"><code>getmail</code> and <code>procmail</code></h3>
 <div class="outline-text-3" id="text-org2006548">
 <div class="org-src-container">
-<pre class="src src-sh">pacman -S getmail procmail
-</pre>
+<pre><code class="src src-sh">pacman -S getmail procmail
+</code></pre>
 </div>
 </div>
 </div>
@@ -312,11 +314,12 @@ ln -s /opt/mu/bin/mu /usr/local/bin
 <div id="outline-container-org5826019" class="outline-2">
 <h2 id="org5826019">Configuration</h2>
 <div class="outline-text-2" id="text-org5826019">
-</div><div id="outline-container-org4e3b15b" class="outline-3">
+</div>
+<div id="outline-container-org4e3b15b" class="outline-3">
 <h3 id="org4e3b15b"><code>getmailrc</code></h3>
 <div class="outline-text-3" id="text-org4e3b15b">
 <div class="org-src-container">
-<pre class="src src-sh">[retriever]
+<pre><code class="src src-sh">[retriever]
 <span style="color: #e090d7;">type</span> = SimplePOP3SSLRetriever
 server = POP_SERVER
 port = PORT_NUM
@@ -332,7 +335,7 @@ read_all = false
 delete = false
 verbose = 0
 message_log = $<span style="color: #fcaf3e;">HOME</span>/.Mail/getmail.log
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -340,7 +343,7 @@ message_log = $<span style="color: #fcaf3e;">HOME</span>/.Mail/getmail.log
 <h3 id="orga241a67"><code>~/.procmailrc</code></h3>
 <div class="outline-text-3" id="text-orga241a67">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #fcaf3e;">MAILDIR</span>=$<span style="color: #fcaf3e;">HOME</span>/.Mail
+<pre><code class="src src-sh"><span style="color: #fcaf3e;">MAILDIR</span>=$<span style="color: #fcaf3e;">HOME</span>/.Mail
 <span style="color: #fcaf3e;">DEFAULT</span>=$<span style="color: #fcaf3e;">MAILDIR</span>/inbox/
 <span style="color: #fcaf3e;">LOGFILE</span>=$<span style="color: #fcaf3e;">MAILDIR</span>/procmail.log
 <span style="color: #fcaf3e;">VERBOSE</span>=yes
@@ -356,7 +359,7 @@ r1nr/
 :0:
 * ^(To|Cc): 3GPP_TSG_RAN@LIST.ETSI.ORG
 rp/
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -364,7 +367,7 @@ rp/
 <h3 id="org5172b2d"><code>~/.emacs.d/init.el</code></h3>
 <div class="outline-text-3" id="text-org5172b2d">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(add-to-list 'load-path <span style="color: #e9b96e;">"/opt/mu/share/emacs/site-lisp/mu4e"</span>)
+<pre><code class="src src-emacs-lisp">(add-to-list 'load-path <span style="color: #e9b96e;">"/opt/mu/share/emacs/site-lisp/mu4e"</span>)
 (<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">mu4e</span>)
 (<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">org-mu4e</span>)
 
@@ -404,7 +407,7 @@ rp/
       mu4e-change-filenames-when-moving t
       message-kill-buffer-on-exit t
       org-mu4e-convert-to-html t)
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -412,20 +415,21 @@ rp/
 <h3 id="orgb510618"><code>~/.authinfo</code></h3>
 <div class="outline-text-3" id="text-orgb510618">
 <div class="org-src-container">
-<pre class="src src-sh">machine SMTP_SERVER login USER password PASSWORD port PORT_NUM
-</pre>
+<pre><code class="src src-sh">machine SMTP_SERVER login USER password PASSWORD port PORT_NUM
+</code></pre>
 </div>
 </div>
 </div>
 <div id="outline-container-org58e2f24" class="outline-3">
 <h3 id="org58e2f24">Others</h3>
 <div class="outline-text-3" id="text-org58e2f24">
-</div><div id="outline-container-orgaa15d60" class="outline-4">
+</div>
+<div id="outline-container-orgaa15d60" class="outline-4">
 <h4 id="orgaa15d60">Create a maildir</h4>
 <div class="outline-text-4" id="text-orgaa15d60">
 <div class="org-src-container">
-<pre class="src src-sh">mkdir .Mail
-</pre>
+<pre><code class="src src-sh">mkdir .Mail
+</code></pre>
 </div>
 </div>
 </div>
@@ -433,8 +437,8 @@ rp/
 <h4 id="org23d2e6f">Get the mails</h4>
 <div class="outline-text-4" id="text-org23d2e6f">
 <div class="org-src-container">
-<pre class="src src-sh">getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc
-</pre>
+<pre><code class="src src-sh">getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc
+</code></pre>
 </div>
 </div>
 </div>
@@ -442,8 +446,8 @@ rp/
 <h4 id="org2bbe957">Index the mails</h4>
 <div class="outline-text-4" id="text-org2bbe957">
 <div class="org-src-container">
-<pre class="src src-sh">mu index --maildir=~/.Mail
-</pre>
+<pre><code class="src src-sh">mu index --maildir=~/.Mail
+</code></pre>
 </div>
 </div>
 </div>

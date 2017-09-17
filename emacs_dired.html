@@ -6,7 +6,7 @@
 <!-- 2017-09-17 Sun 22:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>Emacs - Dired</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="shaka" />
 <style type="text/css">
@@ -230,64 +230,228 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
-<ul class="org-ul">
-<li><a href="archlinuxcn.html">ArchLinuxcn</a></li>
-<li><a href="bash.html">Bash</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_basic.html">C++ - Basic</a></li>
-<li><a href="cpp_itpp.html">C++ - IT++</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="customize_virtual_console.html">Customize Console</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_capslk_ctrl.html">Emacs - CapsLk as Ctrl</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="emacs_dired.html">Emacs - Dired</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="emacs_helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_mu4e.html">Emacs - Mu4e</a></li>
-<li><a href="emacs_org_ioslide.html">Emacs - Orgmode Export to HTML5 Slide</a></li>
-<li><a href="emacs_ycmd.html">Emacs - YCMD</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="gitlab.html">GitLab</a></li>
-<li><a href="arch_inst.html">Installation Guide for Arch Linux</a></li>
-<li><a href="lte_d2d.html">LTE - D2D</a></li>
-<li><a href="lte_ds.html">LTE - Discovery Signal</a></li>
-<li><a href="lte_fc_loc.html">LTE - Frequency Domain Location of Carriers</a></li>
-<li><a href="lte_mobility_mgmt.html">LTE - Mobility Management</a></li>
-<li><a href="lte_pcfich.html">LTE - PCFICH</a></li>
-<li><a href="lte_pdcch_epdcch.html">LTE - PDCCH &amp; EPDCCH</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="zsh.html">Linux - ZSH</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="zc.html">ZC</a></li>
+<h1 class="title">Emacs - Dired</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgbcf6a6a">Introduction</a></li>
+<li><a href="#org9e878d1">Enter dired buffer</a></li>
+<li><a href="#org2463df1">Navigation</a></li>
+<li><a href="#org6301d57">Marking &amp; unmarking</a></li>
+<li><a href="#org8b2335b">Operations</a></li>
+<li><a href="#org5d839a0">Working across directories</a></li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-orgbcf6a6a" class="outline-2">
+<h2 id="orgbcf6a6a">Introduction</h2>
+<div class="outline-text-2" id="text-orgbcf6a6a">
+<p>
+Aside from editing files, including local and remote ones, Emacs can also play the role of a file manager, i.e., manipulating directories and the files by its directory editor, <i>dired</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org9e878d1" class="outline-2">
+<h2 id="org9e878d1">Enter dired buffer</h2>
+<div class="outline-text-2" id="text-org9e878d1">
+<p>
+Dired can be entered in following ways:
+</p>
+<ul class="org-ul">
+<li>Command: <code>M-x dired</code></li>
+<li>Key bindings
+<ul class="org-ul">
+<li><code>C-x d</code> is equivalent to the command above.</li>
+<li><code>C-x 4 d</code> open a dired buffer in another window.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2463df1" class="outline-2">
+<h2 id="org2463df1">Navigation</h2>
+<div class="outline-text-2" id="text-org2463df1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>RET</code></td>
+<td class="org-left">Visit the file/directory</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>^</code></td>
+<td class="org-left">Go up one directory</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>q</code></td>
+<td class="org-left">Quit dired</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>n/C-n</code></td>
+<td class="org-left">Move the point down an entry</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>p/C-p</code></td>
+<td class="org-left">Move the point up an entry</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org6301d57" class="outline-2">
+<h2 id="org6301d57">Marking &amp; unmarking</h2>
+<div class="outline-text-2" id="text-org6301d57">
+<p>
+Marking and unmarking enable operations on multiple files or directories.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>m</code></td>
+<td class="org-left">Mark the active entry or the selected region</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>u</code></td>
+<td class="org-left">Unmark the active entry or the selected region</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>U</code></td>
+<td class="org-left">Unmark everything</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>d</code></td>
+<td class="org-left">Flag for deletion</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>t</code></td>
+<td class="org-left">Toggle existing marking</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>* %</code></td>
+<td class="org-left">Mark files and directories by regexp</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>* c</code></td>
+<td class="org-left">Change marks</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org8b2335b" class="outline-2">
+<h2 id="org8b2335b">Operations</h2>
+<div class="outline-text-2" id="text-org8b2335b">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>g</code></td>
+<td class="org-left">Refresh dired buffer</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>+</code></td>
+<td class="org-left">Create a sub-directory</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C</code></td>
+<td class="org-left">Copy marked files/directories</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>R</code></td>
+<td class="org-left">Rename/move marked files/directories</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>O</code></td>
+<td class="org-left">Perform <code>chown</code> on marked files/directories</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>G</code></td>
+<td class="org-left">Perform <code>chgrp</code> on marked files/directories</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M</code></td>
+<td class="org-left">Perform <code>chmod</code> on marked files/directories</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>D</code></td>
+<td class="org-left">Delete marked files/directories</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x</code></td>
+<td class="org-left">Delete <i>flagged</i> (marked by <code>d</code>) files/directories</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org5d839a0" class="outline-2">
+<h2 id="org5d839a0">Working across directories</h2>
+<div class="outline-text-2" id="text-org5d839a0">
+<p>
+In dired buffer, typing <code>i</code> on a directory will insert it in the same dired buffer as a sub-directory.
+</p>
+
+<p>
+By inserting multiple directories into a shared dired buffer, you can not only glance at multiple directories simultaneously but you can also work across them as if they were one large virtual directory.
+</p>
+</div>
+</div>
 </div>
 </body>
 </html>
