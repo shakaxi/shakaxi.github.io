@@ -1,0 +1,30 @@
+#+TITLE: C++ - 标准库
+
+本文是阅读 /Professional C++, third edition/ 中文版[fn:1]的读书笔记.
+
+C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为标准模板库(Standard Template Library, STL), 因为这一部分大量使用了模板.
+
+所有标准库类和函数都在 =std= 名称空间中声明. 包括如下组件:
+- 字符串 :: 定义在头文件 =<string>= 中的 =string= 类.
+- 正则表达式 :: 定义在头文件 =<regex>=.
+- I/O流 :: 定义在头文件 =<fstream>=, =<iomanip>=, =<ios>=, =<iosfwd>=, =<iostream>=, =<istream>=, =<ostream>=, =<sstream>=, =<streambuf>= 和 =<strstream>= 中.
+- 智能指针 :: 定义在头文件 =<memory>= 中的 =unique_ptr=, =shared_ptr=, =weak_ptr=.
+- 异常 :: 定义在头文件 =<exception>=, =<stdexcept>= 和 =<system_error>=.
+- 数学工具 ::
+  + 定义在头文件 =<complex>= 中的复数类 =complex=.
+  + 定义在头文件 =<ratio>= 中的有理数运算库.
+  + 定义在头文件 =<valarray>= 中的 =valarray= 类(与 =vector= 类类似, 但是对高性能数值应用做了特别的优化).
+  + 定义在头文件 =<limits>= 中的 =numeric_limits= 类模板, 如
+    - =numeric_limits<int>::max()=
+    - =numeric_limits<int>::min()=
+    - =numeric_limits<int>::lowest()=
+    - =numeric_limits<double>::max()=
+    - =numeric_limits<double>::min()=
+    - =numeric_limits<double>::lowest()=
+- 时间工具 :: 定义在头文件 =<chrono>= 中的 =Chrono= 库.
+- 随机数 :: 定义在头文件 =<random>= 中的随机数库.
+- 初始化列表 :: 定义在头文件 =<initializer_list>= 中的初始化列表(用于编写参数数目可变的函数).
+
+* Footnotes
+
+[fn:1] Marc Gregoire著, 张永强译. C++高级编程(第3版), 清华大学出版社, 2015.
