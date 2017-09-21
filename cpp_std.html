@@ -6,7 +6,7 @@
 <!-- 2017-09-21 Thu 21:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>C++ - 标准库</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="shaka" />
 <style type="text/css">
@@ -230,65 +230,52 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
+<h1 class="title">C++ - 标准库</h1>
+<p>
+本文是阅读 <i>Professional C++, third edition</i> 中文版<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>的读书笔记.
+</p>
+
+<p>
+C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为标准模板库(Standard Template Library, STL), 因为这一部分大量使用了模板.
+</p>
+
+<p>
+所有标准库类和函数都在 <code>std</code> 名称空间中声明. 包括如下组件:
+</p>
+<dl class="org-dl">
+<dt>字符串</dt><dd>定义在头文件 <code>&lt;string&gt;</code> 中的 <code>string</code> 类.</dd>
+<dt>正则表达式</dt><dd>定义在头文件 <code>&lt;regex&gt;</code>.</dd>
+<dt>I/O流</dt><dd>定义在头文件 <code>&lt;fstream&gt;</code>, <code>&lt;iomanip&gt;</code>, <code>&lt;ios&gt;</code>, <code>&lt;iosfwd&gt;</code>, <code>&lt;iostream&gt;</code>, <code>&lt;istream&gt;</code>, <code>&lt;ostream&gt;</code>, <code>&lt;sstream&gt;</code>, <code>&lt;streambuf&gt;</code> 和 <code>&lt;strstream&gt;</code> 中.</dd>
+<dt>智能指针</dt><dd>定义在头文件 <code>&lt;memory&gt;</code> 中的 <code>unique_ptr</code>, <code>shared_ptr</code>, <code>weak_ptr</code>.</dd>
+<dt>异常</dt><dd>定义在头文件 <code>&lt;exception&gt;</code>, <code>&lt;stdexcept&gt;</code> 和 <code>&lt;system_error&gt;</code>.</dd>
+<dt>数学工具</dt><dd><ul class="org-ul">
+<li>定义在头文件 <code>&lt;complex&gt;</code> 中的复数类 <code>complex</code>.</li>
+<li>定义在头文件 <code>&lt;ratio&gt;</code> 中的有理数运算库.</li>
+<li>定义在头文件 <code>&lt;valarray&gt;</code> 中的 <code>valarray</code> 类(与 <code>vector</code> 类类似, 但是对高性能数值应用做了特别的优化).</li>
+<li>定义在头文件 <code>&lt;limits&gt;</code> 中的 <code>numeric_limits</code> 类模板, 如
 <ul class="org-ul">
-<li><a href="archlinuxcn.html">ArchLinuxcn</a></li>
-<li><a href="bash.html">Bash</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_basic.html">C++ - Basic</a></li>
-<li><a href="cpp_itpp.html">C++ - IT++</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_std.html">C++ - 标准库</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="customize_virtual_console.html">Customize Console</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_capslk_ctrl.html">Emacs - CapsLk as Ctrl</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="emacs_dired.html">Emacs - Dired</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="emacs_helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_mu4e.html">Emacs - Mu4e</a></li>
-<li><a href="emacs_org_ioslide.html">Emacs - Orgmode Export to HTML5 Slide</a></li>
-<li><a href="emacs_ycmd.html">Emacs - YCMD</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="gitlab.html">GitLab</a></li>
-<li><a href="arch_inst.html">Installation Guide for Arch Linux</a></li>
-<li><a href="lte_d2d.html">LTE - D2D</a></li>
-<li><a href="lte_ds.html">LTE - Discovery Signal</a></li>
-<li><a href="lte_fc_loc.html">LTE - Frequency Domain Location of Carriers</a></li>
-<li><a href="lte_mobility_mgmt.html">LTE - Mobility Management</a></li>
-<li><a href="lte_pcfich.html">LTE - PCFICH</a></li>
-<li><a href="lte_pdcch_epdcch.html">LTE - PDCCH &amp; EPDCCH</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="zsh.html">Linux - ZSH</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="zc.html">ZC</a></li>
-</ul>
+<li><code>numeric_limits&lt;int&gt;::max()</code></li>
+<li><code>numeric_limits&lt;int&gt;::min()</code></li>
+<li><code>numeric_limits&lt;int&gt;::lowest()</code></li>
+<li><code>numeric_limits&lt;double&gt;::max()</code></li>
+<li><code>numeric_limits&lt;double&gt;::min()</code></li>
+<li><code>numeric_limits&lt;double&gt;::lowest()</code></li>
+</ul></li>
+</ul></dd>
+<dt>时间工具</dt><dd>定义在头文件 <code>&lt;chrono&gt;</code> 中的 <code>Chrono</code> 库.</dd>
+<dt>随机数</dt><dd>定义在头文件 <code>&lt;random&gt;</code> 中的随机数库.</dd>
+<dt>初始化列表</dt><dd>定义在头文件 <code>&lt;initializer_list&gt;</code> 中的初始化列表(用于编写参数数目可变的函数).</dd>
+</dl>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Marc Gregoire著, 张永强译. C++高级编程(第3版), 清华大学出版社, 2015.
+</p></div></div>
+
+
 </div>
+</div></div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-04 Tue 20:35 -->
+<!-- 2017-09-21 Thu 21:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Basic</title>
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -265,7 +266,7 @@ for the JavaScript code in this tag.
 <li><a href="#org1650f40">引用</a>
 <ul>
 <li><a href="#org1753997">引用变量</a></li>
-<li><a href="#orga454abf">引用数据成员</a></li>
+<li><a href="#org84e1831">引用数据成员</a></li>
 <li><a href="#orgc91526d">引用参数</a></li>
 <li><a href="#orgb42ba31">引用返回值</a></li>
 <li><a href="#org3959b47">引用与指针</a></li>
@@ -306,11 +307,11 @@ for the JavaScript code in this tag.
 <li><a href="#org610ed15">类和对象</a>
 <ul>
 <li><a href="#org984590b">定义</a></li>
-<li><a href="#org41722ac">访问控制</a></li>
+<li><a href="#org16a606e">访问控制</a></li>
 <li><a href="#orgb0de803"><code>this</code></a></li>
 <li><a href="#org6153095">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#org1e2116e">基本概念</a></li>
+<li><a href="#orgaeaed56">基本概念</a></li>
 <li><a href="#org6c64a99">构造函数初始化器</a></li>
 <li><a href="#org9b8fb2f">复制构造函数</a></li>
 <li><a href="#org30381cf">初始化列表构造函数</a></li>
@@ -321,7 +322,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgc7caa57">析构函数</a>
 <ul>
-<li><a href="#org7e5401b">基本概念</a></li>
+<li><a href="#orgd3bcdd4">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#org85f0d25">对象赋值</a></li>
@@ -329,7 +330,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org4c6d71e">静态数据成员</a></li>
 <li><a href="#org138a392">常量数据成员</a></li>
-<li><a href="#org84e1831">引用数据成员</a></li>
+<li><a href="#org5235e7a">引用数据成员</a></li>
 </ul>
 </li>
 <li><a href="#org0e9b9a7">方法</a>
@@ -348,8 +349,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org9aa636a">继承</a>
 <ul>
-<li><a href="#orgaeaed56">基本概念</a></li>
-<li><a href="#org16a606e">访问控制</a></li>
+<li><a href="#org22cac38">基本概念</a></li>
+<li><a href="#org94d2a72">访问控制</a></li>
 <li><a href="#orgc72e961">禁止继承</a></li>
 <li><a href="#org16c27d1">方法和类的虚化</a></li>
 <li><a href="#org21c3279">向上转型和向下转型</a></li>
@@ -430,18 +431,18 @@ for the JavaScript code in this tag.
 <li><code>main()</code> 函数是程序的入口. <code>main()</code> 函数返回一个 <code>int</code> 值以指示程序的最终执行状态. <code>main()</code> 函数或者没有参数, 或者具有两个参数.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
-</pre>
+<pre><code class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+</code></pre>
 </div>
 <ul class="org-ul">
 <li>自C++11以来, C++通过拖尾返回类型(trailing return type)支持一种替代的函数语法. 函数的返回类型不再位于开头, 而放在行尾的箭头 <code>-&gt;</code> 后面. 这在指定模板函数的返回类型时非常有用.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #b4fa70;">auto</span> <span style="color: #fce94f;">func</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>) -&gt; <span style="color: #8cc4ff;">int</span>
+<pre><code class="src src-c++"><span style="color: #b4fa70;">auto</span> <span style="color: #fce94f;">func</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>) -&gt; <span style="color: #8cc4ff;">int</span>
 {
     <span style="color: #b4fa70;">return</span> i + 1;
 }
-</pre>
+</code></pre>
 </div>
 <ul class="org-ul">
 <li>C++14允许要求编译器自动推断出函数的返回类型. 为此, 需要指定返回类型为 <code>auto</code>, 并忽略所有拖尾返回类型.</li>
@@ -451,7 +452,8 @@ for the JavaScript code in this tag.
 <div id="outline-container-org6ab9e7a" class="outline-2">
 <h2 id="org6ab9e7a">类型</h2>
 <div class="outline-text-2" id="text-org6ab9e7a">
-</div><div id="outline-container-orgcbb7968" class="outline-3">
+</div>
+<div id="outline-container-orgcbb7968" class="outline-3">
 <h3 id="orgcbb7968"><code>typedef</code></h3>
 <div class="outline-text-3" id="text-orgcbb7968">
 <p>
@@ -461,8 +463,8 @@ for the JavaScript code in this tag.
 <li><code>typedef</code> 的最常见用法是当实际类型的声明过于笨拙时, 提供易于管理的名称, 这一情形通常出现在模板中. STL广泛使用 <code>typedef</code> 提供类型的简短名称. 如 <code>string</code> 实际上是一个 <code>typedef</code>.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #b4fa70;">typedef</span> <span style="color: #8cc4ff;">basic_string</span>&lt;<span style="color: #8cc4ff;">char</span>, <span style="color: #8cc4ff;">char_traits</span>&lt;<span style="color: #8cc4ff;">char</span>&gt;, <span style="color: #8cc4ff;">allocator</span>&lt;<span style="color: #8cc4ff;">char</span>&gt;&gt; <span style="color: #8cc4ff;">string</span>
-</pre>
+<pre><code class="src src-c++"><span style="color: #b4fa70;">typedef</span> <span style="color: #8cc4ff;">basic_string</span>&lt;<span style="color: #8cc4ff;">char</span>, <span style="color: #8cc4ff;">char_traits</span>&lt;<span style="color: #8cc4ff;">char</span>&gt;, <span style="color: #8cc4ff;">allocator</span>&lt;<span style="color: #8cc4ff;">char</span>&gt;&gt; <span style="color: #8cc4ff;">string</span>
+</code></pre>
 </div>
 <ul class="org-ul">
 <li><code>typedef</code> 可以包括作用域限定符.</li>
@@ -476,15 +478,15 @@ for the JavaScript code in this tag.
 某些情况下, 类型别名比 <code>typedef</code> 更容易理解. 例如,
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #b4fa70;">typedef</span> <span style="color: #8cc4ff;">int</span> <span style="color: #8cc4ff;">my_int</span>;
-</pre>
+<pre><code class="src src-c++"><span style="color: #b4fa70;">typedef</span> <span style="color: #8cc4ff;">int</span> <span style="color: #8cc4ff;">my_int</span>;
+</code></pre>
 </div>
 <p>
 可以重写为
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #b4fa70;">using</span> <span style="color: #8cc4ff;">my_int</span> = <span style="color: #8cc4ff;">int</span>;
-</pre>
+<pre><code class="src src-c++"><span style="color: #b4fa70;">using</span> <span style="color: #8cc4ff;">my_int</span> = <span style="color: #8cc4ff;">int</span>;
+</code></pre>
 </div>
 </div>
 </div>
@@ -492,7 +494,8 @@ for the JavaScript code in this tag.
 <div id="outline-container-org54fdcd7" class="outline-2">
 <h2 id="org54fdcd7">类型转换</h2>
 <div class="outline-text-2" id="text-org54fdcd7">
-</div><div id="outline-container-org28e2d3c" class="outline-3">
+</div>
+<div id="outline-container-org28e2d3c" class="outline-3">
 <h3 id="org28e2d3c"><code>const_cast</code></h3>
 <div class="outline-text-3" id="text-org28e2d3c">
 <p>
@@ -592,7 +595,16 @@ for the JavaScript code in this tag.
 <h3 id="org866d4c3">智能指针</h3>
 <div class="outline-text-3" id="text-org866d4c3">
 <p>
-为了避免常见的内存问题, 应使用智能指针替代通常C风格的"裸"指针. 智能指针是指向动态分配内存的一个指针, 当超出作用域时(如在函数执行完毕后), 会自动释放内存. C++中有如下三种智能指针, 定义在头文件 <code>&lt;memory&gt;</code> 中.
+C/C++常常会发生与内存有关的问题, 如
+</p>
+<dl class="org-dl">
+<dt>内存泄漏</dt><dd>没有删除对象(没有释放内存).</dd>
+<dt>多重释放</dt><dd>一段代码释放了一块内存, 而另一段代码试图释放同一块内存.</dd>
+<dt>悬挂指针</dt><dd>一段代码删除了一块内存, 而另一段代码仍然引用了这块内存.</dd>
+</dl>
+
+<p>
+为了避免这些的内存问题, 应使用智能指针替代通常C风格的"裸"指针. 智能指针是指向动态分配内存的一个指针, 当超出作用域时(如在函数执行完毕后), 会自动释放内存. C++中有如下三种智能指针, 定义在头文件 <code>&lt;memory&gt;</code> 中.
 </p>
 <dl class="org-dl">
 <dt><code>std::unique_ptr</code></dt><dd>通用的智能指针, 可以指向任意类型的内存, 是一个模板. 自从C++14以来, 可以使用 <code>std::make_unique&lt;&gt;()</code> 创建. 在尖括号中必须指定 <code>unique_ptr</code> 要指向的内存类型.</dd>
@@ -622,9 +634,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orga454abf" class="outline-3">
-<h3 id="orga454abf">引用数据成员</h3>
-<div class="outline-text-3" id="text-orga454abf">
+<div id="outline-container-org84e1831" class="outline-3">
+<h3 id="org84e1831">引用数据成员</h3>
+<div class="outline-text-3" id="text-org84e1831">
 <p>
 引用可以作为类的数据成员, 也即引用数据成员. 引用数据成员必须在类的构造函数初始化器中初始化它, 而不是在构造函数体内.
 </p>
@@ -724,12 +736,12 @@ for the JavaScript code in this tag.
 <li>在C语言中, 字符串表示为字符的数组. 字符串中的最后一个字符是空字符(<code>\0</code>), 官方将这个空字符定义为 <code>NUL</code>. 这样, 操作字符串的代码就知道字符串在哪里结束.</li>
 <li>与字面量(literal)关联的真正内存在内存的只读部分中.</li>
 <li>原始字符串字面量(raw string literal)是可以跨越多行代码的字符串字面量, 形式为 <code>R"d(character sequence)d"</code>, 其中 <code>d</code> 表示分隔符序列, 无歧义(字符串字面量中无特殊符号, 如 <code>"</code>)时可以省略.</li>
-<li>C++的 <code>string</code> 类定义在 <code>std</code> 名称空间的头文件 <code>&lt;string&gt;</code> 中. 此外, C++还包含了一些来自C语言的字符串操作函数, 定义在头文件 <code>&lt;cstring&gt;</code> 中.</li>
+<li>C++的 <code>string</code> 类定义在 <code>std</code> 名称空间的头文件 <code>&lt;string&gt;</code> 中. 从技术角度看, C++ string实际上是 <code>basic_string</code> 模板 <code>char</code> 实例化的 <code>typedef</code> 名称. 此外, C++还包含了一些来自C语言的字符串操作函数, 定义在头文件 <code>&lt;cstring&gt;</code> 中.</li>
 <li>为了兼容, 可以使用 <code>string</code> 的 <code>c_str()</code> 方法获得一个表示C风格字符串的 <code>const</code> 字符指针. 不过, 一旦 <code>string</code> 对象被销毁或执行了任何内存重分配, 这个返回的 <code>const</code> 字符指针就失效了.</li>
 <li>数值转换</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #73d216;">// </span><span style="color: #73d216;">Transformation to string</span>
+<pre><code class="src src-c++"><span style="color: #73d216;">// </span><span style="color: #73d216;">Transformation to string</span>
 <span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">val</span>);
 <span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">unsigned</span> <span style="color: #fcaf3e;">val</span>);
 <span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">long</span> <span style="color: #fcaf3e;">val</span>);
@@ -749,7 +761,7 @@ for the JavaScript code in this tag.
 <span style="color: #8cc4ff;">float</span> <span style="color: #fce94f;">stof</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
 <span style="color: #8cc4ff;">double</span> <span style="color: #fce94f;">stof</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
 <span style="color: #8cc4ff;">long</span> <span style="color: #8cc4ff;">double</span> <span style="color: #fce94f;">stof</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -768,10 +780,10 @@ for the JavaScript code in this tag.
 基于区间的 <code>for</code> 循环(range-based for loop)允许方便地迭代容器中的元素. 这种循环类型可以用于C风格的数组, 初始化列表, 也可以用于具有返回迭代器的 <code>begin()</code> 和 <code>end()</code> 函数的类型, 如 <code>std::array</code> 和其他所有STL容器.
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">array</span>&lt;<span style="color: #8cc4ff;">int</span>, 3&gt; <span style="color: #fcaf3e;">arr</span> = {1, 2, 3};
+<pre><code class="src src-c++"><span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">array</span>&lt;<span style="color: #8cc4ff;">int</span>, 3&gt; <span style="color: #fcaf3e;">arr</span> = {1, 2, 3};
 <span style="color: #b4fa70;">for</span> (<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span> : arr)
     <span style="color: #e9b2e3;">std</span>::cout &lt;&lt; i &lt;&lt; <span style="color: #e9b2e3;">std</span>::endl;
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -786,8 +798,8 @@ for the JavaScript code in this tag.
 <li>统一初始化可以用来初始化动态分配的数组. 如</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> *<span style="color: #fcaf3e;">p</span> = <span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">int</span>[3]{0, 1, 2};
-</pre>
+<pre><code class="src src-c++"><span style="color: #8cc4ff;">int</span> *<span style="color: #fcaf3e;">p</span> = <span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">int</span>[3]{0, 1, 2};
+</code></pre>
 </div>
 <ul class="org-ul">
 <li>统一初始化可以在构造函数初始化器中初始化类成员数组.</li>
@@ -823,7 +835,8 @@ for the JavaScript code in this tag.
 <div id="outline-container-orge8a249f" class="outline-2">
 <h2 id="orge8a249f">关键字</h2>
 <div class="outline-text-2" id="text-orge8a249f">
-</div><div id="outline-container-orgd37560d" class="outline-3">
+</div>
+<div id="outline-container-orgd37560d" class="outline-3">
 <h3 id="orgd37560d"><code>const</code></h3>
 <div class="outline-text-3" id="text-orgd37560d">
 <p>
@@ -955,7 +968,8 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <div id="outline-container-org610ed15" class="outline-2">
 <h2 id="org610ed15">类和对象</h2>
 <div class="outline-text-2" id="text-org610ed15">
-</div><div id="outline-container-org984590b" class="outline-3">
+</div>
+<div id="outline-container-org984590b" class="outline-3">
 <h3 id="org984590b">定义</h3>
 <div class="outline-text-3" id="text-org984590b">
 <p>
@@ -963,9 +977,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 </p>
 </div>
 </div>
-<div id="outline-container-org41722ac" class="outline-3">
-<h3 id="org41722ac">访问控制</h3>
-<div class="outline-text-3" id="text-org41722ac">
+<div id="outline-container-org16a606e" class="outline-3">
+<h3 id="org16a606e">访问控制</h3>
+<div class="outline-text-3" id="text-org16a606e">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -995,9 +1009,10 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <div id="outline-container-org6153095" class="outline-3">
 <h3 id="org6153095">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-org6153095">
-</div><div id="outline-container-org1e2116e" class="outline-4">
-<h4 id="org1e2116e">基本概念</h4>
-<div class="outline-text-4" id="text-org1e2116e">
+</div>
+<div id="outline-container-orgaeaed56" class="outline-4">
+<h4 id="orgaeaed56">基本概念</h4>
+<div class="outline-text-4" id="text-orgaeaed56">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -1081,9 +1096,10 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <div id="outline-container-orgc7caa57" class="outline-3">
 <h3 id="orgc7caa57">析构函数</h3>
 <div class="outline-text-3" id="text-orgc7caa57">
-</div><div id="outline-container-org7e5401b" class="outline-4">
-<h4 id="org7e5401b">基本概念</h4>
-<div class="outline-text-4" id="text-org7e5401b">
+</div>
+<div id="outline-container-orgd3bcdd4" class="outline-4">
+<h4 id="orgd3bcdd4">基本概念</h4>
+<div class="outline-text-4" id="text-orgd3bcdd4">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -1119,7 +1135,8 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <div id="outline-container-orgb2e5bd9" class="outline-3">
 <h3 id="orgb2e5bd9">数据成员</h3>
 <div class="outline-text-3" id="text-orgb2e5bd9">
-</div><div id="outline-container-org4c6d71e" class="outline-4">
+</div>
+<div id="outline-container-org4c6d71e" class="outline-4">
 <h4 id="org4c6d71e">静态数据成员</h4>
 <div class="outline-text-4" id="text-org4c6d71e">
 <ul class="org-ul">
@@ -1137,9 +1154,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </p>
 </div>
 </div>
-<div id="outline-container-org84e1831" class="outline-4">
-<h4 id="org84e1831">引用数据成员</h4>
-<div class="outline-text-4" id="text-org84e1831">
+<div id="outline-container-org5235e7a" class="outline-4">
+<h4 id="org5235e7a">引用数据成员</h4>
+<div class="outline-text-4" id="text-org5235e7a">
 <p>
 在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
 </p>
@@ -1149,7 +1166,8 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <div id="outline-container-org0e9b9a7" class="outline-3">
 <h3 id="org0e9b9a7">方法</h3>
 <div class="outline-text-3" id="text-org0e9b9a7">
-</div><div id="outline-container-org773e8dd" class="outline-4">
+</div>
+<div id="outline-container-org773e8dd" class="outline-4">
 <h4 id="org773e8dd"><code>static</code> 方法</h4>
 <div class="outline-text-4" id="text-org773e8dd">
 <ul class="org-ul">
@@ -1187,13 +1205,24 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <h4 id="org119ef5c">运算符重载</h4>
 <div class="outline-text-4" id="text-org119ef5c">
 <ul class="org-ul">
-<li>当C++编译器分析一个程序, 遇到运算符(如 +/-/=/&lt;&lt;)时, 就会试着查找名为 operator+/-/=/&lt;&lt;, 且具有适当参数的函数或者方法.</li>
+<li>当C++编译器分析一个程序, 遇到运算符(如 +/-<i>=/&lt;&lt;)时, 就会试着查找名为 operator+</i>-/=/&lt;&lt;, 且具有适当参数的函数或者方法.</li>
 <li>在C++中, 无法改变运算符的优先级. 例如, *和/总是在+和-之前求值. 用于定义的运算符唯一能做的就是在运算符优先级已经确定的情况下编写实现. 而且, C++还不允许开发新的运算符符号.</li>
 <li>运算符重载是函数重载的一种形式. 编译器允许用作 <code>operator+</code> 参数的对象类型与编写 <code>operator+</code> 的类不同. 也可以任意指定 <code>operator+</code> 的返回值类型.</li>
 <li>当编写运算符重载的对象在运算符的左边时, 可以隐式转换; 但是当对象在运算符右边时, 不能隐式转换. 除非使用全局友元函数.</li>
 <li>编写了基本运算符(如+和-), 并没有提供相应的简写运算符(如+=和-=). 必须显式地重载简写运算符.</li>
 <li>简写运算符与基本运算符不同, 它们会改变运算符左边的对象, 而不是创建一个新对象. 它们生成的结果是对被修改对象的引用, 这一点与赋值运算符类似.</li>
 <li>比较运算符(如&gt;,&lt;,==)与基本的算术运算符类似, 它们也应该是全局友元函数.</li>
+<li>C++允许重载函数调用运算符<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>, 即 <code>operator()</code>. 如果自定义类中编写了一个 <code>operator()</code>, 那么这个类的对象就可以当做函数指针使用.
+<ul class="org-ul">
+<li>带有函数调用运算符的类的对象称为函数对象, 也称为仿函数(functor).</li>
+<li>相比标准的对象方法, 函数对象的好处是: 这些对象可以伪装成函数指针. 只要函数指针类型是模板化的, 就可以把这些函数对象当成回调函数传入需要接受函数指针的例程.</li>
+<li>相比全局函数, 函数对象的好处是:
+<ul class="org-ul">
+<li>对象可以在函数对象运算符的重复调用之间在数据成员中保存信息.</li>
+<li>可以通过设置数据成员自定义函数对象的行为.</li>
+</ul></li>
+<li>遵循一般的方法重载规则, 可为类编写任意数量的 <code>operator()</code>. 当然, 不同的 <code>operator()</code> 需要参数数目或者类型不同.</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -1251,9 +1280,10 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <div id="outline-container-org9aa636a" class="outline-2">
 <h2 id="org9aa636a">继承</h2>
 <div class="outline-text-2" id="text-org9aa636a">
-</div><div id="outline-container-orgaeaed56" class="outline-3">
-<h3 id="orgaeaed56">基本概念</h3>
-<div class="outline-text-3" id="text-orgaeaed56">
+</div>
+<div id="outline-container-org22cac38" class="outline-3">
+<h3 id="org22cac38">基本概念</h3>
+<div class="outline-text-3" id="text-org22cac38">
 <ul class="org-ul">
 <li>继承的运行方式是单向的. 基类并不知道派生类的任何信息.</li>
 <li>指向某个对象的指针或者引用可以指向声明类的对象, 也可以指向其任意派生类的对象. 指向基类对象的指针可以指向派生类对象, 对于引用也是如此. 然而, 不能通过基类对象的指针调用派生类的方法. 即使基类的引用或者指针知道所指的是一个派生类, 也无法访问没有在基类中定义的派生类方法或者成员.</li>
@@ -1261,9 +1291,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org16a606e" class="outline-3">
-<h3 id="org16a606e">访问控制</h3>
-<div class="outline-text-3" id="text-org16a606e">
+<div id="outline-container-org94d2a72" class="outline-3">
+<h3 id="org94d2a72">访问控制</h3>
+<div class="outline-text-3" id="text-org94d2a72">
 <p>
 派生类可以访问基类中声明为 <code>public</code>, <code>protected</code> 的数据成员和方法, 就好像这些数据成员和方法是派生类自己的. 如果类将数据成员和方法声明为 <code>protected</code>, 派生类就可以访问它们; 如果声明为 <code>private</code>, 派生类就不能访问它们. 建议将所有数据成员都默认声明为 <code>private</code>, 这会提供最高级别的封装. 如果希望任何代码都能访问这些数据成员, 就可以提供 <code>public</code> 的 <code>getter/setter</code>; 如果只希望派生类访问它们, 就可以提供 <code>protected</code> 的 <code>getter/setter</code>.
 </p>
@@ -1282,7 +1312,7 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <h3 id="org16c27d1">方法和类的虚化</h3>
 <div class="outline-text-3" id="text-org16c27d1">
 <p>
-从某个类继承的主要原因是为了添加或者替换功能. 在许多情况下, 可能需要替换或者重写某个方法来修改类的行为. 只有在基类中声明为 <code>virtual</code> 的方法才能被派生类正确地重写. 为了重写某个方法, 需要在派生类定义中重新声明这个方法, 就像在基类中声明的那样, 并在派生类的实现文件中提供新的定义. 建议在派生类对重写方法的声明末尾添加 <code>override</code> 关键字, 但不需要再重复使用 <code>virtual</code> 关键字<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. 根据经验, 为了避免遗漏 <code>virtual</code> 关键字引发的问题, 可将所有方法设置为 <code>virtual</code> (包括析构函数, 但不包括构造函数).
+从某个类继承的主要原因是为了添加或者替换功能. 在许多情况下, 可能需要替换或者重写某个方法来修改类的行为. 只有在基类中声明为 <code>virtual</code> 的方法才能被派生类正确地重写. 为了重写某个方法, 需要在派生类定义中重新声明这个方法, 就像在基类中声明的那样, 并在派生类的实现文件中提供新的定义. 建议在派生类对重写方法的声明末尾添加 <code>override</code> 关键字, 但不需要再重复使用 <code>virtual</code> 关键字<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>. 根据经验, 为了避免遗漏 <code>virtual</code> 关键字引发的问题, 可将所有方法设置为 <code>virtual</code> (包括析构函数, 但不包括构造函数).
 </p>
 
 <p>
@@ -1381,24 +1411,24 @@ C++根据描述对象的表达式类型在编译时绑定默认参数, 而不是
 <li>显式地向上转型, 其本质是向编译器隐藏多余的方法版本.</li>
 </ol>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #8cc4ff;">C</span> <span style="color: #fcaf3e;">c</span>;
+<pre><code class="src src-c++"><span style="color: #8cc4ff;">C</span> <span style="color: #fcaf3e;">c</span>;
 <span style="color: #b4fa70;">dynamic_cast</span>&lt;<span style="color: #8cc4ff;">A</span>&amp;&gt;(c).F();
-</pre>
+</code></pre>
 </div>
 <ol class="org-ol">
 <li>使用与访问基类方法相同的语法(<code>::</code> 运算符).</li>
 </ol>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #8cc4ff;">C</span> <span style="color: #fcaf3e;">c</span>;
+<pre><code class="src src-c++"><span style="color: #8cc4ff;">C</span> <span style="color: #fcaf3e;">c</span>;
 c.<span style="color: #e9b2e3;">A</span>::F();
-</pre>
+</code></pre>
 </div>
 <ol class="org-ol">
 <li>在类C的声明中使用 <code>using</code> 语句显式指定.</li>
 </ol>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #b4fa70;">using</span> <span style="color: #e9b2e3;">A</span>::<span style="color: #8cc4ff;">F</span>;
-</pre>
+<pre><code class="src src-c++"><span style="color: #b4fa70;">using</span> <span style="color: #e9b2e3;">A</span>::<span style="color: #8cc4ff;">F</span>;
+</code></pre>
 </div>
 </div>
 </div>
@@ -1430,8 +1460,8 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <code>lambda</code> 表达式可以编写内嵌的匿名函数, 而不必编写独立函数或函数对象, 使代码更容易阅读和理解. <code>lambda</code> 表达式以方括号 <code>[]</code> 开始, 其后是花括号 <code>{}</code>, 其中包含了 <code>lambda</code> 表达式体. 完整的语法为
 </p>
 <div class="org-src-container">
-<pre class="src src-c++">[capture_block] (parameters) <span style="color: #b4fa70;">mutable</span> <span style="color: #8cc4ff;">exception_specification</span> <span style="color: #fcaf3e;">attribute_specifier</span> -&gt; return_type {body}
-</pre>
+<pre><code class="src src-c++">[capture_block] (parameters) <span style="color: #b4fa70;">mutable</span> <span style="color: #8cc4ff;">exception_specification</span> <span style="color: #fcaf3e;">attribute_specifier</span> -&gt; return_type {body}
+</code></pre>
 </div>
 <p>
 除 <code>[capture_block]</code> 和 <code>{body}</code> 外, 其他参数均为可选参数.
@@ -1466,7 +1496,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 模板"参数化"类型的方式和函数"参数化"值的方式相同. 例如:
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span class="linenr"> 1: </span><span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">T</span>&gt;
+<pre><code class="src src-c++"><span class="linenr"> 1: </span><span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">T</span>&gt;
 <span class="linenr"> 2: </span><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Template_Name</span>
 <span class="linenr"> 3: </span>{
 <span class="linenr"> 4: </span><span style="color: #b4fa70;">private</span>:
@@ -1502,7 +1532,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <span class="linenr">34: </span>{
 <span class="linenr">35: </span>    <span style="color: #b4fa70;">return</span> prop;
 <span class="linenr">36: </span>}
-</pre>
+</code></pre>
 </div>
 <ul class="org-ul">
 <li>就像在函数中通过参数名表示调用者要传入的参数一样, 在模板中使用模板参数名称(例如 <code>T</code>)表示调用者要指定的类型. 名称 <code>T</code> 没有什么特别之处, 可以使用任何名称. 按照惯例, 只使用一个类型时, 将这个类型称为 <code>T</code>, 但这只是一个历史约定, 就像把索引数组的整数命名为 <code>i</code> 或 <code>j</code> 一样.</li>
@@ -1531,12 +1561,12 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 模板的另一个实现称为模板特例化(template specialization). 例如:
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #b4fa70;">template</span> &lt;&gt;
+<pre><code class="src src-c++"><span style="color: #b4fa70;">template</span> &lt;&gt;
 <span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Template_Name</span>&lt;<span style="color: #8cc4ff;">int</span>&gt;
 {
     ...
 }
-</pre>
+</code></pre>
 </div>
 <ul class="org-ul">
 <li>特例化一个模板时, 并没有"继承"任何代码: 特例化和派生类化不同. 必须重新编写类的整个实现. 不要求提供具有相同名称或者行为的方法.</li>
@@ -1675,7 +1705,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <h3 id="orgb79582b">流式输出</h3>
 <div class="outline-text-3" id="text-orgb79582b">
 <ul class="org-ul">
-<li>输出流定义在头文件 <code>&lt;ostream&gt;</code> 中<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>. 使用输出流最简单的方法是使用 <code>&lt;&lt;</code> 运算符. 通过 <code>&lt;&lt;</code> 可以输出C++的基本类型.</li>
+<li>输出流定义在头文件 <code>&lt;ostream&gt;</code> 中<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>. 使用输出流最简单的方法是使用 <code>&lt;&lt;</code> 运算符. 通过 <code>&lt;&lt;</code> 可以输出C++的基本类型.</li>
 <li><code>cout</code> 流是写入到控制台(也称为标准输入输出)的内建流. 可将 <code>&lt;&lt;</code> 的使用串联起来, 从而输出多个数据段. 这是因为 <code>&lt;&lt;</code> 运算符返回一个流的引用, 因此可以立即对同一个流再次应用 <code>&lt;&lt;</code> 运算符.</li>
 <li><code>\n</code> 和 <code>endl</code> 的区别在于前者仅开始一个新行, 而后者还会刷新缓冲区. 使用 <code>endl</code> 需要注意过多的缓冲区刷新会降低性能.</li>
 <li>方法
@@ -1683,7 +1713,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <li><code>put()</code> 接受的不是定义了输出行为的对象或变量, 而是一个字符. 原样输出, 没有任何特殊的格式化和处理操作.</li>
 <li><code>write()</code> 接受的不是定义了输出行为的对象或变量, 而是一个字符数组. 原样输出, 没有任何特殊的格式化和处理操作.</li>
 </ul></li>
-<li>向输出流写入数据时, 流不一定会将数据立即写入目标. 大部分输出流都会进行缓存<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>, 而不是立即将得到的数据写出去. 在下列情况下, 流进行刷新操作.
+<li>向输出流写入数据时, 流不一定会将数据立即写入目标. 大部分输出流都会进行缓存<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>, 而不是立即将得到的数据写出去. 在下列情况下, 流进行刷新操作.
 <ul class="org-ul">
 <li>到达某个标记时, 如 <code>endl</code>.</li>
 <li>流离开作用域被析构时.</li>
@@ -1721,7 +1751,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <li><code>unget()</code> 将前一个读入的字符放回流中, 流回退一个位置. 是否成功可以通过 <code>fail()</code> 查看.</li>
 <li><code>putback()</code> 和 <code>unget()</code> 一样, 允许在输入流中反向移动一个字符. 区别在于 <code>putback()</code> 将放回流中的字符作为参数.</li>
 <li><code>peek()</code> 预览调用 <code>get()</code> 返回的下一个值.</li>
-<li><code>getline()</code> 用一行数据填充字段缓存区, 数据量最多至指定大小. 指定的大小中包括 <code>\0</code> 字符. 调用 <code>getline()</code> 时, 它从输入流中读取一行, 读到行尾为止(行尾<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>字符不会出现在字符串中). 还有一个用于C++ string的 <code>getline()</code> 函数. 这个函数定义在 头文件 <code>&lt;string&gt;</code> 和名称空间 <code>std</code> 中. 其接受一个流引用, 一个string引用和一个可选的分隔符作为参数, 不需要指定缓存区的大小.</li>
+<li><code>getline()</code> 用一行数据填充字段缓存区, 数据量最多至指定大小. 指定的大小中包括 <code>\0</code> 字符. 调用 <code>getline()</code> 时, 它从输入流中读取一行, 读到行尾为止(行尾<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>字符不会出现在字符串中). 还有一个用于C++ string的 <code>getline()</code> 函数. 这个函数定义在 头文件 <code>&lt;string&gt;</code> 和名称空间 <code>std</code> 中. 其接受一个流引用, 一个string引用和一个可选的分隔符作为参数, 不需要指定缓存区的大小.</li>
 <li>输入错误
 <ul class="org-ul">
 <li>查询输入流状态的最常见方法是在条件语句中访问输入流, 如 <code>while (cin) {...}</code> 或 <code>while (cin &gt;&gt; ch) {...}</code>.</li>
@@ -1883,18 +1913,22 @@ Marc Gregoire著, 张永强译. C++高级编程(第3版), 清华大学出版社,
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-一旦在基类中将方法或者析构函数标记为 <code>virtual</code>, 它们在所有派生类中就一直是 <code>virtual</code>, 即使在派生类中没有使用 <code>virtual</code> 关键字也是如此.
+只能将该运算符重载为类中的非 <code>static</code> 方法.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
-通常包含头文件 <code>&lt;iostream&gt;</code>, 该头文件又包含了输入流和输出流的头文件.
+一旦在基类中将方法或者析构函数标记为 <code>virtual</code>, 它们在所有派生类中就一直是 <code>virtual</code>, 即使在派生类中没有使用 <code>virtual</code> 关键字也是如此.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
-不是所有的输出流都会缓存, 如 <code>cerr</code> 流就不会缓存其输出.
+通常包含头文件 <code>&lt;iostream&gt;</code>, 该头文件又包含了输入流和输出流的头文件.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+不是所有的输出流都会缓存, 如 <code>cerr</code> 流就不会缓存其输出.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
 注意, 行尾序列和平台相关, 可以是 <code>\r\n</code>, <code>\n</code>, 或 <code>\n\r</code>.
 </p></div></div>
 
