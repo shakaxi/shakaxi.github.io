@@ -1,0 +1,17 @@
+#+TITLE: Linux - Microcode
+
+* Introduction
+/Microcode/ is a technique that imposes an interpreter between the hardware and the architectural level of a computer. Processor vendors, e.g., Intel and AMD, release updates to the processor microcode for some reasons, e.g., bug fixes, which can be applied by the Linux kernel during boot.
+
+For AMD processors, the microcode is covered by package =linux-firmware= which is installed as part of the base system. Therefore, no specific processing is needed. While for Intel processors, it is not the truth. Package =intel-ucode= must be manually installed.
+* Installation
+For Arch Linux OS, the package =intel-ucode= can be conveniently installed by following command.
+#+BEGIN_SRC sh
+pacman -S intel-ucode
+#+END_SRC
+* Configuration
+After the installation, in order to make the Linux kernel apply the microcode, image =/boot/intel-ucode.img= must be enabled as te first initrd in the bootloader configuration file. Taking =grub= for instance, its configuration file must be regenerated.
+#+BEGIN_SRC sh
+grub-mkconfig -o /boot/grub/grub.cfg
+#+END_SRC
+Afterwards, the updated microcode is able to be loaded at the boot.
