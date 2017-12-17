@@ -1,0 +1,107 @@
+#+TITLE: Emacs - Notmuch
+
+* Introduction
+=Notmuch= is a mail system[fn:1]. It can efficiently manage a fairly large number of emails. Particularly, it supports fast email searching and filtering based on tags, which is extremely similar to Gmail's tags whereby various virtual folders can be flexibly realized.
+
+This post is composed just to summarize the basic installation and configuration of =notmuch=-based mail system.
+* Installation
+#+BEGIN_SRC sh
+pacman -S notmuch
+#+END_SRC
+* Configuration
+** =~/.notmuch-config=
+The basic configuration can be performed by either
+- an interactive guidance which can be provoked by
+#+BEGIN_SRC sh
+notmuch setup
+#+END_SRC
+- or a manually composed =~/.notmuch-config= as follows
+#+BEGIN_SRC sh
+[database]
+# Mail storage in maildir format
+path=/MAIL/REPO
+
+[user]
+name=NAME
+primary_email=EMAILADDRESS
+
+[new]
+tags=unread;inbox;
+ignore=
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true
+
+[crypto]
+gpg_path=gpg
+#+END_SRC
+** =~/.emacs.d/init.el=
+Add following content to the configuration of Emacs.
+#+BEGIN_SRC emacs-lisp
+(require 'notmuch)
+(setq user-full-name "NAME"
+      user-mail-address "EMAILADDRESS")
+
+(setq mail-user-agent 'message-user-agent)
+(setq message-kill-buffer-on-exit t)
+
+(setq mail-specify-envelope-from t
+      message-sendmail-envelope-from 'header
+      mail-envelope-from 'header)
+
+(setq message-directory "."
+      notmuch-fcc-dirs ".")
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-smtp-server "SMTPSERVER"
+      smtpmail-stream-type 'ssl
+      smtpmail-smtp-service PORT)
+#+END_SRC
+** Hooks
+Additionally, notmuch supports hooks which are essentially scripts in =/MAIL/REPO/.notmuch/hooks= whereby users can specify and customize the behaviors of notmuch. Currently, following scripts and hooks are available.
+- =pre-new= :: Hook/script provoked before command =notmuch new=, which is usually used to fetch mails.
+#+BEGIN_SRC sh
+#!/bin/sh
+/usr/bin/getmail --new --getmaildir=/PATH/TO/GETMAILRC --rcfile=GETMAILRC
+#+END_SRC
+- =post-new= :: Hook/script provoked after command =notmuch new=, which is usually used to tag the newly imported mails.
+#+BEGIN_SRC sh
+#!/bin/sh
+notmuch tag -inbox +sent -- from:EMAIADDRESS
+notmuch tag -inbox +ML -- to:MAILLIST@EXAMPLE.COM
+notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
+#+END_SRC
+- =post-insert= :: Hook/script called after command =notmuch insert=, which is provoked after mails are delivered, imported into database and labelled with initial tags.
+** Automatics
+- Add new intended task by =crontab -e= with following content
+#+BEGIN_SRC sh
+*/3 * * * * /usr/bin/notmuch new
+@reboot /usr/bin/notmuch search --output=files tag:deleted | xargs -r rm
+#+END_SRC
+where the first line is for periodical fetching mail every 3 minutes and the second line to remove the mails deleted (tagged by =deleted=) at every boot.
+- Enable and start the service =cronie=.
+#+BEGIN_SRC sh
+systemctl enable cronie.service
+systemctl start cronie.service
+#+END_SRC
+* Key binding
+| *Key*     | Function and description                                                  |
+|-----------+---------------------------------------------------------------------------|
+| =n/p=     | Next/previous message, =notmuch-tree-next-matching-message=               |
+| =M-n/p=   | Next/previous thread, =notmuch-tree-next-thread=                          |
+| =w=       | Save attachments, =notmuch-show-save-attachments=                         |
+| =m=       | Write a new mail, =notmuch-mua-new-mail=                                  |
+| =r=       | Reply a mail, =notmuch-show-reply-sender=                                 |
+| =R=       | Reply all, =notmuch-show-reply=                                           |
+| =f=       | Forward a mail, =notmuch-show-forward-message=                            |
+| =C-c C-a= | Attach a file, =mml-attach-file=                                          |
+| =         | Refresh current buffer, =notmuch-refresh-this-buffer=                     |
+| =M-==     | Refresh all buffer, =notmuch-refresh-all-buffers=                         |
+| =Z=       | Tree view for the current query, =notmuch-tree-from-search-current-query= |
+
+* Footnotes
+
+[fn:1] https://notmuchmail.org/
