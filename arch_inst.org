@@ -1,4 +1,4 @@
-#+TITLE: Installation Guide for Arch Linux
+#+TITLE: Linux - Installation Guide for Arch Linux
 
 * Preparation
 1) Insert the DVD into the optical driver and reboot the computer.

@@ -1,4 +1,4 @@
-#+TITLE: ArchLinuxcn
+#+TITLE: Linux - A Mirror of Arch Linux
 
 * Introducation
 Chinese community of ArchLinux provides a non-official source for ArchLinux.
