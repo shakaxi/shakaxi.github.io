@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-09 Sun 23:44 -->
+<!-- 2017-12-24 Sun 12:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Installation Guide for Arch Linux</title>
+<title>Linux - Installation Guide for Arch Linux</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="shaka" />
 <style type="text/css">
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -229,7 +230,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Installation Guide for Arch Linux</h1>
+<h1 class="title">Linux - Installation Guide for Arch Linux</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -275,7 +276,8 @@ for the JavaScript code in this tag.
 <div id="outline-container-orga238edd" class="outline-2">
 <h2 id="orga238edd">Installation</h2>
 <div class="outline-text-2" id="text-orga238edd">
-</div><div id="outline-container-org425985b" class="outline-3">
+</div>
+<div id="outline-container-org425985b" class="outline-3">
 <h3 id="org425985b">Select the suitable architecture</h3>
 <div class="outline-text-3" id="text-org425985b">
 <p>
@@ -344,7 +346,7 @@ ip route add default via GATEWAY_IP_ADDR
 Edit <code>/etc/pacman.d/mirrorlist</code> as
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">Server = http://mirrors.163.com/archlinux/$<span style="color: #fcaf3e;">repo</span>/os/$<span style="color: #fcaf3e;">arch</span>
+<pre class="src src-sh"><span style="color: #fcaf3e;">Server</span> = http://mirrors.163.com/archlinux/$<span style="color: #fcaf3e;">repo</span>/os/$<span style="color: #fcaf3e;">arch</span>
 </pre>
 </div>
 </div>

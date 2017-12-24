@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
+<!-- 2017-12-24 Sun 12:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ArchLinuxcn</title>
+<title>Linux - A Mirror of Arch Linux</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="shaka" />
 <style type="text/css">
@@ -68,6 +68,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -229,35 +230,35 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">ArchLinuxcn</h1>
+<h1 class="title">Linux - A Mirror of Arch Linux</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org675c3b9">Introducation</a></li>
-<li><a href="#org74f323f">Configuration</a></li>
+<li><a href="#org054886c">Introducation</a></li>
+<li><a href="#org2bbfea0">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org675c3b9" class="outline-2">
-<h2 id="org675c3b9">Introducation</h2>
-<div class="outline-text-2" id="text-org675c3b9">
+<div id="outline-container-org054886c" class="outline-2">
+<h2 id="org054886c">Introducation</h2>
+<div class="outline-text-2" id="text-org054886c">
 <p>
 Chinese community of ArchLinux provides a non-official source for ArchLinux.
 </p>
 </div>
 </div>
-<div id="outline-container-org74f323f" class="outline-2">
-<h2 id="org74f323f">Configuration</h2>
-<div class="outline-text-2" id="text-org74f323f">
+<div id="outline-container-org2bbfea0" class="outline-2">
+<h2 id="org2bbfea0">Configuration</h2>
+<div class="outline-text-2" id="text-org2bbfea0">
 <ul class="org-ul">
 <li>Append following lines to <code>/etc/pacman.conf</code>.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">[archlinuxcn]
-SigLevel = Optional TrustedOnly
-Server = http://mirrors.163.com/archlinux-cn/$<span style="color: #fcaf3e;">arch</span>
+<span style="color: #fcaf3e;">SigLevel</span> = Optional TrustedOnly
+<span style="color: #fcaf3e;">Server</span> = http://mirrors.163.com/archlinux-cn/$<span style="color: #fcaf3e;">arch</span>
 </pre>
 </div>
 <ul class="org-ul">
