@@ -1,0 +1,99 @@
+#+TITLE: Emacs - CDLaTeX
+
+* Introduction
+=CDLaTeX=[fn:1] is a minor mode for fast LaTeX environment and macro insertion[fn:3]. In this sense, its functionalities are very similar to =AUCTeX=[fn:2]. What's more, some of its convenience provided are also covered by =AUCTeX=.
+* Installation
+The package of =cdlatex= is available at =melpa=, which can be easily installed.
+* Configuration
+If =AUCTeX= is installed, =CDLaTeX= can be activated on top of it via
+#+BEGIN_SRC emacs lisp
+(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+#+END_SRC
+Otherwise, =CDLaTeX= can be directly turned on with latex mode, i.e.,
+#+BEGIN_SRC emacs lisp
+(add-hook 'latex-mode-hook 'turn-on-cdlatex)
+#+END_SRC
+** Org
+In =org= mode, instead of =CDLaTeX= itself, its light version =org-cdlatex-mode= should be used, which depends on =cdlatex.el= (in package =CDLaTeX=) and =texmathp= (in package =AUCTeX=). To automatically turn it on in a =org= file, add the following line in the emacs configuration file, e.g., =~/init.el=.
+#+BEGIN_SRC emacs lisp
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+#+END_SRC
+* Usage
+** Keybinding
+| Keybinding | Functionality             |
+|------------+---------------------------|
+| =C-c ?=    | =cdlatex-command-help=    |
+| =C-c {=    | =cdlatex-environment=     |
+| =C-c -=    | =cdlatex-item=            |
+| =$=        | =cdlatex-dollar=          |
+| =(=        | =cdlatex-pbb=             |
+| ={=        | =cdlatex-pbb=             |
+| =[=        | =cdlatex-pbb=             |
+| =<=        | =cdlatex-pbb=             |
+| =^=        | =cdlatex-sub-superscript= |
+| =_=        | =cdlatex-sub-superscript= |
+| =TAB=      | =cdlatex-tab=             |
+| =`=        | =cdlatex-math-symbol=     |
+| ='=        | =cdlatex-math-modify=     |
+** Backquote (=`=) + character
+By =CDLaTeX=, mathematical symbols can be easily input by a backquote (=`=) followed by a character. In order to support more mathematical symbols, =CDLaTeX= defines 3 different /levels/, which can be entered by a different number of backquotes before a character.
+** Prefix + =TAB=
+=CDLaTeX= can automatically expand a variety of =prefix + TAB= bindings as follows.
+| Prefix   | Functionality                                    |
+|----------+--------------------------------------------------|
+| =pref=   | Make page reference                              |
+| =ref=    | Make reference                                   |
+| =lbl=    | Insert automatic label at point                  |
+| =ct=     | Insert =\cite=                                   |
+| =cte=    | Make a citation interactively                    |
+| =cite{=  | Make a citation interactively                    |
+| =beg=    | Complete an environment name and insert template |
+| =env=    | Complete an environment name and insert template |
+| =it=     | New item in current environment                  |
+| =ite=    | Insert an =ITEMIZE= environment template         |
+| =enu=    | Insert an =ENUMERATE= environment template       |
+| =equ=    | Insert an =EQUATION= environment template        |
+| =eqn=    | Insert an =EQUATION= environment template        |
+| =ali=    | Insert an =ALIGN= environment template           |
+| =ali*=   | Insert an =ALIGN*= environment template          |
+| =alit=   | Insert an =ALIGNAT= environment template         |
+| =alit*=  | Insert an =ALIGNAT*= environment template        |
+| =xal=    | Insert a =XALIGNAT= environment template         |
+| =xal*=   | Insert a =XALIGNAT*= environment template        |
+| =xxa=    | Insert a =XXALIGNAT= environment template        |
+| =xxa*=   | Insert a =XXALIGNAT= environment template        |
+| =mul=    | Insert a =MULTINE= environment template          |
+| =mul*=   | Insert a =MULTINE*= environment template         |
+| =gat=    | Insert a =GATHER= environment template           |
+| =gat*=   | Insert a =GATHER*= environment template          |
+| =fla=    | Insert a =FLALIGN= environment template          |
+| =fla*=   | Insert a =FLALIGN*= environment template         |
+| =fg=     | Insert a =FIGURE= environment template           |
+| =sn=     | Insert a =\section{}= statement                  |
+| =ss=     | Insert a =\subsection{}= statement               |
+| =sss=    | Insert a =\subsubsection{}= statement            |
+| =pf=     | Insert a =\paragraph{}= statement                |
+| =sp=     | Insert a =\subparagraph{}= statement             |
+| =ssp=    | Insert a =\subsubparagraph{}= statement          |
+| =cl=     | Insert =\centerline=                             |
+| =inc=    | Insert =\includegraphics= with file name         |
+| =lr(=    | Insert a =\left( \right)= pair                   |
+| =lr[=    | Insert a =\left[ \right]= pair                   |
+| =lr{=    | Insert a =\left{ \right}= pair                   |
+| =lr<=    | Insert a =\left\langle \right\rangle= pair       |
+| =caseeq= | Insert a == {= construct                         |
+| =fr=     | Insert =\frac{}{}=                               |
+| =sq=     | Insert =\sqrt{}=                                 |
+| =intl=   | Insert =\int\limits_{}^{}=                       |
+| =suml=   | Insert =\sum\limits_{}^{}=                       |
+| =nonum=  | Insert =\nonumber\\=                             |
+| =fn=     | Make a =footnote=                                |
+| =qq=     | Insert =\quad=                                   |
+| =qqq=    | Insert =\qquad=                                  |
+* Footnotes
+
+[fn:3] https://github.com/cdominik/cdlatex
+
+[fn:2] http://www.gnu.org/software/auctex
+
+[fn:1] It is named after its author, Carsten Dominik.
