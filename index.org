@@ -1,6 +1,5 @@
 #+TITLE: Shaka's Blog Site
 
-- [[file:archlinuxcn.org][ArchLinuxcn]]
 - [[file:bash.org][Bash]]
 - [[file:blog.org][Blog on GitHub]]
 - [[file:cpp_basic.org][C++ - Basic]]
@@ -9,7 +8,6 @@
 - [[file:cpp_std.org][C++ - 标准库]]
 - [[file:cpp_switch.org][C/C++ - switch]]
 - [[file:cvx_opt.org][Convex Optimization]]
-- [[file:customize_virtual_console.org][Customize Console]]
 - [[file:dot.org][DOT]]
 - [[file:emacs_config.org][Emacs - Basic Configuration]]
 - [[file:emacs_cpp.org][Emacs - C/C++ Programming]]
@@ -22,6 +20,7 @@
 - [[file:emacs_helm.org][Emacs - Helm]]
 - [[file:emacs_movement.org][Emacs - Movement]]
 - [[file:emacs_mu4e.org][Emacs - Mu4e]]
+- [[file:notmuch.org][Emacs - Notmuch]]
 - [[file:emacs_org_ioslide.org][Emacs - Orgmode Export to HTML5 Slide]]
 - [[file:emacs_ycmd.org][Emacs - YCMD]]
 - [[file:font.org][Fonts for Linux]]
@@ -40,6 +39,9 @@
 - [[file:latex_gantt.org][LaTeX - Gantt Chart]]
 - [[file:latex_pgf_tikz.org][LaTeX - Pgf/Tikz]]
 - [[file:latex_pgfplots.org][LaTeX - Pgfplots]]
+- [[file:arch_cn.org][Linux - A Mirror of Arch Linux]]
+- [[file:console.org][Linux - Customize Console]]
+- [[file:microcode.org][Linux - Microcode]]
 - [[file:zsh.org][Linux - ZSH]]
 - [[file:matlab_fig.org][MATLAB - Figure Data Abstraction]]
 - [[file:matlab_ssh.org][MATLAB over SSH]]
