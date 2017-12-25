@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LTE - D2D</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -256,24 +255,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org168e779">Overview</a></li>
-<li><a href="#org565e1c6">Physical channels</a>
+<li><a href="#orge8bd2f4">Overview</a></li>
+<li><a href="#org5e3f50a">Physical channels</a>
 <ul>
-<li><a href="#org63dffa2">Scrambling</a></li>
-<li><a href="#orgc42753b">Modulation</a></li>
-<li><a href="#orgea3d99b">Layer mapping</a></li>
-<li><a href="#orgae214d5">Transform precoding</a></li>
-<li><a href="#org64d28f7">Precoding</a></li>
-<li><a href="#org79cce6c">Mapping to physical resources</a></li>
+<li><a href="#org1908283">Scrambling</a></li>
+<li><a href="#orgb0b7cab">Modulation</a></li>
+<li><a href="#orgb5579ab">Layer mapping</a></li>
+<li><a href="#orgfd42aa7">Transform precoding</a></li>
+<li><a href="#orgcd4cdad">Precoding</a></li>
+<li><a href="#org0bbd986">Mapping to physical resources</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org168e779" class="outline-2">
-<h2 id="org168e779">Overview</h2>
-<div class="outline-text-2" id="text-org168e779">
+<div id="outline-container-orge8bd2f4" class="outline-2">
+<h2 id="orge8bd2f4">Overview</h2>
+<div class="outline-text-2" id="text-orge8bd2f4">
 <p>
 In LTE-Advanced systems, the link for D2D communication is termed <i>sidelink</i> <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. A sidelink carries two physical signals
 </p>
@@ -295,12 +294,13 @@ PSSCH, PSCCH and PSDCH are all on the same antenna port, <code>R1000</code>. PSB
 </p>
 </div>
 </div>
-<div id="outline-container-org565e1c6" class="outline-2">
-<h2 id="org565e1c6">Physical channels</h2>
-<div class="outline-text-2" id="text-org565e1c6">
-</div><div id="outline-container-org63dffa2" class="outline-3">
-<h3 id="org63dffa2">Scrambling</h3>
-<div class="outline-text-3" id="text-org63dffa2">
+<div id="outline-container-org5e3f50a" class="outline-2">
+<h2 id="org5e3f50a">Physical channels</h2>
+<div class="outline-text-2" id="text-org5e3f50a">
+</div>
+<div id="outline-container-org1908283" class="outline-3">
+<h3 id="org1908283">Scrambling</h3>
+<div class="outline-text-3" id="text-org1908283">
 <p>
 The data stream is first scrambled by a random sequence. The scrambling sequence shall be initialized at the beginning of every PSSCH/PSCCH/PSDCH/PSBCH subframe. The corresponding random seeds are
 </p>
@@ -311,19 +311,19 @@ The data stream is first scrambled by a random sequence. The scrambling sequence
 </dl>
 </div>
 </div>
-<div id="outline-container-orgc42753b" class="outline-3">
-<h3 id="orgc42753b">Modulation</h3>
-<div class="outline-text-3" id="text-orgc42753b">
+<div id="outline-container-orgb0b7cab" class="outline-3">
+<h3 id="orgb0b7cab">Modulation</h3>
+<div class="outline-text-3" id="text-orgb0b7cab">
 <p>
 The scrambled sequence is then modulated as constellation symbols. The modulation schemes for the physical channels are
 </p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -345,33 +345,33 @@ The scrambled sequence is then modulated as constellation symbols. The modulatio
 </table>
 </div>
 </div>
-<div id="outline-container-orgea3d99b" class="outline-3">
-<h3 id="orgea3d99b">Layer mapping</h3>
-<div class="outline-text-3" id="text-orgea3d99b">
+<div id="outline-container-orgb5579ab" class="outline-3">
+<h3 id="orgb5579ab">Layer mapping</h3>
+<div class="outline-text-3" id="text-orgb5579ab">
 <p>
 There is only one layer for each physical channel above. Namely, for each physical channel, the single codeword is mapped to a single layer.
 </p>
 </div>
 </div>
-<div id="outline-container-orgae214d5" class="outline-3">
-<h3 id="orgae214d5">Transform precoding</h3>
-<div class="outline-text-3" id="text-orgae214d5">
+<div id="outline-container-orgfd42aa7" class="outline-3">
+<h3 id="orgfd42aa7">Transform precoding</h3>
+<div class="outline-text-3" id="text-orgfd42aa7">
 <p>
 Similar to uplink transmission, <i>SC-FDMA</i> is adopted for sidelinks. For the 4 physical channels above, every \(M_\text{sc}^\text{PSSCH}\) / \(M_\text{sc}^\text{PSCCH}\) / \(M_\text{sc}^\text{PSDCH}\) / \(M_\text{sc}^\text{PSBCH}\) complex-valued symbols are FFT-processed.
 </p>
 </div>
 </div>
-<div id="outline-container-org64d28f7" class="outline-3">
-<h3 id="org64d28f7">Precoding</h3>
-<div class="outline-text-3" id="text-org64d28f7">
+<div id="outline-container-orgcd4cdad" class="outline-3">
+<h3 id="orgcd4cdad">Precoding</h3>
+<div class="outline-text-3" id="text-orgcd4cdad">
 <p>
 As mentioned above, there is only one layer for each physical channel over a sidelink. Therefore, the single layer can be directly mapped to the corresponding antenna port, i.e. <code>R1000</code> for PSSCH, and <code>R1010</code> for PSCCH/PSDCH/PSBCH.
 </p>
 </div>
 </div>
-<div id="outline-container-org79cce6c" class="outline-3">
-<h3 id="org79cce6c">Mapping to physical resources</h3>
-<div class="outline-text-3" id="text-org79cce6c">
+<div id="outline-container-org0bbd986" class="outline-3">
+<h3 id="org0bbd986">Mapping to physical resources</h3>
+<div class="outline-text-3" id="text-org0bbd986">
 <p>
 The complex symbols are first scaled by \(\beta_\text{PSSCH}\) / \(\beta_\text{PSCCH}\) / \(\beta_\text{PSDCH}\) / \(\beta_\text{PSBCH}\) before mapping to the physical resource blocks (PRB's). The mapping shall be in increasing order of first the index <i>k</i>, and then the index <i>l</i>, starting with the first slot in the subframe. Moreover, the PRB's used for reference signal (RS's) will be avoided in the mapping. Resource elements in the last SC-FDMA symbol within a subframe shall be counted in the mapping process but not transmitted.
 </p>

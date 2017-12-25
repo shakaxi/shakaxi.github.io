@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:42 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SLNR-based Beamforming</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -256,16 +255,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2ecc579">Introduction</a></li>
-<li><a href="#org291a891">System model</a></li>
-<li><a href="#org833758c">SLNR-based beamforming</a></li>
+<li><a href="#orgb9a20e0">Introduction</a></li>
+<li><a href="#org1040878">System model</a></li>
+<li><a href="#org312f059">SLNR-based beamforming</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2ecc579" class="outline-2">
-<h2 id="org2ecc579">Introduction</h2>
-<div class="outline-text-2" id="text-org2ecc579">
+<div id="outline-container-orgb9a20e0" class="outline-2">
+<h2 id="orgb9a20e0">Introduction</h2>
+<div class="outline-text-2" id="text-orgb9a20e0">
 <p>
 In coordinatd scheduling and beamforming (CS/CB), one of coordinatd multipoint (CoMP) transmission schemes, signal leakage noise power ratio (SLNR)-based beamforming is widely used.
 </p>
@@ -279,12 +278,12 @@ This page is just written to summarize this SLNR-based beamforming scheme.
 </p>
 </div>
 </div>
-<div id="outline-container-org291a891" class="outline-2">
-<h2 id="org291a891">System model</h2>
-<div class="outline-text-2" id="text-org291a891">
+<div id="outline-container-org1040878" class="outline-2">
+<h2 id="org1040878">System model</h2>
+<div class="outline-text-2" id="text-org1040878">
 
 <div class="figure">
-<p><img src="slnr.png" alt="slnr.png" />
+<p><img src="slnr.png" alt="slnr.png">
 </p>
 </div>
 
@@ -304,9 +303,9 @@ where
 </ul>
 </div>
 </div>
-<div id="outline-container-org833758c" class="outline-2">
-<h2 id="org833758c">SLNR-based beamforming</h2>
-<div class="outline-text-2" id="text-org833758c">
+<div id="outline-container-org312f059" class="outline-2">
+<h2 id="org312f059">SLNR-based beamforming</h2>
+<div class="outline-text-2" id="text-org312f059">
 <p>
 The \(\text{SLNR}_0\) above can be further written as a <i>generalized Rayleigh quotient</i> <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>

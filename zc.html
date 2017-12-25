@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:42 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZC</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -256,16 +255,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9d2a22a">Introduction</a></li>
-<li><a href="#org4fc5213">Properties</a></li>
-<li><a href="#org3916a4e">Applications</a></li>
+<li><a href="#org5203a5b">Introduction</a></li>
+<li><a href="#orgaf8d7d4">Properties</a></li>
+<li><a href="#org48c723b">Applications</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9d2a22a" class="outline-2">
-<h2 id="org9d2a22a">Introduction</h2>
-<div class="outline-text-2" id="text-org9d2a22a">
+<div id="outline-container-org5203a5b" class="outline-2">
+<h2 id="org5203a5b">Introduction</h2>
+<div class="outline-text-2" id="text-org5203a5b">
 <p>
 The <i>Zadoff-Chu (ZC)</i> sequence<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is named after Solomon A. Zadoff and D. C. Chu, which is a constant amplitude zero auto-correlation (CAZAC) sequence<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> with its cylically shifted versions are zero correlated, i.e. orthogonal to each other. A ZC sequence without cyclic shift is termed a <i>root sequence</i>, which can be expressed as
 </p>
@@ -277,9 +276,9 @@ where \(u\) is the index of the root sequence, \(L\) is the length and \(q \in \
 </p>
 </div>
 </div>
-<div id="outline-container-org4fc5213" class="outline-2">
-<h2 id="org4fc5213">Properties</h2>
-<div class="outline-text-2" id="text-org4fc5213">
+<div id="outline-container-orgaf8d7d4" class="outline-2">
+<h2 id="orgaf8d7d4">Properties</h2>
+<div class="outline-text-2" id="text-orgaf8d7d4">
 <ul class="org-ul">
 <li>The auto-correlation of a ZC sequence is <i>delta function</i>, i.e. zero correlated.</li>
 <li>ZC sequences with odd length are periodic, i.e. \(x_u(n + L) = x_u(n)\).</li>
@@ -288,9 +287,9 @@ where \(u\) is the index of the root sequence, \(L\) is the length and \(q \in \
 </ul>
 </div>
 </div>
-<div id="outline-container-org3916a4e" class="outline-2">
-<h2 id="org3916a4e">Applications</h2>
-<div class="outline-text-2" id="text-org3916a4e">
+<div id="outline-container-org48c723b" class="outline-2">
+<h2 id="org48c723b">Applications</h2>
+<div class="outline-text-2" id="text-org48c723b">
 <p>
 ZC sequences are widely used in 3GPP LTE/LTE-Advanced system<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>
 </p>

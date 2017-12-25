@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:02 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blog on GitHub</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,20 +233,20 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc46e222">Preparation</a>
+<li><a href="#org7b341d1">Preparation</a>
 <ul>
-<li><a href="#org57b8767">Softwares</a></li>
-<li><a href="#orgba79d80">Account on GitHub</a></li>
+<li><a href="#orgc34e13f">Softwares</a></li>
+<li><a href="#org9e40eda">Account on GitHub</a></li>
 </ul>
 </li>
-<li><a href="#org67fb7c8">Configuration</a>
+<li><a href="#org9fe5834">Configuration</a>
 <ul>
-<li><a href="#org1168946">Emacs and Orgmode</a></li>
-<li><a href="#org0cec953">GitHub</a></li>
-<li><a href="#org267476c">Initialization</a></li>
+<li><a href="#org6c6da6a">Emacs and Orgmode</a></li>
+<li><a href="#org67c92f3">GitHub</a></li>
+<li><a href="#orgf9033a2">Initialization</a></li>
 </ul>
 </li>
-<li><a href="#orgeac68e4">Publish a new post</a></li>
+<li><a href="#org337d77e">Publish a new post</a></li>
 </ul>
 </div>
 </div>
@@ -255,12 +254,13 @@ for the JavaScript code in this tag.
 It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on <a href="https://github.com">GitHub</a>. This post is just written to summarize the procedure.
 </p>
 
-<div id="outline-container-orgc46e222" class="outline-2">
-<h2 id="orgc46e222">Preparation</h2>
-<div class="outline-text-2" id="text-orgc46e222">
-</div><div id="outline-container-org57b8767" class="outline-3">
-<h3 id="org57b8767">Softwares</h3>
-<div class="outline-text-3" id="text-org57b8767">
+<div id="outline-container-org7b341d1" class="outline-2">
+<h2 id="org7b341d1">Preparation</h2>
+<div class="outline-text-2" id="text-org7b341d1">
+</div>
+<div id="outline-container-orgc34e13f" class="outline-3">
+<h3 id="orgc34e13f">Softwares</h3>
+<div class="outline-text-3" id="text-orgc34e13f">
 <p>
 Above all, you should have <a href="http://www.gnu.org/software/emacs/">Emacs</a> and <a href="http://orgmode.org/">Orgmode</a> installed. Taking ArchLinux for instance, Emacs can be installed as follows
 </p>
@@ -281,21 +281,22 @@ In order to freely exchange data with GitHub, <code>git</code> is needed. Also t
 </div>
 </div>
 </div>
-<div id="outline-container-orgba79d80" class="outline-3">
-<h3 id="orgba79d80">Account on GitHub</h3>
-<div class="outline-text-3" id="text-orgba79d80">
+<div id="outline-container-org9e40eda" class="outline-3">
+<h3 id="org9e40eda">Account on GitHub</h3>
+<div class="outline-text-3" id="text-org9e40eda">
 <p>
 Of course, an account on GitHub is also indispensable. If you do not have an account, you have to sign up on <a href="http://github.com">http://github.com</a>. According to the description of <a href="https://pages.github.com/">GitHub Pages</a>, if your account is <code>USERNAME</code>, your blog site can be accessed via <a href="http://username.github.io">http://username.github.io</a>.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org67fb7c8" class="outline-2">
-<h2 id="org67fb7c8">Configuration</h2>
-<div class="outline-text-2" id="text-org67fb7c8">
-</div><div id="outline-container-org1168946" class="outline-3">
-<h3 id="org1168946">Emacs and Orgmode</h3>
-<div class="outline-text-3" id="text-org1168946">
+<div id="outline-container-org9fe5834" class="outline-2">
+<h2 id="org9fe5834">Configuration</h2>
+<div class="outline-text-2" id="text-org9fe5834">
+</div>
+<div id="outline-container-org6c6da6a" class="outline-3">
+<h3 id="org6c6da6a">Emacs and Orgmode</h3>
+<div class="outline-text-3" id="text-org6c6da6a">
 <p>
 First, you should create a fold to store your data of your blog site, e.g. <code>~/blog</code>.
 </p>
@@ -339,9 +340,9 @@ In order to publish your webpages, i.e. html files, you should configure your Em
 </div>
 </div>
 </div>
-<div id="outline-container-org0cec953" class="outline-3">
-<h3 id="org0cec953">GitHub</h3>
-<div class="outline-text-3" id="text-org0cec953">
+<div id="outline-container-org67c92f3" class="outline-3">
+<h3 id="org67c92f3">GitHub</h3>
+<div class="outline-text-3" id="text-org67c92f3">
 <p>
 Sign in GitHub with your account, and create a repository. What deserves notice, the repository used to store your posts <i>must</i> be named <code>USERNAME.github.io</code>. Otherwise, your blog site cannot be accessed via <code>http://USERNAME.github.io</code>.
 </p>
@@ -362,9 +363,9 @@ In fact, you can only push the published html webpages to GitHub. Pushing the or
 </p>
 </div>
 </div>
-<div id="outline-container-org267476c" class="outline-3">
-<h3 id="org267476c">Initialization</h3>
-<div class="outline-text-3" id="text-org267476c">
+<div id="outline-container-orgf9033a2" class="outline-3">
+<h3 id="orgf9033a2">Initialization</h3>
+<div class="outline-text-3" id="text-orgf9033a2">
 <p>
 Enter the local directory, e.g. <code>~/blog</code> and clone the both branches.
 </p>
@@ -380,9 +381,9 @@ For sake of publishing beautiful webpages, you can customize your css and drop i
 </div>
 </div>
 </div>
-<div id="outline-container-orgeac68e4" class="outline-2">
-<h2 id="orgeac68e4">Publish a new post</h2>
-<div class="outline-text-2" id="text-orgeac68e4">
+<div id="outline-container-org337d77e" class="outline-2">
+<h2 id="org337d77e">Publish a new post</h2>
+<div class="outline-text-2" id="text-org337d77e">
 <ul class="org-ul">
 <li>Create and edit an org file, e.g. <code>~/blog/org/newpost.org</code>.</li>
 <li>Generate the corresponding webpage to html folder<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, e.g. <code>~/blog/html/newpost.html</code>.</li>

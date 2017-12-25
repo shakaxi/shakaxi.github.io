@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Pgf/Tikz</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,61 +233,62 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb35a40b">Introduction</a></li>
-<li><a href="#orga7ccbef">Installation</a></li>
-<li><a href="#orgc971eb3">Usage</a>
+<li><a href="#orgf28eb0e">Introduction</a></li>
+<li><a href="#orge921fe4">Installation</a></li>
+<li><a href="#org2f7e846">Usage</a>
 <ul>
-<li><a href="#org18f860a">Setting</a></li>
-<li><a href="#org0248f47">Style</a></li>
-<li><a href="#org395ab04">Coordinate</a></li>
-<li><a href="#org2eeb795">List</a></li>
-<li><a href="#orgf6fd1b2">Arrow</a></li>
-<li><a href="#org43a187f">Draw</a>
+<li><a href="#org4efff3f">Setting</a></li>
+<li><a href="#org843121f">Style</a></li>
+<li><a href="#org57a7d8c">Coordinate</a></li>
+<li><a href="#org305b721">List</a></li>
+<li><a href="#orgf9de429">Arrow</a></li>
+<li><a href="#org78ecd22">Draw</a>
 <ul>
-<li><a href="#orgce6bff1">Line</a></li>
-<li><a href="#orgeb6d314">Curve</a></li>
-<li><a href="#org808f6b4">Grid</a></li>
-<li><a href="#org0141301">Arc</a></li>
-<li><a href="#org6e99054">Rectangle</a></li>
-<li><a href="#orgcf4aa40">Circle</a></li>
-<li><a href="#org5a9bc15">Ellipse</a></li>
-<li><a href="#org421549d">Node</a>
+<li><a href="#orgd92a661">Line</a></li>
+<li><a href="#org7d64f2f">Curve</a></li>
+<li><a href="#orgcdfe9ae">Grid</a></li>
+<li><a href="#orgcaa3ca8">Arc</a></li>
+<li><a href="#org0bf40a0">Rectangle</a></li>
+<li><a href="#org71e98d0">Circle</a></li>
+<li><a href="#org5181073">Ellipse</a></li>
+<li><a href="#org567a19e">Node</a>
 <ul>
-<li><a href="#org24650da">Connecting nodes with</a></li>
+<li><a href="#orgfe016b9">Connecting nodes with</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc673b8c">Refer to nodes outside current picture</a></li>
-<li><a href="#org13e6ad4">Mix tikz command with LaTeX</a></li>
+<li><a href="#org3b8f448">Refer to nodes outside current picture</a></li>
+<li><a href="#org4ee70cb">Mix tikz command with LaTeX</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb35a40b" class="outline-2">
-<h2 id="orgb35a40b">Introduction</h2>
-<div class="outline-text-2" id="text-orgb35a40b">
+<div id="outline-container-orgf28eb0e" class="outline-2">
+<h2 id="orgf28eb0e">Introduction</h2>
+<div class="outline-text-2" id="text-orgf28eb0e">
 <p>
 <i>Pgf/tikz</i> is an excellent <i>LaTeX</i> package to plot high quality graphs. This post just summaries its basic usages.
 </p>
 </div>
 </div>
-<div id="outline-container-orga7ccbef" class="outline-2">
-<h2 id="orga7ccbef">Installation</h2>
-<div class="outline-text-2" id="text-orga7ccbef">
+<div id="outline-container-orge921fe4" class="outline-2">
+<h2 id="orge921fe4">Installation</h2>
+<div class="outline-text-2" id="text-orge921fe4">
 <p>
 Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As long as texlive is ready, pgf/tikz is out-of-the-box.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc971eb3" class="outline-2">
-<h2 id="orgc971eb3">Usage</h2>
-<div class="outline-text-2" id="text-orgc971eb3">
-</div><div id="outline-container-org18f860a" class="outline-3">
-<h3 id="org18f860a">Setting</h3>
-<div class="outline-text-3" id="text-org18f860a">
+<div id="outline-container-org2f7e846" class="outline-2">
+<h2 id="org2f7e846">Usage</h2>
+<div class="outline-text-2" id="text-org2f7e846">
+</div>
+<div id="outline-container-org4efff3f" class="outline-3">
+<h3 id="org4efff3f">Setting</h3>
+<div class="outline-text-3" id="text-org4efff3f">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">tikz</span>}
 ...
@@ -300,9 +300,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org0248f47" class="outline-3">
-<h3 id="org0248f47">Style</h3>
-<div class="outline-text-3" id="text-org0248f47">
+<div id="outline-container-org843121f" class="outline-3">
+<h3 id="org843121f">Style</h3>
+<div class="outline-text-3" id="text-org843121f">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\tikzstyle</span> newstylename=[option1=value1, option2=value2, ...]
 <span style="color: #d3d3d3;">\tikzstyle</span> existingstylename+=[option1=value1, option2=value2, ...]
@@ -310,18 +310,18 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org395ab04" class="outline-3">
-<h3 id="org395ab04">Coordinate</h3>
-<div class="outline-text-3" id="text-org395ab04">
+<div id="outline-container-org57a7d8c" class="outline-3">
+<h3 id="org57a7d8c">Coordinate</h3>
+<div class="outline-text-3" id="text-org57a7d8c">
 <ul class="org-ul">
 <li>(x0, y0)</li>
 <li>(angle, radius)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2eeb795" class="outline-3">
-<h3 id="org2eeb795">List</h3>
-<div class="outline-text-3" id="text-org2eeb795">
+<div id="outline-container-org305b721" class="outline-3">
+<h3 id="org305b721">List</h3>
+<div class="outline-text-3" id="text-org305b721">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #73d216;">% </span><span style="color: #73d216;">step length = 1</span>
 {a, ..., b}
@@ -332,9 +332,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-orgf6fd1b2" class="outline-3">
-<h3 id="orgf6fd1b2">Arrow</h3>
-<div class="outline-text-3" id="text-orgf6fd1b2">
+<div id="outline-container-orgf9de429" class="outline-3">
+<h3 id="orgf9de429">Arrow</h3>
+<div class="outline-text-3" id="text-orgf9de429">
 <ul class="org-ul">
 <li>-</li>
 <li>-&gt;</li>
@@ -344,21 +344,22 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </ul>
 </div>
 </div>
-<div id="outline-container-org43a187f" class="outline-3">
-<h3 id="org43a187f">Draw</h3>
-<div class="outline-text-3" id="text-org43a187f">
-</div><div id="outline-container-orgce6bff1" class="outline-4">
-<h4 id="orgce6bff1">Line</h4>
-<div class="outline-text-4" id="text-orgce6bff1">
+<div id="outline-container-org78ecd22" class="outline-3">
+<h3 id="org78ecd22">Draw</h3>
+<div class="outline-text-3" id="text-org78ecd22">
+</div>
+<div id="outline-container-orgd92a661" class="outline-4">
+<h4 id="orgd92a661">Line</h4>
+<div class="outline-text-4" id="text-orgd92a661">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb6d314" class="outline-4">
-<h4 id="orgeb6d314">Curve</h4>
-<div class="outline-text-4" id="text-orgeb6d314">
+<div id="outline-container-org7d64f2f" class="outline-4">
+<h4 id="org7d64f2f">Curve</h4>
+<div class="outline-text-4" id="text-org7d64f2f">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
 <span style="color: #d3d3d3;">\draw</span> (x1, y1) .. controls (x2, y2) .. (x3, y3);
@@ -366,9 +367,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org808f6b4" class="outline-4">
-<h4 id="org808f6b4">Grid</h4>
-<div class="outline-text-4" id="text-org808f6b4">
+<div id="outline-container-orgcdfe9ae" class="outline-4">
+<h4 id="orgcdfe9ae">Grid</h4>
+<div class="outline-text-4" id="text-orgcdfe9ae">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> [step=s] (x1, y1) grid (x2, y2);
 <span style="color: #d3d3d3;">\draw</span> [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
@@ -376,18 +377,18 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org0141301" class="outline-4">
-<h4 id="org0141301">Arc</h4>
-<div class="outline-text-4" id="text-org0141301">
+<div id="outline-container-orgcaa3ca8" class="outline-4">
+<h4 id="orgcaa3ca8">Arc</h4>
+<div class="outline-text-4" id="text-orgcaa3ca8">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) arc (start_angle: end_angle: radius);
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org6e99054" class="outline-4">
-<h4 id="org6e99054">Rectangle</h4>
-<div class="outline-text-4" id="text-org6e99054">
+<div id="outline-container-org0bf40a0" class="outline-4">
+<h4 id="org0bf40a0">Rectangle</h4>
+<div class="outline-text-4" id="text-org0bf40a0">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) rectangle (x2, y2);
 <span style="color: #d3d3d3;">\fill</span> [color] (x1, y1) rectangle (x2, y2);
@@ -399,9 +400,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-orgcf4aa40" class="outline-4">
-<h4 id="orgcf4aa40">Circle</h4>
-<div class="outline-text-4" id="text-orgcf4aa40">
+<div id="outline-container-org71e98d0" class="outline-4">
+<h4 id="org71e98d0">Circle</h4>
+<div class="outline-text-4" id="text-org71e98d0">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) circle (radius);
 <span style="color: #d3d3d3;">\fill</span> [color] (x1, y1) circle (radius);
@@ -413,9 +414,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org5a9bc15" class="outline-4">
-<h4 id="org5a9bc15">Ellipse</h4>
-<div class="outline-text-4" id="text-org5a9bc15">
+<div id="outline-container-org5181073" class="outline-4">
+<h4 id="org5181073">Ellipse</h4>
+<div class="outline-text-4" id="text-org5181073">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\draw</span> (x1, y1) ellipse (x_radius and y_radius);
 <span style="color: #d3d3d3;">\fill</span> [color] (x1, y1) ellipse (x_radius and y_radius);
@@ -427,9 +428,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org421549d" class="outline-4">
-<h4 id="org421549d">Node</h4>
-<div class="outline-text-4" id="text-org421549d">
+<div id="outline-container-org567a19e" class="outline-4">
+<h4 id="org567a19e">Node</h4>
+<div class="outline-text-4" id="text-org567a19e">
 <div class="org-src-container">
 <pre class="src src-latex">(x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
 ...
@@ -437,9 +438,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </pre>
 </div>
 </div>
-<div id="outline-container-org24650da" class="outline-5">
-<h5 id="org24650da">Connecting nodes with</h5>
-<div class="outline-text-5" id="text-org24650da">
+<div id="outline-container-orgfe016b9" class="outline-5">
+<h5 id="orgfe016b9">Connecting nodes with</h5>
+<div class="outline-text-5" id="text-orgfe016b9">
 <ul class="org-ul">
 <li>Lines</li>
 </ul>
@@ -462,9 +463,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-orgc673b8c" class="outline-3">
-<h3 id="orgc673b8c">Refer to nodes outside current picture</h3>
-<div class="outline-text-3" id="text-orgc673b8c">
+<div id="outline-container-org3b8f448" class="outline-3">
+<h3 id="org3b8f448">Refer to nodes outside current picture</h3>
+<div class="outline-text-3" id="text-org3b8f448">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\tikzstyle</span>{every picture}+=[remember picture]
 ...
@@ -476,9 +477,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org13e6ad4" class="outline-3">
-<h3 id="org13e6ad4">Mix tikz command with LaTeX</h3>
-<div class="outline-text-3" id="text-org13e6ad4">
+<div id="outline-container-org4ee70cb" class="outline-3">
+<h3 id="org4ee70cb">Mix tikz command with LaTeX</h3>
+<div class="outline-text-3" id="text-org4ee70cb">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #d3d3d3;">\tikz</span> [baseline] ...
 </pre>

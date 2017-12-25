@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:02 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Convex Optimization</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -256,9 +255,9 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9726963">Least squares (LS)</a></li>
-<li><a href="#orgd7ceb04">Linear programming (LP)</a></li>
-<li><a href="#org98fc203">Convex optimization</a></li>
+<li><a href="#org739b0f3">Least squares (LS)</a></li>
+<li><a href="#orgcc86fa1">Linear programming (LP)</a></li>
+<li><a href="#org01d19e7">Convex optimization</a></li>
 </ul>
 </div>
 </div>
@@ -294,9 +293,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 <li><i>Convex optimization</i></li>
 </ul>
 
-<div id="outline-container-org9726963" class="outline-2">
-<h2 id="org9726963">Least squares (LS)</h2>
-<div class="outline-text-2" id="text-org9726963">
+<div id="outline-container-org739b0f3" class="outline-2">
+<h2 id="org739b0f3">Least squares (LS)</h2>
+<div class="outline-text-2" id="text-org739b0f3">
 \begin{align*}
 \min \|Ax - b\|_2^2
 \end{align*}
@@ -308,9 +307,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd7ceb04" class="outline-2">
-<h2 id="orgd7ceb04">Linear programming (LP)</h2>
-<div class="outline-text-2" id="text-orgd7ceb04">
+<div id="outline-container-orgcc86fa1" class="outline-2">
+<h2 id="orgcc86fa1">Linear programming (LP)</h2>
+<div class="outline-text-2" id="text-orgcc86fa1">
 \begin{align*}
 \min & c^Tx \\
 \text{subject to} & a_i^Tx \le b_i,\quad i=1, \ldots, m
@@ -323,9 +322,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 </ul>
 </div>
 </div>
-<div id="outline-container-org98fc203" class="outline-2">
-<h2 id="org98fc203">Convex optimization</h2>
-<div class="outline-text-2" id="text-org98fc203">
+<div id="outline-container-org01d19e7" class="outline-2">
+<h2 id="org01d19e7">Convex optimization</h2>
+<div class="outline-text-2" id="text-org01d19e7">
 \begin{align*}
 \min & f_0(x) \\
 \text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m

@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Gantt Chart</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -256,40 +255,40 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd34f643">Introduction</a></li>
-<li><a href="#orgf1fa5c1">Installation</a></li>
-<li><a href="#orge441c75">Usage</a>
+<li><a href="#org7f683cb">Introduction</a></li>
+<li><a href="#orgbde35b9">Installation</a></li>
+<li><a href="#org8a6dd14">Usage</a>
 <ul>
-<li><a href="#org8e1c65a">Optional arguments</a></li>
-<li><a href="#org2e3388a">Title</a></li>
-<li><a href="#orgb7a7f4e">Other commands</a>
+<li><a href="#orge5feffc">Optional arguments</a></li>
+<li><a href="#orga601673">Title</a></li>
+<li><a href="#orgfb7adab">Other commands</a>
 <ul>
-<li><a href="#orgbad32e1"><code>\ganttbar</code></a></li>
-<li><a href="#org872def8"><code>\ganttcon</code></a></li>
-<li><a href="#org0e738d0"><code>\ganttbarcon</code></a></li>
-<li><a href="#org87e060e"><code>\ganttgroup</code></a></li>
-<li><a href="#org77d7287"><code>\ganttmilestone</code></a></li>
-<li><a href="#orgc3caff9"><code>\ganttmilestonecon</code></a></li>
+<li><a href="#org33f48a3"><code>\ganttbar</code></a></li>
+<li><a href="#org61723f0"><code>\ganttcon</code></a></li>
+<li><a href="#orgd92a2b4"><code>\ganttbarcon</code></a></li>
+<li><a href="#orgc7b134a"><code>\ganttgroup</code></a></li>
+<li><a href="#orgefbf27d"><code>\ganttmilestone</code></a></li>
+<li><a href="#orgc5effc2"><code>\ganttmilestonecon</code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7593256">An example</a></li>
+<li><a href="#org52bf02c">An example</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd34f643" class="outline-2">
-<h2 id="orgd34f643">Introduction</h2>
-<div class="outline-text-2" id="text-orgd34f643">
+<div id="outline-container-org7f683cb" class="outline-2">
+<h2 id="org7f683cb">Introduction</h2>
+<div class="outline-text-2" id="text-org7f683cb">
 <p>
 Today, I found an interesting \(\LaTeX\) package, <i>gantt</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. This package is developped based on <i>pgf/tikz</i> and, as its name indicates, can produce <i>Gantt</i> charts.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf1fa5c1" class="outline-2">
-<h2 id="orgf1fa5c1">Installation</h2>
-<div class="outline-text-2" id="text-orgf1fa5c1">
+<div id="outline-container-orgbde35b9" class="outline-2">
+<h2 id="orgbde35b9">Installation</h2>
+<div class="outline-text-2" id="text-orgbde35b9">
 <p>
 For <i>ArchLinux</i>, the package can be simply installed via <i>yaourt</i>.
 </p>
@@ -302,9 +301,9 @@ Alternatively, the corresponding <i>style</i> file can be downloaded from the <a
 </p>
 </div>
 </div>
-<div id="outline-container-orge441c75" class="outline-2">
-<h2 id="orge441c75">Usage</h2>
-<div class="outline-text-2" id="text-orge441c75">
+<div id="outline-container-org8a6dd14" class="outline-2">
+<h2 id="org8a6dd14">Usage</h2>
+<div class="outline-text-2" id="text-org8a6dd14">
 <p>
 The framework of using the package can be illustrated as
 </p>
@@ -322,9 +321,9 @@ The framework of using the package can be illustrated as
 </pre>
 </div>
 </div>
-<div id="outline-container-org8e1c65a" class="outline-3">
-<h3 id="org8e1c65a">Optional arguments</h3>
-<div class="outline-text-3" id="text-org8e1c65a">
+<div id="outline-container-orge5feffc" class="outline-3">
+<h3 id="orge5feffc">Optional arguments</h3>
+<div class="outline-text-3" id="text-orge5feffc">
 <p>
 <code>key_1, key_2, ...</code> are optional arguments, which can be
 </p>
@@ -336,9 +335,9 @@ The framework of using the package can be illustrated as
 </dl>
 </div>
 </div>
-<div id="outline-container-org2e3388a" class="outline-3">
-<h3 id="org2e3388a">Title</h3>
-<div class="outline-text-3" id="text-org2e3388a">
+<div id="outline-container-orga601673" class="outline-3">
+<h3 id="orga601673">Title</h3>
+<div class="outline-text-3" id="text-orga601673">
 <p>
 <code>ganttitle</code> is the environment for drawing the title section, which is comprised of a series of <code>\titleelement</code> and/or <code>\numtitle</code>
 </p>
@@ -350,12 +349,13 @@ The framework of using the package can be illustrated as
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7a7f4e" class="outline-3">
-<h3 id="orgb7a7f4e">Other commands</h3>
-<div class="outline-text-3" id="text-orgb7a7f4e">
-</div><div id="outline-container-orgbad32e1" class="outline-4">
-<h4 id="orgbad32e1"><code>\ganttbar</code></h4>
-<div class="outline-text-4" id="text-orgbad32e1">
+<div id="outline-container-orgfb7adab" class="outline-3">
+<h3 id="orgfb7adab">Other commands</h3>
+<div class="outline-text-3" id="text-orgfb7adab">
+</div>
+<div id="outline-container-org33f48a3" class="outline-4">
+<h4 id="org33f48a3"><code>\ganttbar</code></h4>
+<div class="outline-text-4" id="text-org33f48a3">
 <p>
 Draws a single, unconnected bar for a task.
 </p>
@@ -372,9 +372,9 @@ where
 </ul>
 </div>
 </div>
-<div id="outline-container-org872def8" class="outline-4">
-<h4 id="org872def8"><code>\ganttcon</code></h4>
-<div class="outline-text-4" id="text-org872def8">
+<div id="outline-container-org61723f0" class="outline-4">
+<h4 id="org61723f0"><code>\ganttcon</code></h4>
+<div class="outline-text-4" id="text-org61723f0">
 <p>
 Draw an arrow between two bars with specified coordinates.
 </p>
@@ -384,9 +384,9 @@ Draw an arrow between two bars with specified coordinates.
 </div>
 </div>
 </div>
-<div id="outline-container-org0e738d0" class="outline-4">
-<h4 id="org0e738d0"><code>\ganttbarcon</code></h4>
-<div class="outline-text-4" id="text-org0e738d0">
+<div id="outline-container-orgd92a2b4" class="outline-4">
+<h4 id="orgd92a2b4"><code>\ganttbarcon</code></h4>
+<div class="outline-text-4" id="text-orgd92a2b4">
 <p>
 Draw a single bar <b>and</b> connect it to the <b>previous</b> bar/milestone.
 </p>
@@ -399,9 +399,9 @@ where the optional pattern argument are the same as <code>\ganttbar</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org87e060e" class="outline-4">
-<h4 id="org87e060e"><code>\ganttgroup</code></h4>
-<div class="outline-text-4" id="text-org87e060e">
+<div id="outline-container-orgc7b134a" class="outline-4">
+<h4 id="orgc7b134a"><code>\ganttgroup</code></h4>
+<div class="outline-text-4" id="text-orgc7b134a">
 <p>
 Draw a bar to group tasks.
 </p>
@@ -411,9 +411,9 @@ Draw a bar to group tasks.
 </div>
 </div>
 </div>
-<div id="outline-container-org77d7287" class="outline-4">
-<h4 id="org77d7287"><code>\ganttmilestone</code></h4>
-<div class="outline-text-4" id="text-org77d7287">
+<div id="outline-container-orgefbf27d" class="outline-4">
+<h4 id="orgefbf27d"><code>\ganttmilestone</code></h4>
+<div class="outline-text-4" id="text-orgefbf27d">
 <p>
 Draw a milestone using a diamond.
 </p>
@@ -423,9 +423,9 @@ Draw a milestone using a diamond.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc3caff9" class="outline-4">
-<h4 id="orgc3caff9"><code>\ganttmilestonecon</code></h4>
-<div class="outline-text-4" id="text-orgc3caff9">
+<div id="outline-container-orgc5effc2" class="outline-4">
+<h4 id="orgc5effc2"><code>\ganttmilestonecon</code></h4>
+<div class="outline-text-4" id="text-orgc5effc2">
 <p>
 Draw a milestone using a diamond <b>and</b> connect it to the previous bar/milestone.
 </p>
@@ -437,9 +437,9 @@ Draw a milestone using a diamond <b>and</b> connect it to the previous bar/miles
 </div>
 </div>
 </div>
-<div id="outline-container-org7593256" class="outline-2">
-<h2 id="org7593256">An example</h2>
-<div class="outline-text-2" id="text-org7593256">
+<div id="outline-container-org52bf02c" class="outline-2">
+<h2 id="org52bf02c">An example</h2>
+<div class="outline-text-2" id="text-org52bf02c">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="color: #b4fa70;">\documentclass</span>{<span style="color: #fce94f;">article</span>}
 

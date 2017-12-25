@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-09-17 Sun 22:46 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Linux - ZSH</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -235,21 +233,21 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org31a7d79">Introduction</a></li>
-<li><a href="#org2d000a3">Installation</a></li>
-<li><a href="#org4268fca">Configuration</a>
+<li><a href="#org50e8af8">Introduction</a></li>
+<li><a href="#org11df658">Installation</a></li>
+<li><a href="#orgf43e167">Configuration</a>
 <ul>
-<li><a href="#org46f560a">Mandatory</a></li>
-<li><a href="#orgb1dc011">Optional</a></li>
+<li><a href="#org6032643">Mandatory</a></li>
+<li><a href="#orgfde8f15">Optional</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org31a7d79" class="outline-2">
-<h2 id="org31a7d79">Introduction</h2>
-<div class="outline-text-2" id="text-org31a7d79">
+<div id="outline-container-org50e8af8" class="outline-2">
+<h2 id="org50e8af8">Introduction</h2>
+<div class="outline-text-2" id="text-org50e8af8">
 <p>
 As is well-known, <i>shell</i> is an interface provided by the Unix/Linux operation systems (OS) to subscribers whereby a user can interact with the kernel of the OS efficiently and conveniently.
 </p>
@@ -263,47 +261,47 @@ Zsh is indeed a powerful shell. Perhaps this is just the reason why it is termed
 </p>
 </div>
 </div>
-<div id="outline-container-org2d000a3" class="outline-2">
-<h2 id="org2d000a3">Installation</h2>
-<div class="outline-text-2" id="text-org2d000a3">
+<div id="outline-container-org11df658" class="outline-2">
+<h2 id="org11df658">Installation</h2>
+<div class="outline-text-2" id="text-org11df658">
 <p>
 For Archlinux, zsh can be easily installed by the following command.
 </p>
 <div class="org-src-container">
-<pre><code class="src src-sh">pacman -S zsh
-</code></pre>
+<pre class="src src-sh">pacman -S zsh
+</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4268fca" class="outline-2">
-<h2 id="org4268fca">Configuration</h2>
-<div class="outline-text-2" id="text-org4268fca">
+<div id="outline-container-orgf43e167" class="outline-2">
+<h2 id="orgf43e167">Configuration</h2>
+<div class="outline-text-2" id="text-orgf43e167">
 </div>
-<div id="outline-container-org46f560a" class="outline-3">
-<h3 id="org46f560a">Mandatory</h3>
-<div class="outline-text-3" id="text-org46f560a">
+<div id="outline-container-org6032643" class="outline-3">
+<h3 id="org6032643">Mandatory</h3>
+<div class="outline-text-3" id="text-org6032643">
 <p>
 After the installation, zsh can be made as the default shell by
 </p>
 <div class="org-src-container">
-<pre><code class="src src-sh">chsh -s /bin/zsh
-</code></pre>
+<pre class="src src-sh">chsh -s /bin/zsh
+</pre>
 </div>
 <p>
 Before that, all the shells available can be listed by
 </p>
 <div class="org-src-container">
-<pre><code class="src src-sh">chsh -l
-</code></pre>
+<pre class="src src-sh">chsh -l
+</pre>
 </div>
 <p>
 Then, you can add your own configuration in <code>~/.zshrc</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb1dc011" class="outline-3">
-<h3 id="orgb1dc011">Optional</h3>
-<div class="outline-text-3" id="text-orgb1dc011">
+<div id="outline-container-orgfde8f15" class="outline-3">
+<h3 id="orgfde8f15">Optional</h3>
+<div class="outline-text-3" id="text-orgfde8f15">
 <p>
 Even though zsh is usable out of the box, future configuration is necessary since the customization can really improve our experiences.
 </p>
@@ -316,10 +314,10 @@ Regarding the customization, there exists a toolkit already, e.g., <code>oh-my-z
 Here is an example <code>~/.zshrc</code>.
 </p>
 <div class="org-src-container">
-<pre><code class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">Lines configured by zsh-newuser-install</span>
-setopt notify
-unsetopt beep
-bindkey -e
+<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">Lines configured by zsh-newuser-install</span>
+<span style="color: #e090d7;">setopt</span> notify
+<span style="color: #e090d7;">unsetopt</span> beep
+<span style="color: #e090d7;">bindkey</span> -e
 <span style="color: #73d216;"># </span><span style="color: #73d216;">End of lines configured by zsh-newuser-install</span>
 
 [[ $<span style="color: #fcaf3e;">TERM</span>==<span style="color: #e9b96e;">"xterm"</span> ]] &amp;&amp; <span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">TERM</span>=xterm-256color
@@ -420,7 +418,7 @@ bindkey -e
 
 <span style="color: #e090d7;">source</span> $<span style="color: #fcaf3e;">ZSH</span>/oh-my-zsh.sh
 
-</code></pre>
+</pre>
 </div>
 </div>
 </div>

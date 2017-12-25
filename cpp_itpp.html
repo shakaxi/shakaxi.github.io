@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-07-09 Sun 23:44 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:02 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - IT++</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,22 +233,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2deb90f">Introduction</a></li>
-<li><a href="#orge12d8a0">Installation</a>
+<li><a href="#org7d17b9e">Introduction</a></li>
+<li><a href="#org4c48086">Installation</a>
 <ul>
-<li><a href="#orga815232">Install the third-party libraries</a></li>
-<li><a href="#org7d48305">Install IT++</a></li>
+<li><a href="#org9d5a67b">Install the third-party libraries</a></li>
+<li><a href="#org5f39f83">Install IT++</a></li>
 </ul>
 </li>
-<li><a href="#org9e87ae6">Usage</a></li>
-<li><a href="#org566e0c7">Interface</a></li>
+<li><a href="#org9efafc9">Usage</a></li>
+<li><a href="#orgf643f44">Interface</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2deb90f" class="outline-2">
-<h2 id="org2deb90f">Introduction</h2>
-<div class="outline-text-2" id="text-org2deb90f">
+<div id="outline-container-org7d17b9e" class="outline-2">
+<h2 id="org7d17b9e">Introduction</h2>
+<div class="outline-text-2" id="text-org7d17b9e">
 <p>
 <i>IT++</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a powerful C++ library, which is widely employed in the area of communication, esp. in simulation programming and computing. It has provided a variety of useful <i>classes</i>, e.g. <code>vector</code>, <code>matrix</code>. With the aid of IT++, programming in C++ is very similar to programming in <i>MATLAB</i>.
 </p>
@@ -259,9 +258,9 @@ IT++ is released under <i>GPL</i>, and can work on all the platforms, including 
 </p>
 </div>
 </div>
-<div id="outline-container-orge12d8a0" class="outline-2">
-<h2 id="orge12d8a0">Installation</h2>
-<div class="outline-text-2" id="text-orge12d8a0">
+<div id="outline-container-org4c48086" class="outline-2">
+<h2 id="org4c48086">Installation</h2>
+<div class="outline-text-2" id="text-org4c48086">
 <p>
 Optionally, its functionality can be greatly extended based on existing open-source or commercial libraries, i.e.
 </p>
@@ -280,9 +279,9 @@ Optionally, its functionality can be greatly extended based on existing open-sou
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orga815232" class="outline-3">
-<h3 id="orga815232">Install the third-party libraries</h3>
-<div class="outline-text-3" id="text-orga815232">
+<div id="outline-container-org9d5a67b" class="outline-3">
+<h3 id="org9d5a67b">Install the third-party libraries</h3>
+<div class="outline-text-3" id="text-org9d5a67b">
 <p>
 Herein, we take the open-source libraries above for instance. For <i>ArchLinux</i>, the installation can be performed by
 </p>
@@ -292,9 +291,9 @@ Herein, we take the open-source libraries above for instance. For <i>ArchLinux</
 </div>
 </div>
 </div>
-<div id="outline-container-org7d48305" class="outline-3">
-<h3 id="org7d48305">Install IT++</h3>
-<div class="outline-text-3" id="text-org7d48305">
+<div id="outline-container-org5f39f83" class="outline-3">
+<h3 id="org5f39f83">Install IT++</h3>
+<div class="outline-text-3" id="text-org5f39f83">
 <p>
 The lastest version of IT++ can be obtained via git, and installed to <code>/opt/itpp</code> by following commands.
 </p>
@@ -322,9 +321,9 @@ BTW, HTML documentation will be installed by default. Therefore, <i>doxygen</i> 
 </div>
 </div>
 </div>
-<div id="outline-container-org9e87ae6" class="outline-2">
-<h2 id="org9e87ae6">Usage</h2>
-<div class="outline-text-2" id="text-org9e87ae6">
+<div id="outline-container-org9efafc9" class="outline-2">
+<h2 id="org9efafc9">Usage</h2>
+<div class="outline-text-2" id="text-org9efafc9">
 <p>
 IT++ provides a script <code>/opt/itpp/bin/itpp-config</code> to simplify the compilation and linking of IT++ based programs.
 </p>
@@ -340,9 +339,9 @@ ln -s /opt/itpp/lib/libitpp.so.8 /usr/local/lib
 </div>
 </div>
 </div>
-<div id="outline-container-org566e0c7" class="outline-2">
-<h2 id="org566e0c7">Interface</h2>
-<div class="outline-text-2" id="text-org566e0c7">
+<div id="outline-container-orgf643f44" class="outline-2">
+<h2 id="orgf643f44">Interface</h2>
+<div class="outline-text-2" id="text-orgf643f44">
 <p>
 IT++ has its own file format, with a suffix <code>.it</code>. Fortunately, for the sake of convenient file exchange, it provides
 </p>

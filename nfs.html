@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:42 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NFS</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,11 +233,11 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org235a0a9">Installation</a></li>
-<li><a href="#orgec605ae">Configuration</a>
+<li><a href="#orga234d16">Installation</a></li>
+<li><a href="#org0e669dc">Configuration</a>
 <ul>
-<li><a href="#org999cdf9">Server</a></li>
-<li><a href="#orgf9b7e78">Client</a></li>
+<li><a href="#org71c0df4">Server</a></li>
+<li><a href="#orga943222">Client</a></li>
 </ul>
 </li>
 </ul>
@@ -247,21 +246,22 @@ for the JavaScript code in this tag.
 <p>
 Network file system (NFS) is a simple approach for share and exchange files in Unix/Linux. This post summarizes its installation and configuration.
 </p>
-<div id="outline-container-org235a0a9" class="outline-2">
-<h2 id="org235a0a9">Installation</h2>
-<div class="outline-text-2" id="text-org235a0a9">
+<div id="outline-container-orga234d16" class="outline-2">
+<h2 id="orga234d16">Installation</h2>
+<div class="outline-text-2" id="text-orga234d16">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S nfs-utils
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgec605ae" class="outline-2">
-<h2 id="orgec605ae">Configuration</h2>
-<div class="outline-text-2" id="text-orgec605ae">
-</div><div id="outline-container-org999cdf9" class="outline-3">
-<h3 id="org999cdf9">Server</h3>
-<div class="outline-text-3" id="text-org999cdf9">
+<div id="outline-container-org0e669dc" class="outline-2">
+<h2 id="org0e669dc">Configuration</h2>
+<div class="outline-text-2" id="text-org0e669dc">
+</div>
+<div id="outline-container-org71c0df4" class="outline-3">
+<h3 id="org71c0df4">Server</h3>
+<div class="outline-text-3" id="text-org71c0df4">
 <p>
 Edit <code>/etc/exports</code>, e.g.
 </p>
@@ -293,9 +293,9 @@ systemctl start nfs-server.service
 </div>
 </div>
 </div>
-<div id="outline-container-orgf9b7e78" class="outline-3">
-<h3 id="orgf9b7e78">Client</h3>
-<div class="outline-text-3" id="text-orgf9b7e78">
+<div id="outline-container-orga943222" class="outline-3">
+<h3 id="orga943222">Client</h3>
+<div class="outline-text-3" id="text-orga943222">
 <p>
 Add the corresponding entries in <code>/etc/fstab</code>, e.g.
 </p>

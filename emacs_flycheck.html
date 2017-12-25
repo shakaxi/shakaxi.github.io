@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:02 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Flycheck</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,24 +233,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgce2fb89">Introduction</a></li>
-<li><a href="#orgeea7a14">Installation</a></li>
-<li><a href="#org9e6aa5a">Configuration</a></li>
+<li><a href="#orge8ba34c">Introduction</a></li>
+<li><a href="#org0562fcf">Installation</a></li>
+<li><a href="#orgaa91cf8">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgce2fb89" class="outline-2">
-<h2 id="orgce2fb89">Introduction</h2>
-<div class="outline-text-2" id="text-orgce2fb89">
+<div id="outline-container-orge8ba34c" class="outline-2">
+<h2 id="orge8ba34c">Introduction</h2>
+<div class="outline-text-2" id="text-orge8ba34c">
 <p>
 <i>Flycheck</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a on-the-fly syntax checking extension of Emacs, which supports a variety number of programming languages. It greatly facilitates the programming experience.
 </p>
 </div>
 </div>
-<div id="outline-container-orgeea7a14" class="outline-2">
-<h2 id="orgeea7a14">Installation</h2>
-<div class="outline-text-2" id="text-orgeea7a14">
+<div id="outline-container-org0562fcf" class="outline-2">
+<h2 id="org0562fcf">Installation</h2>
+<div class="outline-text-2" id="text-org0562fcf">
 <p>
 Flycheck can be directly installed via <i>ELPA</i>.
 </p>
@@ -262,9 +261,9 @@ flycheck
 </div>
 </div>
 </div>
-<div id="outline-container-org9e6aa5a" class="outline-2">
-<h2 id="org9e6aa5a">Configuration</h2>
-<div class="outline-text-2" id="text-org9e6aa5a">
+<div id="outline-container-orgaa91cf8" class="outline-2">
+<h2 id="orgaa91cf8">Configuration</h2>
+<div class="outline-text-2" id="text-orgaa91cf8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">Enable global flycheck mode</span>
 (add-hook 'after-init-hook #'global-flycheck-mode)

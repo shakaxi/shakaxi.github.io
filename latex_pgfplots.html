@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:42 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Pgfplots</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,38 +233,38 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgec75342">Introduction</a></li>
-<li><a href="#org50fcdd3">Installation</a></li>
-<li><a href="#org38ad1eb">Usage</a>
+<li><a href="#orgea8b4a7">Introduction</a></li>
+<li><a href="#org46ee5af">Installation</a></li>
+<li><a href="#org6c32aaa">Usage</a>
 <ul>
-<li><a href="#orgc8749c8"><code>AXIS-TYPE</code></a></li>
-<li><a href="#orgab486f8"><code>FORMULA</code></a></li>
-<li><a href="#org2e203eb">Options</a></li>
+<li><a href="#org7fccac4"><code>AXIS-TYPE</code></a></li>
+<li><a href="#org3be565f"><code>FORMULA</code></a></li>
+<li><a href="#org7479d6a">Options</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgec75342" class="outline-2">
-<h2 id="orgec75342">Introduction</h2>
-<div class="outline-text-2" id="text-orgec75342">
+<div id="outline-container-orgea8b4a7" class="outline-2">
+<h2 id="orgea8b4a7">Introduction</h2>
+<div class="outline-text-2" id="text-orgea8b4a7">
 <p>
 <i>Pgfplots</i> is an excellent <i>LaTeX</i> package to plot high quality graphs. This post just summaries its basic usages.
 </p>
 </div>
 </div>
-<div id="outline-container-org50fcdd3" class="outline-2">
-<h2 id="org50fcdd3">Installation</h2>
-<div class="outline-text-2" id="text-org50fcdd3">
+<div id="outline-container-org46ee5af" class="outline-2">
+<h2 id="org46ee5af">Installation</h2>
+<div class="outline-text-2" id="text-org46ee5af">
 <p>
 Pgfplots is a built-in package in the <a href="http://tug.org">texlive</a>. As long as texlive is ready, pgfplots is out-of-the-box.
 </p>
 </div>
 </div>
-<div id="outline-container-org38ad1eb" class="outline-2">
-<h2 id="org38ad1eb">Usage</h2>
-<div class="outline-text-2" id="text-org38ad1eb">
+<div id="outline-container-org6c32aaa" class="outline-2">
+<h2 id="org6c32aaa">Usage</h2>
+<div class="outline-text-2" id="text-org6c32aaa">
 <p>
 Pgfplots depends on <a href="./latex_pgf_tikz.html">pgf/tikz</a>, and the statements are encapsulated in the environment of <i>tikzpicture</i>. The basic plot commands are <code>\addplot</code> and <code>\addplot3</code> for 2D or 3D plot purpose, respectively. It should be noticed that each of them has a variant, i.e. <code>\addplot+</code> and <code>\addplot3+</code>. <code>\addplot/\addplot3</code> uses the provided local options only, while <code>\addplot+/\addplot3+</code> adopts both the global and local options.
 </p>
@@ -300,17 +299,17 @@ Templates for pgfplots usage can be presented as follows.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc8749c8" class="outline-3">
-<h3 id="orgc8749c8"><code>AXIS-TYPE</code></h3>
-<div class="outline-text-3" id="text-orgc8749c8">
+<div id="outline-container-org7fccac4" class="outline-3">
+<h3 id="org7fccac4"><code>AXIS-TYPE</code></h3>
+<div class="outline-text-3" id="text-org7fccac4">
 <p>
 The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis/polaraxis</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgab486f8" class="outline-3">
-<h3 id="orgab486f8"><code>FORMULA</code></h3>
-<div class="outline-text-3" id="text-orgab486f8">
+<div id="outline-container-org3be565f" class="outline-3">
+<h3 id="org3be565f"><code>FORMULA</code></h3>
+<div class="outline-text-3" id="text-org3be565f">
 <ul class="org-ul">
 <li>plain function<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, e.g.</li>
 </ul>
@@ -358,9 +357,9 @@ a2 b2 c2
 </div>
 </div>
 </div>
-<div id="outline-container-org2e203eb" class="outline-3">
-<h3 id="org2e203eb">Options</h3>
-<div class="outline-text-3" id="text-org2e203eb">
+<div id="outline-container-org7479d6a" class="outline-3">
+<h3 id="org7479d6a">Options</h3>
+<div class="outline-text-3" id="text-org7479d6a">
 <p>
 <code>AXIS-OPTIONS</code> and <code>PLOT-OPTIONS</code> are basically the same, and the latter overrides the former.
 </p>

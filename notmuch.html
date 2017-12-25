@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-12-24 Sun 12:01 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Notmuch</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -235,24 +233,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org703808e">Introduction</a></li>
-<li><a href="#orgcfe6287">Installation</a></li>
-<li><a href="#org69046a8">Configuration</a>
+<li><a href="#org0d01e45">Introduction</a></li>
+<li><a href="#org6bc2ffc">Installation</a></li>
+<li><a href="#org0176e86">Configuration</a>
 <ul>
-<li><a href="#org12b5733"><code>~/.notmuch-config</code></a></li>
-<li><a href="#org54006c8"><code>~/.emacs.d/init.el</code></a></li>
-<li><a href="#org9c3bdb5">Hooks</a></li>
-<li><a href="#org7a01f05">Automatics</a></li>
+<li><a href="#orgabc8724"><code>~/.notmuch-config</code></a></li>
+<li><a href="#orge474df7"><code>~/.emacs.d/init.el</code></a></li>
+<li><a href="#orgd5e3912">Hooks</a></li>
+<li><a href="#org23bf083">Automatics</a></li>
 </ul>
 </li>
-<li><a href="#org2d43d4f">Key binding</a></li>
+<li><a href="#org59b2fa3">Key binding</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org703808e" class="outline-2">
-<h2 id="org703808e">Introduction</h2>
-<div class="outline-text-2" id="text-org703808e">
+<div id="outline-container-org0d01e45" class="outline-2">
+<h2 id="org0d01e45">Introduction</h2>
+<div class="outline-text-2" id="text-org0d01e45">
 <p>
 <code>Notmuch</code> is a mail system<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. It can efficiently manage a fairly large number of emails. Particularly, it supports fast email searching and filtering based on tags, which is extremely similar to Gmail's tags whereby various virtual folders can be flexibly realized.
 </p>
@@ -262,22 +260,22 @@ This post is composed just to summarize the basic installation and configuration
 </p>
 </div>
 </div>
-<div id="outline-container-orgcfe6287" class="outline-2">
-<h2 id="orgcfe6287">Installation</h2>
-<div class="outline-text-2" id="text-orgcfe6287">
+<div id="outline-container-org6bc2ffc" class="outline-2">
+<h2 id="org6bc2ffc">Installation</h2>
+<div class="outline-text-2" id="text-org6bc2ffc">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S notmuch
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org69046a8" class="outline-2">
-<h2 id="org69046a8">Configuration</h2>
-<div class="outline-text-2" id="text-org69046a8">
+<div id="outline-container-org0176e86" class="outline-2">
+<h2 id="org0176e86">Configuration</h2>
+<div class="outline-text-2" id="text-org0176e86">
 </div>
-<div id="outline-container-org12b5733" class="outline-3">
-<h3 id="org12b5733"><code>~/.notmuch-config</code></h3>
-<div class="outline-text-3" id="text-org12b5733">
+<div id="outline-container-orgabc8724" class="outline-3">
+<h3 id="orgabc8724"><code>~/.notmuch-config</code></h3>
+<div class="outline-text-3" id="text-orgabc8724">
 <p>
 The basic configuration can be performed by either
 </p>
@@ -316,9 +314,9 @@ The basic configuration can be performed by either
 </div>
 </div>
 </div>
-<div id="outline-container-org54006c8" class="outline-3">
-<h3 id="org54006c8"><code>~/.emacs.d/init.el</code></h3>
-<div class="outline-text-3" id="text-org54006c8">
+<div id="outline-container-orge474df7" class="outline-3">
+<h3 id="orge474df7"><code>~/.emacs.d/init.el</code></h3>
+<div class="outline-text-3" id="text-orge474df7">
 <p>
 Add following content to the configuration of Emacs.
 </p>
@@ -346,9 +344,9 @@ Add following content to the configuration of Emacs.
 </div>
 </div>
 </div>
-<div id="outline-container-org9c3bdb5" class="outline-3">
-<h3 id="org9c3bdb5">Hooks</h3>
-<div class="outline-text-3" id="text-org9c3bdb5">
+<div id="outline-container-orgd5e3912" class="outline-3">
+<h3 id="orgd5e3912">Hooks</h3>
+<div class="outline-text-3" id="text-orgd5e3912">
 <p>
 Additionally, notmuch supports hooks which are essentially scripts in <code>/MAIL/REPO/.notmuch/hooks</code> whereby users can specify and customize the behaviors of notmuch. Currently, following scripts and hooks are available.
 </p>
@@ -375,9 +373,9 @@ notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
 </dl>
 </div>
 </div>
-<div id="outline-container-org7a01f05" class="outline-3">
-<h3 id="org7a01f05">Automatics</h3>
-<div class="outline-text-3" id="text-org7a01f05">
+<div id="outline-container-org23bf083" class="outline-3">
+<h3 id="org23bf083">Automatics</h3>
+<div class="outline-text-3" id="text-org23bf083">
 <ul class="org-ul">
 <li>Add new intended task by <code>crontab -e</code> with following content</li>
 </ul>
@@ -400,16 +398,16 @@ systemctl start cronie.service
 </div>
 </div>
 </div>
-<div id="outline-container-org2d43d4f" class="outline-2">
-<h2 id="org2d43d4f">Key binding</h2>
-<div class="outline-text-2" id="text-org2d43d4f">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org59b2fa3" class="outline-2">
+<h2 id="org59b2fa3">Key binding</h2>
+<div class="outline-text-2" id="text-org59b2fa3">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>

@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:02 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DOT</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,36 +233,36 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2181374">graph</a>
+<li><a href="#org19e9d1d">graph</a>
 <ul>
-<li><a href="#org56a1d8f">rankdir</a></li>
-<li><a href="#org2aa37c8">size</a></li>
-<li><a href="#org7fc234f">ratio</a></li>
-<li><a href="#org9990aad">rotate</a></li>
-<li><a href="#orgd73d556">nodesep</a></li>
-<li><a href="#org74ad9bf">ranksep</a></li>
+<li><a href="#orgd1ff40f">rankdir</a></li>
+<li><a href="#org8e62b78">size</a></li>
+<li><a href="#org69f691b">ratio</a></li>
+<li><a href="#orgb40f491">rotate</a></li>
+<li><a href="#orgf719030">nodesep</a></li>
+<li><a href="#org15c3199">ranksep</a></li>
 </ul>
 </li>
-<li><a href="#org9d544ed">node</a>
+<li><a href="#org3f2f261">node</a>
 <ul>
-<li><a href="#org2461b2c">shape</a>
+<li><a href="#orga10bc37">shape</a>
 <ul>
-<li><a href="#org506bc1c">Polygon-based shapes</a></li>
-<li><a href="#org4f379d6">Record-based shapes</a></li>
+<li><a href="#org6aa3a63">Polygon-based shapes</a></li>
+<li><a href="#org2c90767">Record-based shapes</a></li>
 </ul>
 </li>
-<li><a href="#orgaab4567">width</a></li>
-<li><a href="#orgd1f024b">height</a></li>
-<li><a href="#org6c4f945">label</a></li>
-<li><a href="#org58d8fe4">style</a></li>
-<li><a href="#orge2fb718">port</a></li>
+<li><a href="#org496f9a0">width</a></li>
+<li><a href="#orgf0b64fc">height</a></li>
+<li><a href="#orgcce0a25">label</a></li>
+<li><a href="#orge0858cc">style</a></li>
+<li><a href="#org7784d97">port</a></li>
 </ul>
 </li>
-<li><a href="#org08f5480">edge</a>
+<li><a href="#orgbd691e0">edge</a>
 <ul>
-<li><a href="#orgd2ac973">label</a></li>
-<li><a href="#org9ef3357">dir</a></li>
-<li><a href="#org6eb5a26">headport/tailport</a></li>
+<li><a href="#org4e9cd37">label</a></li>
+<li><a href="#org20a46a0">dir</a></li>
+<li><a href="#org67f5326">headport/tailport</a></li>
 </ul>
 </li>
 </ul>
@@ -285,16 +284,16 @@ And the default values can be specified as below. And they will take effect afte
 edge [<span style="color: #fcaf3e;">ATTRIBUTE1</span>=VALUE1, <span style="color: #fcaf3e;">ATTRIBUTE2</span>=VALUE2, ...];
 </pre>
 </div>
-<div id="outline-container-org2181374" class="outline-2">
-<h2 id="org2181374">graph</h2>
-<div class="outline-text-2" id="text-org2181374">
+<div id="outline-container-org19e9d1d" class="outline-2">
+<h2 id="org19e9d1d">graph</h2>
+<div class="outline-text-2" id="text-org19e9d1d">
 <p>
 A graph can be directed or undirected, corresponding to <code>digraph</code> and <code>graph</code>, respectively. Within a graph, a <code>subgraph</code> can be defined as a subset of nodes and edges.
 </p>
 </div>
-<div id="outline-container-org56a1d8f" class="outline-3">
-<h3 id="org56a1d8f">rankdir</h3>
-<div class="outline-text-3" id="text-org56a1d8f">
+<div id="outline-container-orgd1ff40f" class="outline-3">
+<h3 id="orgd1ff40f">rankdir</h3>
+<div class="outline-text-3" id="text-orgd1ff40f">
 <ul class="org-ul">
 <li><code>TB</code>: from top to bottom (default value)</li>
 <li><code>BT</code>: from bottom to top</li>
@@ -303,55 +302,55 @@ A graph can be directed or undirected, corresponding to <code>digraph</code> and
 </ul>
 </div>
 </div>
-<div id="outline-container-org2aa37c8" class="outline-3">
-<h3 id="org2aa37c8">size</h3>
-<div class="outline-text-3" id="text-org2aa37c8">
+<div id="outline-container-org8e62b78" class="outline-3">
+<h3 id="org8e62b78">size</h3>
+<div class="outline-text-3" id="text-org8e62b78">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #fcaf3e;">size</span>=<span style="color: #e9b96e;">"x,y"</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org7fc234f" class="outline-3">
-<h3 id="org7fc234f">ratio</h3>
+<div id="outline-container-org69f691b" class="outline-3">
+<h3 id="org69f691b">ratio</h3>
 </div>
-<div id="outline-container-org9990aad" class="outline-3">
-<h3 id="org9990aad">rotate</h3>
+<div id="outline-container-orgb40f491" class="outline-3">
+<h3 id="orgb40f491">rotate</h3>
 </div>
-<div id="outline-container-orgd73d556" class="outline-3">
-<h3 id="orgd73d556">nodesep</h3>
-<div class="outline-text-3" id="text-orgd73d556">
+<div id="outline-container-orgf719030" class="outline-3">
+<h3 id="orgf719030">nodesep</h3>
+<div class="outline-text-3" id="text-orgf719030">
 <p>
 Separation between nodes of the same rank in inches.
 </p>
 </div>
 </div>
-<div id="outline-container-org74ad9bf" class="outline-3">
-<h3 id="org74ad9bf">ranksep</h3>
-<div class="outline-text-3" id="text-org74ad9bf">
+<div id="outline-container-org15c3199" class="outline-3">
+<h3 id="org15c3199">ranksep</h3>
+<div class="outline-text-3" id="text-org15c3199">
 <p>
 Separation between ranks in inches.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org9d544ed" class="outline-2">
-<h2 id="org9d544ed">node</h2>
-<div class="outline-text-2" id="text-org9d544ed">
+<div id="outline-container-org3f2f261" class="outline-2">
+<h2 id="org3f2f261">node</h2>
+<div class="outline-text-2" id="text-org3f2f261">
 <p>
 A node is created when its name first appears in the file. A node has following attributes
 </p>
 </div>
-<div id="outline-container-org2461b2c" class="outline-3">
-<h3 id="org2461b2c">shape</h3>
-<div class="outline-text-3" id="text-org2461b2c">
+<div id="outline-container-orga10bc37" class="outline-3">
+<h3 id="orga10bc37">shape</h3>
+<div class="outline-text-3" id="text-orga10bc37">
 <p>
 Node shapes fall into two categories, polygon-based shapes and record-based shapes as below.
 </p>
 </div>
-<div id="outline-container-org506bc1c" class="outline-4">
-<h4 id="org506bc1c">Polygon-based shapes</h4>
-<div class="outline-text-4" id="text-org506bc1c">
+<div id="outline-container-org6aa3a63" class="outline-4">
+<h4 id="org6aa3a63">Polygon-based shapes</h4>
+<div class="outline-text-4" id="text-org6aa3a63">
 <ul class="org-ul">
 <li><code>ellipse</code> (default value)</li>
 <li><code>box</code></li>
@@ -361,9 +360,9 @@ Node shapes fall into two categories, polygon-based shapes and record-based shap
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f379d6" class="outline-4">
-<h4 id="org4f379d6">Record-based shapes</h4>
-<div class="outline-text-4" id="text-org4f379d6">
+<div id="outline-container-org2c90767" class="outline-4">
+<h4 id="org2c90767">Record-based shapes</h4>
+<div class="outline-text-4" id="text-org2c90767">
 <ul class="org-ul">
 <li><code>record</code></li>
 <li><code>Mrecord</code>: rounded corners</li>
@@ -374,25 +373,25 @@ Record-based nodes represent recursive lists of fields, which are drawn as alter
 </div>
 </div>
 </div>
-<div id="outline-container-orgaab4567" class="outline-3">
-<h3 id="orgaab4567">width</h3>
-<div class="outline-text-3" id="text-orgaab4567">
+<div id="outline-container-org496f9a0" class="outline-3">
+<h3 id="org496f9a0">width</h3>
+<div class="outline-text-3" id="text-org496f9a0">
 <p>
 The default value is 0.75
 </p>
 </div>
 </div>
-<div id="outline-container-orgd1f024b" class="outline-3">
-<h3 id="orgd1f024b">height</h3>
-<div class="outline-text-3" id="text-orgd1f024b">
+<div id="outline-container-orgf0b64fc" class="outline-3">
+<h3 id="orgf0b64fc">height</h3>
+<div class="outline-text-3" id="text-orgf0b64fc">
 <p>
 The default value is 0.5
 </p>
 </div>
 </div>
-<div id="outline-container-org6c4f945" class="outline-3">
-<h3 id="org6c4f945">label</h3>
-<div class="outline-text-3" id="text-org6c4f945">
+<div id="outline-container-orgcce0a25" class="outline-3">
+<h3 id="orgcce0a25">label</h3>
+<div class="outline-text-3" id="text-orgcce0a25">
 <p>
 The default label for a node is its name. For <b>multiline labels</b>, any of the following escape symbols will kick off a new line
 </p>
@@ -406,9 +405,9 @@ The default font is 14pt Times Roman in black color. For other font families, si
 </p>
 </div>
 </div>
-<div id="outline-container-org58d8fe4" class="outline-3">
-<h3 id="org58d8fe4">style</h3>
-<div class="outline-text-3" id="text-org58d8fe4">
+<div id="outline-container-orge0858cc" class="outline-3">
+<h3 id="orge0858cc">style</h3>
+<div class="outline-text-3" id="text-orge0858cc">
 <ul class="org-ul">
 <li><code>solid</code></li>
 <li><code>dashed</code></li>
@@ -421,9 +420,9 @@ The default font is 14pt Times Roman in black color. For other font families, si
 </ul>
 </div>
 </div>
-<div id="outline-container-orge2fb718" class="outline-3">
-<h3 id="orge2fb718">port</h3>
-<div class="outline-text-3" id="text-orge2fb718">
+<div id="outline-container-org7784d97" class="outline-3">
+<h3 id="org7784d97">port</h3>
+<div class="outline-text-3" id="text-org7784d97">
 <p>
 A node <i>port</i> is a point where edges can attach to a node<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. For any nodes, 8 ports are defined, <code>e</code>, <code>s</code>, <code>w</code>, <code>n</code>, <code>se</code>, <code>sw</code>, <code>ne</code>, <code>nw</code>. They can be used in either of the both ways.
 </p>
@@ -434,9 +433,9 @@ A node <i>port</i> is a point where edges can attach to a node<sup><a id="fnr.3"
 </div>
 </div>
 </div>
-<div id="outline-container-org08f5480" class="outline-2">
-<h2 id="org08f5480">edge</h2>
-<div class="outline-text-2" id="text-org08f5480">
+<div id="outline-container-orgbd691e0" class="outline-2">
+<h2 id="orgbd691e0">edge</h2>
+<div class="outline-text-2" id="text-orgbd691e0">
 <p>
 A edge is created when nodes are joined by the edge operator
 </p>
@@ -445,17 +444,17 @@ A edge is created when nodes are joined by the edge operator
 <li>Undirected graph: <code>--</code></li>
 </ul>
 </div>
-<div id="outline-container-orgd2ac973" class="outline-3">
-<h3 id="orgd2ac973">label</h3>
-<div class="outline-text-3" id="text-orgd2ac973">
+<div id="outline-container-org4e9cd37" class="outline-3">
+<h3 id="org4e9cd37">label</h3>
+<div class="outline-text-3" id="text-org4e9cd37">
 <p>
 Edges are unlabeled by default. As the same as node label, an edge label can also be explicitly set using the <code>label</code> attribute. Specially, an edge can be given additional labels with attributes <code>headlabel</code> and <code>taillabel</code>. For edge labels, the font can be customized using the attributes <code>labelfontname</code>, <code>labelfontsize</code> and <code>labelfontcolor</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org9ef3357" class="outline-3">
-<h3 id="org9ef3357">dir</h3>
-<div class="outline-text-3" id="text-org9ef3357">
+<div id="outline-container-org20a46a0" class="outline-3">
+<h3 id="org20a46a0">dir</h3>
+<div class="outline-text-3" id="text-org20a46a0">
 <p>
 This attribute is used to set arrowheads, which can be
 </p>
@@ -467,9 +466,9 @@ This attribute is used to set arrowheads, which can be
 </ul>
 </div>
 </div>
-<div id="outline-container-org6eb5a26" class="outline-3">
-<h3 id="org6eb5a26">headport/tailport</h3>
-<div class="outline-text-3" id="text-org6eb5a26">
+<div id="outline-container-org67f5326" class="outline-3">
+<h3 id="org67f5326">headport/tailport</h3>
+<div class="outline-text-3" id="text-org67f5326">
 <div class="org-src-container">
 <pre class="src src-sh">NODE_NAME1 -&gt; NODE_NAME2 [headport/tailport=e/w/n/s/se/sw/ne/nw, <span style="color: #fcaf3e;">OTHER_ATTRIBUTE</span>=VALUE, ...];
 </pre>

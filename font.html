@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fonts for Linux</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -234,22 +233,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org555adf7">Infinality</a>
+<li><a href="#org771f000">Infinality</a>
 <ul>
-<li><a href="#org7bc2edd">Append following repositories to <code>/etc/pacman.conf</code>.</a></li>
-<li><a href="#orge948b08">Install infinality fonts</a>
+<li><a href="#org9a61212">Append following repositories to <code>/etc/pacman.conf</code>.</a></li>
+<li><a href="#orgc0652d4">Install infinality fonts</a>
 <ul>
-<li><a href="#org375802f">For x86-64</a></li>
-<li><a href="#orga28b6c1">For x86-32</a></li>
+<li><a href="#orgfebf5be">For x86-64</a></li>
+<li><a href="#org613c23f">For x86-32</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org20a8e50">Adobe</a></li>
-<li><a href="#orgac51d64">Fira</a></li>
-<li><a href="#orga543376">Ubuntu</a></li>
-<li><a href="#org5f1da28">Google</a></li>
-<li><a href="#org5521356">WenQuanYi</a></li>
+<li><a href="#org7423262">Adobe</a></li>
+<li><a href="#orga5fe029">Fira</a></li>
+<li><a href="#org2a74358">Ubuntu</a></li>
+<li><a href="#org27e0b91">Google</a></li>
+<li><a href="#org8f2810d">WenQuanYi</a></li>
 </ul>
 </div>
 </div>
@@ -257,12 +256,13 @@ for the JavaScript code in this tag.
 On Unix/Linux desktop, there are a rich number of open source projects for font rendering. This post lists some pretty excellent choices. Taking ArchLinux for instance, the installations are presented.
 </p>
 
-<div id="outline-container-org555adf7" class="outline-2">
-<h2 id="org555adf7">Infinality</h2>
-<div class="outline-text-2" id="text-org555adf7">
-</div><div id="outline-container-org7bc2edd" class="outline-3">
-<h3 id="org7bc2edd">Append following repositories to <code>/etc/pacman.conf</code>.</h3>
-<div class="outline-text-3" id="text-org7bc2edd">
+<div id="outline-container-org771f000" class="outline-2">
+<h2 id="org771f000">Infinality</h2>
+<div class="outline-text-2" id="text-org771f000">
+</div>
+<div id="outline-container-org9a61212" class="outline-3">
+<h3 id="org9a61212">Append following repositories to <code>/etc/pacman.conf</code>.</h3>
+<div class="outline-text-3" id="text-org9a61212">
 <div class="org-src-container">
 <pre class="src src-sh">[infinality-bundle]
 <span style="color: #fcaf3e;">Server</span>= http://bohoomil.com/repo/$<span style="color: #fcaf3e;">arch</span>
@@ -274,21 +274,22 @@ On Unix/Linux desktop, there are a rich number of open source projects for font 
 </div>
 </div>
 </div>
-<div id="outline-container-orge948b08" class="outline-3">
-<h3 id="orge948b08">Install infinality fonts</h3>
-<div class="outline-text-3" id="text-orge948b08">
-</div><div id="outline-container-org375802f" class="outline-4">
-<h4 id="org375802f">For x86-64</h4>
-<div class="outline-text-4" id="text-org375802f">
+<div id="outline-container-orgc0652d4" class="outline-3">
+<h3 id="orgc0652d4">Install infinality fonts</h3>
+<div class="outline-text-3" id="text-orgc0652d4">
+</div>
+<div id="outline-container-orgfebf5be" class="outline-4">
+<h4 id="orgfebf5be">For x86-64</h4>
+<div class="outline-text-4" id="text-orgfebf5be">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S infinality-bundle ibfonts-meta-extended infinality-bundle-multilib
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orga28b6c1" class="outline-4">
-<h4 id="orga28b6c1">For x86-32</h4>
-<div class="outline-text-4" id="text-orga28b6c1">
+<div id="outline-container-org613c23f" class="outline-4">
+<h4 id="org613c23f">For x86-32</h4>
+<div class="outline-text-4" id="text-org613c23f">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S infinality-bundle ibfonts-meta-extended
 </pre>
@@ -297,18 +298,18 @@ On Unix/Linux desktop, there are a rich number of open source projects for font 
 </div>
 </div>
 </div>
-<div id="outline-container-org20a8e50" class="outline-2">
-<h2 id="org20a8e50">Adobe</h2>
-<div class="outline-text-2" id="text-org20a8e50">
+<div id="outline-container-org7423262" class="outline-2">
+<h2 id="org7423262">Adobe</h2>
+<div class="outline-text-2" id="text-org7423262">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S adobe-source-{code,sans,serif}-pro-fonts
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgac51d64" class="outline-2">
-<h2 id="orgac51d64">Fira</h2>
-<div class="outline-text-2" id="text-orgac51d64">
+<div id="outline-container-orga5fe029" class="outline-2">
+<h2 id="orga5fe029">Fira</h2>
+<div class="outline-text-2" id="text-orga5fe029">
 <p>
 Fira font is dedicated for Firefox operation system (OS).
 </p>
@@ -318,18 +319,18 @@ Fira font is dedicated for Firefox operation system (OS).
 </div>
 </div>
 </div>
-<div id="outline-container-orga543376" class="outline-2">
-<h2 id="orga543376">Ubuntu</h2>
-<div class="outline-text-2" id="text-orga543376">
+<div id="outline-container-org2a74358" class="outline-2">
+<h2 id="org2a74358">Ubuntu</h2>
+<div class="outline-text-2" id="text-org2a74358">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S ttf-ubuntu-font-family
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org5f1da28" class="outline-2">
-<h2 id="org5f1da28">Google</h2>
-<div class="outline-text-2" id="text-org5f1da28">
+<div id="outline-container-org27e0b91" class="outline-2">
+<h2 id="org27e0b91">Google</h2>
+<div class="outline-text-2" id="text-org27e0b91">
 <p>
 Google archives a lot of open source fonts.
 </p>
@@ -339,9 +340,9 @@ Google archives a lot of open source fonts.
 </div>
 </div>
 </div>
-<div id="outline-container-org5521356" class="outline-2">
-<h2 id="org5521356">WenQuanYi</h2>
-<div class="outline-text-2" id="text-org5521356">
+<div id="outline-container-org8f2810d" class="outline-2">
+<h2 id="org8f2810d">WenQuanYi</h2>
+<div class="outline-text-2" id="text-org8f2810d">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S wqy-{bitmapfont,microhei,microhei-lite,zenhei}
 </pre>

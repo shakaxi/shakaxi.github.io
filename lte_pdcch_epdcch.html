@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:43 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LTE - PDCCH &amp; EPDCCH</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -256,33 +255,33 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1ffe848">Introduction</a></li>
-<li><a href="#orga74771c">PDCCH</a></li>
-<li><a href="#org4bc4a05">EPDCCH</a></li>
-<li><a href="#org5b5afe9">Blind decoding of PDCCH and EPDCCH</a>
+<li><a href="#orgd096f12">Introduction</a></li>
+<li><a href="#org8c81fcd">PDCCH</a></li>
+<li><a href="#orgc88535d">EPDCCH</a></li>
+<li><a href="#orge3e40ea">Blind decoding of PDCCH and EPDCCH</a>
 <ul>
-<li><a href="#org0b4bb0b">PDCCH</a></li>
-<li><a href="#org999b0b0">EPDCCH</a></li>
-<li><a href="#orge6af2b3">Blind decoding attempts</a></li>
+<li><a href="#org2f78b40">PDCCH</a></li>
+<li><a href="#orgee743f3">EPDCCH</a></li>
+<li><a href="#org85022dd">Blind decoding attempts</a></li>
 </ul>
 </li>
-<li><a href="#orgae10e27">Transmission mode (TM) signalling</a></li>
+<li><a href="#orga6934ac">Transmission mode (TM) signalling</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1ffe848" class="outline-2">
-<h2 id="org1ffe848">Introduction</h2>
-<div class="outline-text-2" id="text-org1ffe848">
+<div id="outline-container-orgd096f12" class="outline-2">
+<h2 id="orgd096f12">Introduction</h2>
+<div class="outline-text-2" id="text-orgd096f12">
 <p>
 This post provides a brief summary on <i>physical downlink control channel (PDCCH)</i> and <i>enhanced physical downlink control channel (EPDCCH)</i> in long term evolution (LTE). Note the summary is based on the famous book, <i>4G, LTE-Advanced Pro and the Road to 5G</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga74771c" class="outline-2">
-<h2 id="orga74771c">PDCCH</h2>
-<div class="outline-text-2" id="text-orga74771c">
+<div id="outline-container-org8c81fcd" class="outline-2">
+<h2 id="org8c81fcd">PDCCH</h2>
+<div class="outline-text-2" id="text-org8c81fcd">
 <p>
 PDCCH carries <i>downlink control information (DCI)</i>, e.g. scheduling decisions and power control commands. Since each scheduling message is transmitted on a separate PDCCH, there are multiple simultaneous PDCCH transmission within each cell. From a UE perspective, each UE can receive multiple DCI messages in the same subframe, e.g. it is scheduled simultaneously in uplink and downlink.
 </p>
@@ -305,9 +304,9 @@ Since a UE is not signalled about the aggregation level of each PDCCH, it has to
 </div>
 </div>
 
-<div id="outline-container-org4bc4a05" class="outline-2">
-<h2 id="org4bc4a05">EPDCCH</h2>
-<div class="outline-text-2" id="text-org4bc4a05">
+<div id="outline-container-orgc88535d" class="outline-2">
+<h2 id="orgc88535d">EPDCCH</h2>
+<div class="outline-text-2" id="text-orgc88535d">
 <p>
 EPDCCH was introduced as a complementary control channel in release 11. Different from PDCCH, EPDCCH can use precoding and be detected based on DMRS. Moreover, EPDCCH is mapped to PDSCH region.
 </p>
@@ -326,17 +325,17 @@ The mapping of ECCE to EREG is different for localized and distributed transmiss
 </div>
 </div>
 
-<div id="outline-container-org5b5afe9" class="outline-2">
-<h2 id="org5b5afe9">Blind decoding of PDCCH and EPDCCH</h2>
-<div class="outline-text-2" id="text-org5b5afe9">
+<div id="outline-container-orge3e40ea" class="outline-2">
+<h2 id="orge3e40ea">Blind decoding of PDCCH and EPDCCH</h2>
+<div class="outline-text-2" id="text-orge3e40ea">
 <p>
 A <i>search space</i> is a set of candidate control channels formed by CCE's/ECCE's at a given aggregation level, which a UE attempts to decode. 
 </p>
 </div>
 
-<div id="outline-container-org0b4bb0b" class="outline-3">
-<h3 id="org0b4bb0b">PDCCH</h3>
-<div class="outline-text-3" id="text-org0b4bb0b">
+<div id="outline-container-org2f78b40" class="outline-3">
+<h3 id="org2f78b40">PDCCH</h3>
+<div class="outline-text-3" id="text-org2f78b40">
 <p>
 Each UE has a <i>UE-specific search space</i> at each aggregation level. UE-specific search spaces for PDCCH are defined as a function of the UE identity and the subframe number. Thus, UE-specific search space is different from one subframe to another.
 </p>
@@ -350,26 +349,26 @@ There are 16 and 9 PDCCH candidates in the UE-specific and common search spaces,
 </p>
 </div>
 </div>
-<div id="outline-container-org999b0b0" class="outline-3">
-<h3 id="org999b0b0">EPDCCH</h3>
-<div class="outline-text-3" id="text-org999b0b0">
+<div id="outline-container-orgee743f3" class="outline-3">
+<h3 id="orgee743f3">EPDCCH</h3>
+<div class="outline-text-3" id="text-orgee743f3">
 <p>
 Basically, EPDCCH blind decoding follows the same principles as PDCCH. What is different, only UE-specific search spaces are supported<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>. Given a UE configured to use EPDCCH, it monitors the EPDCCH UE-specific search spaces in lieu of PDCCH UE-specific search spaces. The common search spaces of PDCCH are always monitored regardless whether an EPDCCH is configured.
 </p>
 </div>
 </div>
-<div id="outline-container-orge6af2b3" class="outline-3">
-<h3 id="orge6af2b3">Blind decoding attempts</h3>
-<div class="outline-text-3" id="text-orge6af2b3">
+<div id="outline-container-org85022dd" class="outline-3">
+<h3 id="org85022dd">Blind decoding attempts</h3>
+<div class="outline-text-3" id="text-org85022dd">
 <p>
 The number of blind decoding attempts is the same for PDCCH and EPDCCH. Hence, a UE needs to carry out \(2 \times 16 + 2 \times 6 = 44\) blind decoding attempts. With uplink spatial multiplexing introduced in release 10, an additional uplink DCI format needs to be monitored in the UE-specific search space, i.e. \(3 \times 16 + 2 \times 6 = 60\) attempts.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgae10e27" class="outline-2">
-<h2 id="orgae10e27">Transmission mode (TM) signalling</h2>
-<div class="outline-text-2" id="text-orgae10e27">
+<div id="outline-container-orga6934ac" class="outline-2">
+<h2 id="orga6934ac">Transmission mode (TM) signalling</h2>
+<div class="outline-text-2" id="text-orga6934ac">
 <p>
 TM is configured by RRC signalling, but the exact subframe number from which the configuration takes effect is not specified. Therefore, there is confusion of TM between network and UE at least in a duration. In this case,  it is necessary to define a TM-independent DCI format, i.e. 1A.
 </p>

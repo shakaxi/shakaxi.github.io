@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:42 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mathematica</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -256,23 +255,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb7aedcb">Bracketing</a></li>
-<li><a href="#org505ba21">Constants</a></li>
-<li><a href="#orgc6e69b7">Data objects</a></li>
-<li><a href="#org3ff24ef">Defining variables, functions, and rules</a></li>
-<li><a href="#org37857d6">Linear algebra</a></li>
-<li><a href="#org221281f">Algebraic calculation</a></li>
-<li><a href="#orgcaf7ef8">Calculus</a></li>
-<li><a href="#org3c893c5">Input and output</a></li>
-<li><a href="#orgb565ece">Expression in different formats</a></li>
-<li><a href="#org6eabc9f">Programming</a></li>
+<li><a href="#org5aff872">Bracketing</a></li>
+<li><a href="#org5628c23">Constants</a></li>
+<li><a href="#orgefa2305">Data objects</a></li>
+<li><a href="#orgd3bda0f">Defining variables, functions, and rules</a></li>
+<li><a href="#orge15ab98">Linear algebra</a></li>
+<li><a href="#org7a2e43b">Algebraic calculation</a></li>
+<li><a href="#org71baa67">Calculus</a></li>
+<li><a href="#org1bf6e76">Input and output</a></li>
+<li><a href="#orgd3c5c45">Expression in different formats</a></li>
+<li><a href="#orgee6d364">Programming</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb7aedcb" class="outline-2">
-<h2 id="orgb7aedcb">Bracketing</h2>
-<div class="outline-text-2" id="text-orgb7aedcb">
+<div id="outline-container-org5aff872" class="outline-2">
+<h2 id="org5aff872">Bracketing</h2>
+<div class="outline-text-2" id="text-org5aff872">
 <dl class="org-dl">
 <dt>Parenthesis ()</dt><dd>change the priorities in computing.</dd>
 <dt>Square bracket []</dt><dd>function parameters, e.g. <code>f[x]</code>.</dd>
@@ -281,16 +280,16 @@ for the JavaScript code in this tag.
 </dl>
 </div>
 </div>
-<div id="outline-container-org505ba21" class="outline-2">
-<h2 id="org505ba21">Constants</h2>
-<div class="outline-text-2" id="text-org505ba21">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org5628c23" class="outline-2">
+<h2 id="org5628c23">Constants</h2>
+<div class="outline-text-2" id="text-org5628c23">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -322,16 +321,16 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orgc6e69b7" class="outline-2">
-<h2 id="orgc6e69b7">Data objects</h2>
-<div class="outline-text-2" id="text-orgc6e69b7">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-orgefa2305" class="outline-2">
+<h2 id="orgefa2305">Data objects</h2>
+<div class="outline-text-2" id="text-orgefa2305">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -353,16 +352,16 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org3ff24ef" class="outline-2">
-<h2 id="org3ff24ef">Defining variables, functions, and rules</h2>
-<div class="outline-text-2" id="text-org3ff24ef">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-orgd3bda0f" class="outline-2">
+<h2 id="orgd3bda0f">Defining variables, functions, and rules</h2>
+<div class="outline-text-2" id="text-orgd3bda0f">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -409,16 +408,16 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org37857d6" class="outline-2">
-<h2 id="org37857d6">Linear algebra</h2>
-<div class="outline-text-2" id="text-org37857d6">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-orge15ab98" class="outline-2">
+<h2 id="orge15ab98">Linear algebra</h2>
+<div class="outline-text-2" id="text-orge15ab98">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -490,16 +489,16 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org221281f" class="outline-2">
-<h2 id="org221281f">Algebraic calculation</h2>
-<div class="outline-text-2" id="text-org221281f">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org7a2e43b" class="outline-2">
+<h2 id="org7a2e43b">Algebraic calculation</h2>
+<div class="outline-text-2" id="text-org7a2e43b">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -531,16 +530,16 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orgcaf7ef8" class="outline-2">
-<h2 id="orgcaf7ef8">Calculus</h2>
-<div class="outline-text-2" id="text-orgcaf7ef8">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org71baa67" class="outline-2">
+<h2 id="org71baa67">Calculus</h2>
+<div class="outline-text-2" id="text-org71baa67">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -592,16 +591,16 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org3c893c5" class="outline-2">
-<h2 id="org3c893c5">Input and output</h2>
-<div class="outline-text-2" id="text-org3c893c5">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org1bf6e76" class="outline-2">
+<h2 id="org1bf6e76">Input and output</h2>
+<div class="outline-text-2" id="text-org1bf6e76">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -643,16 +642,16 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orgb565ece" class="outline-2">
-<h2 id="orgb565ece">Expression in different formats</h2>
-<div class="outline-text-2" id="text-orgb565ece">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-orgd3c5c45" class="outline-2">
+<h2 id="orgd3c5c45">Expression in different formats</h2>
+<div class="outline-text-2" id="text-orgd3c5c45">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
@@ -704,9 +703,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org6eabc9f" class="outline-2">
-<h2 id="org6eabc9f">Programming</h2>
-<div class="outline-text-2" id="text-org6eabc9f">
+<div id="outline-container-orgee6d364" class="outline-2">
+<h2 id="orgee6d364">Programming</h2>
+<div class="outline-text-2" id="text-orgee6d364">
 <dl class="org-dl">
 <dt>Table[expression, {i, max}]</dt><dd>make a list of values of <code>expression</code> with <code>i</code> from <code>1</code> to <code>max</code>.</dd>
 <dt>Module[{a, b, c}, expression1; expression2;&#x2026;]</dt><dd>a procedure with local variables <code>a</code>, <code>b</code>, <code>c</code> return value of last expression.</dd>

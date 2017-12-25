@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2017-06-28 Wed 08:42 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2017-12-25 Mon 13:03 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Makefile</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="shaka" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -68,6 +66,7 @@
   pre.src-fortran:before { content: 'Fortran'; }
   pre.src-gnuplot:before { content: 'gnuplot'; }
   pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
   pre.src-js:before { content: 'Javascript'; }
   pre.src-latex:before { content: 'LaTeX'; }
@@ -269,24 +268,24 @@ endif
 <span style="color: #fcaf3e;">LFLAGS</span> += -lm
 
 <span style="color: #fce94f;">%.o</span>: %.cpp
-        <span style="color: #8cc4ff;">@</span>echo <span style="color: #e9b96e;">"Building object file </span><span style="color: #e9b96e;">$</span><span style="color: #e9b2e3;">@</span><span style="color: #e9b96e;"> ..."</span>
-        <span style="color: #8cc4ff;">@</span>$(<span style="color: #fcaf3e;">CC</span>) -c -o <span style="color: #fce94f;">$</span><span style="color: #e9b2e3;">@</span> $<span style="color: #e9b2e3;">&lt;</span> $(<span style="color: #fcaf3e;">CFLAGS</span>)
+        @echo <span style="color: #e9b96e;">"Building object file </span><span style="color: #e9b96e;">$</span><span style="color: #e9b2e3;">@</span><span style="color: #e9b96e;"> ..."</span>
+        @$(<span style="color: #fcaf3e;">CC</span>) -c -o <span style="color: #fce94f;">$</span><span style="color: #e9b2e3;">@</span> $<span style="color: #e9b2e3;">&lt;</span> $(<span style="color: #fcaf3e;">CFLAGS</span>)
 
 <span style="color: #fce94f;">$(</span><span style="color: #fce94f;">BIN</span><span style="color: #fce94f;">)</span>: $(<span style="color: #fcaf3e;">OBJ</span>)
-        <span style="color: #8cc4ff;">@</span>echo <span style="color: #e9b96e;">"Linking object files and creating binary program ..."</span>
-        <span style="color: #8cc4ff;">@</span>$(<span style="color: #fcaf3e;">CC</span>) $<span style="color: #e9b2e3;">^</span> -o <span style="color: #fce94f;">$</span><span style="color: #e9b2e3;">@</span> $(<span style="color: #fcaf3e;">LFLAGS</span>)
+        @echo <span style="color: #e9b96e;">"Linking object files and creating binary program ..."</span>
+        @$(<span style="color: #fcaf3e;">CC</span>) $<span style="color: #e9b2e3;">^</span> -o <span style="color: #fce94f;">$</span><span style="color: #e9b2e3;">@</span> $(<span style="color: #fcaf3e;">LFLAGS</span>)
 
 <span style="color: #fce94f;">.phony</span>: default clean clear doc
 <span style="color: #fce94f;">default</span>: $(<span style="color: #fcaf3e;">BIN</span>)
 <span style="color: #fce94f;">clear</span>:
-        <span style="color: #8cc4ff;">@</span>echo <span style="color: #e9b96e;">"Removing all object files and the binary file ..."</span>
-        <span style="color: #8cc4ff;">@-</span>rm -f $(<span style="color: #fcaf3e;">OBJ</span>) $(<span style="color: #fcaf3e;">BIN</span>)
+        @echo <span style="color: #e9b96e;">"Removing all object files and the binary file ..."</span>
+        @-rm -f $(<span style="color: #fcaf3e;">OBJ</span>) $(<span style="color: #fcaf3e;">BIN</span>)
 <span style="color: #fce94f;">clean</span>:
-        <span style="color: #8cc4ff;">@</span>echo <span style="color: #e9b96e;">"Removing all object files ..."</span>
-        <span style="color: #8cc4ff;">@-</span>rm -f $(<span style="color: #fcaf3e;">OBJ</span>)
+        @echo <span style="color: #e9b96e;">"Removing all object files ..."</span>
+        @-rm -f $(<span style="color: #fcaf3e;">OBJ</span>)
 <span style="color: #fce94f;">doc</span>:
-        <span style="color: #8cc4ff;">@</span>echo <span style="color: #e9b96e;">"Documenting ..."</span>
-        <span style="color: #8cc4ff;">@</span>doxygen -s config .
+        @echo <span style="color: #e9b96e;">"Documenting ..."</span>
+        @doxygen -s config .
 </pre>
 </div>
 </div>
