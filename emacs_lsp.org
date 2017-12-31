@@ -25,6 +25,8 @@ cp emacs/cquery.el ~/.emacs.d/cquery
 #+END_SRC
 *** =lsp-mode=
 =lsp-mode= can be easily installed via ELPA.
+*** =company-lsp=
+For LSP, =company-lsp= is an optional package. It is essentially the company backend for =lsp-mode=, which can also be installed via ELPA.
 ** Configuration
 Add following entries into =~/.emacs.d/init.el=.
 #+BEGIN_SRC emacs-lisp
@@ -37,6 +39,10 @@ With LSP, two company backends, =company-semantic= and =company-clang= can be re
 #+BEGIN_SRC emacs-lisp
 (setq company-backends (delete 'company-semantic company-backends))
 (setq company-backends (delete 'company-clang company-backends))
+#+END_SRC
+If =company-lsp= is installed, it can be appended in variable =company-backends= by adding the following entry in =~/.emacs.d/init.el=.
+#+BEGIN_SRC emacs-lisp
+(push 'company-lsp company-backends)
 #+END_SRC
 ** Usage
 *** =compile_commands.json=
