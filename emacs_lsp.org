@@ -16,7 +16,11 @@ Maskray has provided a good summary of =cquery= for reference[fn:3]. This post j
 #+BEGIN_SRC sh
 pacman -S clang llvm
 #+END_SRC
-**** Build
+**** Install binary package
+#+BEGIN_SRC sh
+pacman -S cquery-git
+#+END_SRC
+**** Build from source codes
 #+BEGIN_SRC sh
 git clone https://github.com/jacobdufault/cquery --recursive
 cd cquery
