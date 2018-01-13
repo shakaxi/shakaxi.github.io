@@ -55,15 +55,15 @@ git config -e --global
 git config --global credential.helper store
 #+END_SRC
 ** Create repositories
-- Create a repository
+- Create an empty repository (=git init= can also reinitialize an existing repository).
 #+BEGIN_SRC sh
 git init /path/to/project
 #+END_SRC
-- Initialize the belonging directory as a repository
+- Initialize the belonging directory as a repository.
 #+BEGIN_SRC sh
 git init
 #+END_SRC
-- Download from a remote repository
+- Download from a remote repository.
 #+BEGIN_SRC sh
 git clone url
 #+END_SRC
@@ -129,7 +129,7 @@ git branch --set-upstream local_branch_name remote_name/remote_branch_name
 #+END_SRC
 - Create a new branch and associate it to a remote branch
 #+BEGIN_SRC sh
-git branch --track branch_name remote_branch_name
+git branch --track branch_name remote_name/remote_branch_name
 #+END_SRC
 #+BEGIN_SRC sh
 git fetch remote_name remote_branch_name:branch_name
