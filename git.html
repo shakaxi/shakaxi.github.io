@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-12-25 Mon 13:03 -->
+<!-- 2018-01-21 Sun 12:40 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Git</title>
@@ -345,21 +345,21 @@ Command <code>git config</code> can define the default preference or behavior of
 <h3 id="orga4e0806">Create repositories</h3>
 <div class="outline-text-3" id="text-orga4e0806">
 <ul class="org-ul">
-<li>Create a repository</li>
+<li>Create an empty repository (<code>git init</code> can also reinitialize an existing repository).</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git init /path/to/project
 </pre>
 </div>
 <ul class="org-ul">
-<li>Initialize the belonging directory as a repository</li>
+<li>Initialize the belonging directory as a repository.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git init
 </pre>
 </div>
 <ul class="org-ul">
-<li>Download from a remote repository</li>
+<li>Download from a remote repository.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git clone url
@@ -489,7 +489,7 @@ git commit --amend [file]
 <li>Create a new branch and associate it to a remote branch</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">git branch --track branch_name remote_branch_name
+<pre class="src src-sh">git branch --track branch_name remote_name/remote_branch_name
 </pre>
 </div>
 <div class="org-src-container">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-12-25 Mon 13:02 -->
+<!-- 2018-01-28 Sun 22:28 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - 标准库</title>
@@ -184,7 +184,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -278,6 +278,11 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <ul class="org-ul">
 <li>STL中的所有容器都是模板, 是泛型结构, 因此可以通过这些容器保存任意类型的数据. 除 <code>array</code> 和 <code>bitset</code> 外, 大部分STL容器的大小灵活多变, 都能自动增长或收缩, 以容纳更多或者更少的元素.</li>
 <li>STL容器是同构的, 每个容器实例只允许一种类型的元素.</li>
+<li>STL容器对元素使用值语义(value semantic)。因此，编写要用于STL的类时，一定要保证它们是可复制的。如果需要引用语义，必须自己实现。实现方法是保存元素指针，而不是保存元素本身。可以使用 <code>unique_ptr</code>, 使容器成为该指针所指对象的拥有者；或者使用 <code>shared_ptr</code>, 使容器与其他拥有者共享拥有权。</li>
+<li>STL容器的一个模板类型参数是分配器(allocator)。该容器可以使用该分配器来为元素分配内存或释放内存。有些容器(例如 <code>map</code>)也接受将一个比较器(comparator)作为一个模板类型参数。比较器用作顺序元素。</li>
+<li>所有的STL容器都包含了移动构造函数和移动赋值运算符, 从而实现了移动语义.</li>
+<li>移动语义要正确地用于STL容器，必须把移动构造函数和移动复制运算符标记为 <code>noexcept</code>.</li>
+<li>C++11在大部分STL容器中添加了对 <code>emplace</code> 操作的支持. <code>emplace</code> 的意思是放置到位, 就地构件对象.</li>
 <li>顺序容器(sequential container): 元素的序列.
 <ul class="org-ul">
 <li><code>vector</code>
@@ -288,6 +293,21 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>能够在尾部快速插入和删除元素, 在其他部位插入和删除操作比较慢.</li>
 <li>可以在本来需要使用数组的地方使用 <code>vector</code>.</li>
 <li>在任何可能的情况下使用 <code>vector</code> 而不是C风格的数组.</li>
+<li><code>vector</code> 的默认构造函数会创建一个带有0个元素的 <code>vector</code>. 此外, 还提供了一个可以指定元素数量的构造函数, 和同时指定元素数目和元素值的构造函数. 如果没有提供默认值, 那么新对象通过0初始化——将原始的整型类型初始化为0, 将原始浮点类型初始化为0.0, 将指针类型初始化为 <code>nullptr</code>.</li>
+<li><code>vector</code> 存储对象的副本, 其析构函数调用每个对象的析构函数. <code>vector</code> 类的复制构造函数和赋值运算符对 <code>vector</code> 中的所有元素执行深度复制.</li>
+<li><code>assign()</code> 方法删除所有现有的元素, 并添加任意数目的新元素.</li>
+<li><code>swap()</code> 方法可以交换两个 <code>vector</code> 的内容.</li>
+<li><code>vector</code> 的 <code>operator[]</code> 没有提供边界检查功能. C++标准指出通过 <code>operator[]</code> 访问边界外元素得到的结果是未定义的. 不同的是, <code>at()</code> 方法会执行边界检查, 越界会抛出异常(<code>out_of_range</code>).</li>
+<li><code>front()</code> 和 <code>back()</code> 分别返回 <code>vector</code> 的第一个元素和最后一个元素的引用.</li>
+<li><code>size()</code> 返回 <code>vector</code> 中元素的数目.</li>
+<li><code>capacity()</code> 返回 <code>vector</code> 在重分配之前可以保存的元素个数. 因此, 在重分配之前还能插入的元素个数为 <code>capacity() - size()</code>.</li>
+<li><code>resize()</code> 可以指定 <code>vector</code> 要保存的元素数目.</li>
+<li><code>reserve()</code> 可以预分配空间.</li>
+<li><code>push_back()</code> 可以向 <code>vector</code> 追加元素.</li>
+<li><code>pop_back()</code> 可以删除 <code>vector</code> 最后一个元素. 注意, 该方法不会返回已删除的元素. 如果要访问这个元素, 必须首先通过 <code>back()</code> 获得这个元素.</li>
+<li><code>insert()</code> 方法可以在 <code>vector</code> 中任意位置插入元素.</li>
+<li><code>erase()</code> 方法可以在 <code>vector</code> 中任意位置删除元素.</li>
+<li><code>clear()</code> 方法可以删除所有元素.</li>
 </ul></li>
 <li><code>list</code> (双向链表)
 <ul class="org-ul">
@@ -295,6 +315,8 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>元素查找和访问很慢.</li>
 <li>元素不一定保存在连续的内存中.</li>
 <li>插入和删除很快.</li>
+<li>不支持元素的随机访问, 访问元素的方法只有 <code>front()</code> 和 <code>back()</code>, 分别返回第一个元素和最后一个元素的引用. 访问其他的元素必须通过迭代器.</li>
+<li>应该尽量使用 <code>list</code> 方法而不是泛型STL算法, 因为前者更高效.</li>
 </ul></li>
 <li><code>forward_list</code> (单向链表)
 <ul class="org-ul">
@@ -305,20 +327,23 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li><code>deque</code> (双头队列)
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;deque&gt;</code> 中.</li>
+<li>不要求元素保存在连续内存中.</li>
 <li>提供了快速的元素访问.</li>
-<li>在序列两端提供了快速的插入和删除.</li>
+<li>在序列两端提供了快速的插入和删除(常量时间).</li>
 <li>在序列中间插入和删除的速度较慢.</li>
+<li>提供了 <code>push_front()</code>, <code>pop_front()</code> 和 <code>emplace_front()</code>.</li>
 </ul></li>
 <li><code>array</code>
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;array&gt;</code> 中.</li>
 <li>标准C风格数组的替代品, 实际上是对C风格数组的简单包装.</li>
-<li>适合大小固定的集合.</li>
+<li>适合大小固定的集合. 不能增加或收缩.</li>
 <li>没有提供插入和删除操作.</li>
 <li>元素的访问速度极快.</li>
+<li>要求两个模板参数: 第一个参数指定了元素类型; 第二个参数指定了元素的固定数量.</li>
 </ul></li>
 </ul></li>
-<li>容器适配器 (adaptor): 只是构建在某种标准顺序容器上的简单接口.
+<li>容器适配器(adaptor): 只是构建在某种标准顺序容器上的简单接口.
 <ul class="org-ul">
 <li><code>queue</code>
 <ul class="org-ul">
@@ -326,44 +351,98 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>提供了标准的先入先出(FIFO)语义.</li>
 <li>从一端插入元素, 从另一端取出元素.</li>
 <li>插入元素和删除元素都很快.</li>
+<li><code>push()</code> 和 <code>emplace()</code> 方法在 <code>queue</code> 尾部添加一个新元素</li>
+<li><code>pop()</code> 移除头部元素.</li>
+<li><code>front()</code> 和 <code>back()</code> 分别返回第一个元素和最后一个元素的引用, 而不会删除元素.</li>
 </ul></li>
 <li><code>priority_queue</code>
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;queue&gt;</code> 中.</li>
 <li>插入删除比 <code>queue</code> 要慢.</li>
+<li>其头元素的优先级最高。</li>
+<li><code>push()</code> 和 <code>emplace()</code> 方法可以插入元素。</li>
+<li><code>pop()</code> 可以删除元素。</li>
+<li><code>top()</code> 可以返回头元素的const引用。</li>
+<li>支持 <code>size()</code>, <code>empty</code> 和 <code>swap()</code> 方法。</li>
 </ul></li>
 <li><code>stack</code>
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;stack&gt;</code> 中.</li>
-<li>提供了标准的先入后出(FILO)语义.</li>
+<li>提供了标准的先入后出(FILO)语义，也称为后入先出语义.</li>
+<li><code>push()</code> 在stack顶部添加一个新元素。</li>
+<li><code>pop()</code> 从stack顶部删除一个元素。</li>
+<li><code>top()</code> 返回顶部元素的引用。</li>
 <li>最新插入的元素第一个被删除.</li>
 <li>提供了快速的元素插入和删除.</li>
+<li>支持 <code>size()</code>, <code>empty</code> 和 <code>swap()</code> 方法和标准的比较运算符。</li>
 </ul></li>
 </ul></li>
 <li>关联容器: 关联了键和值
 <ul class="org-ul">
+<li><code>pair</code> 工具类
+<ul class="org-ul">
+<li><code>pair</code> 是一个类模板， 将两个可能属于不同类型的值组合起来。</li>
+<li>通过 <code>first</code> 和 <code>second</code> 公共数据成员访问这两个值。</li>
+<li>定义了 <code>operator==</code> 和 <code>operator&lt;</code> ， 用于比较 <code>first</code> 和 <code>second</code> 元素。</li>
+<li>工具函数模板 <code>make_pair()</code> 用于从两个值构造一个 <code>pair</code> 。</li>
+<li>在 <code>pair</code> 中使用一般指针是危险的，因为 <code>pair</code> 复制构造函数和赋值运算符只对指针类型进行浅复制和赋值。然而，在 <code>pair</code> 中保存 <code>shared_ptr</code> 这样的智能指针则是很安全的。</li>
+</ul></li>
 <li>排序关联容器或有序关联容器
 <ul class="org-ul">
-<li><code>set</code> 和 <code>multiset</code></li>
-<li><code>map</code> 和 <code>multimap</code></li>
+<li><code>map</code> 和 <code>multimap</code>
+<ul class="org-ul">
+<li>定义在头文件 <code>&lt;map&gt;</code> 中，保存的是键/值对。</li>
+<li><code>map</code>
+<ul class="org-ul">
+<li>向 <code>map</code> 添加元素的方法是 <code>insert()</code> ，其允许判断键是否已经存在。该方法必须将键/值指定为 <code>pair</code> 对象或 <code>initializer_list</code> ，返回值为迭代器和布尔值组成的 <code>pair()</code> 。布尔值指示是否真的插入了新的键/值对，迭代器引用的是 <code>map</code> 中带有指定键的元素。如果指定的键已经存在，那么 <code>insert()</code> 不会改写元素值。</li>
+<li><code>operator[]</code> 也可以插入元素。但是 <code>operator[]</code> 总是成功。如果给定键没有对应的元素值，就会创建带有对应键值的新元素。如果具有给定键的元素已经存在，那么 <code>operator[]</code> 会将元素值替换为新指定的值。</li>
+<li><code>find()</code> 方法可以查找给定键值的元素。如果元素存在，这个方法返回指向具有指定键值的元素的迭代器；如果元素不存在，则返回 <code>end()</code> 迭代器。此外， <code>operator[]</code> 可以查找给定键值的元素，但是如果不知道元素是否存在，就不能使用 <code>operator[]</code> 。因为如果元素不存在， <code>operator[]</code> 就会插入一个包含相应键值的新元素。</li>
+</ul></li>
+<li><code>multimap</code>
+<ul class="org-ul">
+<li><code>multimap</code> 是一个允许多个元素使用同一个键值的 <code>map</code> 。</li>
+<li><code>multimap</code> 不提供 <code>operator[]</code>. 其将所有带有同一个键值的元素保存在一起, 并提供了方法获得这个子范围的迭代器: <code>lower_bound()</code> 和 <code>upper_bound()</code> 方法分别返回满足给定键值的第一个元素和最后一个元素之后一个元素的迭代器. 如果没有元素匹配这个键值, 那么 <code>lower_bound()</code> 和 <code>upper_bound()</code> 相等. 此外, <code>equal_range()</code> 方法返回两个迭代器的 <code>pair</code>, 分别是 <code>lower_bound()</code> 和 <code>upper_bound()</code> 返回的迭代器.</li>
+</ul></li>
+</ul></li>
+<li><code>set</code> 和 <code>multiset</code>
+<ul class="org-ul">
+<li>定义在头文件 <code>&lt;set&gt;</code> 中。</li>
+<li><code>multiset</code> 和 <code>set</code> 的关系等同于 <code>multimap</code> 和 <code>map</code> 的关系. <code>multiset</code> 支持 <code>set</code> 的所有操作, 但允许容器中同时保存多个相等的元素.</li>
+</ul></li>
 </ul></li>
 <li>无序关联容器或哈希表(hash table)
 <ul class="org-ul">
-<li><code>unordered_map</code> 和 <code>unordered_multimap</code></li>
-<li><code>unordered_set</code> 和 <code>unordered_multiset</code></li>
+<li><code>unordered_map</code> 和 <code>unordered_multimap</code> 定义在头文件 <code>&lt;unordered_map&gt;</code> 中, 都是类模板. <code>unordered_multimap</code> 是允许多个元素带有同一个键值的 <code>unordered_map</code>.</li>
+<li><code>unordered_set</code> 和 <code>unordered_multiset</code> 定义在头文件 <code>&lt;unordered_set&gt;</code> 中. 二者分别类似于 <code>set</code> 和 <code>multiset</code>.</li>
+<li>无序关联容器使用了哈希函数(hash function), 所以也称为哈希表.</li>
+<li>哈希表的实现通常会使用某种形式的数组, 数组中的每个元素都称为桶(bucket).</li>
+<li>哈希函数的结果未必是唯一的. 两个或多个键哈希到同一个桶索引, 称为冲突(collision).</li>
+<li>C++标准为指针和所有基本数据类型(例如 <code>bool</code>, <code>char</code>, <code>int</code>, <code>float</code>, <code>double</code> 等)提供了哈希函数, 也为 <code>error_code</code>, <code>bitset</code>, <code>unique_ptr</code>, <code>shared_ptr</code>, <code>type_index</code>, <code>string</code>, <code>vector&lt;bool&gt;</code> 和 <code>thread</code> 提供了哈希函数.</li>
 </ul></li>
 </ul></li>
-<li>特殊容器: bitset
+<li>其他容器
 <ul class="org-ul">
-<li>定义在头文件 <code>&lt;bitset&gt;</code> 中.</li>
-<li>固定大小(声明时指定大小), 不支持迭代器.</li>
+<li>定义在头文件 <code>&lt;bitset&gt;</code> 中的 <code>bitset</code> 并不是一个真正的STL容器: 固定大小(声明时指定大小), 不支持迭代器.</li>
+<li><code>string</code> 也可看做字符的顺序容器.</li>
+<li>STL提供了名为 <code>istream_iterator</code> 和 <code>ostream_iterator</code> 的特殊迭代器, 用于"遍历"输入和输出流.</li>
 </ul></li>
 </ul></li>
 <li>算法
 <ul class="org-ul">
+<li>定义在头文件 <code>&lt;algorithm&gt;</code> 中, 除非特别说明.</li>
 <li>算法一般不属于容器的一部分. STL采取了一种分离数据(容器)和功能(算法)的方式. 正交性的指导原则使算法和容器分离开, (几乎)所有算法都可以用于(几乎)所有容器.</li>
 <li>泛型算法并不是直接对容器操作, 而是使用迭代器(iterator). 迭代器是算法和容器之间的中介, 提供了顺序遍历容器中的元素的标准接口, 因此任何算法都可以操作任何容器.</li>
-<li>定义在头文件 <code>&lt;algorithm&gt;</code> 中, 除非特别说明.</li>
+</ul></li>
+<li>迭代器
+<ul class="org-ul">
+<li>STL通过迭代器模式提供了访问容器元素的泛型抽象。每个容器都提供了容器特定的迭代器，迭代器实际上是增强版的智能指针，这种指针知道如何遍历特定容器的元素，所有不同容器的迭代器都遵循C++标准中定义的特定接口。</li>
+<li>迭代器的实现类似于智能指针类，因为它们都重载了特定的运算符。基本的迭代器操作类似于普通指针(dumb pointer)支持的操作，因此普通指针可以合法用作特定容器的迭代器。可以将迭代器想象为指向容器中某个元素的指针。与指向数组元素的指针一样，迭代器可以通过 <code>operator++</code> 移动到下一个元素。还可以在迭代器上使用 <code>operator*</code> 和 <code>operator-&gt;</code> 来访问实际元素或元素中的字段。有些迭代器支持通过 <code>operator==</code> 和 <code>operator!=</code> 进行比较，还支持通过 <code>operator--</code> 转移到前一个元素。</li>
+<li>所有迭代器都必须可以通过复制来构建，赋值，且可以析构。</li>
+<li>可以使用 <code>std::distance()</code> 计算容器的两个迭代器之差。</li>
+<li>只有顺序容器，关联容器和无序关联容器提供了迭代器，容器适配器和 <code>bitset</code> 类都不支持迭代元素。</li>
+<li>STL中每个支持迭代器的容器类都为其迭代器类型提供了名为 <code>iterator</code> 和 <code>const_iterator</code> 的公共 <code>typedef</code> 。允许反向迭代元素的容器还提供了名为 <code>reverse_iterator</code> 和 <code>const_reverse_iterator</code> 的公共 <code>typedef</code> 。其中， <code>const_iterator</code> 和 <code>const_reverse_iterator</code> 提供了容器元素的只读访问。普通的 <code>iterator</code> 支持读和写, 可以转换为 <code>const_iterator</code>, 然而 <code>const_iterator</code> 不能转换为 <code>iterator</code>. 如果不需要修改容器中的元素, 那么应该使用 <code>const_iterator</code>.</li>
+<li>容器的 <code>begin()</code> 方法返回容器中第一个元素的迭代器, <code>end()</code> 方法返回的迭代器是在容器中最后一个元素的迭代器上执行 <code>operator++</code> 后的结果. <code>begin()</code> 和 <code>end()</code> 在一起提供了一个左开右闭区间——包含第一个元素却不包含最后一个元素. 采用这种方式的原因是为了支持空容器——不包含任何元素的容器, 此时 <code>begin()</code> 等于 <code>end()</code>. 类似的还有返回 <code>const</code> 迭代器的 <code>cbegin()</code> 和 <code>cend()</code> 方法, 返回反向迭代器的 <code>rbegin()</code> 和 <code>rend()</code> 方法, 以及返回 <code>const</code> 反向迭代器的 <code>crbegin()</code> 和 <code>crend()</code> 方法. 标准库还支持全局非成员函数 <code>std::begin()</code> 和 <code>std::end()</code>, C++14又添加了 <code>std::cbegin()</code>, <code>std::cend</code>, <code>std::rbegin()</code>, <code>std::rend()</code>, <code>std::crbegin()</code>, <code>std::crend()</code>. 建议使用这些非成员函数, 而不是其成员函数.</li>
+<li>只要可能, 尽量使用前递增而不要使用后递增, 因为前递增至少效率不会差, 一般更为高效. <code>iter++</code> 必须返回一个新的迭代器对象, 而 <code>++iter</code> 只是返回对 <code>iter</code> 的引用.</li>
 </ul></li>
 <li>不足
 <ul class="org-ul">

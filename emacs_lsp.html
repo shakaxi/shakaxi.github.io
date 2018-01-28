@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-01-09 Tue 13:19 -->
+<!-- 2018-01-21 Sun 12:40 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Language Server Protocol</title>
@@ -241,7 +241,8 @@ for the JavaScript code in this tag.
 <li><a href="#org3391dd8"><code>cquery</code></a>
 <ul>
 <li><a href="#org633b949">Prerequisite</a></li>
-<li><a href="#org443779c">Build</a></li>
+<li><a href="#orgad85377">Install binary package</a></li>
+<li><a href="#org0b08583">Build from source codes</a></li>
 </ul>
 </li>
 <li><a href="#org700dfbc"><code>lsp-mode</code></a></li>
@@ -306,9 +307,18 @@ Maskray has provided a good summary of <code>cquery</code> for reference<sup><a 
 </div>
 </div>
 </div>
-<div id="outline-container-org443779c" class="outline-5">
-<h5 id="org443779c">Build</h5>
-<div class="outline-text-5" id="text-org443779c">
+<div id="outline-container-orgad85377" class="outline-5">
+<h5 id="orgad85377">Install binary package</h5>
+<div class="outline-text-5" id="text-orgad85377">
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S cquery-git
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0b08583" class="outline-5">
+<h5 id="org0b08583">Build from source codes</h5>
+<div class="outline-text-5" id="text-org0b08583">
 <div class="org-src-container">
 <pre class="src src-sh">git clone https://github.com/jacobdufault/cquery --recursive
 <span style="color: #e090d7;">cd</span> cquery
