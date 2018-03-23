@@ -44,7 +44,10 @@ Targetting better utilization, creating following soft links is necessary.
 #+BEGIN_SRC sh
 ln -s /opt/itpp/bin/itpp-config /usr/local/bin
 ln -s /opt/itpp/include/itpp /usr/local/include
-ln -s /opt/itpp/lib/libitpp.so.8 /usr/local/lib
+#+END_SRC
+Create file =/etc/ld.so.conf.d/itpp.conf= with its content as follows
+#+BEGIN_SRC sh
+/opt/itpp/lib
 #+END_SRC
 * Interface
 IT++ has its own file format, with a suffix =.it=. Fortunately, for the sake of convenient file exchange, it provides
