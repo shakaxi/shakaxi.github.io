@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-01-28 Sun 22:28 -->
+<!-- 2018-03-25 Sun 13:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>C++ - 标准库</title>
+<title>C++ - Standard Template Library</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -228,53 +228,56 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">C++ - 标准库</h1>
+<h1 class="title">C++ - Standard Template Library</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga08e0d3">容器</a>
+<ul>
+<li><a href="#org44d7dd9">顺序容器(sequential container)</a>
+<ul>
+<li><a href="#org3de1ffa"><code>vector</code></a></li>
+<li><a href="#orgc1217ca"><code>list</code> (双向链表)</a></li>
+<li><a href="#org1a2ef65"><code>forward_list</code> (单向链表)</a></li>
+<li><a href="#orgb480d86"><code>deque</code> (双头队列)</a></li>
+<li><a href="#orgb59d566"><code>array</code></a></li>
+</ul>
+</li>
+<li><a href="#orga7b9d40">容器适配器(adaptor)</a>
+<ul>
+<li><a href="#org3225321"><code>queue</code></a></li>
+<li><a href="#org648fed6"><code>priority_queue</code></a></li>
+<li><a href="#org34a9e01"><code>stack</code></a></li>
+</ul>
+</li>
+<li><a href="#orgb0d1d3d">关联容器</a>
+<ul>
+<li><a href="#org18e4bc6"><code>pair</code> 工具类</a></li>
+<li><a href="#org7a6409d">排序关联容器或有序关联容器</a>
+<ul>
+<li><a href="#org023857e"><code>map</code> 和 <code>multimap</code></a></li>
+<li><a href="#org56b60da"><code>set</code> 和 <code>multiset</code></a></li>
+</ul>
+</li>
+<li><a href="#org0e37ee2">无序关联容器或哈希表(hash table)</a></li>
+</ul>
+</li>
+<li><a href="#orgc8eb809">其他容器</a></li>
+</ul>
+</li>
+<li><a href="#orgf5450b6">算法</a></li>
+<li><a href="#orgb6ec281">迭代器</a></li>
+<li><a href="#org5a26426">不足</a></li>
+</ul>
+</div>
+</div>
 <p>
-本文是阅读 <i>Professional C++, third edition</i> 中文版<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>的读书笔记.
+标准模板库(Standard Template Library, STL)是C++标准库的子集, 其大量使用了模板.
 </p>
-
-<p>
-C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为标准模板库(Standard Template Library, STL), 因为这一部分大量使用了模板.
-</p>
-
-<p>
-所有标准库类和函数都在 <code>std</code> 名称空间中声明. 包括如下组件:
-</p>
-<dl class="org-dl">
-<dt>字符串</dt><dd>定义在头文件 <code>&lt;string&gt;</code> 中的 <code>string</code> 类.</dd>
-<dt>正则表达式</dt><dd>定义在头文件 <code>&lt;regex&gt;</code>.</dd>
-<dt>I/O流</dt><dd>定义在头文件 <code>&lt;fstream&gt;</code>, <code>&lt;iomanip&gt;</code>, <code>&lt;ios&gt;</code>, <code>&lt;iosfwd&gt;</code>, <code>&lt;iostream&gt;</code>, <code>&lt;istream&gt;</code>, <code>&lt;ostream&gt;</code>, <code>&lt;sstream&gt;</code>, <code>&lt;streambuf&gt;</code> 和 <code>&lt;strstream&gt;</code> 中.</dd>
-<dt>智能指针</dt><dd>定义在头文件 <code>&lt;memory&gt;</code> 中的 <code>unique_ptr</code>, <code>shared_ptr</code>, <code>weak_ptr</code>.</dd>
-<dt>异常</dt><dd>定义在头文件 <code>&lt;exception&gt;</code>, <code>&lt;stdexcept&gt;</code> 和 <code>&lt;system_error&gt;</code>.</dd>
-<dt>数学工具</dt><dd><ul class="org-ul">
-<li>定义在头文件 <code>&lt;complex&gt;</code> 中的复数类 <code>complex</code>.</li>
-<li>定义在头文件 <code>&lt;ratio&gt;</code> 中的有理数运算库.</li>
-<li>定义在头文件 <code>&lt;valarray&gt;</code> 中的 <code>valarray</code> 类(与 <code>vector</code> 类类似, 但是对高性能数值应用做了特别的优化).</li>
-<li>定义在头文件 <code>&lt;limits&gt;</code> 中的 <code>numeric_limits</code> 类模板, 如
-<ul class="org-ul">
-<li><code>numeric_limits&lt;int&gt;::max()</code></li>
-<li><code>numeric_limits&lt;int&gt;::min()</code></li>
-<li><code>numeric_limits&lt;int&gt;::lowest()</code></li>
-<li><code>numeric_limits&lt;double&gt;::max()</code></li>
-<li><code>numeric_limits&lt;double&gt;::min()</code></li>
-<li><code>numeric_limits&lt;double&gt;::lowest()</code></li>
-</ul></li>
-</ul></dd>
-<dt>时间工具</dt><dd>定义在头文件 <code>&lt;chrono&gt;</code> 中的 <code>Chrono</code> 库.</dd>
-<dt>随机数</dt><dd>定义在头文件 <code>&lt;random&gt;</code> 中的随机数库.</dd>
-<dt>初始化列表</dt><dd>定义在头文件 <code>&lt;initializer_list&gt;</code> 中的初始化列表(用于编写参数数目可变的函数).</dd>
-<dt><code>Pair</code></dt><dd>定义在头文件 <code>&lt;utility&gt;</code> 中的 <code>pair</code> 模板, 用于存储两种不同类型的元素. 这称为存储异构元素.</dd>
-<dt><code>Tuple</code></dt><dd>定义在头文件 <code>&lt;tuple&gt;</code> 中的 <code>tuple</code> 是 <code>pair</code> 的一种泛化, 它是固定大小的序列, 元组的元素可以是异构的, 其实例化的元素数目和类型在编译时固定不变.</dd>
-<dt>函数对象</dt><dd>实现了函数调用运算符的类的对象称为函数对象. 函数对象可以用作某些STL算法的谓词. 头文件 <code>&lt;functional&gt;</code> 定义了一些预定义的函数对象, 支持根据已有的函数对象创建新函数对象.</dd>
-<dt>多线程</dt><dd><ul class="org-ul">
-<li>单个线程可以用头文件 <code>&lt;thread&gt;</code> 中的 <code>thread</code> 类创建.</li>
-<li>定义在头文件 <code>&lt;atomic&gt;</code> 中的原子性提供了对一段数据的线程安全的原子访问.</li>
-<li><code>&lt;condition_variable&gt;</code> 和 <code>&lt;mutex&gt;</code> 提供了其他线程同步机制.</li>
-<li>如果只需计算某个数据得到结果, 并具有相应的异常处理, 使用定义在头文件 <code>&lt;future&gt;</code> 中的 <code>async</code> 和 <code>future</code> 要比直接使用 <code>thread</code> 类更容易.</li>
-</ul></dd>
-<dt>类型特质</dt><dd>定义在头文件 <code>&lt;type_traits&gt;</code> 中的类型特质提供了编译期间的类型信息. 编写高级模板时可以使用它.</dd>
-<dt>标准模板库(STL)</dt><dd><ul class="org-ul">
-<li>容器
+<div id="outline-container-orga08e0d3" class="outline-2">
+<h2 id="orga08e0d3">容器</h2>
+<div class="outline-text-2" id="text-orga08e0d3">
 <ul class="org-ul">
 <li>STL中的所有容器都是模板, 是泛型结构, 因此可以通过这些容器保存任意类型的数据. 除 <code>array</code> 和 <code>bitset</code> 外, 大部分STL容器的大小灵活多变, 都能自动增长或收缩, 以容纳更多或者更少的元素.</li>
 <li>STL容器是同构的, 每个容器实例只允许一种类型的元素.</li>
@@ -283,9 +286,18 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>所有的STL容器都包含了移动构造函数和移动赋值运算符, 从而实现了移动语义.</li>
 <li>移动语义要正确地用于STL容器，必须把移动构造函数和移动复制运算符标记为 <code>noexcept</code>.</li>
 <li>C++11在大部分STL容器中添加了对 <code>emplace</code> 操作的支持. <code>emplace</code> 的意思是放置到位, 就地构件对象.</li>
-<li>顺序容器(sequential container): 元素的序列.
-<ul class="org-ul">
-<li><code>vector</code>
+</ul>
+</div>
+<div id="outline-container-org44d7dd9" class="outline-3">
+<h3 id="org44d7dd9">顺序容器(sequential container)</h3>
+<div class="outline-text-3" id="text-org44d7dd9">
+<p>
+顺序容器是元素的序列。
+</p>
+</div>
+<div id="outline-container-org3de1ffa" class="outline-4">
+<h4 id="org3de1ffa"><code>vector</code></h4>
+<div class="outline-text-4" id="text-org3de1ffa">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;vector&gt;</code> 中.</li>
 <li>提供对元素的随机访问.</li>
@@ -308,8 +320,12 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li><code>insert()</code> 方法可以在 <code>vector</code> 中任意位置插入元素.</li>
 <li><code>erase()</code> 方法可以在 <code>vector</code> 中任意位置删除元素.</li>
 <li><code>clear()</code> 方法可以删除所有元素.</li>
-</ul></li>
-<li><code>list</code> (双向链表)
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc1217ca" class="outline-4">
+<h4 id="orgc1217ca"><code>list</code> (双向链表)</h4>
+<div class="outline-text-4" id="text-orgc1217ca">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;list&gt;</code> 中.</li>
 <li>元素查找和访问很慢.</li>
@@ -317,14 +333,22 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>插入和删除很快.</li>
 <li>不支持元素的随机访问, 访问元素的方法只有 <code>front()</code> 和 <code>back()</code>, 分别返回第一个元素和最后一个元素的引用. 访问其他的元素必须通过迭代器.</li>
 <li>应该尽量使用 <code>list</code> 方法而不是泛型STL算法, 因为前者更高效.</li>
-</ul></li>
-<li><code>forward_list</code> (单向链表)
+</ul>
+</div>
+</div>
+<div id="outline-container-org1a2ef65" class="outline-4">
+<h4 id="org1a2ef65"><code>forward_list</code> (单向链表)</h4>
+<div class="outline-text-4" id="text-org1a2ef65">
 <ul class="org-ul">
 <li>只支持前向迭代.</li>
 <li>没有提供快速的随机访问.</li>
 <li>内存需求比 <code>list</code> 小.</li>
-</ul></li>
-<li><code>deque</code> (双头队列)
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb480d86" class="outline-4">
+<h4 id="orgb480d86"><code>deque</code> (双头队列)</h4>
+<div class="outline-text-4" id="text-orgb480d86">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;deque&gt;</code> 中.</li>
 <li>不要求元素保存在连续内存中.</li>
@@ -332,8 +356,12 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>在序列两端提供了快速的插入和删除(常量时间).</li>
 <li>在序列中间插入和删除的速度较慢.</li>
 <li>提供了 <code>push_front()</code>, <code>pop_front()</code> 和 <code>emplace_front()</code>.</li>
-</ul></li>
-<li><code>array</code>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb59d566" class="outline-4">
+<h4 id="orgb59d566"><code>array</code></h4>
+<div class="outline-text-4" id="text-orgb59d566">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;array&gt;</code> 中.</li>
 <li>标准C风格数组的替代品, 实际上是对C风格数组的简单包装.</li>
@@ -341,11 +369,20 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>没有提供插入和删除操作.</li>
 <li>元素的访问速度极快.</li>
 <li>要求两个模板参数: 第一个参数指定了元素类型; 第二个参数指定了元素的固定数量.</li>
-</ul></li>
-</ul></li>
-<li>容器适配器(adaptor): 只是构建在某种标准顺序容器上的简单接口.
-<ul class="org-ul">
-<li><code>queue</code>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orga7b9d40" class="outline-3">
+<h3 id="orga7b9d40">容器适配器(adaptor)</h3>
+<div class="outline-text-3" id="text-orga7b9d40">
+<p>
+容器适配器只是构建在某种标准顺序容器上的简单接口。
+</p>
+</div>
+<div id="outline-container-org3225321" class="outline-4">
+<h4 id="org3225321"><code>queue</code></h4>
+<div class="outline-text-4" id="text-org3225321">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;queue&gt;</code> 中.</li>
 <li>提供了标准的先入先出(FIFO)语义.</li>
@@ -354,8 +391,12 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li><code>push()</code> 和 <code>emplace()</code> 方法在 <code>queue</code> 尾部添加一个新元素</li>
 <li><code>pop()</code> 移除头部元素.</li>
 <li><code>front()</code> 和 <code>back()</code> 分别返回第一个元素和最后一个元素的引用, 而不会删除元素.</li>
-</ul></li>
-<li><code>priority_queue</code>
+</ul>
+</div>
+</div>
+<div id="outline-container-org648fed6" class="outline-4">
+<h4 id="org648fed6"><code>priority_queue</code></h4>
+<div class="outline-text-4" id="text-org648fed6">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;queue&gt;</code> 中.</li>
 <li>插入删除比 <code>queue</code> 要慢.</li>
@@ -364,8 +405,12 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li><code>pop()</code> 可以删除元素。</li>
 <li><code>top()</code> 可以返回头元素的const引用。</li>
 <li>支持 <code>size()</code>, <code>empty</code> 和 <code>swap()</code> 方法。</li>
-</ul></li>
-<li><code>stack</code>
+</ul>
+</div>
+</div>
+<div id="outline-container-org34a9e01" class="outline-4">
+<h4 id="org34a9e01"><code>stack</code></h4>
+<div class="outline-text-4" id="text-org34a9e01">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;stack&gt;</code> 中.</li>
 <li>提供了标准的先入后出(FILO)语义，也称为后入先出语义.</li>
@@ -375,21 +420,36 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>最新插入的元素第一个被删除.</li>
 <li>提供了快速的元素插入和删除.</li>
 <li>支持 <code>size()</code>, <code>empty</code> 和 <code>swap()</code> 方法和标准的比较运算符。</li>
-</ul></li>
-</ul></li>
-<li>关联容器: 关联了键和值
-<ul class="org-ul">
-<li><code>pair</code> 工具类
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb0d1d3d" class="outline-3">
+<h3 id="orgb0d1d3d">关联容器</h3>
+<div class="outline-text-3" id="text-orgb0d1d3d">
+<p>
+关联容器是关联了键和值的容器。
+</p>
+</div>
+<div id="outline-container-org18e4bc6" class="outline-4">
+<h4 id="org18e4bc6"><code>pair</code> 工具类</h4>
+<div class="outline-text-4" id="text-org18e4bc6">
 <ul class="org-ul">
 <li><code>pair</code> 是一个类模板， 将两个可能属于不同类型的值组合起来。</li>
 <li>通过 <code>first</code> 和 <code>second</code> 公共数据成员访问这两个值。</li>
 <li>定义了 <code>operator==</code> 和 <code>operator&lt;</code> ， 用于比较 <code>first</code> 和 <code>second</code> 元素。</li>
 <li>工具函数模板 <code>make_pair()</code> 用于从两个值构造一个 <code>pair</code> 。</li>
 <li>在 <code>pair</code> 中使用一般指针是危险的，因为 <code>pair</code> 复制构造函数和赋值运算符只对指针类型进行浅复制和赋值。然而，在 <code>pair</code> 中保存 <code>shared_ptr</code> 这样的智能指针则是很安全的。</li>
-</ul></li>
-<li>排序关联容器或有序关联容器
-<ul class="org-ul">
-<li><code>map</code> 和 <code>multimap</code>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7a6409d" class="outline-4">
+<h4 id="org7a6409d">排序关联容器或有序关联容器</h4>
+<div class="outline-text-4" id="text-org7a6409d">
+</div>
+<div id="outline-container-org023857e" class="outline-5">
+<h5 id="org023857e"><code>map</code> 和 <code>multimap</code></h5>
+<div class="outline-text-5" id="text-org023857e">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;map&gt;</code> 中，保存的是键/值对。</li>
 <li><code>map</code>
@@ -403,14 +463,22 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li><code>multimap</code> 是一个允许多个元素使用同一个键值的 <code>map</code> 。</li>
 <li><code>multimap</code> 不提供 <code>operator[]</code>. 其将所有带有同一个键值的元素保存在一起, 并提供了方法获得这个子范围的迭代器: <code>lower_bound()</code> 和 <code>upper_bound()</code> 方法分别返回满足给定键值的第一个元素和最后一个元素之后一个元素的迭代器. 如果没有元素匹配这个键值, 那么 <code>lower_bound()</code> 和 <code>upper_bound()</code> 相等. 此外, <code>equal_range()</code> 方法返回两个迭代器的 <code>pair</code>, 分别是 <code>lower_bound()</code> 和 <code>upper_bound()</code> 返回的迭代器.</li>
 </ul></li>
-</ul></li>
-<li><code>set</code> 和 <code>multiset</code>
+</ul>
+</div>
+</div>
+<div id="outline-container-org56b60da" class="outline-5">
+<h5 id="org56b60da"><code>set</code> 和 <code>multiset</code></h5>
+<div class="outline-text-5" id="text-org56b60da">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;set&gt;</code> 中。</li>
 <li><code>multiset</code> 和 <code>set</code> 的关系等同于 <code>multimap</code> 和 <code>map</code> 的关系. <code>multiset</code> 支持 <code>set</code> 的所有操作, 但允许容器中同时保存多个相等的元素.</li>
-</ul></li>
-</ul></li>
-<li>无序关联容器或哈希表(hash table)
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0e37ee2" class="outline-4">
+<h4 id="org0e37ee2">无序关联容器或哈希表(hash table)</h4>
+<div class="outline-text-4" id="text-org0e37ee2">
 <ul class="org-ul">
 <li><code>unordered_map</code> 和 <code>unordered_multimap</code> 定义在头文件 <code>&lt;unordered_map&gt;</code> 中, 都是类模板. <code>unordered_multimap</code> 是允许多个元素带有同一个键值的 <code>unordered_map</code>.</li>
 <li><code>unordered_set</code> 和 <code>unordered_multiset</code> 定义在头文件 <code>&lt;unordered_set&gt;</code> 中. 二者分别类似于 <code>set</code> 和 <code>multiset</code>.</li>
@@ -418,49 +486,59 @@ C++标准库的核心是泛型容器和泛型算法. 库中的这一子集称为
 <li>哈希表的实现通常会使用某种形式的数组, 数组中的每个元素都称为桶(bucket).</li>
 <li>哈希函数的结果未必是唯一的. 两个或多个键哈希到同一个桶索引, 称为冲突(collision).</li>
 <li>C++标准为指针和所有基本数据类型(例如 <code>bool</code>, <code>char</code>, <code>int</code>, <code>float</code>, <code>double</code> 等)提供了哈希函数, 也为 <code>error_code</code>, <code>bitset</code>, <code>unique_ptr</code>, <code>shared_ptr</code>, <code>type_index</code>, <code>string</code>, <code>vector&lt;bool&gt;</code> 和 <code>thread</code> 提供了哈希函数.</li>
-</ul></li>
-</ul></li>
-<li>其他容器
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc8eb809" class="outline-3">
+<h3 id="orgc8eb809">其他容器</h3>
+<div class="outline-text-3" id="text-orgc8eb809">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;bitset&gt;</code> 中的 <code>bitset</code> 并不是一个真正的STL容器: 固定大小(声明时指定大小), 不支持迭代器.</li>
 <li><code>string</code> 也可看做字符的顺序容器.</li>
 <li>STL提供了名为 <code>istream_iterator</code> 和 <code>ostream_iterator</code> 的特殊迭代器, 用于"遍历"输入和输出流.</li>
-</ul></li>
-</ul></li>
-<li>算法
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf5450b6" class="outline-2">
+<h2 id="orgf5450b6">算法</h2>
+<div class="outline-text-2" id="text-orgf5450b6">
+<p>
+算法之美在于算法不仅独立于底层元素的类型, 而且还独立于操作的容器的类型. 算法仅使用迭代器作为接口来操作容器, 而不是直接操作容器本身. 而对大部分容器来说, 迭代器范围都是半开半闭区间(包含第一个元素却不包含最后一个元素), 尾迭代器实际上是跨越最后一个元素(past-the-end)的标记. 大部分算法都接受回调(callback), 回调可以是一个函数指针, 也可以是行为上类似于函数指针的对象(例如重载了运算符 <code>operator()</code> 的对象, 或者内嵌lambda表达式). 为了方便起见, STL还提供了一组类, 用于创建算法使用的回调对象. 这些回调对象称为函数对象, 或仿函数(<code>functor</code>).
+</p>
+
 <ul class="org-ul">
-<li>定义在头文件 <code>&lt;algorithm&gt;</code> 中, 除非特别说明.</li>
+<li>大部分算法定义在头文件 <code>&lt;algorithm&gt;</code> 中, 一些数值算法定义在头文件 <code>&lt;numeric&gt;</code> 中. 它们都在名称空间std中.</li>
 <li>算法一般不属于容器的一部分. STL采取了一种分离数据(容器)和功能(算法)的方式. 正交性的指导原则使算法和容器分离开, (几乎)所有算法都可以用于(几乎)所有容器.</li>
 <li>泛型算法并不是直接对容器操作, 而是使用迭代器(iterator). 迭代器是算法和容器之间的中介, 提供了顺序遍历容器中的元素的标准接口, 因此任何算法都可以操作任何容器.</li>
-</ul></li>
-<li>迭代器
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb6ec281" class="outline-2">
+<h2 id="orgb6ec281">迭代器</h2>
+<div class="outline-text-2" id="text-orgb6ec281">
 <ul class="org-ul">
-<li>STL通过迭代器模式提供了访问容器元素的泛型抽象。每个容器都提供了容器特定的迭代器，迭代器实际上是增强版的智能指针，这种指针知道如何遍历特定容器的元素，所有不同容器的迭代器都遵循C++标准中定义的特定接口。</li>
-<li>迭代器的实现类似于智能指针类，因为它们都重载了特定的运算符。基本的迭代器操作类似于普通指针(dumb pointer)支持的操作，因此普通指针可以合法用作特定容器的迭代器。可以将迭代器想象为指向容器中某个元素的指针。与指向数组元素的指针一样，迭代器可以通过 <code>operator++</code> 移动到下一个元素。还可以在迭代器上使用 <code>operator*</code> 和 <code>operator-&gt;</code> 来访问实际元素或元素中的字段。有些迭代器支持通过 <code>operator==</code> 和 <code>operator!=</code> 进行比较，还支持通过 <code>operator--</code> 转移到前一个元素。</li>
+<li>STL通过迭代器模式提供了访问容器元素的泛型抽象. 每个容器都提供了容器特定的迭代器, 迭代器实际上是增强版的智能指针, 这种指针知道如何遍历特定容器的元素, 所有不同容器的迭代器都遵循C++标准中定义的特定接口.</li>
+<li>迭代器的实现类似于智能指针类，因为它们都重载了特定的运算符。基本的迭代器操作类似于普通指针(dumb pointer)支持的操作, 因此普通指针可以合法用作特定容器的迭代器. 可以将迭代器想象为指向容器中某个元素的指针. 与指向数组元素的指针一样, 迭代器可以通过 <code>operator++</code> 移动到下一个元素. 还可以在迭代器上使用 <code>operator*</code> 和 <code>operator-&gt;</code> 来访问实际元素或元素中的字段. 有些迭代器支持通过 <code>operator==</code> 和 <code>operator!=</code> 进行比较, 还支持通过 <code>operator--</code> 转移到前一个元素.</li>
 <li>所有迭代器都必须可以通过复制来构建，赋值，且可以析构。</li>
 <li>可以使用 <code>std::distance()</code> 计算容器的两个迭代器之差。</li>
 <li>只有顺序容器，关联容器和无序关联容器提供了迭代器，容器适配器和 <code>bitset</code> 类都不支持迭代元素。</li>
 <li>STL中每个支持迭代器的容器类都为其迭代器类型提供了名为 <code>iterator</code> 和 <code>const_iterator</code> 的公共 <code>typedef</code> 。允许反向迭代元素的容器还提供了名为 <code>reverse_iterator</code> 和 <code>const_reverse_iterator</code> 的公共 <code>typedef</code> 。其中， <code>const_iterator</code> 和 <code>const_reverse_iterator</code> 提供了容器元素的只读访问。普通的 <code>iterator</code> 支持读和写, 可以转换为 <code>const_iterator</code>, 然而 <code>const_iterator</code> 不能转换为 <code>iterator</code>. 如果不需要修改容器中的元素, 那么应该使用 <code>const_iterator</code>.</li>
 <li>容器的 <code>begin()</code> 方法返回容器中第一个元素的迭代器, <code>end()</code> 方法返回的迭代器是在容器中最后一个元素的迭代器上执行 <code>operator++</code> 后的结果. <code>begin()</code> 和 <code>end()</code> 在一起提供了一个左开右闭区间——包含第一个元素却不包含最后一个元素. 采用这种方式的原因是为了支持空容器——不包含任何元素的容器, 此时 <code>begin()</code> 等于 <code>end()</code>. 类似的还有返回 <code>const</code> 迭代器的 <code>cbegin()</code> 和 <code>cend()</code> 方法, 返回反向迭代器的 <code>rbegin()</code> 和 <code>rend()</code> 方法, 以及返回 <code>const</code> 反向迭代器的 <code>crbegin()</code> 和 <code>crend()</code> 方法. 标准库还支持全局非成员函数 <code>std::begin()</code> 和 <code>std::end()</code>, C++14又添加了 <code>std::cbegin()</code>, <code>std::cend</code>, <code>std::rbegin()</code>, <code>std::rend()</code>, <code>std::crbegin()</code>, <code>std::crend()</code>. 建议使用这些非成员函数, 而不是其成员函数.</li>
 <li>只要可能, 尽量使用前递增而不要使用后递增, 因为前递增至少效率不会差, 一般更为高效. <code>iter++</code> 必须返回一个新的迭代器对象, 而 <code>++iter</code> 只是返回对 <code>iter</code> 的引用.</li>
-</ul></li>
-<li>不足
+</ul>
+</div>
+</div>
+<div id="outline-container-org5a26426" class="outline-2">
+<h2 id="org5a26426">不足</h2>
+<div class="outline-text-2" id="text-org5a26426">
 <ul class="org-ul">
 <li>在通过多线程同时访问容器时, STL不能保证任何线程安全.</li>
 <li>STL没有提供任何泛型的树结构或图结构.</li>
-</ul></li>
-</ul></dd>
-</dl>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-Marc Gregoire著, 张永强译. C++高级编程(第3版), 清华大学出版社, 2015.
-</p></div></div>
-
-
+</ul>
 </div>
-</div></div>
+</div>
+</div>
 </body>
 </html>

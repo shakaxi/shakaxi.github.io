@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-12-25 Mon 13:02 -->
+<!-- 2018-03-25 Sun 13:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - IT++</title>
@@ -184,7 +184,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -334,7 +334,20 @@ Targetting better utilization, creating following soft links is necessary.
 <div class="org-src-container">
 <pre class="src src-sh">ln -s /opt/itpp/bin/itpp-config /usr/local/bin
 ln -s /opt/itpp/include/itpp /usr/local/include
-ln -s /opt/itpp/lib/libitpp.so.8 /usr/local/lib
+</pre>
+</div>
+<p>
+Create file <code>/etc/ld.so.conf.d/itpp.conf</code> with its content as follows.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">/opt/itpp/lib
+</pre>
+</div>
+<p>
+Then, fresh the cache accordingly.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">ldconfig
 </pre>
 </div>
 </div>
