@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-12-25 Mon 13:03 -->
+<!-- 2018-04-21 Sat 21:27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Notmuch</title>
@@ -184,7 +184,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,24 +233,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0d01e45">Introduction</a></li>
-<li><a href="#org6bc2ffc">Installation</a></li>
-<li><a href="#org0176e86">Configuration</a>
+<li><a href="#org9480d5b">Introduction</a></li>
+<li><a href="#orgf077476">Installation</a></li>
+<li><a href="#org95b910b">Configuration</a>
 <ul>
-<li><a href="#orgabc8724"><code>~/.notmuch-config</code></a></li>
-<li><a href="#orge474df7"><code>~/.emacs.d/init.el</code></a></li>
-<li><a href="#orgd5e3912">Hooks</a></li>
-<li><a href="#org23bf083">Automatics</a></li>
+<li><a href="#org742ec28"><code>~/.notmuch-config</code></a></li>
+<li><a href="#orge2684db"><code>~/.emacs.d/init.el</code></a></li>
+<li><a href="#orgacffb91">Hooks</a></li>
+<li><a href="#orgcf870e2">Automatics</a></li>
 </ul>
 </li>
-<li><a href="#org59b2fa3">Key binding</a></li>
+<li><a href="#org2dad4e0">Key binding</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0d01e45" class="outline-2">
-<h2 id="org0d01e45">Introduction</h2>
-<div class="outline-text-2" id="text-org0d01e45">
+<div id="outline-container-org9480d5b" class="outline-2">
+<h2 id="org9480d5b">Introduction</h2>
+<div class="outline-text-2" id="text-org9480d5b">
 <p>
 <code>Notmuch</code> is a mail system<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. It can efficiently manage a fairly large number of emails. Particularly, it supports fast email searching and filtering based on tags, which is extremely similar to Gmail's tags whereby various virtual folders can be flexibly realized.
 </p>
@@ -260,22 +260,22 @@ This post is composed just to summarize the basic installation and configuration
 </p>
 </div>
 </div>
-<div id="outline-container-org6bc2ffc" class="outline-2">
-<h2 id="org6bc2ffc">Installation</h2>
-<div class="outline-text-2" id="text-org6bc2ffc">
+<div id="outline-container-orgf077476" class="outline-2">
+<h2 id="orgf077476">Installation</h2>
+<div class="outline-text-2" id="text-orgf077476">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S notmuch
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0176e86" class="outline-2">
-<h2 id="org0176e86">Configuration</h2>
-<div class="outline-text-2" id="text-org0176e86">
+<div id="outline-container-org95b910b" class="outline-2">
+<h2 id="org95b910b">Configuration</h2>
+<div class="outline-text-2" id="text-org95b910b">
 </div>
-<div id="outline-container-orgabc8724" class="outline-3">
-<h3 id="orgabc8724"><code>~/.notmuch-config</code></h3>
-<div class="outline-text-3" id="text-orgabc8724">
+<div id="outline-container-org742ec28" class="outline-3">
+<h3 id="org742ec28"><code>~/.notmuch-config</code></h3>
+<div class="outline-text-3" id="text-org742ec28">
 <p>
 The basic configuration can be performed by either
 </p>
@@ -314,9 +314,9 @@ The basic configuration can be performed by either
 </div>
 </div>
 </div>
-<div id="outline-container-orge474df7" class="outline-3">
-<h3 id="orge474df7"><code>~/.emacs.d/init.el</code></h3>
-<div class="outline-text-3" id="text-orge474df7">
+<div id="outline-container-orge2684db" class="outline-3">
+<h3 id="orge2684db"><code>~/.emacs.d/init.el</code></h3>
+<div class="outline-text-3" id="text-orge2684db">
 <p>
 Add following content to the configuration of Emacs.
 </p>
@@ -329,6 +329,12 @@ Add following content to the configuration of Emacs.
       message-kill-buffer-on-exit t
       mm-text-html-renderer 'w3m)
 
+(<span style="color: #b4fa70;">setq</span> notmuch-search-oldest-first nil
+      notmuch-show-all-multipart/alternative-parts nil
+      mail-interactive t
+      notmuch-always-prompt-for-sender nil
+      notmuch-show-indent-messages-width 3)
+
 (<span style="color: #b4fa70;">setq</span> mail-specify-envelope-from t
       message-sendmail-envelope-from 'header
       mail-envelope-from 'header)
@@ -340,13 +346,18 @@ Add following content to the configuration of Emacs.
       smtpmail-smtp-server <span style="color: #e9b96e;">"SMTPSERVER"</span>
       smtpmail-stream-type 'ssl
       smtpmail-smtp-service PORT)
+
+(<span style="color: #b4fa70;">setq</span> notmuch-saved-searches '((<span style="color: #e090d7;">:name</span> <span style="color: #e9b96e;">"inbox"</span>
+                                      <span style="color: #e090d7;">:query</span> <span style="color: #e9b96e;">"tag:inbox"</span>
+                                      <span style="color: #e090d7;">:count-query</span> <span style="color: #e9b96e;">"tag:inbox and tag:unread"</span>
+                                      <span style="color: #e090d7;">:sort-order</span> newest-first)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd5e3912" class="outline-3">
-<h3 id="orgd5e3912">Hooks</h3>
-<div class="outline-text-3" id="text-orgd5e3912">
+<div id="outline-container-orgacffb91" class="outline-3">
+<h3 id="orgacffb91">Hooks</h3>
+<div class="outline-text-3" id="text-orgacffb91">
 <p>
 Additionally, notmuch supports hooks which are essentially scripts in <code>/MAIL/REPO/.notmuch/hooks</code> whereby users can specify and customize the behaviors of notmuch. Currently, following scripts and hooks are available.
 </p>
@@ -363,7 +374,7 @@ Additionally, notmuch supports hooks which are essentially scripts in <code>/MAI
 </dl>
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #73d216;">#</span><span style="color: #73d216;">!/bin/</span><span style="color: #b4fa70;">sh</span>
-notmuch tag -inbox +sent -- from:EMAIADDRESS
+notmuch tag -inbox +sent -- from:EMAILADDRESS
 notmuch tag -inbox +ML -- to:MAILLIST@EXAMPLE.COM
 notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
 </pre>
@@ -373,9 +384,9 @@ notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
 </dl>
 </div>
 </div>
-<div id="outline-container-org23bf083" class="outline-3">
-<h3 id="org23bf083">Automatics</h3>
-<div class="outline-text-3" id="text-org23bf083">
+<div id="outline-container-orgcf870e2" class="outline-3">
+<h3 id="orgcf870e2">Automatics</h3>
+<div class="outline-text-3" id="text-orgcf870e2">
 <ul class="org-ul">
 <li>Add new intended task by <code>crontab -e</code> with following content</li>
 </ul>
@@ -398,9 +409,9 @@ systemctl start cronie.service
 </div>
 </div>
 </div>
-<div id="outline-container-org59b2fa3" class="outline-2">
-<h2 id="org59b2fa3">Key binding</h2>
-<div class="outline-text-2" id="text-org59b2fa3">
+<div id="outline-container-org2dad4e0" class="outline-2">
+<h2 id="org2dad4e0">Key binding</h2>
+<div class="outline-text-2" id="text-org2dad4e0">
 <table>
 
 

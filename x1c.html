@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2018-04-21 Sat 21:17 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Installation of ArchLinux on Thinkpad X1 Carbon 2018</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Installation of ArchLinux on Thinkpad X1 Carbon 2018</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge8b33f0">Preparition</a></li>
+<li><a href="#org3eff237">Installation</a>
+<ul>
+<li><a href="#org0e82af5">Boot</a></li>
+<li><a href="#org912d8f1">Partition</a></li>
+<li><a href="#orgf1ef2df">Format the partitions</a></li>
+<li><a href="#org26fbb14">Mount the partitions</a></li>
+<li><a href="#orgc738e65">Select the nearest mirror</a></li>
+<li><a href="#orgec20e8a">Install the base system</a></li>
+<li><a href="#org89b422f">Generate file system table</a></li>
+<li><a href="#orgf4b9542">Chroot into the newly installed system</a></li>
+<li><a href="#org0703c3c">Host name</a></li>
+<li><a href="#org3e12371">Time zone</a></li>
+<li><a href="#org886132b">Locale</a></li>
+<li><a href="#org73e0989">CPU frequency scaling</a></li>
+<li><a href="#orgca7e7d8">WiFi</a></li>
+<li><a href="#orgc4e9c00">Bootloader</a>
+<ul>
+<li><a href="#orgf0a58a2">Mount ESP</a></li>
+<li><a href="#orgc0a994e">Microcode</a></li>
+<li><a href="#orged1138b">Init ram disk</a></li>
+<li><a href="#org7fbdc71">Boot manager</a></li>
+</ul>
+</li>
+<li><a href="#org383df5c">Password for root</a></li>
+<li><a href="#org9a8dab1">Unmount and reboot</a></li>
+</ul>
+</li>
+<li><a href="#org51fad81">Post configuration</a>
+<ul>
+<li><a href="#orgca4ef4e">BIOS configuration</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This post aims to record the procedure that I installed ArchLinux on my new notebook, Thinkpad X1 Carbon (x1c) 2018.
+</p>
+
+<div id="outline-container-orge8b33f0" class="outline-2">
+<h2 id="orge8b33f0">Preparition</h2>
+<div class="outline-text-2" id="text-orge8b33f0">
+<ul class="org-ul">
+<li>Download the installation image from the nearest mirror, e.g., <a href="http://mirrors.163.com/archlinux/iso/latest">http://mirrors.163.com/archlinux/iso/latest</a></li>
+<li>Burn the image into a USB stick.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">dd <span style="color: #fcaf3e;">if</span>=/path/to/image/ <span style="color: #fcaf3e;">of</span>=/dev/sdb <span style="color: #fcaf3e;">status</span>=progress <span style="color: #fcaf3e;">bs</span>=10M
+</pre>
+</div>
+<ul class="org-ul">
+<li>The notebook has Windows 10 installed with <code>快速启动</code> enabled. Therefore, it needs to be disabled before ArchLinux installation. Uncheck the option of <code>控制面板 -&gt; 硬件和声音 -&gt; 电源选项 -&gt; 选择电源按钮的功能 -&gt; 更改当前不可用的设置 -&gt; 启用快速启动（推荐）</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3eff237" class="outline-2">
+<h2 id="org3eff237">Installation</h2>
+<div class="outline-text-2" id="text-org3eff237">
+</div>
+<div id="outline-container-org0e82af5" class="outline-3">
+<h3 id="org0e82af5">Boot</h3>
+<div class="outline-text-3" id="text-org0e82af5">
+<ul class="org-ul">
+<li>Power on the notebook.</li>
+<li>Press <code>Enter</code> and <code>F1</code> to enter the BIOS configuration.</li>
+<li>Disable the <code>Security -&gt; Secure Boot</code>.</li>
+<li>Insert the prepared USB and press <code>F10</code> to save the change and reboot the notebook.</li>
+<li>Press <code>Enter</code> and <code>F12</code> to temporarily boot from the prepared USB stick.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org912d8f1" class="outline-3">
+<h3 id="org912d8f1">Partition</h3>
+<div class="outline-text-3" id="text-org912d8f1">
+<p>
+For UEFI booting, a dedicated EFI system partition (ESP) is mandatory. EFI bootloaders, applications and drivers can be stored in an ESP and lauched by the UEFI firmware at the boot stage. It is completely independent of OS.
+</p>
+
+<p>
+For my SSD, ESP can be detected by
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">parted /dev/nvme0n1 print
+</pre>
+</div>
+<p>
+The command returns as follows.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">...
+Number  Start   End     Size    File system     Name                          Flags
+ 1      1049kB  274MB   273MB   fat32           EFI system partition          boot, hidden, esp
+...
+</pre>
+</div>
+<p>
+Clearly, an ESP, i.e., <code>/dev/nvme0n1p1</code> has already been created in the installation of Windows 10. Therefore, I just need to mount the existing EFI partition before the bootloader installation.
+</p>
+
+<p>
+If you do not have an ESP available, you have to create a new one, e.g., creating a primary partition with partion type <code>EFI (FAT-12/16/32)</code> by <code>fdisk</code>, and format it as <code>FAT32</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">mkfs.fat -F32 /dev/nvme0n1p1
+</pre>
+</div>
+<p>
+If following message returns,
+</p>
+<pre class="example">
+WARNING: Not enough clusters for a 32 bit FAT!
+</pre>
+<p>
+reduce cluster size with
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">mkfs.fat -s2 -F32 /dev/nvme0n1p1
+</pre>
+</div>
+<p>
+or
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">mkfs.fat -s1 -F32 /dev/nvme0n1p1
+</pre>
+</div>
+<p>
+Otherwise, the resulted ESP may be unreadable by UEFI.
+</p>
+
+<p>
+Before customization, my SSD already has several partitions.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">...
+Device             Start       End   Sectors   Size Type
+/dev/nvme0n1p1      2048    534527    532480   260M EFI System
+/dev/nvme0n1p2    534528    567295     32768    16M Microsoft reserved
+/dev/nvme0n1p3    567296  84453375  83886080    40G Microsoft basic data
+/dev/nvme0n1p4 498069504 500117503   2048000  1000M Windows recovery environment
+...
+</pre>
+</div>
+<p>
+In addition, I created two <code>ext4</code> partitions for <code>/</code> and <code>/home</code> respectively, as well as a swap by <code>cfdisk</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">cfdisk /dev/nvme0n1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf1ef2df" class="outline-3">
+<h3 id="orgf1ef2df">Format the partitions</h3>
+<div class="outline-text-3" id="text-orgf1ef2df">
+<div class="org-src-container">
+<pre class="src src-sh">mkfs.ext4 /dev/nvme0n1p5
+mkfs.ext4 /dev/nvme0n1p7
+mkswap /dev/nvme0n1p6
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org26fbb14" class="outline-3">
+<h3 id="org26fbb14">Mount the partitions</h3>
+<div class="outline-text-3" id="text-org26fbb14">
+<div class="org-src-container">
+<pre class="src src-sh">mount -t ext4 /dev/nvme0n1p5 /mnt
+mkdir /mnt/home
+mount -t ext4 /dev/nvme0n1p7 /mnt/home
+swapon /dev/nvme0n1p6
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc738e65" class="outline-3">
+<h3 id="orgc738e65">Select the nearest mirror</h3>
+<div class="outline-text-3" id="text-orgc738e65">
+<p>
+Edit <code>/etc/pacman.d/mirrorlist</code> as
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">Server = http://mirrors.163.com/archlinux/$<span style="color: #fcaf3e;">repo</span>/os/$<span style="color: #fcaf3e;">arch</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgec20e8a" class="outline-3">
+<h3 id="orgec20e8a">Install the base system</h3>
+<div class="outline-text-3" id="text-orgec20e8a">
+<div class="org-src-container">
+<pre class="src src-sh">pacstrap /mnt base
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org89b422f" class="outline-3">
+<h3 id="org89b422f">Generate file system table</h3>
+<div class="outline-text-3" id="text-org89b422f">
+<div class="org-src-container">
+<pre class="src src-sh">genfstab /mnt &gt;&gt; /mnt/etc/fstab
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf4b9542" class="outline-3">
+<h3 id="orgf4b9542">Chroot into the newly installed system</h3>
+<div class="outline-text-3" id="text-orgf4b9542">
+<div class="org-src-container">
+<pre class="src src-sh">arch-chroot /mnt
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0703c3c" class="outline-3">
+<h3 id="org0703c3c">Host name</h3>
+<div class="outline-text-3" id="text-org0703c3c">
+<p>
+Create file <code>/etc/hostname</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">notebook
+</pre>
+</div>
+<p>
+Revise file <code>/etc/hosts</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">Static table lookup for hostnames.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">See hosts(5) for details.</span>
+172.0.0.1      localhost
+::1            localhost
+172.0.0.1      notebook.localdomain notebook
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3e12371" class="outline-3">
+<h3 id="org3e12371">Time zone</h3>
+<div class="outline-text-3" id="text-org3e12371">
+<div class="org-src-container">
+<pre class="src src-sh">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org886132b" class="outline-3">
+<h3 id="org886132b">Locale</h3>
+<div class="outline-text-3" id="text-org886132b">
+<p>
+Edit <code>/etc/locale.gen</code> and uncomment the following lines.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">...
+en_US.UTF-8 UTF-8
+en_US ISO-8859-1
+...
+zh_CN.GB18030 GB18030
+zh_CN.GBK GBK
+zh_CN.UTF-8 UTF-8
+zh_CN GB2312
+...
+</pre>
+</div>
+<p>
+Generate and set locales.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">locale-gen
+<span style="color: #e090d7;">echo</span> <span style="color: #fcaf3e;">LANG</span>=en_US.UTF-8 &gt; /etc/locale.conf
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org73e0989" class="outline-3">
+<h3 id="org73e0989">CPU frequency scaling</h3>
+<div class="outline-text-3" id="text-org73e0989">
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S cpupower
+systemctl enable cpupower
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgca7e7d8" class="outline-3">
+<h3 id="orgca7e7d8">WiFi</h3>
+<div class="outline-text-3" id="text-orgca7e7d8">
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S dialog wpa_supplicant
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc4e9c00" class="outline-3">
+<h3 id="orgc4e9c00">Bootloader</h3>
+<div class="outline-text-3" id="text-orgc4e9c00">
+<p>
+Since version 3.3, the Linux kernel can be directly loaded by EFI firmware as an EFI executable, a.k.a., EFISTUB (EFI BOOT STUB). In other words, <code>grub</code>-like intermediate bootloaders are not necessary.
+</p>
+</div>
+<div id="outline-container-orgf0a58a2" class="outline-4">
+<h4 id="orgf0a58a2">Mount ESP</h4>
+<div class="outline-text-4" id="text-orgf0a58a2">
+<p>
+Create <code>/esp</code> and mount the ESP to it.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">mkdir /esp
+mount -t /dev/nvme0n1p1 /esp
+</pre>
+</div>
+<p>
+Create <code>/esp/EFI/arch</code> and bind it to <code>/boot</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">mkdir /esp/EFI/arch
+mount --bind /esp/EFI/arch /boot
+</pre>
+</div>
+<p>
+Append following entries to <code>/etc/fstab</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">/dev/nvme0n1p1                                  /esp            vfat            rw              0 0
+/esp/EFI/arch                                   /boot           none            defaults,bind   0 0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc0a994e" class="outline-4">
+<h4 id="orgc0a994e">Microcode</h4>
+<div class="outline-text-4" id="text-orgc0a994e">
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S intel-ucode
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orged1138b" class="outline-4">
+<h4 id="orged1138b">Init ram disk</h4>
+<div class="outline-text-4" id="text-orged1138b">
+<div class="org-src-container">
+<pre class="src src-sh">mkinitcpio -p linux
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7fbdc71" class="outline-4">
+<h4 id="org7fbdc71">Boot manager</h4>
+<div class="outline-text-4" id="text-org7fbdc71">
+<p>
+Install the boot manager.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S efibootmgr
+</pre>
+</div>
+<p>
+Add a new boot entry.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">efibootmgr -d /dev/nvme0n1 -p 1 --create --gpt --label <span style="color: #e9b96e;">"Arch Linux"</span> --loader /EFI/arch/vmlinuz-linux --unicode <span style="color: #e9b96e;">"root=/dev/nvme0n1p5 rw initrd=/EFI/arch/intel-ucode.img initrd=/EFI/arch/initramfs-linux.img"</span>
+</pre>
+</div>
+<p>
+Set the boot order.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">efibootmgr --bootorder 0001,0000
+</pre>
+</div>
+<p>
+Verify the configuration.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">efibootmgr
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org383df5c" class="outline-3">
+<h3 id="org383df5c">Password for root</h3>
+<div class="outline-text-3" id="text-org383df5c">
+<div class="org-src-container">
+<pre class="src src-sh">passwd
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9a8dab1" class="outline-3">
+<h3 id="org9a8dab1">Unmount and reboot</h3>
+<div class="outline-text-3" id="text-org9a8dab1">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #b4fa70;">exit</span>
+umount -R /mnt
+reboot
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org51fad81" class="outline-2">
+<h2 id="org51fad81">Post configuration</h2>
+<div class="outline-text-2" id="text-org51fad81">
+</div>
+<div id="outline-container-orgca4ef4e" class="outline-3">
+<h3 id="orgca4ef4e">BIOS configuration</h3>
+<div class="outline-text-3" id="text-orgca4ef4e">
+<p>
+Enable <code>Config -&gt; Thunderbolt BIOS Assist Mode</code>. This will significantly reduce the power consumption of CPU wakeups<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Carbon_(Gen_6)">https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Carbon_(Gen_6)</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>

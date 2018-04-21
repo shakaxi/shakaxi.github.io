@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-12-25 Mon 13:03 -->
+<!-- 2018-04-21 Sat 21:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Pgfplots</title>
@@ -184,7 +184,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,38 +233,38 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgea8b4a7">Introduction</a></li>
-<li><a href="#org46ee5af">Installation</a></li>
-<li><a href="#org6c32aaa">Usage</a>
+<li><a href="#orgc911712">Introduction</a></li>
+<li><a href="#org97888b8">Installation</a></li>
+<li><a href="#org7925e0d">Usage</a>
 <ul>
-<li><a href="#org7fccac4"><code>AXIS-TYPE</code></a></li>
-<li><a href="#org3be565f"><code>FORMULA</code></a></li>
-<li><a href="#org7479d6a">Options</a></li>
+<li><a href="#orgc772a37"><code>AXIS-TYPE</code></a></li>
+<li><a href="#orgccc3896"><code>FORMULA</code></a></li>
+<li><a href="#org8ff4ae3">Options</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgea8b4a7" class="outline-2">
-<h2 id="orgea8b4a7">Introduction</h2>
-<div class="outline-text-2" id="text-orgea8b4a7">
+<div id="outline-container-orgc911712" class="outline-2">
+<h2 id="orgc911712">Introduction</h2>
+<div class="outline-text-2" id="text-orgc911712">
 <p>
 <i>Pgfplots</i> is an excellent <i>LaTeX</i> package to plot high quality graphs. This post just summaries its basic usages.
 </p>
 </div>
 </div>
-<div id="outline-container-org46ee5af" class="outline-2">
-<h2 id="org46ee5af">Installation</h2>
-<div class="outline-text-2" id="text-org46ee5af">
+<div id="outline-container-org97888b8" class="outline-2">
+<h2 id="org97888b8">Installation</h2>
+<div class="outline-text-2" id="text-org97888b8">
 <p>
 Pgfplots is a built-in package in the <a href="http://tug.org">texlive</a>. As long as texlive is ready, pgfplots is out-of-the-box.
 </p>
 </div>
 </div>
-<div id="outline-container-org6c32aaa" class="outline-2">
-<h2 id="org6c32aaa">Usage</h2>
-<div class="outline-text-2" id="text-org6c32aaa">
+<div id="outline-container-org7925e0d" class="outline-2">
+<h2 id="org7925e0d">Usage</h2>
+<div class="outline-text-2" id="text-org7925e0d">
 <p>
 Pgfplots depends on <a href="./latex_pgf_tikz.html">pgf/tikz</a>, and the statements are encapsulated in the environment of <i>tikzpicture</i>. The basic plot commands are <code>\addplot</code> and <code>\addplot3</code> for 2D or 3D plot purpose, respectively. It should be noticed that each of them has a variant, i.e. <code>\addplot+</code> and <code>\addplot3+</code>. <code>\addplot/\addplot3</code> uses the provided local options only, while <code>\addplot+/\addplot3+</code> adopts both the global and local options.
 </p>
@@ -299,17 +299,17 @@ Templates for pgfplots usage can be presented as follows.
 </pre>
 </div>
 </div>
-<div id="outline-container-org7fccac4" class="outline-3">
-<h3 id="org7fccac4"><code>AXIS-TYPE</code></h3>
-<div class="outline-text-3" id="text-org7fccac4">
+<div id="outline-container-orgc772a37" class="outline-3">
+<h3 id="orgc772a37"><code>AXIS-TYPE</code></h3>
+<div class="outline-text-3" id="text-orgc772a37">
 <p>
 The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis/polaraxis</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>
 </div>
 </div>
-<div id="outline-container-org3be565f" class="outline-3">
-<h3 id="org3be565f"><code>FORMULA</code></h3>
-<div class="outline-text-3" id="text-org3be565f">
+<div id="outline-container-orgccc3896" class="outline-3">
+<h3 id="orgccc3896"><code>FORMULA</code></h3>
+<div class="outline-text-3" id="text-orgccc3896">
 <ul class="org-ul">
 <li>plain function<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, e.g.</li>
 </ul>
@@ -357,9 +357,9 @@ a2 b2 c2
 </div>
 </div>
 </div>
-<div id="outline-container-org7479d6a" class="outline-3">
-<h3 id="org7479d6a">Options</h3>
-<div class="outline-text-3" id="text-org7479d6a">
+<div id="outline-container-org8ff4ae3" class="outline-3">
+<h3 id="org8ff4ae3">Options</h3>
+<div class="outline-text-3" id="text-org8ff4ae3">
 <p>
 <code>AXIS-OPTIONS</code> and <code>PLOT-OPTIONS</code> are basically the same, and the latter overrides the former.
 </p>

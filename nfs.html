@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-12-25 Mon 13:03 -->
+<!-- 2018-04-21 Sat 21:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NFS</title>
@@ -184,7 +184,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,11 +233,11 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga234d16">Installation</a></li>
-<li><a href="#org0e669dc">Configuration</a>
+<li><a href="#org99eb7a8">Installation</a></li>
+<li><a href="#org6e151b8">Configuration</a>
 <ul>
-<li><a href="#org71c0df4">Server</a></li>
-<li><a href="#orga943222">Client</a></li>
+<li><a href="#org065eed7">Server</a></li>
+<li><a href="#orgf954e21">Client</a></li>
 </ul>
 </li>
 </ul>
@@ -246,22 +246,22 @@ for the JavaScript code in this tag.
 <p>
 Network file system (NFS) is a simple approach for share and exchange files in Unix/Linux. This post summarizes its installation and configuration.
 </p>
-<div id="outline-container-orga234d16" class="outline-2">
-<h2 id="orga234d16">Installation</h2>
-<div class="outline-text-2" id="text-orga234d16">
+<div id="outline-container-org99eb7a8" class="outline-2">
+<h2 id="org99eb7a8">Installation</h2>
+<div class="outline-text-2" id="text-org99eb7a8">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S nfs-utils
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0e669dc" class="outline-2">
-<h2 id="org0e669dc">Configuration</h2>
-<div class="outline-text-2" id="text-org0e669dc">
+<div id="outline-container-org6e151b8" class="outline-2">
+<h2 id="org6e151b8">Configuration</h2>
+<div class="outline-text-2" id="text-org6e151b8">
 </div>
-<div id="outline-container-org71c0df4" class="outline-3">
-<h3 id="org71c0df4">Server</h3>
-<div class="outline-text-3" id="text-org71c0df4">
+<div id="outline-container-org065eed7" class="outline-3">
+<h3 id="org065eed7">Server</h3>
+<div class="outline-text-3" id="text-org065eed7">
 <p>
 Edit <code>/etc/exports</code>, e.g.
 </p>
@@ -293,9 +293,9 @@ systemctl start nfs-server.service
 </div>
 </div>
 </div>
-<div id="outline-container-orga943222" class="outline-3">
-<h3 id="orga943222">Client</h3>
-<div class="outline-text-3" id="text-orga943222">
+<div id="outline-container-orgf954e21" class="outline-3">
+<h3 id="orgf954e21">Client</h3>
+<div class="outline-text-3" id="text-orgf954e21">
 <p>
 Add the corresponding entries in <code>/etc/fstab</code>, e.g.
 </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-03-25 Sun 13:26 -->
+<!-- 2018-04-21 Sat 21:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Standard Template Library</title>
@@ -233,51 +233,51 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga08e0d3">容器</a>
+<li><a href="#org7209740">容器</a>
 <ul>
-<li><a href="#org44d7dd9">顺序容器(sequential container)</a>
+<li><a href="#org1d78e86">顺序容器(sequential container)</a>
 <ul>
-<li><a href="#org3de1ffa"><code>vector</code></a></li>
-<li><a href="#orgc1217ca"><code>list</code> (双向链表)</a></li>
-<li><a href="#org1a2ef65"><code>forward_list</code> (单向链表)</a></li>
-<li><a href="#orgb480d86"><code>deque</code> (双头队列)</a></li>
-<li><a href="#orgb59d566"><code>array</code></a></li>
+<li><a href="#org9d972df"><code>vector</code></a></li>
+<li><a href="#org15c6996"><code>list</code> (双向链表)</a></li>
+<li><a href="#org8da7a92"><code>forward_list</code> (单向链表)</a></li>
+<li><a href="#org14a1958"><code>deque</code> (双头队列)</a></li>
+<li><a href="#orgcce71ea"><code>array</code></a></li>
 </ul>
 </li>
-<li><a href="#orga7b9d40">容器适配器(adaptor)</a>
+<li><a href="#org9275ee0">容器适配器(adaptor)</a>
 <ul>
-<li><a href="#org3225321"><code>queue</code></a></li>
-<li><a href="#org648fed6"><code>priority_queue</code></a></li>
-<li><a href="#org34a9e01"><code>stack</code></a></li>
+<li><a href="#org04d8e34"><code>queue</code></a></li>
+<li><a href="#orgcee0c70"><code>priority_queue</code></a></li>
+<li><a href="#org26fd690"><code>stack</code></a></li>
 </ul>
 </li>
-<li><a href="#orgb0d1d3d">关联容器</a>
+<li><a href="#org33a8187">关联容器</a>
 <ul>
-<li><a href="#org18e4bc6"><code>pair</code> 工具类</a></li>
-<li><a href="#org7a6409d">排序关联容器或有序关联容器</a>
+<li><a href="#org4aae679"><code>pair</code> 工具类</a></li>
+<li><a href="#orgaf1d10f">排序关联容器或有序关联容器</a>
 <ul>
-<li><a href="#org023857e"><code>map</code> 和 <code>multimap</code></a></li>
-<li><a href="#org56b60da"><code>set</code> 和 <code>multiset</code></a></li>
+<li><a href="#org703102e"><code>map</code> 和 <code>multimap</code></a></li>
+<li><a href="#org59bf8d9"><code>set</code> 和 <code>multiset</code></a></li>
 </ul>
 </li>
-<li><a href="#org0e37ee2">无序关联容器或哈希表(hash table)</a></li>
+<li><a href="#orga7da342">无序关联容器或哈希表(hash table)</a></li>
 </ul>
 </li>
-<li><a href="#orgc8eb809">其他容器</a></li>
+<li><a href="#org1d3ee42">其他容器</a></li>
 </ul>
 </li>
-<li><a href="#orgf5450b6">算法</a></li>
-<li><a href="#orgb6ec281">迭代器</a></li>
-<li><a href="#org5a26426">不足</a></li>
+<li><a href="#org4c74286">算法</a></li>
+<li><a href="#org6fd6dba">迭代器</a></li>
+<li><a href="#org483f15e">不足</a></li>
 </ul>
 </div>
 </div>
 <p>
 标准模板库(Standard Template Library, STL)是C++标准库的子集, 其大量使用了模板.
 </p>
-<div id="outline-container-orga08e0d3" class="outline-2">
-<h2 id="orga08e0d3">容器</h2>
-<div class="outline-text-2" id="text-orga08e0d3">
+<div id="outline-container-org7209740" class="outline-2">
+<h2 id="org7209740">容器</h2>
+<div class="outline-text-2" id="text-org7209740">
 <ul class="org-ul">
 <li>STL中的所有容器都是模板, 是泛型结构, 因此可以通过这些容器保存任意类型的数据. 除 <code>array</code> 和 <code>bitset</code> 外, 大部分STL容器的大小灵活多变, 都能自动增长或收缩, 以容纳更多或者更少的元素.</li>
 <li>STL容器是同构的, 每个容器实例只允许一种类型的元素.</li>
@@ -288,16 +288,16 @@ for the JavaScript code in this tag.
 <li>C++11在大部分STL容器中添加了对 <code>emplace</code> 操作的支持. <code>emplace</code> 的意思是放置到位, 就地构件对象.</li>
 </ul>
 </div>
-<div id="outline-container-org44d7dd9" class="outline-3">
-<h3 id="org44d7dd9">顺序容器(sequential container)</h3>
-<div class="outline-text-3" id="text-org44d7dd9">
+<div id="outline-container-org1d78e86" class="outline-3">
+<h3 id="org1d78e86">顺序容器(sequential container)</h3>
+<div class="outline-text-3" id="text-org1d78e86">
 <p>
 顺序容器是元素的序列。
 </p>
 </div>
-<div id="outline-container-org3de1ffa" class="outline-4">
-<h4 id="org3de1ffa"><code>vector</code></h4>
-<div class="outline-text-4" id="text-org3de1ffa">
+<div id="outline-container-org9d972df" class="outline-4">
+<h4 id="org9d972df"><code>vector</code></h4>
+<div class="outline-text-4" id="text-org9d972df">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;vector&gt;</code> 中.</li>
 <li>提供对元素的随机访问.</li>
@@ -323,9 +323,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc1217ca" class="outline-4">
-<h4 id="orgc1217ca"><code>list</code> (双向链表)</h4>
-<div class="outline-text-4" id="text-orgc1217ca">
+<div id="outline-container-org15c6996" class="outline-4">
+<h4 id="org15c6996"><code>list</code> (双向链表)</h4>
+<div class="outline-text-4" id="text-org15c6996">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;list&gt;</code> 中.</li>
 <li>元素查找和访问很慢.</li>
@@ -336,9 +336,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org1a2ef65" class="outline-4">
-<h4 id="org1a2ef65"><code>forward_list</code> (单向链表)</h4>
-<div class="outline-text-4" id="text-org1a2ef65">
+<div id="outline-container-org8da7a92" class="outline-4">
+<h4 id="org8da7a92"><code>forward_list</code> (单向链表)</h4>
+<div class="outline-text-4" id="text-org8da7a92">
 <ul class="org-ul">
 <li>只支持前向迭代.</li>
 <li>没有提供快速的随机访问.</li>
@@ -346,9 +346,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb480d86" class="outline-4">
-<h4 id="orgb480d86"><code>deque</code> (双头队列)</h4>
-<div class="outline-text-4" id="text-orgb480d86">
+<div id="outline-container-org14a1958" class="outline-4">
+<h4 id="org14a1958"><code>deque</code> (双头队列)</h4>
+<div class="outline-text-4" id="text-org14a1958">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;deque&gt;</code> 中.</li>
 <li>不要求元素保存在连续内存中.</li>
@@ -359,9 +359,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb59d566" class="outline-4">
-<h4 id="orgb59d566"><code>array</code></h4>
-<div class="outline-text-4" id="text-orgb59d566">
+<div id="outline-container-orgcce71ea" class="outline-4">
+<h4 id="orgcce71ea"><code>array</code></h4>
+<div class="outline-text-4" id="text-orgcce71ea">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;array&gt;</code> 中.</li>
 <li>标准C风格数组的替代品, 实际上是对C风格数组的简单包装.</li>
@@ -373,16 +373,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orga7b9d40" class="outline-3">
-<h3 id="orga7b9d40">容器适配器(adaptor)</h3>
-<div class="outline-text-3" id="text-orga7b9d40">
+<div id="outline-container-org9275ee0" class="outline-3">
+<h3 id="org9275ee0">容器适配器(adaptor)</h3>
+<div class="outline-text-3" id="text-org9275ee0">
 <p>
 容器适配器只是构建在某种标准顺序容器上的简单接口。
 </p>
 </div>
-<div id="outline-container-org3225321" class="outline-4">
-<h4 id="org3225321"><code>queue</code></h4>
-<div class="outline-text-4" id="text-org3225321">
+<div id="outline-container-org04d8e34" class="outline-4">
+<h4 id="org04d8e34"><code>queue</code></h4>
+<div class="outline-text-4" id="text-org04d8e34">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;queue&gt;</code> 中.</li>
 <li>提供了标准的先入先出(FIFO)语义.</li>
@@ -394,9 +394,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org648fed6" class="outline-4">
-<h4 id="org648fed6"><code>priority_queue</code></h4>
-<div class="outline-text-4" id="text-org648fed6">
+<div id="outline-container-orgcee0c70" class="outline-4">
+<h4 id="orgcee0c70"><code>priority_queue</code></h4>
+<div class="outline-text-4" id="text-orgcee0c70">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;queue&gt;</code> 中.</li>
 <li>插入删除比 <code>queue</code> 要慢.</li>
@@ -408,9 +408,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org34a9e01" class="outline-4">
-<h4 id="org34a9e01"><code>stack</code></h4>
-<div class="outline-text-4" id="text-org34a9e01">
+<div id="outline-container-org26fd690" class="outline-4">
+<h4 id="org26fd690"><code>stack</code></h4>
+<div class="outline-text-4" id="text-org26fd690">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;stack&gt;</code> 中.</li>
 <li>提供了标准的先入后出(FILO)语义，也称为后入先出语义.</li>
@@ -424,16 +424,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb0d1d3d" class="outline-3">
-<h3 id="orgb0d1d3d">关联容器</h3>
-<div class="outline-text-3" id="text-orgb0d1d3d">
+<div id="outline-container-org33a8187" class="outline-3">
+<h3 id="org33a8187">关联容器</h3>
+<div class="outline-text-3" id="text-org33a8187">
 <p>
 关联容器是关联了键和值的容器。
 </p>
 </div>
-<div id="outline-container-org18e4bc6" class="outline-4">
-<h4 id="org18e4bc6"><code>pair</code> 工具类</h4>
-<div class="outline-text-4" id="text-org18e4bc6">
+<div id="outline-container-org4aae679" class="outline-4">
+<h4 id="org4aae679"><code>pair</code> 工具类</h4>
+<div class="outline-text-4" id="text-org4aae679">
 <ul class="org-ul">
 <li><code>pair</code> 是一个类模板， 将两个可能属于不同类型的值组合起来。</li>
 <li>通过 <code>first</code> 和 <code>second</code> 公共数据成员访问这两个值。</li>
@@ -443,13 +443,13 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org7a6409d" class="outline-4">
-<h4 id="org7a6409d">排序关联容器或有序关联容器</h4>
-<div class="outline-text-4" id="text-org7a6409d">
+<div id="outline-container-orgaf1d10f" class="outline-4">
+<h4 id="orgaf1d10f">排序关联容器或有序关联容器</h4>
+<div class="outline-text-4" id="text-orgaf1d10f">
 </div>
-<div id="outline-container-org023857e" class="outline-5">
-<h5 id="org023857e"><code>map</code> 和 <code>multimap</code></h5>
-<div class="outline-text-5" id="text-org023857e">
+<div id="outline-container-org703102e" class="outline-5">
+<h5 id="org703102e"><code>map</code> 和 <code>multimap</code></h5>
+<div class="outline-text-5" id="text-org703102e">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;map&gt;</code> 中，保存的是键/值对。</li>
 <li><code>map</code>
@@ -466,9 +466,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org56b60da" class="outline-5">
-<h5 id="org56b60da"><code>set</code> 和 <code>multiset</code></h5>
-<div class="outline-text-5" id="text-org56b60da">
+<div id="outline-container-org59bf8d9" class="outline-5">
+<h5 id="org59bf8d9"><code>set</code> 和 <code>multiset</code></h5>
+<div class="outline-text-5" id="text-org59bf8d9">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;set&gt;</code> 中。</li>
 <li><code>multiset</code> 和 <code>set</code> 的关系等同于 <code>multimap</code> 和 <code>map</code> 的关系. <code>multiset</code> 支持 <code>set</code> 的所有操作, 但允许容器中同时保存多个相等的元素.</li>
@@ -476,9 +476,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-org0e37ee2" class="outline-4">
-<h4 id="org0e37ee2">无序关联容器或哈希表(hash table)</h4>
-<div class="outline-text-4" id="text-org0e37ee2">
+<div id="outline-container-orga7da342" class="outline-4">
+<h4 id="orga7da342">无序关联容器或哈希表(hash table)</h4>
+<div class="outline-text-4" id="text-orga7da342">
 <ul class="org-ul">
 <li><code>unordered_map</code> 和 <code>unordered_multimap</code> 定义在头文件 <code>&lt;unordered_map&gt;</code> 中, 都是类模板. <code>unordered_multimap</code> 是允许多个元素带有同一个键值的 <code>unordered_map</code>.</li>
 <li><code>unordered_set</code> 和 <code>unordered_multiset</code> 定义在头文件 <code>&lt;unordered_set&gt;</code> 中. 二者分别类似于 <code>set</code> 和 <code>multiset</code>.</li>
@@ -490,9 +490,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc8eb809" class="outline-3">
-<h3 id="orgc8eb809">其他容器</h3>
-<div class="outline-text-3" id="text-orgc8eb809">
+<div id="outline-container-org1d3ee42" class="outline-3">
+<h3 id="org1d3ee42">其他容器</h3>
+<div class="outline-text-3" id="text-org1d3ee42">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;bitset&gt;</code> 中的 <code>bitset</code> 并不是一个真正的STL容器: 固定大小(声明时指定大小), 不支持迭代器.</li>
 <li><code>string</code> 也可看做字符的顺序容器.</li>
@@ -501,9 +501,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf5450b6" class="outline-2">
-<h2 id="orgf5450b6">算法</h2>
-<div class="outline-text-2" id="text-orgf5450b6">
+<div id="outline-container-org4c74286" class="outline-2">
+<h2 id="org4c74286">算法</h2>
+<div class="outline-text-2" id="text-org4c74286">
 <p>
 算法之美在于算法不仅独立于底层元素的类型, 而且还独立于操作的容器的类型. 算法仅使用迭代器作为接口来操作容器, 而不是直接操作容器本身. 而对大部分容器来说, 迭代器范围都是半开半闭区间(包含第一个元素却不包含最后一个元素), 尾迭代器实际上是跨越最后一个元素(past-the-end)的标记. 大部分算法都接受回调(callback), 回调可以是一个函数指针, 也可以是行为上类似于函数指针的对象(例如重载了运算符 <code>operator()</code> 的对象, 或者内嵌lambda表达式). 为了方便起见, STL还提供了一组类, 用于创建算法使用的回调对象. 这些回调对象称为函数对象, 或仿函数(<code>functor</code>).
 </p>
@@ -515,9 +515,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb6ec281" class="outline-2">
-<h2 id="orgb6ec281">迭代器</h2>
-<div class="outline-text-2" id="text-orgb6ec281">
+<div id="outline-container-org6fd6dba" class="outline-2">
+<h2 id="org6fd6dba">迭代器</h2>
+<div class="outline-text-2" id="text-org6fd6dba">
 <ul class="org-ul">
 <li>STL通过迭代器模式提供了访问容器元素的泛型抽象. 每个容器都提供了容器特定的迭代器, 迭代器实际上是增强版的智能指针, 这种指针知道如何遍历特定容器的元素, 所有不同容器的迭代器都遵循C++标准中定义的特定接口.</li>
 <li>迭代器的实现类似于智能指针类，因为它们都重载了特定的运算符。基本的迭代器操作类似于普通指针(dumb pointer)支持的操作, 因此普通指针可以合法用作特定容器的迭代器. 可以将迭代器想象为指向容器中某个元素的指针. 与指向数组元素的指针一样, 迭代器可以通过 <code>operator++</code> 移动到下一个元素. 还可以在迭代器上使用 <code>operator*</code> 和 <code>operator-&gt;</code> 来访问实际元素或元素中的字段. 有些迭代器支持通过 <code>operator==</code> 和 <code>operator!=</code> 进行比较, 还支持通过 <code>operator--</code> 转移到前一个元素.</li>
@@ -530,9 +530,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org5a26426" class="outline-2">
-<h2 id="org5a26426">不足</h2>
-<div class="outline-text-2" id="text-org5a26426">
+<div id="outline-container-org483f15e" class="outline-2">
+<h2 id="org483f15e">不足</h2>
+<div class="outline-text-2" id="text-org483f15e">
 <ul class="org-ul">
 <li>在通过多线程同时访问容器时, STL不能保证任何线程安全.</li>
 <li>STL没有提供任何泛型的树结构或图结构.</li>

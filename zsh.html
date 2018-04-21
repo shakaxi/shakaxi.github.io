@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-12-25 Mon 13:03 -->
+<!-- 2018-04-21 Sat 21:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Linux - ZSH</title>
@@ -184,7 +184,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,21 +233,21 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org50e8af8">Introduction</a></li>
-<li><a href="#org11df658">Installation</a></li>
-<li><a href="#orgf43e167">Configuration</a>
+<li><a href="#org8c65a81">Introduction</a></li>
+<li><a href="#orgeeaac9f">Installation</a></li>
+<li><a href="#orge3453e4">Configuration</a>
 <ul>
-<li><a href="#org6032643">Mandatory</a></li>
-<li><a href="#orgfde8f15">Optional</a></li>
+<li><a href="#org189201e">Mandatory</a></li>
+<li><a href="#org904a294">Optional</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org50e8af8" class="outline-2">
-<h2 id="org50e8af8">Introduction</h2>
-<div class="outline-text-2" id="text-org50e8af8">
+<div id="outline-container-org8c65a81" class="outline-2">
+<h2 id="org8c65a81">Introduction</h2>
+<div class="outline-text-2" id="text-org8c65a81">
 <p>
 As is well-known, <i>shell</i> is an interface provided by the Unix/Linux operation systems (OS) to subscribers whereby a user can interact with the kernel of the OS efficiently and conveniently.
 </p>
@@ -261,9 +261,9 @@ Zsh is indeed a powerful shell. Perhaps this is just the reason why it is termed
 </p>
 </div>
 </div>
-<div id="outline-container-org11df658" class="outline-2">
-<h2 id="org11df658">Installation</h2>
-<div class="outline-text-2" id="text-org11df658">
+<div id="outline-container-orgeeaac9f" class="outline-2">
+<h2 id="orgeeaac9f">Installation</h2>
+<div class="outline-text-2" id="text-orgeeaac9f">
 <p>
 For Archlinux, zsh can be easily installed by the following command.
 </p>
@@ -273,13 +273,13 @@ For Archlinux, zsh can be easily installed by the following command.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf43e167" class="outline-2">
-<h2 id="orgf43e167">Configuration</h2>
-<div class="outline-text-2" id="text-orgf43e167">
+<div id="outline-container-orge3453e4" class="outline-2">
+<h2 id="orge3453e4">Configuration</h2>
+<div class="outline-text-2" id="text-orge3453e4">
 </div>
-<div id="outline-container-org6032643" class="outline-3">
-<h3 id="org6032643">Mandatory</h3>
-<div class="outline-text-3" id="text-org6032643">
+<div id="outline-container-org189201e" class="outline-3">
+<h3 id="org189201e">Mandatory</h3>
+<div class="outline-text-3" id="text-org189201e">
 <p>
 After the installation, zsh can be made as the default shell by
 </p>
@@ -299,9 +299,9 @@ Then, you can add your own configuration in <code>~/.zshrc</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfde8f15" class="outline-3">
-<h3 id="orgfde8f15">Optional</h3>
-<div class="outline-text-3" id="text-orgfde8f15">
+<div id="outline-container-org904a294" class="outline-3">
+<h3 id="org904a294">Optional</h3>
+<div class="outline-text-3" id="text-org904a294">
 <p>
 Even though zsh is usable out of the box, future configuration is necessary since the customization can really improve our experiences.
 </p>
@@ -315,9 +315,9 @@ Here is an example <code>~/.zshrc</code>.
 </p>
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">Lines configured by zsh-newuser-install</span>
-<span style="color: #e090d7;">setopt</span> notify
-<span style="color: #e090d7;">unsetopt</span> beep
-<span style="color: #e090d7;">bindkey</span> -e
+setopt notify
+unsetopt beep
+bindkey -e
 <span style="color: #73d216;"># </span><span style="color: #73d216;">End of lines configured by zsh-newuser-install</span>
 
 [[ $<span style="color: #fcaf3e;">TERM</span>==<span style="color: #e9b96e;">"xterm"</span> ]] &amp;&amp; <span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">TERM</span>=xterm-256color

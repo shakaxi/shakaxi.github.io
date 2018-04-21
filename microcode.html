@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-12-25 Mon 13:03 -->
+<!-- 2018-04-21 Sat 21:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Linux - Microcode</title>
@@ -184,7 +184,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,16 +233,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org553687c">Introduction</a></li>
-<li><a href="#org29fb5bb">Installation</a></li>
-<li><a href="#org99fd53e">Configuration</a></li>
+<li><a href="#org489f497">Introduction</a></li>
+<li><a href="#org350246c">Installation</a></li>
+<li><a href="#org719c4b7">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org553687c" class="outline-2">
-<h2 id="org553687c">Introduction</h2>
-<div class="outline-text-2" id="text-org553687c">
+<div id="outline-container-org489f497" class="outline-2">
+<h2 id="org489f497">Introduction</h2>
+<div class="outline-text-2" id="text-org489f497">
 <p>
 <i>Microcode</i> is a technique that imposes an interpreter between the hardware and the architectural level of a computer. Processor vendors, e.g., Intel and AMD, release updates to the processor microcode for some reasons, e.g., bug fixes, which can be applied by the Linux kernel during boot.
 </p>
@@ -252,9 +252,9 @@ For AMD processors, the microcode is covered by package <code>linux-firmware</co
 </p>
 </div>
 </div>
-<div id="outline-container-org29fb5bb" class="outline-2">
-<h2 id="org29fb5bb">Installation</h2>
-<div class="outline-text-2" id="text-org29fb5bb">
+<div id="outline-container-org350246c" class="outline-2">
+<h2 id="org350246c">Installation</h2>
+<div class="outline-text-2" id="text-org350246c">
 <p>
 For Arch Linux OS, the package <code>intel-ucode</code> can be conveniently installed by following command.
 </p>
@@ -264,9 +264,9 @@ For Arch Linux OS, the package <code>intel-ucode</code> can be conveniently inst
 </div>
 </div>
 </div>
-<div id="outline-container-org99fd53e" class="outline-2">
-<h2 id="org99fd53e">Configuration</h2>
-<div class="outline-text-2" id="text-org99fd53e">
+<div id="outline-container-org719c4b7" class="outline-2">
+<h2 id="org719c4b7">Configuration</h2>
+<div class="outline-text-2" id="text-org719c4b7">
 <p>
 After the installation, in order to make the Linux kernel apply the microcode, image <code>/boot/intel-ucode.img</code> must be enabled as te first initrd in the bootloader configuration file. Taking <code>grub</code> for instance, its configuration file must be regenerated.
 </p>
