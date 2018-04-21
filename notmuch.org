@@ -49,6 +49,12 @@ Add following content to the configuration of Emacs.
         message-kill-buffer-on-exit t
         mm-text-html-renderer 'w3m)
 
+  (setq notmuch-search-oldest-first nil
+        notmuch-show-all-multipart/alternative-parts nil
+        mail-interactive t
+        notmuch-always-prompt-for-sender nil
+        notmuch-show-indent-messages-width 3)
+
   (setq mail-specify-envelope-from t
         message-sendmail-envelope-from 'header
         mail-envelope-from 'header)
@@ -60,6 +66,11 @@ Add following content to the configuration of Emacs.
         smtpmail-smtp-server "SMTPSERVER"
         smtpmail-stream-type 'ssl
         smtpmail-smtp-service PORT)
+
+  (setq notmuch-saved-searches '((:name "inbox"
+                                        :query "tag:inbox"
+                                        :count-query "tag:inbox and tag:unread"
+                                        :sort-order newest-first)
 #+END_SRC
 ** Hooks
 Additionally, notmuch supports hooks which are essentially scripts in =/MAIL/REPO/.notmuch/hooks= whereby users can specify and customize the behaviors of notmuch. Currently, following scripts and hooks are available.
@@ -71,7 +82,7 @@ Additionally, notmuch supports hooks which are essentially scripts in =/MAIL/REP
 - =post-new= :: Hook/script provoked after command =notmuch new=, which is usually used to tag the newly imported mails.
 #+BEGIN_SRC sh
 #!/bin/sh
-notmuch tag -inbox +sent -- from:EMAIADDRESS
+notmuch tag -inbox +sent -- from:EMAILADDRESS
 notmuch tag -inbox +ML -- to:MAILLIST@EXAMPLE.COM
 notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
 #+END_SRC

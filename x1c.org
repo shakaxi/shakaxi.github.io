@@ -1,0 +1,201 @@
+#+TITLE: Installation of ArchLinux on Thinkpad X1 Carbon 2018
+
+This post aims to record the procedure that I installed ArchLinux on my new notebook, Thinkpad X1 Carbon (x1c) 2018.
+
+* Preparition
+- Download the installation image from the nearest mirror, e.g., http://mirrors.163.com/archlinux/iso/latest
+- Burn the image into a USB stick.
+#+BEGIN_SRC sh
+dd if=/path/to/image/ of=/dev/sdb status=progress bs=10M
+#+END_SRC
+- The notebook has Windows 10 installed with =快速启动= enabled. Therefore, it needs to be disabled before ArchLinux installation. Uncheck the option of =控制面板 -> 硬件和声音 -> 电源选项 -> 选择电源按钮的功能 -> 更改当前不可用的设置 -> 启用快速启动（推荐）=.
+* Installation
+** Boot
+- Power on the notebook.
+- Press =Enter= and =F1= to enter the BIOS configuration.
+- Disable the =Security -> Secure Boot=.
+- Insert the prepared USB and press =F10= to save the change and reboot the notebook.
+- Press =Enter= and =F12= to temporarily boot from the prepared USB stick.
+** Partition
+For UEFI booting, a dedicated EFI system partition (ESP) is mandatory. EFI bootloaders, applications and drivers can be stored in an ESP and lauched by the UEFI firmware at the boot stage. It is completely independent of OS.
+
+For my SSD, ESP can be detected by
+#+BEGIN_SRC sh
+parted /dev/nvme0n1 print
+#+END_SRC
+The command returns as follows.
+#+BEGIN_SRC sh
+...
+Number  Start   End     Size    File system     Name                          Flags
+ 1      1049kB  274MB   273MB   fat32           EFI system partition          boot, hidden, esp
+...
+#+END_SRC
+Clearly, an ESP, i.e., =/dev/nvme0n1p1= has already been created in the installation of Windows 10. Therefore, I just need to mount the existing EFI partition before the bootloader installation.
+
+If you do not have an ESP available, you have to create a new one, e.g., creating a primary partition with partion type =EFI (FAT-12/16/32)= by =fdisk=, and format it as =FAT32=.
+#+BEGIN_SRC sh
+mkfs.fat -F32 /dev/nvme0n1p1
+#+END_SRC
+If following message returns,
+#+BEGIN_SRC 
+WARNING: Not enough clusters for a 32 bit FAT!
+#+END_SRC
+reduce cluster size with
+#+BEGIN_SRC sh
+mkfs.fat -s2 -F32 /dev/nvme0n1p1
+#+END_SRC
+or
+#+BEGIN_SRC sh
+mkfs.fat -s1 -F32 /dev/nvme0n1p1
+#+END_SRC
+Otherwise, the resulted ESP may be unreadable by UEFI.
+
+Before customization, my SSD already has several partitions.
+#+BEGIN_SRC sh
+...
+Device             Start       End   Sectors   Size Type
+/dev/nvme0n1p1      2048    534527    532480   260M EFI System
+/dev/nvme0n1p2    534528    567295     32768    16M Microsoft reserved
+/dev/nvme0n1p3    567296  84453375  83886080    40G Microsoft basic data
+/dev/nvme0n1p4 498069504 500117503   2048000  1000M Windows recovery environment
+...
+#+END_SRC
+In addition, I created two =ext4= partitions for =/= and =/home= respectively, as well as a swap by =cfdisk=.
+#+BEGIN_SRC sh
+cfdisk /dev/nvme0n1
+#+END_SRC
+** Format the partitions
+#+BEGIN_SRC sh
+mkfs.ext4 /dev/nvme0n1p5
+mkfs.ext4 /dev/nvme0n1p7
+mkswap /dev/nvme0n1p6
+#+END_SRC
+** Mount the partitions
+#+BEGIN_SRC sh
+mount -t ext4 /dev/nvme0n1p5 /mnt
+mkdir /mnt/home
+mount -t ext4 /dev/nvme0n1p7 /mnt/home
+swapon /dev/nvme0n1p6
+#+END_SRC
+** Select the nearest mirror
+Edit =/etc/pacman.d/mirrorlist= as
+#+BEGIN_SRC sh
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+#+END_SRC
+** Install the base system
+#+BEGIN_SRC sh
+pacstrap /mnt base
+#+END_SRC
+** Generate file system table
+#+BEGIN_SRC sh
+genfstab /mnt >> /mnt/etc/fstab
+#+END_SRC
+** Chroot into the newly installed system
+#+BEGIN_SRC sh
+arch-chroot /mnt
+#+END_SRC
+** Host name
+Create file =/etc/hostname=.
+#+BEGIN_SRC sh
+notebook
+#+END_SRC
+Revise file =/etc/hosts=.
+#+BEGIN_SRC sh
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+172.0.0.1      localhost
+::1	       localhost
+172.0.0.1      notebook.localdomain notebook
+#+END_SRC
+** Time zone
+#+BEGIN_SRC sh
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#+END_SRC
+** Locale
+Edit =/etc/locale.gen= and uncomment the following lines.
+#+BEGIN_SRC sh
+...
+en_US.UTF-8 UTF-8
+en_US ISO-8859-1
+...
+zh_CN.GB18030 GB18030
+zh_CN.GBK GBK
+zh_CN.UTF-8 UTF-8
+zh_CN GB2312
+...
+#+END_SRC
+Generate and set locales.
+#+BEGIN_SRC sh
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+#+END_SRC
+** CPU frequency scaling
+#+BEGIN_SRC sh
+pacman -S cpupower
+systemctl enable cpupower
+#+END_SRC
+** WiFi
+#+BEGIN_SRC sh
+pacman -S dialog wpa_supplicant
+#+END_SRC
+** Bootloader
+Since version 3.3, the Linux kernel can be directly loaded by EFI firmware as an EFI executable, a.k.a., EFISTUB (EFI BOOT STUB). In other words, =grub=-like intermediate bootloaders are not necessary.
+*** Mount ESP
+Create =/esp= and mount the ESP to it.
+#+BEGIN_SRC sh
+mkdir /esp
+mount -t /dev/nvme0n1p1 /esp
+#+END_SRC
+Create =/esp/EFI/arch= and bind it to =/boot=.
+#+BEGIN_SRC sh
+mkdir /esp/EFI/arch
+mount --bind /esp/EFI/arch /boot
+#+END_SRC
+Append following entries to =/etc/fstab=.
+#+BEGIN_SRC sh
+/dev/nvme0n1p1                                  /esp            vfat            rw              0 0
+/esp/EFI/arch                                   /boot           none            defaults,bind   0 0
+#+END_SRC
+*** Microcode
+#+BEGIN_SRC sh
+pacman -S intel-ucode
+#+END_SRC
+*** Init ram disk
+#+BEGIN_SRC sh
+mkinitcpio -p linux
+#+END_SRC
+*** Boot manager
+Install the boot manager.
+#+BEGIN_SRC sh
+pacman -S efibootmgr
+#+END_SRC
+Add a new boot entry.
+#+BEGIN_SRC sh
+efibootmgr -d /dev/nvme0n1 -p 1 --create --gpt --label "Arch Linux" --loader /EFI/arch/vmlinuz-linux --unicode "root=/dev/nvme0n1p5 rw initrd=/EFI/arch/intel-ucode.img initrd=/EFI/arch/initramfs-linux.img"
+#+END_SRC
+Set the boot order.
+#+BEGIN_SRC sh
+efibootmgr --bootorder 0001,0000
+#+END_SRC
+Verify the configuration.
+#+BEGIN_SRC sh
+efibootmgr
+#+END_SRC
+** Password for root
+#+BEGIN_SRC sh
+passwd
+#+END_SRC
+** Unmount and reboot
+#+BEGIN_SRC sh
+exit
+umount -R /mnt
+reboot
+#+END_SRC
+* Post configuration
+** BIOS configuration
+Enable =Config -> Thunderbolt BIOS Assist Mode=. This will significantly reduce the power consumption of CPU wakeups[fn:1].
+
+* Footnotes
+
+[fn:1] https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Carbon_(Gen_6)
+
