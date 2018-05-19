@@ -35,3 +35,12 @@ ForwardAgent yes
 ForwardX11 yes
 ForwardX11Trusted yes
 #+END_SRC
+* SSH-based proxy
+For clear description, we consider such a simple scenario. Suppose you intend to access host =A=, but the direct access is not permitted. Instead, you can access host =B=, which is granted to access host =A=. In this case, you can access host =A= via host =B=, i.e., which plays a proxy role. Following command can make host =B= a SOCK proxy.
+#+BEGIN_SRC sh
+ssh -N -D PORT USERNAME@B
+#+END_SRC
+where
+- =PORT= is the port index of a local port.
+- =USERNAME= is the account for login on host =B=.
+Then, a SOCK proxy is ready whereby you can access host =A= as freely as you are on host =B=.

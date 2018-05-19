@@ -14,6 +14,7 @@ dd if=/path/to/image/ of=/dev/sdb status=progress bs=10M
 - Power on the notebook.
 - Press =Enter= and =F1= to enter the BIOS configuration.
 - Disable the =Security -> Secure Boot=.
+- Enable =Config -> Thunderbolt BIOS Assist Mode=. This will significantly reduce the power consumption of CPU wakeups[fn:1].
 - Insert the prepared USB and press =F10= to save the change and reboot the notebook.
 - Press =Enter= and =F12= to temporarily boot from the prepared USB stick.
 ** Partition
@@ -37,7 +38,7 @@ If you do not have an ESP available, you have to create a new one, e.g., creatin
 mkfs.fat -F32 /dev/nvme0n1p1
 #+END_SRC
 If following message returns,
-#+BEGIN_SRC 
+#+BEGIN_SRC sh
 WARNING: Not enough clusters for a 32 bit FAT!
 #+END_SRC
 reduce cluster size with
@@ -76,6 +77,10 @@ mount -t ext4 /dev/nvme0n1p5 /mnt
 mkdir /mnt/home
 mount -t ext4 /dev/nvme0n1p7 /mnt/home
 swapon /dev/nvme0n1p6
+#+END_SRC
+** Connect to the Internet
+#+BEGIN_SRC sh
+wifi-menu
 #+END_SRC
 ** Select the nearest mirror
 Edit =/etc/pacman.d/mirrorlist= as
@@ -135,11 +140,12 @@ pacman -S cpupower
 systemctl enable cpupower
 #+END_SRC
 ** WiFi
+Install following two packages. Otherwise, the utility =wifi-menu= does not work.
 #+BEGIN_SRC sh
 pacman -S dialog wpa_supplicant
 #+END_SRC
 ** Bootloader
-Since version 3.3, the Linux kernel can be directly loaded by EFI firmware as an EFI executable, a.k.a., EFISTUB (EFI BOOT STUB). In other words, =grub=-like intermediate bootloaders are not necessary.
+From version 3.3 on, the Linux kernel can be directly loaded by EFI firmware as an EFI executable, a.k.a., EFISTUB (EFI BOOT STUB). In other words, =grub=-like intermediate bootloaders are not necessary.
 *** Mount ESP
 Create =/esp= and mount the ESP to it.
 #+BEGIN_SRC sh
@@ -157,6 +163,7 @@ Append following entries to =/etc/fstab=.
 /esp/EFI/arch                                   /boot           none            defaults,bind   0 0
 #+END_SRC
 *** Microcode
+For Intel CPU, package [[./microcode.org][=microcode=]] needs to be installed.
 #+BEGIN_SRC sh
 pacman -S intel-ucode
 #+END_SRC
@@ -191,9 +198,6 @@ exit
 umount -R /mnt
 reboot
 #+END_SRC
-* Post configuration
-** BIOS configuration
-Enable =Config -> Thunderbolt BIOS Assist Mode=. This will significantly reduce the power consumption of CPU wakeups[fn:1].
 
 * Footnotes
 
