@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2018-04-26 Thu 21:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Installation of ArchLinux on Thinkpad X1 Carbon 2018</title>
@@ -240,6 +240,7 @@ for the JavaScript code in this tag.
 <li><a href="#org912d8f1">Partition</a></li>
 <li><a href="#orgf1ef2df">Format the partitions</a></li>
 <li><a href="#org26fbb14">Mount the partitions</a></li>
+<li><a href="#org2033eef">Connect to the Internet</a></li>
 <li><a href="#orgc738e65">Select the nearest mirror</a></li>
 <li><a href="#orgec20e8a">Install the base system</a></li>
 <li><a href="#org89b422f">Generate file system table</a></li>
@@ -259,11 +260,6 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org383df5c">Password for root</a></li>
 <li><a href="#org9a8dab1">Unmount and reboot</a></li>
-</ul>
-</li>
-<li><a href="#org51fad81">Post configuration</a>
-<ul>
-<li><a href="#orgca4ef4e">BIOS configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -300,6 +296,7 @@ This post aims to record the procedure that I installed ArchLinux on my new note
 <li>Power on the notebook.</li>
 <li>Press <code>Enter</code> and <code>F1</code> to enter the BIOS configuration.</li>
 <li>Disable the <code>Security -&gt; Secure Boot</code>.</li>
+<li>Enable <code>Config -&gt; Thunderbolt BIOS Assist Mode</code>. This will significantly reduce the power consumption of CPU wakeups<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.</li>
 <li>Insert the prepared USB and press <code>F10</code> to save the change and reboot the notebook.</li>
 <li>Press <code>Enter</code> and <code>F12</code> to temporarily boot from the prepared USB stick.</li>
 </ul>
@@ -343,9 +340,10 @@ If you do not have an ESP available, you have to create a new one, e.g., creatin
 <p>
 If following message returns,
 </p>
-<pre class="example">
-WARNING: Not enough clusters for a 32 bit FAT!
+<div class="org-src-container">
+<pre class="src src-sh">WARNING: Not enough clusters for a 32 bit FAT!
 </pre>
+</div>
 <p>
 reduce cluster size with
 </p>
@@ -405,6 +403,15 @@ mkswap /dev/nvme0n1p6
 mkdir /mnt/home
 mount -t ext4 /dev/nvme0n1p7 /mnt/home
 swapon /dev/nvme0n1p6
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2033eef" class="outline-3">
+<h3 id="org2033eef">Connect to the Internet</h3>
+<div class="outline-text-3" id="text-org2033eef">
+<div class="org-src-container">
+<pre class="src src-sh">wifi-menu
 </pre>
 </div>
 </div>
@@ -521,6 +528,9 @@ systemctl enable cpupower
 <div id="outline-container-orgca7e7d8" class="outline-3">
 <h3 id="orgca7e7d8">WiFi</h3>
 <div class="outline-text-3" id="text-orgca7e7d8">
+<p>
+Install following two packages. Otherwise, the utility <code>wifi-menu</code> does not work.
+</p>
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S dialog wpa_supplicant
 </pre>
@@ -531,7 +541,7 @@ systemctl enable cpupower
 <h3 id="orgc4e9c00">Bootloader</h3>
 <div class="outline-text-3" id="text-orgc4e9c00">
 <p>
-Since version 3.3, the Linux kernel can be directly loaded by EFI firmware as an EFI executable, a.k.a., EFISTUB (EFI BOOT STUB). In other words, <code>grub</code>-like intermediate bootloaders are not necessary.
+From version 3.3 on, the Linux kernel can be directly loaded by EFI firmware as an EFI executable, a.k.a., EFISTUB (EFI BOOT STUB). In other words, <code>grub</code>-like intermediate bootloaders are not necessary.
 </p>
 </div>
 <div id="outline-container-orgf0a58a2" class="outline-4">
@@ -566,6 +576,9 @@ Append following entries to <code>/etc/fstab</code>.
 <div id="outline-container-orgc0a994e" class="outline-4">
 <h4 id="orgc0a994e">Microcode</h4>
 <div class="outline-text-4" id="text-orgc0a994e">
+<p>
+For Intel CPU, package <a href="./microcode.html"><code>microcode</code></a> needs to be installed.
+</p>
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S intel-ucode
 </pre>
@@ -633,19 +646,6 @@ umount -R /mnt
 reboot
 </pre>
 </div>
-</div>
-</div>
-</div>
-<div id="outline-container-org51fad81" class="outline-2">
-<h2 id="org51fad81">Post configuration</h2>
-<div class="outline-text-2" id="text-org51fad81">
-</div>
-<div id="outline-container-orgca4ef4e" class="outline-3">
-<h3 id="orgca4ef4e">BIOS configuration</h3>
-<div class="outline-text-3" id="text-orgca4ef4e">
-<p>
-Enable <code>Config -&gt; Thunderbolt BIOS Assist Mode</code>. This will significantly reduce the power consumption of CPU wakeups<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
-</p>
 </div>
 </div>
 </div>

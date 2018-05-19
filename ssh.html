@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2018-05-19 Sat 19:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SSH</title>
@@ -241,6 +241,7 @@ for the JavaScript code in this tag.
 <li><a href="#orgb207e81">On client</a></li>
 </ul>
 </li>
+<li><a href="#orgdb8032c">SSH-based proxy</a></li>
 </ul>
 </div>
 </div>
@@ -319,6 +320,28 @@ ForwardX11Trusted yes
 </pre>
 </div>
 </div>
+</div>
+</div>
+<div id="outline-container-orgdb8032c" class="outline-2">
+<h2 id="orgdb8032c">SSH-based proxy</h2>
+<div class="outline-text-2" id="text-orgdb8032c">
+<p>
+For clear description, we consider such a simple scenario. Suppose you intend to access host <code>A</code>, but the direct access is not permitted. Instead, you can access host <code>B</code>, which is granted to access host <code>A</code>. In this case, you can access host <code>A</code> via host <code>B</code>, i.e., which plays a proxy role. Following command can make host <code>B</code> a SOCK proxy.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">ssh -N -D PORT USERNAME@B
+</pre>
+</div>
+<p>
+where
+</p>
+<ul class="org-ul">
+<li><code>PORT</code> is the port index of a local port.</li>
+<li><code>USERNAME</code> is the account for login on host <code>B</code>.</li>
+</ul>
+<p>
+Then, a SOCK proxy is ready whereby you can access host <code>A</code> as freely as you are on host <code>B</code>.
+</p>
 </div>
 </div>
 </div>
