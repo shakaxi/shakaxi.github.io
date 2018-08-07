@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2018-08-07 Tue 13:58 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Basic</title>
@@ -264,7 +264,7 @@ for the JavaScript code in this tag.
 <li><a href="#org0fe7eff">引用</a>
 <ul>
 <li><a href="#org2af5016">引用变量</a></li>
-<li><a href="#org2222136">引用数据成员</a></li>
+<li><a href="#org4a4d867">引用数据成员</a></li>
 <li><a href="#orgeb0501f">引用参数</a></li>
 <li><a href="#org437cc77">引用返回值</a></li>
 <li><a href="#orgfb67aee">引用与指针</a></li>
@@ -305,11 +305,11 @@ for the JavaScript code in this tag.
 <li><a href="#orgfd84657">类和对象</a>
 <ul>
 <li><a href="#org6f59f8e">定义</a></li>
-<li><a href="#orgcb85d2e">访问控制</a></li>
+<li><a href="#org886f669">访问控制</a></li>
 <li><a href="#org2d8a78b"><code>this</code></a></li>
 <li><a href="#org48044ba">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#org37663c7">基本概念</a></li>
+<li><a href="#org67e8ba4">基本概念</a></li>
 <li><a href="#org67ff599">构造函数初始化器</a></li>
 <li><a href="#org0cb8063">复制构造函数</a></li>
 <li><a href="#org2ab3521">初始化列表构造函数</a></li>
@@ -320,7 +320,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org77af211">析构函数</a>
 <ul>
-<li><a href="#orga68a6a6">基本概念</a></li>
+<li><a href="#orgdc92c4c">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#org44df347">对象赋值</a></li>
@@ -328,7 +328,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org40e44aa">静态数据成员</a></li>
 <li><a href="#org3969599">常量数据成员</a></li>
-<li><a href="#org4a4d867">引用数据成员</a></li>
+<li><a href="#org9b9ef83">引用数据成员</a></li>
 </ul>
 </li>
 <li><a href="#org4a0e703">方法</a>
@@ -347,8 +347,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org27e621f">继承</a>
 <ul>
-<li><a href="#org67e8ba4">基本概念</a></li>
-<li><a href="#org886f669">访问控制</a></li>
+<li><a href="#org87dda48">基本概念</a></li>
+<li><a href="#org6f5a0c4">访问控制</a></li>
 <li><a href="#org70f00c1">禁止继承</a></li>
 <li><a href="#orgc839b4c">方法和类的虚化</a></li>
 <li><a href="#org61e3ca8">向上转型和向下转型</a></li>
@@ -632,9 +632,9 @@ C/C++常常会发生与内存有关的问题, 如
 </ul>
 </div>
 </div>
-<div id="outline-container-org2222136" class="outline-3">
-<h3 id="org2222136">引用数据成员</h3>
-<div class="outline-text-3" id="text-org2222136">
+<div id="outline-container-org4a4d867" class="outline-3">
+<h3 id="org4a4d867">引用数据成员</h3>
+<div class="outline-text-3" id="text-org4a4d867">
 <p>
 引用可以作为类的数据成员, 也即引用数据成员. 引用数据成员必须在类的构造函数初始化器中初始化它, 而不是在构造函数体内.
 </p>
@@ -975,9 +975,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 </p>
 </div>
 </div>
-<div id="outline-container-orgcb85d2e" class="outline-3">
-<h3 id="orgcb85d2e">访问控制</h3>
-<div class="outline-text-3" id="text-orgcb85d2e">
+<div id="outline-container-org886f669" class="outline-3">
+<h3 id="org886f669">访问控制</h3>
+<div class="outline-text-3" id="text-org886f669">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -1008,9 +1008,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <h3 id="org48044ba">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-org48044ba">
 </div>
-<div id="outline-container-org37663c7" class="outline-4">
-<h4 id="org37663c7">基本概念</h4>
-<div class="outline-text-4" id="text-org37663c7">
+<div id="outline-container-org67e8ba4" class="outline-4">
+<h4 id="org67e8ba4">基本概念</h4>
+<div class="outline-text-4" id="text-org67e8ba4">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -1095,9 +1095,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <h3 id="org77af211">析构函数</h3>
 <div class="outline-text-3" id="text-org77af211">
 </div>
-<div id="outline-container-orga68a6a6" class="outline-4">
-<h4 id="orga68a6a6">基本概念</h4>
-<div class="outline-text-4" id="text-orga68a6a6">
+<div id="outline-container-orgdc92c4c" class="outline-4">
+<h4 id="orgdc92c4c">基本概念</h4>
+<div class="outline-text-4" id="text-orgdc92c4c">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -1152,9 +1152,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </p>
 </div>
 </div>
-<div id="outline-container-org4a4d867" class="outline-4">
-<h4 id="org4a4d867">引用数据成员</h4>
-<div class="outline-text-4" id="text-org4a4d867">
+<div id="outline-container-org9b9ef83" class="outline-4">
+<h4 id="org9b9ef83">引用数据成员</h4>
+<div class="outline-text-4" id="text-org9b9ef83">
 <p>
 在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
 </p>
@@ -1220,6 +1220,39 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <li>可以通过设置数据成员自定义函数对象的行为.</li>
 </ul></li>
 <li>遵循一般的方法重载规则, 可为类编写任意数量的 <code>operator()</code>. 当然, 不同的 <code>operator()</code> 需要参数数目或者类型不同.</li>
+<li>C++提供了一些预定义的仿函数类, 执行最常用的回调操作. 定义在头文件 <code>&lt;functional&gt;</code> 中. C++14支持透明运算符仿函数, 允许忽略模板类型参数. 建议总是使用透明运算符仿函数.
+<ul class="org-ul">
+<li>算数函数对象: C++提供了5类二元算术运算符的仿函数模板. 算数函数对象只不过是算数运算符的简单包装. 如果在算法中使用函数对象作为回调, 务必保证容器中的对象重载了相应的运算符.
+<ul class="org-ul">
+<li><code>plus</code></li>
+<li><code>minus</code></li>
+<li><code>multiplies</code></li>
+<li><code>divides</code></li>
+<li><code>modulus</code></li>
+</ul></li>
+<li>比较函数对象
+<ul class="org-ul">
+<li><code>equal_to</code></li>
+<li><code>not_equal_to</code></li>
+<li><code>less</code></li>
+<li><code>greater</code></li>
+<li><code>less_equal</code></li>
+<li><code>greater_equal</code></li>
+</ul></li>
+<li>逻辑函数对象
+<ul class="org-ul">
+<li><code>logical_not</code> (<code>operator!</code>)</li>
+<li><code>logical_and</code> (<code>operator&amp;&amp;</code>)</li>
+<li><code>logical_or</code> (<code>operator||</code>)</li>
+</ul></li>
+<li>按位函数对象
+<ul class="org-ul">
+<li><code>bit_and</code> (<code>operator&amp;</code>)</li>
+<li><code>bit_or</code> (<code>operator|</code>)</li>
+<li><code>bit_xor</code> (<code>operator^</code>)</li>
+<li><code>bit_not</code> (<code>operator~</code>)</li>
+</ul></li>
+</ul></li>
 </ul></li>
 <li>解除引用运算符
 <ul class="org-ul">
@@ -1291,9 +1324,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <h2 id="org27e621f">继承</h2>
 <div class="outline-text-2" id="text-org27e621f">
 </div>
-<div id="outline-container-org67e8ba4" class="outline-3">
-<h3 id="org67e8ba4">基本概念</h3>
-<div class="outline-text-3" id="text-org67e8ba4">
+<div id="outline-container-org87dda48" class="outline-3">
+<h3 id="org87dda48">基本概念</h3>
+<div class="outline-text-3" id="text-org87dda48">
 <ul class="org-ul">
 <li>继承的运行方式是单向的. 基类并不知道派生类的任何信息.</li>
 <li>指向某个对象的指针或者引用可以指向声明类的对象, 也可以指向其任意派生类的对象. 指向基类对象的指针可以指向派生类对象, 对于引用也是如此. 然而, 不能通过基类对象的指针调用派生类的方法. 即使基类的引用或者指针知道所指的是一个派生类, 也无法访问没有在基类中定义的派生类方法或者成员.</li>
@@ -1301,9 +1334,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org886f669" class="outline-3">
-<h3 id="org886f669">访问控制</h3>
-<div class="outline-text-3" id="text-org886f669">
+<div id="outline-container-org6f5a0c4" class="outline-3">
+<h3 id="org6f5a0c4">访问控制</h3>
+<div class="outline-text-3" id="text-org6f5a0c4">
 <p>
 派生类可以访问基类中声明为 <code>public</code>, <code>protected</code> 的数据成员和方法, 就好像这些数据成员和方法是派生类自己的. 如果类将数据成员和方法声明为 <code>protected</code>, 派生类就可以访问它们; 如果声明为 <code>private</code>, 派生类就不能访问它们. 建议将所有数据成员都默认声明为 <code>private</code>, 这会提供最高级别的封装. 如果希望任何代码都能访问这些数据成员, 就可以提供 <code>public</code> 的 <code>getter/setter</code>; 如果只希望派生类访问它们, 就可以提供 <code>protected</code> 的 <code>getter/setter</code>.
 </p>
@@ -1470,7 +1503,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <code>lambda</code> 表达式可以编写内嵌的匿名函数, 而不必编写独立函数或函数对象, 使代码更容易阅读和理解. <code>lambda</code> 表达式以方括号 <code>[]</code> 开始, 其后是花括号 <code>{}</code>, 其中包含了 <code>lambda</code> 表达式体. 完整的语法为
 </p>
 <div class="org-src-container">
-<pre class="src src-c++">[capture_block] (parameters) <span style="color: #b4fa70;">mutable</span> <span style="color: #8cc4ff;">exception_specification</span> <span style="color: #fcaf3e;">attribute_specifier</span> -&gt; return_type {body}
+<pre class="src src-c++">[<span style="color: #e9b2e3;">capture_block</span>] (parameters) <span style="color: #b4fa70;">mutable</span> <span style="color: #8cc4ff;">exception_specification</span> <span style="color: #fcaf3e;">attribute_specifier</span> -&gt; return_type {body}
 </pre>
 </div>
 <p>
@@ -1480,7 +1513,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <li><code>lambda</code> 表达式可以接受参数. 参数在圆括号中指定, 用逗号分隔开, 与普通函数相同.</li>
 <li>如果 <code>lambda</code> 表达式不接受参数, 就可以指定空圆括号或忽略它们.</li>
 <li><code>lambda</code> 表达式可以返回值. 返回类型在箭头后面指定, 也即拖尾返回类型. 即使 <code>lambda</code> 表达式返回了值, 也可以忽略返回类型, 此时编译器就根据函数返回类型推断规则来推断 <code>lambda</code> 表达式的返回类型.</li>
-<li><code>lambda</code> 表达式可以在其封装的作用域内捕捉变量. 方括号部分称为 <code>lambda</code> 捕捉块(capture block), 可以指定任何从 <code>lambda</code> 表达式所在的作用域中捕捉变量. 这里捕捉变量指可以在 <code>lambda</code> 表达式体中使用这个变量. 空白的捕捉块表示不从所在作用域中捕捉变量. 捕捉方式可以是按值捕捉, 也可以按引用捕捉(<code>lambda</code> 表达式可以在其内部作用域修改 <code>lambda</code> 表达式所在作用域内的变量). 捕捉的对象既可以是所在作用域中的所有变量, 也可以通过捕捉列表酌情捕捉需要的变量以及相应的捕捉方法. 例如:
+<li><code>lambda</code> 表达式可以在其封装的作用域内捕捉变量. 方括号部分称为 <code>lambda</code> 捕捉块(capture block), 可以指定任何从 <code>lambda</code> 表达式所在的作用域中捕捉变量. 这里捕捉变量指可以在 <code>lambda</code> 表达式体中使用这个变量. 空白的捕捉块表示不从所在作用域中捕捉变量. 捕捉方式可以是按值捕捉, 也可以按引用捕捉(<code>lambda</code> 表达式可以在其内部作用域修改 <code>lambda</code> 表达式所在作用域内的变量). 捕捉的对象既可以是所在作用域中的所有变量, 也可以通过捕捉列表酌情捕捉需要的变量以及相应的捕捉方法<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>. 例如:
 <dl class="org-dl">
 <dt><code>[=]</code></dt><dd>通过值捕捉所有变量.</dd>
 <dt><code>[&amp;]</code></dt><dd>通过引用捕捉所有变量.</dd>
@@ -1715,7 +1748,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <h3 id="org8e6c9bf">流式输出</h3>
 <div class="outline-text-3" id="text-org8e6c9bf">
 <ul class="org-ul">
-<li>输出流定义在头文件 <code>&lt;ostream&gt;</code> 中<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>. 使用输出流最简单的方法是使用 <code>&lt;&lt;</code> 运算符. 通过 <code>&lt;&lt;</code> 可以输出C++的基本类型.</li>
+<li>输出流定义在头文件 <code>&lt;ostream&gt;</code> 中<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>. 使用输出流最简单的方法是使用 <code>&lt;&lt;</code> 运算符. 通过 <code>&lt;&lt;</code> 可以输出C++的基本类型.</li>
 <li><code>cout</code> 流是写入到控制台(也称为标准输入输出)的内建流. 可将 <code>&lt;&lt;</code> 的使用串联起来, 从而输出多个数据段. 这是因为 <code>&lt;&lt;</code> 运算符返回一个流的引用, 因此可以立即对同一个流再次应用 <code>&lt;&lt;</code> 运算符.</li>
 <li><code>\n</code> 和 <code>endl</code> 的区别在于前者仅开始一个新行, 而后者还会刷新缓冲区. 使用 <code>endl</code> 需要注意过多的缓冲区刷新会降低性能.</li>
 <li>方法
@@ -1723,7 +1756,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <li><code>put()</code> 接受的不是定义了输出行为的对象或变量, 而是一个字符. 原样输出, 没有任何特殊的格式化和处理操作.</li>
 <li><code>write()</code> 接受的不是定义了输出行为的对象或变量, 而是一个字符数组. 原样输出, 没有任何特殊的格式化和处理操作.</li>
 </ul></li>
-<li>向输出流写入数据时, 流不一定会将数据立即写入目标. 大部分输出流都会进行缓存<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>, 而不是立即将得到的数据写出去. 在下列情况下, 流进行刷新操作.
+<li>向输出流写入数据时, 流不一定会将数据立即写入目标. 大部分输出流都会进行缓存<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>, 而不是立即将得到的数据写出去. 在下列情况下, 流进行刷新操作.
 <ul class="org-ul">
 <li>到达某个标记时, 如 <code>endl</code>.</li>
 <li>流离开作用域被析构时.</li>
@@ -1761,7 +1794,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <li><code>unget()</code> 将前一个读入的字符放回流中, 流回退一个位置. 是否成功可以通过 <code>fail()</code> 查看.</li>
 <li><code>putback()</code> 和 <code>unget()</code> 一样, 允许在输入流中反向移动一个字符. 区别在于 <code>putback()</code> 将放回流中的字符作为参数.</li>
 <li><code>peek()</code> 预览调用 <code>get()</code> 返回的下一个值.</li>
-<li><code>getline()</code> 用一行数据填充字段缓存区, 数据量最多至指定大小. 指定的大小中包括 <code>\0</code> 字符. 调用 <code>getline()</code> 时, 它从输入流中读取一行, 读到行尾为止(行尾<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>字符不会出现在字符串中). 还有一个用于C++ string的 <code>getline()</code> 函数. 这个函数定义在 头文件 <code>&lt;string&gt;</code> 和名称空间 <code>std</code> 中. 其接受一个流引用, 一个string引用和一个可选的分隔符作为参数, 不需要指定缓存区的大小.</li>
+<li><code>getline()</code> 用一行数据填充字段缓存区, 数据量最多至指定大小. 指定的大小中包括 <code>\0</code> 字符. 调用 <code>getline()</code> 时, 它从输入流中读取一行, 读到行尾为止(行尾<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>字符不会出现在字符串中). 还有一个用于C++ string的 <code>getline()</code> 函数. 这个函数定义在 头文件 <code>&lt;string&gt;</code> 和名称空间 <code>std</code> 中. 其接受一个流引用, 一个string引用和一个可选的分隔符作为参数, 不需要指定缓存区的大小.</li>
 <li>输入错误
 <ul class="org-ul">
 <li>查询输入流状态的最常见方法是在条件语句中访问输入流, 如 <code>while (cin) {...}</code> 或 <code>while (cin &gt;&gt; ch) {...}</code>.</li>
@@ -1931,14 +1964,18 @@ Marc Gregoire著, 张永强译. C++高级编程(第3版), 清华大学出版社,
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
-通常包含头文件 <code>&lt;iostream&gt;</code>, 该头文件又包含了输入流和输出流的头文件.
+即使可以, 也不建议在内部作用域中捕捉所有变量, 而应该捕捉需要的变量.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
-不是所有的输出流都会缓存, 如 <code>cerr</code> 流就不会缓存其输出.
+通常包含头文件 <code>&lt;iostream&gt;</code>, 该头文件又包含了输入流和输出流的头文件.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+不是所有的输出流都会缓存, 如 <code>cerr</code> 流就不会缓存其输出.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara"><p class="footpara">
 注意, 行尾序列和平台相关, 可以是 <code>\r\n</code>, <code>\n</code>, 或 <code>\n\r</code>.
 </p></div></div>
 

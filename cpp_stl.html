@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2018-08-07 Tue 13:58 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Standard Template Library</title>
@@ -266,7 +266,17 @@ for the JavaScript code in this tag.
 <li><a href="#org1d3ee42">其他容器</a></li>
 </ul>
 </li>
-<li><a href="#org4c74286">算法</a></li>
+<li><a href="#org4c74286">算法</a>
+<ul>
+<li><a href="#org440527a">绑定器(binder)</a></li>
+<li><a href="#org7d3da1c">取反器(negator)</a></li>
+<li><a href="#orgae615de">调用成员函数</a></li>
+<li><a href="#orgb0f079b"><code>find</code> 和 <code>find_if</code></a></li>
+<li><a href="#org8b330bf"><code>accumulate</code></a></li>
+<li><a href="#org3561ba3"><code>std::function</code></a></li>
+<li><a href="#org27fb296"><code>generate</code></a></li>
+</ul>
+</li>
 <li><a href="#org6fd6dba">迭代器</a></li>
 <li><a href="#org483f15e">不足</a></li>
 </ul>
@@ -513,6 +523,86 @@ for the JavaScript code in this tag.
 <li>算法一般不属于容器的一部分. STL采取了一种分离数据(容器)和功能(算法)的方式. 正交性的指导原则使算法和容器分离开, (几乎)所有算法都可以用于(几乎)所有容器.</li>
 <li>泛型算法并不是直接对容器操作, 而是使用迭代器(iterator). 迭代器是算法和容器之间的中介, 提供了顺序遍历容器中的元素的标准接口, 因此任何算法都可以操作任何容器.</li>
 </ul>
+
+<p>
+函数适配器(function adaptor)对函数组合(function composition)提供了支持, 能够将函数组合在一起, 以精确提供所需的行为.
+</p>
+</div>
+<div id="outline-container-org440527a" class="outline-3">
+<h3 id="org440527a">绑定器(binder)</h3>
+<div class="outline-text-3" id="text-org440527a">
+<p>
+绑定器可用于将函数的参数绑定至特定的值. 为此要使用头文件 <code>&lt;functional&gt;</code> 中定义的 <code>std::bind()</code>. 它允许采用灵活的方式绑定函数的参数. 既可以将函数的参数绑定至固定值, 甚至还能够重新安排函数参数的顺序. <code>bind()</code> 函数的返回类型比较复杂, 但是可以使用 <code>auto</code> 关键字, 无须指定准确的返回类型. 没有绑定至指定值的参数应该标记为 <code>_1</code>, <code>_2</code>, 和 <code>_3</code> 等. 这些都定义在 <code>std::placeholders</code> 名称空间中.
+</p>
+
+<p>
+头文件 <code>&lt;functional&gt;</code> 定义了辅助函数 <code>std::ref()</code> 和 <code>std::cref()</code>, 它们分别用于绑定引用和const引用.
+</p>
+</div>
+</div>
+<div id="outline-container-org7d3da1c" class="outline-3">
+<h3 id="org7d3da1c">取反器(negator)</h3>
+<div class="outline-text-3" id="text-org7d3da1c">
+<p>
+取反器是类似于绑定器的函数, 但是取反器计算谓词结果的反结果. 如果操作函数是一元函数, 需要使用 <code>not1()</code>; 如果操作函数是二元函数, 那么必须改用 <code>not2()</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgae615de" class="outline-3">
+<h3 id="orgae615de">调用成员函数</h3>
+<div class="outline-text-3" id="text-orgae615de">
+<p>
+对于一个对象容器, 有时需要传递一个指向类方法的指针作为算法的回调. 但是算法无法知道接受的是指向方法的指针, 而不是普通函数指针或仿函数. 调用方法指针的代码和调用普通函数指针的代码是不一样的, 因为前者必须在对象的上下文内调用. C++提供了 <code>mem_fn()</code> 转换函数, 在传递给算法之前可以对函数指针调用这个函数.
+</p>
+
+<p>
+如果容器内保存的不是对象本身, 而是对象指针, <code>mem_fn()</code> 的使用方法也完全一样.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb0f079b" class="outline-3">
+<h3 id="orgb0f079b"><code>find</code> 和 <code>find_if</code></h3>
+<div class="outline-text-3" id="text-orgb0f079b">
+<ul class="org-ul">
+<li><code>find</code> 在一个迭代器范围内查找特定元素. 可将其用于任意容器类型的元素. 这个算法返回所找到元素的迭代器引用. 如果没有找到元素, 则返回迭代器范围的尾迭代器.</li>
+<li>如果容器提供的方法具有与泛型算法同样的功能, 那么应该使用相应的方法, 那样速度更快.</li>
+<li><code>find_if</code> 和 <code>find</code> 类似, 区别在于 <code>find_if</code> 接受谓词函数回调作为参数, 而不是简单地匹配元素. 谓词返回 <code>true</code> 或 <code>false</code>. <code>find_if</code> 算法对范围内的每个元素调用谓词, 直到谓词返回 <code>true</code>. 如果返回了 <code>true</code>, <code>find_if</code> 返回引用这个元素的迭代器引用.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8b330bf" class="outline-3">
+<h3 id="org8b330bf"><code>accumulate</code></h3>
+<div class="outline-text-3" id="text-org8b330bf">
+<ul class="org-ul">
+<li>定义在头文件 <code>&lt;numeric&gt;</code> 中.</li>
+<li>最基本形式是计算指定范围中元素的总和.</li>
+<li>第二种形式允许指定要执行的操作, 而不是默认的加法操作. 这个操作的形式是二元回调.</li>
+<li>最多有4个参数
+<ol class="org-ol">
+<li>开始迭代器</li>
+<li>终止迭代器</li>
+<li>初始值</li>
+<li>函数回调或lambda表达式</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3561ba3" class="outline-3">
+<h3 id="org3561ba3"><code>std::function</code></h3>
+<div class="outline-text-3" id="text-org3561ba3">
+<ul class="org-ul">
+<li>定义在头文件 <code>&lt;functional&gt;</code> 中.</li>
+<li><code>std::function</code> 是一个多态的函数对象包装, 类似于函数指针. 他可以绑定至任何能调用的对象(仿函数, 成员函数指针, 函数指针和lambda表达式), 只要参数和返回类型符合包装的类型即可.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org27fb296" class="outline-3">
+<h3 id="org27fb296"><code>generate</code></h3>
+<div class="outline-text-3" id="text-org27fb296">
+<p>
+该算法需要一个迭代器范围, 它把该范围的值替换为从函数(第三个参数)返回的值.
+</p>
+</div>
 </div>
 </div>
 <div id="outline-container-org6fd6dba" class="outline-2">
