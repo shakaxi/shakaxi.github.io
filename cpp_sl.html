@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2018-08-12 Sun 22:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - 标准库</title>
@@ -263,7 +263,7 @@ C++标准库的核心是泛型容器和泛型算法. 包括<a href="./cpp_stl.ht
 <dt>时间工具</dt><dd>定义在头文件 <code>&lt;chrono&gt;</code> 中的 <code>Chrono</code> 库.</dd>
 <dt>随机数</dt><dd>定义在头文件 <code>&lt;random&gt;</code> 中的随机数库.</dd>
 <dt>初始化列表</dt><dd>定义在头文件 <code>&lt;initializer_list&gt;</code> 中的初始化列表(用于编写参数数目可变的函数).</dd>
-<dt><code>Pair</code></dt><dd>定义在头文件 <code>&lt;utility&gt;</code> 中的 <code>pair</code> 模板, 用于存储两种不同类型的元素. 这称为存储异构元素.</dd>
+<dt><code>Pair</code></dt><dd>定义在头文件 <code>&lt;utility&gt;</code> 中的 <code>pair</code> 模板, 用于存储两种不同类型的元素. 这称为存储异构元素. 每个值的类型都应该在编译时确定. C++14添加了一个功能, 允许根据类型使用 <code>std::get&lt;T&gt;()</code> 从tuple中提取元素, 其中T是要提取的元素的类型(而不是索引). 创建tuple的另一种方法是使用 <code>std::make_tuple()</code> 工具函数. 这个函数只需要实际值, 在编译时会自动推导出类型(所以不能通过 <code>&amp;</code> 来指定引用). 如果需要通过 <code>make_tuple()</code> 生成一个包含引用或常量引用的tuple, 那么需要分别使用定义在头文件 <code>&lt;functional&gt;</code> 中的 <code>ref()</code> 和 <code>cref()</code>. 通过 <code>std::tuple_cat()</code> 可将两个tuple串联为一个tuple.</dd>
 <dt><code>Tuple</code></dt><dd>定义在头文件 <code>&lt;tuple&gt;</code> 中的 <code>tuple</code> 是 <code>pair</code> 的一种泛化, 它是固定大小的序列, 元组的元素可以是异构的, 其实例化的元素数目和类型在编译时固定不变.</dd>
 <dt>函数对象</dt><dd>实现了函数调用运算符的类的对象称为函数对象. 函数对象可以用作某些STL算法的谓词. 头文件 <code>&lt;functional&gt;</code> 定义了一些预定义的函数对象, 支持根据已有的函数对象创建新函数对象.</dd>
 <dt>多线程</dt><dd><ul class="org-ul">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-08-07 Tue 13:58 -->
+<!-- 2018-08-12 Sun 22:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Standard Template Library</title>
@@ -225,6 +225,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -271,7 +293,34 @@ for the JavaScript code in this tag.
 <li><a href="#org440527a">绑定器(binder)</a></li>
 <li><a href="#org7d3da1c">取反器(negator)</a></li>
 <li><a href="#orgae615de">调用成员函数</a></li>
+<li><a href="#org3dfbc88">非修改序列算法</a>
+<ul>
+<li><a href="#org1e31f03">搜索算法</a>
+<ul>
 <li><a href="#orgb0f079b"><code>find</code> 和 <code>find_if</code></a></li>
+</ul>
+</li>
+<li><a href="#org4d4c786">比较算法</a></li>
+<li><a href="#org0eefa36">工具算法</a></li>
+</ul>
+</li>
+<li><a href="#org92e6c7f">修改序列算法</a>
+<ul>
+<li><a href="#org245ecf6">转换</a></li>
+<li><a href="#org7a41dfc">复制</a></li>
+<li><a href="#orgaa35300">移动</a></li>
+<li><a href="#org5f1a7f8">替换</a></li>
+<li><a href="#org8c52f2b">删除</a></li>
+<li><a href="#org321542a">唯一化</a></li>
+<li><a href="#org6f881ab">反转</a></li>
+<li><a href="#org0a8b3dd">乱序</a></li>
+</ul>
+</li>
+<li><a href="#orgcd99f77">分区算法</a></li>
+<li><a href="#orga7bc14b">排序算法</a></li>
+<li><a href="#orgdc522d9">集合算法</a></li>
+<li><a href="#org06601da">最大/最小算法</a></li>
+<li><a href="#orgb045b6b">数值处理算法</a></li>
 <li><a href="#org8b330bf"><code>accumulate</code></a></li>
 <li><a href="#org3561ba3"><code>std::function</code></a></li>
 <li><a href="#org27fb296"><code>generate</code></a></li>
@@ -283,7 +332,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <p>
-标准模板库(Standard Template Library, STL)是C++标准库的子集, 其大量使用了模板.
+标准模板库(standard template library, STL)是C++标准库的子集, 其大量使用了模板.
 </p>
 <div id="outline-container-org7209740" class="outline-2">
 <h2 id="org7209740">容器</h2>
@@ -560,14 +609,202 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb0f079b" class="outline-3">
-<h3 id="orgb0f079b"><code>find</code> 和 <code>find_if</code></h3>
-<div class="outline-text-3" id="text-orgb0f079b">
+<div id="outline-container-org3dfbc88" class="outline-3">
+<h3 id="org3dfbc88">非修改序列算法</h3>
+<div class="outline-text-3" id="text-org3dfbc88">
+</div>
+<div id="outline-container-org1e31f03" class="outline-4">
+<h4 id="org1e31f03">搜索算法</h4>
+<div class="outline-text-4" id="text-org1e31f03">
+</div>
+<div id="outline-container-orgb0f079b" class="outline-5">
+<h5 id="orgb0f079b"><code>find</code> 和 <code>find_if</code></h5>
+<div class="outline-text-5" id="text-orgb0f079b">
 <ul class="org-ul">
 <li><code>find</code> 在一个迭代器范围内查找特定元素. 可将其用于任意容器类型的元素. 这个算法返回所找到元素的迭代器引用. 如果没有找到元素, 则返回迭代器范围的尾迭代器.</li>
 <li>如果容器提供的方法具有与泛型算法同样的功能, 那么应该使用相应的方法, 那样速度更快.</li>
 <li><code>find_if</code> 和 <code>find</code> 类似, 区别在于 <code>find_if</code> 接受谓词函数回调作为参数, 而不是简单地匹配元素. 谓词返回 <code>true</code> 或 <code>false</code>. <code>find_if</code> 算法对范围内的每个元素调用谓词, 直到谓词返回 <code>true</code>. 如果返回了 <code>true</code>, <code>find_if</code> 返回引用这个元素的迭代器引用.</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d4c786" class="outline-4">
+<h4 id="org4d4c786">比较算法</h4>
+<div class="outline-text-4" id="text-org4d4c786">
+<p>
+下列算法主要用于比较不同容器内的范围<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
+<ul class="org-ul">
+<li><code>equal()</code></li>
+<li><code>mismatch()</code></li>
+<li><code>lexicographical_compare()</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0eefa36" class="outline-4">
+<h4 id="org0eefa36">工具算法</h4>
+<div class="outline-text-4" id="text-org0eefa36">
+<ul class="org-ul">
+<li><code>all_of()</code></li>
+<li><code>any_of()</code></li>
+<li><code>none_of()</code></li>
+<li><code>count()</code></li>
+<li><code>count_if()</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org92e6c7f" class="outline-3">
+<h3 id="org92e6c7f">修改序列算法</h3>
+<div class="outline-text-3" id="text-org92e6c7f">
+<p>
+修改算法通常返回一个引用目标范围最后一个值后一个位置(past-the-end)的迭代器.
+</p>
+</div>
+<div id="outline-container-org245ecf6" class="outline-4">
+<h4 id="org245ecf6">转换</h4>
+<div class="outline-text-4" id="text-org245ecf6">
+<ul class="org-ul">
+<li><code>transform()</code> 算法对一个范围内的每个元素应用回调, 期望回调生成一个新元素, 并保存在指定的目标范围内. 如果希望 <code>transform()</code> 将范围内的每个元素替换为调用回调产生的结果, 那么源范围和目标范围可以是同一范围. 其参数是源序列的首尾迭代器, 目标序列的首迭代器和回调.</li>
+<li><code>transform()</code> 的另一种形式对范围内的元素对调用二元回调, 它需要第一个范围内的首尾迭代器, 第二个范围的首迭代器和模板范围的首迭代器作为参数.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7a41dfc" class="outline-4">
+<h4 id="org7a41dfc">复制</h4>
+<div class="outline-text-4" id="text-org7a41dfc">
+<ul class="org-ul">
+<li><code>copy()</code> 算法可将一个范围内的元素复制到另一个范围中, 从范围中的第一个元素开始一直到最后一个元素. 源范围和目标范围必须不同, 但可以重叠.</li>
+<li><code>copy()</code> 不会向目标范围插入元素, 只是改写已有的元素. 因此, 不能通过 <code>copy()</code> 直接向容器插入元素, 只能改写容器中已有的元素.</li>
+<li><code>copy_backward()</code> 将源范围内的元素反向复制到目标范围内. 换句话说, 这个算法从源范围的最后一个元素开始, 将这个元素放在目标范围的最后一个位置, 然后在每一次复制之后反向移动.</li>
+<li><code>copy_if()</code> 需要一个由两个迭代器指定的的输入范围, 由一个迭代器指定的输出目标, 以及一个谓词(函数或lambda表达式). 对每个准备复制的元素执行这个函数或lambda表达式. 如果返回值为true, 那么复制这个元素, 并且递增目标迭代器; 如果返回值为false, 那么不复制这个元素, 也不递增目标迭代器. 因此, 目标中包含的元素可能少于源范围. 对于一些容器来说, 由于肯定已经创建了足够的空间来保存最大可能数目的元素(要记住, 复制不会创建或扩大容器, 只是替换现有元素), 因此, 可能需要删除超出最后一个元素复制位置的空间. 为便于达到这个目的, <code>copy_if()</code> 返回了目标范围中最后一个复制的元素后一个位置(one-past-the-last-copied element)的迭代器, 以便确定需要从目标容器中删除的元素个数.</li>
+<li><code>copy_n()</code> 从源范围复制n个元素到目标范围. 其第一个参数是起始迭代器, 第二个参数是一个指定要复制的元素个数的整数, 第三个参数为目标迭代器. 该算法不执行任何边界检查, 因此一定要确保起始迭代器递增了n个要复制的元素后, 不会超过集合的end(), 否则程序会产生未定义的行为.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaa35300" class="outline-4">
+<h4 id="orgaa35300">移动</h4>
+<div class="outline-text-4" id="text-orgaa35300">
+<ul class="org-ul">
+<li>有两个和移动相关的算法: <code>move()</code> 和 <code>move_backward()</code>. 它们都使用了移动语义. 如果要在自定义类型元素的容器中使用这些算法, 那么需要在元素类中提供移动赋值运算符.</li>
+<li><code>move_backward()</code> 使用了和 <code>move()</code> 同样的移动机制, 但是按照从最后一个元素向第一个元素的顺序移动.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5f1a7f8" class="outline-4">
+<h4 id="org5f1a7f8">替换</h4>
+<div class="outline-text-4" id="text-org5f1a7f8">
+<ul class="org-ul">
+<li><code>replace()</code> 和 <code>replace_if()</code> 将一个范围中匹配某个值或满足某个谓词的元素替换为新的值. 比如 <code>replace_if()</code> 算法的前两个参数指定了容器中元素的范围. 第三个参数是一个返回true或false的函数或lambda表达式. 如果这个函数返回true, 那么容器中的对应值被替换为第四个参数指定的值; 如果返回false, 则保留原始值.</li>
+<li><code>replace()</code> 也有称为 <code>replace_copy()</code> 和 <code>replace_copy_if()</code> 的变体, 这些变体将结果复制到不同的目标范围中. 它们类似于 <code>copy()</code>, 要求目标范围必须足够大, 以容纳新元素.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8c52f2b" class="outline-4">
+<h4 id="org8c52f2b">删除</h4>
+<div class="outline-text-4" id="text-org8c52f2b">
+<ul class="org-ul">
+<li>算法只能访问迭代器抽象, 不能访问容器. 因此删除算法不能真正地从底层容器中删除元素, 而是把匹配给定值或谓词的元素替换为下一个不匹配给定值或谓词的元素. 结果是将集合分为两个集合: 一个用于保存要保留的元素, 另一个保存要删除的元素.</li>
+<li>如果真的需要从容器中删除这些元素, 正确的解决方案为: 先使用 <code>remove()</code> 算法, 然后调用容器的 <code>erase()</code> 方法, 将从返回的迭代器到范围尾部的所有元素删除. 这就是 <b>删除-擦除法</b> (<b>remove-erase-idiom</b>).</li>
+<li><code>remove()</code> 的 <code>remove_copy()</code> 和 <code>remove_copy_if()</code> 变体不会改变源范围, 而是将所有未删除的元素复制到另一个目标范围中. 这些算法和 <code>copy()</code> 类似, 要求目标范围必须足够大, 以便保存新元素.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org321542a" class="outline-4">
+<h4 id="org321542a">唯一化</h4>
+<div class="outline-text-4" id="text-org321542a">
+<ul class="org-ul">
+<li><code>unique()</code> 算法是特殊的 <code>remove()</code>, 将所有重复的连续元素删除. list容器提供了自己的具有同样语义的 <code>unique()</code> 方法.</li>
+<li>通常情况下, 应该对有序序列使用 <code>unique()</code>, 但是 <code>unique()</code> 也能用于无序序列.</li>
+<li><code>unique()</code> 的基本形式就地操作数据, 还有一个名为 <code>unique_copy()</code> 的版本, 其将结果复制到一个新的目标范围.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6f881ab" class="outline-4">
+<h4 id="org6f881ab">反转</h4>
+<div class="outline-text-4" id="text-org6f881ab">
+<ul class="org-ul">
+<li><code>reverse()</code> 算法反转一个范围内元素的顺序. 范围内的第一个元素和最后一个元素交换, 第二个和倒数第二个交换, 依次类推.</li>
+<li><code>reverse()</code> 最基本的形式就地运行, 要求两个参数: 范围的起始迭代器和终止迭代器.</li>
+<li><code>reverse_copy()</code> 将结果复制到新的目标范围, 它需要三个参数: 源范围的首尾迭代器, 以及目标范围的起始迭代器. 目标范围必须足够大, 以便保存新元素.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0a8b3dd" class="outline-4">
+<h4 id="org0a8b3dd">乱序</h4>
+<div class="outline-text-4" id="text-org0a8b3dd">
+<ul class="org-ul">
+<li><code>shuffle()</code> 以随机顺序重新安排范围内的元素, 其复杂度为线性时间. 它可以用于实现洗牌等任务.</li>
+<li><code>shuffle()</code> 的参数为要乱序的范围的首尾迭代器, 和一个统一的随机数生成器对象, 它指定如何生成随机数.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcd99f77" class="outline-3">
+<h3 id="orgcd99f77">分区算法</h3>
+<div class="outline-text-3" id="text-orgcd99f77">
+<ul class="org-ul">
+<li><code>partition()</code> 算法给序列排序, 使谓词返回true的所有元素放在前面, 谓词返回false的所有元素放在后面, 在每个分区中不保留元素最初的顺序.</li>
+<li><code>partition_copy()</code> 算法将一个来源的元素复制到两个不同的目标. 选择每个元素特定目标的依据是谓词的结果: true或false. 其返回值是一对迭代器: 一个迭代器引用第一个目标范围最后一个复制的元素的后一个位置(one-past-the-last-copied element), 另一个迭代器引用第二个目标范围最后一个复制的元素的后一个位置. 将这些返回的迭代器与 <code>erase()</code> 结合使用, 可以删除两个目标范围中多余的元素(与 <code>copy_if()</code> 类似).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga7bc14b" class="outline-3">
+<h3 id="orga7bc14b">排序算法</h3>
+<div class="outline-text-3" id="text-orga7bc14b">
+<ul class="org-ul">
+<li>排序算法只能应用于顺序容器. 排序和关联容器无关, 因为关联容器已经维护了元素的顺序.</li>
+<li>在一般情况下, 函数 <code>sort()</code> 在 $O(N\logN)$时间内将一个范围内的元素排序. 根据运算符 <code>operator&lt;</code>, 这个范围内的元素以非递减顺序排列(最小到最大). 如果不需要使用这个顺序, 可以指定一个不同的比较回调.</li>
+<li><code>stable_sort()</code> 能够保持范围内相等元素的相对顺序, 所以效率比 <code>sort()</code> 低.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdc522d9" class="outline-3">
+<h3 id="orgdc522d9">集合算法</h3>
+<div class="outline-text-3" id="text-orgdc522d9">
+<ul class="org-ul">
+<li>集合算法可以用于任意有序的迭代器范围.</li>
+<li><code>include()</code> 函数实现了标准的子集判断功能, 检查一个有序范围的所有元素是否包含在另一个有序范围中, 顺序任意.</li>
+<li>下列算法实现了这些操作的标准语义
+<ul class="org-ul">
+<li><code>set_union()</code></li>
+<li><code>set_intersection</code></li>
+<li><code>set_difference</code></li>
+<li><code>set_symmetric_difference</code></li>
+</ul></li>
+<li><code>merge()</code> 函数可将两个排好序的范围归并在一起, 并保持排序的顺序. 结果是一个包含两个源范围中所有元素的有序范围. 其复杂度为线性时间. 该算法需要以下参数
+<ul class="org-ul">
+<li>第一个源范围的起止迭代器.</li>
+<li>第二个源范围的起止迭代器.</li>
+<li>目标范围的起始迭代器.</li>
+<li>比较回调(可选)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org06601da" class="outline-3">
+<h3 id="org06601da">最大/最小算法</h3>
+<div class="outline-text-3" id="text-org06601da">
+<ul class="org-ul">
+<li><code>min()</code> 和 <code>max()</code> 算法通过运算符 <code>operator&lt;</code> 或用户提供的二元谓词比较两个任意类型的元素, 分别返回一个引用较小或较大元素的const引用.</li>
+<li><code>minmax()</code> 算法返回一个包含两个或更多元素中最小值和最大值的pair.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb045b6b" class="outline-3">
+<h3 id="orgb045b6b">数值处理算法</h3>
+<div class="outline-text-3" id="text-orgb045b6b">
+<ul class="org-ul">
+<li>头文件 <code>&lt;numeric&gt;</code> 中定义的 <code>inner_product()</code> 计算两个序列的内积.</li>
+<li>头文件 <code>&lt;numeric&gt;</code> 中定义的 <code>iota()</code> 生成一个指定范围内的序列值, 从给定的值开始, 并应用 <code>operator++</code> 生成每个后续值.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-c++">...
+<span style="color: #8cc4ff;">vector</span>&lt;<span style="color: #8cc4ff;">int</span>&gt; v(3);
+iota(begin(v), end(v), 7); <span style="color: #73d216;">// </span><span style="color: #73d216;">v&#20013;&#20803;&#32032;&#30340;&#20540;&#20381;&#27425;&#20026;7, 8, 9.</span>
+...
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-org8b330bf" class="outline-3">
@@ -591,8 +828,10 @@ for the JavaScript code in this tag.
 <h3 id="org3561ba3"><code>std::function</code></h3>
 <div class="outline-text-3" id="text-org3561ba3">
 <ul class="org-ul">
-<li>定义在头文件 <code>&lt;functional&gt;</code> 中.</li>
-<li><code>std::function</code> 是一个多态的函数对象包装, 类似于函数指针. 他可以绑定至任何能调用的对象(仿函数, 成员函数指针, 函数指针和lambda表达式), 只要参数和返回类型符合包装的类型即可.</li>
+<li>定义在头文件 <code>&lt;functional&gt;</code> 中. 可以用来创建指向函数, 函数对象或lambda表达式的类型.</li>
+<li>语法为 <code>std::function&lt;R(ArgTypes...)&gt;</code>, 其中 <code>R</code> 是函数返回值的类型, <code>ArgTypes</code> 是一个逗号分隔的函数参数类型的列表.</li>
+<li>从根本上来讲, <code>std::function</code> 是一个多态的函数对象包装(<b>多态函数包装器</b>), 类似于函数指针, 既可以当成函数指针来使用, 又可以用作实现回调的函数参数. 他可以绑定至任何能调用的对象(仿函数, 成员函数指针, 函数指针和lambda表达式), 只要参数和返回类型符合包装的类型即可.</li>
+<li>由于 <code>std::function</code> 类型的行为和函数指针一致, 因此可以传递给STL算法.</li>
 </ul>
 </div>
 </div>
@@ -629,6 +868,16 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+如果要比较两个同类型容器的元素, 可以使用运算符 <code>operator==</code> 和运算符 <code>operator&lt;</code>, 而不是 <code>equal()</code> 和 <code>lexicographical_compare()</code>.
+</p></div></div>
+
+
 </div>
+</div></div>
 </body>
 </html>
