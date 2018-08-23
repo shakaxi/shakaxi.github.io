@@ -4,7 +4,7 @@
 <!-- 2018-08-23 Thu 13:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shaka's Blog Site</title>
+<title>C++ - Multithread</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -228,72 +228,77 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
-<ul class="org-ul">
-<li><a href="bash.html">Bash</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_basic.html">C++ - Basic</a></li>
-<li><a href="cpp_itpp.html">C++ - IT++</a></li>
-<li><a href="cpp_multithread.html">C++ - Multithread</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_stl.html">C++ - Standard Template Library</a></li>
-<li><a href="cpp_sl.html">C++ - 标准库</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cdlatex.html">Emacs - CDLaTeX</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_capslock_ctrl.html">Emacs - CapsLock as Ctrl</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="emacs_dired.html">Emacs - Dired</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="emacs_helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_lsp.html">Emacs - Language Server Protocol</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_mu4e.html">Emacs - Mu4e</a></li>
-<li><a href="notmuch.html">Emacs - Notmuch</a></li>
-<li><a href="emacs_org_ioslide.html">Emacs - Orgmode Export to HTML5 Slide</a></li>
-<li><a href="emacs_ycmd.html">Emacs - YCMD</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="gitlab.html">GitLab</a></li>
-<li><a href="x1c.html">Installation of ArchLinux on Thinkpad X1 Carbon 2018</a></li>
-<li><a href="lte_d2d.html">LTE - D2D</a></li>
-<li><a href="lte_ds.html">LTE - Discovery Signal</a></li>
-<li><a href="lte_fc_loc.html">LTE - Frequency Domain Location of Carriers</a></li>
-<li><a href="lte_mobility_mgmt.html">LTE - Mobility Management</a></li>
-<li><a href="lte_pcfich.html">LTE - PCFICH</a></li>
-<li><a href="lte_pdcch_epdcch.html">LTE - PDCCH &amp; EPDCCH</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="arch_cn.html">Linux - A Mirror of Arch Linux</a></li>
-<li><a href="arch_inst.html">Linux - An Installation Guide for Arch Linux</a></li>
-<li><a href="console.html">Linux - Customize Console</a></li>
-<li><a href="microcode.html">Linux - Microcode</a></li>
-<li><a href="zsh.html">Linux - ZSH</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="zc.html">ZC</a></li>
+<h1 class="title">C++ - Multithread</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2cfe1b9">背景</a></li>
+<li><a href="#orgb786384">线程</a>
+<ul>
+<li><a href="#org3c4d9b2">通过函数指针创建线程</a></li>
+<li><a href="#orgb5d1a58">通过函数对象创建线程</a></li>
 </ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2cfe1b9" class="outline-2">
+<h2 id="org2cfe1b9">背景</h2>
+<div class="outline-text-2" id="text-org2cfe1b9">
+<p>
+C++98/03不支持多线程编程, 所以必须借助第三方库或目标操作系统中的多线程API. 这使得编写跨平台的多线程程序很困难. C++11引入了标准的多线程库, 使得多线程程序跨平台更加容易. 目前的C++11标准仅针对CPU, 不支持GPU.
+</p>
+
+<p>
+多线程编程的难点之一是将算法并行化, 这个过程和算法的类型高度相关. 此外, 要防止竞争条件和死锁, 并考虑缓存的一致性.
+</p>
+
+<dl class="org-dl">
+<dt>竞争条件</dt><dd>当多个线程要读/写共享内存位置时, 可能会发生竞争条件.</dd>
+<dt>死锁</dt><dd>线程因为等待另一个阻塞线程锁定的资源而造成的无限阻塞.</dd>
+<dt>撕裂</dt><dd>部分数据已写入内存, 但还有部分数据没有写入. 如果另一个线程在此时读取数据, 就会得到不一致的数据.</dd>
+<dt>缓存的一致性</dt><dd>如果一个线程写入了一段数据, 该线程会立即看到新数据, 但这并不意味着所有线程都会立即看到新数据. 所以, 在读写多个线程时, 即使是最简单的数据类型, 也需要同步.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgb786384" class="outline-2">
+<h2 id="orgb786384">线程</h2>
+<div class="outline-text-2" id="text-orgb786384">
+<p>
+C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
+</p>
+</div>
+<div id="outline-container-org3c4d9b2" class="outline-3">
+<h3 id="org3c4d9b2">通过函数指针创建线程</h3>
+<div class="outline-text-3" id="text-org3c4d9b2">
+<p>
+标准C++的 <code>thread</code> 类的构造函数是一个可变参数模板, 可以接受任意数目的参数. 第一个参数为函数名称, 其余参数为函数的参数. 如
+</p>
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;thread&gt;</span>
+
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+
+<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">f</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">j</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">k</span>);
+<span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>(f, 1, 2, 3);
+</pre>
+</div>
+<p>
+默认情况下, 从不同线程中访问cout是线程安全的, 没有任何数据竞争, 除非在第一个输出或输入操作之前调用了 <code>cout.sync_with_stdio(false)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5d1a58" class="outline-3">
+<h3 id="orgb5d1a58">通过函数对象创建线程</h3>
+<div class="outline-text-3" id="text-orgb5d1a58">
+<p>
+使用函数指针技术, 向线程传递信息的唯一方式是向函数传递参数. 而使用函数对象, 可向函数对象类添加成员变量, 并可以采用任何方式初始化和使用这些变量. 如
+</p>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>
