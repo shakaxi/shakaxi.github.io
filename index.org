@@ -4,6 +4,7 @@
 - [[file:blog.org][Blog on GitHub]]
 - [[file:cpp_basic.org][C++ - Basic]]
 - [[file:cpp_itpp.org][C++ - IT++]]
+- [[file:cpp_multithread.org][C++ - Multithread]]
 - [[file:cpp_polymorphism.org][C++ - Polymorphism]]
 - [[file:cpp_stl.org][C++ - Standard Template Library]]
 - [[file:cpp_sl.org][C++ - 标准库]]
