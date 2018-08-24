@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-08-23 Thu 13:49 -->
+<!-- 2018-08-24 Fri 22:37 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Multithread</title>
@@ -238,6 +238,23 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org3c4d9b2">通过函数指针创建线程</a></li>
 <li><a href="#orgb5d1a58">通过函数对象创建线程</a></li>
+<li><a href="#orga21768a">通过lambda表达式创建线程</a></li>
+<li><a href="#org12e4b0d">通过成员函数创建线程</a></li>
+<li><a href="#org50de64c">线程本地存储</a></li>
+<li><a href="#org90f9354">取消线程</a></li>
+<li><a href="#org33db95e">从线程获得结果</a></li>
+<li><a href="#org082863c">复制和重新抛出异常</a></li>
+</ul>
+</li>
+<li><a href="#org56a886a">原子操作</a></li>
+<li><a href="#orgbfb7dce">互斥</a>
+<ul>
+<li><a href="#orgf54571e">互斥体类</a>
+<ul>
+<li><a href="#org37c4102">非定时的互斥体类</a></li>
+<li><a href="#org81628a2">定时的互斥体类</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -281,8 +298,14 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 
 <span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
 
-<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">f</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">j</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">k</span>);
-<span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>(f, 1, 2, 3);
+<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">f</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>, <span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">j</span>, <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">k</span>);
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>(f, 1, 2.0, <span style="color: #e9b2e3;">true</span>);
+    t.join();
+    <span style="color: #b4fa70;">return</span> 0;
+}
 </pre>
 </div>
 <p>
@@ -296,6 +319,251 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 <p>
 使用函数指针技术, 向线程传递信息的唯一方式是向函数传递参数. 而使用函数对象, 可向函数对象类添加成员变量, 并可以采用任何方式初始化和使用这些变量. 如
 </p>
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;thread&gt;</span>
+
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">A</span>
+{
+<span style="color: #b4fa70;">public</span>:
+    <span style="color: #fce94f;">A</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>, <span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">j</span>, <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">k</span>);
+    <span style="color: #8cc4ff;">void</span> <span style="color: #b4fa70;">operator</span><span style="color: #fce94f;">()</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>);
+};
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>(A(1));
+    t.join();
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+<p>
+函数对象总是复制到线程的某个内部存储中. 如果要在函数对象的某个特定实例上执行 <code>operator()</code> 而非进行复制, 那么应该使用头文件 <code>&lt;functional&gt;</code> 中的 <code>std::ref()</code> 或 <code>std::cref()</code> 传入该实例的引用或常引用.
+</p>
+</div>
+</div>
+<div id="outline-container-orga21768a" class="outline-3">
+<h3 id="orga21768a">通过lambda表达式创建线程</h3>
+<div class="outline-text-3" id="text-orga21768a">
+<p>
+如
+</p>
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;thread&gt;</span>
+
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span> = 3;
+    <span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>([&amp;<span style="color: #fcaf3e;">i</span>]{i += 1;});
+    t.join();
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org12e4b0d" class="outline-3">
+<h3 id="org12e4b0d">通过成员函数创建线程</h3>
+<div class="outline-text-3" id="text-org12e4b0d">
+<p>
+第一个参数为成员函数指针, 第二个参数为类对象指针, 其余参数为成员函数的参数.
+</p>
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;thread&gt;</span>
+
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">A</span>
+{
+<span style="color: #b4fa70;">public</span>:
+    <span style="color: #fce94f;">A</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>, <span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">j</span>, <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">k</span>);
+    <span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">process</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>);
+};
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #8cc4ff;">A</span> <span style="color: #fcaf3e;">a</span>(1, 2.0, <span style="color: #e9b2e3;">true</span>);
+    <span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>{&amp;<span style="color: #e9b2e3;">A</span>::process, &amp;a, 3};
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org50de64c" class="outline-3">
+<h3 id="org50de64c">线程本地存储</h3>
+<div class="outline-text-3" id="text-org50de64c">
+<p>
+通过关键字 <code>thread_local</code>, 可将任何变量标记为线程本地数据, 即每个线程都有这个变量的独立副本, 而且这个变量能在线程的整个生命周期中持续存在. 对于每个线程, 该变量正好初始化一次.
+</p>
+
+<p>
+如果 <code>thread_local</code> 变量在函数作用域中声明, 那么这个变量的行为和声明为静态变量是一致的, 只不过每个线程都有自己独立的副本, 而且不论这个函数在线程中调用多少次, 每个线程只初始化一次这个变量.
+</p>
+
+<p>
+以下代码中, 多个线程共享唯一的j副本, 而每个线程都有自己的i副本.
+</p>
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #b4fa70;">thread_local</span> <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>;
+<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">j</span>;
+<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">process</span>();
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org90f9354" class="outline-3">
+<h3 id="org90f9354">取消线程</h3>
+<div class="outline-text-3" id="text-org90f9354">
+<p>
+标准没有在一个线程中取消另一个线程的机制. 实现这一目标的最好方法是提供两个线程都支持的某种通信机制. 最简单的机制是有一个共享变量, 目标线程定期检查这个变量, 判断是否应该终止. 其他线程可以设置这个共享变量, 间接指示线程关闭. 应避免读写这个共享变量带来的竞争条件和缓存一致性问题.
+</p>
+</div>
+</div>
+<div id="outline-container-org33db95e" class="outline-3">
+<h3 id="org33db95e">从线程获得结果</h3>
+<div class="outline-text-3" id="text-org33db95e">
+<p>
+通过 <code>future</code> 能够方便地从线程获得结果, 也能方便地处理线程中发生的错误.
+</p>
+</div>
+</div>
+<div id="outline-container-org082863c" class="outline-3">
+<h3 id="org082863c">复制和重新抛出异常</h3>
+<div class="outline-text-3" id="text-org082863c">
+<p>
+每个线程都可以抛出自己的异常, 但它们必须在自己的线程内捕获异常. 一个线程抛出的异常不能在另一个线程中捕获. 使用 <code>future</code> 可以自动在线程之间传递异常.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org56a886a" class="outline-2">
+<h2 id="org56a886a">原子操作</h2>
+<div class="outline-text-2" id="text-org56a886a">
+<p>
+原子类型允许原子访问, 这意味着不需要额外的同步机制就可以执行并发的读写操作. 使用原子类型需要包含头文件 <code>&lt;atomic&gt;</code>. 标准为所有基本类型定义了相应的原子类型.
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">定义的原子类型</th>
+<th scope="col" class="org-left">等效原子类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>atomic_bool</code></td>
+<td class="org-left"><code>atomic&lt;bool&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_char</code></td>
+<td class="org-left"><code>atomic&lt;char&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_schar</code></td>
+<td class="org-left"><code>atomic&lt;signed char&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_uchar</code></td>
+<td class="org-left"><code>atomic&lt;unsigned char&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_int</code></td>
+<td class="org-left"><code>atomic&lt;int&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_uint</code></td>
+<td class="org-left"><code>atomic&lt;unsigned int&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_long</code></td>
+<td class="org-left"><code>atomic&lt;long&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_ulong</code></td>
+<td class="org-left"><code>atomic&lt;unsigned long&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_llong</code></td>
+<td class="org-left"><code>atomic&lt;long long&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_ullong</code></td>
+<td class="org-left"><code>atomic&lt;unsigned long long&gt;</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>atomic_wchar_t</code></td>
+<td class="org-left"><code>atomic&lt;wchar_t&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>
+在多线程中访问一段数据时, 原子也可以解决缓存一致性, 内存排序, 编译器优化等问题. 基本上, 不使用原子或显式的同步机制, 就不可能安全地在多线程中读写同一段数据.
+</p>
+
+<ul class="org-ul">
+<li><code>atomic&lt;T&gt;::fetch_add()</code> 获取一个原子类型的当前值, 将给定的递增值添加到这个原子值, 然后返回原始的未递增的值.</li>
+<li>原子类型支持原子操作: <code>fetch_add()</code>, <code>fetch_sub()</code>, <code>fetch_and()</code>, <code>fetch_or()</code>, <code>fetch_xor()</code>, <code>++</code>, <code>--</code>, <code>+=</code>, <code>-=</code>, <code>&amp;=</code>, <code>^=</code> 和 <code>|=</code>.</li>
+<li>原子指针类型支持原子操作: <code>fetch_add()</code>, <code>fetch_sub()</code>, <code>++</code>, <code>--</code>, <code>+=</code>, <code>-=</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbfb7dce" class="outline-2">
+<h2 id="orgbfb7dce">互斥</h2>
+<div class="outline-text-2" id="text-orgbfb7dce">
+</div>
+<div id="outline-container-orgf54571e" class="outline-3">
+<h3 id="orgf54571e">互斥体类</h3>
+<div class="outline-text-3" id="text-orgf54571e">
+<ul class="org-ul">
+<li>与互斥相关的类都定义在头文件 <code>&lt;mutex&gt;</code> 中, 而且都在 <code>std</code> 名字空间中.</li>
+<li>不要在任何互斥体类上手动调用下列锁定和解锁方法. 与所有资源一样, 互斥锁是资源, 它们几乎总是应该使用 resource acquisition is initialization, <b>RAII</b> 范例获得. 标准定义了一些RAII锁定类. 使用它们对避免死锁很重要. 锁对象离开作用域时, 它们会自动释放互斥体, 所以不需要手动调用 <code>unlock()</code>.</li>
+</ul>
+</div>
+<div id="outline-container-org37c4102" class="outline-4">
+<h4 id="org37c4102">非定时的互斥体类</h4>
+<div class="outline-text-4" id="text-org37c4102">
+<p>
+标准库中有两个互斥体类:
+</p>
+<dl class="org-dl">
+<dt><code>std::mutex</code></dt><dd>标准的具有排他所有权语义的互斥体类.</dd>
+<dt><code>std::recursive_mutex</code></dt><dd>已经获得递归互斥体所有权的线程可以再次调用 <code>lock()</code> 和 <code>try_lock()</code>. 调用线程调用 <code>unlock()</code> 的次数应该等于获得这个递归互斥体锁的次数.</dd>
+</dl>
+
+<p>
+这两个互斥体类都支持下列方法:
+</p>
+<dl class="org-dl">
+<dt><code>lock()</code></dt><dd>调用线程将尝试获得锁, 并且阻塞直到获得锁. 这个方法会无限期地阻塞. 如果希望设置线程阻塞的最长时间, 应该使用定时的互斥体类.</dd>
+<dt><code>try_lock()</code></dt><dd>调用线程将尝试获得锁. 如果当前锁被其他线程持有, 这个调用会立即返回. 如果成功获得锁, 返回true, 否则返回false.</dd>
+<dt><code>unlock()</code></dt><dd>释放由调用线程持有的锁, 使另一个线程能够获得锁.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org81628a2" class="outline-4">
+<h4 id="org81628a2">定时的互斥体类</h4>
 </div>
 </div>
 </div>

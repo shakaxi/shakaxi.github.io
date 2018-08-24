@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-08-23 Thu 13:49 -->
+<!-- 2018-08-24 Fri 08:20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Basic</title>
@@ -264,7 +264,7 @@ for the JavaScript code in this tag.
 <li><a href="#org0fe7eff">引用</a>
 <ul>
 <li><a href="#org2af5016">引用变量</a></li>
-<li><a href="#orgaa9b4fe">引用数据成员</a></li>
+<li><a href="#org4001f6c">引用数据成员</a></li>
 <li><a href="#orgeb0501f">引用参数</a></li>
 <li><a href="#org437cc77">引用返回值</a></li>
 <li><a href="#orgfb67aee">引用与指针</a></li>
@@ -305,11 +305,11 @@ for the JavaScript code in this tag.
 <li><a href="#orgfd84657">类和对象</a>
 <ul>
 <li><a href="#org6f59f8e">定义</a></li>
-<li><a href="#orga72d882">访问控制</a></li>
+<li><a href="#org3df3a49">访问控制</a></li>
 <li><a href="#org2d8a78b"><code>this</code></a></li>
 <li><a href="#org48044ba">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#org2f53285">基本概念</a></li>
+<li><a href="#org509319c">基本概念</a></li>
 <li><a href="#org67ff599">构造函数初始化器</a></li>
 <li><a href="#org0cb8063">复制构造函数</a></li>
 <li><a href="#org2ab3521">初始化列表构造函数</a></li>
@@ -320,7 +320,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org77af211">析构函数</a>
 <ul>
-<li><a href="#org70f76a4">基本概念</a></li>
+<li><a href="#org77ad488">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#org44df347">对象赋值</a></li>
@@ -328,7 +328,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org40e44aa">静态数据成员</a></li>
 <li><a href="#org3969599">常量数据成员</a></li>
-<li><a href="#org4001f6c">引用数据成员</a></li>
+<li><a href="#orgdc3e9ab">引用数据成员</a></li>
 </ul>
 </li>
 <li><a href="#org4a0e703">方法</a>
@@ -347,8 +347,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org27e621f">继承</a>
 <ul>
-<li><a href="#org509319c">基本概念</a></li>
-<li><a href="#org3df3a49">访问控制</a></li>
+<li><a href="#org553a71a">基本概念</a></li>
+<li><a href="#org7169ba5">访问控制</a></li>
 <li><a href="#org70f00c1">禁止继承</a></li>
 <li><a href="#orgc839b4c">方法和类的虚化</a></li>
 <li><a href="#org61e3ca8">向上转型和向下转型</a></li>
@@ -606,11 +606,11 @@ C/C++常常会发生与内存有关的问题, 如
 </p>
 <dl class="org-dl">
 <dt><code>std::unique_ptr</code></dt><dd>通用的智能指针, 可以指向任意类型的内存, 是一个模板. 自从C++14以来, 可以使用 <code>std::make_unique&lt;&gt;()</code> 创建. 在尖括号中必须指定 <code>unique_ptr</code> 要指向的内存类型. <code>unique_ptr</code> 意味着所有权. 单个 <code>unique_ptr</code> 离开作用域时, 会释放底层的内存.</dd>
-<dt><code>std::shared_ptr</code></dt><dd>引用计数的智能指针, 可以使用 <code>std::make_shared&lt;&gt;()</code> 创建. 可以有多个 <code>shared_ptr</code> 实例指向同一块动态分配的内存. 当最后一个shared<sub>ptr离开作用域时</sub>, 才释放这块内存. <code>shared_ptr</code> 也是线程安全的. 默认的智能指针应该是 <code>unique_ptr</code>. 函数 <code>const_pointer_cast()</code>, <code>dynamic_pointer_cast()</code>, 和 <code>static_pointer_cast()</code> 可用于转换 <code>shared_ptr</code> 的类型. 引用计数的智能指针跟踪了为引用一个真实指针(或某个对象)建立的智能指针的数目. 通过这种方式, 智能指针可以避免双重删除. 如果程序在使用智能指针时进行了复制, 赋值或作为参数按值传入函数, 那么 <code>shared_ptr</code> 是完美的选择.</dd>
+<dt><code>std::shared_ptr</code></dt><dd>引用计数的智能指针, 可以使用 <code>std::make_shared&lt;&gt;()</code> 创建. 可以有多个 <code>shared_ptr</code> 实例指向同一块动态分配的内存. 当最后一个 <code>shared_ptr</code> 离开作用域时, 才释放这块内存. <code>shared_ptr</code> 也是线程安全的. 默认的智能指针应该是 <code>unique_ptr</code>. 函数 <code>const_pointer_cast()</code>, <code>dynamic_pointer_cast()</code>, 和 <code>static_pointer_cast()</code> 可用于转换 <code>shared_ptr</code> 的类型. 引用计数的智能指针跟踪了为引用一个真实指针(或某个对象)建立的智能指针的数目. 通过这种方式, 智能指针可以避免双重删除. 如果程序在使用智能指针时进行了复制, 赋值或作为参数按值传入函数, 那么 <code>shared_ptr</code> 是完美的选择.</dd>
 <dt><code>std::weak_ptr</code></dt><dd><code>weak_ptr</code> 可以包含由 <code>shared_ptr</code> 管理的内存的引用. <code>weak_ptr</code> 不拥有这个内存, 所以不能阻止 <code>shared_ptr</code> 释放内存. <code>weak_ptr</code> 离开作用域时不会销毁它指向的内存. 然而, 它可以用于判断内存释放已经被关联的 <code>shared_ptr</code> 释放了. <code>weak_ptr</code> 的构造函数要求将一个 <code>shared_ptr</code> 或另一个 <code>weak_ptr</code> 作为参数. 为了访问 <code>weak_ptr</code> 中保存的指针, 需要将 <code>weak_ptr</code> 转换为 <code>shared_ptr</code>. 为了访问 <code>weak_ptr</code> 中保存的指针, 需要通过以下两种方法将 <code>weak_ptr</code> 转换为 <code>shared_ptr</code>. 如果与 <code>weak_ptr</code> 关联的 <code>shared_ptr</code> 已经释放, 新的 <code>shared_ptr</code> 就是nullptr.
 
 <ul class="org-ul">
-<li>使用weak<sub>ptr实例的</sub> <code>lock()</code> 方法, 该方法返回一个 <code>shared_ptr</code>.</li>
+<li>使用 <code>weak_ptr</code> 实例的 <code>lock()</code> 方法, 该方法返回一个 <code>shared_ptr</code>.</li>
 
 <li>将 <code>weak_ptr</code> 作为 <code>shared_ptr</code> 构造函数的参数, 创建一个新的 <code>shared_ptr</code> 实例.</li>
 </ul></dd>
@@ -642,9 +642,9 @@ C/C++常常会发生与内存有关的问题, 如
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaa9b4fe" class="outline-3">
-<h3 id="orgaa9b4fe">引用数据成员</h3>
-<div class="outline-text-3" id="text-orgaa9b4fe">
+<div id="outline-container-org4001f6c" class="outline-3">
+<h3 id="org4001f6c">引用数据成员</h3>
+<div class="outline-text-3" id="text-org4001f6c">
 <p>
 引用可以作为类的数据成员, 也即引用数据成员. 引用数据成员必须在类的构造函数初始化器中初始化它, 而不是在构造函数体内.
 </p>
@@ -985,9 +985,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 </p>
 </div>
 </div>
-<div id="outline-container-orga72d882" class="outline-3">
-<h3 id="orga72d882">访问控制</h3>
-<div class="outline-text-3" id="text-orga72d882">
+<div id="outline-container-org3df3a49" class="outline-3">
+<h3 id="org3df3a49">访问控制</h3>
+<div class="outline-text-3" id="text-org3df3a49">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -1018,9 +1018,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <h3 id="org48044ba">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-org48044ba">
 </div>
-<div id="outline-container-org2f53285" class="outline-4">
-<h4 id="org2f53285">基本概念</h4>
-<div class="outline-text-4" id="text-org2f53285">
+<div id="outline-container-org509319c" class="outline-4">
+<h4 id="org509319c">基本概念</h4>
+<div class="outline-text-4" id="text-org509319c">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -1105,9 +1105,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <h3 id="org77af211">析构函数</h3>
 <div class="outline-text-3" id="text-org77af211">
 </div>
-<div id="outline-container-org70f76a4" class="outline-4">
-<h4 id="org70f76a4">基本概念</h4>
-<div class="outline-text-4" id="text-org70f76a4">
+<div id="outline-container-org77ad488" class="outline-4">
+<h4 id="org77ad488">基本概念</h4>
+<div class="outline-text-4" id="text-org77ad488">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -1162,9 +1162,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </p>
 </div>
 </div>
-<div id="outline-container-org4001f6c" class="outline-4">
-<h4 id="org4001f6c">引用数据成员</h4>
-<div class="outline-text-4" id="text-org4001f6c">
+<div id="outline-container-orgdc3e9ab" class="outline-4">
+<h4 id="orgdc3e9ab">引用数据成员</h4>
+<div class="outline-text-4" id="text-orgdc3e9ab">
 <p>
 在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
 </p>
@@ -1334,9 +1334,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <h2 id="org27e621f">继承</h2>
 <div class="outline-text-2" id="text-org27e621f">
 </div>
-<div id="outline-container-org509319c" class="outline-3">
-<h3 id="org509319c">基本概念</h3>
-<div class="outline-text-3" id="text-org509319c">
+<div id="outline-container-org553a71a" class="outline-3">
+<h3 id="org553a71a">基本概念</h3>
+<div class="outline-text-3" id="text-org553a71a">
 <ul class="org-ul">
 <li>继承的运行方式是单向的. 基类并不知道派生类的任何信息.</li>
 <li>指向某个对象的指针或者引用可以指向声明类的对象, 也可以指向其任意派生类的对象. 指向基类对象的指针可以指向派生类对象, 对于引用也是如此. 然而, 不能通过基类对象的指针调用派生类的方法. 即使基类的引用或者指针知道所指的是一个派生类, 也无法访问没有在基类中定义的派生类方法或者成员.</li>
@@ -1344,9 +1344,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org3df3a49" class="outline-3">
-<h3 id="org3df3a49">访问控制</h3>
-<div class="outline-text-3" id="text-org3df3a49">
+<div id="outline-container-org7169ba5" class="outline-3">
+<h3 id="org7169ba5">访问控制</h3>
+<div class="outline-text-3" id="text-org7169ba5">
 <p>
 派生类可以访问基类中声明为 <code>public</code>, <code>protected</code> 的数据成员和方法, 就好像这些数据成员和方法是派生类自己的. 如果类将数据成员和方法声明为 <code>protected</code>, 派生类就可以访问它们; 如果声明为 <code>private</code>, 派生类就不能访问它们. 建议将所有数据成员都默认声明为 <code>private</code>, 这会提供最高级别的封装. 如果希望任何代码都能访问这些数据成员, 就可以提供 <code>public</code> 的 <code>getter/setter</code>; 如果只希望派生类访问它们, 就可以提供 <code>protected</code> 的 <code>getter/setter</code>.
 </p>
