@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-08-24 Fri 22:37 -->
+<!-- 2018-08-26 Sun 23:09 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Multithread</title>
@@ -255,8 +255,19 @@ for the JavaScript code in this tag.
 <li><a href="#org81628a2">定时的互斥体类</a></li>
 </ul>
 </li>
+<li><a href="#org77dfa95">锁</a>
+<ul>
+<li><a href="#org00e04b5"><code>lock_guard</code></a></li>
+<li><a href="#org8adb32a"><code>unique_lock</code></a></li>
+<li><a href="#org9a5a7ad"><code>shared_lock</code></a></li>
+<li><a href="#org242798f">获得多个锁</a></li>
+<li><a href="#org7da6651"><code>std::call_once()</code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#org894a123">条件变量</a></li>
+<li><a href="#org404f442"><code>future</code></a></li>
 </ul>
 </div>
 </div>
@@ -564,8 +575,91 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </div>
 <div id="outline-container-org81628a2" class="outline-4">
 <h4 id="org81628a2">定时的互斥体类</h4>
+<div class="outline-text-4" id="text-org81628a2">
+<p>
+标准库提供了三个定时的互斥体类:
+</p>
+<dl class="org-dl">
+<dt><code>std::timed_mutex</code></dt><dd>已经拥有timed<sub>mutex的线程不允许再次调用这个互斥体上的</sub> <code>try_lock_for(rel_time)</code> 和 <code>try_lock_until(abs_time)</code>. 否则可能会导致死锁.</dd>
+<dt><code>std::recursive_timed_mutex</code></dt><dd>已经拥有递归互斥体的线程允许再次对同一个互斥体调用锁定 <code>try_lock_for(rel_time)</code> 和 <code>try_lock_until(abs_time)</code>. 调用线程调用 <code>unlock()</code> 的次数应该等于获得这个递归互斥体锁的次数.</dd>
+<dt><code>std::shared_timed_mutex</code></dt><dd>支持共享锁(也叫读写锁)拥有权的概念. 线程可以获得锁的独占拥有权和共享拥有权. 独占拥有权也称为写入锁, 只有在其他线程都没有独占或共享拥有权的情况下, 才能获得独占拥有权. 共享拥有权也成为读取锁, 如果其他线程都没有独占拥有权, 但允许其他线程获得共享拥有权, 就可以获得共享拥有权. 已经拥有 <code>shared_timed_mutex</code> 的线程不允许再次尝试获得这个互斥体的锁. 否则可能会导致死锁. 特别地, 该互斥体类还拥有如下与共享拥有权相关的方法:
+<dl class="org-dl">
+<dt><code>lock_shared()</code></dt><dd>调用线程尝试获得共享拥有权锁, 并且阻塞直到获得锁.</dd>
+<dt><code>try_lock_shared()</code></dt><dd>调用线程尝试获得共享拥有权锁. 如果独占锁当前被其他线程持有, 这个调用会立即返回false; 如果成功获得锁, 这个调用会返回true.</dd>
+<dt><code>try_lock_shared_for(rel_time)</code></dt><dd>调用线程尝试在给定的相对时间内获得共享拥有权锁. 如果在给定超时之前不能获得这个锁, 这个调用失败并且返回false; 如果在给定超时之前获得了这个锁, 这个调用成功并且返回true.</dd>
+<dt><code>try_lock_shared_until(abs_time)</code></dt><dd>调用线程将尝试获得共享拥有权锁, 直到系统时间等于或超过指定的绝对时间. 如果可以在此时间之前获得这个锁, 调用返回true. 如果系统时间超过了给定的绝对时间, 则函数不再尝试获得锁, 并返回false.</dd>
+<dt><code>unlock_shared()</code></dt><dd>释放共享拥有权.</dd>
+</dl></dd>
+</dl>
+
+<p>
+这三个互斥体类除了支持普通 <code>lock()</code>, <code>try_lock()</code> 和 <code>unlock()</code> 方法外, 还支持以下方法:
+</p>
+<dl class="org-dl">
+<dt><code>try_lock_for(rel_time)</code></dt><dd>调用线程尝试在给定的相对时间内获得这个锁. 如果在给定超时之前不能获得这个锁, 这个调用失败并且返回false; 如果在给定超时之前获得了这个锁, 这个调用成功并且返回true.</dd>
+<dt><code>try_lock_until(abs_time)</code></dt><dd>调用线程将尝试获得锁, 直到系统时间等于或超过指定的绝对时间. 如果可以在此时间之前获得这个锁, 调用返回true. 如果系统时间超过了给定的绝对时间, 则函数不再尝试获得锁, 并返回false.</dd>
+</dl>
 </div>
 </div>
+</div>
+<div id="outline-container-org77dfa95" class="outline-3">
+<h3 id="org77dfa95">锁</h3>
+<div class="outline-text-3" id="text-org77dfa95">
+<p>
+锁类是一个RAII类, 可以更方便正确地获得和释放互斥体上的锁. 锁类的构造函数会自动获得给定的互斥体; 锁类的析构函数会自动释放关联的互斥体.
+</p>
+</div>
+<div id="outline-container-org00e04b5" class="outline-4">
+<h4 id="org00e04b5"><code>lock_guard</code></h4>
+<div class="outline-text-4" id="text-org00e04b5">
+<p>
+简单的锁, 其构造函数接受一个互斥体引用, 尝试获得互斥体的锁, 并且阻塞直到获得锁.
+</p>
+</div>
+</div>
+<div id="outline-container-org8adb32a" class="outline-4">
+<h4 id="org8adb32a"><code>unique_lock</code></h4>
+<div class="outline-text-4" id="text-org8adb32a">
+<p>
+较复杂的锁, 它允许将获得锁的时间延迟到计算需要时, 远在声明之后.
+</p>
+</div>
+</div>
+<div id="outline-container-org9a5a7ad" class="outline-4">
+<h4 id="org9a5a7ad"><code>shared_lock</code></h4>
+<div class="outline-text-4" id="text-org9a5a7ad">
+<p>
+在底层的共享互斥体上调用与共享拥有权相关的方法, 其构造函数和方法与 <code>unique_lock</code> 相同, 但获得是共享锁, 而不是独占锁.
+</p>
+</div>
+</div>
+<div id="outline-container-org242798f" class="outline-4">
+<h4 id="org242798f">获得多个锁</h4>
+<div class="outline-text-4" id="text-org242798f">
+<p>
+C++有两个锁泛型函数, 定义在名字空间std中, 可用于同时获得多个互斥体对象上的锁, 而不会出现死锁.
+</p>
+<dl class="org-dl">
+<dt><code>template &lt;class L1, class L2, class... L3&gt; void lock(L1&amp;, L2&amp;, L3&amp;...);</code></dt><dd>按未指定的顺序锁定所有给定的互斥体对象, 而不会出现死锁. 如果一个互斥锁调用抛出异常, 那么会对所有已经获得的锁调用 <code>unlock()</code>.</dd>
+<dt><code>template &lt;class L1, class L2, class... L3&gt; int try_lock(L1&amp;, L2&amp;, L3&amp;...);</code></dt><dd>按照顺序调用每个给定互斥体对象的 <code>try_lock()</code>, 试图获得所有互斥体对象的锁. 如果所有互斥体对象的 <code>try_lock()</code> 调用都成功, 那么这个函数返回-1. 如果任何互斥体对象的 <code>try_lock()</code> 调用失败, 该函数返回调用失败互斥体的位置索引 (从0开始), 并对所有已经获得的锁调用 <code>unlock()</code>.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org7da6651" class="outline-4">
+<h4 id="org7da6651"><code>std::call_once()</code></h4>
+<div class="outline-text-4" id="text-org7da6651">
+<p>
+结合使用 <code>std::call_once()</code> 和 <code>std::once_flag</code> 可以确保某个函数或方法正好只调用一次, 不论有多少个线程试图调用 <code>call_once()</code> 都是如此. 只有一个 <code>call_once()</code> 调用能真正调用给定函数或方法; 这个调用称为有效的 <code>call_once()</code> 调用. 某个特定的 <code>once_flag</code> 实例的有效调用在对同一个 <code>once_flag</code> 实例的所有后续调用之前完成. 在同一个 <code>once_flag</code> 实例上调用 <code>call_once()</code> 的其他线程都会阻塞, 直到有效调用结束.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org894a123" class="outline-2">
+<h2 id="org894a123">条件变量</h2>
+</div>
+<div id="outline-container-org404f442" class="outline-2">
+<h2 id="org404f442"><code>future</code></h2>
 </div>
 </div>
 </body>
