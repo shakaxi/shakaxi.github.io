@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-08-26 Sun 23:09 -->
+<!-- 2018-08-27 Mon 09:37 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Multithread</title>
@@ -266,7 +266,12 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
-<li><a href="#org894a123">条件变量</a></li>
+<li><a href="#org894a123">条件变量</a>
+<ul>
+<li><a href="#orgdec60d5"><code>std::condition_variable</code></a></li>
+<li><a href="#orgde19356"><code>std::condition_variable_any</code></a></li>
+</ul>
+</li>
 <li><a href="#org404f442"><code>future</code></a></li>
 </ul>
 </div>
@@ -657,9 +662,57 @@ C++有两个锁泛型函数, 定义在名字空间std中, 可用于同时获得�
 </div>
 <div id="outline-container-org894a123" class="outline-2">
 <h2 id="org894a123">条件变量</h2>
+<div class="outline-text-2" id="text-org894a123">
+<p>
+条件变量允许一个线程阻塞, 直到另一个线程设置了某个条件或系统时间到达了某个指定的时间. 条件变量允许显式的线程间通信. 头文件 <code>&lt;condition_variable&gt;</code> 中定义了如下两类条件变量. 等待条件变量的线程可以在另一个线程调用 <code>notify_one()</code> 或 <code>notify_all()</code> 时醒过来, 或者在系统时间超过给定的时间时醒过来, 也可能不合时宜地醒过来. 这意味着即使没有其他线程调用任何通知方法, 线程也会醒过来. 因此, 当线程等待一个条件变量并醒过来时, 就需要检查它是否是因为获得通知而醒过来. 一种检查方法是使用接受谓词参数的 <code>wait()</code>, <code>wait_for()</code>, 或 <code>wait_until()</code>.
+</p>
+</div>
+<div id="outline-container-orgdec60d5" class="outline-3">
+<h3 id="orgdec60d5"><code>std::condition_variable</code></h3>
+<div class="outline-text-3" id="text-orgdec60d5">
+<p>
+只能等待 <code>unique_lock&lt;mutex&gt;</code> 的条件变量. 支持以下方法:
+</p>
+<dl class="org-dl">
+<dt><code>notify_one()</code></dt><dd>唤醒等待这个条件变量的线程之一.</dd>
+<dt><code>notify_all()</code></dt><dd>唤醒所有等待这个条件变量的线程.</dd>
+<dt><code>wait(unique_lock&lt;mutex&gt; &amp;lk)</code></dt><dd>调用 <code>wait()</code> 的线程应该已经获得了lk的锁. 调用 <code>wait()</code> 的效果是以原子方式调用 <code>lk.unlock()</code> 并阻塞线程, 等待通知. 当线程被另一个线程中的 <code>notify_one()</code> 或 <code>notify_all()</code> 调用解除阻塞时, 这个函数会再次调用 <code>lk.lock()</code>, 可能会被这个锁阻塞后返回. 该函数还可以额外接受一个谓词参数.</dd>
+<dt><code>wait_for(unique_lock&lt;mutex&gt; &amp;lk, const chrono::duration&lt;Rep, Period&gt; &amp;rel_time)</code></dt><dd>类似于 <code>wait()</code> 方法, 区别在于这个线程会被 <code>notify_one()</code>, <code>notify_all()</code> 调用解除阻塞, 也可能在给定超时时间到达后解除阻塞. 该函数还可以额外接受一个谓词参数.</dd>
+<dt><code>wait_until(unique_lock&lt;mutex&gt; &amp;lk, const chrono::time_point&lt;Clock, Duration&gt; &amp;abs_time)</code></dt><dd>类似于 <code>wait()</code> 方法, 区别在于这个线程会被 <code>notify_one()</code>, <code>notify_all()</code> 调用解除阻塞, 也可能在系统时间超过给定的绝对时间时解除阻塞. 该函数还可以额外接受一个谓词参数.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgde19356" class="outline-3">
+<h3 id="orgde19356"><code>std::condition_variable_any</code></h3>
+<div class="outline-text-3" id="text-orgde19356">
+<p>
+可以等待任何对象的条件变量, 包括自定义的锁类型. 该类支持的方法和 <code>condition_variable</code> 类相同, 区别在于 <code>condition_variable_any</code> 可以接受任何类型的锁类, 而不只是 <code>unique_lock&lt;mutex&gt;</code>. 锁类应有 <code>lock()</code> 和 <code>unlock()</code> 方法.
+</p>
+</div>
+</div>
 </div>
 <div id="outline-container-org404f442" class="outline-2">
 <h2 id="org404f442"><code>future</code></h2>
+<div class="outline-text-2" id="text-org404f442">
+<p>
+当然, 应该总是尝试在线程本身中处理异常, 不应该让异常离开线程. <code>std::future</code> 能够将未捕获到的异常转移到另一个线程中, 然后另一个线程可以任意处置这个异常.
+</p>
+
+<p>
+结合使用 <code>std::future</code> 和 <code>std::promise</code> 更容易取得同一个线程中或另一个线程中的函数返回结果. 一旦在同一线程中或在另一个线程中运行的函数计算出希望返回的结果, 就把这个结果放在promise中. 然后可以通过future来获取这个值. 可将future/promise对想象为线程间传递结果的通信信道: promise是结果的输入端; future是输出端. 使用 <code>std::packaged_task</code> 可以简化这个任务, <code>std::packaged_task</code> 自动将future和promise联系在一起, 其接受一个要执行的函数, 并返回可以用于检索结果的future.
+</p>
+
+<p>
+如果想让C++运行时更多地控制是否创建一个线程进行某个计算, 可以使用 <code>std::async()</code>. 调用async()锁返回的future会在其析构函数中阻塞, 知道结果可用为止. async可以通过两种方法调用提供的函数:
+</p>
+<ul class="org-ul">
+<li>创建一个新的线程, 异步运行提供的函数.</li>
+<li>在返回的future上调用 <code>get()</code> 方法时运行提供的函数.</li>
+</ul>
+<p>
+如果没有通过额外参数来调用async(), 运行时库会根据一些因素(如系统中处理器的数目和并行数目)从两种方法中自动选择一种方法. 也可以指定 <code>launch::async</code> (创建新线程)或 <code>launch::deferred</code> (使用当前线程)策略参数, 强行运行时分别选择第一种方法或第二种方法.
+</p>
+</div>
 </div>
 </div>
 </body>
