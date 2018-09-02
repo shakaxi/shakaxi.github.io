@@ -1,108 +1,41 @@
 #+TITLE: LaTeX - Gantt Chart
 
 * Introduction
-Today, I found an interesting $\LaTeX$ package, /gantt/[fn:1]. This package is developped based on /pgf/tikz/ and, as its name indicates, can produce /Gantt/ charts.
-* Installation
-For /ArchLinux/, the package can be simply installed via /yaourt/.
-#+BEGIN_SRC sh
-yaourt texlive-gantt
-#+END_SRC
-Alternatively, the corresponding /style/ file can be downloaded from the [[http://www.martin-kumm.de/tex/gantt.sty][webpage]].
+Today, I found an interesting $\LaTeX$ package, /pgfgantt/. This package provides a =ganttchart= environment and, as its name indicates, can produce /Gantt/ charts.
 * Usage
 The framework of using the package can be illustrated as
 #+BEGIN_SRC latex
-\usepackage{tikz}
-\usepackage{gantt}
-...
-
-\begin{gantt}[key_1=value_1, key_2=value_2, ...]{number of task}{number of time slots}
-\begin{ganttitle}
-...
-\end{ganttitle}
-...
-\end{gantt}
-#+END_SRC
-** Optional arguments
-=key_1, key_2, ...= are optional arguments, which can be
-- =xunitlength= :: length of one time slot (default: 1 cm)
-- =fontsize= :: fontsize of labels (default: =\normalsize=)
-- =titlefontsize= :: fontsize of title section (default: =\small=)
-- =drawledgerline= :: switch to enable/disable the drawing of horizontal ledger lines (default: =false=)
-** Title
-=ganttitle= is the environment for drawing the title section, which is comprised of a series of =\titleelement= and/or =\numtitle=
-#+BEGIN_SRC latex
-\numtitle{start number}{increment}{end number}{length of each title element}
-...
-\titleelement{label}{length}
-#+END_SRC
-** Other commands
-*** =\ganttbar=
-Draws a single, unconnected bar for a task.
-#+BEGIN_SRC latex
-\ganttbar[pattern=<pattern>,color=<color>]{label}{start}{length}
+  \usepackage{pgfgantt}
+  ...
+  \begin{ganttchart}[OPTIONS]{STARTING}{ENDING}
+    TITLE
+    CHARTELEMENT
+  \end{ganttchart}
 #+END_SRC
 where
-- =<pattern>= is a tikz pattern, e.g. north west lines (default), crosshatch, crosshatch dots, grid, etc.
-- =<color>= is a tikz color of the pattern, e.g. black (default), red, green, blue, gray, dark gray.
-*** =\ganttcon=
-Draw an arrow between two bars with specified coordinates.
-#+BEGIN_SRC latex
-\ganttcon{startx}{starty}{endx}{endy}
-#+END_SRC
-*** =\ganttbarcon=
-Draw a single bar *and* connect it to the *previous* bar/milestone.
-#+BEGIN_SRC latex
-\ganttbarcon[pattern=<pattern>,color=<color>]{label}{start}{length}
-#+END_SRC
-where the optional pattern argument are the same as =\ganttbar=.
-*** =\ganttgroup=
-Draw a bar to group tasks.
-#+BEGIN_SRC latex
-\ganttgroup{label}{start}{length}
-#+END_SRC
-*** =\ganttmilestone=
-Draw a milestone using a diamond.
-#+BEGIN_SRC latex
-\ganttmilestone[color=<color>]{label}{start}
-#+END_SRC
-*** =\ganttmilestonecon=
-Draw a milestone using a diamond *and* connect it to the previous bar/milestone.
-#+BEGIN_SRC latex
-\ganttmilestonecon[color=<color>]{label}{start}
-#+END_SRC
-* An example
-#+BEGIN_SRC latex
-\documentclass{article}
-
-\usepackage{tikz}
-\usepackage{gantt}
-
-\begin{document}
- \begin{gantt}[xunitlength=0.3cm,fontsize=\small,titlefontsize=\small,drawledgerline=true]{10}{36}
-    \begin{ganttitle}
-      \titleelement{2012}{7}
-      \numtitle{2013}{1}{2014}{12}
-      \titleelement{2015}{5}
-    \end{ganttitle}
-    \begin{ganttitle}
-      \numtitle{6}{1}{12}{1}
-      \numtitle{1}{1}{12}{1}
-      \numtitle{1}{1}{12}{1}
-      \numtitle{1}{1}{5}{1}
-    \end{ganttitle}
-    \ganttbar{task 1}{2}{17}
-    \ganttgroup{a group of tasks}{6}{18}
-    \ganttbar{task 2}{5}{10}
-    \ganttbar[pattern=crosshatch,color=blue]{task 3}{15}{3}
-    \ganttbar{task 4}{20}{3}
-    \ganttcon{15}{4}{20}{6}
-    \ganttbar{task 5}{15}{5}
-    \ganttbarcon[color=red]{task 6}{20}{5}
-    \ganttbarcon{task 7}{30}{5}
-  \end{gantt}
-\end{document}
-#+END_SRC
-
-* Footnotes
-
-[fn:1] http://www.martin-kumm.de/wiki/doku.php?id=Projects:A_LaTeX_package_for_gantt_plots
+- =OPTIONS= can be
+  + =time slot format= with candidates: =simple= / =isodate= / =isodate-yearmonth= / =isodate-year= / =little-endian= / =middle-endian= / =big-endian=.
+  + =newline shortcut= can turn =\\= into a new line break, equivalent to =\ganttnewline=.
+  + =vgrid= / =hgrid= specifies the presence and appearance of the vertical/horizontal grids.
+  + =today= can indidate the current day/month/year by a vertical rule at the provided time.
+  + =today label= can specify the label for =today=.
+  + =inline= can put the labels inside the corresponding bars.
+  + =x unit= / =y unit=
+  + =x unit title= / =y unit title=
+  + =x unit chart= / =y unit chart=
+  + =expand chart= can automatically expand the chart horizontally, e.g., =\textwidth=.
+- =STARTING= is the starting date of the chart.
+- =ENDING= is the ending date of the chart.
+- =TITLE= can be
+  + =\gantttitle[OPTIONS]{LABEL}{NUMBEROFTIMESLOTS}=
+  + =\gantttitlelist[OPTIONS]{LABELLIST}{LENGTHOFEACHELEMENT}= defines a series of =\gantttitle= in a batch way.
+  + =\gantttitlecalendar[OPTIONS]{CALENDARLINES}= with =CALENDARLINES= a comma-separated list of lines, e.g., =decade=, =year=, =month=name/shortname=, =day=, =week=, =weekday=name/shortname=, etc.
+  + =\gantttitlecalendar*[OPTIONS]{STARTING}{ENDING}{CALENDARLINES}= is similar to =\gantttitlecalendar[OPTIONS]{CALENDARLINES}= but constrained to a range defined by =STARTING= and =ENDING=.
+- =CHARTELEMENT= is predefined chart elements as follows.
+  + =\ganttgroup[OPTIONS]{LABEL}{STARTING}{ENDING}= combines several subtasks (bars) into a single task.
+  + =\ganttbar[OPTIONS]{LABEL}{STARTING}{ENDING}= indicates the duration of a task/subtask.
+  + =\ganttmilestone[OPTIONS]{LABEL}{TIME}= signifies a milestone, e.g., the completion of a task.
+  + =\ganttlinkedgroup[OPTIONS]{LABEL}{STARTING}{ENDING}= is similar to =\ganttgroup[OPTIONS]{LABEL}{STARTING}{ENDING}= but additionally draws a link from the previous element.
+  + =\ganttlinkedbar[OPTIONS]{LABEL}{STARTING}{ENDING}= is similar to =\ganttbar[OPTIONS]{LABEL}{STARTING}{ENDING}= but additionally draws a link from the previous element.
+  + =\ganttlinkedmilestone[OPTIONS]{LABEL}{TIME}= is similar to =\ganttmilestone[OPTIONS]{LABEL}{TIME}= but additionally draws a link from the previous element.
+- =CHARTELEMENT= has an interesting option =progress=, whose value can be =none= / =today= / =PERCENTILE=.
