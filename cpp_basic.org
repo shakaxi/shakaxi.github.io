@@ -219,30 +219,75 @@ throw是C++的关键字，这是抛出异常的唯一方法。导致抛出异常
 异常处理是这样一种方法：“尝试”执行一段代码，并且用另一块代码响应可能发生的任何错误。如果try块结束时没有抛出异常，catch块将被忽略。可以将try/catch块当作if语句。如果在try块中抛出异常，就会执行catch块，否则就忽略catch块。
 
 可以抛出任何类型的异常，但通常应该将对象作为异常抛出。因为对象的类名称可以传递信息，而且对象可以存储信息，包括描述异常的字符串。C++标准库包含了许多预定义的异常类，也可以编写自己的异常类。C++标准异常层次结构如下
-=exception=
-- =bad_alloc=
-  + =bad_array_new_length=
-- =bad_cast=
-- =logic_error=
-  + =domain_error=
-  + =length_error=
-  + =future_error=
-  + =out_of_range=
-  + =invalid_argument=
-- =bad_function_call=
-- =bad_typeid=
-- =runtime_error=
-  + =system_error=
-    - =ios_base::failure=
-  + =range_error=
-  + =underflow_error=
-  + =overflow_error=
-- =bad_weak_ptr=
-- =bad_exception=
+#+BEGIN_SRC plantuml :file stdexcept.png
+exception <|-- bad_alloc
+exception <|-- bad_cast
+exception <|-- logic_error
+exception <|-- bad_function_call
+exception <|-- bad_typeid
+exception <|-- runtime_error
+exception <|-- bad_weak_ptr
+exception <|-- bad_exception
+
+bad_alloc <|-- bad_array_new_length
+logic_error <|-- domain_error
+logic_error <|-- length_error
+logic_error <|-- future_error
+logic_error <|-- out_of_range
+logic_error <|-- invalid_argument
+runtime_error <|-- system_error
+runtime_error <|-- range_error
+runtime_error <|-- underflow_error
+runtime_error <|-- overflow_error
+
+system_error <|-- ios_base::failure
+#+END_SRC
 
 当某段代码抛出一个异常时，会在堆栈中寻找catch处理程序。catch处理程序可以是在堆栈执行的0个或者多个函数调用。当发现一个catch时，堆栈会释放所有中间堆栈帧，直接跳到定义catch处理程序的堆栈层。
 
 堆栈释放（stack unwinding）意味着调用所有具有局部作用域的名称的析构函数，并忽略在当前执行点之前的每个函数中所有的代码。然而当堆栈释放时，并不释放指针变量，也不会执行其他清理。如果基于堆栈的内存分配不可用，就应使用智能指针。在处理异常时，智能指针可以使编写的代码自动防止内存或者资源的泄露。智能指针对象在堆栈中分配，无论什么时候销毁智能指针对象，都会释放底层的资源。使用智能指针时，永远不必考虑释放底层的资源：智能指针的析构函数会自动完成这一操作，无论是正常退出函数，还是抛出异常退出函数，都是如此。避免内存和资源泄露的另一种技术是对于每个函数，捕获可能抛出的所有异常，执行必要的清理，并重新抛出异常，供堆栈中更高层的函数处理。显然，智能指针是比捕获、清理和重新抛出异常更好的解决方案。
+
+接下来是使用异常时最常见的错误处理问题。
+** 内存分配错误
+如果无法分配内存， =new= 和 =new[]= 的默认行为是抛出 =bad_alloc= 类型的异常。这个类型在头文件 =<new>= 中定义。代码应该捕获这些异常，并正确地处理。虽然不可能把 =new= 和 =new[]= 的调用都放在try/catch块中，但是至少在分配大块内存时应该这么做。
+
+为了方便调试，预定义了预处理符号 =__FILE__= 和 =__LINE__= ，这两个符号将被文件名和当前行号替换掉。
+
+C++提供了 =new= 和 =new[]= 的 =nothrow= 版本 =new(nothrow)= ，如果内存分配失败，将返回 =nullptr= ，而不是抛出异常。默认情况下不存在new handler，因此new和new[]只是抛出 =bad_alloc= 异常。C++允许指定new handler回调函数。如果存在new handler，当内存分配失败时，内存分配会调用new handler，而不是抛出异常。C++标准指出，如果new handler抛出异常，它必须是 =bad_alloc= 异常或者其派生类。new handler可以记录错误信息，并抛出一个约定好的异常。绝不要显式地使用 =exit()= 或者 =abort()= 终止程序，而应该从顶层函数返回。在顶层函数中（例如main()）捕获这个异常。定义在头文件 =<new>= 中的 =set_new_handler()=[fn:9] 函数可以设置new handler。
+** 构造函数中的错误
+如果异常离开构造函数，那么对象的析构函数将无法调用。因此在异常离开构造函数之前，必须在构造函数中清理所有资源并释放分配的所有内存。
+
+C++保证会运行任何构建完整“子对象”的析构函数。因此，任何没有发生异常的构造函数所对应的析构函数都会执行。基类的构造函数在派生类构造函数之前运行，如果派生类构造函数抛出一个异常，C++会运行任何构建完整的基类的析构函数。
+** 构造函数的 =function-try-blocks=
+如果在构造函数的初始化器（ctor-initializer）中抛出异常，需要 =function-try-blocks= 来捕获。=function-try-blocks= 用于普通函数和构造函数。构造函数 =function-try-blocks= 的基本语法为
+#+BEGIN_SRC c++
+  My_Class::My_Class()
+  try
+      : <ctor-initializer>
+  {
+      /* ... constructor body ... */
+  }
+  catch (const exception &e)
+  {
+      /* ... */
+  }
+#+END_SRC
+try关键字在ctor-initializer之前。catch语句应该在构造函数的右花括号之后，实际上是将catch块放在构造函数体外部。当使用构造函数的 =function-try-blocks= 时，需注意：
+- catch语句将捕获任何异常，无论是构造函数体或ctor-initializer直接或者间接抛出的异常，都是如此。
+- catch语句必须重新抛出当前异常或者抛出新异常。如果catch语句没有这么做，运行时将自动重新抛出当前异常。
+- catch语句可以访问传递给构造函数的参数。
+- 当catch语句捕获了一个 =function-try-blocks= 内的异常时，构造函数已经构建的所有对象都会在执行catch语句之前销毁。
+- 在catch语句中，不应访问对象成员变量，因为它们在执行catch语句前就销毁了。如果有这样的裸资源，就必须在catch语句后释放它们。
+- 对于 =function-try-blocks= 中的catch语句而言，其中包含的函数不能使用 =return= 关键字返回值。
+
+因此，构造函数的 =function-try-blocks= 只在下列少数情况下有用：
+- 将ctor-initializer抛出的异常转换为其他异常。
+- 将信息记录到日志文件。
+- 释放在抛出异常之前就在ctor-initializer中分配了内存的裸资源。
+
+=function-try-blocks= 并不局限于构造函数，也可以用于普通函数。然而，对于普通函数而言没有理由使用 =function-try-blocks= ，因为 =function-try-blocks= 可以方便地转换为函数体内部的try/catch块。与构造函数相比，对普通函数使用 =function-try-blocks= 的明显不同在于catch语句不需要抛出当前异常或者新的异常，C++运行时也不会自动重新抛出异常。
+** 析构函数中的错误
+必须在析构函数内部处理析构函数引起的所有错误。不应该让析构函数抛出任何异常。如果在堆栈释放过程中有其他未解决的异常，析构函数是可以运行的。如果在堆栈释放过程中析构函数抛出一个异常，C++运行库会调用 =std::terminate()= ，终止应用程序。析构函数是释放对象使用的内存和资源的一个机会。如果因为异常而提前退出函数，将永远没有办法返回来释放内存或者资源。所以在析构函数中要小心捕获调用析构函数时可能抛出的任何异常。
 * 关键字
 ** =const=
 =const= 是constant的缩写, 指保持不变的量. 编译器会执行这一要求, 任何尝试改变常量的行为都会被当做错误处理. 此外, 当启用了优化时, 编译器可以利用此信息生成更好的代码. =const= 关键字可以用来标记变量或者参数, 也可以用来标记方法.
@@ -706,6 +751,8 @@ using A::F;
 - 双向流用不同的指针保存读位置和写位置. 在读取和写入之间切换时, 需要定位到正确的位置.
 
 * Footnotes
+
+[fn:9] C++有三个函数可以设置回调函数，除了 =set_new_handler()= ，还有 =set_terminate()= 和 =set_unexpected()= 。
 
 [fn:8] 即使可以, 也不建议在内部作用域中捕捉所有变量, 而应该捕捉需要的变量.
 
