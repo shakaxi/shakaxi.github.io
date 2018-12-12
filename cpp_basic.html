@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-10-28 Sun 22:09 -->
+<!-- 2018-12-12 Wed 22:55 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Basic</title>
@@ -264,7 +264,7 @@ for the JavaScript code in this tag.
 <li><a href="#org0fe7eff">引用</a>
 <ul>
 <li><a href="#org2af5016">引用变量</a></li>
-<li><a href="#org6578f3a">引用数据成员</a></li>
+<li><a href="#orgf7e25d9">引用数据成员</a></li>
 <li><a href="#orgeb0501f">引用参数</a></li>
 <li><a href="#org437cc77">引用返回值</a></li>
 <li><a href="#orgfb67aee">引用与指针</a></li>
@@ -280,7 +280,14 @@ for the JavaScript code in this tag.
 <li><a href="#org8a9b942">统一初始化</a></li>
 <li><a href="#org3fe3c8d">初始化列表</a></li>
 <li><a href="#org8c5d32e">显式转换运算符</a></li>
-<li><a href="#org23a512b">异常</a></li>
+<li><a href="#org23a512b">异常</a>
+<ul>
+<li><a href="#org299d0f3">内存分配错误</a></li>
+<li><a href="#orgd0314e7">构造函数中的错误</a></li>
+<li><a href="#org8f50473">构造函数的 <code>function-try-blocks</code></a></li>
+<li><a href="#orgaa7ea8d">析构函数中的错误</a></li>
+</ul>
+</li>
 <li><a href="#org8faf259">关键字</a>
 <ul>
 <li><a href="#org08ad952"><code>const</code></a></li>
@@ -305,11 +312,11 @@ for the JavaScript code in this tag.
 <li><a href="#orgfd84657">类和对象</a>
 <ul>
 <li><a href="#org6f59f8e">定义</a></li>
-<li><a href="#org3b81113">访问控制</a></li>
+<li><a href="#orgae03523">访问控制</a></li>
 <li><a href="#org2d8a78b"><code>this</code></a></li>
 <li><a href="#org48044ba">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#orgbf4752c">基本概念</a></li>
+<li><a href="#org9f5c9c8">基本概念</a></li>
 <li><a href="#org67ff599">构造函数初始化器</a></li>
 <li><a href="#org0cb8063">复制构造函数</a></li>
 <li><a href="#org2ab3521">初始化列表构造函数</a></li>
@@ -320,7 +327,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org77af211">析构函数</a>
 <ul>
-<li><a href="#org859a7b9">基本概念</a></li>
+<li><a href="#org1322d6d">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#org44df347">对象赋值</a></li>
@@ -328,7 +335,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org40e44aa">静态数据成员</a></li>
 <li><a href="#org3969599">常量数据成员</a></li>
-<li><a href="#orgf7e25d9">引用数据成员</a></li>
+<li><a href="#org393a371">引用数据成员</a></li>
 </ul>
 </li>
 <li><a href="#org4a0e703">方法</a>
@@ -347,8 +354,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org27e621f">继承</a>
 <ul>
-<li><a href="#org9f5c9c8">基本概念</a></li>
-<li><a href="#orgae03523">访问控制</a></li>
+<li><a href="#org807d1e1">基本概念</a></li>
+<li><a href="#orgca42356">访问控制</a></li>
 <li><a href="#org70f00c1">禁止继承</a></li>
 <li><a href="#orgc839b4c">方法和类的虚化</a></li>
 <li><a href="#org61e3ca8">向上转型和向下转型</a></li>
@@ -642,9 +649,9 @@ C/C++常常会发生与内存有关的问题, 如
 </ul>
 </div>
 </div>
-<div id="outline-container-org6578f3a" class="outline-3">
-<h3 id="org6578f3a">引用数据成员</h3>
-<div class="outline-text-3" id="text-org6578f3a">
+<div id="outline-container-orgf7e25d9" class="outline-3">
+<h3 id="orgf7e25d9">引用数据成员</h3>
+<div class="outline-text-3" id="text-orgf7e25d9">
 <p>
 引用可以作为类的数据成员, 也即引用数据成员. 引用数据成员必须在类的构造函数初始化器中初始化它, 而不是在构造函数体内.
 </p>
@@ -872,37 +879,12 @@ throw是C++的关键字，这是抛出异常的唯一方法。导致抛出异常
 
 <p>
 可以抛出任何类型的异常，但通常应该将对象作为异常抛出。因为对象的类名称可以传递信息，而且对象可以存储信息，包括描述异常的字符串。C++标准库包含了许多预定义的异常类，也可以编写自己的异常类。C++标准异常层次结构如下
-<code>exception</code>
 </p>
-<ul class="org-ul">
-<li><code>bad_alloc</code>
-<ul class="org-ul">
-<li><code>bad_array_new_length</code></li>
-</ul></li>
-<li><code>bad_cast</code></li>
-<li><code>logic_error</code>
-<ul class="org-ul">
-<li><code>domain_error</code></li>
-<li><code>length_error</code></li>
-<li><code>future_error</code></li>
-<li><code>out_of_range</code></li>
-<li><code>invalid_argument</code></li>
-</ul></li>
-<li><code>bad_function_call</code></li>
-<li><code>bad_typeid</code></li>
-<li><code>runtime_error</code>
-<ul class="org-ul">
-<li><code>system_error</code>
-<ul class="org-ul">
-<li><code>ios_base::failure</code></li>
-</ul></li>
-<li><code>range_error</code></li>
-<li><code>underflow_error</code></li>
-<li><code>overflow_error</code></li>
-</ul></li>
-<li><code>bad_weak_ptr</code></li>
-<li><code>bad_exception</code></li>
-</ul>
+
+<div class="figure">
+<p><img src="stdexcept.png" alt="stdexcept.png">
+</p>
+</div>
 
 <p>
 当某段代码抛出一个异常时，会在堆栈中寻找catch处理程序。catch处理程序可以是在堆栈执行的0个或者多个函数调用。当发现一个catch时，堆栈会释放所有中间堆栈帧，直接跳到定义catch处理程序的堆栈层。
@@ -911,6 +893,91 @@ throw是C++的关键字，这是抛出异常的唯一方法。导致抛出异常
 <p>
 堆栈释放（stack unwinding）意味着调用所有具有局部作用域的名称的析构函数，并忽略在当前执行点之前的每个函数中所有的代码。然而当堆栈释放时，并不释放指针变量，也不会执行其他清理。如果基于堆栈的内存分配不可用，就应使用智能指针。在处理异常时，智能指针可以使编写的代码自动防止内存或者资源的泄露。智能指针对象在堆栈中分配，无论什么时候销毁智能指针对象，都会释放底层的资源。使用智能指针时，永远不必考虑释放底层的资源：智能指针的析构函数会自动完成这一操作，无论是正常退出函数，还是抛出异常退出函数，都是如此。避免内存和资源泄露的另一种技术是对于每个函数，捕获可能抛出的所有异常，执行必要的清理，并重新抛出异常，供堆栈中更高层的函数处理。显然，智能指针是比捕获、清理和重新抛出异常更好的解决方案。
 </p>
+
+<p>
+接下来是使用异常时最常见的错误处理问题。
+</p>
+</div>
+<div id="outline-container-org299d0f3" class="outline-3">
+<h3 id="org299d0f3">内存分配错误</h3>
+<div class="outline-text-3" id="text-org299d0f3">
+<p>
+如果无法分配内存， <code>new</code> 和 <code>new[]</code> 的默认行为是抛出 <code>bad_alloc</code> 类型的异常。这个类型在头文件 <code>&lt;new&gt;</code> 中定义。代码应该捕获这些异常，并正确地处理。虽然不可能把 <code>new</code> 和 <code>new[]</code> 的调用都放在try/catch块中，但是至少在分配大块内存时应该这么做。
+</p>
+
+<p>
+为了方便调试，预定义了预处理符号 <code>__FILE__</code> 和 <code>__LINE__</code> ，这两个符号将被文件名和当前行号替换掉。
+</p>
+
+<p>
+C++提供了 <code>new</code> 和 <code>new[]</code> 的 <code>nothrow</code> 版本 <code>new(nothrow)</code> ，如果内存分配失败，将返回 <code>nullptr</code> ，而不是抛出异常。默认情况下不存在new handler，因此new和new[]只是抛出 <code>bad_alloc</code> 异常。C++允许指定new handler回调函数。如果存在new handler，当内存分配失败时，内存分配会调用new handler，而不是抛出异常。C++标准指出，如果new handler抛出异常，它必须是 <code>bad_alloc</code> 异常或者其派生类。new handler可以记录错误信息，并抛出一个约定好的异常。绝不要显式地使用 <code>exit()</code> 或者 <code>abort()</code> 终止程序，而应该从顶层函数返回。在顶层函数中（例如main()）捕获这个异常。定义在头文件 <code>&lt;new&gt;</code> 中的 <code>set_new_handler()</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> 函数可以设置new handler。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd0314e7" class="outline-3">
+<h3 id="orgd0314e7">构造函数中的错误</h3>
+<div class="outline-text-3" id="text-orgd0314e7">
+<p>
+如果异常离开构造函数，那么对象的析构函数将无法调用。因此在异常离开构造函数之前，必须在构造函数中清理所有资源并释放分配的所有内存。
+</p>
+
+<p>
+C++保证会运行任何构建完整“子对象”的析构函数。因此，任何没有发生异常的构造函数所对应的析构函数都会执行。基类的构造函数在派生类构造函数之前运行，如果派生类构造函数抛出一个异常，C++会运行任何构建完整的基类的析构函数。
+</p>
+</div>
+</div>
+<div id="outline-container-org8f50473" class="outline-3">
+<h3 id="org8f50473">构造函数的 <code>function-try-blocks</code></h3>
+<div class="outline-text-3" id="text-org8f50473">
+<p>
+如果在构造函数的初始化器（ctor-initializer）中抛出异常，需要 <code>function-try-blocks</code> 来捕获。=function-try-blocks= 用于普通函数和构造函数。构造函数 <code>function-try-blocks</code> 的基本语法为
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e9b2e3;">My_Class</span>::My_Class()
+<span style="color: #b4fa70;">try</span>
+    : &lt;ctor-initializer&gt;
+{
+    <span style="color: #73d216;">/* </span><span style="color: #73d216;">... constructor body ... */</span>
+}
+<span style="color: #b4fa70;">catch</span> (<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">exception</span> &amp;<span style="color: #fcaf3e;">e</span>)
+{
+    <span style="color: #73d216;">/* </span><span style="color: #73d216;">... */</span>
+}
+</pre>
+</div>
+<p>
+try关键字在ctor-initializer之前。catch语句应该在构造函数的右花括号之后，实际上是将catch块放在构造函数体外部。当使用构造函数的 <code>function-try-blocks</code> 时，需注意：
+</p>
+<ul class="org-ul">
+<li>catch语句将捕获任何异常，无论是构造函数体或ctor-initializer直接或者间接抛出的异常，都是如此。</li>
+<li>catch语句必须重新抛出当前异常或者抛出新异常。如果catch语句没有这么做，运行时将自动重新抛出当前异常。</li>
+<li>catch语句可以访问传递给构造函数的参数。</li>
+<li>当catch语句捕获了一个 <code>function-try-blocks</code> 内的异常时，构造函数已经构建的所有对象都会在执行catch语句之前销毁。</li>
+<li>在catch语句中，不应访问对象成员变量，因为它们在执行catch语句前就销毁了。如果有这样的裸资源，就必须在catch语句后释放它们。</li>
+<li>对于 <code>function-try-blocks</code> 中的catch语句而言，其中包含的函数不能使用 <code>return</code> 关键字返回值。</li>
+</ul>
+
+<p>
+因此，构造函数的 <code>function-try-blocks</code> 只在下列少数情况下有用：
+</p>
+<ul class="org-ul">
+<li>将ctor-initializer抛出的异常转换为其他异常。</li>
+<li>将信息记录到日志文件。</li>
+<li>释放在抛出异常之前就在ctor-initializer中分配了内存的裸资源。</li>
+</ul>
+
+<p>
+<code>function-try-blocks</code> 并不局限于构造函数，也可以用于普通函数。然而，对于普通函数而言没有理由使用 <code>function-try-blocks</code> ，因为 <code>function-try-blocks</code> 可以方便地转换为函数体内部的try/catch块。与构造函数相比，对普通函数使用 <code>function-try-blocks</code> 的明显不同在于catch语句不需要抛出当前异常或者新的异常，C++运行时也不会自动重新抛出异常。
+</p>
+</div>
+</div>
+<div id="outline-container-orgaa7ea8d" class="outline-3">
+<h3 id="orgaa7ea8d">析构函数中的错误</h3>
+<div class="outline-text-3" id="text-orgaa7ea8d">
+<p>
+必须在析构函数内部处理析构函数引起的所有错误。不应该让析构函数抛出任何异常。如果在堆栈释放过程中有其他未解决的异常，析构函数是可以运行的。如果在堆栈释放过程中析构函数抛出一个异常，C++运行库会调用 <code>std::terminate()</code> ，终止应用程序。析构函数是释放对象使用的内存和资源的一个机会。如果因为异常而提前退出函数，将永远没有办法返回来释放内存或者资源。所以在析构函数中要小心捕获调用析构函数时可能抛出的任何异常。
+</p>
+</div>
 </div>
 </div>
 <div id="outline-container-org8faf259" class="outline-2">
@@ -1058,9 +1125,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 </p>
 </div>
 </div>
-<div id="outline-container-org3b81113" class="outline-3">
-<h3 id="org3b81113">访问控制</h3>
-<div class="outline-text-3" id="text-org3b81113">
+<div id="outline-container-orgae03523" class="outline-3">
+<h3 id="orgae03523">访问控制</h3>
+<div class="outline-text-3" id="text-orgae03523">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -1091,9 +1158,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <h3 id="org48044ba">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-org48044ba">
 </div>
-<div id="outline-container-orgbf4752c" class="outline-4">
-<h4 id="orgbf4752c">基本概念</h4>
-<div class="outline-text-4" id="text-orgbf4752c">
+<div id="outline-container-org9f5c9c8" class="outline-4">
+<h4 id="org9f5c9c8">基本概念</h4>
+<div class="outline-text-4" id="text-org9f5c9c8">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -1178,9 +1245,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <h3 id="org77af211">析构函数</h3>
 <div class="outline-text-3" id="text-org77af211">
 </div>
-<div id="outline-container-org859a7b9" class="outline-4">
-<h4 id="org859a7b9">基本概念</h4>
-<div class="outline-text-4" id="text-org859a7b9">
+<div id="outline-container-org1322d6d" class="outline-4">
+<h4 id="org1322d6d">基本概念</h4>
+<div class="outline-text-4" id="text-org1322d6d">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -1235,9 +1302,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </p>
 </div>
 </div>
-<div id="outline-container-orgf7e25d9" class="outline-4">
-<h4 id="orgf7e25d9">引用数据成员</h4>
-<div class="outline-text-4" id="text-orgf7e25d9">
+<div id="outline-container-org393a371" class="outline-4">
+<h4 id="org393a371">引用数据成员</h4>
+<div class="outline-text-4" id="text-org393a371">
 <p>
 在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
 </p>
@@ -1277,7 +1344,7 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <div class="outline-text-4" id="text-orgd181960">
 <ul class="org-ul">
 <li>将函数或者方法的名称用于多个函数, 但是参数的类型或者数目不同.</li>
-<li>C++不允许仅根据方法的返回类型重载方法名称, 但是可以根据 <code>const</code> 重载方法<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</li>
+<li>C++不允许仅根据方法的返回类型重载方法名称, 但是可以根据 <code>const</code> 重载方法<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.</li>
 <li>重载参数可以被显式地删除, 可以用这种方法禁止调用具有特定参数的成员函数.</li>
 </ul>
 </div>
@@ -1293,7 +1360,7 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <li>编写了基本运算符(如+和-), 并没有提供相应的简写运算符(如+=和-=). 必须显式地重载简写运算符.</li>
 <li>简写运算符与基本运算符不同, 它们会改变运算符左边的对象, 而不是创建一个新对象. 它们生成的结果是对被修改对象的引用, 这一点与赋值运算符类似.</li>
 <li>比较运算符(如&gt;,&lt;,==)与基本的算术运算符类似, 它们也应该是全局友元函数.</li>
-<li>C++允许重载函数调用运算符<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>, 即 <code>operator()</code>. 如果自定义类中编写了一个 <code>operator()</code>, 那么这个类的对象就可以当做函数指针使用.
+<li>C++允许重载函数调用运算符<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>, 即 <code>operator()</code>. 如果自定义类中编写了一个 <code>operator()</code>, 那么这个类的对象就可以当做函数指针使用.
 <ul class="org-ul">
 <li>带有函数调用运算符的类的对象称为函数对象, 也称为仿函数(functor).</li>
 <li>相比标准的对象方法, 函数对象的好处是: 这些对象可以伪装成函数指针. 只要函数指针类型是模板化的, 就可以把这些函数对象当成回调函数传入需要接受函数指针的例程.</li>
@@ -1407,9 +1474,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <h2 id="org27e621f">继承</h2>
 <div class="outline-text-2" id="text-org27e621f">
 </div>
-<div id="outline-container-org9f5c9c8" class="outline-3">
-<h3 id="org9f5c9c8">基本概念</h3>
-<div class="outline-text-3" id="text-org9f5c9c8">
+<div id="outline-container-org807d1e1" class="outline-3">
+<h3 id="org807d1e1">基本概念</h3>
+<div class="outline-text-3" id="text-org807d1e1">
 <ul class="org-ul">
 <li>继承的运行方式是单向的. 基类并不知道派生类的任何信息.</li>
 <li>指向某个对象的指针或者引用可以指向声明类的对象, 也可以指向其任意派生类的对象. 指向基类对象的指针可以指向派生类对象, 对于引用也是如此. 然而, 不能通过基类对象的指针调用派生类的方法. 即使基类的引用或者指针知道所指的是一个派生类, 也无法访问没有在基类中定义的派生类方法或者成员.</li>
@@ -1417,9 +1484,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-orgae03523" class="outline-3">
-<h3 id="orgae03523">访问控制</h3>
-<div class="outline-text-3" id="text-orgae03523">
+<div id="outline-container-orgca42356" class="outline-3">
+<h3 id="orgca42356">访问控制</h3>
+<div class="outline-text-3" id="text-orgca42356">
 <p>
 派生类可以访问基类中声明为 <code>public</code>, <code>protected</code> 的数据成员和方法, 就好像这些数据成员和方法是派生类自己的. 如果类将数据成员和方法声明为 <code>protected</code>, 派生类就可以访问它们; 如果声明为 <code>private</code>, 派生类就不能访问它们. 建议将所有数据成员都默认声明为 <code>private</code>, 这会提供最高级别的封装. 如果希望任何代码都能访问这些数据成员, 就可以提供 <code>public</code> 的 <code>getter/setter</code>; 如果只希望派生类访问它们, 就可以提供 <code>protected</code> 的 <code>getter/setter</code>.
 </p>
@@ -1438,7 +1505,7 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <h3 id="orgc839b4c">方法和类的虚化</h3>
 <div class="outline-text-3" id="text-orgc839b4c">
 <p>
-从某个类继承的主要原因是为了添加或者替换功能. 在许多情况下, 可能需要替换或者重写某个方法来修改类的行为. 只有在基类中声明为 <code>virtual</code> 的方法才能被派生类正确地重写. 为了重写某个方法, 需要在派生类定义中重新声明这个方法, 就像在基类中声明的那样, 并在派生类的实现文件中提供新的定义. 建议在派生类对重写方法的声明末尾添加 <code>override</code> 关键字, 但不需要再重复使用 <code>virtual</code> 关键字<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>. 根据经验, 为了避免遗漏 <code>virtual</code> 关键字引发的问题, 可将所有方法设置为 <code>virtual</code> (包括析构函数, 但不包括构造函数).
+从某个类继承的主要原因是为了添加或者替换功能. 在许多情况下, 可能需要替换或者重写某个方法来修改类的行为. 只有在基类中声明为 <code>virtual</code> 的方法才能被派生类正确地重写. 为了重写某个方法, 需要在派生类定义中重新声明这个方法, 就像在基类中声明的那样, 并在派生类的实现文件中提供新的定义. 建议在派生类对重写方法的声明末尾添加 <code>override</code> 关键字, 但不需要再重复使用 <code>virtual</code> 关键字<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>. 根据经验, 为了避免遗漏 <code>virtual</code> 关键字引发的问题, 可将所有方法设置为 <code>virtual</code> (包括析构函数, 但不包括构造函数).
 </p>
 
 <p>
@@ -1596,7 +1663,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <li><code>lambda</code> 表达式可以接受参数. 参数在圆括号中指定, 用逗号分隔开, 与普通函数相同.</li>
 <li>如果 <code>lambda</code> 表达式不接受参数, 就可以指定空圆括号或忽略它们.</li>
 <li><code>lambda</code> 表达式可以返回值. 返回类型在箭头后面指定, 也即拖尾返回类型. 即使 <code>lambda</code> 表达式返回了值, 也可以忽略返回类型, 此时编译器就根据函数返回类型推断规则来推断 <code>lambda</code> 表达式的返回类型.</li>
-<li><code>lambda</code> 表达式可以在其封装的作用域内捕捉变量. 方括号部分称为 <code>lambda</code> 捕捉块(capture block), 可以指定任何从 <code>lambda</code> 表达式所在的作用域中捕捉变量. 这里捕捉变量指可以在 <code>lambda</code> 表达式体中使用这个变量. 空白的捕捉块表示不从所在作用域中捕捉变量. 捕捉方式可以是按值捕捉, 也可以按引用捕捉(<code>lambda</code> 表达式可以在其内部作用域修改 <code>lambda</code> 表达式所在作用域内的变量). 捕捉的对象既可以是所在作用域中的所有变量, 也可以通过捕捉列表酌情捕捉需要的变量以及相应的捕捉方法<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>. 例如:
+<li><code>lambda</code> 表达式可以在其封装的作用域内捕捉变量. 方括号部分称为 <code>lambda</code> 捕捉块(capture block), 可以指定任何从 <code>lambda</code> 表达式所在的作用域中捕捉变量. 这里捕捉变量指可以在 <code>lambda</code> 表达式体中使用这个变量. 空白的捕捉块表示不从所在作用域中捕捉变量. 捕捉方式可以是按值捕捉, 也可以按引用捕捉(<code>lambda</code> 表达式可以在其内部作用域修改 <code>lambda</code> 表达式所在作用域内的变量). 捕捉的对象既可以是所在作用域中的所有变量, 也可以通过捕捉列表酌情捕捉需要的变量以及相应的捕捉方法<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>. 例如:
 <dl class="org-dl">
 <dt><code>[=]</code></dt><dd>通过值捕捉所有变量.</dd>
 <dt><code>[&amp;]</code></dt><dd>通过引用捕捉所有变量.</dd>
@@ -1831,7 +1898,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <h3 id="org8e6c9bf">流式输出</h3>
 <div class="outline-text-3" id="text-org8e6c9bf">
 <ul class="org-ul">
-<li>输出流定义在头文件 <code>&lt;ostream&gt;</code> 中<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>. 使用输出流最简单的方法是使用 <code>&lt;&lt;</code> 运算符. 通过 <code>&lt;&lt;</code> 可以输出C++的基本类型.</li>
+<li>输出流定义在头文件 <code>&lt;ostream&gt;</code> 中<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>. 使用输出流最简单的方法是使用 <code>&lt;&lt;</code> 运算符. 通过 <code>&lt;&lt;</code> 可以输出C++的基本类型.</li>
 <li><code>cout</code> 流是写入到控制台(也称为标准输入输出)的内建流. 可将 <code>&lt;&lt;</code> 的使用串联起来, 从而输出多个数据段. 这是因为 <code>&lt;&lt;</code> 运算符返回一个流的引用, 因此可以立即对同一个流再次应用 <code>&lt;&lt;</code> 运算符.</li>
 <li><code>\n</code> 和 <code>endl</code> 的区别在于前者仅开始一个新行, 而后者还会刷新缓冲区. 使用 <code>endl</code> 需要注意过多的缓冲区刷新会降低性能.</li>
 <li>方法
@@ -1839,7 +1906,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <li><code>put()</code> 接受的不是定义了输出行为的对象或变量, 而是一个字符. 原样输出, 没有任何特殊的格式化和处理操作.</li>
 <li><code>write()</code> 接受的不是定义了输出行为的对象或变量, 而是一个字符数组. 原样输出, 没有任何特殊的格式化和处理操作.</li>
 </ul></li>
-<li>向输出流写入数据时, 流不一定会将数据立即写入目标. 大部分输出流都会进行缓存<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>, 而不是立即将得到的数据写出去. 在下列情况下, 流进行刷新操作.
+<li>向输出流写入数据时, 流不一定会将数据立即写入目标. 大部分输出流都会进行缓存<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>, 而不是立即将得到的数据写出去. 在下列情况下, 流进行刷新操作.
 <ul class="org-ul">
 <li>到达某个标记时, 如 <code>endl</code>.</li>
 <li>流离开作用域被析构时.</li>
@@ -1877,7 +1944,7 @@ c.<span style="color: #e9b2e3;">A</span>::F();
 <li><code>unget()</code> 将前一个读入的字符放回流中, 流回退一个位置. 是否成功可以通过 <code>fail()</code> 查看.</li>
 <li><code>putback()</code> 和 <code>unget()</code> 一样, 允许在输入流中反向移动一个字符. 区别在于 <code>putback()</code> 将放回流中的字符作为参数.</li>
 <li><code>peek()</code> 预览调用 <code>get()</code> 返回的下一个值.</li>
-<li><code>getline()</code> 用一行数据填充字段缓存区, 数据量最多至指定大小. 指定的大小中包括 <code>\0</code> 字符. 调用 <code>getline()</code> 时, 它从输入流中读取一行, 读到行尾为止(行尾<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>字符不会出现在字符串中). 还有一个用于C++ string的 <code>getline()</code> 函数. 这个函数定义在 头文件 <code>&lt;string&gt;</code> 和名称空间 <code>std</code> 中. 其接受一个流引用, 一个string引用和一个可选的分隔符作为参数, 不需要指定缓存区的大小.</li>
+<li><code>getline()</code> 用一行数据填充字段缓存区, 数据量最多至指定大小. 指定的大小中包括 <code>\0</code> 字符. 调用 <code>getline()</code> 时, 它从输入流中读取一行, 读到行尾为止(行尾<sup><a id="fnr.9" class="footref" href="#fn.9">9</a></sup>字符不会出现在字符串中). 还有一个用于C++ string的 <code>getline()</code> 函数. 这个函数定义在 头文件 <code>&lt;string&gt;</code> 和名称空间 <code>std</code> 中. 其接受一个流引用, 一个string引用和一个可选的分隔符作为参数, 不需要指定缓存区的大小.</li>
 <li>输入错误
 <ul class="org-ul">
 <li>查询输入流状态的最常见方法是在条件语句中访问输入流, 如 <code>while (cin) {...}</code> 或 <code>while (cin &gt;&gt; ch) {...}</code>.</li>
@@ -2035,30 +2102,34 @@ Marc Gregoire著, 张永强译. C++高级编程(第3版), 清华大学出版社,
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-例如可以编写两个名称, 参数均相同的两个方法, 一个是 <code>const</code>, 另一个不是. 如果是 <code>const</code> 对象, 就调用 <code>const</code> 方法; 如果是非 <code>const</code> 对象, 就调用非 <code>const</code> 方法.
+C++有三个函数可以设置回调函数，除了 <code>set_new_handler()</code> ，还有 <code>set_terminate()</code> 和 <code>set_unexpected()</code> 。
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-只能将该运算符重载为类中的非 <code>static</code> 方法.
+例如可以编写两个名称, 参数均相同的两个方法, 一个是 <code>const</code>, 另一个不是. 如果是 <code>const</code> 对象, 就调用 <code>const</code> 方法; 如果是非 <code>const</code> 对象, 就调用非 <code>const</code> 方法.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
-一旦在基类中将方法或者析构函数标记为 <code>virtual</code>, 它们在所有派生类中就一直是 <code>virtual</code>, 即使在派生类中没有使用 <code>virtual</code> 关键字也是如此.
+只能将该运算符重载为类中的非 <code>static</code> 方法.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
-即使可以, 也不建议在内部作用域中捕捉所有变量, 而应该捕捉需要的变量.
+一旦在基类中将方法或者析构函数标记为 <code>virtual</code>, 它们在所有派生类中就一直是 <code>virtual</code>, 即使在派生类中没有使用 <code>virtual</code> 关键字也是如此.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
-通常包含头文件 <code>&lt;iostream&gt;</code>, 该头文件又包含了输入流和输出流的头文件.
+即使可以, 也不建议在内部作用域中捕捉所有变量, 而应该捕捉需要的变量.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
-不是所有的输出流都会缓存, 如 <code>cerr</code> 流就不会缓存其输出.
+通常包含头文件 <code>&lt;iostream&gt;</code>, 该头文件又包含了输入流和输出流的头文件.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara"><p class="footpara">
+不是所有的输出流都会缓存, 如 <code>cerr</code> 流就不会缓存其输出.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9">9</a></sup> <div class="footpara"><p class="footpara">
 注意, 行尾序列和平台相关, 可以是 <code>\r\n</code>, <code>\n</code>, 或 <code>\n\r</code>.
 </p></div></div>
 
