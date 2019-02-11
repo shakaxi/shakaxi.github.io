@@ -77,6 +77,11 @@ Additionally, notmuch supports hooks which are essentially scripts in =/MAIL/REP
 - =pre-new= :: Hook/script provoked before command =notmuch new=, which is usually used to fetch mails.
 #+BEGIN_SRC sh
 #!/bin/sh
+/usr/bin/offlineimap -c /PATH/TO/OFFLINEIMAPRC -a ACCOUNT
+#+END_SRC
+or
+#+BEGIN_SRC sh
+#!/bin/sh
 /usr/bin/getmail --new --getmaildir=/PATH/TO/GETMAILRC --rcfile=GETMAILRC
 #+END_SRC
 - =post-new= :: Hook/script provoked after command =notmuch new=, which is usually used to tag the newly imported mails.
@@ -85,13 +90,13 @@ Additionally, notmuch supports hooks which are essentially scripts in =/MAIL/REP
 notmuch tag -inbox +sent -- from:EMAILADDRESS
 notmuch tag -inbox +ML -- to:MAILLIST@EXAMPLE.COM
 notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
+/usr/bin/notmuch search --output=files tag:deleted OR tag:spam | xargs -r rm
 #+END_SRC
 - =post-insert= :: Hook/script called after command =notmuch insert=, which is provoked after mails are delivered, imported into database and labelled with initial tags.
 ** Automatics
 - Add new intended task by =crontab -e= with following content
 #+BEGIN_SRC sh
-*/3 * * * * /usr/bin/notmuch new
-@reboot /usr/bin/notmuch search --output=files tag:deleted | xargs -r rm
+*/5 * * * * /usr/bin/notmuch new
 #+END_SRC
 where the first line is for periodical fetching mail every 3 minutes and the second line to remove the mails deleted (tagged by =deleted=) at every boot.
 - Enable and start the service =cronie=.
@@ -99,20 +104,28 @@ where the first line is for periodical fetching mail every 3 minutes and the sec
 systemctl enable cronie.service
 systemctl start cronie.service
 #+END_SRC
+** CJK Support
+By default, notmuch cannot separate Chinese correctly, Japanese, or Korean words due to the non-space separator. A workaround is to [[https://notmuchmail.org/howto/#index10h2][set a environment variable]] as follows.
+#+BEGIN_SRC shell
+export XAPIAN_CJK_NGRAM=1
+#+END_SRC
 * Key binding
-| *Key*     | Function and description                                                  |
-|-----------+---------------------------------------------------------------------------|
-| =n/p=     | Next/previous message, =notmuch-tree-next-matching-message=               |
-| =M-n/p=   | Next/previous thread, =notmuch-tree-next-thread=                          |
-| =w=       | Save attachments, =notmuch-show-save-attachments=                         |
-| =m=       | Write a new mail, =notmuch-mua-new-mail=                                  |
-| =r=       | Reply a mail, =notmuch-show-reply-sender=                                 |
-| =R=       | Reply all, =notmuch-show-reply=                                           |
-| =f=       | Forward a mail, =notmuch-show-forward-message=                            |
-| =C-c C-a= | Attach a file, =mml-attach-file=                                          |
-| =         | Refresh current buffer, =notmuch-refresh-this-buffer=                     |
-| =M-==     | Refresh all buffer, =notmuch-refresh-all-buffers=                         |
-| =Z=       | Tree view for the current query, =notmuch-tree-from-search-current-query= |
+| *Key*     | Function and description                                                                      |
+|-----------+-----------------------------------------------------------------------------------------------|
+| =n/p=     | Next/previous message, =notmuch-tree-next-matching-message=                                   |
+| =M-n/p=   | Next/previous thread, =notmuch-tree-next-thread=                                              |
+| =w=       | Save attachments, =notmuch-show-save-attachments=                                             |
+| =m=       | Write a new mail, =notmuch-mua-new-mail=                                                      |
+| =r=       | Reply a mail, =notmuch-show-reply-sender=                                                     |
+| =R=       | Reply all, =notmuch-show-reply=                                                               |
+| =f=       | Forward a mail, =notmuch-show-forward-message=                                                |
+| =C-c C-a= | Attach a file, =mml-attach-file=                                                              |
+| =         | Refresh current buffer, =notmuch-refresh-this-buffer=                                         |
+| =M-==     | Refresh all buffer, =notmuch-refresh-all-buffers=                                             |
+| =z=       | Display threads matching query in tree view, =notmuch-tree=                                   |
+| =Z=       | Tree view for the current query, =notmuch-tree-from-search-current-query=                     |
+| =+=       | Change (add by default) tags for the current thread or region, =notmuch-search-add-tag=       |
+| =-=       | Change (remove by default) tags for the current thread or region, =notmuch-search-remove-tag= |
 
 * Footnotes
 
