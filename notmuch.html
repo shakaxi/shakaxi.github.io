@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-12-12 Wed 22:55 -->
+<!-- 2019-02-11 Mon 22:52 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Notmuch</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -241,6 +254,7 @@ for the JavaScript code in this tag.
 <li><a href="#orge2684db"><code>~/.emacs.d/init.el</code></a></li>
 <li><a href="#orgacffb91">Hooks</a></li>
 <li><a href="#orgcf870e2">Automatics</a></li>
+<li><a href="#org4132ce1">CJK Support</a></li>
 </ul>
 </li>
 <li><a href="#org2dad4e0">Key binding</a></li>
@@ -366,6 +380,14 @@ Additionally, notmuch supports hooks which are essentially scripts in <code>/MAI
 </dl>
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #73d216;">#</span><span style="color: #73d216;">!/bin/</span><span style="color: #b4fa70;">sh</span>
+/usr/bin/offlineimap -c /PATH/TO/OFFLINEIMAPRC -a ACCOUNT
+</pre>
+</div>
+<p>
+or
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #73d216;">#</span><span style="color: #73d216;">!/bin/</span><span style="color: #b4fa70;">sh</span>
 /usr/bin/getmail --new --getmaildir=/PATH/TO/GETMAILRC --rcfile=GETMAILRC
 </pre>
 </div>
@@ -377,6 +399,7 @@ Additionally, notmuch supports hooks which are essentially scripts in <code>/MAI
 notmuch tag -inbox +sent -- from:EMAILADDRESS
 notmuch tag -inbox +ML -- to:MAILLIST@EXAMPLE.COM
 notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
+/usr/bin/notmuch search --output=files tag:deleted OR tag:spam | xargs -r rm
 </pre>
 </div>
 <dl class="org-dl">
@@ -391,8 +414,7 @@ notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
 <li>Add new intended task by <code>crontab -e</code> with following content</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">*/3 * * * * /usr/bin/notmuch new
-@reboot /usr/bin/notmuch search --output=files tag:deleted | xargs -r rm
+<pre class="src src-sh">*/5 * * * * /usr/bin/notmuch new
 </pre>
 </div>
 <p>
@@ -404,6 +426,18 @@ where the first line is for periodical fetching mail every 3 minutes and the sec
 <div class="org-src-container">
 <pre class="src src-sh">systemctl enable cronie.service
 systemctl start cronie.service
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4132ce1" class="outline-3">
+<h3 id="org4132ce1">CJK Support</h3>
+<div class="outline-text-3" id="text-org4132ce1">
+<p>
+By default, notmuch cannot separate Chinese correctly, Japanese, or Korean words due to the non-space separator. A workaround is to <a href="https://notmuchmail.org/howto/#index10h2">set a environment variable</a> as follows.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">XAPIAN_CJK_NGRAM</span>=1
 </pre>
 </div>
 </div>
@@ -478,8 +512,23 @@ systemctl start cronie.service
 </tr>
 
 <tr>
+<td class="org-left"><code>z</code></td>
+<td class="org-left">Display threads matching query in tree view, <code>notmuch-tree</code></td>
+</tr>
+
+<tr>
 <td class="org-left"><code>Z</code></td>
 <td class="org-left">Tree view for the current query, <code>notmuch-tree-from-search-current-query</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>+</code></td>
+<td class="org-left">Change (add by default) tags for the current thread or region, <code>notmuch-search-add-tag</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>-</code></td>
+<td class="org-left">Change (remove by default) tags for the current thread or region, <code>notmuch-search-remove-tag</code></td>
 </tr>
 </tbody>
 </table>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-05-19 Sat 19:01 -->
+<!-- 2019-02-11 Mon 22:52 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SSH</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -242,6 +255,12 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#orgdb8032c">SSH-based proxy</a></li>
+<li><a href="#org88585d0">SSH-based tunnels</a>
+<ul>
+<li><a href="#orgfaa093e">Local SSH port forwarding</a></li>
+<li><a href="#orgb356d30">Remote SSH port forwarding</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -338,12 +357,66 @@ where
 <ul class="org-ul">
 <li><code>PORT</code> is the port index of a local port.</li>
 <li><code>USERNAME</code> is the account for login on host <code>B</code>.</li>
+<li>Option <code>-N</code> means the port forwarding only, without any command executed remotely.</li>
 </ul>
 <p>
 Then, a SOCK proxy is ready whereby you can access host <code>A</code> as freely as you are on host <code>B</code>.
 </p>
 </div>
 </div>
+<div id="outline-container-org88585d0" class="outline-2">
+<h2 id="org88585d0">SSH-based tunnels<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
+<div class="outline-text-2" id="text-org88585d0">
 </div>
+<div id="outline-container-orgfaa093e" class="outline-3">
+<h3 id="orgfaa093e">Local SSH port forwarding</h3>
+<div class="outline-text-3" id="text-orgfaa093e">
+<p>
+Suppose there are 3 hosts, denoted by <code>A</code>, <code>B</code>, and <code>C</code>, respectively. Host <code>C</code> is providing some service on port <code>RPORT</code>, e.g., HTTP on port 80, and host <code>A</code> intends to access it. However, due to some network restriction, host <code>A</code> cannot directly access the service provided by host <code>C</code>, but host <code>B</code> can.
+</p>
+
+<p>
+To the end, running following command on host <code>A</code> can map the remote port <code>RPORT</code> on host <code>C</code> to a local port <code>LPORT</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">ssh -L LPORT:C:RPORT B
+</pre>
+</div>
+<p>
+In this case, host <code>A</code> can enjoy the desired service on host <code>C</code> by its local port <code>LPORT</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb356d30" class="outline-3">
+<h3 id="orgb356d30">Remote SSH port forwarding</h3>
+<div class="outline-text-3" id="text-orgb356d30">
+<p>
+Consider a similar scenario that there are 3 hosts, <code>A</code> and <code>B</code>. Host <code>A</code> is providing some service on <code>LPORT</code>. For some reason, host <code>A</code> cannot be accessible, but host <code>B</code> is available.
+</p>
+
+<p>
+Running following command on host <code>A</code> can map the local port <code>LPORT</code> to a remote port, <code>RPORT</code>, on host <code>B</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">ssh -R RPORT:localhost:LPORT B
+</pre>
+</div>
+<p>
+In this case, visiting port <code>RPORT</code> on host <code>B</code> is exactly the same as accessing to port <code>LPORT</code> on host <code>A</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.tunnelsup.com/how-to-create-ssh-tunnels/">https://www.tunnelsup.com/how-to-create-ssh-tunnels/</a>
+</p></div></div>
+
+
+</div>
+</div></div>
 </body>
 </html>
