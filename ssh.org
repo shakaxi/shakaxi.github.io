@@ -43,4 +43,26 @@ ssh -N -D PORT USERNAME@B
 where
 - =PORT= is the port index of a local port.
 - =USERNAME= is the account for login on host =B=.
+- Option =-N= means the port forwarding only, without any command executed remotely.
 Then, a SOCK proxy is ready whereby you can access host =A= as freely as you are on host =B=.
+* SSH-based tunnels[fn:1]
+** Local SSH port forwarding
+Suppose there are 3 hosts, denoted by =A=, =B=, and =C=, respectively. Host =C= is providing some service on port =RPORT=, e.g., HTTP on port 80, and host =A= intends to access it. However, due to some network restriction, host =A= cannot directly access the service provided by host =C=, but host =B= can.
+
+To the end, running following command on host =A= can map the remote port =RPORT= on host =C= to a local port =LPORT=.
+#+BEGIN_SRC sh
+ssh -L LPORT:C:RPORT B
+#+END_SRC
+In this case, host =A= can enjoy the desired service on host =C= by its local port =LPORT=.
+** Remote SSH port forwarding
+Consider a similar scenario that there are 3 hosts, =A= and =B=. Host =A= is providing some service on =LPORT=. For some reason, host =A= cannot be accessible, but host =B= is available.
+
+Running following command on host =A= can map the local port =LPORT= to a remote port, =RPORT=, on host =B=.
+#+BEGIN_SRC sh
+ssh -R RPORT:localhost:LPORT B
+#+END_SRC
+In this case, visiting port =RPORT= on host =B= is exactly the same as accessing to port =LPORT= on host =A=.
+
+* Footnotes
+
+[fn:1] https://www.tunnelsup.com/how-to-create-ssh-tunnels/
