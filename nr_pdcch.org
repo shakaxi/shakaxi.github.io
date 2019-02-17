@@ -1,0 +1,98 @@
+#+TITLE: NR - PDCCH
+
+* Introduction
+In NR system, the /downlink control information (DCI)/ is carried by physical downlink control channel (PDCCH), which physically occupied a region in the 2-dimension resource grid, which is essentially comprised of a certain number of resource elements (RE's), a.k.a., /control resource set (CORESET)/. Different from the counterpart in LTE, i.e., PDCCH region which always covers the whole frequency range, CORESET does not span the whole bandwidth, since the bandwidth in NR system is remarkably large while not all the NR UE's are able to perform reception over the whole bandwidth.
+
+Due to the static feature of CORESET, the indication of its size is not necessary. Therefore, there is no PCFICH in NR system. Additionally, irrespective of downlink or uplink, asynchronous HARQ is utilized in NR. Hence, PHICH is not needed either.
+
+In NR, the channel coding scheme for PDCCH is based on /polar codes/. It can support 512 coded bits (prior to rate matching[fn:1]) and up to 140 information bits. Targetting an enhanced coverage, a beamformed single layer transmission is adopted for PDCCH. In this sense, it is similar to ePDCCH in LTE system.
+* Resource hierarchy
+Just as its name indicates, the basic element for PDCCH is /control channel element (CCE)/, which is comprised of 6 /resource element groups (REG's)/, and a REG is defined as one resource block (RB) in one OFDM symbol[fn:2]. An /aggregation level/ number of CCE's forms one PDCCH. The value of aggregation level can be 1, 2, 4, 8, 16[fn:4].
+** CORESET
+A CORESET is essentially a time-frequency resource in which the UE tries to decode candidate control channels using one or more search spaces. For the sake of reuse between bandwidth parts (BWP's), a CORESET is per-cell other than per-BWP configured.
+
+A CORESET can occur at any position within a slot and any frequency range of the carrier. In the time domain, it can be up to 3 OFDM symbols. While in the frequency domain, it is defined as a multiple of 6 RB's up to the whole bandwidth of a carrier.
+
+For better spectral efficiency, the resources in a CORESET can be dynamically used for PDSCH transmission. To this end, whether the reserved resources are available for PDSCH is dynamically indicated in the DCI.
+
+Particularly, the first CORESET, i.e., CORESET 0, is configured by master information block (MIB) in PBCH. After connection setup, a UE can be configured with a multiplicity of potentially overlapped CORESET's.
+
+Each CORESET can be configured with a /transmission configuration indication (TCI)/, which indicates the quasi-colocation (QCL) relationship of the PDCCH.
+** CCE-to-REG mapping
+CCE-to-REG mapping is per-CORESET configured. Generally, there are a couple of CCE-to-REG mapping schemes, interleaved and non-interleaved. The former targets frequency diversity, while the latter aims to facilitate interference coordination and opportunistic scheduling.
+
+A set of REG's which share the same precoding are termed one /REG bundle/. Namely, a REG bundle is the basic unit on which channel estimation is performed. All the possible cases can be listed in the table below.
+|       <c>        |       <c>       |        <c>        |
+|------------------+-----------------+-------------------|
+| CORESET duration | REG bundle size | REG bundle number |
+|  (OFDM symbol)   |  (REG number)   |                   |
+|------------------+-----------------+-------------------|
+|        1         |        6        |         1         |
+|                  |        2        |         3         |
+|------------------+-----------------+-------------------|
+|        2         |        6        |         1         |
+|                  |        2        |         3         |
+|------------------+-----------------+-------------------|
+|        3         |        6        |         1         |
+|                  |        3        |         2         |
+|------------------+-----------------+-------------------|
+** Search space
+As in LTE system, a NR UE also needs to blindly detect the DCI format[fn:3]. A UE needs to monitor up to 4 different DCI sizes with 3 using C-RNTI and 1 using other RNTI's:
+- One size for fallback DCI formats,
+- One size for downlink scheduling assignments,
+- One size for uplink scheduling grants,
+- One size for slot-format indication and preemption indication.
+
+A UE attempts to blindly decode a DCI based on /search space/, which is defined as a set of control channel candidates formed by a given aggregation level number of CCE's. To limit the complexity of blind DCI decoding, several constraints depending on the subcarrier bandwidth have been specified, e.g.,
+- For 15/30/60/120 kHz subcarrier bandwidth, up to 44/36/22/20 blind decoding attempts can be supported across all DCI payload sizes in one slot.
+- For 15/30/60/120 kHz subcarrier bandwidth, up to 56/56/48/32 CCE's on which channel estimation is performed can be supportd across all CORESET's in a slot.
+* DCI formats
+** Downlink scheduling assignments (DCI formats 1-0 and 1-1)
+In NR, there are a couple of DCI formats for downlink scheduling assignments, the non-fallback format, i.e., DCI format 1-1, and the fallback format, i.e., DCI format 1-0. The former supports all NR features, whose size is variable since some information fields may be absent, which depends on whether the corresponding features are configured or not. The latter supports a limited set of NR functionalities with a fixed size.
+| <l>                          | <l>                               | <l>                                           | <l>               |
+| Class                        | Field                             | Format 1-0 (bits)                             | Format 1-1 (bits) |
+|------------------------------+-----------------------------------+-----------------------------------------------+-------------------|
+| Format identifier            |                                   | 1                                             | 1                 |
+| Resource related             | CFI                               | 0                                             | 0, 3[fn:5]        |
+|                              | BWP indicator                     | 0                                             | 0-2[fn:6]         |
+|                              | Frequency domain allocation[fn:9] | Only type 1 resource allocation is supported. |                   |
+|                              | Time domain allocation            | 1-4                                           | 1-4               |
+|                              | VRB-to-PRB mapping[fn:8]          | 0 or 1                                        | 0, 1              |
+|                              | PRB bundling size indicator       | 0 or 1                                        | 0, 1              |
+|                              | Reserved resources[fn:7]          | 0-2                                           | 0-2               |
+|                              | ZP CSI-RS trigger                 | 0                                             | 0-2               |
+| Transport block (TB) related | MCS                               | 5                                             | 5, 10[fn:10]      |
+|                              | New data indicator (NDI)          | 1                                             | 1, 2              |
+|                              | Redundancy version (RV)           | 2                                             | 2, 4              |
+| HARQ related                 | Process number                    | 4                                             | 4                 |
+|                              | Downlink assignment index (DAI)   | 2                                             | 0, 2, 4           |
+|                              | HARQ feedback timing[fn:11]       | 3                                             | 3                 |
+** Uplink scheduling grants (DCI formats 0-0 and 0-1)
+** Slot format indication (DCI format 2-0)
+** Preemption indication (DCI format 2-1)
+** Uplink power control commands (DCI format 2-2)
+** SRS control commands (DCI format 2-3)
+
+* Footnotes
+
+[fn:11]Indicate when HARQ acknowledgement should be transmitted relative to the reception of the PDSCH.
+
+[fn:10]Depend on a second TB's presence.
+
+[fn:9]Depend on bandwidth and resource allocation type. 
+
+[fn:8]Present only when resource allocation type 1 is used. 
+
+[fn:7]Indicate whether the reserved resources can be used for PDSCH or not. 
+
+[fn:6]Used to activate one of up to 4 BWP's configured by higher layer signalling. 
+
+[fn:5]Present only when cross carried scheduling is configured. 
+
+[fn:4]In LTE, the aggregation level can only be 1, 2, 4, 8. 
+
+[fn:3]In NR, in order to reduce the complexity of blind DCI decoding at UE's, some DCI formats are aligned with identical size.
+
+[fn:2]Within a REG, on every 4th subcarrier there is a DMRS RE.
+
+[fn:1]Rate matching is used to match the number of coded bits to the resources available for PDCCH transmission, e.g., shortening, puncturing or repetition.
