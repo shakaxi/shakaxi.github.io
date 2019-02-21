@@ -49,31 +49,105 @@ A UE attempts to blindly decode a DCI based on /search space/, which is defined 
 * DCI formats
 ** Downlink scheduling assignments (DCI formats 1-0 and 1-1)
 In NR, there are a couple of DCI formats for downlink scheduling assignments, the non-fallback format, i.e., DCI format 1-1, and the fallback format, i.e., DCI format 1-0. The former supports all NR features, whose size is variable since some information fields may be absent, which depends on whether the corresponding features are configured or not. The latter supports a limited set of NR functionalities with a fixed size.
-| <l>                          | <l>                               | <l>                                           | <l>               |
-| Class                        | Field                             | Format 1-0 (bits)                             | Format 1-1 (bits) |
-|------------------------------+-----------------------------------+-----------------------------------------------+-------------------|
-| Format identifier            |                                   | 1                                             | 1                 |
-| Resource related             | CFI                               | 0                                             | 0, 3[fn:5]        |
-|                              | BWP indicator                     | 0                                             | 0-2[fn:6]         |
-|                              | Frequency domain allocation[fn:9] | Only type 1 resource allocation is supported. |                   |
-|                              | Time domain allocation            | 1-4                                           | 1-4               |
-|                              | VRB-to-PRB mapping[fn:8]          | 0 or 1                                        | 0, 1              |
-|                              | PRB bundling size indicator       | 0 or 1                                        | 0, 1              |
-|                              | Reserved resources[fn:7]          | 0-2                                           | 0-2               |
-|                              | ZP CSI-RS trigger                 | 0                                             | 0-2               |
-| Transport block (TB) related | MCS                               | 5                                             | 5, 10[fn:10]      |
-|                              | New data indicator (NDI)          | 1                                             | 1, 2              |
-|                              | Redundancy version (RV)           | 2                                             | 2, 4              |
-| HARQ related                 | Process number                    | 4                                             | 4                 |
-|                              | Downlink assignment index (DAI)   | 2                                             | 0, 2, 4           |
-|                              | HARQ feedback timing[fn:11]       | 3                                             | 3                 |
+| <l>                          | <l>                                            | <l>                                           | <l>                  |
+| Class                        | Field                                          | Format 1-0 (bits)                             | Format 1-1 (bits)    |
+|------------------------------+------------------------------------------------+-----------------------------------------------+----------------------|
+| Format identifier            |                                                | 1                                             | 1                    |
+| Resource related             | CFI                                            | 0                                             | 0, 3[fn:5]           |
+|                              | BWP indicator                                  | 0                                             | 0-2[fn:6]            |
+|                              | Frequency domain allocation[fn:9]              | Only type 1 resource allocation is supported. |                      |
+|                              | Time domain allocation                         | 1-4                                           | 1-4                  |
+|                              | VRB-to-PRB mapping[fn:8]                       | 0, 1                                          | 0, 1                 |
+|                              | PRB bundling size indicator                    | 0, 1                                          | 0, 1                 |
+|                              | Reserved resources[fn:7]                       | 0-2                                           | 0-2                  |
+|                              | ZP CSI-RS trigger                              | 0                                             | 0-2                  |
+| Transport block (TB) related | MCS                                            | 5                                             | 5, 10[fn:10]         |
+|                              | New data indicator (NDI)                       | 1                                             | 1, 2                 |
+|                              | Redundancy version (RV)                        | 2                                             | 2, 4                 |
+| HARQ related                 | Process number                                 | 4                                             | 4                    |
+|                              | Downlink assignment index (DAI)                | 2                                             | 0, 2, 4              |
+|                              | HARQ feedback timing[fn:11]                    | 3                                             | 3                    |
+|                              | Codeblock group transmission indicator (CBGTI) | 0                                             | 0, 2, 4, 6, 8[fn:12] |
+|                              | Codeblock group flush information (CBGFI)      | 0                                             | 0-1[fn:12]           |
+| Multi-antenna related        | Antenna ports                                  | 0                                             | 4-6                  |
+|                              | Transmission configuration indication (TCI)    | 0                                             | 0, 3[fn:14]          |
+|                              | SRS request                                    | 0                                             | 2[fn:16]             |
+|                              | DMRS sequence initialization                   | 0                                             | 0, 1[fn:15]          |
+| PUCCH-related                | PUCCH power control[fn:17]                     | 2                                             | 2                    |
+|                              | PUCCH resource indicator (PRI)[fn:18]          | 3                                             | 3                    |
 ** Uplink scheduling grants (DCI formats 0-0 and 0-1)
+Similar to downlink scheduling assignments, uplink scheduling grants also use one of DCI formats, the non-fallback format, i.e., DCI format 0-1, and the fallback format, i.e., DCI format 0-0. Aiming to reduce the number of blind decoding, the non-fallback DCI formats for downlink scheduling assignments (format 1-1) and uplink scheduling grants (format 0-1) are aligned by padding to the smaller one.
+| <l>                   | <l>                                 | <l>                                           | <l>                                              |
+| Class                 | Field                               | Format 0-0 (bits)                             | Format 0-1 (bits)                                |
+|-----------------------+-------------------------------------+-----------------------------------------------+--------------------------------------------------|
+| Format identifier     |                                     | 1                                             | 1                                                |
+| Resource related      | CFI                                 | 0                                             | 0, 3[fn:5]                                       |
+|                       | UL/SUL[fn:20]                       | 0, 1                                          | 0, 1                                             |
+|                       | BWP indicator                       | 0                                             | 0-2[fn:6]                                        |
+|                       | Frequency domain allocation[fn:9]   | Only type 1 resource allocation is supported. |                                                  |
+|                       | Time domain allocation              | 1-4                                           | 1-4                                              |
+|                       | Frequency hopping[fn:21]            | 0, 1                                          | 0, 1                                             |
+| TB related            | MCS                                 | 5                                             | 5                                                |
+|                       | NDI                                 | 1                                             | 1                                                |
+|                       | RV                                  | 2                                             | 2                                                |
+| HARQ related          | Process number                      | 4                                             | 4                                                |
+|                       | DAI[fn:19]                          | 0                                             |                                                  |
+|                       | CBGTI                               | 0                                             | 0, 2, 4, 6[fn:12]                                |
+| Multi-antenna related | DMRS sequence initialization        | 0                                             | 1[fn:15]                                         |
+|                       | Antenna ports                       | 0                                             | 2-5                                              |
+|                       | SRS resource indicator (SRI)[fn:13] | 0                                             | Depend on the number of SRS groups configured,   |
+|                       |                                     |                                               | and codebook-based/non-codebook-based precoding. |
+|                       | Precoding information[fn:23]        | 0                                             | 0-6[fn:22]                                       |
+|                       | PTRS-DMRS association               | 0                                             | 0, 2[fn:24]                                      |
+|                       | SRS request                         | 0                                             | 2[fn:16]                                         |
+|                       | CSI request                         | 0                                             | 0-6[fn:25]                                       |
+| Power control         | PUSCH power control                 |                                               | 2                                                |
+|                       | Beta offset                         | 0                                             |  0, 2[fn:26]                                            |
 ** Slot format indication (DCI format 2-0)
+DCI format 2-0 is used to signal the SFI which is scrambled by SFI-RNTI and common to a severality of UE's.
 ** Preemption indication (DCI format 2-1)
+DCI format 2-1 is used to signal the preemption indicator to a UE, which is scrambled by INT-RNTI and common to multiple UE's.
 ** Uplink power control commands (DCI format 2-2)
+As a complement to the power control commands, DCI format 2-2 aims to support power control for semipersistent scheduling. For the purpose of reducing the number of blind decoding attempts, its size is aligned with the size of the fallback DCI formats, i.e., DCI formats 0-0 and 1-0.
 ** SRS control commands (DCI format 2-3)
+DCI format 2-3 is proposed for power control of SRS, which is decoupled with the power control for PUSCH.
+* Signalling of frequency domain resources
+
+* Signalling of time domain resources
+
+* Signalling of TB size
 
 * Footnotes
+
+[fn:26]Control the amount of resources for UCI on PUSCH in case dynamic beta offset signalling is configured. 
+
+[fn:25]Request transmission of a CSI report. 
+
+[fn:24]Indicate the association between DMRS and PTRS ports. 
+
+[fn:23]Select the precoding matrix and the number of layers for codebook-based precoding. 
+
+[fn:22]Depend on the number of antenna ports and the maximum rank supported. 
+
+[fn:13]Determine the antenna ports and uplink transmission beam to PUSCH. 
+
+[fn:19]Handling of HARQ codebooks in case of UCI transmitted on PUSCH.
+
+[fn:21]Handle frequency hopping for type 1 resource allocation.
+
+[fn:20]Present only when a supplementary uplink is configured. 
+
+[fn:18]Select the PUCCH resource from a set of configured resources. 
+
+[fn:17]Adjust PUCCH transmission power. 
+
+[fn:16]Request a SRS transmission. 
+
+[fn:15]Select between two preconfigured initialization values for the DMRS sequence. 
+
+[fn:14]Indicate the QCL relationship for downlink transmission. 
+
+[fn:12]Only if CBG retransmission is configured. 
 
 [fn:11]Indicate when HARQ acknowledgement should be transmitted relative to the reception of the PDSCH.
 
@@ -87,7 +161,7 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 
 [fn:6]Used to activate one of up to 4 BWP's configured by higher layer signalling. 
 
-[fn:5]Present only when cross carried scheduling is configured. 
+[fn:5]Present only when cross carrier scheduling is configured. 
 
 [fn:4]In LTE, the aggregation level can only be 1, 2, 4, 8. 
 
