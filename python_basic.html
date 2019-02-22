@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2019-02-23 Sat 00:55 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python - Basic</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Python - Basic</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd440e1e">IPython</a></li>
+<li><a href="#org0d1fc18">Python语法</a>
+<ul>
+<li><a href="#orgefaec10">基础</a></li>
+<li><a href="#orgdbeb0a2">基本类型</a>
+<ul>
+<li><a href="#org1a292dd">字符串</a></li>
+<li><a href="#orgd2d22ea">日期和时间</a></li>
+</ul>
+</li>
+<li><a href="#org4c2b8ee">控制流</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd440e1e" class="outline-2">
+<h2 id="orgd440e1e">IPython</h2>
+<div class="outline-text-2" id="text-orgd440e1e">
+<p>
+IPython是一个加强版的Python解释器。
+</p>
+<ul class="org-ul">
+<li>没有内建到Python自身中的IPython特殊命令称为魔术命令，可以看作是IPython系统内部的命令行程序。魔术命令的前缀符号是百分号 <code>%</code> 。使用魔术命令也可以不加百分号，只要没有变量被定义与魔术函数名字相同即可。这种特性称为自动魔术，通过 <code>%automagic</code> 进行启动禁用。</li>
+</ul>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">命令</th>
+<th scope="col" class="org-left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>%quickref</code></td>
+<td class="org-left">显示IPython快速参考卡。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%magic</code></td>
+<td class="org-left">显示所有可用魔术命令的详细文档。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%debug</code></td>
+<td class="org-left">从最后发生报错的底部进入交互式调试器。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%hist</code></td>
+<td class="org-left">打印历史命令输入。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%pdb</code></td>
+<td class="org-left">出现任意报错后自动进入调试器。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%paste</code></td>
+<td class="org-left">从剪贴板中执行已经预先格式化的Python代码。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%cpaste</code></td>
+<td class="org-left">打开一个特殊提示符，手动粘贴待执行的Python代码。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%reset</code></td>
+<td class="org-left">删除交互式命名空间中所有的变量、名称。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%page OBJECT</code></td>
+<td class="org-left">通过分页器更美观地打印显示一个对象。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%run SCRIPT.py</code></td>
+<td class="org-left">在IPython中运行一个Python脚本。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%prun STATEMENT</code></td>
+<td class="org-left">使用 <code>CProfile</code> 执行语句，并报告输出。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%time STATEMENT</code></td>
+<td class="org-left">报告单个语句的执行时间。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%timeit STATEMENT</code></td>
+<td class="org-left">多次运行单个语句计算平均执行时间（在估算代码最短执行时间时有用）。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%who</code>, <code>%who_ls</code>, <code>%whos</code></td>
+<td class="org-left">根据不同的详细程度，展示交互命名空间中定义的变量。</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%xdel VARIABLE</code></td>
+<td class="org-left">在IPython内部删除一个变量，清除相关的引用。</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>在IPython会话中，可以使用 <code>%run</code> 命令运行任意的Python文件。IPython会在同一个进程内执行指定文件中的代码，确保在执行完成时可以立即得到结果。如果一个Python脚本需要命令行提供参数（通过 <code>sys.argv</code> 获得），那么则需要在命令行的文件路径后面加上参数进行传递。如果想让运行的脚本使用交互式IPython命名空间中已有的变量，需要使用 <code>%run -i</code> 替代 <code>%run</code> 。</li>
+<li><code>%paste</code> 会获得剪贴板中的所有文本，并作为代码块在命令行中执行； <code>%cpaste</code> 与之类似，只不过它会给出一个特殊的提示符提示粘贴代码。</li>
+<li><code>%matplotlib</code> 魔术函数可以设置matplotlib与IPython命令行或Jupyter notebook的集成。</li>
+<li>在任意代码运行时按下 <code>Ctrl-C</code> ，无论脚本是通过 <code>%run</code> 或是其他长命令运行的，都将引起 <code>KeyboardInterrupt</code> ，导致所有的Python程序立即停止运行（某些特殊情况除外）。</li>
+<li>IPython中大多数Python对象会被格式化为更可读、更美观的形式。</li>
+<li>IPython还提供执行任意代码块（通过复制粘贴）和整个Python脚步的功能。</li>
+<li>在一个变量名的前后使用问号(<code>?</code>)可以显示一些关于该对象的概要信息。使用双问号(<code>??</code>) 可以显示函数的源代码。 <code>?</code> 可以像Unix命令行一样搜索IPython命名空间。把一些字符和通配符(<code>*</code>)结合在一起，会显示所有匹配通配符表达式的命令。</li>
+</ul>
+
+<p>
+需要启动Jupyter时，可以在终端中运行如下命令。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">jupyter notebook
+</pre>
+</div>
+<p>
+在很多平台上，Jupyter会自动默认网络浏览器（除非启动Jupyter时使用了 <code>--no-browser</code> 命令）。
+</p>
+</div>
+</div>
+<div id="outline-container-org0d1fc18" class="outline-2">
+<h2 id="org0d1fc18">Python语法</h2>
+<div class="outline-text-2" id="text-org0d1fc18">
+</div>
+<div id="outline-container-orgefaec10" class="outline-3">
+<h3 id="orgefaec10">基础</h3>
+<div class="outline-text-3" id="text-orgefaec10">
+<p>
+Python采用缩进（tab或者空格）来组织代码，而不是像其他语言（如C++、R、Java和Perl）那样采用大括号。一个冒号代表一个缩进的开始，单个代码块中所有的代码必须保持相同的缩进，知道代码块结束。Python不需要以分号结尾，但是可以用于分隔一行内的多条语句。
+</p>
+
+<p>
+Python语言的一个重要特征就是对象模型的一致性。每一个数值、字符串、数据结构、函数、类、模块以及所有存在于Python解释器中的事物，都是Python对象。每个对象都会关联到一种类型（例如字符串、函数）和内部数据。
+</p>
+
+<p>
+所有写在 <code>#</code> 之后的文本都会被Python解释器自动忽略。因此，通常使用 <code>#</code> 在代码中添加注释。
+</p>
+
+<p>
+几乎所有的Python对象都有内部函数，称为方法，可以访问到对象内部的内容。
+</p>
+
+<p>
+在Python中，赋值也称为绑定，因为赋值操作会把一个变量名绑定到一个对象上，被赋值变量名也称为被绑定变量。对一个变量（或者变量名）赋值，本质就是创建一个指向等号右边对象的引用。当把一个对象作为参数传给一个函数时，指向原始对象的新的本地变量就会被创建而无须复制。可以使用关键字 <code>is</code> 和 <code>is not</code> 检查两个引用是否指向同一个对象或不同对象。值得注意的是，函数 <code>list</code> 总是创建一个新的Python列表（即一份拷贝）。
+</p>
+
+<p>
+与C++、Java等大多数编译型语言不同，Python中的对象引用并不涉及类型。变量对于对象来说只是特定命名空间中的名称，类型信息是存储在对象自身里的。可以使用函数 <code>isinstance</code> 来检查一个对象是否是特定类型的实例，该函数可以接受一个包含类型的元组作为参数，用于检查对象的类型是否在元组中的类型中。如：
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #e090d7;">isinstance</span>(a, <span style="color: #e090d7;">int</span>)
+<span style="color: #e090d7;">isinstance</span>(a, (<span style="color: #e090d7;">int</span>, <span style="color: #e090d7;">float</span>))
+</pre>
+</div>
+
+<p>
+在Python中，模块就是以 <code>.py</code> 为后缀名并包含Python代码的文件。
+</p>
+</div>
+</div>
+<div id="outline-container-orgdbeb0a2" class="outline-3">
+<h3 id="orgdbeb0a2">基本类型</h3>
+<div class="outline-text-3" id="text-orgdbeb0a2">
+<p>
+Python中的大部分对象，如列表、字典、 <code>Numpy</code> 数组都是可变对象，大多数用户定义的类型（类）也是可变的。可变对象中包含的对象和值是可以被修改的。但是有一些对象是不可变的，如字符串、元组。
+</p>
+
+<p>
+Python的标准库中有一个小的内建类型集合，用来处理数值、字符串、布尔值以及日期和时间。这类“单值”类型被称为标量。主要的标量类型有 <code>None</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>、 <code>str</code> 、 <code>bytes</code> 、 <code>float</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> 、 <code>bool</code> 、 <code>int</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> 等。
+</p>
+
+<p>
+整数除法会把结果自动转型为浮点数。如果需要C风格的整数除法（去掉小数部分），可以使用整除操作符 <code>//</code> 。
+</p>
+</div>
+<div id="outline-container-org1a292dd" class="outline-4">
+<h4 id="org1a292dd">字符串</h4>
+<div class="outline-text-4" id="text-org1a292dd">
+<p>
+字符串是Unicode字符的序列。可以使用单引号 <code>'</code> 或双引号 <code>"</code> 写一个字符串字面值。对于含有换行的多行字符串，可以使用三个单引号（ <code>'''</code> ）或三个双引号（ <code>"""</code> ）。另外，值得注意的是，字符串是不可改变的。很多Python对象可以通过函数 <code>str</code> 转成字符串。反斜杠 <code>\</code> 是转移符号，它用来指明特殊符号。可以在字符串前面加上前缀符号 <code>r</code> （raw的简写）避免对字符串转义。字符串对象有一个 <code>format</code> 方法，可以用来代替字符串中的格式化参数，并产生一个新的字符串。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd2d22ea" class="outline-4">
+<h4 id="orgd2d22ea">日期和时间</h4>
+<div class="outline-text-4" id="text-orgd2d22ea">
+<p>
+Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， <code>date</code> 和 <code>time</code> 类型。
+</p>
+<ul class="org-ul">
+<li>对于 <code>datetime</code> 实例，可以分别使用 <code>date</code> 和 <code>time</code> 方法获取它的 <code>date</code> 和 <code>time</code> 对象。</li>
+<li><code>strftime</code> 方法可以将 <code>datetime</code> 转换为字符串。格式化说明见下表。</li>
+<li><code>strptime</code> 函数可以将字符串转换为 <code>datetime</code> 对象。</li>
+<li><code>datetime.datetime</code> 是不可变类型。</li>
+<li>两个不同的 <code>datetime</code> 对象可以产生一个 <code>datetime.timedelta</code> 对象。</li>
+</ul>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">类型</th>
+<th scope="col" class="org-left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">%Y</td>
+<td class="org-left">四位数年份</td>
+</tr>
+
+<tr>
+<td class="org-left">%y</td>
+<td class="org-left">两位数年份</td>
+</tr>
+
+<tr>
+<td class="org-left">%m</td>
+<td class="org-left">两位数月份[01, 12]</td>
+</tr>
+
+<tr>
+<td class="org-left">%d</td>
+<td class="org-left">两位数的天数[01, 31]</td>
+</tr>
+
+<tr>
+<td class="org-left">%H</td>
+<td class="org-left">小时（24小时制）[00, 23]</td>
+</tr>
+
+<tr>
+<td class="org-left">%I</td>
+<td class="org-left">小时（12小时制）[01, 12]</td>
+</tr>
+
+<tr>
+<td class="org-left">%M</td>
+<td class="org-left">两位数分钟[00, 59]</td>
+</tr>
+
+<tr>
+<td class="org-left">%S</td>
+<td class="org-left">秒</td>
+</tr>
+
+<tr>
+<td class="org-left">%w</td>
+<td class="org-left">星期[0, 6]</td>
+</tr>
+
+<tr>
+<td class="org-left">%U</td>
+<td class="org-left">一年中的第几个星期值（星期天是每周第一天）[00, 53]</td>
+</tr>
+
+<tr>
+<td class="org-left">%W</td>
+<td class="org-left">一年中的第几个星期值（星期一是每周第一天）[00, 53]</td>
+</tr>
+
+<tr>
+<td class="org-left">%z</td>
+<td class="org-left">UTC时区偏移值</td>
+</tr>
+
+<tr>
+<td class="org-left">%F</td>
+<td class="org-left">%Y-%m-%d的简写</td>
+</tr>
+
+<tr>
+<td class="org-left">%D</td>
+<td class="org-left">%m/%d/%y的简写</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org4c2b8ee" class="outline-3">
+<h3 id="org4c2b8ee">控制流</h3>
+<div class="outline-text-3" id="text-org4c2b8ee">
+<ul class="org-ul">
+<li>一个 <code>if</code> 语句可以接多个 <code>elif</code> 代码块和一个 <code>else</code> 代码块。如果某个条件为 <code>True</code> ，则后面的 <code>elif</code> 和 <code>else</code> 代码块不会执行。当使用 <code>and</code> 和 <code>or</code> 进行混合条件判断时，条件判断是从左到右执行的，而且在 <code>and</code> 和 <code>or</code> 两侧的条件会有短路现象。</li>
+<li><code>for</code> 循环用于遍历一个集合（如列表或元组）或一个迭代器。使用关键字 <code>continue</code> 可以跳出本次循环（跳过其后面的代码）进入下一次循环。关键字 <code>break</code> 可以跳出整个 <code>for</code> 循环。对于多重循环， <code>break</code> 只能跳出最内层的 <code>for</code> 循环，外层的其他 <code>for</code> 循环会继续执行。</li>
+<li><code>while</code> 循环会在条件符合时一直执行代码块，知道判断条件为 <code>False</code> 或显式地通过关键字 <code>break</code> 跳出循环。</li>
+<li><code>pass</code> 表示不执行任何操作。</li>
+<li><code>range</code> 函数返回一个迭代器，该迭代器生成一个等差整数序列。产生的整数包含起始但不包含结尾。</li>
+<li>Python的三元表达式可以将一个 <code>if-else</code>  联合起来，在一行代码或一个语句中生成数据。其语法为：</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fcaf3e;">value</span> = true-expression <span style="color: #b4fa70;">if</span> condition <span style="color: #b4fa70;">else</span> false-expression
+</pre>
+</div>
+<p>
+其结果与如下代码块的结果相同：
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #b4fa70;">if</span> condition:
+    <span style="color: #fcaf3e;">value</span> = true-expression
+<span style="color: #b4fa70;">else</span>:
+    <span style="color: #fcaf3e;">value</span> = false-expression
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Python的 <code>null</code> 值，只存在一个实例。 如果一个函数没有显式的返回值，则它会隐式地返回 <code>None</code> 。它不仅是一个关键字，还是 <code>NoneType</code> 类型的唯一实例。
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+双精度64位数值。 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+可以存储任意大小数字。 
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>
