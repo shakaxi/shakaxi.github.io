@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-09-04 Tue 23:26 -->
+<!-- 2019-02-23 Sat 00:55 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Gantt Chart</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -275,15 +288,6 @@ Today, I found an interesting \(\LaTeX\) package, <i>pgfgantt</i>. This package 
 <p>
 The framework of using the package can be illustrated as
 </p>
-<div class="org-src-container">
-<pre class="src src-latex"><span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">pgfgantt</span>}
-...
-<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">ganttchart</span>}[OPTIONS]{STARTING}{ENDING}
-  TITLE
-  CHARTELEMENT
-<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">ganttchart</span>}
-</pre>
-</div>
 <p>
 where
 </p>
