@@ -41,7 +41,7 @@ The $\text{SLNR}_0$ above can be further written as a /generalized Rayleigh quot
 \begin{align}
 \text{SLNR}_0 = \frac{\mathbf{w}_0^H\mathbf{H}_0^H\mathbf{H}_0\mathbf{w}_0}{\mathbf{w}_0^H (P_N \mathbf{I} + \sum_{i\neq 0} \mathbf{H}_i^H \mathbf{H}_i) \mathbf{w}_0}
 \end{align}
-According to /Rayleigh-Ritz theorem/, if and only if $\mathbf{w}_0$ equals the eigen vectors corresponding to the largest and smallest eigen values of $(P_N\mathbf{I} + \sum_{i\neq 0}\mathbf{H}_i^H\mathbf{H}_i)^{-1}\mathbf{H}_0^H\mathbf{H}_0$, $\text{SLNR}_0$ reaches its minimal and maximal values, respectively.
+According to /Rayleigh-Ritz theorem/, if and only if $\mathbf{w}_0$ equals the eigen vectors corresponding to the largest and smallest eigen values of $(P_N\mathbf{I} + \sum_{i\neq 0}\mathbf{H}_i^H\mathbf{H}_i)^{-1}\mathbf{H}_0^H\mathbf{H}_0$, $\text{SLNR}_0$ reaches its maximal and minimal values, respectively.
 
 Therefore, in order to maximize $\text{SLNR}_0$, the beamforming vector or equivalently the SLNR-based beamforming vector for =UE0=, $\mathbf{w}_0$, is the dominant eigen vector of $(P_N\mathbf{I} + \sum_{i\neq 0}\mathbf{H}_i^H\mathbf{H}_i)^{-1}\mathbf{H}_0^H\mathbf{H}_0$.
 
