@@ -102,7 +102,7 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 |                       | SRS request                         | 0                                             | 2[fn:16]                                         |
 |                       | CSI request                         | 0                                             | 0-6[fn:25]                                       |
 | Power control         | PUSCH power control                 |                                               | 2                                                |
-|                       | Beta offset                         | 0                                             |  0, 2[fn:26]                                            |
+|                       | Beta offset                         | 0                                             | 0, 2[fn:26]                                            |
 ** Slot format indication (DCI format 2-0)
 DCI format 2-0 is used to signal the SFI which is scrambled by SFI-RNTI and common to a severality of UE's.
 ** Preemption indication (DCI format 2-1)
@@ -112,12 +112,35 @@ As a complement to the power control commands, DCI format 2-2 aims to support po
 ** SRS control commands (DCI format 2-3)
 DCI format 2-3 is proposed for power control of SRS, which is decoupled with the power control for PUSCH.
 * Signalling of frequency domain resources
+The frequency-domain resource allocation fields indicate the resource blocks in the active BWP. Regarding the indication, there are a couple of methods, termed /type-0/ and /type-1/ respectively. The former is based on a bitmap, and will bring about large signaling overhead. While the latter covers the a starting position in the frequency domain and an amount of resources.
 
+The resource allocation scheme can be configured as type-0, type-1, and dynamic selection between the both[fn:27]. Note that the allocation is indicated in the term of VRB. For type-0, each VRB is directly mapped to a PRB without interleaving. For type-1, there are two alternatives for the VRB-to-PRB mapping, interleaved and non-interleaved.
+
+Generally, many transmission parameters are per-BWP configured. The information obtained are based on the current BWP, which should be transformed and translated before applied to the target BWP by padding/truncating for each DCI field.
 * Signalling of time domain resources
+The time domain allocation field in DCI is essentially an entry index of the corresponding table. Totally two tables are configured by RRC signalling, for downlink scheduling assignment and uplink scheduling grant respectively. A table has up to 16 entries, with each entry consisting of
+- A /slot offset/ relative to the DCI belonging slot
+- The starting OFDM symbol for data transmission
+- The number of OFDM symbols in the slot
+- For downlink, the PDSCH mapping type.
 
+/Slot aggregation/ is a tool for coverage enhancement, in which a TB is repeated across up to 8 slots. The related configuration is separately signalled by RRC signalling.
 * Signalling of TB size
+Regarding TB size determination, NR adopts a hybrid method. For smaller TB, NR defines a table to lookup. While for larger TB, the TB size can be computed based on a formula.
+
+Considering the 5-bit MCS field, there are 32 combinations. Depending on whether 256QAM is supported or not, there are 28 or 29 MCS levels and the other 4[fn:28] or 3[fn:29] are reserved for retransmission.
+
+According to the indication of the scheduled resources, the number of RE's available can be obtained. By subtracting the RE's for DMRS, and CSI-RS/SRS, the number of RE's available for data transmission can be further acquired. According to the spectral efficiency indicated by MCS, an intermediate number of information bits can be got whereby table lookup or formula-based computation can be carried out. After that, the TB size can be determined.
+
+For retransmission, the TB size is equal to that for initial transmission. Based on the modulation order indicated by the reserved MCS level, the code rate can be implicitly derived.
 
 * Footnotes
+
+[fn:29]Corresponding to QPSK, 16QAM, and 64QAM.
+
+[fn:28]Corresponding to QPSK, 16QAM, 64QAM, and 256QAM. 
+
+[fn:27]Using 1 bit in DCI.
 
 [fn:26]Control the amount of resources for UCI on PUSCH in case dynamic beta offset signalling is configured. 
 
@@ -153,7 +176,7 @@ DCI format 2-3 is proposed for power control of SRS, which is decoupled with the
 
 [fn:10]Depend on a second TB's presence.
 
-[fn:9]Depend on bandwidth and resource allocation type. 
+[fn:9]Depend on bandwidth and resource allocation type of the current active BWP, not the target BWP. 
 
 [fn:8]Present only when resource allocation type 1 is used. 
 
