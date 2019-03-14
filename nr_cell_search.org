@@ -1,0 +1,48 @@
+#+TITLE: NR - Cell Search
+#+OPTIONS: \usepackage{amsmath, amssymb, amsfonts}
+
+* Synchronization signals
+In NR, synchronization signals consist of /primary synchronization signal (PSS)/ and /secondary synchronization signal (SSS)/. Together with /physical broadcast channel (PBCH)/, PSS and SSS are jointly termed /synchronization signal block (SSB[fn:1])/.
+
+A SSB spans 4 OFDM symbols in the time domain and 240 subcarriers in the frequency domain. Within a SSB, the PSS and SSS lie in the 1st and 3rd symbol, respectively. The PBCH situates in the 2nd and 4th symbols, as well as the 48 subcarriers on the each side of the SSS (in the 3rd symbol). Therefore, within a SSB, there are totally $240 + 48 \times 2 + 240 = 576$ RE's for PBCH transmission[fn:2].
+
+It should be noted that 60kHz numerology cannot be used for SSB transmission.
+
+The SSB is periodically transmitted and the periodicity can be 5/10/20/40/80/160ms. But a UE always assumes that a SSB is repeated at least once every 20ms no matter whether it is the truth.
+** PSS
+NR uses a basic m-sequence of length 127, and its two cyclically shifted versions[fn:4] as PSS sequences. The initial values of the basic sequence are {0, 1, 1, 0, 1, 1, 1}. The subsequent values can be derived according to
+\begin{align*}
+x_0(n) = x_0(n - 7) \oplus x_0(n - 3).
+\end{align*}
+Then, the cyclically shifted sequences can be obtained by
+\begin{align*}
+  x_1(n) = x_0(n + 43 \mod 127), \\
+  x_2(n) = x_0(n + 86 \mod 127).
+\end{align*}
+* Synchronization raster
+Different from the strategy in LTE where the PSS/SSS is always transmitted at the center of a carrier in the frequency domain, SSB in NR is transmitted on a sparser /synchronization raster/.
+* Synchronization signal burst set
+Targetting effective coverage, a series of SSB's are transmitted using different analog beams in a TDM way. Accordingly, a set of SSB's within a beam sweeping cycle is referred to as an /synchronization signal burst set[fn:3]/.
+
+The size of a synchronization signal burst set, i.e., the number of SSB's within a burst set, can vary from 1 to a maximum, which depends on the carrier frequency, as shown in the table below.
+| <l>                           |               <c>                |
+| Carrier frequency             |      The maximum size of a       |
+|                               | synchronization signal burst set |
+|-------------------------------+----------------------------------|
+| FR1 below 3GHz                |                4                 |
+| FR1 above 3GHz and below 6GHz |                8                 |
+| FR2                           |                64                |
+
+Within a burst set, there may be SSB transmission in any of the first 4 or 2 (for FR1 below 3GHz) slots. In each of these slots, there can be up to 2 SSB's, symbols 2-5 and 8-11. The first and last 2 symbols are dedicated to donwlink and uplink control signalling, respectively.
+
+The PSS/SSS only depends on the physical cell identity (PCI), i.e., the PSS/SSS across SSB's are identical and cannot be used for frame timing. Thus, a relative /time index/ is included in the PBCH.
+
+* Footnotes
+
+[fn:4]The values for cyclic shift are 43 and 86.
+ 
+[fn:3]Synchronization signal burst is an intermediate conception in the 3GPP discussion, but the synchronization signal burst set is retained.
+
+[fn:2]Including the DMRS RE's for coherent demodulation of PBCH. 
+
+[fn:1]Sometimes, a SSB only includes PSS and SSS.
