@@ -27,8 +27,8 @@ In =org= mode, instead of =CDLaTeX= itself, its light version =org-cdlatex-mode=
 | =C-c -=    | =cdlatex-item=            |
 | =$=        | =cdlatex-dollar=          |
 | =(=        | =cdlatex-pbb=             |
-| ={=        | =cdlatex-pbb=             |
 | =[=        | =cdlatex-pbb=             |
+| ={=        | =cdlatex-pbb=             |
 | =<=        | =cdlatex-pbb=             |
 | =^=        | =cdlatex-sub-superscript= |
 | =_=        | =cdlatex-sub-superscript= |

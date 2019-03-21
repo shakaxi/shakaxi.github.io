@@ -63,10 +63,10 @@ The PBCH carries the /master information block (MIB)/. The information carried b
 SSB time index is jointly provided by an implicit part, i.e., 8 different scrambling patterns, and an explicit part, i.e., payload in PBCH. For FR1, there are at most 8 SSB's within a synchronization signal burst set and can be fully indicated by the 8 scrambling patterns. Therefore, there is no "SSB time index" field in the PBCH.
 
 The filed of "CRB grid offset" only indicates the offset between the SSB and the CRB grid. The absolute position of a SSB within the overall carrier is provided by SIB1.
-* Remaining system information (RMSI)
+* Remaining minimum system information (RMSI)
 In NR, except the quite limited information within MIB, system information is carried by different /system information blocks (SIB's)/.
 
-SIB1, also referred as /remaining system information (RMSI)/, is transmitted as an ordinary PDSCH every 160ms. Other SIB's are not needed to know before access. These SIB's can be broadcast as periodically as SIB1 or transmitted on demand, i.e., at a UE's request.
+SIB1, also referred as /remaining minimum system information (RMSI)/, is transmitted as an ordinary PDSCH every 160ms. Other SIB's are not needed to know before access. These SIB's can be broadcast as periodically as SIB1 or transmitted on demand, i.e., at a UE's request.
 
 * Footnotes
 
