@@ -1,0 +1,42 @@
+#+TITLE: Orgmode - Table
+
+* Introduction
+[[http://orgmode.org][Orgmode]] provides a minor mode /orgtbl-mode/, which makes table creating and editing extremely easy.
+
+Any line with =|= as the first non-whitespace character is treated as a part of a table. 
+
+The fastest way to create a table is to directly type =|Column1|Column2|Column3= followed by =C-c RET=. Then a 3-column table will be created immediately, with the head of =Column1=, =Column2=, and =Column3= respectively.
+
+* Keybinding
+| Keybinding     | Functionality                                                       |
+|----------------+---------------------------------------------------------------------|
+| =C-c= \vert    | Convert the active region to a table.                               |
+| =C-c SPC=      | Clear the current cell.                                             |
+| =C-c C-c=      | Re-align the table.                                                 |
+| =TAB=          | Re-align the table move to the next column.                         |
+| =S-TAB=        | Re-align the table move to the previous column.                     |
+| =M-a=          | Move the beginning of the current cell, or on to the previous cell. |
+| =M-e=          | Move the end of the current cell, or on to the next cell.           |
+| =RET=          | Re-align the table and move to the next row.                        |
+| =M-left/right= | Move the current column left/right.                                 |
+| =M-up/down=    | Move the current row up/down.                                       |
+| =M-S-left=     | Kill the current column.                                            |
+| =M-S-up=       | Kill the current row.                                               |
+| =M-S-right=    | Insert a new column to the right.                                   |
+| =M-S-down=     | Insert a new row above.                                             |
+| =C-c -=        | Insert a horizontal line below.                                     |
+| =C-u C-c -=    | Insert a horizontal line above.                                     |
+| =C-c +=        | Sum the numbers in the current column, or a active region.          |
+
+* Alignment and width
+- =<l>=, =<r>=, and =<c>= can align the column at point to the left, right, and center respectively.
+- =<N>= can fix the width of the column at point to =N= characters.
+* Reference
+| Symbol     | Reference                        |
+|------------+----------------------------------|
+| =@r=       | r-th row                         |
+| =$c=       | c-th column                      |
+| =@r$c=     | The cell in r-th row c-th column |
+| =@r1..@r2= | The rows from r1 to r2           |
+| =$c1..$c2= | The columns from c1 to c2        |
+
