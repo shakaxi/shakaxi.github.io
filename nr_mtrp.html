@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-03-21 Thu 23:21 -->
+<!-- 2019-03-31 Sun 18:47 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - Multi-TRP Transmission</title>
@@ -309,19 +309,12 @@ For clear description, following denotation conventions have been adopted throug
 <p>
 Without loss of generality, we consider such a simple 2-TRP non-coherent joint transmission (NCJT) scenario that a UE receives two PDSCH's from TRP-1 and TRP-2 simutaneously, as shown in the figure below. Each TRP is equipped with \(n_t\) antennas, while the UE has \(n_r\) antennas. For clear description, the downlink channel, precoding matrix, and the transmitted signal from TRP-\(i\), are denoted by \(\mathbf{H}_i \in \mathbb{C}^{n_r \times n_t}\), \(\mathbf{W}_i \in \mathbb{C}^{n_t \times r_i}\), and \(\mathbf{x}_i \in \mathbb{C}^{r_i \times 1}\) respectively, where \(r_i\) is the number of layers of the PDSCH transmitted from TRP-\(i\), \(i = 1, 2\).
 </p>
-\begin{figure}[h]
-  \centering
-  \begin{tikzpicture}
-    \shade[inner color = red, outer color = red!10](-3, 0)ellipse(3 and 1);
-    \shade[inner color = blue, outer color = blue!10](3, 0)ellipse(3 and 1);
-    \draw [very thick](-3, 0) -> (-3, 3) node[label=90:TRP-1](trp1){};
-    \draw [very thick](3, 0) -> (3, 3) node[label=90:TRP-2](trp2){};
-    \node at (0, 0)[label=100:$\mathbf{x}_1$, label=80:$\mathbf{x}_2$](ue){\huge\Mobilefone};
-    \draw (trp1) edge[->]node[label=45:$\mathbf{H}_1$, label=-135:$\mathbf{W}_1$]{} (ue);
-    \draw (trp2) edge[->]node[label=135:$\mathbf{H}_2$, label=-45:$\mathbf{W}_2$]{} (ue);
-  \end{tikzpicture}
-  \caption{System model}\label{fig:sys_mod}
-\end{figure}
+
+<div class="figure">
+<p><img src="mtrp-sys-mod.png" alt="mtrp-sys-mod.png">
+</p>
+<p><span class="figure-number">Figure 1: </span>System model</p>
+</div>
 
 <p>
 Then, the received signal can be written as
