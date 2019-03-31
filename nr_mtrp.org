@@ -26,8 +26,9 @@ Without loss of generality, we consider such a simple 2-TRP non-coherent joint t
     \draw (trp2) edge[->]node[label=135:$\mathbf{H}_2$, label=-45:$\mathbf{W}_2$]{} (ue);
   \end{tikzpicture}
 #+end_src
-#+RESULTS:
 #+CAPTION:System model
+#+ATTR_HTML: :width 800px
+#+RESULTS:
 [[file:mtrp-sys-mod.png]]
 
 Then, the received signal can be written as
