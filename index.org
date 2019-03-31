@@ -57,6 +57,7 @@
 - [[file:nr_cell_search.org][NR - Cell Search]]
 - [[file:nr_mtrp.org][NR - Multi-TRP Transmission]]
 - [[file:nr_pdcch.org][NR - PDCCH]]
+- [[file:nr_ptrs.org][NR - PTRS]]
 - [[file:ntp.org][NTP]]
 - [[file:org_tab.org][Orgmode - Table]]
 - [[file:pbs_maui.org][PBS and Maui]]
