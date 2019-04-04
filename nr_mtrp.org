@@ -3,9 +3,8 @@
 #+OPTIONS: \usepackage{amsmath}
 #+OPTIONS: \usepackage{amssymb}
 #+OPTIONS: \usepackage{amsfonts}
-#+OPTIONS: \usepackage{tikz}
 #+OPTIONS: \usepackage{marvosym}
-#+PROPERTY: header-args:latex :results raw :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
+#+PROPERTY: header-args:latex :results raw :headers '("\\usepackage{tikz}") :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
 
 * Introduction
 Recently, multi-TRP transmission is one of the most remarkable features of NR and consequently the focus of discussion in the standardization of 3GPP, since it is able to efficiently improve the reliability or the efficiency of the transmission.
