@@ -19,6 +19,7 @@ A SSB spans 4 OFDM symbols in the time domain and 240 subcarriers in the frequen
 #+end_src
 
 #+CAPTION: SSB
+#+ATTR_HTML: :width 100px
 #+RESULTS:
 [[file:nr_ssb.png]]
 
