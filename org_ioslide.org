@@ -1,4 +1,4 @@
-#+TITLE: Emacs - Orgmode Export to HTML5 Slide
+#+TITLE: Orgmode - Export to HTML5 Slide
 
 * Introduction
 As is well-known, [[http://orgmode.org][orgmode]] is a famous major mode of [[http://www.gnu.org/software/emacs/][Emacs]]. What deserves notice, it can export org files to a variety of formats, e.g. \LaTeX, pdf, text, freemind.
