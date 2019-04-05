@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-03-21 Thu 23:21 -->
+<!-- 2019-04-05 Fri 21:48 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - Cell Search</title>
@@ -290,8 +290,14 @@ In NR, synchronization signals consist of <i>primary synchronization signal (PSS
 </p>
 
 <p>
-A SSB spans 4 OFDM symbols in the time domain and 240 subcarriers in the frequency domain. Within a SSB, the PSS and SSS lie in the 1st and 3rd symbol, respectively. The PBCH situates in the 2nd and 4th symbols, as well as the 48 subcarriers on the each side of the SSS (in the 3rd symbol). Therefore, within a SSB, there are totally \(240 + 48 \times 2 + 240 = 576\) RE's for PBCH transmission<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+A SSB spans 4 OFDM symbols in the time domain and 240 subcarriers in the frequency domain. Within a SSB, the PSS and SSS lie in the 1st and 3rd symbol, respectively. The PBCH situates in the 2nd and 4th symbols, as well as the 48 subcarriers on the each side of the SSS (in the 3rd symbol), as shown in the figure below. Therefore, within a SSB, there are totally \(240 + 48 \times 2 + 240 = 576\) RE's for PBCH transmission<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
 </p>
+
+<div class="figure">
+<p><img src="nr_ssb.png" alt="nr_ssb.png">
+</p>
+<p><span class="figure-number">Figure 1: </span>SSB</p>
+</div>
 
 <p>
 It should be noted that 60kHz numerology cannot be used for SSB transmission.
@@ -486,7 +492,7 @@ In NR, except the quite limited information within MIB, system information is ca
 </p>
 
 <p>
-SIB1, also referred as <i>remaining minimum system information (RMSI)</i>, is transmitted as an ordinary PDSCH every 160ms. Other SIB's are not needed to know before access. These SIB's can be broadcast as periodically as SIB1 or transmitted on demand, i.e., at a UE's request.
+SIB1, also referred to as <i>remaining minimum system information (RMSI)</i>, is transmitted as an ordinary PDSCH every 160ms. Other SIB's are not needed to know before access. These SIB's can be broadcast as periodically as SIB1 or transmitted on demand, i.e., at a UE's request.
 </p>
 </div>
 </div>

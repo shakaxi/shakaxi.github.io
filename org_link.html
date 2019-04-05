@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2019-04-05 Fri 21:48 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emacs - Orgmode Export to HTML5 Slide</title>
+<title>Orgmode - Link</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -225,84 +238,161 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Emacs - Orgmode Export to HTML5 Slide</h1>
+<h1 class="title">Orgmode - Link</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb740c6b">Introduction</a></li>
-<li><a href="#orgd5922ad">Installation</a></li>
-<li><a href="#org898e8ff">Usage</a></li>
+<li><a href="#orgcde87e7">Introduction</a></li>
+<li><a href="#org7d9b2b3">Format</a>
+<ul>
+<li><a href="#org294f98a">Internal links</a></li>
+<li><a href="#org9aeb2e5">Targeted links</a></li>
+</ul>
+</li>
+<li><a href="#orgf077aac">Keybinding</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb740c6b" class="outline-2">
-<h2 id="orgb740c6b">Introduction</h2>
-<div class="outline-text-2" id="text-orgb740c6b">
+<div id="outline-container-orgcde87e7" class="outline-2">
+<h2 id="orgcde87e7">Introduction</h2>
+<div class="outline-text-2" id="text-orgcde87e7">
 <p>
-As is well-known, <a href="http://orgmode.org">orgmode</a> is a famous major mode of <a href="http://www.gnu.org/software/emacs/">Emacs</a>. What deserves notice, it can export org files to a variety of formats, e.g. \LaTeX, pdf, text, freemind.
+<a href="http://orgmode.org">Orgmode</a> is an extremely powerful tool for get thing done (GTD), project planning, note keeping, etc.
 </p>
 
 <p>
-Today, I found an interesting export backend, <code>ox-ioslide</code>, whereby org files can be directly exported to html5 slides.
+Orgmode makes it fairly easy to insert, edit, and reference to a variety types of links.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd5922ad" class="outline-2">
-<h2 id="orgd5922ad">Installation</h2>
-<div class="outline-text-2" id="text-orgd5922ad">
+<div id="outline-container-org7d9b2b3" class="outline-2">
+<h2 id="org7d9b2b3">Format</h2>
+<div class="outline-text-2" id="text-org7d9b2b3">
 <p>
-It can be easily installed via Emacs's <code>ELPA</code> system.
+The general format for a link looks like:
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">M-x package-install ox-ioslide
+<pre class="src src-sh">[[link][description]]
 </pre>
 </div>
 <p>
-After that, the backend can be automatically loaded by adding the following line in <code>.emacs</code>.
+or
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">ox-ioslide</span>)
+<pre class="src src-sh">[[link]]
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org898e8ff" class="outline-2">
-<h2 id="org898e8ff">Usage</h2>
-<div class="outline-text-2" id="text-org898e8ff">
 <p>
-After the installation, an org file can be exported to html5 slides through the built-in exporter.
+If the description is a file name or URL that points to an image, HTML export will inline the image as a clickable button. If there is no description and the link points to an image, the image will be inlined into the exported HTML file.
 </p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">C-c C-e i h
-</pre>
 </div>
+<div id="outline-container-org294f98a" class="outline-3">
+<h3 id="org294f98a">Internal links</h3>
+<div class="outline-text-3" id="text-org294f98a">
+<p>
+An internal link is used to mark an object and assign it a number. The marked object can be referenced by links pointing to it. Particularly, links without description appear as the number assigned.
+</p>
+
+<ul class="org-ul">
+<li>An entry with the <code>CUSTOM_ID</code> property of <code>my-custom-id</code> can be referenced to as <code>[[#my-custom-id]]</code>.</li>
+<li><code>[[My Target]]</code> or <code>[[My Target][Find my target]]</code> leads to a text search in the current file for the corresponding target <code>&lt;&lt;My Target&gt;&gt;</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9aeb2e5" class="outline-3">
+<h3 id="org9aeb2e5">Targeted links</h3>
+<div class="outline-text-3" id="text-org9aeb2e5">
+<p>
+File links can contain additional information for more precise jumping, which can be a line number or a search option after a double colon.
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Link</th>
+<th scope="col" class="org-left">Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>[[file:/path/to/filename::9]]</code></td>
+<td class="org-left">Line 9 of the target file.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>[[file:/path/to/filename::My Target]]</code></td>
+<td class="org-left">Find <code>&lt;&lt;My Target&gt;&gt;</code> in the target file.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>[[file:/path/to/filename::*My Target]]</code></td>
+<td class="org-left">Find headline <code>My Target</code> in the target file.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>[[file:/path/to/filename::#my-custom-id]]</code></td>
+<td class="org-left">Find entry with the <code>CUSTOM_ID</code> property of <code>my-custom-id</code>.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>[[file:/path/to/filename::/regexp/]]</code></td>
+<td class="org-left">Find regular expression <code>regexp</code> in the target file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf077aac" class="outline-2">
+<h2 id="orgf077aac">Keybinding</h2>
+<div class="outline-text-2" id="text-orgf077aac">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c l</code></td>
+<td class="org-left">Store a link to the current location.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-l</code></td>
+<td class="org-left">Insert a new link or edit an existing link.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-o</code></td>
+<td class="org-left">Open the link at point.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c &amp;</code></td>
+<td class="org-left">Return to the previous position.</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
