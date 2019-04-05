@@ -1,0 +1,24 @@
+#+TITLE: NR - UCI
+#+PROPERTY: header-args:latex :results raw :headers '("\\usepackage{tikz}") :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
+
+* Introduction
+Targetting for HARQ acknowledgement and scheduling request, similar to LTE, /uplink control information (UCI)/ is transmitted on /physical uplink control channel (PUCCH)/ or /physical uplink shared channel (PUSCH)/.
+
+Simultaneous transmission of PUCCH and PUSCH is not supported in release 15, but UCI can be pigged-back on PUSCH, i.e., UCI is multiplexed with data and transmitted on PUSCH.
+
+In /carrier aggregation (CA)/ case, UCI is only transmitted on the primary cell (PCell), to support asymmetric CA, i.e., different number of carriers in the downlink and uplink. To avoid overloading, PUCCH's can be divided into 2 groups. The feedback relating to the 1st group is transmitted in the uplink of the PCell, while the feedback corresponding to the 2nd group is delivered in the uplink of the primary second cell (PSCell).
+
+For PUCCH, only a single antenna port is specified. Given a UE equipped with multiple antennas, how to make use of the antenna array is a UE implementation related issue.
+* UCI formats
+There are 5 PUCCH formats, termed formats 0, 1, 2, 3, and 4, respectively.
+
+Formats 0 and 2 are referred to as /short PUCCH formats/ since it occupies at most 2 OFDM symbols in the time domain, e.g., the last one or two OFDM symbols in a slot.
+
+Formats 1, 3, 4 are termed /long PUCCH formats/ for its duration of 4-14 OFDM symbols.
+** TODO Format 0
+Targetting for a HARQ acknowledgement or a scheduling request, this format carries at most 2 bits, ans spans 1 or 2 OFDM symbol(s).
+** TODO Format 1
+** TODO Format 2
+This format aims for CSI reporting or HARQ acknowledgements. It carries more than 2 bits and spans 1 or 2 OFDM symbol(s).
+** TODO Format 3
+** TODO Format 4
