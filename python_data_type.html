@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-07 Sun 23:53 -->
+<!-- 2019-04-08 Mon 23:57 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orgmode - Link</title>
+<title>Python - Data Type</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -241,146 +241,84 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Orgmode - Link</h1>
+<h1 class="title">Python - Data Type</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcde87e7">Introduction</a></li>
-<li><a href="#org7d9b2b3">Format</a>
-<ul>
-<li><a href="#org294f98a">Internal links</a></li>
-<li><a href="#org9aeb2e5">Targeted links</a></li>
-</ul>
-</li>
-<li><a href="#orgf077aac">Keybinding</a></li>
+<li><a href="#org70e9a5d">元组</a></li>
+<li><a href="#org9e93c8c">列表</a></li>
+<li><a href="#org2233c28">内建序列函数</a></li>
+<li><a href="#orgb5f1fc1">字典</a></li>
+<li><a href="#org4b2d86b">集合</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcde87e7" class="outline-2">
-<h2 id="orgcde87e7">Introduction</h2>
-<div class="outline-text-2" id="text-orgcde87e7">
-<p>
-<a href="http://orgmode.org">Orgmode</a> is an extremely powerful tool for get thing done (GTD), project planning, note keeping, etc.
-</p>
-
-<p>
-Orgmode makes it fairly easy to insert, edit, and reference to a variety types of links.
-</p>
-</div>
-</div>
-<div id="outline-container-org7d9b2b3" class="outline-2">
-<h2 id="org7d9b2b3">Format</h2>
-<div class="outline-text-2" id="text-org7d9b2b3">
-<p>
-The general format for a link looks like <code>[[link][description]]</code> or <code>[[link]]</code>. If the description is a file name or URL that points to an image, HTML export will inline the image as a clickable button. If there is no description and the link points to an image, the image will be inlined into the exported HTML file.
-</p>
-</div>
-<div id="outline-container-org294f98a" class="outline-3">
-<h3 id="org294f98a">Internal links</h3>
-<div class="outline-text-3" id="text-org294f98a">
-<p>
-An internal link is used to mark an object and assign it a number. The marked object can be referenced by links pointing to it. Particularly, links without description appear as the number assigned.
-</p>
-
+<div id="outline-container-org70e9a5d" class="outline-2">
+<h2 id="org70e9a5d">元组</h2>
+<div class="outline-text-2" id="text-org70e9a5d">
 <ul class="org-ul">
-<li>An entry with the <code>CUSTOM_ID</code> property of <code>my-custom-id</code> can be referenced to as <code>[[#my-custom-id]]</code>.</li>
-<li><code>[[My Target]]</code> or <code>[[My Target][Find my target]]</code> leads to a text search in the current file for the corresponding target <code>&lt;&lt;My Target&gt;&gt;</code>.</li>
+<li>元组是一种固定长度、不可变的Python对象序列。创建元组最简单的方法就是用逗号分隔序列值。</li>
+<li>元组可嵌套，通常需要用括号将值包起来。</li>
+<li>可以使用函数 <code>tuple</code> 将任意序列或迭代器转换为元组。</li>
+<li>元组可以通过中括号 <code>[]</code> 来索引（获取）元组的元素<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。</li>
+<li>可以使用 <code>+</code> 连接元组生成更长的元组。</li>
+<li>如果需要将元组表达式赋值给变量，Python会对等号右边的值进行拆包。即使是嵌套元组，也可以拆包。拆包的一个常用场景就是遍历元组或列表的序列。拆包过程中，带有 <code>*</code> 前缀的变量名可以匹配任意长度的位置参数列表。为了方便，可以使用下划线 <code>_</code> 表示不想要的变量。</li>
+<li>方法 <code>count</code> 用于计算某个值在元组中出现的次数。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9aeb2e5" class="outline-3">
-<h3 id="org9aeb2e5">Targeted links</h3>
-<div class="outline-text-3" id="text-org9aeb2e5">
-<p>
-File links can contain additional information for more precise jumping, which can be a line number or a search option after a double colon.
-</p>
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Link</th>
-<th scope="col" class="org-left">Target</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>[[file:/path/to/filename::9]]</code></td>
-<td class="org-left">Line 9 of the target file.</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>[[file:/path/to/filename::My Target]]</code></td>
-<td class="org-left">Find <code>&lt;&lt;My Target&gt;&gt;</code> in the target file.</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>[[file:/path/to/filename::*My Target]]</code></td>
-<td class="org-left">Find headline <code>My Target</code> in the target file.</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>[[file:/path/to/filename::#my-custom-id]]</code></td>
-<td class="org-left">Find entry with the <code>CUSTOM_ID</code> property of <code>my-custom-id</code>.</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>[[file:/path/to/filename::/regexp/]]</code></td>
-<td class="org-left">Find regular expression <code>regexp</code> in the target file.</td>
-</tr>
-</tbody>
-</table>
+<div id="outline-container-org9e93c8c" class="outline-2">
+<h2 id="org9e93c8c">列表</h2>
+<div class="outline-text-2" id="text-org9e93c8c">
+<ul class="org-ul">
+<li>可以使用中括号 <code>[]</code> 或者 函数 <code>list</code> 来定义列表。后者常用于将迭代器或者生成器转化为列表。</li>
+<li>方法 <code>append</code> 用于将元素添加到列表的尾部。</li>
+<li>方法 <code>insert</code> 用于将元素插入到列表的指定位置。其计算量高于 <code>append</code> 。</li>
+<li>方法 <code>pop</code> 会将指定位置的元素移除并返回。</li>
+<li>方法 <code>remove</code> 移除第一个符合值要求的元素。</li>
+<li>方法 <code>extend</code> 向列表中添加多个元素。</li>
+<li>方法 <code>sort</code> 对列表进行内部排序。</li>
+<li>关键字 <code>in</code> 可以检查一个元素是否在列表中。其前可加关键字 <code>not</code> ，用于检查一个元素是否不在列表中。</li>
+<li>可以使用 <code>+</code> 连接列表生成更长的列表。该过程需要创建新的列表，并且还要复制对象。</li>
+<li>切片符号可以对大多数序列类型选取其子集，其基本形式为 <code>[start: stop: step]</code> 。
+<ul class="org-ul">
+<li>所选取子集包含起始位置 <code>start</code> ，不包含结束位置 <code>stop</code> ，所以选取子集的数量为 <code>stop - start</code> 。</li>
+<li>索引可以为负值，意味着从序列的尾部进行索引。</li>
+<li><code>start</code> ， <code>stop</code> ， <code>step</code> 均可省略，默认值分别为0，列表长度，1。</li>
+</ul></li>
+</ul>
 </div>
 </div>
-</div>
-<div id="outline-container-orgf077aac" class="outline-2">
-<h2 id="orgf077aac">Keybinding</h2>
-<div class="outline-text-2" id="text-orgf077aac">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Keybinding</th>
-<th scope="col" class="org-left">Functionality</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c l</code></td>
-<td class="org-left">Store a link to the current location.</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c C-l</code></td>
-<td class="org-left">Insert a new link or edit an existing link.</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c C-o</code></td>
-<td class="org-left">Open the link at point.</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c &amp;</code></td>
-<td class="org-left">Return to the previous position.</td>
-</tr>
-</tbody>
-</table>
+<div id="outline-container-org2233c28" class="outline-2">
+<h2 id="org2233c28">内建序列函数</h2>
+<div class="outline-text-2" id="text-org2233c28">
+<ul class="org-ul">
+<li>函数 <code>enumerate</code> 返回形如 <code>(索引值, 元素值)</code> 的元组的序列。</li>
+<li>函数 <code>sorted</code> 对序列排序并返回新的有序序列。</li>
+<li>函数 <code>zip</code> 将列表、元组或其他序列的元素配对，生成一个元组的列表并返回之。 <code>zip</code> 可以处理任意长度的序列，其生成的列表长度由最短的序列决定。</li>
+<li>函数 <code>reversed</code> 将序列的元素逆序排列。</li>
+</ul>
 </div>
 </div>
+<div id="outline-container-orgb5f1fc1" class="outline-2">
+<h2 id="orgb5f1fc1">字典</h2>
 </div>
+
+<div id="outline-container-org4b2d86b" class="outline-2">
+<h2 id="org4b2d86b">集合</h2>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+索引从0开始。 
+</p></div></div>
+
+
+</div>
+</div></div>
 </body>
 </html>
