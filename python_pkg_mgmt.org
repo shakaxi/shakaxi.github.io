@@ -1,0 +1,46 @@
+#+TITLE: Python - Package Management
+
+* Introduction
+One of the most charmful characters of Python is its a rich number of packages. Accordingly, package managers emerge, e.g., =pip=, =setuptools=. This post just briefly introduce the usage of =pip=.
+* Installation
+In ArchLinux system, =pip= can be easily installed by
+#+begin_src sh
+  pacman -S python-pip
+#+end_src
+As a dependency, =python= will also be installed if it has not yet.
+* Configuration
+Similar to the package manager of Linux operation systems, =pip= connects with, synchronizes to, and downloads from websites. For the sake of download speed maximization, =pip= is encouraged to visit the nearest mirror site, which can be configured by editing =/etc/pip.conf=, e.g.,
+#+begin_src sh
+  [global]
+  index-url = https://mirrors.163.com/pypi/simple
+#+end_src
+* Usage
+** Install package(s)
+#+begin_src sh
+  pip install PKG_NAMES
+#+end_src
+** Upgrade package(s)
+#+begin_src sh
+  pip install --upgrade PKG_NAMES
+  pip install -U PKG_NAMES
+#+end_src
+** Uninstall package(s)
+#+begin_src sh
+  pip uninstall PKG_NAMES
+#+end_src
+** List installed packages
+#+begin_src sh
+  pip list
+#+end_src
+** Search a package
+#+begin_src sh
+  pip search KEY_WORDS
+#+end_src
+** Show information of an installed package
+#+begin_src sh
+  pip show PKG_NAME
+#+end_src
+** Download package(s)
+#+begin_src sh
+  pip download PKG_NAMES
+#+end_src
