@@ -28,9 +28,52 @@
 - 函数 =zip= 将列表、元组或其他序列的元素配对，生成一个元组的列表并返回之。 =zip= 可以处理任意长度的序列，其生成的列表长度由最短的序列决定。
 - 函数 =reversed= 将序列的元素逆序排列。
 * 字典
-
+- 字典即哈希表或关联数组，是键值对（二元组）的集合。其中，键值都是Python对象，而且键必须是不可变的对象。
+- 可以使用大括号 ={}= 创建字典，字典元素用逗号分隔，元素的键和值用冒号 =:= 分隔。
+- 就像列表和元组一样，可以访问、插入、或设置字典中的元素。
+- 关键字 =in= 可以用于检查字典中是否含有某个键。
+- 可以使用关键字 =del= 或 方法 =pop= 根据键删除字典元素。其中，后者返回对应的值。
+- 方法 =keys= 返回字典键的迭代器。
+- 方法 =values= 返回字典值的迭代器。
+- 方法 =update= 用于合并或更新字典。
+- 方法 =hash= 可以检查一个对象是否可以哈希化，也即是否可以用作字典的键。
+- 方法 =get= 可以返回一个默认值。也即
+#+begin_src python
+  VALUE = SOME_DICT.get(KEY, DEFAULT_VALUE)
+#+end_src
+等价于
+#+begin_src python
+  if KEY in SOME_DICT:
+      VALUE = SOME_DICT[KEY]
+  else:
+      VALUE = DEFAULT_VALUE
+#+end_src
 * 集合
-
+- 集合是一种无序且元素唯一的容器。其元素必须是不可变的。
+- 可以使用大括号 ={}= 或者方法 =set= 创建集合。
+- 方法 =union= 或二元操作符 =|= 可以获得集合的并集。
+- 方法 =intersection= 或二元操作符 =&= 可以获得集合的交集。
+* 列表、字典和集合的推导式
+- 列表的推导式如下:
+#+begin_src python
+  LIST = [EXPRESSION for VALUE in COLLECTION if CONDITION]
+#+end_src
+其等价于
+#+begin_src python
+  LIST = []
+  for VALUE in COLLECTION:
+      if CONDITION:
+          LIST.append(EXPRESSION)
+#+end_src
+其中， =CONDITION= 可以省略。
+- 字典的推导式如下:
+#+begin_src python
+  DICTIONARY = {KEY: VALUE for VALUE in COLLECTION if CONDITION}
+#+end_src
+- 集合的推导式如下:
+#+begin_src python
+  SET = {EXPRESSION for VALUE in COLLECTION if CONDITION}
+#+end_src
 * Footnotes
 
 [fn:1]索引从0开始。 
