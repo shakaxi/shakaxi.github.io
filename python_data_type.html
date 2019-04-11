@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-09 Tue 23:09 -->
+<!-- 2019-04-12 Fri 00:11 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Data Type</title>
@@ -251,6 +251,7 @@ for the JavaScript code in this tag.
 <li><a href="#org2233c28">内建序列函数</a></li>
 <li><a href="#orgb5f1fc1">字典</a></li>
 <li><a href="#org4b2d86b">集合</a></li>
+<li><a href="#org73d7173">列表、字典和集合的推导式</a></li>
 </ul>
 </div>
 </div>
@@ -304,10 +305,84 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-orgb5f1fc1" class="outline-2">
 <h2 id="orgb5f1fc1">字典</h2>
+<div class="outline-text-2" id="text-orgb5f1fc1">
+<ul class="org-ul">
+<li>字典即哈希表或关联数组，是键值对（二元组）的集合。其中，键值都是Python对象，而且键必须是不可变的对象。</li>
+<li>可以使用大括号 <code>{}</code> 创建字典，字典元素用逗号分隔，元素的键和值用冒号 <code>:</code> 分隔。</li>
+<li>就像列表和元组一样，可以访问、插入、或设置字典中的元素。</li>
+<li>关键字 <code>in</code> 可以用于检查字典中是否含有某个键。</li>
+<li>可以使用关键字 <code>del</code> 或 方法 <code>pop</code> 根据键删除字典元素。其中，后者返回对应的值。</li>
+<li>方法 <code>keys</code> 返回字典键的迭代器。</li>
+<li>方法 <code>values</code> 返回字典值的迭代器。</li>
+<li>方法 <code>update</code> 用于合并或更新字典。</li>
+<li>方法 <code>hash</code> 可以检查一个对象是否可以哈希化，也即是否可以用作字典的键。</li>
+<li>方法 <code>get</code> 可以返回一个默认值。也即</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dbdb95;">VALUE</span> = SOME_DICT.get(KEY, DEFAULT_VALUE)
+</pre>
 </div>
-
+<p>
+等价于
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #ffad29; font-weight: bold;">if</span> KEY <span style="color: #ffad29; font-weight: bold;">in</span> SOME_DICT:
+    <span style="color: #dbdb95;">VALUE</span> = SOME_DICT[KEY]
+<span style="color: #ffad29; font-weight: bold;">else</span>:
+    <span style="color: #dbdb95;">VALUE</span> = DEFAULT_VALUE
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-org4b2d86b" class="outline-2">
 <h2 id="org4b2d86b">集合</h2>
+<div class="outline-text-2" id="text-org4b2d86b">
+<ul class="org-ul">
+<li>集合是一种无序且元素唯一的容器。其元素必须是不可变的。</li>
+<li>可以使用大括号 <code>{}</code> 或者方法 <code>set</code> 创建集合。</li>
+<li>方法 <code>union</code> 或二元操作符 <code>|</code> 可以获得集合的并集。</li>
+<li>方法 <code>intersection</code> 或二元操作符 <code>&amp;</code> 可以获得集合的交集。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org73d7173" class="outline-2">
+<h2 id="org73d7173">列表、字典和集合的推导式</h2>
+<div class="outline-text-2" id="text-org73d7173">
+<ul class="org-ul">
+<li>列表的推导式如下:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dbdb95;">LIST</span> = [EXPRESSION <span style="color: #ffad29; font-weight: bold;">for</span> VALUE <span style="color: #ffad29; font-weight: bold;">in</span> COLLECTION <span style="color: #ffad29; font-weight: bold;">if</span> CONDITION]
+</pre>
+</div>
+<p>
+其等价于
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dbdb95;">LIST</span> = []
+<span style="color: #ffad29; font-weight: bold;">for</span> VALUE <span style="color: #ffad29; font-weight: bold;">in</span> COLLECTION:
+    <span style="color: #ffad29; font-weight: bold;">if</span> CONDITION:
+        LIST.append(EXPRESSION)
+</pre>
+</div>
+<p>
+其中， <code>CONDITION</code> 可以省略。
+</p>
+<ul class="org-ul">
+<li>字典的推导式如下:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dbdb95;">DICTIONARY</span> = {KEY: VALUE <span style="color: #ffad29; font-weight: bold;">for</span> VALUE <span style="color: #ffad29; font-weight: bold;">in</span> COLLECTION <span style="color: #ffad29; font-weight: bold;">if</span> CONDITION}
+</pre>
+</div>
+<ul class="org-ul">
+<li>集合的推导式如下:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dbdb95;">SET</span> = {EXPRESSION <span style="color: #ffad29; font-weight: bold;">for</span> VALUE <span style="color: #ffad29; font-weight: bold;">in</span> COLLECTION <span style="color: #ffad29; font-weight: bold;">if</span> CONDITION}
+</pre>
+</div>
+</div>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
