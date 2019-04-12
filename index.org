@@ -74,3 +74,4 @@
 - [[file:switch_virtual_console.org][Virtual Console Switch]]
 - [[file:zc.org][ZC]]
 - [[file:zathura.org][Zathura]]
+- [[file:matched_filter.org][Matched Filter]]

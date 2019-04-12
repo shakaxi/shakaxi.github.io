@@ -1,0 +1,28 @@
+#+TITLE: Matched Filter
+#+OPTIONS: \usepackage{amsmath, amssymb, amsfonts}
+
+设时间\([0, T]\)内的观察信号\(r(t)\)为信号\(s(t)\)和噪声\(n(t)\)的叠加，也即
+\begin{align*}
+  r(t) = s(t) + n(t), \quad t \in [0, T]
+\end{align*}
+如果要设计一个冲激响应为\(h(t)\)的滤波器，使得在\(t = T\)时的信噪比(signal to noise power ratio, SNR)最大，这样的滤波器称为匹配滤波器(matched filter, MF)。其冲激响应为
+\begin{align*}
+  h(t) = C s^*(T - t),
+\end{align*}
+其中，\(C\)为非零常数。
+
+证明过程如下:
+滤波器在\(t = T\)时的SNR为
+\begin{align*}
+  \gamma(T) = \frac{\left|\int_{-\infty}^{\infty}S(f)H(f)e^{j2 \pi f T}df\right|^2}
+  {N_0 \left|\int_{-\infty}^{\infty}H(f)e^{j2 \pi f T}df\right|^2},
+\end{align*}
+其中，\(S(f)\)和\(H(f)\)分别为\(s(t)\)和\(h(t)\)的Fourier变换，\(N_0\)为噪声的功率谱密度。
+
+根据Cauchy-Schwartz不等式有
+\begin{align*}
+  \gamma(T) &\le \frac{\left|\int_{-\infty}^{\infty}S(f)e^{j2 \pi f T}df\right|^2 \cdot \left|\int_{-\infty}^{\infty}H(f)e^{j2 \pi f T}df\right|^2}
+  {N_0 \left|\int_{-\infty}^{\infty}H(f)e^{j2 \pi f T}df\right|^2} \\
+&= \frac{\left|\int_{-\infty}^{\infty}S(f)e^{j2 \pi f T}df\right|^2}{N_0}
+\end{align*}
+当且仅当\(H(f) = C S^*(f) e^{-j 2 \pi f T}\)也即\(h(t) = C s^{*}(T - t)\)时等号成立，其中，\(C\)为非零常数。
