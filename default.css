@@ -136,15 +136,15 @@
     }
 
     table {
-	border: none;
+	border: 1px solid;
     }
 
     td {
-	border: none;
+	border: 1px solid;
     }
 
     th {
-	border: none;
+	border: 1px solid;
     }
 
     code {
