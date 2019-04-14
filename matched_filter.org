@@ -5,7 +5,7 @@
 \begin{align*}
   r(t) = s(t) + n(t), \quad t \in [0, T]
 \end{align*}
-如果要设计一个冲激响应为\(h(t)\)的滤波器，使得在\(t = T\)时的信噪比(signal to noise power ratio, SNR)最大，这样的滤波器称为匹配滤波器(matched filter, MF)。其冲激响应为
+如果要设计一个冲激响应为\(h(t)\)的滤波器，使得其输出在\(t = T\)时的信噪比(signal to noise power ratio, SNR)最大，这样的滤波器称为匹配滤波器(matched filter, MF)。其冲激响应为
 \begin{align*}
   h(t) = C s^*(T - t),
 \end{align*}
