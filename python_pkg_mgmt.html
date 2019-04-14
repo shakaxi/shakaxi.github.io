@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-09 Tue 22:59 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Package Management</title>
@@ -246,35 +246,35 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcdbafc5">Introduction</a></li>
-<li><a href="#orgc16b889">Installation</a></li>
-<li><a href="#orgf5e4e33">Configuration</a></li>
-<li><a href="#orgc4129f4">Usage</a>
+<li><a href="#org8e8aa7f">Introduction</a></li>
+<li><a href="#orgfc9b28f">Installation</a></li>
+<li><a href="#org1928a4b">Configuration</a></li>
+<li><a href="#org2165ba3">Usage</a>
 <ul>
-<li><a href="#org10676f4">Install package(s)</a></li>
-<li><a href="#org46c9b55">Upgrade package(s)</a></li>
-<li><a href="#org063df40">Uninstall package(s)</a></li>
-<li><a href="#org35b7d1d">List installed packages</a></li>
-<li><a href="#org42fe5d6">Search a package</a></li>
-<li><a href="#orge5e7f9a">Show information of an installed package</a></li>
-<li><a href="#org255d5ca">Download package(s)</a></li>
+<li><a href="#orgc5610bb">Install package(s)</a></li>
+<li><a href="#orge59e326">Upgrade package(s)</a></li>
+<li><a href="#orge762d92">Uninstall package(s)</a></li>
+<li><a href="#org0c7c20e">List installed packages</a></li>
+<li><a href="#org7125e0d">Search a package</a></li>
+<li><a href="#orgd89c5d7">Show information of an installed package</a></li>
+<li><a href="#orgd961499">Download package(s)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcdbafc5" class="outline-2">
-<h2 id="orgcdbafc5">Introduction</h2>
-<div class="outline-text-2" id="text-orgcdbafc5">
+<div id="outline-container-org8e8aa7f" class="outline-2">
+<h2 id="org8e8aa7f">Introduction</h2>
+<div class="outline-text-2" id="text-org8e8aa7f">
 <p>
 One of the most charmful characters of Python is its a rich number of packages. Accordingly, package managers emerge, e.g., <code>pip</code>, <code>setuptools</code>. This post just briefly introduce the usage of <code>pip</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc16b889" class="outline-2">
-<h2 id="orgc16b889">Installation</h2>
-<div class="outline-text-2" id="text-orgc16b889">
+<div id="outline-container-orgfc9b28f" class="outline-2">
+<h2 id="orgfc9b28f">Installation</h2>
+<div class="outline-text-2" id="text-orgfc9b28f">
 <p>
 In ArchLinux system, <code>pip</code> can be easily installed by
 </p>
@@ -287,9 +287,9 @@ As a dependency, <code>python</code> will also be installed if it has not yet.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf5e4e33" class="outline-2">
-<h2 id="orgf5e4e33">Configuration</h2>
-<div class="outline-text-2" id="text-orgf5e4e33">
+<div id="outline-container-org1928a4b" class="outline-2">
+<h2 id="org1928a4b">Configuration</h2>
+<div class="outline-text-2" id="text-org1928a4b">
 <p>
 Similar to the package manager of Linux operation systems, <code>pip</code> connects with, synchronizes to, and downloads from websites. For the sake of download speed maximization, <code>pip</code> is encouraged to visit the nearest mirror site, which can be configured by editing <code>/etc/pip.conf</code>, e.g.,
 </p>
@@ -300,22 +300,22 @@ index-url = https://mirrors.163.com/pypi/simple
 </div>
 </div>
 </div>
-<div id="outline-container-orgc4129f4" class="outline-2">
-<h2 id="orgc4129f4">Usage</h2>
-<div class="outline-text-2" id="text-orgc4129f4">
+<div id="outline-container-org2165ba3" class="outline-2">
+<h2 id="org2165ba3">Usage</h2>
+<div class="outline-text-2" id="text-org2165ba3">
 </div>
-<div id="outline-container-org10676f4" class="outline-3">
-<h3 id="org10676f4">Install package(s)</h3>
-<div class="outline-text-3" id="text-org10676f4">
+<div id="outline-container-orgc5610bb" class="outline-3">
+<h3 id="orgc5610bb">Install package(s)</h3>
+<div class="outline-text-3" id="text-orgc5610bb">
 <div class="org-src-container">
 <pre class="src src-sh">pip install PKG_NAMES
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org46c9b55" class="outline-3">
-<h3 id="org46c9b55">Upgrade package(s)</h3>
-<div class="outline-text-3" id="text-org46c9b55">
+<div id="outline-container-orge59e326" class="outline-3">
+<h3 id="orge59e326">Upgrade package(s)</h3>
+<div class="outline-text-3" id="text-orge59e326">
 <div class="org-src-container">
 <pre class="src src-sh">pip install --upgrade PKG_NAMES
 pip install -U PKG_NAMES
@@ -323,45 +323,45 @@ pip install -U PKG_NAMES
 </div>
 </div>
 </div>
-<div id="outline-container-org063df40" class="outline-3">
-<h3 id="org063df40">Uninstall package(s)</h3>
-<div class="outline-text-3" id="text-org063df40">
+<div id="outline-container-orge762d92" class="outline-3">
+<h3 id="orge762d92">Uninstall package(s)</h3>
+<div class="outline-text-3" id="text-orge762d92">
 <div class="org-src-container">
 <pre class="src src-sh">pip uninstall PKG_NAMES
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org35b7d1d" class="outline-3">
-<h3 id="org35b7d1d">List installed packages</h3>
-<div class="outline-text-3" id="text-org35b7d1d">
+<div id="outline-container-org0c7c20e" class="outline-3">
+<h3 id="org0c7c20e">List installed packages</h3>
+<div class="outline-text-3" id="text-org0c7c20e">
 <div class="org-src-container">
 <pre class="src src-sh">pip list
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org42fe5d6" class="outline-3">
-<h3 id="org42fe5d6">Search a package</h3>
-<div class="outline-text-3" id="text-org42fe5d6">
+<div id="outline-container-org7125e0d" class="outline-3">
+<h3 id="org7125e0d">Search a package</h3>
+<div class="outline-text-3" id="text-org7125e0d">
 <div class="org-src-container">
 <pre class="src src-sh">pip search KEY_WORDS
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge5e7f9a" class="outline-3">
-<h3 id="orge5e7f9a">Show information of an installed package</h3>
-<div class="outline-text-3" id="text-orge5e7f9a">
+<div id="outline-container-orgd89c5d7" class="outline-3">
+<h3 id="orgd89c5d7">Show information of an installed package</h3>
+<div class="outline-text-3" id="text-orgd89c5d7">
 <div class="org-src-container">
 <pre class="src src-sh">pip show PKG_NAME
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org255d5ca" class="outline-3">
-<h3 id="org255d5ca">Download package(s)</h3>
-<div class="outline-text-3" id="text-org255d5ca">
+<div id="outline-container-orgd961499" class="outline-3">
+<h3 id="orgd961499">Download package(s)</h3>
+<div class="outline-text-3" id="text-orgd961499">
 <div class="org-src-container">
 <pre class="src src-sh">pip download PKG_NAMES
 </pre>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - CEDET</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,24 +246,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6001266">Introduction</a></li>
-<li><a href="#org33cf762">Installation</a></li>
-<li><a href="#org2d6336c">Configuration</a></li>
+<li><a href="#org3256994">Introduction</a></li>
+<li><a href="#org7ff156b">Installation</a></li>
+<li><a href="#orgc6b4898">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6001266" class="outline-2">
-<h2 id="org6001266">Introduction</h2>
-<div class="outline-text-2" id="text-org6001266">
+<div id="outline-container-org3256994" class="outline-2">
+<h2 id="org3256994">Introduction</h2>
+<div class="outline-text-2" id="text-org3256994">
 <p>
 CEDET<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> stands for collection of Emacs development environment tools, which is written to make Emacs become a perfect development environment. With the aid of CEDET, a variety of amazing features can be provided, e.g. code completion, browsing, tag jumping, drawing UML diagram, etc.
 </p>
 </div>
 </div>
-<div id="outline-container-org33cf762" class="outline-2">
-<h2 id="org33cf762">Installation</h2>
-<div class="outline-text-2" id="text-org33cf762">
+<div id="outline-container-org7ff156b" class="outline-2">
+<h2 id="org7ff156b">Installation</h2>
+<div class="outline-text-2" id="text-org7ff156b">
 <p>
 Through following commands, the latest version of CEDET can be installed into <code>~/.emacs.d/cedet</code>.
 </p>
@@ -262,9 +275,9 @@ make
 </div>
 </div>
 </div>
-<div id="outline-container-org2d6336c" class="outline-2">
-<h2 id="org2d6336c">Configuration</h2>
-<div class="outline-text-2" id="text-org2d6336c">
+<div id="outline-container-orgc6b4898" class="outline-2">
+<h2 id="orgc6b4898">Configuration</h2>
+<div class="outline-text-2" id="text-orgc6b4898">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">load CEDET</span>
 (add-to-list 'load-path <span style="color: #e9b96e;">"~/.emacs.d/cedet"</span>)

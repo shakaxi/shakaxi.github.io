@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LTE - Frequency Domain Location of Carriers</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -255,7 +268,7 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5bcbd15">References</a></li>
+<li><a href="#org9f07761">References</a></li>
 </ul>
 </div>
 </div>
@@ -271,9 +284,9 @@ Within each supported frequency band, LTE carriers always exist on a 100 kHz car
 In the case of carrier aggregation (CA), a multiplicity of carriers can be transmitted to or from the same device. For the sake of transmission/reception within a single FFT, the spacing between two adjacent component carriers ought to be a multiple of 15 kHz. Hence, in CA case, the spacing between two adjacent component carriers should be a multiple of 300 kHz, the least common multiple of 100 kHz and 15 kHz.
 </p>
 
-<div id="outline-container-org5bcbd15" class="outline-2">
-<h2 id="org5bcbd15">References</h2>
-<div class="outline-text-2" id="text-org5bcbd15">
+<div id="outline-container-org9f07761" class="outline-2">
+<h2 id="org9f07761">References</h2>
+<div class="outline-text-2" id="text-org9f07761">
 <p>
 [1] Erik Dahlman, Stefan Parkvall, Johan Skold. 4G, LTE-Advanced Pro and The Road to 5G.
 </p>

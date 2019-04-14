@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-05 Fri 21:48 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - Multi-TRP Transmission</title>
@@ -268,28 +268,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6ffd8cf">Introduction</a></li>
-<li><a href="#orgbda9538">System model</a></li>
-<li><a href="#org95ea310">Capacity</a>
+<li><a href="#org300bd53">Introduction</a></li>
+<li><a href="#orga230ea8">System model</a></li>
+<li><a href="#org0b413ea">Capacity</a>
 <ul>
-<li><a href="#org8518985">Eigen beamforming</a></li>
+<li><a href="#org2cbe4e7">Eigen beamforming</a></li>
 <li><a href="#mpue">Multi-panel UE</a></li>
 </ul>
 </li>
-<li><a href="#org16b5073">CSI acquisition</a>
+<li><a href="#org2be0201">CSI acquisition</a>
 <ul>
-<li><a href="#orgd38bada">CSI in CoMP</a></li>
-<li><a href="#orgc866a07">SINR prediction</a></li>
-<li><a href="#orgb59b032">CSI for NCJT</a></li>
+<li><a href="#orga8aded8">CSI in CoMP</a></li>
+<li><a href="#orgb57afd4">SINR prediction</a></li>
+<li><a href="#orgdaa6036">CSI for NCJT</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6ffd8cf" class="outline-2">
-<h2 id="org6ffd8cf">Introduction</h2>
-<div class="outline-text-2" id="text-org6ffd8cf">
+<div id="outline-container-org300bd53" class="outline-2">
+<h2 id="org300bd53">Introduction</h2>
+<div class="outline-text-2" id="text-org300bd53">
 <p>
 Recently, multi-TRP transmission is one of the most remarkable features of NR and consequently the focus of discussion in the standardization of 3GPP, since it is able to efficiently improve the reliability or the efficiency of the transmission.
 </p>
@@ -303,9 +303,9 @@ For clear description, following denotation conventions have been adopted throug
 </p>
 </div>
 </div>
-<div id="outline-container-orgbda9538" class="outline-2">
-<h2 id="orgbda9538">System model</h2>
-<div class="outline-text-2" id="text-orgbda9538">
+<div id="outline-container-orga230ea8" class="outline-2">
+<h2 id="orga230ea8">System model</h2>
+<div class="outline-text-2" id="text-orga230ea8">
 <p>
 Without loss of generality, we consider such a simple 2-TRP non-coherent joint transmission (NCJT) scenario that a UE receives two PDSCH's from TRP-1 and TRP-2 simutaneously, as shown in the figure below. Each TRP is equipped with \(n_t\) antennas, while the UE has \(n_r\) antennas. For clear description, the downlink channel, precoding matrix, and the transmitted signal from TRP-\(i\), are denoted by \(\mathbf{H}_i \in \mathbb{C}^{n_r \times n_t}\), \(\mathbf{W}_i \in \mathbb{C}^{n_t \times r_i}\), and \(\mathbf{x}_i \in \mathbb{C}^{r_i \times 1}\) respectively, where \(r_i\) is the number of layers of the PDSCH transmitted from TRP-\(i\), \(i = 1, 2\).
 </p>
@@ -329,9 +329,9 @@ where \(\mathbf{n} \in \mathbb{C}^{n_r \times 1}\) is zero mean cyclic symmetric
 </div>
 </div>
 
-<div id="outline-container-org95ea310" class="outline-2">
-<h2 id="org95ea310">Capacity</h2>
-<div class="outline-text-2" id="text-org95ea310">
+<div id="outline-container-org0b413ea" class="outline-2">
+<h2 id="org0b413ea">Capacity</h2>
+<div class="outline-text-2" id="text-org0b413ea">
 <p>
 For simplicity sake, taking equal power allocation (EPA) for each TRP for instance, i.e., \(\mathcal{E}(\mathbf{x}_i \mathbf{x}_i^H) = \dfrac{P}{r_i} \mathbf{I}\), \(i = 1, 2\), where \(P\) is the total transmit power for each TRP. Then, the Shannon capacity can be expressed as
 </p>
@@ -340,9 +340,9 @@ For simplicity sake, taking equal power allocation (EPA) for each TRP for instan
 \end{align}
 </div>
 
-<div id="outline-container-org8518985" class="outline-3">
-<h3 id="org8518985">Eigen beamforming</h3>
-<div class="outline-text-3" id="text-org8518985">
+<div id="outline-container-org2cbe4e7" class="outline-3">
+<h3 id="org2cbe4e7">Eigen beamforming</h3>
+<div class="outline-text-3" id="text-org2cbe4e7">
 <p>
 Suppose \(\mathbf{H}_i\) can be singular value decomposed (SVD) as
 </p>
@@ -382,7 +382,7 @@ Clearly, an upper-bound of the capacity for EBF can be achieved if and only if \
 </div>
 </div>
 
-<div id="outline-container-org37c990c" class="outline-3">
+<div id="outline-container-org5fcb8de" class="outline-3">
 <h3 id="mpue">Multi-panel UE</h3>
 <div class="outline-text-3" id="text-mpue">
 <p>
@@ -423,9 +423,9 @@ In this case, EBF, i.e., \(\mathbf{W}_i = \mathbf{V}_i, i = 1, 2\), is the optim
 </div>
 </div>
 
-<div id="outline-container-org16b5073" class="outline-2">
-<h2 id="org16b5073">CSI acquisition</h2>
-<div class="outline-text-2" id="text-org16b5073">
+<div id="outline-container-org2be0201" class="outline-2">
+<h2 id="org2be0201">CSI acquisition</h2>
+<div class="outline-text-2" id="text-org2be0201">
 <p>
 In light of information theory, CSI plays an extremely important role in an end-to-end transmission. CSI at the receiver side, which can be obtained based on the DMRS-based channel estimation, enables coherent detection which remarkably outperforms non-coherent equalization. From a capacity maximization perspective, that is not enough and CSI at the transmitter side is also essential. To this end, a UE is expected to report CSI to the transmitter to facilitate it to better match the channel. Usually, a CSI covers both spatial-domain information and channel quality related indication, targetting antenna gain maximization and efficient link adaptation, respectively.
 </p>
@@ -434,9 +434,9 @@ In light of information theory, CSI plays an extremely important role in an end-
 On one hand, the spatial information can be a PMI out of a predefined codebook, or a reciprocity-based CDI, etc. The spatial information, however, is always obtained via the channel estimation based on NZP CSI-RS. On the other hand, channel quality can be depicted by a CQI, which depends on the intensity of the signal and the strength of the interference plus noise.
 </p>
 </div>
-<div id="outline-container-orgd38bada" class="outline-3">
-<h3 id="orgd38bada">CSI in CoMP</h3>
-<div class="outline-text-3" id="text-orgd38bada">
+<div id="outline-container-orga8aded8" class="outline-3">
+<h3 id="orga8aded8">CSI in CoMP</h3>
+<div class="outline-text-3" id="text-orga8aded8">
 <p>
 In CoMP, the spatial information can be categorized as two types, per-cell and cross-cell information. The former is exactly the same as that for the single-cell transmission; while the latter is introduced only for coherent joint transmission.
 </p>
@@ -478,9 +478,9 @@ Then, the power of the interference can be obtained by
 </div>
 </div>
 
-<div id="outline-container-orgc866a07" class="outline-3">
-<h3 id="orgc866a07">SINR prediction</h3>
-<div class="outline-text-3" id="text-orgc866a07">
+<div id="outline-container-orgb57afd4" class="outline-3">
+<h3 id="orgb57afd4">SINR prediction</h3>
+<div class="outline-text-3" id="text-orgb57afd4">
 <p>
 At the stage of scheduling, a gNB has to predict the achievable SINR based on the reported CSI for two reasons. On one hand, a UE is completely unaware of the potential paired UE for MU-MIMO transmission in the future, but has to calculate CSI based on SU-MIMO. On the other hand, the precoded inter-cell interference (ICI) in the actual transmission is remarkably different from that on the occasion of CSI reporting.
 </p>
@@ -499,9 +499,9 @@ Again, taking the scenario in the figure above for example, the UE reports CSI f
 </div>
 </div>
 
-<div id="outline-container-orgb59b032" class="outline-3">
-<h3 id="orgb59b032">CSI for NCJT</h3>
-<div class="outline-text-3" id="text-orgb59b032">
+<div id="outline-container-orgdaa6036" class="outline-3">
+<h3 id="orgdaa6036">CSI for NCJT</h3>
+<div class="outline-text-3" id="text-orgdaa6036">
 <p>
 According to the analysis of MPUE in section <a href="#mpue">Multi-panel UE</a>, a MPUE can be identified as a potential NCJT UE, if following prerequisites can be met.
 </p>

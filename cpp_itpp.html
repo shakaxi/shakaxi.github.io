@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - IT++</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,22 +246,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org637fe10">Introduction</a></li>
-<li><a href="#orgc08179e">Installation</a>
+<li><a href="#org2133d90">Introduction</a></li>
+<li><a href="#org64aee5d">Installation</a>
 <ul>
-<li><a href="#org05bab7c">Install the third-party libraries</a></li>
-<li><a href="#orge025679">Install IT++</a></li>
+<li><a href="#orga5ebdaa">Install the third-party libraries</a></li>
+<li><a href="#org02e2e7e">Install IT++</a></li>
 </ul>
 </li>
-<li><a href="#org0865da5">Usage</a></li>
-<li><a href="#org6192327">Interface</a></li>
+<li><a href="#org1466b85">Usage</a></li>
+<li><a href="#orgd58efaa">Interface</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org637fe10" class="outline-2">
-<h2 id="org637fe10">Introduction</h2>
-<div class="outline-text-2" id="text-org637fe10">
+<div id="outline-container-org2133d90" class="outline-2">
+<h2 id="org2133d90">Introduction</h2>
+<div class="outline-text-2" id="text-org2133d90">
 <p>
 <i>IT++</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a powerful C++ library, which is widely employed in the area of communication, esp. in simulation programming and computing. It has provided a variety of useful <i>classes</i>, e.g. <code>vector</code>, <code>matrix</code>. With the aid of IT++, programming in C++ is very similar to programming in <i>MATLAB</i>.
 </p>
@@ -258,9 +271,9 @@ IT++ is released under <i>GPL</i>, and can work on all the platforms, including 
 </p>
 </div>
 </div>
-<div id="outline-container-orgc08179e" class="outline-2">
-<h2 id="orgc08179e">Installation</h2>
-<div class="outline-text-2" id="text-orgc08179e">
+<div id="outline-container-org64aee5d" class="outline-2">
+<h2 id="org64aee5d">Installation</h2>
+<div class="outline-text-2" id="text-org64aee5d">
 <p>
 Optionally, its functionality can be greatly extended based on existing open-source or commercial libraries, i.e.
 </p>
@@ -279,9 +292,9 @@ Optionally, its functionality can be greatly extended based on existing open-sou
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org05bab7c" class="outline-3">
-<h3 id="org05bab7c">Install the third-party libraries</h3>
-<div class="outline-text-3" id="text-org05bab7c">
+<div id="outline-container-orga5ebdaa" class="outline-3">
+<h3 id="orga5ebdaa">Install the third-party libraries</h3>
+<div class="outline-text-3" id="text-orga5ebdaa">
 <p>
 Herein, we take the open-source libraries above for instance. For <i>ArchLinux</i>, the installation can be performed by
 </p>
@@ -291,9 +304,9 @@ Herein, we take the open-source libraries above for instance. For <i>ArchLinux</
 </div>
 </div>
 </div>
-<div id="outline-container-orge025679" class="outline-3">
-<h3 id="orge025679">Install IT++</h3>
-<div class="outline-text-3" id="text-orge025679">
+<div id="outline-container-org02e2e7e" class="outline-3">
+<h3 id="org02e2e7e">Install IT++</h3>
+<div class="outline-text-3" id="text-org02e2e7e">
 <p>
 The lastest version of IT++ can be obtained via git, and installed to <code>/opt/itpp</code> by following commands.
 </p>
@@ -321,9 +334,9 @@ BTW, HTML documentation will be installed by default. Therefore, <i>doxygen</i> 
 </div>
 </div>
 </div>
-<div id="outline-container-org0865da5" class="outline-2">
-<h2 id="org0865da5">Usage</h2>
-<div class="outline-text-2" id="text-org0865da5">
+<div id="outline-container-org1466b85" class="outline-2">
+<h2 id="org1466b85">Usage</h2>
+<div class="outline-text-2" id="text-org1466b85">
 <p>
 IT++ provides a script <code>/opt/itpp/bin/itpp-config</code> to simplify the compilation and linking of IT++ based programs.
 </p>
@@ -352,9 +365,9 @@ Then, fresh the cache accordingly.
 </div>
 </div>
 </div>
-<div id="outline-container-org6192327" class="outline-2">
-<h2 id="org6192327">Interface</h2>
-<div class="outline-text-2" id="text-org6192327">
+<div id="outline-container-orgd58efaa" class="outline-2">
+<h2 id="orgd58efaa">Interface</h2>
+<div class="outline-text-2" id="text-orgd58efaa">
 <p>
 IT++ has its own file format, with a suffix <code>.it</code>. Fortunately, for the sake of convenient file exchange, it provides
 </p>

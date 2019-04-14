@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-02-23 Sat 00:55 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Multithread</title>
@@ -246,53 +246,53 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2cfe1b9">背景</a></li>
-<li><a href="#orgb786384">线程</a>
+<li><a href="#org5cebb01">背景</a></li>
+<li><a href="#org942731b">线程</a>
 <ul>
-<li><a href="#org3c4d9b2">通过函数指针创建线程</a></li>
-<li><a href="#orgb5d1a58">通过函数对象创建线程</a></li>
-<li><a href="#orga21768a">通过lambda表达式创建线程</a></li>
-<li><a href="#org12e4b0d">通过成员函数创建线程</a></li>
-<li><a href="#org50de64c">线程本地存储</a></li>
-<li><a href="#org90f9354">取消线程</a></li>
-<li><a href="#org33db95e">从线程获得结果</a></li>
-<li><a href="#org082863c">复制和重新抛出异常</a></li>
+<li><a href="#org56ad525">通过函数指针创建线程</a></li>
+<li><a href="#orgec79207">通过函数对象创建线程</a></li>
+<li><a href="#org166a4e3">通过lambda表达式创建线程</a></li>
+<li><a href="#orgc794232">通过成员函数创建线程</a></li>
+<li><a href="#orgbae5f32">线程本地存储</a></li>
+<li><a href="#orgf34c5f1">取消线程</a></li>
+<li><a href="#org9247374">从线程获得结果</a></li>
+<li><a href="#org9e52941">复制和重新抛出异常</a></li>
 </ul>
 </li>
-<li><a href="#org56a886a">原子操作</a></li>
-<li><a href="#orgbfb7dce">互斥</a>
+<li><a href="#org3a9e93c">原子操作</a></li>
+<li><a href="#org280254c">互斥</a>
 <ul>
-<li><a href="#orgf54571e">互斥体类</a>
+<li><a href="#org4d459d8">互斥体类</a>
 <ul>
-<li><a href="#org37c4102">非定时的互斥体类</a></li>
-<li><a href="#org81628a2">定时的互斥体类</a></li>
+<li><a href="#org8c53c22">非定时的互斥体类</a></li>
+<li><a href="#orgc5c8a81">定时的互斥体类</a></li>
 </ul>
 </li>
-<li><a href="#org77dfa95">锁</a>
+<li><a href="#orgd04de87">锁</a>
 <ul>
-<li><a href="#org00e04b5"><code>lock_guard</code></a></li>
-<li><a href="#org8adb32a"><code>unique_lock</code></a></li>
-<li><a href="#org9a5a7ad"><code>shared_lock</code></a></li>
-<li><a href="#org242798f">获得多个锁</a></li>
-<li><a href="#org7da6651"><code>std::call_once()</code></a></li>
+<li><a href="#org001938f"><code>lock_guard</code></a></li>
+<li><a href="#org90467ea"><code>unique_lock</code></a></li>
+<li><a href="#orgd5625d4"><code>shared_lock</code></a></li>
+<li><a href="#org4ce1a94">获得多个锁</a></li>
+<li><a href="#orgb1d86f5"><code>std::call_once()</code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org894a123">条件变量</a>
+<li><a href="#orgc88bff7">条件变量</a>
 <ul>
-<li><a href="#orgdec60d5"><code>std::condition_variable</code></a></li>
-<li><a href="#orgde19356"><code>std::condition_variable_any</code></a></li>
+<li><a href="#org88a3843"><code>std::condition_variable</code></a></li>
+<li><a href="#org2b44dee"><code>std::condition_variable_any</code></a></li>
 </ul>
 </li>
-<li><a href="#org404f442"><code>future</code></a></li>
+<li><a href="#org8ffc2a4"><code>future</code></a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2cfe1b9" class="outline-2">
-<h2 id="org2cfe1b9">背景</h2>
-<div class="outline-text-2" id="text-org2cfe1b9">
+<div id="outline-container-org5cebb01" class="outline-2">
+<h2 id="org5cebb01">背景</h2>
+<div class="outline-text-2" id="text-org5cebb01">
 <p>
 C++98/03不支持多线程编程, 所以必须借助第三方库或目标操作系统中的多线程API. 这使得编写跨平台的多线程程序很困难. C++11引入了标准的多线程库, 使得多线程程序跨平台更加容易. 目前的C++11标准仅针对CPU, 不支持GPU.
 </p>
@@ -309,16 +309,16 @@ C++98/03不支持多线程编程, 所以必须借助第三方库或目标操作�
 </dl>
 </div>
 </div>
-<div id="outline-container-orgb786384" class="outline-2">
-<h2 id="orgb786384">线程</h2>
-<div class="outline-text-2" id="text-orgb786384">
+<div id="outline-container-org942731b" class="outline-2">
+<h2 id="org942731b">线程</h2>
+<div class="outline-text-2" id="text-org942731b">
 <p>
 C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </p>
 </div>
-<div id="outline-container-org3c4d9b2" class="outline-3">
-<h3 id="org3c4d9b2">通过函数指针创建线程</h3>
-<div class="outline-text-3" id="text-org3c4d9b2">
+<div id="outline-container-org56ad525" class="outline-3">
+<h3 id="org56ad525">通过函数指针创建线程</h3>
+<div class="outline-text-3" id="text-org56ad525">
 <p>
 标准C++的 <code>thread</code> 类的构造函数是一个可变参数模板, 可以接受任意数目的参数. 第一个参数为函数名称, 其余参数为函数的参数. 如
 </p>
@@ -342,9 +342,9 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb5d1a58" class="outline-3">
-<h3 id="orgb5d1a58">通过函数对象创建线程</h3>
-<div class="outline-text-3" id="text-orgb5d1a58">
+<div id="outline-container-orgec79207" class="outline-3">
+<h3 id="orgec79207">通过函数对象创建线程</h3>
+<div class="outline-text-3" id="text-orgec79207">
 <p>
 使用函数指针技术, 向线程传递信息的唯一方式是向函数传递参数. 而使用函数对象, 可向函数对象类添加成员变量, 并可以采用任何方式初始化和使用这些变量. 如
 </p>
@@ -373,9 +373,9 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </p>
 </div>
 </div>
-<div id="outline-container-orga21768a" class="outline-3">
-<h3 id="orga21768a">通过lambda表达式创建线程</h3>
-<div class="outline-text-3" id="text-orga21768a">
+<div id="outline-container-org166a4e3" class="outline-3">
+<h3 id="org166a4e3">通过lambda表达式创建线程</h3>
+<div class="outline-text-3" id="text-org166a4e3">
 <p>
 如
 </p>
@@ -395,9 +395,9 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </div>
 </div>
 </div>
-<div id="outline-container-org12e4b0d" class="outline-3">
-<h3 id="org12e4b0d">通过成员函数创建线程</h3>
-<div class="outline-text-3" id="text-org12e4b0d">
+<div id="outline-container-orgc794232" class="outline-3">
+<h3 id="orgc794232">通过成员函数创建线程</h3>
+<div class="outline-text-3" id="text-orgc794232">
 <p>
 第一个参数为成员函数指针, 第二个参数为类对象指针, 其余参数为成员函数的参数.
 </p>
@@ -423,9 +423,9 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </div>
 </div>
 </div>
-<div id="outline-container-org50de64c" class="outline-3">
-<h3 id="org50de64c">线程本地存储</h3>
-<div class="outline-text-3" id="text-org50de64c">
+<div id="outline-container-orgbae5f32" class="outline-3">
+<h3 id="orgbae5f32">线程本地存储</h3>
+<div class="outline-text-3" id="text-orgbae5f32">
 <p>
 通过关键字 <code>thread_local</code>, 可将任何变量标记为线程本地数据, 即每个线程都有这个变量的独立副本, 而且这个变量能在线程的整个生命周期中持续存在. 对于每个线程, 该变量正好初始化一次.
 </p>
@@ -445,34 +445,34 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </div>
 </div>
 </div>
-<div id="outline-container-org90f9354" class="outline-3">
-<h3 id="org90f9354">取消线程</h3>
-<div class="outline-text-3" id="text-org90f9354">
+<div id="outline-container-orgf34c5f1" class="outline-3">
+<h3 id="orgf34c5f1">取消线程</h3>
+<div class="outline-text-3" id="text-orgf34c5f1">
 <p>
 标准没有在一个线程中取消另一个线程的机制. 实现这一目标的最好方法是提供两个线程都支持的某种通信机制. 最简单的机制是有一个共享变量, 目标线程定期检查这个变量, 判断是否应该终止. 其他线程可以设置这个共享变量, 间接指示线程关闭. 应避免读写这个共享变量带来的竞争条件和缓存一致性问题.
 </p>
 </div>
 </div>
-<div id="outline-container-org33db95e" class="outline-3">
-<h3 id="org33db95e">从线程获得结果</h3>
-<div class="outline-text-3" id="text-org33db95e">
+<div id="outline-container-org9247374" class="outline-3">
+<h3 id="org9247374">从线程获得结果</h3>
+<div class="outline-text-3" id="text-org9247374">
 <p>
 通过 <code>future</code> 能够方便地从线程获得结果, 也能方便地处理线程中发生的错误.
 </p>
 </div>
 </div>
-<div id="outline-container-org082863c" class="outline-3">
-<h3 id="org082863c">复制和重新抛出异常</h3>
-<div class="outline-text-3" id="text-org082863c">
+<div id="outline-container-org9e52941" class="outline-3">
+<h3 id="org9e52941">复制和重新抛出异常</h3>
+<div class="outline-text-3" id="text-org9e52941">
 <p>
 每个线程都可以抛出自己的异常, 但它们必须在自己的线程内捕获异常. 一个线程抛出的异常不能在另一个线程中捕获. 使用 <code>future</code> 可以自动在线程之间传递异常.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org56a886a" class="outline-2">
-<h2 id="org56a886a">原子操作</h2>
-<div class="outline-text-2" id="text-org56a886a">
+<div id="outline-container-org3a9e93c" class="outline-2">
+<h2 id="org3a9e93c">原子操作</h2>
+<div class="outline-text-2" id="text-org3a9e93c">
 <p>
 原子类型允许原子访问, 这意味着不需要额外的同步机制就可以执行并发的读写操作. 使用原子类型需要包含头文件 <code>&lt;atomic&gt;</code>. 标准为所有基本类型定义了相应的原子类型.
 </p>
@@ -558,21 +558,21 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbfb7dce" class="outline-2">
-<h2 id="orgbfb7dce">互斥</h2>
-<div class="outline-text-2" id="text-orgbfb7dce">
+<div id="outline-container-org280254c" class="outline-2">
+<h2 id="org280254c">互斥</h2>
+<div class="outline-text-2" id="text-org280254c">
 </div>
-<div id="outline-container-orgf54571e" class="outline-3">
-<h3 id="orgf54571e">互斥体类</h3>
-<div class="outline-text-3" id="text-orgf54571e">
+<div id="outline-container-org4d459d8" class="outline-3">
+<h3 id="org4d459d8">互斥体类</h3>
+<div class="outline-text-3" id="text-org4d459d8">
 <ul class="org-ul">
 <li>与互斥相关的类都定义在头文件 <code>&lt;mutex&gt;</code> 中, 而且都在 <code>std</code> 名字空间中.</li>
 <li>不要在任何互斥体类上手动调用下列锁定和解锁方法. 与所有资源一样, 互斥锁是资源, 它们几乎总是应该使用 resource acquisition is initialization, <b>RAII</b> 范例获得. 标准定义了一些RAII锁定类. 使用它们对避免死锁很重要. 锁对象离开作用域时, 它们会自动释放互斥体, 所以不需要手动调用 <code>unlock()</code>.</li>
 </ul>
 </div>
-<div id="outline-container-org37c4102" class="outline-4">
-<h4 id="org37c4102">非定时的互斥体类</h4>
-<div class="outline-text-4" id="text-org37c4102">
+<div id="outline-container-org8c53c22" class="outline-4">
+<h4 id="org8c53c22">非定时的互斥体类</h4>
+<div class="outline-text-4" id="text-org8c53c22">
 <p>
 标准库中有两个互斥体类:
 </p>
@@ -591,9 +591,9 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </dl>
 </div>
 </div>
-<div id="outline-container-org81628a2" class="outline-4">
-<h4 id="org81628a2">定时的互斥体类</h4>
-<div class="outline-text-4" id="text-org81628a2">
+<div id="outline-container-orgc5c8a81" class="outline-4">
+<h4 id="orgc5c8a81">定时的互斥体类</h4>
+<div class="outline-text-4" id="text-orgc5c8a81">
 <p>
 标准库提供了三个定时的互斥体类:
 </p>
@@ -620,40 +620,40 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 </div>
 </div>
 </div>
-<div id="outline-container-org77dfa95" class="outline-3">
-<h3 id="org77dfa95">锁</h3>
-<div class="outline-text-3" id="text-org77dfa95">
+<div id="outline-container-orgd04de87" class="outline-3">
+<h3 id="orgd04de87">锁</h3>
+<div class="outline-text-3" id="text-orgd04de87">
 <p>
 锁类是一个RAII类, 可以更方便正确地获得和释放互斥体上的锁. 锁类的构造函数会自动获得给定的互斥体; 锁类的析构函数会自动释放关联的互斥体.
 </p>
 </div>
-<div id="outline-container-org00e04b5" class="outline-4">
-<h4 id="org00e04b5"><code>lock_guard</code></h4>
-<div class="outline-text-4" id="text-org00e04b5">
+<div id="outline-container-org001938f" class="outline-4">
+<h4 id="org001938f"><code>lock_guard</code></h4>
+<div class="outline-text-4" id="text-org001938f">
 <p>
 简单的锁, 其构造函数接受一个互斥体引用, 尝试获得互斥体的锁, 并且阻塞直到获得锁.
 </p>
 </div>
 </div>
-<div id="outline-container-org8adb32a" class="outline-4">
-<h4 id="org8adb32a"><code>unique_lock</code></h4>
-<div class="outline-text-4" id="text-org8adb32a">
+<div id="outline-container-org90467ea" class="outline-4">
+<h4 id="org90467ea"><code>unique_lock</code></h4>
+<div class="outline-text-4" id="text-org90467ea">
 <p>
 较复杂的锁, 它允许将获得锁的时间延迟到计算需要时, 远在声明之后.
 </p>
 </div>
 </div>
-<div id="outline-container-org9a5a7ad" class="outline-4">
-<h4 id="org9a5a7ad"><code>shared_lock</code></h4>
-<div class="outline-text-4" id="text-org9a5a7ad">
+<div id="outline-container-orgd5625d4" class="outline-4">
+<h4 id="orgd5625d4"><code>shared_lock</code></h4>
+<div class="outline-text-4" id="text-orgd5625d4">
 <p>
 在底层的共享互斥体上调用与共享拥有权相关的方法, 其构造函数和方法与 <code>unique_lock</code> 相同, 但获得是共享锁, 而不是独占锁.
 </p>
 </div>
 </div>
-<div id="outline-container-org242798f" class="outline-4">
-<h4 id="org242798f">获得多个锁</h4>
-<div class="outline-text-4" id="text-org242798f">
+<div id="outline-container-org4ce1a94" class="outline-4">
+<h4 id="org4ce1a94">获得多个锁</h4>
+<div class="outline-text-4" id="text-org4ce1a94">
 <p>
 C++有两个锁泛型函数, 定义在名字空间std中, 可用于同时获得多个互斥体对象上的锁, 而不会出现死锁.
 </p>
@@ -663,9 +663,9 @@ C++有两个锁泛型函数, 定义在名字空间std中, 可用于同时获得�
 </dl>
 </div>
 </div>
-<div id="outline-container-org7da6651" class="outline-4">
-<h4 id="org7da6651"><code>std::call_once()</code></h4>
-<div class="outline-text-4" id="text-org7da6651">
+<div id="outline-container-orgb1d86f5" class="outline-4">
+<h4 id="orgb1d86f5"><code>std::call_once()</code></h4>
+<div class="outline-text-4" id="text-orgb1d86f5">
 <p>
 结合使用 <code>std::call_once()</code> 和 <code>std::once_flag</code> 可以确保某个函数或方法正好只调用一次, 不论有多少个线程试图调用 <code>call_once()</code> 都是如此. 只有一个 <code>call_once()</code> 调用能真正调用给定函数或方法; 这个调用称为有效的 <code>call_once()</code> 调用. 某个特定的 <code>once_flag</code> 实例的有效调用在对同一个 <code>once_flag</code> 实例的所有后续调用之前完成. 在同一个 <code>once_flag</code> 实例上调用 <code>call_once()</code> 的其他线程都会阻塞, 直到有效调用结束.
 </p>
@@ -673,16 +673,16 @@ C++有两个锁泛型函数, 定义在名字空间std中, 可用于同时获得�
 </div>
 </div>
 </div>
-<div id="outline-container-org894a123" class="outline-2">
-<h2 id="org894a123">条件变量</h2>
-<div class="outline-text-2" id="text-org894a123">
+<div id="outline-container-orgc88bff7" class="outline-2">
+<h2 id="orgc88bff7">条件变量</h2>
+<div class="outline-text-2" id="text-orgc88bff7">
 <p>
 条件变量允许一个线程阻塞, 直到另一个线程设置了某个条件或系统时间到达了某个指定的时间. 条件变量允许显式的线程间通信. 头文件 <code>&lt;condition_variable&gt;</code> 中定义了如下两类条件变量. 等待条件变量的线程可以在另一个线程调用 <code>notify_one()</code> 或 <code>notify_all()</code> 时醒过来, 或者在系统时间超过给定的时间时醒过来, 也可能不合时宜地醒过来. 这意味着即使没有其他线程调用任何通知方法, 线程也会醒过来. 因此, 当线程等待一个条件变量并醒过来时, 就需要检查它是否是因为获得通知而醒过来. 一种检查方法是使用接受谓词参数的 <code>wait()</code>, <code>wait_for()</code>, 或 <code>wait_until()</code>.
 </p>
 </div>
-<div id="outline-container-orgdec60d5" class="outline-3">
-<h3 id="orgdec60d5"><code>std::condition_variable</code></h3>
-<div class="outline-text-3" id="text-orgdec60d5">
+<div id="outline-container-org88a3843" class="outline-3">
+<h3 id="org88a3843"><code>std::condition_variable</code></h3>
+<div class="outline-text-3" id="text-org88a3843">
 <p>
 只能等待 <code>unique_lock&lt;mutex&gt;</code> 的条件变量. 支持以下方法:
 </p>
@@ -695,18 +695,18 @@ C++有两个锁泛型函数, 定义在名字空间std中, 可用于同时获得�
 </dl>
 </div>
 </div>
-<div id="outline-container-orgde19356" class="outline-3">
-<h3 id="orgde19356"><code>std::condition_variable_any</code></h3>
-<div class="outline-text-3" id="text-orgde19356">
+<div id="outline-container-org2b44dee" class="outline-3">
+<h3 id="org2b44dee"><code>std::condition_variable_any</code></h3>
+<div class="outline-text-3" id="text-org2b44dee">
 <p>
 可以等待任何对象的条件变量, 包括自定义的锁类型. 该类支持的方法和 <code>condition_variable</code> 类相同, 区别在于 <code>condition_variable_any</code> 可以接受任何类型的锁类, 而不只是 <code>unique_lock&lt;mutex&gt;</code>. 锁类应有 <code>lock()</code> 和 <code>unlock()</code> 方法.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org404f442" class="outline-2">
-<h2 id="org404f442"><code>future</code></h2>
-<div class="outline-text-2" id="text-org404f442">
+<div id="outline-container-org8ffc2a4" class="outline-2">
+<h2 id="org8ffc2a4"><code>future</code></h2>
+<div class="outline-text-2" id="text-org8ffc2a4">
 <p>
 当然, 应该总是尝试在线程本身中处理异常, 不应该让异常离开线程. <code>std::future</code> 能够将未捕获到的异常转移到另一个线程中, 然后另一个线程可以任意处置这个异常.
 </p>

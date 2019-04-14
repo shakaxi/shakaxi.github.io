@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Dired</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,27 +246,27 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2ff69a3">Introduction</a></li>
-<li><a href="#org921c804">Enter dired buffer</a></li>
-<li><a href="#org5c90cb7">Navigation</a></li>
-<li><a href="#org9e2511e">Marking &amp; unmarking</a></li>
-<li><a href="#orgac68162">Operations</a></li>
-<li><a href="#orgff44437">Working across directories</a></li>
+<li><a href="#org4ffbb0c">Introduction</a></li>
+<li><a href="#orgd9c140c">Enter dired buffer</a></li>
+<li><a href="#org25ffc9e">Navigation</a></li>
+<li><a href="#orgf52022f">Marking &amp; unmarking</a></li>
+<li><a href="#org7f736f4">Operations</a></li>
+<li><a href="#org51096b7">Working across directories</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2ff69a3" class="outline-2">
-<h2 id="org2ff69a3">Introduction</h2>
-<div class="outline-text-2" id="text-org2ff69a3">
+<div id="outline-container-org4ffbb0c" class="outline-2">
+<h2 id="org4ffbb0c">Introduction</h2>
+<div class="outline-text-2" id="text-org4ffbb0c">
 <p>
 Aside from editing files, including local and remote ones, Emacs can also play the role of a file manager, i.e., manipulating directories and the files by its directory editor, <i>dired</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-org921c804" class="outline-2">
-<h2 id="org921c804">Enter dired buffer</h2>
-<div class="outline-text-2" id="text-org921c804">
+<div id="outline-container-orgd9c140c" class="outline-2">
+<h2 id="orgd9c140c">Enter dired buffer</h2>
+<div class="outline-text-2" id="text-orgd9c140c">
 <p>
 Dired can be entered in following ways:
 </p>
@@ -267,9 +280,9 @@ Dired can be entered in following ways:
 </ul>
 </div>
 </div>
-<div id="outline-container-org5c90cb7" class="outline-2">
-<h2 id="org5c90cb7">Navigation</h2>
-<div class="outline-text-2" id="text-org5c90cb7">
+<div id="outline-container-org25ffc9e" class="outline-2">
+<h2 id="org25ffc9e">Navigation</h2>
+<div class="outline-text-2" id="text-org25ffc9e">
 <table>
 
 
@@ -313,9 +326,9 @@ Dired can be entered in following ways:
 </table>
 </div>
 </div>
-<div id="outline-container-org9e2511e" class="outline-2">
-<h2 id="org9e2511e">Marking &amp; unmarking</h2>
-<div class="outline-text-2" id="text-org9e2511e">
+<div id="outline-container-orgf52022f" class="outline-2">
+<h2 id="orgf52022f">Marking &amp; unmarking</h2>
+<div class="outline-text-2" id="text-orgf52022f">
 <p>
 Marking and unmarking enable operations on multiple files or directories.
 </p>
@@ -372,9 +385,9 @@ Marking and unmarking enable operations on multiple files or directories.
 </table>
 </div>
 </div>
-<div id="outline-container-orgac68162" class="outline-2">
-<h2 id="orgac68162">Operations</h2>
-<div class="outline-text-2" id="text-orgac68162">
+<div id="outline-container-org7f736f4" class="outline-2">
+<h2 id="org7f736f4">Operations</h2>
+<div class="outline-text-2" id="text-org7f736f4">
 <table>
 
 
@@ -438,9 +451,9 @@ Marking and unmarking enable operations on multiple files or directories.
 </table>
 </div>
 </div>
-<div id="outline-container-orgff44437" class="outline-2">
-<h2 id="orgff44437">Working across directories</h2>
-<div class="outline-text-2" id="text-orgff44437">
+<div id="outline-container-org51096b7" class="outline-2">
+<h2 id="org51096b7">Working across directories</h2>
+<div class="outline-text-2" id="text-org51096b7">
 <p>
 In dired buffer, typing <code>i</code> on a directory will insert it in the same dired buffer as a sub-directory.
 </p>

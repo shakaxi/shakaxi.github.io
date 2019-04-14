@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2019-04-14 Sun 23:05 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Movement</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,22 +246,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3a955e4">Character-wise movement</a></li>
-<li><a href="#org9e58f92">Word-wise movement</a></li>
-<li><a href="#orga75edd9">Line-wise movement</a></li>
-<li><a href="#org48b7f7a">Sexp-wise movement</a></li>
-<li><a href="#orgb7d0ef3">List-wise movement</a></li>
-<li><a href="#org0530b5d">Sentence-wise movement</a></li>
-<li><a href="#org933927e">Paragraph-wise movement</a></li>
-<li><a href="#org75a0d4a">Defun-wise movement</a></li>
-<li><a href="#orgcfc0e9f">Page-wise movement</a></li>
+<li><a href="#org75ad7a5">Character-wise movement</a></li>
+<li><a href="#orge745408">Word-wise movement</a></li>
+<li><a href="#orga772f98">Line-wise movement</a></li>
+<li><a href="#org2c1b82f">Sexp-wise movement</a></li>
+<li><a href="#org4468fe7">List-wise movement</a></li>
+<li><a href="#orga65f5cc">Sentence-wise movement</a></li>
+<li><a href="#org8a54ee1">Paragraph-wise movement</a></li>
+<li><a href="#org20469d1">Defun-wise movement</a></li>
+<li><a href="#org2f0fc51">Page-wise movement</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3a955e4" class="outline-2">
-<h2 id="org3a955e4">Character-wise movement</h2>
-<div class="outline-text-2" id="text-org3a955e4">
+<div id="outline-container-org75ad7a5" class="outline-2">
+<h2 id="org75ad7a5">Character-wise movement</h2>
+<div class="outline-text-2" id="text-org75ad7a5">
 <table>
 
 
@@ -287,9 +300,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org9e58f92" class="outline-2">
-<h2 id="org9e58f92">Word-wise movement</h2>
-<div class="outline-text-2" id="text-org9e58f92">
+<div id="outline-container-orge745408" class="outline-2">
+<h2 id="orge745408">Word-wise movement</h2>
+<div class="outline-text-2" id="text-orge745408">
 <table>
 
 
@@ -318,9 +331,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orga75edd9" class="outline-2">
-<h2 id="orga75edd9">Line-wise movement</h2>
-<div class="outline-text-2" id="text-orga75edd9">
+<div id="outline-container-orga772f98" class="outline-2">
+<h2 id="orga772f98">Line-wise movement</h2>
+<div class="outline-text-2" id="text-orga772f98">
 <table>
 
 
@@ -354,9 +367,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org48b7f7a" class="outline-2">
-<h2 id="org48b7f7a">Sexp-wise movement</h2>
-<div class="outline-text-2" id="text-org48b7f7a">
+<div id="outline-container-org2c1b82f" class="outline-2">
+<h2 id="org2c1b82f">Sexp-wise movement</h2>
+<div class="outline-text-2" id="text-org2c1b82f">
 <table>
 
 
@@ -385,9 +398,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orgb7d0ef3" class="outline-2">
-<h2 id="orgb7d0ef3">List-wise movement</h2>
-<div class="outline-text-2" id="text-orgb7d0ef3">
+<div id="outline-container-org4468fe7" class="outline-2">
+<h2 id="org4468fe7">List-wise movement</h2>
+<div class="outline-text-2" id="text-org4468fe7">
 <table>
 
 
@@ -426,9 +439,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org0530b5d" class="outline-2">
-<h2 id="org0530b5d">Sentence-wise movement</h2>
-<div class="outline-text-2" id="text-org0530b5d">
+<div id="outline-container-orga65f5cc" class="outline-2">
+<h2 id="orga65f5cc">Sentence-wise movement</h2>
+<div class="outline-text-2" id="text-orga65f5cc">
 <table>
 
 
@@ -457,9 +470,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org933927e" class="outline-2">
-<h2 id="org933927e">Paragraph-wise movement</h2>
-<div class="outline-text-2" id="text-org933927e">
+<div id="outline-container-org8a54ee1" class="outline-2">
+<h2 id="org8a54ee1">Paragraph-wise movement</h2>
+<div class="outline-text-2" id="text-org8a54ee1">
 <table>
 
 
@@ -488,9 +501,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org75a0d4a" class="outline-2">
-<h2 id="org75a0d4a">Defun-wise movement</h2>
-<div class="outline-text-2" id="text-org75a0d4a">
+<div id="outline-container-org20469d1" class="outline-2">
+<h2 id="org20469d1">Defun-wise movement</h2>
+<div class="outline-text-2" id="text-org20469d1">
 <table>
 
 
@@ -519,9 +532,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orgcfc0e9f" class="outline-2">
-<h2 id="orgcfc0e9f">Page-wise movement</h2>
-<div class="outline-text-2" id="text-orgcfc0e9f">
+<div id="outline-container-org2f0fc51" class="outline-2">
+<h2 id="org2f0fc51">Page-wise movement</h2>
+<div class="outline-text-2" id="text-org2f0fc51">
 <table>
 
 

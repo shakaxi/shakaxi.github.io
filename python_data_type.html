@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-12 Fri 00:11 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Data Type</title>
@@ -246,19 +246,19 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org70e9a5d">元组</a></li>
-<li><a href="#org9e93c8c">列表</a></li>
-<li><a href="#org2233c28">内建序列函数</a></li>
-<li><a href="#orgb5f1fc1">字典</a></li>
-<li><a href="#org4b2d86b">集合</a></li>
-<li><a href="#org73d7173">列表、字典和集合的推导式</a></li>
+<li><a href="#org87ae0ac">元组</a></li>
+<li><a href="#org31600c5">列表</a></li>
+<li><a href="#org38b5d0f">内建序列函数</a></li>
+<li><a href="#org18233df">字典</a></li>
+<li><a href="#org9475d94">集合</a></li>
+<li><a href="#orgdae95d1">列表、字典和集合的推导式</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org70e9a5d" class="outline-2">
-<h2 id="org70e9a5d">元组</h2>
-<div class="outline-text-2" id="text-org70e9a5d">
+<div id="outline-container-org87ae0ac" class="outline-2">
+<h2 id="org87ae0ac">元组</h2>
+<div class="outline-text-2" id="text-org87ae0ac">
 <ul class="org-ul">
 <li>元组是一种固定长度、不可变的Python对象序列。创建元组最简单的方法就是用逗号分隔序列值。</li>
 <li>元组可嵌套，通常需要用括号将值包起来。</li>
@@ -270,9 +270,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org9e93c8c" class="outline-2">
-<h2 id="org9e93c8c">列表</h2>
-<div class="outline-text-2" id="text-org9e93c8c">
+<div id="outline-container-org31600c5" class="outline-2">
+<h2 id="org31600c5">列表</h2>
+<div class="outline-text-2" id="text-org31600c5">
 <ul class="org-ul">
 <li>可以使用中括号 <code>[]</code> 或者 函数 <code>list</code> 来定义列表。后者常用于将迭代器或者生成器转化为列表。</li>
 <li>方法 <code>append</code> 用于将元素添加到列表的尾部。</li>
@@ -292,9 +292,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org2233c28" class="outline-2">
-<h2 id="org2233c28">内建序列函数</h2>
-<div class="outline-text-2" id="text-org2233c28">
+<div id="outline-container-org38b5d0f" class="outline-2">
+<h2 id="org38b5d0f">内建序列函数</h2>
+<div class="outline-text-2" id="text-org38b5d0f">
 <ul class="org-ul">
 <li>函数 <code>enumerate</code> 返回形如 <code>(索引值, 元素值)</code> 的元组的序列。</li>
 <li>函数 <code>sorted</code> 对序列排序并返回新的有序序列。</li>
@@ -303,9 +303,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb5f1fc1" class="outline-2">
-<h2 id="orgb5f1fc1">字典</h2>
-<div class="outline-text-2" id="text-orgb5f1fc1">
+<div id="outline-container-org18233df" class="outline-2">
+<h2 id="org18233df">字典</h2>
+<div class="outline-text-2" id="text-org18233df">
 <ul class="org-ul">
 <li>字典即哈希表或关联数组，是键值对（二元组）的集合。其中，键值都是Python对象，而且键必须是不可变的对象。</li>
 <li>可以使用大括号 <code>{}</code> 创建字典，字典元素用逗号分隔，元素的键和值用冒号 <code>:</code> 分隔。</li>
@@ -319,24 +319,24 @@ for the JavaScript code in this tag.
 <li>方法 <code>get</code> 可以返回一个默认值。也即</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #dbdb95;">VALUE</span> = SOME_DICT.get(KEY, DEFAULT_VALUE)
+<pre class="src src-python"><span style="color: #fcaf3e;">VALUE</span> = SOME_DICT.get(KEY, DEFAULT_VALUE)
 </pre>
 </div>
 <p>
 等价于
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #ffad29; font-weight: bold;">if</span> KEY <span style="color: #ffad29; font-weight: bold;">in</span> SOME_DICT:
-    <span style="color: #dbdb95;">VALUE</span> = SOME_DICT[KEY]
-<span style="color: #ffad29; font-weight: bold;">else</span>:
-    <span style="color: #dbdb95;">VALUE</span> = DEFAULT_VALUE
+<pre class="src src-python"><span style="color: #b4fa70;">if</span> KEY <span style="color: #b4fa70;">in</span> SOME_DICT:
+    <span style="color: #fcaf3e;">VALUE</span> = SOME_DICT[KEY]
+<span style="color: #b4fa70;">else</span>:
+    <span style="color: #fcaf3e;">VALUE</span> = DEFAULT_VALUE
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4b2d86b" class="outline-2">
-<h2 id="org4b2d86b">集合</h2>
-<div class="outline-text-2" id="text-org4b2d86b">
+<div id="outline-container-org9475d94" class="outline-2">
+<h2 id="org9475d94">集合</h2>
+<div class="outline-text-2" id="text-org9475d94">
 <ul class="org-ul">
 <li>集合是一种无序且元素唯一的容器。其元素必须是不可变的。</li>
 <li>可以使用大括号 <code>{}</code> 或者方法 <code>set</code> 创建集合。</li>
@@ -345,23 +345,23 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org73d7173" class="outline-2">
-<h2 id="org73d7173">列表、字典和集合的推导式</h2>
-<div class="outline-text-2" id="text-org73d7173">
+<div id="outline-container-orgdae95d1" class="outline-2">
+<h2 id="orgdae95d1">列表、字典和集合的推导式</h2>
+<div class="outline-text-2" id="text-orgdae95d1">
 <ul class="org-ul">
 <li>列表的推导式如下:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #dbdb95;">LIST</span> = [EXPRESSION <span style="color: #ffad29; font-weight: bold;">for</span> VALUE <span style="color: #ffad29; font-weight: bold;">in</span> COLLECTION <span style="color: #ffad29; font-weight: bold;">if</span> CONDITION]
+<pre class="src src-python"><span style="color: #fcaf3e;">LIST</span> = [EXPRESSION <span style="color: #b4fa70;">for</span> VALUE <span style="color: #b4fa70;">in</span> COLLECTION <span style="color: #b4fa70;">if</span> CONDITION]
 </pre>
 </div>
 <p>
 其等价于
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #dbdb95;">LIST</span> = []
-<span style="color: #ffad29; font-weight: bold;">for</span> VALUE <span style="color: #ffad29; font-weight: bold;">in</span> COLLECTION:
-    <span style="color: #ffad29; font-weight: bold;">if</span> CONDITION:
+<pre class="src src-python"><span style="color: #fcaf3e;">LIST</span> = []
+<span style="color: #b4fa70;">for</span> VALUE <span style="color: #b4fa70;">in</span> COLLECTION:
+    <span style="color: #b4fa70;">if</span> CONDITION:
         LIST.append(EXPRESSION)
 </pre>
 </div>
@@ -372,14 +372,14 @@ for the JavaScript code in this tag.
 <li>字典的推导式如下:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #dbdb95;">DICTIONARY</span> = {KEY: VALUE <span style="color: #ffad29; font-weight: bold;">for</span> VALUE <span style="color: #ffad29; font-weight: bold;">in</span> COLLECTION <span style="color: #ffad29; font-weight: bold;">if</span> CONDITION}
+<pre class="src src-python"><span style="color: #fcaf3e;">DICTIONARY</span> = {KEY: VALUE <span style="color: #b4fa70;">for</span> VALUE <span style="color: #b4fa70;">in</span> COLLECTION <span style="color: #b4fa70;">if</span> CONDITION}
 </pre>
 </div>
 <ul class="org-ul">
 <li>集合的推导式如下:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #dbdb95;">SET</span> = {EXPRESSION <span style="color: #ffad29; font-weight: bold;">for</span> VALUE <span style="color: #ffad29; font-weight: bold;">in</span> COLLECTION <span style="color: #ffad29; font-weight: bold;">if</span> CONDITION}
+<pre class="src src-python"><span style="color: #fcaf3e;">SET</span> = {EXPRESSION <span style="color: #b4fa70;">for</span> VALUE <span style="color: #b4fa70;">in</span> COLLECTION <span style="color: #b4fa70;">if</span> CONDITION}
 </pre>
 </div>
 </div>

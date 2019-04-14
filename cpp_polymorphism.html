@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Polymorphism</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,30 +246,30 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org32abfa6">简介</a></li>
-<li><a href="#org6482a7a">虚函数</a>
+<li><a href="#org66dda8c">简介</a></li>
+<li><a href="#orgc8385dd">虚函数</a>
 <ul>
-<li><a href="#org9bffb33">纯虚函数</a></li>
-<li><a href="#org5c5a0b8">抽象类</a></li>
+<li><a href="#org3553753">纯虚函数</a></li>
+<li><a href="#org4982a1c">抽象类</a></li>
 </ul>
 </li>
-<li><a href="#org2b32a4e">总结</a></li>
+<li><a href="#org94f057e">总结</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org32abfa6" class="outline-2">
-<h2 id="org32abfa6">简介</h2>
-<div class="outline-text-2" id="text-org32abfa6">
+<div id="outline-container-org66dda8c" class="outline-2">
+<h2 id="org66dda8c">简介</h2>
+<div class="outline-text-2" id="text-org66dda8c">
 <p>
 <b>多态</b> 是C++语言的一大特色。一个操作随着所传递或捆绑的对象类型的不同能够做出不同的反应，其行为模式称为多态<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。而且，仅仅对于对象的指针和引用的间接访问，才会发生多态。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6482a7a" class="outline-2">
-<h2 id="org6482a7a">虚函数</h2>
-<div class="outline-text-2" id="text-org6482a7a">
+<div id="outline-container-orgc8385dd" class="outline-2">
+<h2 id="orgc8385dd">虚函数</h2>
+<div class="outline-text-2" id="text-orgc8385dd">
 <p>
 在使用类的C++语言中，抽象编程需要使用 <b>虚函数</b> 机制。基类与派生类的同名操作，只要标记上 <b>virtual</b><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> ，则该操作（虚函数）便具有多态性。一旦标记基类的函数为虚函数，便有连锁反应，后面继承的类中一切同名成员函数都变成了虚函数。这样一来，如果实际对象是基类对象，那么调用的就是基类成员函数；如果实际对象是派生类对象，那么调用的就是派生类成员函数。
 </p>
@@ -272,17 +285,17 @@ for the JavaScript code in this tag.
 <li>析构函数可以是且通常声明为虚函数。</li>
 </ul>
 </div>
-<div id="outline-container-org9bffb33" class="outline-3">
-<h3 id="org9bffb33">纯虚函数</h3>
-<div class="outline-text-3" id="text-org9bffb33">
+<div id="outline-container-org3553753" class="outline-3">
+<h3 id="org3553753">纯虚函数</h3>
+<div class="outline-text-3" id="text-org3553753">
 <p>
 纯虚函数是指被标明为不具体实现的虚函数。纯虚函数一旦声明，就不用定义。声明形式是在虚函数声明形式后跟“ = 0”。
 </p>
 </div>
 </div>
-<div id="outline-container-org5c5a0b8" class="outline-3">
-<h3 id="org5c5a0b8">抽象类</h3>
-<div class="outline-text-3" id="text-org5c5a0b8">
+<div id="outline-container-org4982a1c" class="outline-3">
+<h3 id="org4982a1c">抽象类</h3>
+<div class="outline-text-3" id="text-org4982a1c">
 <p>
 抽象类是指在类定义中至少声明一个纯虚函数的类。抽象类是不允许有实例对象的，即不能由抽象类创建实例对象，其用途只是为了继承。
 </p>
@@ -290,9 +303,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org2b32a4e" class="outline-2">
-<h2 id="org2b32a4e">总结</h2>
-<div class="outline-text-2" id="text-org2b32a4e">
+<div id="outline-container-org94f057e" class="outline-2">
+<h2 id="org94f057e">总结</h2>
+<div class="outline-text-2" id="text-org94f057e">
 <p>
 总之, 要想实现多态, 必须用虚函数(在基类中用关键字virtual). 对于派生类, 必须对虚函数进行实现. 对于基类, 有两个选择: 第一, 实现虚函数; 第二, 将虚函数声明为纯虚函数(相应地, 基类也就变成了抽象类).
 </p>

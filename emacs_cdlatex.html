@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-03-21 Thu 23:21 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - CDLaTeX</title>
@@ -246,43 +246,43 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3558d9f">Introduction</a></li>
-<li><a href="#org1f62d68">Installation</a></li>
-<li><a href="#org5726e2a">Configuration</a>
+<li><a href="#org8aeed2a">Introduction</a></li>
+<li><a href="#org56e838e">Installation</a></li>
+<li><a href="#org6d1e0a1">Configuration</a>
 <ul>
-<li><a href="#org494d9c5">Org</a></li>
+<li><a href="#orgb672942">Org</a></li>
 </ul>
 </li>
-<li><a href="#org63d2de5">Usage</a>
+<li><a href="#org65b9619">Usage</a>
 <ul>
-<li><a href="#org789de05">Keybinding</a></li>
-<li><a href="#org71240b1">Backquote (<code>`</code>) + character</a></li>
-<li><a href="#org13217f9">Prefix + <code>TAB</code></a></li>
+<li><a href="#orgb61de62">Keybinding</a></li>
+<li><a href="#org9c4a9b4">Backquote (<code>`</code>) + character</a></li>
+<li><a href="#org372c6c7">Prefix + <code>TAB</code></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3558d9f" class="outline-2">
-<h2 id="org3558d9f">Introduction</h2>
-<div class="outline-text-2" id="text-org3558d9f">
+<div id="outline-container-org8aeed2a" class="outline-2">
+<h2 id="org8aeed2a">Introduction</h2>
+<div class="outline-text-2" id="text-org8aeed2a">
 <p>
 <code>CDLaTeX</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a minor mode for fast LaTeX environment and macro insertion<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. In this sense, its functionalities are very similar to <code>AUCTeX</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. What's more, some of its convenience provided are also covered by <code>AUCTeX</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org1f62d68" class="outline-2">
-<h2 id="org1f62d68">Installation</h2>
-<div class="outline-text-2" id="text-org1f62d68">
+<div id="outline-container-org56e838e" class="outline-2">
+<h2 id="org56e838e">Installation</h2>
+<div class="outline-text-2" id="text-org56e838e">
 <p>
 The package of <code>cdlatex</code> is available at <code>melpa</code>, which can be easily installed.
 </p>
 </div>
 </div>
-<div id="outline-container-org5726e2a" class="outline-2">
-<h2 id="org5726e2a">Configuration</h2>
-<div class="outline-text-2" id="text-org5726e2a">
+<div id="outline-container-org6d1e0a1" class="outline-2">
+<h2 id="org6d1e0a1">Configuration</h2>
+<div class="outline-text-2" id="text-org6d1e0a1">
 <p>
 If <code>AUCTeX</code> is installed, <code>CDLaTeX</code> can be activated on top of it via
 </p>
@@ -298,9 +298,9 @@ Otherwise, <code>CDLaTeX</code> can be directly turned on with latex mode, i.e.,
 </pre>
 </div>
 </div>
-<div id="outline-container-org494d9c5" class="outline-3">
-<h3 id="org494d9c5">Org</h3>
-<div class="outline-text-3" id="text-org494d9c5">
+<div id="outline-container-orgb672942" class="outline-3">
+<h3 id="orgb672942">Org</h3>
+<div class="outline-text-3" id="text-orgb672942">
 <p>
 In <code>org</code> mode, instead of <code>CDLaTeX</code> itself, its light version <code>org-cdlatex-mode</code> should be used, which depends on <code>cdlatex.el</code> (in package <code>CDLaTeX</code>) and <code>texmathp</code> (in package <code>AUCTeX</code>). To automatically turn it on in a <code>org</code> file, add the following line in the emacs configuration file, e.g., <code>~/init.el</code>.
 </p>
@@ -311,13 +311,13 @@ In <code>org</code> mode, instead of <code>CDLaTeX</code> itself, its light vers
 </div>
 </div>
 </div>
-<div id="outline-container-org63d2de5" class="outline-2">
-<h2 id="org63d2de5">Usage</h2>
-<div class="outline-text-2" id="text-org63d2de5">
+<div id="outline-container-org65b9619" class="outline-2">
+<h2 id="org65b9619">Usage</h2>
+<div class="outline-text-2" id="text-org65b9619">
 </div>
-<div id="outline-container-org789de05" class="outline-3">
-<h3 id="org789de05">Keybinding</h3>
-<div class="outline-text-3" id="text-org789de05">
+<div id="outline-container-orgb61de62" class="outline-3">
+<h3 id="orgb61de62">Keybinding</h3>
+<div class="outline-text-3" id="text-orgb61de62">
 <table>
 
 
@@ -406,17 +406,17 @@ In <code>org</code> mode, instead of <code>CDLaTeX</code> itself, its light vers
 </table>
 </div>
 </div>
-<div id="outline-container-org71240b1" class="outline-3">
-<h3 id="org71240b1">Backquote (<code>`</code>) + character</h3>
-<div class="outline-text-3" id="text-org71240b1">
+<div id="outline-container-org9c4a9b4" class="outline-3">
+<h3 id="org9c4a9b4">Backquote (<code>`</code>) + character</h3>
+<div class="outline-text-3" id="text-org9c4a9b4">
 <p>
 By <code>CDLaTeX</code>, mathematical symbols can be easily input by a backquote (<code>`</code>) followed by a character. In order to support more mathematical symbols, <code>CDLaTeX</code> defines 3 different <i>levels</i>, which can be entered by a different number of backquotes before a character.
 </p>
 </div>
 </div>
-<div id="outline-container-org13217f9" class="outline-3">
-<h3 id="org13217f9">Prefix + <code>TAB</code></h3>
-<div class="outline-text-3" id="text-org13217f9">
+<div id="outline-container-org372c6c7" class="outline-3">
+<h3 id="org372c6c7">Prefix + <code>TAB</code></h3>
+<div class="outline-text-3" id="text-org372c6c7">
 <p>
 <code>CDLaTeX</code> can automatically expand a variety of <code>prefix + TAB</code> bindings as follows.
 </p>

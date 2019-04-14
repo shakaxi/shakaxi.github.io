@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:04 -->
+<!-- 2019-04-14 Sun 23:05 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LTE - PCFICH</title>
+<title>Wiener Filter</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -238,33 +238,54 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">LTE - PCFICH</h1>
+<h1 class="title">Wiener Filter</h1>
 <p>
-As its name implies, physical control format indicator channel (PCFICH) indicates the size of the control region, or equivalently the position where data region starts, of the instant subframe in terms of the number of OFDM symbols.
+设观测信号\(x(t)\)为期望信号\(s(t)\)和噪声信号\(n(t)\)的叠加，也即
+</p>
+\begin{align*}
+  x(t) = s(t) + n(t).
+\end{align*}
+<p>
+其中，\(s(t)\)和\(n(t)\)是宽平稳过程，且相互联合宽平稳，观测信号\(x(t)\)和期望信号\(s(t)\)的自相关函数和互相关函数分别为\(R_x(\tau)\)、\(R_s(\tau)\)和\(R_{sx}(\tau)\)，功率谱密度函数及其互功率谱密度函数分别为\(S_x(f)\)、\(S_s(f)\)和\(S_{sx}(f)\)。
 </p>
 
 <p>
-There are totally 2 bits for PCFICH corresponding to the three candidate control region size. The 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the inter-cell interference (ICI). After that, the codeword is modulated into 16 QPSK symbols and mapped to 4 <i>resource element groups (REG's)</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 bandwidth.
+如果要设计一个冲激响应为\(h(t)\)的滤波器，使得其输出信号和期望信号\(s(t)\)的均方误差达到最小，这样的滤波器称为Wiener滤波器，又称均方滤波器。其冲激响应\(h(t)\)满足Wiener-Hopf方程。
 </p>
-
-
-<div class="figure">
-<p><img src="pcfich.png" alt="pcfich.png">
+\begin{align*}
+  \int_{-\infty}^{\infty}R_{x}(t - \tau) h^*(\tau)d\tau = R_{sx}(t).
+\end{align*}
+<p>
+相应地，其传递函数为
 </p>
+\begin{align*}
+  H^*(f) = \frac{S_{sx}(f)}{S_x(f)}.
+\end{align*}
 </div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-One REG means 4 resource elements (RE's) in frequency domain.
-</p></div></div>
-
-
-</div>
-</div></div>
 </body>
 </html>

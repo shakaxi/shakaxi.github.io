@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-04-21 Sat 21:17 -->
+<!-- 2019-04-14 Sun 23:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - YCMD</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -184,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -233,51 +246,51 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org53f497c">Introduction</a></li>
-<li><a href="#orge6f631c">Installation</a>
+<li><a href="#org8b98985">Introduction</a></li>
+<li><a href="#org0733871">Installation</a>
 <ul>
-<li><a href="#orgc1b3603">Emacs packages</a></li>
-<li><a href="#org27e5305">Dependency</a></li>
-<li><a href="#orgaa59615">YCMD</a></li>
-<li><a href="#orgc2458b9">Configurations</a></li>
+<li><a href="#org1f50671">Emacs packages</a></li>
+<li><a href="#orgf7fe7ae">Dependency</a></li>
+<li><a href="#org7259fe5">YCMD</a></li>
+<li><a href="#orgd9961bd">Configurations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org53f497c" class="outline-2">
-<h2 id="org53f497c">Introduction</h2>
-<div class="outline-text-2" id="text-org53f497c">
+<div id="outline-container-org8b98985" class="outline-2">
+<h2 id="org8b98985">Introduction</h2>
+<div class="outline-text-2" id="text-org8b98985">
 <p>
 YouCompleteMe (YCM) is originally a completion framework for VIM<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, and afterwards splitted into a general server and a client. The general server, namely YCM daemon (YCMD)<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, is able to provide interface to a variety of clients beyond VIM, e.g. Emacs. Moreover, both <code>company</code> and <code>auto-complete</code> can directly utilize what the server/daemon provides.
 </p>
 </div>
 </div>
-<div id="outline-container-orge6f631c" class="outline-2">
-<h2 id="orge6f631c">Installation</h2>
-<div class="outline-text-2" id="text-orge6f631c">
+<div id="outline-container-org0733871" class="outline-2">
+<h2 id="org0733871">Installation</h2>
+<div class="outline-text-2" id="text-org0733871">
 </div>
-<div id="outline-container-orgc1b3603" class="outline-3">
-<h3 id="orgc1b3603">Emacs packages</h3>
-<div class="outline-text-3" id="text-orgc1b3603">
+<div id="outline-container-org1f50671" class="outline-3">
+<h3 id="org1f50671">Emacs packages</h3>
+<div class="outline-text-3" id="text-org1f50671">
 <p>
 Install the Emacs packages via ELPA, <code>ycmd</code>, <code>company-ycmd</code>, <code>company</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org27e5305" class="outline-3">
-<h3 id="org27e5305">Dependency</h3>
-<div class="outline-text-3" id="text-org27e5305">
+<div id="outline-container-orgf7fe7ae" class="outline-3">
+<h3 id="orgf7fe7ae">Dependency</h3>
+<div class="outline-text-3" id="text-orgf7fe7ae">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S boost
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa59615" class="outline-3">
-<h3 id="orgaa59615">YCMD</h3>
-<div class="outline-text-3" id="text-orgaa59615">
+<div id="outline-container-org7259fe5" class="outline-3">
+<h3 id="org7259fe5">YCMD</h3>
+<div class="outline-text-3" id="text-org7259fe5">
 <p>
 Install the <code>YCMD</code> to <code>~/.emacs.d/ycmd</code>.
 </p>
@@ -291,9 +304,9 @@ git submodule update --init --recursive
 </div>
 </div>
 </div>
-<div id="outline-container-orgc2458b9" class="outline-3">
-<h3 id="orgc2458b9">Configurations</h3>
-<div class="outline-text-3" id="text-orgc2458b9">
+<div id="outline-container-orgd9961bd" class="outline-3">
+<h3 id="orgd9961bd">Configurations</h3>
+<div class="outline-text-3" id="text-orgd9961bd">
 <ul class="org-ul">
 <li><code>~/.emacs.d/ycmd/global_config.py</code></li>
 </ul>
