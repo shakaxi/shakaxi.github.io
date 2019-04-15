@@ -73,6 +73,7 @@
 - [[file:ssh.org][SSH]]
 - [[file:sim_large_scale_model.org][Simulation - Large Scale Modelling]]
 - [[file:switch_virtual_console.org][Virtual Console Switch]]
+- [[file:whitening_filter.org][Whitening Filter]]
 - [[file:wiener_filter.org][Wiener Filter]]
 - [[file:zc.org][ZC]]
 - [[file:zathura.org][Zathura]]

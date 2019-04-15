@@ -1,0 +1,23 @@
+#+TITLE: Whitening Filter
+#+OPTIONS: \usepackage{amsmath, amssymb, amsfonts}
+
+有时需要将有用信号和某个有色噪声的混合信号进行滤波处理, 使得输出信号中原来的有色噪声成分成为白噪声.
+
+设\(x(t)\)是一个宽平稳过程, 将其输入冲激响应为\(h(t)\)的线性时不变(linear time invariant, LTI)系统\(L\), 若输出过程是功率谱密度为1的白噪声过程\(n(t)\), 则称系统\(L\)为随机过程\(x(t)\)的白化滤波器, 称\(n(t)\)为\(x(t)\)的新息过程. 将\(n(t)\)输入\(L\)的逆系统\(L^{-1}\), 则得到原来的过程\(x(t)\), 此时称\(L^{-1}\)为新息滤波器. 如下图所示.
+#+BEGIN_SRC dot :file whitening_filter.png
+digraph G
+{
+rankdir = LR;
+x -> wf -> n -> inv_wf -> x_rcv;
+x [label = "x(t)\nSx(f)", shape = plaintext];
+wf [label = "白化滤波器", shape = box];
+n [label = "n(t)\nSn(f) = 1", shape = plaintext];
+inv_wf [label = "新息滤波器", shape = box];
+x_rcv [label = "x(t)\nSx(f)", shape = plaintext];
+}
+#+END_SRC
+
+#+CAPTION: 白化滤波器和新息滤波器
+#+ATTR_HTML: :width 800px
+#+RESULTS:
+[[file:whitening_filter.png]]
