@@ -1,0 +1,68 @@
+#+TITLE: Tensorflow
+
+* Introducation
+Tensorflow is a deep learning library, which provides two programming interfaces, C++ and Python. Moreover, The Python API integrates very well with [[http://www.numpy.org][numpy]]. In many places, Tensorflow tensors can be interchanged with numpy =ndarrays=.
+* Representation
+In tensorflow, machine learning algorithms are represented as /computational graphs/, i.e. [[*Graph][=graph=]], in which a vertex/node and an edge represent an operation (=op=) and a data flowing, respectively.
+* Operation
+- An operation can have 0 or more inputs and produce zero or more outputs.
+- An operation may stand for a mathematical equation, a variable, a constant, a control flow directive, a file I/O operation, or even a network communication port.
+* Tensor
+- A tensor is a multidimentional array or list, the generalization of scalars, 1-D vector, and 2-D matrices.
+- Tensors are the connecting edges, passed between nodes/ops in the flow diagram.
+- A tensor is a symbolic handle, which does not hold or store values in memory, but provides only an interface for retrieving the value referenced by the tensor.
+- Parameters
+  + Rank :: The number of dimensions
+  + Shape :: The number of components in each dimension, e.g., the number of rows and columns.
+  + Type :: Data type assigned to the elements of the tensor
+* Variable
+- Variables can be described as persistent, mutable handlers to in-memory buffers storing tensors. They maintain the state of the graph across executions.
+- A variable can be identified as a revisable [[*Tensor][tensor]].
+- To manipulate and update variables, the =assign= family of graph operations are provided.
+- A variable must be initialized before it has a value, and a variable itself does not store the initial tensor.
+  + Call =initializer= operation for each variable.
+  + Call =tensorflow.initialize_all_variables()=, which in turn executes the =initializer= operation for each variable in the graph.
+- Variables can be saved in and restored from a /checkpoint/ file by a =tensorflow.train.Saver= object, in which its =name= property is used by default. What deserves to be mentioned, a checkpoint allows for persistent storage and recovery of variables.
+* Placeholder
+- Placeholders are special variables, which must be replaced with concrete tensors on graph execution and supplied in the =feed_dict= argument to =Session.run()=.
+- For each placeholder, its shape and data type should be specified.
+* Session
+- The execution of operations and evaluation of tensors may only be performed in a special environment referred to as /session/.
+- Its method =run= takes as input the nodes (including feed nodes) in the graph whose tensors should be computed and returned.
+  + A feed can temporarily replace the output of an operation with a tensor.
+  + A feed can be provided as an argument to =tensorflow.Session.run=.
+  + The most common case is to designate an operation to be a feed by method =tensorflow.placeholder=.
+- As a context manager, a =Session= object is indispensable to launch a graph.
+- Its constructor can be provided with a graph object, so that the =Session= object understands the target graph to manage.
+- The default constructor of the =Session= class will launch the default graph.
+- A session should be closed to release resources using =close= method. The procedure can also be automatically performed with a =with= block, i.e.,
+#+begin_src python
+  with tensorflow.Session() as s:
+      # Some operations
+#+end_src
+- In the case of interactive python shell, e.g., ipython, class =Session= can be replaced by class =InteractiveSession=.
+* Execution
+- A graph can be executed in the context of a =Session= in a couple of ways.
+  + Call =Session.run()= and pass a list of tensors, which are desired to computed. Upon invocation of =run=, Tensorflow will start at the requested output nodes an work backwards, examining the graph dependencies and computing the full transitive closure of all nodes that must be executed.
+  + Call =eval()= on tensors and =run()= on operations directly. In this case, it is possible to explicitly specify the order of node evaluations, a.k.a. /control dependencies/.
+- Represent data as =tensors=.
+- Maintain state with =Variables=.
+- Use the operations of =feed= / =fetch= to get data into/out of an operation.
+* Graph
+Tensorflow programs are usually structured into a construction phase, that assembles a graph, and an execution phase that uses a session to execute ops in the graph.
+#+begin_src python
+  # Create a new graph.
+  g = tf.Graph()
+
+  # Register the graph g as the default one to add nodes.
+  with g.as_default():
+      # Add operation nodes.
+#+end_src
+In the tensorflow Python library, there is a default graph to which ops constructors can add nodes. The default one is sufficient in most cases.
+* Tensorboard
+As a built-in module inside tensorflow, /tensorboard/ is a web interface for graph visualization and manipulation. It provides a couple of summary operations (nodes), /scalar summary/ and /histogram summary/. The former shows the progression of a scalar tensor value, and the latter tracks distributions.
+
+The concrete practice can be summarized into 3 steps as below.
+1. Group nodes into /name scopes/.
+2. Add scalar and histogram summaries to operations.
+3. Instantiate a =SummaryWriter= object.
