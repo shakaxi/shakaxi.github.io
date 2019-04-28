@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2019-04-28 Sun 22:29 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine Learning</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Machine Learning</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7d09644">Introducation</a></li>
+<li><a href="#org2bdbe42">Application</a>
+<ul>
+<li><a href="#org23b08af">Image processing</a></li>
+<li><a href="#org417f470">Text analysis</a></li>
+<li><a href="#orged1dce5">Data mining</a></li>
+<li><a href="#orge935ab8">Video games &amp; robotics</a></li>
+</ul>
+</li>
+<li><a href="#org8dbc70d">Algorithms</a>
+<ul>
+<li><a href="#orgc4cbc3b">Categories</a>
+<ul>
+<li><a href="#orgc6b0aa7">Supervised learning</a></li>
+<li><a href="#orgdc9cccb">Unsupervised learning</a></li>
+</ul>
+</li>
+<li><a href="#org227dd2c">Algorithms</a>
+<ul>
+<li><a href="#org22edfef">Support vector machines (SVM's)</a></li>
+<li><a href="#org1e23396">Probabilistic models</a></li>
+<li><a href="#orgeda359c">Deep learning</a></li>
+</ul>
+</li>
+<li><a href="#orgebddf2d">Feature engineering</a>
+<ul>
+<li><a href="#org96bd3ba">Feature extraction</a></li>
+<li><a href="#org5f5331e">Feature selection</a></li>
+</ul>
+</li>
+<li><a href="#org612d463">Performance metric</a></li>
+</ul>
+</li>
+<li><a href="#org97b9938">Deep learning</a>
+<ul>
+<li><a href="#org9da15fa">Recurrent neural network (RNN)</a></li>
+<li><a href="#org867b9b6">Convolutional neural network (CNN)</a></li>
+</ul>
+</li>
+<li><a href="#org5d12086">Neural network</a>
+<ul>
+<li><a href="#org94e50fd">McCulloch and Pitts (M-P) model for neurons</a></li>
+<li><a href="#org7a3a1d7">Multi-layer feedforward neural network</a></li>
+<li><a href="#org0ac692a">Cross-entropy</a></li>
+<li><a href="#orgbd501b9">Softmax</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7d09644" class="outline-2">
+<h2 id="org7d09644">Introducation</h2>
+<div class="outline-text-2" id="text-org7d09644">
+<p>
+Machine learning (ML) is a subfield of artificial intelligence (AI).
+</p>
+</div>
+</div>
+<div id="outline-container-org2bdbe42" class="outline-2">
+<h2 id="org2bdbe42">Application</h2>
+<div class="outline-text-2" id="text-org2bdbe42">
+</div>
+<div id="outline-container-org23b08af" class="outline-3">
+<h3 id="org23b08af">Image processing</h3>
+<div class="outline-text-3" id="text-org23b08af">
+<ul class="org-ul">
+<li>Image tagging</li>
+<li>Optical character recognition (OCR)</li>
+<li>Self-driving cars</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org417f470" class="outline-3">
+<h3 id="org417f470">Text analysis</h3>
+<div class="outline-text-3" id="text-org417f470">
+<ul class="org-ul">
+<li>Spam filtering</li>
+<li>Sentiment analysis</li>
+<li>Information extract</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orged1dce5" class="outline-3">
+<h3 id="orged1dce5">Data mining</h3>
+<div class="outline-text-3" id="text-orged1dce5">
+<p>
+Discover patterns and make predictions from data.
+</p>
+<ul class="org-ul">
+<li>Anomaly detection</li>
+<li>Association rules</li>
+<li>Grouping</li>
+<li>Predictions</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge935ab8" class="outline-3">
+<h3 id="orge935ab8">Video games &amp; robotics</h3>
+</div>
+</div>
+<div id="outline-container-org8dbc70d" class="outline-2">
+<h2 id="org8dbc70d">Algorithms</h2>
+<div class="outline-text-2" id="text-org8dbc70d">
+<ul class="org-ul">
+<li>ML algorithms try to solve the same problem: learn to transform every input to the correct output.</li>
+<li>ML algorithms try to make generalizations, and create the simplest hypothesis (with fewest assumptions) that explains most of the training examples.</li>
+</ul>
+</div>
+<div id="outline-container-orgc4cbc3b" class="outline-3">
+<h3 id="orgc4cbc3b">Categories</h3>
+<div class="outline-text-3" id="text-orgc4cbc3b">
+</div>
+<div id="outline-container-orgc6b0aa7" class="outline-4">
+<h4 id="orgc6b0aa7">Supervised learning</h4>
+<div class="outline-text-4" id="text-orgc6b0aa7">
+<p>
+For each training example, the correct output must be provided.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdc9cccb" class="outline-4">
+<h4 id="orgdc9cccb">Unsupervised learning</h4>
+<div class="outline-text-4" id="text-orgdc9cccb">
+<p>
+The training examples but not the desired output are the input.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org227dd2c" class="outline-3">
+<h3 id="org227dd2c">Algorithms</h3>
+<div class="outline-text-3" id="text-org227dd2c">
+</div>
+<div id="outline-container-org22edfef" class="outline-4">
+<h4 id="org22edfef">Support vector machines (SVM's)</h4>
+<div class="outline-text-4" id="text-org22edfef">
+<p>
+The model tries to build a set of hyperplanes in a high dimensional space which tries to separate instances of different classes by getting the largest separation between the nearest instances from different classes.
+</p>
+</div>
+</div>
+<div id="outline-container-org1e23396" class="outline-4">
+<h4 id="org1e23396">Probabilistic models</h4>
+<div class="outline-text-4" id="text-org1e23396">
+<ul class="org-ul">
+<li>The models try to predict the correct response by modeling the problem with a probability distribution, e.g., Naive Bayes classifiers.</li>
+<li>It returns the prediction as well as the corresponding degree of certainty.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgeda359c" class="outline-4">
+<h4 id="orgeda359c">Deep learning</h4>
+<div class="outline-text-4" id="text-orgeda359c">
+<ul class="org-ul">
+<li>It is based on the artificial neural network models. They try to emulate (in a very simplified way) the way the brain works.</li>
+<li>The network consist of a huge set of interconnected neurons, i.e., the basic processing unit, organized in various layers.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgebddf2d" class="outline-3">
+<h3 id="orgebddf2d">Feature engineering</h3>
+<div class="outline-text-3" id="text-orgebddf2d">
+</div>
+<div id="outline-container-org96bd3ba" class="outline-4">
+<h4 id="org96bd3ba">Feature extraction</h4>
+<div class="outline-text-4" id="text-org96bd3ba">
+<p>
+Before fed to the ML algorithms, the raw data should be tranformed into a vector of features.
+</p>
+</div>
+</div>
+<div id="outline-container-org5f5331e" class="outline-4">
+<h4 id="org5f5331e">Feature selection</h4>
+<div class="outline-text-4" id="text-org5f5331e">
+<ul class="org-ul">
+<li>Score each feature and return only the most valuable ones.</li>
+<li>Do not use huge feature sets.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org612d463" class="outline-3">
+<h3 id="org612d463">Performance metric</h3>
+<div class="outline-text-3" id="text-org612d463">
+<ul class="org-ul">
+<li>The instances for training and testing must be disjoint.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org97b9938" class="outline-2">
+<h2 id="org97b9938">Deep learning</h2>
+<div class="outline-text-2" id="text-org97b9938">
+<p>
+A subfield of machine learning.
+</p>
+</div>
+<div id="outline-container-org9da15fa" class="outline-3">
+<h3 id="org9da15fa">Recurrent neural network (RNN)</h3>
+</div>
+<div id="outline-container-org867b9b6" class="outline-3">
+<h3 id="org867b9b6">Convolutional neural network (CNN)</h3>
+<div class="outline-text-3" id="text-org867b9b6">
+<ul class="org-ul">
+<li>Take a 2-D array as input.</li>
+<li>Direct operation on the image rather than feature extraction</li>
+<li>Basic ideas
+<ul class="org-ul">
+<li>Local receptive field</li>
+<li>Convolution</li>
+<li>Pooling</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org5d12086" class="outline-2">
+<h2 id="org5d12086">Neural network</h2>
+<div class="outline-text-2" id="text-org5d12086">
+<ul class="org-ul">
+<li>The network is composed of an input layer, an output layer, and optionally a series of hidden layers.</li>
+<li>Input layer does not carry out any operation/function, but the hidden and output layers consist of functional neurons, i.e., have activation functions.</li>
+</ul>
+</div>
+<div id="outline-container-org94e50fd" class="outline-3">
+<h3 id="org94e50fd">McCulloch and Pitts (M-P) model for neurons</h3>
+<div class="outline-text-3" id="text-org94e50fd">
+\begin{align*}
+  y = f(\mathbf{w} \mathbf{x} - \theta)
+\end{align*}
+<p>
+where \(f\) is termed <i>activation function</i>, which can be
+</p>
+\begin{align*}
+  \text{sign}(x) = \begin{cases}
+    1, & x \ge 0; \\
+    0, & x < 0.
+  \end{cases}
+\end{align*}
+<p>
+or
+</p>
+\begin{align*}
+  \text{sigmoid}(x) = \frac{1}{1 + e^{-x}}.
+\end{align*}
+</div>
+</div>
+<div id="outline-container-org7a3a1d7" class="outline-3">
+<h3 id="org7a3a1d7">Multi-layer feedforward neural network</h3>
+<div class="outline-text-3" id="text-org7a3a1d7">
+<ul class="org-ul">
+<li>Full connection between neurons of the adjacent ranks.</li>
+<li>No connection between neurons of the identical rank.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0ac692a" class="outline-3">
+<h3 id="org0ac692a">Cross-entropy</h3>
+<div class="outline-text-3" id="text-org0ac692a">
+\begin{align*}
+  \mathcal{H}_{p}(p^{\prime}) = \sum_{i}p_{i}\log\frac{1}{p^{\prime}_i}
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(p\) is the true probability distribution.</li>
+<li>\(p^\prime\) is the predicted probability distribution.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbd501b9" class="outline-3">
+<h3 id="orgbd501b9">Softmax</h3>
+<div class="outline-text-3" id="text-orgbd501b9">
+<p>
+Softmax function can transform scores/logits into a valid probability distribution.
+</p>
+\begin{align*}
+  \text{softmax}(\mathbf{x}_{i}) = \frac{\exp(\mathbf{x}_{i})}{\sum_{j}\exp(\mathbf{x}_{j})}
+\end{align*}
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
