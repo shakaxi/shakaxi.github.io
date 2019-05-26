@@ -4,7 +4,7 @@
 <!-- 2019-05-26 Sun 21:41 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shaka's Blog Site</title>
+<title>Neural Network</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -238,92 +238,151 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Shaka's Blog Site</h1>
-<ul class="org-ul">
-<li><a href="bash.html">Bash</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_basic.html">C++ - Basic</a></li>
-<li><a href="cpp_itpp.html">C++ - IT++</a></li>
-<li><a href="cpp_multithread.html">C++ - Multithread</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_stl.html">C++ - Standard Template Library</a></li>
-<li><a href="cpp_sl.html">C++ - 标准库</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cdlatex.html">Emacs - CDLaTeX</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_capslock_ctrl.html">Emacs - CapsLock as Ctrl</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="emacs_dired.html">Emacs - Dired</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="emacs_helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_lsp.html">Emacs - Language Server Protocol</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_mu4e.html">Emacs - Mu4e</a></li>
-<li><a href="notmuch.html">Emacs - Notmuch</a></li>
-<li><a href="emacs_ycmd.html">Emacs - YCMD</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="gitlab.html">GitLab</a></li>
-<li><a href="x1c.html">Installation of ArchLinux on Thinkpad X1 Carbon 2018</a></li>
-<li><a href="lte_d2d.html">LTE - D2D</a></li>
-<li><a href="lte_ds.html">LTE - Discovery Signal</a></li>
-<li><a href="lte_fc_loc.html">LTE - Frequency Domain Location of Carriers</a></li>
-<li><a href="lte_mobility_mgmt.html">LTE - Mobility Management</a></li>
-<li><a href="lte_pcfich.html">LTE - PCFICH</a></li>
-<li><a href="lte_pdcch_epdcch.html">LTE - PDCCH &amp; EPDCCH</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="arch_cn.html">Linux - A Mirror of Arch Linux</a></li>
-<li><a href="arch_inst.html">Linux - An Installation Guide for Arch Linux</a></li>
-<li><a href="console.html">Linux - Customize Console</a></li>
-<li><a href="microcode.html">Linux - Microcode</a></li>
-<li><a href="zsh.html">Linux - ZSH</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="ml.html">Machine Learning</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="matched_filter.html">Matched Filter</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="nr_cell_search.html">NR - Cell Search</a></li>
-<li><a href="nr_dci.html">NR - DCI</a></li>
-<li><a href="nr_mtrp.html">NR - Multi-TRP Transmission</a></li>
-<li><a href="nr_ptrs.html">NR - PTRS</a></li>
-<li><a href="nr_uci.html">NR - UCI</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="nn.html">Neural Network</a></li>
-<li><a href="org_ioslide.html">Orgmode - Export to HTML5 Slide</a></li>
-<li><a href="org_link.html">Orgmode - Link</a></li>
-<li><a href="org_tab.html">Orgmode - Table</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="python_basic.html">Python - Basic</a></li>
-<li><a href="python_data_type.html">Python - Data Type</a></li>
-<li><a href="python_pkg_mgmt.html">Python - Package Management</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="tensorflow.html">Tensorflow</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="whitening_filter.html">Whitening Filter</a></li>
-<li><a href="wiener_filter.html">Wiener Filter</a></li>
-<li><a href="zc.html">ZC</a></li>
-<li><a href="zathura.html">Zathura</a></li>
+<h1 class="title">Neural Network</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4ec0956">Introducation</a></li>
+<li><a href="#org66545a1">McCulloch and Pitts (M-P) model for neurons</a></li>
+<li><a href="#org917cacc">Activation function</a>
+<ul>
+<li><a href="#org80cf64d">Sign</a></li>
+<li><a href="#org4ac9733">Sigmoid</a></li>
+<li><a href="#org3746076">ReLU</a></li>
+<li><a href="#orga6ba31b">Softmax</a></li>
 </ul>
+</li>
+<li><a href="#org5887eea">Cost function</a>
+<ul>
+<li><a href="#org88287fc">Cross-entropy</a></li>
+</ul>
+</li>
+<li><a href="#org5b64173">Multi-layer feedforward neural network</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4ec0956" class="outline-2">
+<h2 id="org4ec0956">Introducation</h2>
+<div class="outline-text-2" id="text-org4ec0956">
+<ul class="org-ul">
+<li>The network is composed of an input layer, an output layer, and optionally a series of hidden layers.</li>
+<li>Input layer does not carry out any operation/function, but the hidden and output layers consist of functional neurons, i.e., have activation functions.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org66545a1" class="outline-2">
+<h2 id="org66545a1">McCulloch and Pitts (M-P) model for neurons</h2>
+<div class="outline-text-2" id="text-org66545a1">
+\begin{align*}
+  y = f(\mathbf{w} \mathbf{x} - \theta)
+\end{align*}
+<p>
+where \(f\) is termed <i>activation function</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org917cacc" class="outline-2">
+<h2 id="org917cacc">Activation function</h2>
+<div class="outline-text-2" id="text-org917cacc">
+<p>
+Activation function aims to introduce the non-linear capability, compensate the shortage of linear models.
+</p>
+</div>
+<div id="outline-container-org80cf64d" class="outline-3">
+<h3 id="org80cf64d">Sign</h3>
+<div class="outline-text-3" id="text-org80cf64d">
+\begin{align*}
+  \text{sign}(x) = \begin{cases}
+    1, & x \ge 0; \\
+    0, & x < 0.
+  \end{cases}
+\end{align*}
+</div>
+</div>
+<div id="outline-container-org4ac9733" class="outline-3">
+<h3 id="org4ac9733">Sigmoid</h3>
+<div class="outline-text-3" id="text-org4ac9733">
+\begin{align*}
+  \text{sigmoid}(x) = \frac{1}{1 + e^{-x}}.
+\end{align*}
+</div>
+</div>
+<div id="outline-container-org3746076" class="outline-3">
+<h3 id="org3746076">ReLU</h3>
+<div class="outline-text-3" id="text-org3746076">
+\begin{align*}
+  \text{ReLU}(x) = \max(x, 0)
+\end{align*}
+</div>
+</div>
+<div id="outline-container-orga6ba31b" class="outline-3">
+<h3 id="orga6ba31b">Softmax</h3>
+<div class="outline-text-3" id="text-orga6ba31b">
+<p>
+Softmax function can transform scores/logits into a valid probability distribution.
+</p>
+\begin{align*}
+  \text{softmax}(\mathbf{x}_{i}) = \frac{\exp(\mathbf{x}_{i})}{\sum_{j}\exp(\mathbf{x}_{j})}
+\end{align*}
+</div>
+</div>
+</div>
+<div id="outline-container-org5887eea" class="outline-2">
+<h2 id="org5887eea">Cost function</h2>
+<div class="outline-text-2" id="text-org5887eea">
+</div>
+<div id="outline-container-org88287fc" class="outline-3">
+<h3 id="org88287fc">Cross-entropy</h3>
+<div class="outline-text-3" id="text-org88287fc">
+\begin{align*}
+  \mathcal{H}_{p}(p^{\prime}) = \sum_{i}p_{i}\log\frac{1}{p^{\prime}_i}
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(p\) is the true probability distribution.</li>
+<li>\(p^\prime\) is the predicted probability distribution.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org5b64173" class="outline-2">
+<h2 id="org5b64173">Multi-layer feedforward neural network</h2>
+<div class="outline-text-2" id="text-org5b64173">
+<ul class="org-ul">
+<li>Full connection between neurons of the adjacent ranks.</li>
+<li>No connection between neurons of the identical rank.</li>
+</ul>
+</div>
+</div>
 </div>
 </body>
 </html>

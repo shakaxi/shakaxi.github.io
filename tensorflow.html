@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-28 Sun 22:29 -->
+<!-- 2019-05-26 Sun 21:41 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tensorflow</title>
@@ -280,7 +280,7 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 <h2 id="orgc51dc6a">Operation</h2>
 <div class="outline-text-2" id="text-orgc51dc6a">
 <ul class="org-ul">
-<li>An operation can have 0 or more inputs and produce zero or more outputs.</li>
+<li>An operation can have zero or more inputs and produce zero or more outputs.</li>
 <li>An operation may stand for a mathematical equation, a variable, a constant, a control flow directive, a file I/O operation, or even a network communication port.</li>
 </ul>
 </div>
@@ -294,9 +294,9 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 <li>A tensor is a symbolic handle, which does not hold or store values in memory, but provides only an interface for retrieving the value referenced by the tensor.</li>
 <li>Parameters
 <dl class="org-dl">
-<dt>Rank</dt><dd>The number of dimensions</dd>
-<dt>Shape</dt><dd>The number of components in each dimension, e.g., the number of rows and columns.</dd>
-<dt>Type</dt><dd>Data type assigned to the elements of the tensor</dd>
+<dt>Rank</dt><dd>The number of dimensions, i.e., the depth of brackets.</dd>
+<dt>Shape</dt><dd>The number of components in each dimension, e.g., the number of rows and columns. Tensorflow defines following shape-related functions, <code>tensorflow.shape</code>, <code>tensorflow.size</code>, <code>tensorflow.rank</code>, <code>tensorflow.reshape</code>, <code>tensorflow.expand_dims</code>.</dd>
+<dt>Type</dt><dd>Data type assigned to the elements of the tensor, e.g., <code>DT_FLOAT</code>, <code>DT_DOUBLE</code>, <code>DT_INT8</code>, <code>DT_UINT8</code>, <code>DT_INT16</code>, <code>DT_INT32</code>, <code>DT_INT64</code>, <code>DT_STRING</code>, <code>DT_BOOL</code>, <code>DT_COMPLEX64</code>. Additionally, tensorflow provides following type transformation functions, e.g., <code>tensorflow.string_to_number</code>, <code>tensorflow.to_double</code>, <code>tensorflow.to_float</code>, <code>tensorflow.to_int32</code>, <code>tensorflow.to_int64</code>, <code>tensorflow.cast</code>.</dd>
 </dl></li>
 </ul>
 </div>
@@ -306,7 +306,17 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 <div class="outline-text-2" id="text-org76ce34f">
 <ul class="org-ul">
 <li>Variables can be described as persistent, mutable handlers to in-memory buffers storing tensors. They maintain the state of the graph across executions.</li>
-<li>A variable can be identified as a revisable <a href="#org920ca53">tensor</a>.</li>
+<li>A variable can be identified as a revisable <a href="#org920ca53">tensor</a>, which can be initialized by
+<ul class="org-ul">
+<li><code>tensorflow.zeros</code> with all the elements equal zero.</li>
+<li><code>tensorflow.ones</code> with all the elements equal one.</li>
+<li><code>tensorflow.fill</code> with all the elements equal a given value.</li>
+<li><code>tensorflow.constant</code> for a constant.</li>
+<li><code>tensorflow.random_normal</code> for a normally distributed random variable.</li>
+<li><code>tensorflow.truncated_normal</code> for a truncated normally distributed random variable.</li>
+<li><code>tensorflow.random_uniform</code> for a uniformly distributed random variable.</li>
+<li><code>tensorflow.random_gamma</code> for a Gamma distributed random variable.</li>
+</ul></li>
 <li>To manipulate and update variables, the <code>assign</code> family of graph operations are provided.</li>
 <li>A variable must be initialized before it has a value, and a variable itself does not store the initial tensor.
 <ul class="org-ul">
@@ -375,7 +385,7 @@ Tensorflow programs are usually structured into a construction phase, that assem
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #73d216;"># </span><span style="color: #73d216;">Create a new graph.</span>
-<span style="color: #fcaf3e;">g</span> = tf.Graph()
+<span style="color: #fcaf3e;">g</span> = tensorflow.Graph()
 
 <span style="color: #73d216;"># </span><span style="color: #73d216;">Register the graph g as the default one to add nodes.</span>
 <span style="color: #b4fa70;">with</span> g.as_default():
