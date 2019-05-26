@@ -1,0 +1,43 @@
+#+TITLE: Neural Network
+
+* Introducation
+- The network is composed of an input layer, an output layer, and optionally a series of hidden layers.
+- Input layer does not carry out any operation/function, but the hidden and output layers consist of functional neurons, i.e., have activation functions.
+* McCulloch and Pitts (M-P) model for neurons
+\begin{align*}
+  y = f(\mathbf{w} \mathbf{x} - \theta)
+\end{align*}
+where \(f\) is termed /activation function/.
+* Activation function
+Activation function aims to introduce the non-linear capability, compensate the shortage of linear models.
+** Sign
+\begin{align*}
+  \text{sign}(x) = \begin{cases}
+    1, & x \ge 0; \\
+    0, & x < 0.
+  \end{cases}
+\end{align*}
+** Sigmoid
+\begin{align*}
+  \text{sigmoid}(x) = \frac{1}{1 + e^{-x}}.
+\end{align*}
+** ReLU
+\begin{align*}
+  \text{ReLU}(x) = \max(x, 0)
+\end{align*}
+** Softmax
+Softmax function can transform scores/logits into a valid probability distribution.
+\begin{align*}
+  \text{softmax}(\mathbf{x}_{i}) = \frac{\exp(\mathbf{x}_{i})}{\sum_{j}\exp(\mathbf{x}_{j})}
+\end{align*}
+* Cost function
+** Cross-entropy
+\begin{align*}
+  \mathcal{H}_{p}(p^{\prime}) = \sum_{i}p_{i}\log\frac{1}{p^{\prime}_i}
+\end{align*}
+where
+- \(p\) is the true probability distribution.
+- \(p^\prime\) is the predicted probability distribution.
+* Multi-layer feedforward neural network
+- Full connection between neurons of the adjacent ranks.
+- No connection between neurons of the identical rank.

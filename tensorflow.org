@@ -5,19 +5,27 @@ Tensorflow is a deep learning library, which provides two programming interfaces
 * Representation
 In tensorflow, machine learning algorithms are represented as /computational graphs/, i.e. [[*Graph][=graph=]], in which a vertex/node and an edge represent an operation (=op=) and a data flowing, respectively.
 * Operation
-- An operation can have 0 or more inputs and produce zero or more outputs.
+- An operation can have zero or more inputs and produce zero or more outputs.
 - An operation may stand for a mathematical equation, a variable, a constant, a control flow directive, a file I/O operation, or even a network communication port.
 * Tensor
 - A tensor is a multidimentional array or list, the generalization of scalars, 1-D vector, and 2-D matrices.
 - Tensors are the connecting edges, passed between nodes/ops in the flow diagram.
 - A tensor is a symbolic handle, which does not hold or store values in memory, but provides only an interface for retrieving the value referenced by the tensor.
 - Parameters
-  + Rank :: The number of dimensions
-  + Shape :: The number of components in each dimension, e.g., the number of rows and columns.
-  + Type :: Data type assigned to the elements of the tensor
+  + Rank :: The number of dimensions, i.e., the depth of brackets.
+  + Shape :: The number of components in each dimension, e.g., the number of rows and columns. Tensorflow defines following shape-related functions, =tensorflow.shape=, =tensorflow.size=, =tensorflow.rank=, =tensorflow.reshape=, =tensorflow.expand_dims=.
+  + Type :: Data type assigned to the elements of the tensor, e.g., =DT_FLOAT=, =DT_DOUBLE=, =DT_INT8=, =DT_UINT8=, =DT_INT16=, =DT_INT32=, =DT_INT64=, =DT_STRING=, =DT_BOOL=, =DT_COMPLEX64=. Additionally, tensorflow provides following type transformation functions, e.g., =tensorflow.string_to_number=, =tensorflow.to_double=, =tensorflow.to_float=, =tensorflow.to_int32=, =tensorflow.to_int64=, =tensorflow.cast=.
 * Variable
 - Variables can be described as persistent, mutable handlers to in-memory buffers storing tensors. They maintain the state of the graph across executions.
-- A variable can be identified as a revisable [[*Tensor][tensor]].
+- A variable can be identified as a revisable [[*Tensor][tensor]], which can be initialized by
+  + =tensorflow.zeros= with all the elements equal zero.
+  + =tensorflow.ones= with all the elements equal one.
+  + =tensorflow.fill= with all the elements equal a given value.
+  + =tensorflow.constant= for a constant.
+  + =tensorflow.random_normal= for a normally distributed random variable.
+  + =tensorflow.truncated_normal= for a truncated normally distributed random variable.
+  + =tensorflow.random_uniform= for a uniformly distributed random variable.
+  + =tensorflow.random_gamma= for a Gamma distributed random variable.
 - To manipulate and update variables, the =assign= family of graph operations are provided.
 - A variable must be initialized before it has a value, and a variable itself does not store the initial tensor.
   + Call =initializer= operation for each variable.
@@ -52,7 +60,7 @@ In tensorflow, machine learning algorithms are represented as /computational gra
 Tensorflow programs are usually structured into a construction phase, that assembles a graph, and an execution phase that uses a session to execute ops in the graph.
 #+begin_src python
   # Create a new graph.
-  g = tf.Graph()
+  g = tensorflow.Graph()
 
   # Register the graph g as the default one to add nodes.
   with g.as_default():
