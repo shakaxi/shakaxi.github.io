@@ -6,7 +6,7 @@
 Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as texlive is ready, pgf/tikz is out-of-the-box.
 * Usage
 ** Setting
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \usepackage{tikz}
 ...
 \tikz ...
@@ -15,15 +15,15 @@ Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as te
 \end{tikzpicture}
 #+END_SRC
 ** Style
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \tikzstyle newstylename=[option1=value1, option2=value2, ...]
 \tikzstyle existingstylename+=[option1=value1, option2=value2, ...]
 #+END_SRC
 ** Coordinate
-- (x0, y0)
-- (angle, radius)
+- =(x, y)=
+- =(angle; radius)=
 ** List
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 % step length = 1
 {a, ..., b}
 ...
@@ -38,25 +38,25 @@ Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as te
 - ->>
 ** Draw
 *** Line
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
 #+END_SRC
 *** Curve
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
 \draw (x1, y1) .. controls (x2, y2) .. (x3, y3);
 #+END_SRC
 *** Grid
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw [step=s] (x1, y1) grid (x2, y2);
 \draw [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
 #+END_SRC
 *** Arc
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw (x1, y1) arc (start_angle: end_angle: radius);
 #+END_SRC
 *** Rectangle
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw (x1, y1) rectangle (x2, y2);
 \fill [color] (x1, y1) rectangle (x2, y2);
 \filldraw [fill=color1, draw=color2] (x1, y1) rectangle (x2, y2);
@@ -65,7 +65,7 @@ Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as te
 \clip (x1, y1) rectangle (x2, y2);
 #+END_SRC
 *** Circle
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw (x1, y1) circle (radius);
 \fill [color] (x1, y1) circle (radius);
 \filldraw [fill=color1, draw=color2] (x1, y1) circle (radius);
@@ -74,7 +74,7 @@ Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as te
 \clip (x1, y1) circle (radius);
 #+END_SRC
 *** Ellipse
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw (x1, y1) ellipse (x_radius and y_radius);
 \fill [color] (x1, y1) ellipse (x_radius and y_radius);
 \filldraw [fill=color1, draw=color2] (x1, y1) ellipse (x_radius and y_radius);
@@ -83,26 +83,26 @@ Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as te
 \clip (x1, y1) ellipse (x_radius and y_radius);
 #+END_SRC
 *** Node
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 (x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
 ...
 \node at (x0, y0) (node_name) {node_label};
 #+END_SRC
 **** Connecting nodes with
 - Lines
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw [arrow] (node_name_A) to (node_name_B);
 \draw (node_name_A) edge [arrow, color] (node_name_B);
 #+END_SRC
 - Curves
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \draw [arrow] (node_name_A) to [bend left/right=30] (node_name_B);
 \draw [arrow] (node_name_A) to [in=30, out=60] (node_name_B);
 \draw (node_name_A) edge [arrow, color, in=30, out=60] (node_name_B);
 \draw (node_name_A) edge [arrow, color, bend left/right=30] (node_name_B);
 #+END_SRC
 ** Refer to nodes outside current picture
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \tikzstyle{every picture}+=[remember picture]
 ...
 \tikz[overlay]
@@ -111,6 +111,6 @@ Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as te
 \end{tikzpicture}
 #+END_SRC
 ** Mix tikz command with LaTeX
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \tikz [baseline] ...
 #+END_SRC

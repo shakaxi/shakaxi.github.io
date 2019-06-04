@@ -8,7 +8,7 @@ Pgfplots is a built-in package in the [[http://tug.org][texlive]]. As long as te
 Pgfplots depends on [[./latex_pgf_tikz.org][pgf/tikz]], and the statements are encapsulated in the environment of /tikzpicture/. The basic plot commands are =\addplot= and =\addplot3= for 2D or 3D plot purpose, respectively. It should be noticed that each of them has a variant, i.e. =\addplot+= and =\addplot3+=. =\addplot/\addplot3= uses the provided local options only, while =\addplot+/\addplot3+= adopts both the global and local options.
 
 Templates for pgfplots usage can be presented as follows.
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
   \usepackage{pgfplots}
   \pgfplotsset{GLOBAL-OPTIONS}
   ...
@@ -37,19 +37,19 @@ Templates for pgfplots usage can be presented as follows.
 The candidate values are =axis/semilogxaxis/semilogyaxis/loglogaxis/polaraxis=[fn:4].
 ** =FORMULA=
 - plain function[fn:1], e.g.
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \addplot {f(x)};
 #+END_SRC
 - parameter function, e.g.
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \addplot ({x(t)}, {y(t)});
 #+END_SRC
 - coordinates, e.g.
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \addplot coordinates{(x1, y1)(x2, y2)...(xn, yn)}
 #+END_SRC
 - data in a file, e.g.
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \addplot table [x = COLUMN1, y = COLUMN2]{DATA-FILE};
 #+END_SRC
 with the content of =DATA-FILE= as below.
@@ -60,7 +60,7 @@ a2 b2 c2
 ... ... ...
 #+END_SRC
 - shade a region, e.g.
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 \addplot [...] {...} \closedcycle;
 #+END_SRC
 ** Options
@@ -84,7 +84,7 @@ a2 b2 c2
 - =thin/ultra thin/very thin/thick/semithick/ultra thick/very thick=
 - =solid/dashed/dotted/dashdotted/dashdotdotted=
 - customize font size
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
 tick label style={font=\normalsize\small\footnotesize\tiny}
 label style={font=\normalsize\small\footnotesize\tiny}
 legend style={font=\normalsize\small\footnotesize\tiny}
