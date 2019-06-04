@@ -4,7 +4,7 @@
 Today, I found an interesting $\LaTeX$ package, /pgfgantt/. This package provides a =ganttchart= environment and, as its name indicates, can produce /Gantt/ charts.
 * Usage
 The framework of using the package can be illustrated as
-#+BEGIN_SRC latex
+#+BEGIN_SRC latex :exports code
   \usepackage{pgfgantt}
   ...
   \begin{ganttchart}[OPTIONS]{STARTING}{ENDING}
