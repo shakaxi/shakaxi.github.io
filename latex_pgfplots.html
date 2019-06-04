@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:05 -->
+<!-- 2019-06-05 Wed 00:09 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Pgfplots</title>
@@ -285,8 +285,33 @@ Pgfplots depends on <a href="./latex_pgf_tikz.html">pgf/tikz</a>, and the statem
 <p>
 Templates for pgfplots usage can be presented as follows.
 </p>
-</div>
+<div class="org-src-container">
+<pre class="src src-latex">\usepackage{pgfplots}
+\pgfplotsset{GLOBAL-OPTIONS}
+...
+% For single curve plot
+\begin{tikzpicture}
+  \begin{AXIS-TYPE}[AXIS-OPTIONS]
+  \addplot/\addplot3[PLOT-OPTIONS] {FORMULA};
+  \legend{LABEL};
+  \end{AXIS-TYPE}
+\end{tikzpicture}
 
+% For multi-curve plot
+\begin{tikzpicture}
+  \begin{AXIS-TYPE}[AXIS-OPTIONS]
+  \addplot/\addplot3[PLOT-OPTIONS] {FORMULA1};
+  \addlegendentry{LABEL1};
+  \node at (AXIS-TYPE cs:x1,y1) {TEXT}; % Annotation for the curve.
+
+  \addplot/\addplot3[PLOT-OPTIONS] {FORMULA2};
+  \addlegendentry{LABEL2};
+  ...
+  \end{AXIS-TYPE}
+\end{tikzpicture}
+</pre>
+</div>
+</div>
 <div id="outline-container-org662fcab" class="outline-3">
 <h3 id="org662fcab"><code>AXIS-TYPE</code></h3>
 <div class="outline-text-3" id="text-org662fcab">
@@ -301,15 +326,31 @@ The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis/polarax
 <ul class="org-ul">
 <li>plain function<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, e.g.</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-latex">\addplot {f(x)};
+</pre>
+</div>
 <ul class="org-ul">
 <li>parameter function, e.g.</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-latex">\addplot ({x(t)}, {y(t)});
+</pre>
+</div>
 <ul class="org-ul">
 <li>coordinates, e.g.</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-latex">\addplot coordinates{(x1, y1)(x2, y2)...(xn, yn)}
+</pre>
+</div>
 <ul class="org-ul">
 <li>data in a file, e.g.</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-latex">\addplot table [x = COLUMN1, y = COLUMN2]{DATA-FILE};
+</pre>
+</div>
 <p>
 with the content of <code>DATA-FILE</code> as below.
 </p>
@@ -323,9 +364,12 @@ a2 b2 c2
 <ul class="org-ul">
 <li>shade a region, e.g.</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-latex">\addplot [...] {...} \closedcycle;
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-orgb58a48c" class="outline-3">
 <h3 id="orgb58a48c">Options</h3>
 <div class="outline-text-3" id="text-orgb58a48c">
@@ -353,6 +397,12 @@ a2 b2 c2
 <li><code>solid/dashed/dotted/dashdotted/dashdotdotted</code></li>
 <li>customize font size</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-latex">tick label style={font=\normalsize\small\footnotesize\tiny}
+label style={font=\normalsize\small\footnotesize\tiny}
+legend style={font=\normalsize\small\footnotesize\tiny}
+</pre>
+</div>
 <ul class="org-ul">
 <li><code>samples=SAMPLE_NUMBER</code> defines the number of points in the <code>domain</code>.</li>
 <li><code>smooth</code> is an alternative to <code>samples</code>, which makes a smooth curves between data points.</li>

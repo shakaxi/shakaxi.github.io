@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:05 -->
+<!-- 2019-06-05 Wed 00:09 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Pgf/Tikz</title>
@@ -302,30 +302,49 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 <div id="outline-container-org4967e3b" class="outline-3">
 <h3 id="org4967e3b">Setting</h3>
 <div class="outline-text-3" id="text-org4967e3b">
+<div class="org-src-container">
+<pre class="src src-latex">\usepackage{tikz}
+...
+\tikz ...
+\begin{tikzpicture}
+...
+\end{tikzpicture}
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-org5cd2800" class="outline-3">
 <h3 id="org5cd2800">Style</h3>
 <div class="outline-text-3" id="text-org5cd2800">
+<div class="org-src-container">
+<pre class="src src-latex">\tikzstyle newstylename=[option1=value1, option2=value2, ...]
+\tikzstyle existingstylename+=[option1=value1, option2=value2, ...]
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-org2f9bb4e" class="outline-3">
 <h3 id="org2f9bb4e">Coordinate</h3>
 <div class="outline-text-3" id="text-org2f9bb4e">
 <ul class="org-ul">
-<li>(x0, y0)</li>
-<li>(angle, radius)</li>
+<li><code>(x, y)</code></li>
+<li><code>(angle; radius)</code></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-org3acd2f6" class="outline-3">
 <h3 id="org3acd2f6">List</h3>
 <div class="outline-text-3" id="text-org3acd2f6">
+<div class="org-src-container">
+<pre class="src src-latex">% step length = 1
+{a, ..., b}
+...
+% step length = d
+{a, a + d, ..., b}
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-org76b7061" class="outline-3">
 <h3 id="org76b7061">Arrow</h3>
 <div class="outline-text-3" id="text-org76b7061">
@@ -345,73 +364,139 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 <div id="outline-container-org9df0b34" class="outline-4">
 <h4 id="org9df0b34">Line</h4>
 <div class="outline-text-4" id="text-org9df0b34">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-orgdc49756" class="outline-4">
 <h4 id="orgdc49756">Curve</h4>
 <div class="outline-text-4" id="text-orgdc49756">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
+\draw (x1, y1) .. controls (x2, y2) .. (x3, y3);
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-org8c0e231" class="outline-4">
 <h4 id="org8c0e231">Grid</h4>
 <div class="outline-text-4" id="text-org8c0e231">
+<div class="org-src-container">
+<pre class="src src-latex">\draw [step=s] (x1, y1) grid (x2, y2);
+\draw [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-org0fca083" class="outline-4">
 <h4 id="org0fca083">Arc</h4>
 <div class="outline-text-4" id="text-org0fca083">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) arc (start_angle: end_angle: radius);
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-org3abd228" class="outline-4">
 <h4 id="org3abd228">Rectangle</h4>
 <div class="outline-text-4" id="text-org3abd228">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) rectangle (x2, y2);
+\fill [color] (x1, y1) rectangle (x2, y2);
+\filldraw [fill=color1, draw=color2] (x1, y1) rectangle (x2, y2);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) rectangle (x2, y2);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) rectangle (x2, y2);
+\clip (x1, y1) rectangle (x2, y2);
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-orgbd65c3d" class="outline-4">
 <h4 id="orgbd65c3d">Circle</h4>
 <div class="outline-text-4" id="text-orgbd65c3d">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) circle (radius);
+\fill [color] (x1, y1) circle (radius);
+\filldraw [fill=color1, draw=color2] (x1, y1) circle (radius);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) circle (radius);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) circle (radius);
+\clip (x1, y1) circle (radius);
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-orgaea963f" class="outline-4">
 <h4 id="orgaea963f">Ellipse</h4>
 <div class="outline-text-4" id="text-orgaea963f">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) ellipse (x_radius and y_radius);
+\fill [color] (x1, y1) ellipse (x_radius and y_radius);
+\filldraw [fill=color1, draw=color2] (x1, y1) ellipse (x_radius and y_radius);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) ellipse (x_radius and y_radius);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) ellipse (x_radius and y_radius);
+\clip (x1, y1) ellipse (x_radius and y_radius);
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-orgd62bd5e" class="outline-4">
 <h4 id="orgd62bd5e">Node</h4>
 <div class="outline-text-4" id="text-orgd62bd5e">
+<div class="org-src-container">
+<pre class="src src-latex">(x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
+...
+\node at (x0, y0) (node_name) {node_label};
+</pre>
 </div>
-
+</div>
 <div id="outline-container-org5ff3e76" class="outline-5">
 <h5 id="org5ff3e76">Connecting nodes with</h5>
 <div class="outline-text-5" id="text-org5ff3e76">
 <ul class="org-ul">
 <li>Lines</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-latex">\draw [arrow] (node_name_A) to (node_name_B);
+\draw (node_name_A) edge [arrow, color] (node_name_B);
+</pre>
+</div>
 <ul class="org-ul">
 <li>Curves</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-latex">\draw [arrow] (node_name_A) to [bend left/right=30] (node_name_B);
+\draw [arrow] (node_name_A) to [in=30, out=60] (node_name_B);
+\draw (node_name_A) edge [arrow, color, in=30, out=60] (node_name_B);
+\draw (node_name_A) edge [arrow, color, bend left/right=30] (node_name_B);
+</pre>
 </div>
 </div>
 </div>
 </div>
-
+</div>
 <div id="outline-container-org2a8c849" class="outline-3">
 <h3 id="org2a8c849">Refer to nodes outside current picture</h3>
 <div class="outline-text-3" id="text-org2a8c849">
+<div class="org-src-container">
+<pre class="src src-latex">\tikzstyle{every picture}+=[remember picture]
+...
+\tikz[overlay]
+\begin{tikzpicture}[overlay]
+...
+\end{tikzpicture}
+</pre>
 </div>
 </div>
-
+</div>
 <div id="outline-container-org23e8583" class="outline-3">
 <h3 id="org23e8583">Mix tikz command with LaTeX</h3>
 <div class="outline-text-3" id="text-org23e8583">
+<div class="org-src-container">
+<pre class="src src-latex">\tikz [baseline] ...
+</pre>
+</div>
 </div>
 </div>
 </div>
