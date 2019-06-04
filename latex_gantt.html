@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:05 -->
+<!-- 2019-06-05 Wed 00:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Gantt Chart</title>
@@ -288,6 +288,15 @@ Today, I found an interesting \(\LaTeX\) package, <i>pgfgantt</i>. This package 
 <p>
 The framework of using the package can be illustrated as
 </p>
+<div class="org-src-container">
+<pre class="src src-latex">\usepackage{pgfgantt}
+...
+\begin{ganttchart}[OPTIONS]{STARTING}{ENDING}
+  TITLE
+  CHARTELEMENT
+\end{ganttchart}
+</pre>
+</div>
 <p>
 where
 </p>
