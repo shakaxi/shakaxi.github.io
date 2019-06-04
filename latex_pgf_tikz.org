@@ -21,7 +21,7 @@ Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as te
 #+END_SRC
 ** Coordinate
 - =(x, y)=
-- =(angle; radius)=
+- =(angle: radius)=
 ** List
 #+BEGIN_SRC latex :exports code
 % step length = 1
