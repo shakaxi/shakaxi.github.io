@@ -1,0 +1,43 @@
+#+title: Uniform Distribution in a Ring Area
+#+PROPERTY: header-args:latex :results raw :headers '("\\usepackage{tikz}") :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
+
+
+This post aims to provide an efficient method of generating uniformly distributed coordinates in a given ring area.
+
+Without loss of generality, the ring area is illustrated in Figure [[fig:ring]]. The inner and outer radii are $R_1$ and $R_2$, respectively, $R_1 < R_2$. The corresponding angular scope starts from $\Theta_1$ and ends at $\Theta_2$, $\Theta_1 < \Theta_2$.
+#+begin_src latex :file ring.png
+  \begin{tikzpicture}
+    \draw (0, 0) node (o) {O};
+    \draw (3, 0) coordinate (r1start) {};
+    \draw (5, 0) coordinate (r2start) {};
+    \draw (60:3) coordinate (r1end) {};
+    \draw (60:5) coordinate (r2end) {};
+    \draw (r1start) arc (0:60:3);
+    \draw (r2start) arc (0:60:5);
+    \draw (30:3) node[anchor=east] (){$R_1$};
+    \draw (30:5) node[anchor=west] (){$R_2$};
+    \draw [dashed] (o) -- (r1start);
+    \draw [dashed] (o) -- (r1end);
+    \filldraw[fill=red!10] (r1start) arc (0:60:3) -- node[anchor=south east]{$\Theta_2$} (r2end) arc (60:0:5) -- node[anchor=north]{$\Theta_1$} cycle;
+  \end{tikzpicture}
+#+end_src
+#+caption: A ring area
+#+attr_html: :width 300px
+#+name: fig:ring
+[[file:ring.png]]
+
+In polar coordinate system, the joint probability density function (PDF) of the radius and angle can be written as
+\begin{align*}
+f_{R, \Theta}(r, \theta) = \frac{2r}{(\Theta_2 - \Theta_1)(R_2^2 - R_1^2)},
+\end{align*}
+where $\theta\in[\Theta_1, \Theta_2]$, $r\in[R_1, R_2]$.
+
+Then, the PDFs of the radius and angle can be expressed as
+\begin{align*}
+f_R(r) &= \frac{2r}{R_2^2 - R_1^2}, \quad r\in[R_1, R_2];\\
+f_{\Theta}(\theta) &= \frac{1}{\Theta_2 - \Theta_1}, \quad \theta\in[\Theta_1, \Theta_2].
+\end{align*}
+
+Consequently, the target coordinate can be generated as follows
+- A desired radius can be got by $\sqrt{XR_1^2 + (1-X)R_2^2}$, where $X \sim \mathcal{U}(0, 1)$.
+- A desired angle is uniformly distributed within the range $(\Theta_1, \Theta_2)$, i.e., $\Theta \sim \mathcal{U}(\Theta_1, \Theta_2)$.
