@@ -44,7 +44,7 @@ where $\widetilde{X}(k)$, $X(k)$, and $\Phi(k)$ are respectively the FFT of $\wi
 According to (\ref{eq:pn-freq}), the influence of phase noise can be divided into two aspects, a multiplicative $\Phi(0)$ and an additive $\sum_{i=1, i\neq k}^NX(i) \cdot \Phi(k - i)$, termed /common phase error (CPE)/ and /inter-carrier interference (ICI)/ respectively. For CPE, it essentially rotates the whole constellation with $\Phi(0)$, and Figure [[fig:cpe]] illustrates the impact on a 16QAM constellation. A 64QAM constellation impacted by ICI can be illustrated by Figure [[fig:ici]].
 #+CAPTION: A 16QAM constellation contaminated by CPE
 #+NAME: fig:cpe
-[[file:cpe.png]]
+[[file:cpe.jpg]]
 
 #+CAPTION: A 64QAM constellation contaminated by ICI
 #+NAME: fig:ici

@@ -12,13 +12,20 @@ For PUCCH, only a single antenna port is specified. Given a UE equipped with mul
 * UCI formats
 There are 5 PUCCH formats, termed formats 0, 1, 2, 3, and 4, respectively.
 
-Formats 0 and 2 are referred to as /short PUCCH formats/ since it occupies at most 2 OFDM symbols in the time domain, e.g., the last one or two OFDM symbols in a slot.
-
-Formats 1, 3, 4 are termed /long PUCCH formats/ for its duration of 4-14 OFDM symbols.
+- Formats 0 and 2 are referred to as /short PUCCH formats/ since it occupies at most 2 OFDM symbols in the time domain, e.g., the last one or two OFDM symbols in a slot.
+- Formats 1, 3, 4 are termed /long PUCCH formats/ for its duration of 4-14 OFDM symbols.
 ** TODO Format 0
-Targetting for a HARQ acknowledgement or a scheduling request, this format carries at most 2 bits, ans spans 1 or 2 OFDM symbol(s).
+Targetting for a HARQ acknowledgement or a scheduling request, this format carries at most 2 bits, and spans 1-2 OFDM symbol(s).
+
+Different payload value corresponds with different cyclic shifts (CS) on top of a base sequence which is per-cell configured. For HARQ acknowledgements, the CS differences are $\pi$ and $\pi/2$ for 1 and 2 bits payload, respectively. What is worth noting, the aforementioned CS is based on a /reference/, which is provided as part of the PUCCH resource allocation mechanism.
+
+Additionally, slot-wise CS hopping and sequence hopping can be configured.
+
+PUCCH format 0 is typically transmitted at the end of a slot, but it is still possible to be transmitted in other positions within a slot.
+
+If 2 OFDM symbols are occupied by PUCCH format 0, the same information is transmitted in the both symbols.
 ** TODO Format 1
 ** TODO Format 2
-This format aims for CSI reporting or HARQ acknowledgements. It carries more than 2 bits and spans 1 or 2 OFDM symbol(s).
+This format aims for CSI reporting or HARQ acknowledgements. It carries more than 2 bits and spans 1-2 OFDM symbol(s).
 ** TODO Format 3
 ** TODO Format 4
