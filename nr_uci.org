@@ -12,20 +12,47 @@ For PUCCH, only a single antenna port is specified. Given a UE equipped with mul
 * UCI formats
 There are 5 PUCCH formats, termed formats 0, 1, 2, 3, and 4, respectively.
 
-- Formats 0 and 2 are referred to as /short PUCCH formats/ since it occupies at most 2 OFDM symbols in the time domain, e.g., the last one or two OFDM symbols in a slot.
-- Formats 1, 3, 4 are termed /long PUCCH formats/ for its duration of 4-14 OFDM symbols.
-** TODO Format 0
-Targetting for a HARQ acknowledgement or a scheduling request, this format carries at most 2 bits, and spans 1-2 OFDM symbol(s).
+- Short PUCCH formats :: Formats 0 and 2 are referred to as short PUCCH formats since it occupies $\le 2$ OFDM symbols in the time domain. Typically, they are transmitted at the end of a slot, but it is still possible to be transmitted in other positions within a slot. Format 0 can carry $\le 2$ bits, and format 2 can convey $\ge 2$ bits.
+- Long PUCCH formats :: Formats 1, 3, 4 are termed long PUCCH formats due to its duration of 4-14 OFDM symbols. Formats 1 and 3 are the long PUCCH counterparts of formats 0 and 2, which can carry $\le 2$ bits and $\ge 2$ bits, respectively.
+** Format 0
+Format 0 can carry a HARQ acknowledgement or a scheduling request.
 
 Different payload value corresponds with different cyclic shifts (CS) on top of a base sequence which is per-cell configured. For HARQ acknowledgements, the CS differences are $\pi$ and $\pi/2$ for 1 and 2 bits payload, respectively. What is worth noting, the aforementioned CS is based on a /reference/, which is provided as part of the PUCCH resource allocation mechanism.
 
 Additionally, slot-wise CS hopping and sequence hopping can be configured.
 
-PUCCH format 0 is typically transmitted at the end of a slot, but it is still possible to be transmitted in other positions within a slot.
-
 If 2 OFDM symbols are occupied by PUCCH format 0, the same information is transmitted in the both symbols.
-** TODO Format 1
-** TODO Format 2
-This format aims for CSI reporting or HARQ acknowledgements. It carries more than 2 bits and spans 1-2 OFDM symbol(s).
-** TODO Format 3
-** TODO Format 4
+** Format 1
+Sequence hopping and CS hopping can be configured to randomize interference.
+** Format 2
+Format 2 can support simultaneous CSI reporting and HARQ acknowledgements, or a large number of HARQ acknowledgements. Additionally, a scheduling request can also be included by joint encoding. If the payload is too large, the CSI report will be dropped.
+
+The basic procedure can be listed as follows.
+1) For larger payload size, a CRC is attached.
+2) Channel coding: Reed-Muller codes for payload size $\le 11$ bits, and polar codes for payload size $> 11$ bits.
+3) Cell radio network temporary identifier (C-RNTI) and physical cell identity (PCID) based scrambling
+4) QPSK modulation
+
+For better performance, coherent detection is used with DMRS mapped to every 3rd subcarrier in each OFDM symbol.
+** Format 3
+Similar to format 2, the basic procedure can be listed as below.
+1) For larger payload size, a CRC is attached.
+2) Channel coding: Reed-Muller codes for payload size $\le 11$ bits, and polar codes for payload size $> 11$ bits.
+3) C-RNTI and PCID based scrambling
+4) QPSK or $\pi/2$ -BPSK modulation
+
+Targetting for frequency diversity, frequency hopping can be configured.
+
+In the mapping of UCI, the more critical bits, i.e., HARQ acknowledgements, scheduling request, and CSI part 1 are jointly coded and mapped close to the DMRS RE's, while the less critical bits are mapped to the remaining positions.
+** Format 4
+Essentially, format 4 is the same as format 3, but it enables the multiplexing of users in the same resource.
+* UCI on PUCCH
+In NR, the concept of /PUCCH resource set/ has been proposed.
+- A PUCCH resource set is comprised of $\ge 4$ /PUCCH resource configurations/, and each resource configuration indicates the PUCCH format and all the corresponding parameters.
+- At most 4 PUCCH resource sets can be configured.
+  + PUCCH resource set 0 corresponds with UCI payload size $\le 2$ bits and therefore only contains PUCCH formats 0 and 1.
+  + Remaining PUCCH resource sets may contain any PUCCH formats except formats 0 and 1.
+- Given a UCI, its payload size determines the PUCCH resource set and the PUCCH resource indicator (PRI) in the DCI determines the PUCCH resource configuration within the PUCCH resource set.
+* UCI on PUSCH
+- In NR, irrespective of CP-OFDM or DFT-S-OFDM based uplink, UCI on PUSCH is supported for simultaneous transmission of UCI and UL-SCH.
+- Only HARQ acknowledgements and CSI reports can be transmitted over PUSCH, since there is no need to request a new scheduling grant for a user with a scheduling grant already.
