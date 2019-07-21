@@ -75,6 +75,7 @@
 - [[file:ssh.org][SSH]]
 - [[file:sim_large_scale_model.org][Simulation - Large Scale Modelling]]
 - [[file:tensorflow.org][Tensorflow]]
+- [[file:uni_distr_ring.org][Uniform Distribution in a Ring Area]]
 - [[file:switch_virtual_console.org][Virtual Console Switch]]
 - [[file:whitening_filter.org][Whitening Filter]]
 - [[file:wiener_filter.org][Wiener Filter]]

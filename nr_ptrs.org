@@ -44,7 +44,7 @@ where $\widetilde{X}(k)$, $X(k)$, and $\Phi(k)$ are respectively the FFT of $\wi
 According to (\ref{eq:pn-freq}), the influence of phase noise can be divided into two aspects, a multiplicative $\Phi(0)$ and an additive $\sum_{i=1, i\neq k}^NX(i) \cdot \Phi(k - i)$, termed /common phase error (CPE)/ and /inter-carrier interference (ICI)/ respectively. For CPE, it essentially rotates the whole constellation with $\Phi(0)$, and Figure [[fig:cpe]] illustrates the impact on a 16QAM constellation. A 64QAM constellation impacted by ICI can be illustrated by Figure [[fig:ici]].
 #+CAPTION: A 16QAM constellation contaminated by CPE
 #+NAME: fig:cpe
-[[file:cpe.jpg]]
+[[file:cpe.png]]
 
 #+CAPTION: A 64QAM constellation contaminated by ICI
 #+NAME: fig:ici
@@ -110,7 +110,7 @@ For clear description, taking a PTRS port for instance, we suppose that a PTRS s
 \begin{align}
   y_{k_m, l_n} = H_{k_m, l_n} e^{j\theta_{l_n}} x_{m,n} + n_{k_m, l_n}, \quad m = 1, 2, \ldots, M; n = 1, 2, \ldots, N,
 \end{align}
-where $y_{k_m, l_n}$, $H_{k_m, l_n}$, and $n_{k_m, l_n}$ are the received signal, channel fading, and the additive white Gaussian noise on RE $(k_m, l_n)$, respectively; $\theta_{l_n}$ represents the phase noise on $l_n$th OFDM symbol.
+where $y_{k_m, l_n}$, $H_{k_m, l_n}$, and $n_{k_m, l_n}$ are the received signal, channel fading, and the additive white Gaussian noise on RE $(k_m, l_n)$, respectively; $\theta_{l_n}$ represents the phase noise on $l_n$ th OFDM symbol.
 
 Since phase noise fluctuates as time, the impairment of phase noise can be completely complemented by a phase difference relative to a reference. Without loss of generality, we identify the phase noise on the first PTRS symbol as the reference, and the phase noise on the symbol is zero, i.e. $\theta_{l_1} = 0$. Then, the phase noise on PTRS symbol $l_n$ can be estimated according to
 \begin{align}
@@ -125,7 +125,7 @@ In DFT-S-OFDM case, which is different from CP-OFDM waveform, the PTRS samples a
 \begin{align}
   r_{m, g, l_n} = h_{m, g, l_n} e^{j\theta_{m, g, l_n}} x_{m, g, l_n} + n_{m, g, l_n}, \quad m = 1, 2, \ldots, K; g = 1, 2, \ldots, X,
 \end{align}
-where the subscript tuple $(m, g, l_n)$ means $m$th sample position within $g$th PTRS group in DFT-S-OFDM symbol $l_n$; accordingly, $x_{m, g, l_n}$, $\theta_{m, g, l_n}$, $r_{m, g, l_n}$, $h_{m, g, l_n}$, and $n_{m, g, l_n}$ are the PTRS sample, the phase noise, the received signal (after IDFT), the effective channel fading and the effective additive white Gaussian noise at the sample position.
+where the subscript tuple $(m, g, l_n)$ means $m$ th sample position within $g$ th PTRS group in DFT-S-OFDM symbol $l_n$; accordingly, $x_{m, g, l_n}$, $\theta_{m, g, l_n}$, $r_{m, g, l_n}$, $h_{m, g, l_n}$, and $n_{m, g, l_n}$ are the PTRS sample, the phase noise, the received signal (after IDFT), the effective channel fading and the effective additive white Gaussian noise at the sample position.
 * TODO Summary
   :PROPERTIES:
   :CUSTOM_ID: sec:summary
