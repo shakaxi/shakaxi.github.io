@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:04 -->
+<!-- 2019-07-22 Mon 00:02 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - PTRS</title>
@@ -463,7 +463,7 @@ For clear description, taking a PTRS port for instance, we suppose that a PTRS s
   y_{k_m, l_n} = H_{k_m, l_n} e^{j\theta_{l_n}} x_{m,n} + n_{k_m, l_n}, \quad m = 1, 2, \ldots, M; n = 1, 2, \ldots, N,
 \end{align}
 <p>
-where \(y_{k_m, l_n}\), \(H_{k_m, l_n}\), and \(n_{k_m, l_n}\) are the received signal, channel fading, and the additive white Gaussian noise on RE \((k_m, l_n)\), respectively; \(\theta_{l_n}\) represents the phase noise on $l<sub>n</sub>$th OFDM symbol.
+where \(y_{k_m, l_n}\), \(H_{k_m, l_n}\), and \(n_{k_m, l_n}\) are the received signal, channel fading, and the additive white Gaussian noise on RE \((k_m, l_n)\), respectively; \(\theta_{l_n}\) represents the phase noise on \(l_n\) th OFDM symbol.
 </p>
 
 <p>
@@ -487,7 +487,7 @@ In DFT-S-OFDM case, which is different from CP-OFDM waveform, the PTRS samples a
   r_{m, g, l_n} = h_{m, g, l_n} e^{j\theta_{m, g, l_n}} x_{m, g, l_n} + n_{m, g, l_n}, \quad m = 1, 2, \ldots, K; g = 1, 2, \ldots, X,
 \end{align}
 <p>
-where the subscript tuple \((m, g, l_n)\) means $m$th sample position within $g$th PTRS group in DFT-S-OFDM symbol \(l_n\); accordingly, \(x_{m, g, l_n}\), \(\theta_{m, g, l_n}\), \(r_{m, g, l_n}\), \(h_{m, g, l_n}\), and \(n_{m, g, l_n}\) are the PTRS sample, the phase noise, the received signal (after IDFT), the effective channel fading and the effective additive white Gaussian noise at the sample position.
+where the subscript tuple \((m, g, l_n)\) means \(m\) th sample position within \(g\) th PTRS group in DFT-S-OFDM symbol \(l_n\); accordingly, \(x_{m, g, l_n}\), \(\theta_{m, g, l_n}\), \(r_{m, g, l_n}\), \(h_{m, g, l_n}\), and \(n_{m, g, l_n}\) are the PTRS sample, the phase noise, the received signal (after IDFT), the effective channel fading and the effective additive white Gaussian noise at the sample position.
 </p>
 </div>
 </div>
