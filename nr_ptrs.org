@@ -22,8 +22,7 @@ For clear description, following denotation conventions are adopted throughout t
 
 As its name implies, a phase noise model is utilized to depict the behavior and the property of the phase noise. In fact, phase noise modelling plays an extremely important role in the estimation and complementation of the phase noise as well as the design of PTRS.
 
-In order to accurately describe the variation and fluctuation of the phase noise in a statistic sense, phase noise modelling was intensively discussed. Based on the numerous measurement and evaluation of the realistic phase noise, there were totally 11 models proposed in RAN1 meeting #85. Finally, targetting for fair performance evaluation and
-comparison of different candidate designs and solusions, the phase noise modelling converged into 4 mainstream models \cite{r1-164041, r1-165005, r1-163984, mmmagic}.
+In order to accurately describe the variation and fluctuation of the phase noise in a statistic sense, phase noise modelling was intensively discussed. Based on the numerous measurement and evaluation of the realistic phase noise, there were totally 11 models proposed in RAN1 meeting #85. Finally, targetting for fair performance evaluation and comparison of different candidate designs and solusions, the phase noise modelling converged into 4 mainstream models \cite{r1-164041, r1-165005, r1-163984, mmmagic}.
 
 Without loss of generality, we take one OFDM symbol for instance to reveal the impact of phase noise. The actual output of an oscillator can be denoted by
 \begin{align}
