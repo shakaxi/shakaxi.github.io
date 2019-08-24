@@ -1,24 +1,20 @@
 #+TITLE: NR - PTRS
 
 * Introduction
-:PROPERTIES:
-  :CUSTOM_ID: sec:intro
-  :END:
-
 Targetting for the great goal of the 5th generation (5G) system, the /new radio (NR)/ system, proposed by the 3rd generation partner project (3GPP), has employed a variety of cutting-edge technologies, including advanced channel coding schemes, e.g., low density parity code (LDPC) and polar code, higher-order modulation schemes, e.g., 256QAM, etc. Considering the fact that the lower frequency spectrum has already been so crowded and overutilized, NR decided to explore higher frequency band, e.g., million meter wave (mmWave). After all, much richer spectrum resources are available at higher frequency bands than lower frequency spectrum.
 
 As is well-known, high frequency transmission suffers severe attenuation loss in the propagation, which remarkably limits the effective coverage and transmission distance. Fortunately, higher frequency spectrum has shorter wave length. Given an aperture size, much more antennas can be equipped in higher frequency transmission than those in lower frequency transmission. In this way, more antennas can yield larger beamforming gain and complement the attenuation loss in the transmission over the higher frequency bands. In a word, higher frequency enables the dense deployment of antennas, i.e., /massive multi-input multi-output (M-MIMO)/, or equivalently /large-scale MIMO (LS-MIMO)/; while M-MIMO extends the transmission distance and coverage of the higher frequency bands. Therefore, M-MIMO and higher frequency transmission are usually jointly utilized and have been the focus of the research and discussion in the 3GPP standardization.
 
 Generally, an oscillator always produces phase noise, which is essentially an impairment of the oscillator. Nevertheless, the phase noise soars as the operation frequency grows. In the NR system, which operates on higher frequency spectrum, the impact of phase noise cannot be ignored. Instead, the phase noise must be accurately estimated and complemented before data detection. To this end, a dedicated reference signal, termed /phase tracking reference signal (PTRS)/ has been proposed to track the fluctuation of the phase noise.
 
-This report intends to cover everything detail relating to PTRS. The remaining of this report is structured as follows. Section [[#sec:phase-noise-models]] briefly introduces the models of phase noise, and Section [[#sec:presence-density]] provides the configuration of PTRS, including its presence and density in the time and frequency domain. The PTRS port association is presented in Section [[#sec:port-association]]. Then, sequence generation and resource mapping follows in Section [[#sec:sequ-gener-reso]]. In Section [[#sec:pn-estim-compl]], the methodology of phase noise estimation and complementation are described in details. Finally, Section [[#sec:summary]] summarizes the report.
+This report intends to cover everything detail relating to PTRS. The remaining of this report is structured as follows. Section [[#sec:pn-model]] briefly introduces the models of phase noise, and Section [[#sec:presence-density]] provides the configuration of PTRS, including its presence and density in the time and frequency domain. The PTRS port association is presented in Section [[#sec:port-association]]. Then, sequence generation and resource mapping follows in Section [[#sec:sequ-gener-reso]]. In Section [[#sec:pn-estim-compl]], the methodology of phase noise estimation and complementation are described in details. Finally, Section [[#sec:summary]] summarizes the report.
 
 For clear description, following denotation conventions are adopted throughout the document. $\otimes$ is the operator of circular convolution.
 
 * Phase Noise and Models
 :PROPERTIES:
-  :CUSTOM_ID: sec:phase-noise-models
-  :END:
+:CUSTOM_ID: sec:pn-model
+:END:
 
 As its name implies, a phase noise model is utilized to depict the behavior and the property of the phase noise. In fact, phase noise modelling plays an extremely important role in the estimation and complementation of the phase noise as well as the design of PTRS.
 
@@ -52,8 +48,8 @@ According to (\ref{eq:pn-freq}), the influence of phase noise can be divided int
 From system performance perspective, CPE is more harmful than ICI, and is prioritized to be complemented. Its frequency-flat property gives rise to its dense distribution in the time domain and sparse scattering in the frequency domain.
 * Presence and Density
 :PROPERTIES:
-  :CUSTOM_ID: sec:presence-density
-  :END:
+:CUSTOM_ID: sec:presence-density
+:END:
 ** Downlink
 - If /phaseTrackingRS/ in /DMRS-DownlinkConfig/ is configured,
   + If RNTI equals MCS-C-RNTI, C-RNTI, or CS-RNTI,
@@ -65,21 +61,25 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 - Else, PTRS is not present.
 
 #+CAPTION: Time-domain density for CP-OFDM (the thresholds are configured by /timeDensity/)
+#+ATTR_HTML: :align center :width 800px
 #+NAME: tab:td-density-cp-ofdm
-| Scheduled MCS                       | L_{PT-RS}   |
+|                 <c>                 |     <c>     |
+|            Scheduled MCS            |  L_{PT-RS}  |
 |-------------------------------------+-------------|
-| I_{MCS} < ptrs-MCS_1                | Not present |
-| ptrs-MCS_1 \le I_{MCS} < ptrs-MCS_2 | 4           |
-| ptrs-MCS_2 \le I_{MCS} < ptrs-MCS_3 | 2           |
-| ptrs-MCS_3 \le I_{MCS} < ptrs-MCS_4 | 1           |
+|        I_{MCS} < ptrs-MCS_1         | Not present |
+| ptrs-MCS_1 \le I_{MCS} < ptrs-MCS_2 |      4      |
+| ptrs-MCS_2 \le I_{MCS} < ptrs-MCS_3 |      2      |
+| ptrs-MCS_3 \le I_{MCS} < ptrs-MCS_4 |      1      |
 
 #+CAPTION: Frequency-domain density for CP-OFDM (the thresholds are configured by /frequencyDensity/)
+#+ATTR_HTML: :align center :width 800px
 #+NAME: tab:fd-density-cp-ofdm
-| Scheduled bandwidth          |   K_{PT-RS} |
+|             <c>              |     <c>     |
+|     Scheduled bandwidth      |  K_{PT-RS}  |
 |------------------------------+-------------|
-| N_{RB} < N_{RB0}             | Not present |
-| N_{RB0} \le N_{RB} < N_{RB1} |           2 |
-| N_{RB1} \le N_{RB}           |           4 |
+|       N_{RB} < N_{RB0}       | Not present |
+| N_{RB0} \le N_{RB} < N_{RB1} |      2      |
+|      N_{RB1} \le N_{RB}      |      4      |
 ** Uplink - CP-OFDM
 - If /phaseTrackingRS/ in /DMRS-UplinkConfig/ is configured,
   + If RNTI equals MCS-C-RNTI, C-RNTI, CS-RNTI, or SP-CSI-RNTI,
@@ -94,29 +94,31 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
   + With /sampleDensity/ configured, the group pattern of PTRS is a function of scheduled bandwidth (see Table [[tab:grp-pattern-dft-s-ofdm]]).
 
 #+CAPTION: PTRS group pattern for DFT-S-OFDM (the thresholds are configured by /SampleDensity/)
+#+ATTR_HTML: :align center :width 800px
 #+NAME: tab:grp-pattern-dft-s-ofdm
-| Scheduled bandwidth          | Group number | Group size |
+|             <c>              |     <c>      |    <c>     |
+|     Scheduled bandwidth      | Group number | Group size |
 |------------------------------+--------------+------------|
-| N_{RB0} \le N_{RB} < N_{RB1} |            2 |          2 |
-| N_{RB1} \le N_{RB} < N_{RB2} |            2 |          4 |
-| N_{RB2} \le N_{RB} < N_{RB3} |            4 |          2 |
-| N_{RB3} \le N_{RB} < N_{RB4} |            4 |          4 |
-| N_{RB4} \le N_{RB}           |            8 |          4 |
+| N_{RB0} \le N_{RB} < N_{RB1} |      2       |     2      |
+| N_{RB1} \le N_{RB} < N_{RB2} |      2       |     4      |
+| N_{RB2} \le N_{RB} < N_{RB3} |      4       |     2      |
+| N_{RB3} \le N_{RB} < N_{RB4} |      4       |     4      |
+|      N_{RB4} \le N_{RB}      |      8       |     4      |
 ** Some Miscellaneous for CP-OFDM
 - Threshold ptrs-MCS_4 is not explicitly configured, and it equals the lowest MCS level for retransmission.
 - For retransmission, the time-domain density is determined by the MCS in the initial transmission.
 - Given a minislot comprising of L OFDM symbols, if L_{PT-RS} \ge L, PTRS is not present.
 * Port Association
 :PROPERTIES:
-  :CUSTOM_ID: sec:port-association
-  :END:
+:CUSTOM_ID: sec:port-association
+:END:
 In essence, as mentioned before, phase noise is generated by an oscillator. Therefore, the number of PTRS port in the downlink and uplink depends on the number of oscillator as well as the concrete implementation of the gNB and the UE, respectively. In other words, the number of PTRS port can be much smaller than that of DMRS port in the transmission. A PTRS port can corresponds with more than one DMRS ports and transmission layers. This is just the reason why there are at most two PTRS ports available in NR system.
 
 In the case that a PTRS port is shared by more than one DMRS ports, theoretically the PTRS can be associated and mapped to any one of the corresponding DMRS ports. For the sake of precise phase noise estimation, irrespective of downlink or uplink, a PTRS port is expected to be transmitted over the DMRS port with the best radio condition. This section provides the detail that a PTRS port is associated and mapped to the best DMRS port in the downlink and uplink respectively.
 ** Downlink
-   :PROPERTIES:
-   :CUSTOM_ID: downlink
-   :END:
+:PROPERTIES:
+:CUSTOM_ID: downlink
+:END:
 
 In the downlink, DMRS ports are divided into DMRS port groups based on the QCL relationship, i.e., QCL holds within each DMRS port group, but does not across different DMRS port groups. Given a DMRS port group, if it is configured with a PTRS port, all the component DMRS ports within the DMRS port group share the configured PTRS port.
 
@@ -126,9 +128,9 @@ With the LI at hand, a gNB can associate the PTRS port to the strongest DMRS por
 
 If explicit signaling is adopted to indicate the PTRS port association, e.g., introducing a dedicated field in the downlink DCI, additional signalling will be involved. From overhead reduction perspective, compared to explict signalling, implicit indication is more encouraged and preferred. Considering the fact that there are not CRS any longer and all the PDSCH layers are transmitted based on DMRS in the NR system, each PDSCH transmission is absolutely transparent to the target UE. In this case, a gNB can flexibly permute and reorder the PDSCH layers by exchanging the columns of the precoding matrix. What is more, such kind of behavior is a completely gNB implementation related issue, and consequently no specification effort is needed. In this way, in order to avoid the introduction of additional overhead for PTRS port association, a gNB can permute the precoding vector corresponding to the strongest DMRS port to a specific column position first and then map the PTRS port to the DMRS port corresponding to the aforementioned precoding vector. Without loss of generality, first column is selected as the specific column and the corresponding DMRS port which has the lowest port index in the DMRS port group is utilized to carry the PTRS port.
 *** One PTRS port
-    :PROPERTIES:
-    :CUSTOM_ID: one-ptrs-port
-    :END:
+:PROPERTIES:
+:CUSTOM_ID: one-ptrs-port
+:END:
 
 If a UE is configured with one PTRS port, then the UE can be scheduled with one or two DMRS port group(s). The PTRS port association depends on the number of codeword scheduled for the UE, i.e.,
 - In single-codeword case, the PTRS port is associated to the DMRS port with the lowest port index.
@@ -138,27 +140,27 @@ In the case of two DMRS port groups, all the DMRS ports from the two DMRS port g
 - The PTRS port and the DMRS port group containing the associated DMRS port are /Type-A/ and /Type-D/ QCLed.
 - The PTRS port and the DMRS port group not containing the associated DMRS port are /Type-B/ QCLed.
 *** Two PTRS ports
-    :PROPERTIES:
-    :CUSTOM_ID: two-ptrs-ports
-    :END:
+:PROPERTIES:
+:CUSTOM_ID: two-ptrs-ports
+:END:
 If a UE is configured with two PTRS ports, it is always scheduled with DMRS ports from two DMRS port groups. Each PTRS port corresponds with one DMRS port group, and is associated to the DMRS port with the lowest port index within its corresponding DMRS port group. Moreover, each PTRS and its corresponding DMRS port group are Type-A and Type-D QCLed.
 ** TODO Uplink
-   :PROPERTIES:
-   :CUSTOM_ID: uplink
-   :END:
+:PROPERTIES:
+:CUSTOM_ID: uplink
+:END:
 * TODO Sequence Generation and Resource Mapping
 :PROPERTIES:
-  :CUSTOM_ID: sec:sequ-gener-reso
-  :END:
+:CUSTOM_ID: sec:sequ-gener-reso
+:END:
 * Phase Noise Estimation and Complementation
 :PROPERTIES:
-  :CUSTOM_ID: sec:pn-estim-compl
-  :END:
+:CUSTOM_ID: sec:pn-estim-compl
+:END:
 Due to its non-selective nature in the frequency domain, phase noise is estimated in the frequency domain through the whole bandwidth scheduled, and then interpolation is performed in the time domain for the CP-OFDM or DFT-S-OFDM symbols without PTRS. The procedure is different for different waveforms. Hence, the procedure is presented in details for CP-OFDM based and DFT-S-OFDM based transmission, respectively.
 ** CP-OFDM
-   :PROPERTIES:
-   :CUSTOM_ID: cp-ofdm
-   :END:
+:PROPERTIES:
+:CUSTOM_ID: cp-ofdm
+:END:
 For clear description, taking a PTRS port for instance, we suppose that a PTRS symbol $x_{m, n}$ is transmitted over its associated DMRS port on a RE $(k_m, l_n)$, which corresponds to subcarrier $k_m$ and OFDM symbol $l_n$, i.e.,
 \begin{align}
   y_{k_m, l_n} = H_{k_m, l_n} e^{j\theta_{l_n}} x_{m,n} + n_{k_m, l_n}, \quad m = 1, 2, \ldots, M; n = 1, 2, \ldots, N,
@@ -171,9 +173,9 @@ Since phase noise fluctuates as time, the impairment of phase noise can be compl
 \end{align}
 Then, if the time density of the PTRS is less than 1, i.e., $L_\text{PTRS} > 1$, the phase noise of the OFDM symbols without PTRS can be obtained by interpolation.
 ** DFT-S-OFDM
-   :PROPERTIES:
-   :CUSTOM_ID: dft-s-ofdm
-   :END:
+:PROPERTIES:
+:CUSTOM_ID: dft-s-ofdm
+:END:
 In DFT-S-OFDM case, which is different from CP-OFDM waveform, the PTRS samples are inserted into PUSCH samples before the DFT operation, i.e., in the time domain. Accordingly, the phase noise should also be estimated and complemented in the time domain, i.e., after the IDFT processing. Taking $X$ PTRS groups/chunks with each comprised of $K$ samples for instance, the received signal can be expressed as
 \begin{align}
   r_{m, g, l_n} = h_{m, g, l_n} e^{j\theta_{m, g, l_n}} x_{m, g, l_n} + n_{m, g, l_n}, \quad m = 1, 2, \ldots, K; g = 1, 2, \ldots, X,
@@ -181,5 +183,5 @@ In DFT-S-OFDM case, which is different from CP-OFDM waveform, the PTRS samples a
 where the subscript tuple $(m, g, l_n)$ means $m$ th sample position within $g$ th PTRS group in DFT-S-OFDM symbol $l_n$; accordingly, $x_{m, g, l_n}$, $\theta_{m, g, l_n}$, $r_{m, g, l_n}$, $h_{m, g, l_n}$, and $n_{m, g, l_n}$ are the PTRS sample, the phase noise, the received signal (after IDFT), the effective channel fading and the effective additive white Gaussian noise at the sample position.
 * TODO Summary
 :PROPERTIES:
-  :CUSTOM_ID: sec:summary
-  :END:
+:CUSTOM_ID: sec:summary
+:END:

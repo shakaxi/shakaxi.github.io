@@ -22,20 +22,19 @@ Each CORESET can be configured with a /transmission configuration indication (TC
 CCE-to-REG mapping is per-CORESET configured. Generally, there are a couple of CCE-to-REG mapping schemes, interleaved and non-interleaved. The former targets frequency diversity, while the latter aims to facilitate interference coordination and opportunistic scheduling.
 
 A set of REG's which share the same precoding are termed one /REG bundle/. Namely, a REG bundle is the basic unit on which channel estimation is performed. All the possible cases can be listed in the table below.
-|       <c>        |       <c>       |        <c>        |
-|------------------+-----------------+-------------------|
-| CORESET duration | REG bundle size | REG bundle number |
-|  (OFDM symbol)   |  (REG number)   |                   |
-|------------------+-----------------+-------------------|
-|        1         |        6        |         1         |
-|                  |        2        |         3         |
-|------------------+-----------------+-------------------|
-|        2         |        6        |         1         |
-|                  |        2        |         3         |
-|------------------+-----------------+-------------------|
-|        3         |        6        |         1         |
-|                  |        3        |         2         |
-|------------------+-----------------+-------------------|
+|              <c>               |             <c>              |        <c>        |
+|--------------------------------+------------------------------+-------------------|
+| CORESET duration (OFDM symbol) | REG bundle size (REG number) | REG bundle number |
+|--------------------------------+------------------------------+-------------------|
+|               1                |              6               |         1         |
+|                                |              2               |         3         |
+|--------------------------------+------------------------------+-------------------|
+|               2                |              6               |         1         |
+|                                |              2               |         3         |
+|--------------------------------+------------------------------+-------------------|
+|               3                |              6               |         1         |
+|                                |              3               |         2         |
+|--------------------------------+------------------------------+-------------------|
 ** Search space
 As in LTE system, a NR UE also needs to blindly detect the DCI format[fn:3]. A UE needs to monitor up to 4 different DCI sizes with 3 using C-RNTI and 1 using other RNTI's:
 - One size for fallback DCI formats,
