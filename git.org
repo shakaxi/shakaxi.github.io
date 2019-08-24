@@ -30,12 +30,13 @@ remote -> workspace [label = "pull"];
 workspace [style = filled, color = yellow];
 index [label = "index/stage", style = filled, color = lightblue];
 repository [style = filled, color = green];
-remote [ style = filled, color = red];
+remote [style = filled, color = red];
 }
 #+END_SRC
 
 #+RESULTS:
 [[file:git.png]]
+
 ** Configuration
 Command =git config= can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or repository-specifically.
 - List the configuration

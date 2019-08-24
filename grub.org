@@ -1,6 +1,6 @@
 #+TITLE: GRUB
 
-/GRUB/ is a powerful bootloader which can boot a variety of operation systems, including Unix, Linux and Windows. It is usually intalled in the MBR of a disk. This article presents the method how to repair it if it is corrupted.
+/GRUB/ is a powerful bootloader which can boot a variety of operation systems, including Unix, Linux and Windows. It is usually installed in the MBR of a disk. This article presents the method how to repair it if it is corrupted.
 
 Above all, open a terminal or switch to a tty, then input commands below step by step:
 
