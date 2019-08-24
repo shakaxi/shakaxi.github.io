@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:05 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - Cell Search</title>
@@ -268,23 +268,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org297cd83">Synchronization signals</a>
+<li><a href="#orgc3396b4">Synchronization signals</a>
 <ul>
-<li><a href="#orgdac66eb">PSS</a></li>
-<li><a href="#org37a2020">SSS</a></li>
+<li><a href="#org76ce9da">PSS</a></li>
+<li><a href="#org2994d23">SSS</a></li>
 </ul>
 </li>
-<li><a href="#orged98ea1">Synchronization raster</a></li>
-<li><a href="#org5c143dc">Synchronization signal burst set</a></li>
-<li><a href="#org4c67225">PBCH</a></li>
-<li><a href="#org041db27">Remaining minimum system information (RMSI)</a></li>
+<li><a href="#orgd663f3c">Synchronization raster</a></li>
+<li><a href="#org4fac404">Synchronization signal burst set</a></li>
+<li><a href="#org708aa69">PBCH</a></li>
+<li><a href="#org308affe">Remaining minimum system information (RMSI)</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org297cd83" class="outline-2">
-<h2 id="org297cd83">Synchronization signals</h2>
-<div class="outline-text-2" id="text-org297cd83">
+<div id="outline-container-orgc3396b4" class="outline-2">
+<h2 id="orgc3396b4">Synchronization signals</h2>
+<div class="outline-text-2" id="text-orgc3396b4">
 <p>
 In NR, synchronization signals consist of <i>primary synchronization signal (PSS)</i> and <i>secondary synchronization signal (SSS)</i>. Together with <i>physical broadcast channel (PBCH)</i>, PSS and SSS are jointly termed <i>synchronization signal block (SSB<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>)</i>.
 </p>
@@ -307,9 +307,9 @@ It should be noted that 60kHz numerology cannot be used for SSB transmission.
 The SSB is periodically transmitted and the periodicity can be 5/10/20/40/80/160ms. But a UE always assumes that a SSB is repeated at least once every 20ms no matter whether it is the truth.
 </p>
 </div>
-<div id="outline-container-orgdac66eb" class="outline-3">
-<h3 id="orgdac66eb">PSS</h3>
-<div class="outline-text-3" id="text-orgdac66eb">
+<div id="outline-container-org76ce9da" class="outline-3">
+<h3 id="org76ce9da">PSS</h3>
+<div class="outline-text-3" id="text-org76ce9da">
 <p>
 Similar to LTE, there are 3 PSS sequences, including a basic m-sequence of length 127, and its two cyclically shifted versions<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. The initial values of the basic sequence are {0, 1, 1, 0, 1, 1, 1}. The subsequent values can be derived according to
 </p>
@@ -325,9 +325,9 @@ Then, the cyclically shifted sequences can be obtained by
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org37a2020" class="outline-3">
-<h3 id="org37a2020">SSS</h3>
-<div class="outline-text-3" id="text-org37a2020">
+<div id="outline-container-org2994d23" class="outline-3">
+<h3 id="org2994d23">SSS</h3>
+<div class="outline-text-3" id="text-org2994d23">
 <p>
 There are 336 SSS sequences which are the sums of two m-sequences with different shifts, i.e.,
 </p>
@@ -344,17 +344,17 @@ where the two m-sequences can be obtained according to
 </div>
 </div>
 </div>
-<div id="outline-container-orged98ea1" class="outline-2">
-<h2 id="orged98ea1">Synchronization raster</h2>
-<div class="outline-text-2" id="text-orged98ea1">
+<div id="outline-container-orgd663f3c" class="outline-2">
+<h2 id="orgd663f3c">Synchronization raster</h2>
+<div class="outline-text-2" id="text-orgd663f3c">
 <p>
 Different from the strategy in LTE where the PSS/SSS is always transmitted at the center of a carrier in the frequency domain, SSB in NR is transmitted on a sparser <i>synchronization raster</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-org5c143dc" class="outline-2">
-<h2 id="org5c143dc">Synchronization signal burst set</h2>
-<div class="outline-text-2" id="text-org5c143dc">
+<div id="outline-container-org4fac404" class="outline-2">
+<h2 id="org4fac404">Synchronization signal burst set</h2>
+<div class="outline-text-2" id="text-org4fac404">
 <p>
 Targetting effective coverage, a series of SSB's are transmitted using different analog beams in a TDM way. Accordingly, a set of SSB's within a beam sweeping cycle is referred to as an <i>synchronization signal burst set<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></i>.
 </p>
@@ -408,9 +408,9 @@ The PSS/SSS only depends on the physical cell identity (PCI), i.e., the PSS/SSS 
 </p>
 </div>
 </div>
-<div id="outline-container-org4c67225" class="outline-2">
-<h2 id="org4c67225">PBCH</h2>
-<div class="outline-text-2" id="text-org4c67225">
+<div id="outline-container-org708aa69" class="outline-2">
+<h2 id="org708aa69">PBCH</h2>
+<div class="outline-text-2" id="text-org708aa69">
 <p>
 The PBCH carries the <i>master information block (MIB)</i>. The information carried by PBCH can be listed in the table below.
 </p>
@@ -484,9 +484,9 @@ The filed of "CRB grid offset" only indicates the offset between the SSB and the
 </p>
 </div>
 </div>
-<div id="outline-container-org041db27" class="outline-2">
-<h2 id="org041db27">Remaining minimum system information (RMSI)</h2>
-<div class="outline-text-2" id="text-org041db27">
+<div id="outline-container-org308affe" class="outline-2">
+<h2 id="org308affe">Remaining minimum system information (RMSI)</h2>
+<div class="outline-text-2" id="text-org308affe">
 <p>
 In NR, except the quite limited information within MIB, system information is carried by different <i>system information blocks (SIB's)</i>.
 </p>

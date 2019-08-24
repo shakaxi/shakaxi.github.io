@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:04 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - CEDET</title>
@@ -246,44 +246,44 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3256994">Introduction</a></li>
-<li><a href="#org7ff156b">Installation</a></li>
-<li><a href="#orgc6b4898">Configuration</a></li>
+<li><a href="#org649db1d">Introduction</a></li>
+<li><a href="#orgbaab525">Installation</a></li>
+<li><a href="#org069f8fb">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3256994" class="outline-2">
-<h2 id="org3256994">Introduction</h2>
-<div class="outline-text-2" id="text-org3256994">
+<div id="outline-container-org649db1d" class="outline-2">
+<h2 id="org649db1d">Introduction</h2>
+<div class="outline-text-2" id="text-org649db1d">
 <p>
 CEDET<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> stands for collection of Emacs development environment tools, which is written to make Emacs become a perfect development environment. With the aid of CEDET, a variety of amazing features can be provided, e.g. code completion, browsing, tag jumping, drawing UML diagram, etc.
 </p>
 </div>
 </div>
-<div id="outline-container-org7ff156b" class="outline-2">
-<h2 id="org7ff156b">Installation</h2>
-<div class="outline-text-2" id="text-org7ff156b">
+<div id="outline-container-orgbaab525" class="outline-2">
+<h2 id="orgbaab525">Installation</h2>
+<div class="outline-text-2" id="text-orgbaab525">
 <p>
 Through following commands, the latest version of CEDET can be installed into <code>~/.emacs.d/cedet</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #e090d7;">cd</span> ~/.emacs.d
+<pre class="src src-sh">cd ~/.emacs.d
 git clone http://git.code.sf.net/p/cedet/git cedet
 make
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc6b4898" class="outline-2">
-<h2 id="orgc6b4898">Configuration</h2>
-<div class="outline-text-2" id="text-orgc6b4898">
+<div id="outline-container-org069f8fb" class="outline-2">
+<h2 id="org069f8fb">Configuration</h2>
+<div class="outline-text-2" id="text-org069f8fb">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">load CEDET</span>
-(add-to-list 'load-path <span style="color: #e9b96e;">"~/.emacs.d/cedet"</span>)
-(load-file <span style="color: #e9b96e;">"~/.emacs.d/cedet/cedet-devel-load.el"</span>)
+<pre class="src src-emacs-lisp">;; load CEDET
+(add-to-list 'load-path "~/.emacs.d/cedet")
+(load-file "~/.emacs.d/cedet/cedet-devel-load.el")
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable the required features</span>
+;; enable the required features
 (semantic-load-enable-minimum-features)
 (semantic-load-enable-code-helpers)
 (semantic-load-enable-gaudy-code-helpers)
@@ -300,19 +300,19 @@ make
 (add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode t)
 (add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode t)
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable semantic mode</span>
+;; enable semantic mode
 (semantic-mode 1)
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.</span>
-(<span style="color: #b4fa70;">setq</span> semantic-c-dependency-system-include-path (<span style="color: #b4fa70;">quote</span> (<span style="color: #e9b96e;">"/usr/include"</span> <span style="color: #e9b96e;">"/usr/local/include"</span> <span style="color: #e9b96e;">"/opt/itpp/include"</span>)))
-(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">semantic/ia</span>)
-(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">semantic/bovine/gcc</span>)
+;; enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.
+(setq semantic-c-dependency-system-include-path (quote ("/usr/include" "/usr/local/include" "/opt/itpp/include")))
+(require 'semantic/ia)
+(require 'semantic/bovine/gcc)
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">jump to tags</span>
-(global-set-key (kbd <span style="color: #e9b96e;">"M-."</span>) 'semantic-ia-fast-jump)
+;; jump to tags
+(global-set-key (kbd "M-.") 'semantic-ia-fast-jump)
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">jump back from tags</span>
-(global-set-key (kbd <span style="color: #e9b96e;">"M-*"</span>) 'semantic-mrub-switch-tags)
+;; jump back from tags
+(global-set-key (kbd "M-*") 'semantic-mrub-switch-tags)
 </pre>
 </div>
 </div>

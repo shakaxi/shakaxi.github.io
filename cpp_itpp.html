@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:04 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - IT++</title>
@@ -246,22 +246,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2133d90">Introduction</a></li>
-<li><a href="#org64aee5d">Installation</a>
+<li><a href="#org96736cf">Introduction</a></li>
+<li><a href="#orga8f5354">Installation</a>
 <ul>
-<li><a href="#orga5ebdaa">Install the third-party libraries</a></li>
-<li><a href="#org02e2e7e">Install IT++</a></li>
+<li><a href="#org70f9ae7">Install the third-party libraries</a></li>
+<li><a href="#org49be8b4">Install IT++</a></li>
 </ul>
 </li>
-<li><a href="#org1466b85">Usage</a></li>
-<li><a href="#orgd58efaa">Interface</a></li>
+<li><a href="#orgd5f8578">Usage</a></li>
+<li><a href="#orgdf4dd88">Interface</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2133d90" class="outline-2">
-<h2 id="org2133d90">Introduction</h2>
-<div class="outline-text-2" id="text-org2133d90">
+<div id="outline-container-org96736cf" class="outline-2">
+<h2 id="org96736cf">Introduction</h2>
+<div class="outline-text-2" id="text-org96736cf">
 <p>
 <i>IT++</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a powerful C++ library, which is widely employed in the area of communication, esp. in simulation programming and computing. It has provided a variety of useful <i>classes</i>, e.g. <code>vector</code>, <code>matrix</code>. With the aid of IT++, programming in C++ is very similar to programming in <i>MATLAB</i>.
 </p>
@@ -271,9 +271,9 @@ IT++ is released under <i>GPL</i>, and can work on all the platforms, including 
 </p>
 </div>
 </div>
-<div id="outline-container-org64aee5d" class="outline-2">
-<h2 id="org64aee5d">Installation</h2>
-<div class="outline-text-2" id="text-org64aee5d">
+<div id="outline-container-orga8f5354" class="outline-2">
+<h2 id="orga8f5354">Installation</h2>
+<div class="outline-text-2" id="text-orga8f5354">
 <p>
 Optionally, its functionality can be greatly extended based on existing open-source or commercial libraries, i.e.
 </p>
@@ -292,9 +292,9 @@ Optionally, its functionality can be greatly extended based on existing open-sou
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orga5ebdaa" class="outline-3">
-<h3 id="orga5ebdaa">Install the third-party libraries</h3>
-<div class="outline-text-3" id="text-orga5ebdaa">
+<div id="outline-container-org70f9ae7" class="outline-3">
+<h3 id="org70f9ae7">Install the third-party libraries</h3>
+<div class="outline-text-3" id="text-org70f9ae7">
 <p>
 Herein, we take the open-source libraries above for instance. For <i>ArchLinux</i>, the installation can be performed by
 </p>
@@ -304,22 +304,22 @@ Herein, we take the open-source libraries above for instance. For <i>ArchLinux</
 </div>
 </div>
 </div>
-<div id="outline-container-org02e2e7e" class="outline-3">
-<h3 id="org02e2e7e">Install IT++</h3>
-<div class="outline-text-3" id="text-org02e2e7e">
+<div id="outline-container-org49be8b4" class="outline-3">
+<h3 id="org49be8b4">Install IT++</h3>
+<div class="outline-text-3" id="text-org49be8b4">
 <p>
 The lastest version of IT++ can be obtained via git, and installed to <code>/opt/itpp</code> by following commands.
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">git clone --depth=1 git://git.code.sf.net/p/itpp/git itpp-git
-<span style="color: #e090d7;">cd</span> itpp-git
+cd itpp-git
 mkdir build
-<span style="color: #e090d7;">cd</span> build
+cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/opt/itpp
 make
 make install
 make clean
-<span style="color: #e090d7;">cd</span> ..
+cd ..
 rm -rf build
 </pre>
 </div>
@@ -334,9 +334,9 @@ BTW, HTML documentation will be installed by default. Therefore, <i>doxygen</i> 
 </div>
 </div>
 </div>
-<div id="outline-container-org1466b85" class="outline-2">
-<h2 id="org1466b85">Usage</h2>
-<div class="outline-text-2" id="text-org1466b85">
+<div id="outline-container-orgd5f8578" class="outline-2">
+<h2 id="orgd5f8578">Usage</h2>
+<div class="outline-text-2" id="text-orgd5f8578">
 <p>
 IT++ provides a script <code>/opt/itpp/bin/itpp-config</code> to simplify the compilation and linking of IT++ based programs.
 </p>
@@ -365,9 +365,9 @@ Then, fresh the cache accordingly.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd58efaa" class="outline-2">
-<h2 id="orgd58efaa">Interface</h2>
-<div class="outline-text-2" id="text-orgd58efaa">
+<div id="outline-container-orgdf4dd88" class="outline-2">
+<h2 id="orgdf4dd88">Interface</h2>
+<div class="outline-text-2" id="text-orgdf4dd88">
 <p>
 IT++ has its own file format, with a suffix <code>.it</code>. Fortunately, for the sake of convenient file exchange, it provides
 </p>

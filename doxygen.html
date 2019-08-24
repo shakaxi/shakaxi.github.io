@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:05 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Doxygen</title>
@@ -246,57 +246,57 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org835ad72">Introduction</a></li>
-<li><a href="#orgb0940f3">Syntax</a>
+<li><a href="#org643358d">Introduction</a></li>
+<li><a href="#org2fb541e">Syntax</a>
 <ul>
-<li><a href="#orgb9b7c50">Comment block</a></li>
-<li><a href="#org51ae36d">Special command</a>
+<li><a href="#orgd3c57ff">Comment block</a></li>
+<li><a href="#org6a5668f">Special command</a>
 <ul>
-<li><a href="#org13ccdba">List</a></li>
-<li><a href="#org1c609c8">Group</a></li>
-<li><a href="#orgc0956b7">Formula</a></li>
-<li><a href="#orgec9455b">Graph</a></li>
-<li><a href="#org718e4c2">Text</a></li>
-<li><a href="#org42c8f50">Section</a></li>
+<li><a href="#orgad3bcc7">List</a></li>
+<li><a href="#org019bc4e">Group</a></li>
+<li><a href="#org99e9679">Formula</a></li>
+<li><a href="#orgde355d7">Graph</a></li>
+<li><a href="#org734e06e">Text</a></li>
+<li><a href="#org791f99b">Section</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6a827cc">Doxymacs</a>
+<li><a href="#orgc5dcd0c">Doxymacs</a>
 <ul>
-<li><a href="#orgd0d07c2">Installation</a></li>
-<li><a href="#org96df23a">Configuration</a></li>
-<li><a href="#orgd5149e7">Usage</a></li>
+<li><a href="#org0a6e002">Installation</a></li>
+<li><a href="#org5b6d1eb">Configuration</a></li>
+<li><a href="#org3a264d6">Usage</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org835ad72" class="outline-2">
-<h2 id="org835ad72">Introduction</h2>
-<div class="outline-text-2" id="text-org835ad72">
+<div id="outline-container-org643358d" class="outline-2">
+<h2 id="org643358d">Introduction</h2>
+<div class="outline-text-2" id="text-org643358d">
 <p>
 <i>Doxygen</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a powerful tool to document the source codes. In principle, it parses the specially formated comments from the source codes and then produces very professional documents. Up to now, it is able to support almost all the popular programming languages, e.g. C/C++, Java, Python, and etc.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb0940f3" class="outline-2">
-<h2 id="orgb0940f3">Syntax</h2>
-<div class="outline-text-2" id="text-orgb0940f3">
+<div id="outline-container-org2fb541e" class="outline-2">
+<h2 id="org2fb541e">Syntax</h2>
+<div class="outline-text-2" id="text-org2fb541e">
 </div>
-<div id="outline-container-orgb9b7c50" class="outline-3">
-<h3 id="orgb9b7c50">Comment block</h3>
-<div class="outline-text-3" id="text-orgb9b7c50">
+<div id="outline-container-orgd3c57ff" class="outline-3">
+<h3 id="orgd3c57ff">Comment block</h3>
+<div class="outline-text-3" id="text-orgd3c57ff">
 <dl class="org-dl">
 <dt>Multi-line comment blocks</dt><dd>Begin with <code>/**</code> or <code>/*!</code>, and end with <code>*/</code>.</dd>
 <dt>Single-line comment blocks</dt><dd>delimiters <code>///</code> or <code>//!</code>.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org51ae36d" class="outline-3">
-<h3 id="org51ae36d">Special command</h3>
-<div class="outline-text-3" id="text-org51ae36d">
+<div id="outline-container-org6a5668f" class="outline-3">
+<h3 id="org6a5668f">Special command</h3>
+<div class="outline-text-3" id="text-org6a5668f">
 <p>
 Within code blocks, <i>special commands</i> can be used. They begin with a prefix <code>@</code> or <code>\</code> and optionally have arguments enclosed in braces. Moreover, different braces mean different scopes.
 </p>
@@ -306,9 +306,9 @@ Within code blocks, <i>special commands</i> can be used. They begin with a prefi
 <li>Curly braces <code>{ }</code> mean the argument extends to next paragraph.</li>
 </ul>
 </div>
-<div id="outline-container-org13ccdba" class="outline-4">
-<h4 id="org13ccdba">List</h4>
-<div class="outline-text-4" id="text-org13ccdba">
+<div id="outline-container-orgad3bcc7" class="outline-4">
+<h4 id="orgad3bcc7">List</h4>
+<div class="outline-text-4" id="text-orgad3bcc7">
 <ul class="org-ul">
 <li>Column aligned <code>-</code> &rarr; a unsorted/bulleted list item.</li>
 <li>Column aligned <code>-#</code> &rarr; a sorted list item.</li>
@@ -318,11 +318,11 @@ Hierachical lists can be created by using different indents for different levels
 </p>
 </div>
 </div>
-<div id="outline-container-org1c609c8" class="outline-4">
-<h4 id="org1c609c8">Group</h4>
-<div class="outline-text-4" id="text-org1c609c8">
+<div id="outline-container-org019bc4e" class="outline-4">
+<h4 id="org019bc4e">Group</h4>
+<div class="outline-text-4" id="text-org019bc4e">
 <div class="org-src-container">
-<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;title&gt;<span style="color: #e9b96e;">''</span> */
+<pre class="src src-sh">/** \defgroup &lt;label&gt; ''&lt;title&gt;'' */
 /* @{ */
    // group memebers here ...
 /* @} */
@@ -332,7 +332,7 @@ Hierachical lists can be created by using different indents for different levels
 or
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;title&gt;<span style="color: #e9b96e;">''</span> */
+<pre class="src src-sh">/** \defgroup &lt;label&gt; ''&lt;title&gt;'' */
 // @{
    // group memebers here ...
 // @}
@@ -342,14 +342,14 @@ or
 where the <code>title</code> is optional while the <code>label</code> is mandatory and can be used for reference by
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">\ref &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;link&gt;<span style="color: #e9b96e;">''</span>
+<pre class="src src-sh">\ref &lt;label&gt; ''&lt;link&gt;''
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc0956b7" class="outline-4">
-<h4 id="orgc0956b7">Formula</h4>
-<div class="outline-text-4" id="text-orgc0956b7">
+<div id="outline-container-org99e9679" class="outline-4">
+<h4 id="org99e9679">Formula</h4>
+<div class="outline-text-4" id="text-org99e9679">
 <ul class="org-ul">
 <li>Inline formula</li>
 </ul>
@@ -366,17 +366,17 @@ where the <code>title</code> is optional while the <code>label</code> is mandato
 </div>
 </div>
 </div>
-<div id="outline-container-orgec9455b" class="outline-4">
-<h4 id="orgec9455b">Graph</h4>
-<div class="outline-text-4" id="text-orgec9455b">
+<div id="outline-container-orgde355d7" class="outline-4">
+<h4 id="orgde355d7">Graph</h4>
+<div class="outline-text-4" id="text-orgde355d7">
 <p>
 Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a> from Graphviz<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. Additionally, mannual dot commands are enclosed between <code>\dot</code> and <code>\enddot</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org718e4c2" class="outline-4">
-<h4 id="org718e4c2">Text</h4>
-<div class="outline-text-4" id="text-org718e4c2">
+<div id="outline-container-org734e06e" class="outline-4">
+<h4 id="org734e06e">Text</h4>
+<div class="outline-text-4" id="text-org734e06e">
 <ul class="org-ul">
 <li><code>\a/\e &lt;word&gt;</code>: <i>word</i></li>
 <li><code>\b &lt;word&gt;</code>: <b>word</b></li>
@@ -384,9 +384,9 @@ Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a>
 </ul>
 </div>
 </div>
-<div id="outline-container-org42c8f50" class="outline-4">
-<h4 id="org42c8f50">Section</h4>
-<div class="outline-text-4" id="text-org42c8f50">
+<div id="outline-container-org791f99b" class="outline-4">
+<h4 id="org791f99b">Section</h4>
+<div class="outline-text-4" id="text-org791f99b">
 <ul class="org-ul">
 <li><code>\attention {...}</code>: an <b>Attention</b> paragraph</li>
 <li><code>\author {...}</code>: author list</li>
@@ -408,16 +408,16 @@ Doxygen can automatically generate graphs by <a href="./dot.html"><i>dot</i></a>
 </div>
 </div>
 </div>
-<div id="outline-container-org6a827cc" class="outline-2">
-<h2 id="org6a827cc">Doxymacs</h2>
-<div class="outline-text-2" id="text-org6a827cc">
+<div id="outline-container-orgc5dcd0c" class="outline-2">
+<h2 id="orgc5dcd0c">Doxymacs</h2>
+<div class="outline-text-2" id="text-orgc5dcd0c">
 <p>
 There is a doxygen extension for <a href="http://www.gnu.org/software/emacs">Emacs</a>, <i>doxymacs</i>, which provides a minor mode for doxygen <code>doxymacs-mode</code>. Clearly, it stands for <code>doxygen</code> + <code>emacs</code>. With it, comment blocks above can be conveniently inserted.
 </p>
 </div>
-<div id="outline-container-orgd0d07c2" class="outline-3">
-<h3 id="orgd0d07c2">Installation</h3>
-<div class="outline-text-3" id="text-orgd0d07c2">
+<div id="outline-container-org0a6e002" class="outline-3">
+<h3 id="org0a6e002">Installation</h3>
+<div class="outline-text-3" id="text-org0a6e002">
 <p>
 For ArchLinux, doxymacs can be easily installed by AUR.
 </p>
@@ -427,26 +427,26 @@ For ArchLinux, doxymacs can be easily installed by AUR.
 </div>
 </div>
 </div>
-<div id="outline-container-org96df23a" class="outline-3">
-<h3 id="org96df23a">Configuration</h3>
-<div class="outline-text-3" id="text-org96df23a">
+<div id="outline-container-org5b6d1eb" class="outline-3">
+<h3 id="org5b6d1eb">Configuration</h3>
+<div class="outline-text-3" id="text-org5b6d1eb">
 <p>
 After the installation, following configuration should be inserted into Emacs configuration file <code>.emacs</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">doxymacs</span>)                                                                                              
+<pre class="src src-emacs-lisp">(require 'doxymacs)                                                                                              
 (add-hook 'c-mode-common-hook 'doxymacs-mode)                                                                    
-(<span style="color: #b4fa70;">defun</span> <span style="color: #fce94f;">my-doxymacs-font-lock-hook</span> ()                                                                             
-  (<span style="color: #b4fa70;">if</span> (<span style="color: #b4fa70;">or</span> (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+(defun my-doxymacs-font-lock-hook ()                                                                             
+  (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
       (doxymacs-font-lock)))
 (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd5149e7" class="outline-3">
-<h3 id="orgd5149e7">Usage</h3>
-<div class="outline-text-3" id="text-orgd5149e7">
+<div id="outline-container-org3a264d6" class="outline-3">
+<h3 id="org3a264d6">Usage</h3>
+<div class="outline-text-3" id="text-org3a264d6">
 <p>
 <code>Doxymacs-mode</code> provides following key bindings.
 </p>

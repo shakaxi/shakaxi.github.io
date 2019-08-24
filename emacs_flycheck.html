@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:04 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Flycheck</title>
@@ -246,24 +246,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgea96302">Introduction</a></li>
-<li><a href="#org820ceb5">Installation</a></li>
-<li><a href="#org6bf4f50">Configuration</a></li>
+<li><a href="#org6446bdc">Introduction</a></li>
+<li><a href="#org32b80e5">Installation</a></li>
+<li><a href="#org864d3f2">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgea96302" class="outline-2">
-<h2 id="orgea96302">Introduction</h2>
-<div class="outline-text-2" id="text-orgea96302">
+<div id="outline-container-org6446bdc" class="outline-2">
+<h2 id="org6446bdc">Introduction</h2>
+<div class="outline-text-2" id="text-org6446bdc">
 <p>
 <i>Flycheck</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a on-the-fly syntax checking extension of Emacs, which supports a variety number of programming languages. It greatly facilitates the programming experience.
 </p>
 </div>
 </div>
-<div id="outline-container-org820ceb5" class="outline-2">
-<h2 id="org820ceb5">Installation</h2>
-<div class="outline-text-2" id="text-org820ceb5">
+<div id="outline-container-org32b80e5" class="outline-2">
+<h2 id="org32b80e5">Installation</h2>
+<div class="outline-text-2" id="text-org32b80e5">
 <p>
 Flycheck can be directly installed via <i>ELPA</i>.
 </p>
@@ -274,18 +274,18 @@ flycheck
 </div>
 </div>
 </div>
-<div id="outline-container-org6bf4f50" class="outline-2">
-<h2 id="org6bf4f50">Configuration</h2>
-<div class="outline-text-2" id="text-org6bf4f50">
+<div id="outline-container-org864d3f2" class="outline-2">
+<h2 id="org864d3f2">Configuration</h2>
+<div class="outline-text-2" id="text-org864d3f2">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">Enable global flycheck mode</span>
+<pre class="src src-emacs-lisp">;; Enable global flycheck mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">Clang support (C++14)</span>
-(<span style="color: #b4fa70;">setq</span> flycheck-clang-language-standard <span style="color: #e9b96e;">"c++14"</span>)
+;; Clang support (C++14)
+(setq flycheck-clang-language-standard "c++14")
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">Elpy support (use flycheck instead of flymake)</span>
-(<span style="color: #b4fa70;">setq</span> elpy-modules (delete 'elpy-module-flymake elpy-modules))
+;; Elpy support (use flycheck instead of flymake)
+(setq elpy-modules (delete 'elpy-module-flymake elpy-modules))
 (add-hook 'elpy-mode-hook 'flycheck-mode)
 </pre>
 </div>

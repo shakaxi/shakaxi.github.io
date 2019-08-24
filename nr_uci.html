@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-22 Mon 00:02 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - UCI</title>
@@ -268,25 +268,25 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgef7bf6b">Introduction</a></li>
-<li><a href="#orge7d84be">UCI formats</a>
+<li><a href="#org754e24f">Introduction</a></li>
+<li><a href="#orgae95f88">UCI formats</a>
 <ul>
-<li><a href="#org4ae8fda">Format 0</a></li>
-<li><a href="#orga50247f">Format 1</a></li>
-<li><a href="#org0ada4ee">Format 2</a></li>
-<li><a href="#orgad5ed3f">Format 3</a></li>
-<li><a href="#org80f6f1a">Format 4</a></li>
+<li><a href="#orgbde9ddc">Format 0</a></li>
+<li><a href="#orgc1e8474">Format 1</a></li>
+<li><a href="#orgc64cf71">Format 2</a></li>
+<li><a href="#org1163da7">Format 3</a></li>
+<li><a href="#orgc04c28a">Format 4</a></li>
 </ul>
 </li>
-<li><a href="#org34b61d7">UCI on PUCCH</a></li>
-<li><a href="#orgfe00d2a">UCI on PUSCH</a></li>
+<li><a href="#orgb038666">UCI on PUCCH</a></li>
+<li><a href="#orgfec47f7">UCI on PUSCH</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgef7bf6b" class="outline-2">
-<h2 id="orgef7bf6b">Introduction</h2>
-<div class="outline-text-2" id="text-orgef7bf6b">
+<div id="outline-container-org754e24f" class="outline-2">
+<h2 id="org754e24f">Introduction</h2>
+<div class="outline-text-2" id="text-org754e24f">
 <p>
 Targetting for HARQ acknowledgement and scheduling request, similar to LTE, <i>uplink control information (UCI)</i> is transmitted on <i>physical uplink control channel (PUCCH)</i> or <i>physical uplink shared channel (PUSCH)</i>.
 </p>
@@ -304,9 +304,9 @@ For PUCCH, only a single antenna port is specified. Given a UE equipped with mul
 </p>
 </div>
 </div>
-<div id="outline-container-orge7d84be" class="outline-2">
-<h2 id="orge7d84be">UCI formats</h2>
-<div class="outline-text-2" id="text-orge7d84be">
+<div id="outline-container-orgae95f88" class="outline-2">
+<h2 id="orgae95f88">UCI formats</h2>
+<div class="outline-text-2" id="text-orgae95f88">
 <p>
 There are 5 PUCCH formats, termed formats 0, 1, 2, 3, and 4, respectively.
 </p>
@@ -316,9 +316,9 @@ There are 5 PUCCH formats, termed formats 0, 1, 2, 3, and 4, respectively.
 <dt>Long PUCCH formats</dt><dd>Formats 1, 3, 4 are termed long PUCCH formats due to its duration of 4-14 OFDM symbols. Formats 1 and 3 are the long PUCCH counterparts of formats 0 and 2, which can carry \(\le 2\) bits and \(\ge 2\) bits, respectively.</dd>
 </dl>
 </div>
-<div id="outline-container-org4ae8fda" class="outline-3">
-<h3 id="org4ae8fda">Format 0</h3>
-<div class="outline-text-3" id="text-org4ae8fda">
+<div id="outline-container-orgbde9ddc" class="outline-3">
+<h3 id="orgbde9ddc">Format 0</h3>
+<div class="outline-text-3" id="text-orgbde9ddc">
 <p>
 Format 0 can carry a HARQ acknowledgement or a scheduling request.
 </p>
@@ -336,17 +336,17 @@ If 2 OFDM symbols are occupied by PUCCH format 0, the same information is transm
 </p>
 </div>
 </div>
-<div id="outline-container-orga50247f" class="outline-3">
-<h3 id="orga50247f">Format 1</h3>
-<div class="outline-text-3" id="text-orga50247f">
+<div id="outline-container-orgc1e8474" class="outline-3">
+<h3 id="orgc1e8474">Format 1</h3>
+<div class="outline-text-3" id="text-orgc1e8474">
 <p>
 Sequence hopping and CS hopping can be configured to randomize interference.
 </p>
 </div>
 </div>
-<div id="outline-container-org0ada4ee" class="outline-3">
-<h3 id="org0ada4ee">Format 2</h3>
-<div class="outline-text-3" id="text-org0ada4ee">
+<div id="outline-container-orgc64cf71" class="outline-3">
+<h3 id="orgc64cf71">Format 2</h3>
+<div class="outline-text-3" id="text-orgc64cf71">
 <p>
 Format 2 can support simultaneous CSI reporting and HARQ acknowledgements, or a large number of HARQ acknowledgements. Additionally, a scheduling request can also be included by joint encoding. If the payload is too large, the CSI report will be dropped.
 </p>
@@ -366,9 +366,9 @@ For better performance, coherent detection is used with DMRS mapped to every 3rd
 </p>
 </div>
 </div>
-<div id="outline-container-orgad5ed3f" class="outline-3">
-<h3 id="orgad5ed3f">Format 3</h3>
-<div class="outline-text-3" id="text-orgad5ed3f">
+<div id="outline-container-org1163da7" class="outline-3">
+<h3 id="org1163da7">Format 3</h3>
+<div class="outline-text-3" id="text-org1163da7">
 <p>
 Similar to format 2, the basic procedure can be listed as below.
 </p>
@@ -388,18 +388,18 @@ In the mapping of UCI, the more critical bits, i.e., HARQ acknowledgements, sche
 </p>
 </div>
 </div>
-<div id="outline-container-org80f6f1a" class="outline-3">
-<h3 id="org80f6f1a">Format 4</h3>
-<div class="outline-text-3" id="text-org80f6f1a">
+<div id="outline-container-orgc04c28a" class="outline-3">
+<h3 id="orgc04c28a">Format 4</h3>
+<div class="outline-text-3" id="text-orgc04c28a">
 <p>
 Essentially, format 4 is the same as format 3, but it enables the multiplexing of users in the same resource.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org34b61d7" class="outline-2">
-<h2 id="org34b61d7">UCI on PUCCH</h2>
-<div class="outline-text-2" id="text-org34b61d7">
+<div id="outline-container-orgb038666" class="outline-2">
+<h2 id="orgb038666">UCI on PUCCH</h2>
+<div class="outline-text-2" id="text-orgb038666">
 <p>
 In NR, the concept of <i>PUCCH resource set</i> has been proposed.
 </p>
@@ -414,9 +414,9 @@ In NR, the concept of <i>PUCCH resource set</i> has been proposed.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfe00d2a" class="outline-2">
-<h2 id="orgfe00d2a">UCI on PUSCH</h2>
-<div class="outline-text-2" id="text-orgfe00d2a">
+<div id="outline-container-orgfec47f7" class="outline-2">
+<h2 id="orgfec47f7">UCI on PUSCH</h2>
+<div class="outline-text-2" id="text-orgfec47f7">
 <ul class="org-ul">
 <li>In NR, irrespective of CP-OFDM or DFT-S-OFDM based uplink, UCI on PUSCH is supported for simultaneous transmission of UCI and UL-SCH.</li>
 <li>Only HARQ acknowledgements and CSI reports can be transmitted over PUSCH, since there is no need to request a new scheduling grant for a user with a scheduling grant already.</li>

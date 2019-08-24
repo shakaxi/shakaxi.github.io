@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:04 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mutt</title>
@@ -261,30 +261,30 @@ Above all, the package can be installed by
 Then create a configuration file <code>muttrc</code> in <code>~/.mutt</code> with the content below:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #73d216;">## </span><span style="color: #73d216;">imap settings</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">folder</span>=<span style="color: #e9b96e;">"imaps://imap.gmail.com/"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">spoolfile</span>=<span style="color: #e9b96e;">"+INBOX"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">postponed</span>=<span style="color: #e9b96e;">"+[Gmail]/Drafts"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">record</span>=<span style="color: #e9b96e;">"+[Gmail]/Sent Mail"</span>
-mailboxes <span style="color: #e9b96e;">"+INBOX"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">imap_user</span>=<span style="color: #e9b96e;">"ID@gmail.com"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">imap_pass</span>=<span style="color: #e9b96e;">"PASSWORD"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">imap_keepalive</span>=300
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">mail_check</span>=120
+<pre class="src src-sh">## imap settings
+set folder="imaps://imap.gmail.com/"
+set spoolfile="+INBOX"
+set postponed="+[Gmail]/Drafts"
+set record="+[Gmail]/Sent Mail"
+mailboxes "+INBOX"
+set imap_user="ID@gmail.com"
+set imap_pass="PASSWORD"
+set imap_keepalive=300
+set mail_check=120
 
-<span style="color: #73d216;">## </span><span style="color: #73d216;">smtp settings</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">smtp_url</span>=<span style="color: #e9b96e;">"smtp://$imap_user:$imap_pass@smtp.gmail.com"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">ssl_force_tls</span>=<span style="color: #e9b96e;">"yes"</span>
+## smtp settings
+set smtp_url="smtp://$imap_user:$imap_pass@smtp.gmail.com"
+set ssl_force_tls="yes"
 
-<span style="color: #73d216;">## </span><span style="color: #73d216;">other settings</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">realname</span>=<span style="color: #e9b96e;">"Shaka"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">signature</span>=<span style="color: #e9b96e;">"~/.mutt/signature"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">alias_file</span>=<span style="color: #e9b96e;">"~/.mutt/alias"</span>
-<span style="color: #e090d7;">source</span> $<span style="color: #fcaf3e;">alias_file</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">header_cache</span>=<span style="color: #e9b96e;">"~/.mutt/header_cache"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">pager_stop</span>=<span style="color: #e9b96e;">"yes"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">editor</span>=<span style="color: #e9b96e;">"emacs -nw"</span>
-<span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">indent_str</span>=<span style="color: #e9b96e;">"&gt;"</span>
+## other settings
+set realname="Shaka"
+set signature="~/.mutt/signature"
+set alias_file="~/.mutt/alias"
+source $alias_file
+set header_cache="~/.mutt/header_cache"
+set pager_stop="yes"
+set editor="emacs -nw"
+set indent_str="&gt;"
 auto_view text/html
 </pre>
 </div>
@@ -293,7 +293,7 @@ auto_view text/html
 where, <code>ID</code> and <code>PASSWORD</code> are respectively ID and password for my Gmail account. <code>~/.mutt/signature</code> is my signature file, which will be appended at the end of each mail before sent. <code>~/.mutt/alias</code> is my contact list. The entry
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #e090d7;">set</span> <span style="color: #fcaf3e;">pager_stop</span>=<span style="color: #e9b96e;">"yes"</span>
+<pre class="src src-sh">set pager_stop="yes"
 </pre>
 </div>
 <p>

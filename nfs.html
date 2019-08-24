@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:04 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NFS</title>
@@ -246,11 +246,11 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org01f6aae">Installation</a></li>
-<li><a href="#org0b99043">Configuration</a>
+<li><a href="#orgfb6c6ae">Installation</a></li>
+<li><a href="#org5bb3ebb">Configuration</a>
 <ul>
-<li><a href="#org89e48bb">Server</a></li>
-<li><a href="#org6f0b202">Client</a></li>
+<li><a href="#org77c8dce">Server</a></li>
+<li><a href="#org88825af">Client</a></li>
 </ul>
 </li>
 </ul>
@@ -259,38 +259,38 @@ for the JavaScript code in this tag.
 <p>
 Network file system (NFS) is a simple approach for share and exchange files in Unix/Linux. This post summarizes its installation and configuration.
 </p>
-<div id="outline-container-org01f6aae" class="outline-2">
-<h2 id="org01f6aae">Installation</h2>
-<div class="outline-text-2" id="text-org01f6aae">
+<div id="outline-container-orgfb6c6ae" class="outline-2">
+<h2 id="orgfb6c6ae">Installation</h2>
+<div class="outline-text-2" id="text-orgfb6c6ae">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S nfs-utils
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0b99043" class="outline-2">
-<h2 id="org0b99043">Configuration</h2>
-<div class="outline-text-2" id="text-org0b99043">
+<div id="outline-container-org5bb3ebb" class="outline-2">
+<h2 id="org5bb3ebb">Configuration</h2>
+<div class="outline-text-2" id="text-org5bb3ebb">
 </div>
-<div id="outline-container-org89e48bb" class="outline-3">
-<h3 id="org89e48bb">Server</h3>
-<div class="outline-text-3" id="text-org89e48bb">
+<div id="outline-container-org77c8dce" class="outline-3">
+<h3 id="org77c8dce">Server</h3>
+<div class="outline-text-3" id="text-org77c8dce">
 <p>
 Edit <code>/etc/exports</code>, e.g.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">/etc/exports - exports(5) - directories exported to NFS clients</span>
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Example for NFSv2 and NFSv3:</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/home        hostname1(rw,sync) hostname2(ro,sync)</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Example for NFSv4:</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/nfs4        hostname1(rw,sync,fsid=0)</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/nfs4/home   hostname1(rw,sync,nohide)</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Using Kerberos and integrity checking:</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)</span>
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Use `exportfs -arv` to reload.</span>
+<pre class="src src-sh"># /etc/exports - exports(5) - directories exported to NFS clients
+#
+# Example for NFSv2 and NFSv3:
+#  /srv/home        hostname1(rw,sync) hostname2(ro,sync)
+# Example for NFSv4:
+#  /srv/nfs4	    hostname1(rw,sync,fsid=0)
+#  /srv/nfs4/home   hostname1(rw,sync,nohide)
+# Using Kerberos and integrity checking:
+#  /srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)
+#  /srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)
+#
+# Use `exportfs -arv` to reload.
 
 /home 192.168.2.0/24(rw,async,subtree_check,no_root_squash)
 /opt 192.168.2.0/24(ro,async,subtree_check,no_root_squash)
@@ -306,9 +306,9 @@ systemctl start nfs-server.service
 </div>
 </div>
 </div>
-<div id="outline-container-org6f0b202" class="outline-3">
-<h3 id="org6f0b202">Client</h3>
-<div class="outline-text-3" id="text-org6f0b202">
+<div id="outline-container-org88825af" class="outline-3">
+<h3 id="org88825af">Client</h3>
+<div class="outline-text-3" id="text-org88825af">
 <p>
 Add the corresponding entries in <code>/etc/fstab</code>, e.g.
 </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-04-14 Sun 23:04 -->
+<!-- 2019-08-24 Sat 21:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fonts for Linux</title>
@@ -246,22 +246,22 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org494d196">Infinality</a>
+<li><a href="#orgbba3963">Infinality</a>
 <ul>
-<li><a href="#org62e7489">Append following repositories to <code>/etc/pacman.conf</code>.</a></li>
-<li><a href="#orgf95fb8e">Install infinality fonts</a>
+<li><a href="#org5bb8941">Append following repositories to <code>/etc/pacman.conf</code>.</a></li>
+<li><a href="#org99ad08c">Install infinality fonts</a>
 <ul>
-<li><a href="#org727ba41">For x86-64</a></li>
-<li><a href="#org359439c">For x86-32</a></li>
+<li><a href="#org24c6bd1">For x86-64</a></li>
+<li><a href="#org7705fd9">For x86-32</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6c5c024">Adobe</a></li>
-<li><a href="#org427fc8f">Fira</a></li>
-<li><a href="#orgbaad577">Ubuntu</a></li>
-<li><a href="#org5281a0d">Google</a></li>
-<li><a href="#org5df91fd">WenQuanYi</a></li>
+<li><a href="#org3c7ecab">Adobe</a></li>
+<li><a href="#org9155a6b">Fira</a></li>
+<li><a href="#org6dba046">Ubuntu</a></li>
+<li><a href="#orgdd98980">Google</a></li>
+<li><a href="#org92a7299">WenQuanYi</a></li>
 </ul>
 </div>
 </div>
@@ -269,40 +269,40 @@ for the JavaScript code in this tag.
 On Unix/Linux desktop, there are a rich number of open source projects for font rendering. This post lists some pretty excellent choices. Taking ArchLinux for instance, the installations are presented.
 </p>
 
-<div id="outline-container-org494d196" class="outline-2">
-<h2 id="org494d196">Infinality</h2>
-<div class="outline-text-2" id="text-org494d196">
+<div id="outline-container-orgbba3963" class="outline-2">
+<h2 id="orgbba3963">Infinality</h2>
+<div class="outline-text-2" id="text-orgbba3963">
 </div>
-<div id="outline-container-org62e7489" class="outline-3">
-<h3 id="org62e7489">Append following repositories to <code>/etc/pacman.conf</code>.</h3>
-<div class="outline-text-3" id="text-org62e7489">
+<div id="outline-container-org5bb8941" class="outline-3">
+<h3 id="org5bb8941">Append following repositories to <code>/etc/pacman.conf</code>.</h3>
+<div class="outline-text-3" id="text-org5bb8941">
 <div class="org-src-container">
 <pre class="src src-sh">[infinality-bundle]
-<span style="color: #fcaf3e;">Server</span>= http://bohoomil.com/repo/$<span style="color: #fcaf3e;">arch</span>
+Server= http://bohoomil.com/repo/$arch
 [infinality-bundle-multilib]
-<span style="color: #fcaf3e;">Server</span>= http://bohoomil.com/repo/multilib/$<span style="color: #fcaf3e;">arch</span>
+Server= http://bohoomil.com/repo/multilib/$arch
 [infinality-bundle-fonts]
-<span style="color: #fcaf3e;">Server</span>= http://bohoomil.com/repo/fonts
+Server= http://bohoomil.com/repo/fonts
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf95fb8e" class="outline-3">
-<h3 id="orgf95fb8e">Install infinality fonts</h3>
-<div class="outline-text-3" id="text-orgf95fb8e">
+<div id="outline-container-org99ad08c" class="outline-3">
+<h3 id="org99ad08c">Install infinality fonts</h3>
+<div class="outline-text-3" id="text-org99ad08c">
 </div>
-<div id="outline-container-org727ba41" class="outline-4">
-<h4 id="org727ba41">For x86-64</h4>
-<div class="outline-text-4" id="text-org727ba41">
+<div id="outline-container-org24c6bd1" class="outline-4">
+<h4 id="org24c6bd1">For x86-64</h4>
+<div class="outline-text-4" id="text-org24c6bd1">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S infinality-bundle ibfonts-meta-extended infinality-bundle-multilib
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org359439c" class="outline-4">
-<h4 id="org359439c">For x86-32</h4>
-<div class="outline-text-4" id="text-org359439c">
+<div id="outline-container-org7705fd9" class="outline-4">
+<h4 id="org7705fd9">For x86-32</h4>
+<div class="outline-text-4" id="text-org7705fd9">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S infinality-bundle ibfonts-meta-extended
 </pre>
@@ -311,18 +311,18 @@ On Unix/Linux desktop, there are a rich number of open source projects for font 
 </div>
 </div>
 </div>
-<div id="outline-container-org6c5c024" class="outline-2">
-<h2 id="org6c5c024">Adobe</h2>
-<div class="outline-text-2" id="text-org6c5c024">
+<div id="outline-container-org3c7ecab" class="outline-2">
+<h2 id="org3c7ecab">Adobe</h2>
+<div class="outline-text-2" id="text-org3c7ecab">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S adobe-source-{code,sans,serif}-pro-fonts
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org427fc8f" class="outline-2">
-<h2 id="org427fc8f">Fira</h2>
-<div class="outline-text-2" id="text-org427fc8f">
+<div id="outline-container-org9155a6b" class="outline-2">
+<h2 id="org9155a6b">Fira</h2>
+<div class="outline-text-2" id="text-org9155a6b">
 <p>
 Fira font is dedicated for Firefox operation system (OS).
 </p>
@@ -332,18 +332,18 @@ Fira font is dedicated for Firefox operation system (OS).
 </div>
 </div>
 </div>
-<div id="outline-container-orgbaad577" class="outline-2">
-<h2 id="orgbaad577">Ubuntu</h2>
-<div class="outline-text-2" id="text-orgbaad577">
+<div id="outline-container-org6dba046" class="outline-2">
+<h2 id="org6dba046">Ubuntu</h2>
+<div class="outline-text-2" id="text-org6dba046">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S ttf-ubuntu-font-family
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org5281a0d" class="outline-2">
-<h2 id="org5281a0d">Google</h2>
-<div class="outline-text-2" id="text-org5281a0d">
+<div id="outline-container-orgdd98980" class="outline-2">
+<h2 id="orgdd98980">Google</h2>
+<div class="outline-text-2" id="text-orgdd98980">
 <p>
 Google archives a lot of open source fonts.
 </p>
@@ -353,9 +353,9 @@ Google archives a lot of open source fonts.
 </div>
 </div>
 </div>
-<div id="outline-container-org5df91fd" class="outline-2">
-<h2 id="org5df91fd">WenQuanYi</h2>
-<div class="outline-text-2" id="text-org5df91fd">
+<div id="outline-container-org92a7299" class="outline-2">
+<h2 id="org92a7299">WenQuanYi</h2>
+<div class="outline-text-2" id="text-org92a7299">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S wqy-{bitmapfont,microhei,microhei-lite,zenhei}
 </pre>
