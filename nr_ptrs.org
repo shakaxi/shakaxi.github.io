@@ -138,7 +138,7 @@ In order to facilitate the PTRS port association, a UE reports a /layer index (L
 
 With LI at hand, a gNB can always associate the PTRS port to the DMRS port with the best channel quality. Moreover, for the purpose of signalling overhead reduction, a gNB can permute and reorder the precoding vectors until the lowest indexed DMRS port has the most excellent channel quality. Clearly, the operation is a completely gNB implementation related issue without any specification effort. To sum up, the PTRS port is associated to a unique DMRS port as follows.
 - In single-codeword case, the PTRS port is assocated to the lowest-indexed DMRS port.
-- For double-codeword, the PTRS port is associated to the lowest-indexed DMRS port corresponding to the codeword with highest MCS level.\
+- For double-codeword, the PTRS port is associated to the lowest-indexed DMRS port corresponding to the codeword with highest MCS level.
 ** Uplink
 The association between PTRS ports and DMRS ports is signalled by the field of /PTRS-DMRS assocation/ in DCI format 0-1.
 - If at least one of the following condition is satisfied, /PTRS-DMRS assocation/ is not present.
