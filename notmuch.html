@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Notmuch</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -246,25 +233,25 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org034f2dc">Introduction</a></li>
-<li><a href="#orgfa1a441">Installation</a></li>
-<li><a href="#org4ce1152">Configuration</a>
+<li><a href="#orgb4194fb">Introduction</a></li>
+<li><a href="#orgb1b81ae">Installation</a></li>
+<li><a href="#orgbee9cfc">Configuration</a>
 <ul>
-<li><a href="#org43fb0ef"><code>~/.notmuch-config</code></a></li>
-<li><a href="#orgf5ab63f"><code>~/.emacs.d/init.el</code></a></li>
-<li><a href="#org870e01b">Hooks</a></li>
-<li><a href="#org25a3118">Automatics</a></li>
-<li><a href="#org3849a47">CJK Support</a></li>
+<li><a href="#orga300d2e"><code>~/.notmuch-config</code></a></li>
+<li><a href="#orge050e2d"><code>~/.emacs.d/init.el</code></a></li>
+<li><a href="#orga828c86">Hooks</a></li>
+<li><a href="#orgfe6db0a">Automatics</a></li>
+<li><a href="#org5e97fbb">CJK Support</a></li>
 </ul>
 </li>
-<li><a href="#org89fd80e">Key binding</a></li>
+<li><a href="#org323688c">Key binding</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org034f2dc" class="outline-2">
-<h2 id="org034f2dc">Introduction</h2>
-<div class="outline-text-2" id="text-org034f2dc">
+<div id="outline-container-orgb4194fb" class="outline-2">
+<h2 id="orgb4194fb">Introduction</h2>
+<div class="outline-text-2" id="text-orgb4194fb">
 <p>
 <code>Notmuch</code> is a mail system<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. It can efficiently manage a fairly large number of emails. Particularly, it supports fast email searching and filtering based on tags, which is extremely similar to Gmail's tags whereby various virtual folders can be flexibly realized.
 </p>
@@ -274,22 +261,22 @@ This post is composed just to summarize the basic installation and configuration
 </p>
 </div>
 </div>
-<div id="outline-container-orgfa1a441" class="outline-2">
-<h2 id="orgfa1a441">Installation</h2>
-<div class="outline-text-2" id="text-orgfa1a441">
+<div id="outline-container-orgb1b81ae" class="outline-2">
+<h2 id="orgb1b81ae">Installation</h2>
+<div class="outline-text-2" id="text-orgb1b81ae">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S notmuch
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4ce1152" class="outline-2">
-<h2 id="org4ce1152">Configuration</h2>
-<div class="outline-text-2" id="text-org4ce1152">
+<div id="outline-container-orgbee9cfc" class="outline-2">
+<h2 id="orgbee9cfc">Configuration</h2>
+<div class="outline-text-2" id="text-orgbee9cfc">
 </div>
-<div id="outline-container-org43fb0ef" class="outline-3">
-<h3 id="org43fb0ef"><code>~/.notmuch-config</code></h3>
-<div class="outline-text-3" id="text-org43fb0ef">
+<div id="outline-container-orga300d2e" class="outline-3">
+<h3 id="orga300d2e"><code>~/.notmuch-config</code></h3>
+<div class="outline-text-3" id="text-orga300d2e">
 <p>
 The basic configuration can be performed by either
 </p>
@@ -305,73 +292,73 @@ The basic configuration can be performed by either
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">[database]
-# Mail storage in maildir format
-path=/MAIL/REPO
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Mail storage in maildir format</span>
+<span style="color: #a0522d;">path</span>=/MAIL/REPO
 
 [user]
-name=NAME
-primary_email=EMAILADDRESS
+<span style="color: #a0522d;">name</span>=NAME
+<span style="color: #a0522d;">primary_email</span>=EMAILADDRESS
 
 [new]
-tags=unread;inbox;
-ignore=
+<span style="color: #a0522d;">tags</span>=unread;inbox;
+<span style="color: #a0522d;">ignore</span>=
 
 [search]
-exclude_tags=deleted;spam;
+<span style="color: #a0522d;">exclude_tags</span>=deleted;spam;
 
 [maildir]
-synchronize_flags=true
+<span style="color: #a0522d;">synchronize_flags</span>=true
 
 [crypto]
-gpg_path=gpg
+<span style="color: #a0522d;">gpg_path</span>=gpg
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf5ab63f" class="outline-3">
-<h3 id="orgf5ab63f"><code>~/.emacs.d/init.el</code></h3>
-<div class="outline-text-3" id="text-orgf5ab63f">
+<div id="outline-container-orge050e2d" class="outline-3">
+<h3 id="orge050e2d"><code>~/.emacs.d/init.el</code></h3>
+<div class="outline-text-3" id="text-orge050e2d">
 <p>
 Add following content to the configuration of Emacs.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(require 'notmuch)
-(setq user-full-name "NAME"
-      user-mail-address "EMAILADDRESS")
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">notmuch</span>)
+(<span style="color: #a020f0;">setq</span> user-full-name <span style="color: #8b2252;">"NAME"</span>
+      user-mail-address <span style="color: #8b2252;">"EMAILADDRESS"</span>)
 
-(setq mail-user-agent 'message-user-agent
+(<span style="color: #a020f0;">setq</span> mail-user-agent 'message-user-agent
       message-kill-buffer-on-exit t
       mm-text-html-renderer 'w3m)
 
-(setq notmuch-search-oldest-first nil
+(<span style="color: #a020f0;">setq</span> notmuch-search-oldest-first nil
       notmuch-show-all-multipart/alternative-parts nil
       mail-interactive t
       notmuch-always-prompt-for-sender nil
       notmuch-show-indent-messages-width 3)
 
-(setq mail-specify-envelope-from t
+(<span style="color: #a020f0;">setq</span> mail-specify-envelope-from t
       message-sendmail-envelope-from 'header
       mail-envelope-from 'header)
 
-(setq message-directory "."
-      notmuch-fcc-dirs ".")
+(<span style="color: #a020f0;">setq</span> message-directory <span style="color: #8b2252;">"."</span>
+      notmuch-fcc-dirs <span style="color: #8b2252;">"."</span>)
 
-(setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-smtp-server "SMTPSERVER"
+(<span style="color: #a020f0;">setq</span> message-send-mail-function 'smtpmail-send-it
+      smtpmail-smtp-server <span style="color: #8b2252;">"SMTPSERVER"</span>
       smtpmail-stream-type 'ssl
       smtpmail-smtp-service PORT)
 
-(setq notmuch-saved-searches '((:name "inbox"
-                                      :query "tag:inbox"
-                                      :count-query "tag:inbox and tag:unread"
-                                      :sort-order newest-first)
+(<span style="color: #a020f0;">setq</span> notmuch-saved-searches '((<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"inbox"</span>
+                                      <span style="color: #483d8b;">:query</span> <span style="color: #8b2252;">"tag:inbox"</span>
+                                      <span style="color: #483d8b;">:count-query</span> <span style="color: #8b2252;">"tag:inbox and tag:unread"</span>
+                                      <span style="color: #483d8b;">:sort-order</span> newest-first)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org870e01b" class="outline-3">
-<h3 id="org870e01b">Hooks</h3>
-<div class="outline-text-3" id="text-org870e01b">
+<div id="outline-container-orga828c86" class="outline-3">
+<h3 id="orga828c86">Hooks</h3>
+<div class="outline-text-3" id="text-orga828c86">
 <p>
 Additionally, notmuch supports hooks which are essentially scripts in <code>/MAIL/REPO/.notmuch/hooks</code> whereby users can specify and customize the behaviors of notmuch. Currently, following scripts and hooks are available.
 </p>
@@ -379,7 +366,7 @@ Additionally, notmuch supports hooks which are essentially scripts in <code>/MAI
 <dt><code>pre-new</code></dt><dd>Hook/script provoked before command <code>notmuch new</code>, which is usually used to fetch mails.</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-sh">#!/bin/sh
+<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">sh</span>
 /usr/bin/offlineimap -c /PATH/TO/OFFLINEIMAPRC -a ACCOUNT
 </pre>
 </div>
@@ -387,7 +374,7 @@ Additionally, notmuch supports hooks which are essentially scripts in <code>/MAI
 or
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">#!/bin/sh
+<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">sh</span>
 /usr/bin/getmail --new --getmaildir=/PATH/TO/GETMAILRC --rcfile=GETMAILRC
 </pre>
 </div>
@@ -395,7 +382,7 @@ or
 <dt><code>post-new</code></dt><dd>Hook/script provoked after command <code>notmuch new</code>, which is usually used to tag the newly imported mails.</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-sh">#!/bin/sh
+<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">sh</span>
 notmuch tag -inbox +sent -- from:EMAILADDRESS
 notmuch tag -inbox +ML -- to:MAILLIST@EXAMPLE.COM
 notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
@@ -407,9 +394,9 @@ notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
 </dl>
 </div>
 </div>
-<div id="outline-container-org25a3118" class="outline-3">
-<h3 id="org25a3118">Automatics</h3>
-<div class="outline-text-3" id="text-org25a3118">
+<div id="outline-container-orgfe6db0a" class="outline-3">
+<h3 id="orgfe6db0a">Automatics</h3>
+<div class="outline-text-3" id="text-orgfe6db0a">
 <ul class="org-ul">
 <li>Add new intended task by <code>crontab -e</code> with following content</li>
 </ul>
@@ -430,22 +417,22 @@ systemctl start cronie.service
 </div>
 </div>
 </div>
-<div id="outline-container-org3849a47" class="outline-3">
-<h3 id="org3849a47">CJK Support</h3>
-<div class="outline-text-3" id="text-org3849a47">
+<div id="outline-container-org5e97fbb" class="outline-3">
+<h3 id="org5e97fbb">CJK Support</h3>
+<div class="outline-text-3" id="text-org5e97fbb">
 <p>
 By default, notmuch cannot separate Chinese correctly, Japanese, or Korean words due to the non-space separator. A workaround is to <a href="https://notmuchmail.org/howto/#index10h2">set a environment variable</a> as follows.
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">export XAPIAN_CJK_NGRAM=1
+<pre class="src src-shell"><span style="color: #483d8b;">export</span> <span style="color: #a0522d;">XAPIAN_CJK_NGRAM</span>=1
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org89fd80e" class="outline-2">
-<h2 id="org89fd80e">Key binding</h2>
-<div class="outline-text-2" id="text-org89fd80e">
+<div id="outline-container-org323688c" class="outline-2">
+<h2 id="org323688c">Key binding</h2>
+<div class="outline-text-2" id="text-org323688c">
 <table>
 
 

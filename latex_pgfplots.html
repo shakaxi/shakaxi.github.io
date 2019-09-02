@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Pgfplots</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -246,38 +233,38 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdfaac6e">Introduction</a></li>
-<li><a href="#org0c1b5af">Installation</a></li>
-<li><a href="#org2ca4aa0">Usage</a>
+<li><a href="#org4580ce3">Introduction</a></li>
+<li><a href="#orgd39ed25">Installation</a></li>
+<li><a href="#orgef77046">Usage</a>
 <ul>
-<li><a href="#org94b4912"><code>AXIS-TYPE</code></a></li>
-<li><a href="#org320af3a"><code>FORMULA</code></a></li>
-<li><a href="#orgf4e1d16">Options</a></li>
+<li><a href="#orgd199a8b"><code>AXIS-TYPE</code></a></li>
+<li><a href="#org68e837f"><code>FORMULA</code></a></li>
+<li><a href="#orgb354616">Options</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdfaac6e" class="outline-2">
-<h2 id="orgdfaac6e">Introduction</h2>
-<div class="outline-text-2" id="text-orgdfaac6e">
+<div id="outline-container-org4580ce3" class="outline-2">
+<h2 id="org4580ce3">Introduction</h2>
+<div class="outline-text-2" id="text-org4580ce3">
 <p>
 <i>Pgfplots</i> is an excellent <i>LaTeX</i> package to plot high quality graphs. This post just summaries its basic usages.
 </p>
 </div>
 </div>
-<div id="outline-container-org0c1b5af" class="outline-2">
-<h2 id="org0c1b5af">Installation</h2>
-<div class="outline-text-2" id="text-org0c1b5af">
+<div id="outline-container-orgd39ed25" class="outline-2">
+<h2 id="orgd39ed25">Installation</h2>
+<div class="outline-text-2" id="text-orgd39ed25">
 <p>
 Pgfplots is a built-in package in the <a href="http://tug.org">texlive</a>. As long as texlive is ready, pgfplots is out-of-the-box.
 </p>
 </div>
 </div>
-<div id="outline-container-org2ca4aa0" class="outline-2">
-<h2 id="org2ca4aa0">Usage</h2>
-<div class="outline-text-2" id="text-org2ca4aa0">
+<div id="outline-container-orgef77046" class="outline-2">
+<h2 id="orgef77046">Usage</h2>
+<div class="outline-text-2" id="text-orgef77046">
 <p>
 Pgfplots depends on <a href="./latex_pgf_tikz.html">pgf/tikz</a>, and the statements are encapsulated in the environment of <i>tikzpicture</i>. The basic plot commands are <code>\addplot</code> and <code>\addplot3</code> for 2D or 3D plot purpose, respectively. It should be noticed that each of them has a variant, i.e. <code>\addplot+</code> and <code>\addplot3+</code>. <code>\addplot/\addplot3</code> uses the provided local options only, while <code>\addplot+/\addplot3+</code> adopts both the global and local options.
 </p>
@@ -286,69 +273,69 @@ Pgfplots depends on <a href="./latex_pgf_tikz.html">pgf/tikz</a>, and the statem
 Templates for pgfplots usage can be presented as follows.
 </p>
 <div class="org-src-container">
-<pre class="src src-latex">\usepackage{pgfplots}
-\pgfplotsset{GLOBAL-OPTIONS}
+<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">pgfplots</span>}
+<span style="color: #696969;">\pgfplotsset</span>{GLOBAL-OPTIONS}
 ...
-% For single curve plot
-\begin{tikzpicture}
-  \begin{AXIS-TYPE}[AXIS-OPTIONS]
-  \addplot/\addplot3[PLOT-OPTIONS] {FORMULA};
-  \legend{LABEL};
-  \end{AXIS-TYPE}
-\end{tikzpicture}
+<span style="color: #b22222;">% </span><span style="color: #b22222;">For single curve plot</span>
+<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}
+  <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">AXIS-TYPE</span>}[AXIS-OPTIONS]
+  <span style="color: #696969;">\addplot/\addplot3</span>[PLOT-OPTIONS] {FORMULA};
+  <span style="color: #696969;">\legend</span>{LABEL};
+  <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">AXIS-TYPE</span>}
+<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
 
-% For multi-curve plot
-\begin{tikzpicture}
-  \begin{AXIS-TYPE}[AXIS-OPTIONS]
-  \addplot/\addplot3[PLOT-OPTIONS] {FORMULA1};
-  \addlegendentry{LABEL1};
-  \node at (AXIS-TYPE cs:x1,y1) {TEXT}; % Annotation for the curve.
+<span style="color: #b22222;">% </span><span style="color: #b22222;">For multi-curve plot</span>
+<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}
+  <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">AXIS-TYPE</span>}[AXIS-OPTIONS]
+  <span style="color: #696969;">\addplot/\addplot3</span>[PLOT-OPTIONS] {FORMULA1};
+  <span style="color: #696969;">\addlegendentry</span>{LABEL1};
+  <span style="color: #696969;">\node</span> at (AXIS-TYPE cs:x1,y1) {TEXT}; <span style="color: #b22222;">% Annotation for the curve.</span>
 
-  \addplot/\addplot3[PLOT-OPTIONS] {FORMULA2};
-  \addlegendentry{LABEL2};
+  <span style="color: #696969;">\addplot/\addplot3</span>[PLOT-OPTIONS] {FORMULA2};
+  <span style="color: #696969;">\addlegendentry</span>{LABEL2};
   ...
-  \end{AXIS-TYPE}
-\end{tikzpicture}
+  <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">AXIS-TYPE</span>}
+<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
 </pre>
 </div>
 </div>
-<div id="outline-container-org94b4912" class="outline-3">
-<h3 id="org94b4912"><code>AXIS-TYPE</code></h3>
-<div class="outline-text-3" id="text-org94b4912">
+<div id="outline-container-orgd199a8b" class="outline-3">
+<h3 id="orgd199a8b"><code>AXIS-TYPE</code></h3>
+<div class="outline-text-3" id="text-orgd199a8b">
 <p>
 The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis/polaraxis</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>
 </div>
 </div>
-<div id="outline-container-org320af3a" class="outline-3">
-<h3 id="org320af3a"><code>FORMULA</code></h3>
-<div class="outline-text-3" id="text-org320af3a">
+<div id="outline-container-org68e837f" class="outline-3">
+<h3 id="org68e837f"><code>FORMULA</code></h3>
+<div class="outline-text-3" id="text-org68e837f">
 <ul class="org-ul">
 <li>plain function<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex">\addplot {f(x)};
+<pre class="src src-latex"><span style="color: #696969;">\addplot</span> {f(x)};
 </pre>
 </div>
 <ul class="org-ul">
 <li>parameter function, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex">\addplot ({x(t)}, {y(t)});
+<pre class="src src-latex"><span style="color: #696969;">\addplot</span> ({x(t)}, {y(t)});
 </pre>
 </div>
 <ul class="org-ul">
 <li>coordinates, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex">\addplot coordinates{(x1, y1)(x2, y2)...(xn, yn)}
+<pre class="src src-latex"><span style="color: #696969;">\addplot</span> coordinates{(x1, y1)(x2, y2)...(xn, yn)}
 </pre>
 </div>
 <ul class="org-ul">
 <li>data in a file, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex">\addplot table [x = COLUMN1, y = COLUMN2]{DATA-FILE};
+<pre class="src src-latex"><span style="color: #696969;">\addplot</span> table [x = COLUMN1, y = COLUMN2]{DATA-FILE};
 </pre>
 </div>
 <p>
@@ -365,14 +352,14 @@ a2 b2 c2
 <li>shade a region, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex">\addplot [...] {...} \closedcycle;
+<pre class="src src-latex"><span style="color: #696969;">\addplot</span> [...] {...} <span style="color: #696969;">\closedcycle</span>;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf4e1d16" class="outline-3">
-<h3 id="orgf4e1d16">Options</h3>
-<div class="outline-text-3" id="text-orgf4e1d16">
+<div id="outline-container-orgb354616" class="outline-3">
+<h3 id="orgb354616">Options</h3>
+<div class="outline-text-3" id="text-orgb354616">
 <p>
 <code>AXIS-OPTIONS</code> and <code>PLOT-OPTIONS</code> are basically the same, and the latter overrides the former.
 </p>
@@ -398,9 +385,9 @@ a2 b2 c2
 <li>customize font size</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex">tick label style={font=\normalsize\small\footnotesize\tiny}
-label style={font=\normalsize\small\footnotesize\tiny}
-legend style={font=\normalsize\small\footnotesize\tiny}
+<pre class="src src-latex">tick label style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
+label style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
+legend style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
 </pre>
 </div>
 <ul class="org-ul">

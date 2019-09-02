@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LTE - D2D</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -268,24 +255,24 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge0f1937">Overview</a></li>
-<li><a href="#orgbec56b7">Physical channels</a>
+<li><a href="#org214a19b">Overview</a></li>
+<li><a href="#org042b775">Physical channels</a>
 <ul>
-<li><a href="#org743502a">Scrambling</a></li>
-<li><a href="#orgea23bf1">Modulation</a></li>
-<li><a href="#org45547c0">Layer mapping</a></li>
-<li><a href="#org1cf8399">Transform precoding</a></li>
-<li><a href="#org30a03e6">Precoding</a></li>
-<li><a href="#orgcdfcc4f">Mapping to physical resources</a></li>
+<li><a href="#org63ce65b">Scrambling</a></li>
+<li><a href="#org89d28b7">Modulation</a></li>
+<li><a href="#orgebf4d6f">Layer mapping</a></li>
+<li><a href="#orgca57ffa">Transform precoding</a></li>
+<li><a href="#org1ace6f0">Precoding</a></li>
+<li><a href="#org00374f0">Mapping to physical resources</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge0f1937" class="outline-2">
-<h2 id="orge0f1937">Overview</h2>
-<div class="outline-text-2" id="text-orge0f1937">
+<div id="outline-container-org214a19b" class="outline-2">
+<h2 id="org214a19b">Overview</h2>
+<div class="outline-text-2" id="text-org214a19b">
 <p>
 In LTE-Advanced systems, the link for D2D communication is termed <i>sidelink</i> <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. A sidelink carries two physical signals
 </p>
@@ -307,13 +294,13 @@ PSSCH, PSCCH and PSDCH are all on the same antenna port, <code>R1000</code>. PSB
 </p>
 </div>
 </div>
-<div id="outline-container-orgbec56b7" class="outline-2">
-<h2 id="orgbec56b7">Physical channels</h2>
-<div class="outline-text-2" id="text-orgbec56b7">
+<div id="outline-container-org042b775" class="outline-2">
+<h2 id="org042b775">Physical channels</h2>
+<div class="outline-text-2" id="text-org042b775">
 </div>
-<div id="outline-container-org743502a" class="outline-3">
-<h3 id="org743502a">Scrambling</h3>
-<div class="outline-text-3" id="text-org743502a">
+<div id="outline-container-org63ce65b" class="outline-3">
+<h3 id="org63ce65b">Scrambling</h3>
+<div class="outline-text-3" id="text-org63ce65b">
 <p>
 The data stream is first scrambled by a random sequence. The scrambling sequence shall be initialized at the beginning of every PSSCH/PSCCH/PSDCH/PSBCH subframe. The corresponding random seeds are
 </p>
@@ -324,9 +311,9 @@ The data stream is first scrambled by a random sequence. The scrambling sequence
 </dl>
 </div>
 </div>
-<div id="outline-container-orgea23bf1" class="outline-3">
-<h3 id="orgea23bf1">Modulation</h3>
-<div class="outline-text-3" id="text-orgea23bf1">
+<div id="outline-container-org89d28b7" class="outline-3">
+<h3 id="org89d28b7">Modulation</h3>
+<div class="outline-text-3" id="text-org89d28b7">
 <p>
 The scrambled sequence is then modulated as constellation symbols. The modulation schemes for the physical channels are
 </p>
@@ -358,33 +345,33 @@ The scrambled sequence is then modulated as constellation symbols. The modulatio
 </table>
 </div>
 </div>
-<div id="outline-container-org45547c0" class="outline-3">
-<h3 id="org45547c0">Layer mapping</h3>
-<div class="outline-text-3" id="text-org45547c0">
+<div id="outline-container-orgebf4d6f" class="outline-3">
+<h3 id="orgebf4d6f">Layer mapping</h3>
+<div class="outline-text-3" id="text-orgebf4d6f">
 <p>
 There is only one layer for each physical channel above. Namely, for each physical channel, the single codeword is mapped to a single layer.
 </p>
 </div>
 </div>
-<div id="outline-container-org1cf8399" class="outline-3">
-<h3 id="org1cf8399">Transform precoding</h3>
-<div class="outline-text-3" id="text-org1cf8399">
+<div id="outline-container-orgca57ffa" class="outline-3">
+<h3 id="orgca57ffa">Transform precoding</h3>
+<div class="outline-text-3" id="text-orgca57ffa">
 <p>
 Similar to uplink transmission, <i>SC-FDMA</i> is adopted for sidelinks. For the 4 physical channels above, every \(M_\text{sc}^\text{PSSCH}\) / \(M_\text{sc}^\text{PSCCH}\) / \(M_\text{sc}^\text{PSDCH}\) / \(M_\text{sc}^\text{PSBCH}\) complex-valued symbols are FFT-processed.
 </p>
 </div>
 </div>
-<div id="outline-container-org30a03e6" class="outline-3">
-<h3 id="org30a03e6">Precoding</h3>
-<div class="outline-text-3" id="text-org30a03e6">
+<div id="outline-container-org1ace6f0" class="outline-3">
+<h3 id="org1ace6f0">Precoding</h3>
+<div class="outline-text-3" id="text-org1ace6f0">
 <p>
 As mentioned above, there is only one layer for each physical channel over a sidelink. Therefore, the single layer can be directly mapped to the corresponding antenna port, i.e. <code>R1000</code> for PSSCH, and <code>R1010</code> for PSCCH/PSDCH/PSBCH.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcdfcc4f" class="outline-3">
-<h3 id="orgcdfcc4f">Mapping to physical resources</h3>
-<div class="outline-text-3" id="text-orgcdfcc4f">
+<div id="outline-container-org00374f0" class="outline-3">
+<h3 id="org00374f0">Mapping to physical resources</h3>
+<div class="outline-text-3" id="text-org00374f0">
 <p>
 The complex symbols are first scaled by \(\beta_\text{PSSCH}\) / \(\beta_\text{PSCCH}\) / \(\beta_\text{PSDCH}\) / \(\beta_\text{PSBCH}\) before mapping to the physical resource blocks (PRB's). The mapping shall be in increasing order of first the index <i>k</i>, and then the index <i>l</i>, starting with the first slot in the subframe. Moreover, the PRB's used for reference signal (RS's) will be avoided in the mapping. Resource elements in the last SC-FDMA symbol within a subframe shall be counted in the mapping process but not transmitted.
 </p>

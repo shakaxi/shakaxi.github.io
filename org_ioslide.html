@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orgmode - Export to HTML5 Slide</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -268,16 +255,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6aa228d">Introduction</a></li>
-<li><a href="#org50038bb">Installation</a></li>
-<li><a href="#org872e93c">Usage</a></li>
+<li><a href="#orgc03f46a">Introduction</a></li>
+<li><a href="#orgfa6aa08">Installation</a></li>
+<li><a href="#orgb5adeca">Usage</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6aa228d" class="outline-2">
-<h2 id="org6aa228d">Introduction</h2>
-<div class="outline-text-2" id="text-org6aa228d">
+<div id="outline-container-orgc03f46a" class="outline-2">
+<h2 id="orgc03f46a">Introduction</h2>
+<div class="outline-text-2" id="text-orgc03f46a">
 <p>
 As is well-known, <a href="http://orgmode.org">orgmode</a> is a famous major mode of <a href="http://www.gnu.org/software/emacs/">Emacs</a>. What deserves notice, it can export org files to a variety of formats, e.g. \LaTeX, pdf, text, freemind.
 </p>
@@ -287,9 +274,9 @@ Today, I found an interesting export backend, <code>ox-ioslide</code>, whereby o
 </p>
 </div>
 </div>
-<div id="outline-container-org50038bb" class="outline-2">
-<h2 id="org50038bb">Installation</h2>
-<div class="outline-text-2" id="text-org50038bb">
+<div id="outline-container-orgfa6aa08" class="outline-2">
+<h2 id="orgfa6aa08">Installation</h2>
+<div class="outline-text-2" id="text-orgfa6aa08">
 <p>
 It can be easily installed via Emacs's <code>ELPA</code> system.
 </p>
@@ -301,14 +288,14 @@ It can be easily installed via Emacs's <code>ELPA</code> system.
 After that, the backend can be automatically loaded by adding the following line in <code>.emacs</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(require 'ox-ioslide)
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">ox-ioslide</span>)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org872e93c" class="outline-2">
-<h2 id="org872e93c">Usage</h2>
-<div class="outline-text-2" id="text-org872e93c">
+<div id="outline-container-orgb5adeca" class="outline-2">
+<h2 id="orgb5adeca">Usage</h2>
+<div class="outline-text-2" id="text-orgb5adeca">
 <p>
 After the installation, an org file can be exported to html5 slides through the built-in exporter.
 </p>

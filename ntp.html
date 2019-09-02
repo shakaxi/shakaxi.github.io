@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NTP</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -246,11 +233,11 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1ce7e7f">Installation</a></li>
-<li><a href="#orgb348dd8">Configuration</a>
+<li><a href="#org56e85bf">Installation</a></li>
+<li><a href="#orgfd5c912">Configuration</a>
 <ul>
-<li><a href="#org02b3bd4">Prepend following line(s) to <code>/etc/ntp.conf</code>.</a></li>
-<li><a href="#org7f6684b">Start and enable the service</a></li>
+<li><a href="#orgf896415">Prepend following line(s) to <code>/etc/ntp.conf</code>.</a></li>
+<li><a href="#orgd676d41">Start and enable the service</a></li>
 </ul>
 </li>
 </ul>
@@ -259,9 +246,9 @@ for the JavaScript code in this tag.
 <p>
 Network time protocol (NTP) is a very convenient service which can provide network time synchronized automatically and periodically. This post briefly describes the installation and configuration of NTP on Linux OS.
 </p>
-<div id="outline-container-org1ce7e7f" class="outline-2">
-<h2 id="org1ce7e7f">Installation</h2>
-<div class="outline-text-2" id="text-org1ce7e7f">
+<div id="outline-container-org56e85bf" class="outline-2">
+<h2 id="org56e85bf">Installation</h2>
+<div class="outline-text-2" id="text-org56e85bf">
 <p>
 Without loss of generality, we take Arch Linux for instance here.
 </p>
@@ -271,13 +258,13 @@ Without loss of generality, we take Arch Linux for instance here.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb348dd8" class="outline-2">
-<h2 id="orgb348dd8">Configuration</h2>
-<div class="outline-text-2" id="text-orgb348dd8">
+<div id="outline-container-orgfd5c912" class="outline-2">
+<h2 id="orgfd5c912">Configuration</h2>
+<div class="outline-text-2" id="text-orgfd5c912">
 </div>
-<div id="outline-container-org02b3bd4" class="outline-3">
-<h3 id="org02b3bd4">Prepend following line(s) to <code>/etc/ntp.conf</code>.</h3>
-<div class="outline-text-3" id="text-org02b3bd4">
+<div id="outline-container-orgf896415" class="outline-3">
+<h3 id="orgf896415">Prepend following line(s) to <code>/etc/ntp.conf</code>.</h3>
+<div class="outline-text-3" id="text-orgf896415">
 <ul class="org-ul">
 <li>As server</li>
 </ul>
@@ -295,9 +282,9 @@ fudge 127.127.1.1 stratum 12
 </div>
 </div>
 </div>
-<div id="outline-container-org7f6684b" class="outline-3">
-<h3 id="org7f6684b">Start and enable the service</h3>
-<div class="outline-text-3" id="text-org7f6684b">
+<div id="outline-container-orgd676d41" class="outline-3">
+<h3 id="orgd676d41">Start and enable the service</h3>
+<div class="outline-text-3" id="text-orgd676d41">
 <div class="org-src-container">
 <pre class="src src-sh">systemctl enable ntpd.service
 systemctl start ntpd.service

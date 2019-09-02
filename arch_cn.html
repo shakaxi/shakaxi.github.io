@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Linux - A Mirror of Arch Linux</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -246,30 +233,30 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc900f9d">Introducation</a></li>
-<li><a href="#orgf8ea0eb">Configuration</a></li>
+<li><a href="#org7dd144e">Introducation</a></li>
+<li><a href="#orgf638e74">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc900f9d" class="outline-2">
-<h2 id="orgc900f9d">Introducation</h2>
-<div class="outline-text-2" id="text-orgc900f9d">
+<div id="outline-container-org7dd144e" class="outline-2">
+<h2 id="org7dd144e">Introducation</h2>
+<div class="outline-text-2" id="text-org7dd144e">
 <p>
 Chinese community of ArchLinux provides a non-official source for ArchLinux.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf8ea0eb" class="outline-2">
-<h2 id="orgf8ea0eb">Configuration</h2>
-<div class="outline-text-2" id="text-orgf8ea0eb">
+<div id="outline-container-orgf638e74" class="outline-2">
+<h2 id="orgf638e74">Configuration</h2>
+<div class="outline-text-2" id="text-orgf638e74">
 <ul class="org-ul">
 <li>Append following lines to <code>/etc/pacman.conf</code>.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">[archlinuxcn]
 SigLevel = Optional TrustedOnly
-Server = http://mirrors.163.com/archlinux-cn/$arch
+Server = http://mirrors.163.com/archlinux-cn/$<span style="color: #a0522d;">arch</span>
 </pre>
 </div>
 <ul class="org-ul">

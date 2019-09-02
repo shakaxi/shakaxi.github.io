@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Language Server Protocol</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -246,28 +233,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9f6b497">Introduction</a></li>
-<li><a href="#orgab037c1">C++</a>
+<li><a href="#org1b40826">Introduction</a></li>
+<li><a href="#org0f03ee4">C++</a>
 <ul>
-<li><a href="#org7186321">Installation</a>
+<li><a href="#org1da5b28">Installation</a>
 <ul>
-<li><a href="#org8faba62"><code>cquery</code></a>
+<li><a href="#org77e0545"><code>cquery</code></a>
 <ul>
-<li><a href="#orge2b53ec">Prerequisite</a></li>
-<li><a href="#org983e1b7">Install binary package</a></li>
-<li><a href="#org81c43bf">Build from source codes</a></li>
+<li><a href="#org9236441">Prerequisite</a></li>
+<li><a href="#org553eb35">Install binary package</a></li>
+<li><a href="#orgdb17494">Build from source codes</a></li>
 </ul>
 </li>
-<li><a href="#orgf55de80"><code>lsp-mode</code></a></li>
-<li><a href="#orged4cd1a"><code>company-lsp</code></a></li>
+<li><a href="#orgc2c1f5b"><code>lsp-mode</code></a></li>
+<li><a href="#org712a563"><code>company-lsp</code></a></li>
 </ul>
 </li>
-<li><a href="#orgeb4c02e">Configuration</a></li>
-<li><a href="#org628ee4d">Usage</a>
+<li><a href="#org75690a6">Configuration</a></li>
+<li><a href="#org5634d0b">Usage</a>
 <ul>
-<li><a href="#org1825636"><code>compile_commands.json</code></a></li>
-<li><a href="#orgeca0922"><code>.cquery</code></a></li>
-<li><a href="#orge69a4c4">Provision</a></li>
+<li><a href="#org46361b9"><code>compile_commands.json</code></a></li>
+<li><a href="#org833cbac"><code>.cquery</code></a></li>
+<li><a href="#org69874b5">Provision</a></li>
 </ul>
 </li>
 </ul>
@@ -276,9 +263,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org9f6b497" class="outline-2">
-<h2 id="org9f6b497">Introduction</h2>
-<div class="outline-text-2" id="text-org9f6b497">
+<div id="outline-container-org1b40826" class="outline-2">
+<h2 id="org1b40826">Introduction</h2>
+<div class="outline-text-2" id="text-org1b40826">
 <p>
 Language server protocol (LSP) offers a uniform specification between a client and a server<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>
@@ -296,45 +283,45 @@ Maskray has provided a good summary of <code>cquery</code> for reference<sup><a 
 </p>
 </div>
 </div>
-<div id="outline-container-orgab037c1" class="outline-2">
-<h2 id="orgab037c1">C++</h2>
-<div class="outline-text-2" id="text-orgab037c1">
+<div id="outline-container-org0f03ee4" class="outline-2">
+<h2 id="org0f03ee4">C++</h2>
+<div class="outline-text-2" id="text-org0f03ee4">
 <p>
 <a href="https://github.com/jacobdufault/cquery">cquery</a> provides an complete LSP for C/C++/Object-C, including a LSP server and a LSP client (which depends on <code>lsp-mode</code>). <code>cquery</code> can be installed and configured following a procedure as below.
 </p>
 </div>
-<div id="outline-container-org7186321" class="outline-3">
-<h3 id="org7186321">Installation</h3>
-<div class="outline-text-3" id="text-org7186321">
+<div id="outline-container-org1da5b28" class="outline-3">
+<h3 id="org1da5b28">Installation</h3>
+<div class="outline-text-3" id="text-org1da5b28">
 </div>
-<div id="outline-container-org8faba62" class="outline-4">
-<h4 id="org8faba62"><code>cquery</code></h4>
-<div class="outline-text-4" id="text-org8faba62">
+<div id="outline-container-org77e0545" class="outline-4">
+<h4 id="org77e0545"><code>cquery</code></h4>
+<div class="outline-text-4" id="text-org77e0545">
 </div>
-<div id="outline-container-orge2b53ec" class="outline-5">
-<h5 id="orge2b53ec">Prerequisite</h5>
-<div class="outline-text-5" id="text-orge2b53ec">
+<div id="outline-container-org9236441" class="outline-5">
+<h5 id="org9236441">Prerequisite</h5>
+<div class="outline-text-5" id="text-org9236441">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S clang llvm
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org983e1b7" class="outline-5">
-<h5 id="org983e1b7">Install binary package</h5>
-<div class="outline-text-5" id="text-org983e1b7">
+<div id="outline-container-org553eb35" class="outline-5">
+<h5 id="org553eb35">Install binary package</h5>
+<div class="outline-text-5" id="text-org553eb35">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S cquery-git
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org81c43bf" class="outline-5">
-<h5 id="org81c43bf">Build from source codes</h5>
-<div class="outline-text-5" id="text-org81c43bf">
+<div id="outline-container-orgdb17494" class="outline-5">
+<h5 id="orgdb17494">Build from source codes</h5>
+<div class="outline-text-5" id="text-orgdb17494">
 <div class="org-src-container">
 <pre class="src src-sh">git clone https://github.com/jacobdufault/cquery --recursive
-cd cquery
+<span style="color: #483d8b;">cd</span> cquery
 python waf configure --prefix /opt/cquery --use-system-clang
 python waf build
 python waf install
@@ -347,60 +334,60 @@ cp -r third_party /opt/cquery
 </div>
 </div>
 </div>
-<div id="outline-container-orgf55de80" class="outline-4">
-<h4 id="orgf55de80"><code>lsp-mode</code></h4>
-<div class="outline-text-4" id="text-orgf55de80">
+<div id="outline-container-orgc2c1f5b" class="outline-4">
+<h4 id="orgc2c1f5b"><code>lsp-mode</code></h4>
+<div class="outline-text-4" id="text-orgc2c1f5b">
 <p>
 <code>lsp-mode</code> can be easily installed via ELPA.
 </p>
 </div>
 </div>
-<div id="outline-container-orged4cd1a" class="outline-4">
-<h4 id="orged4cd1a"><code>company-lsp</code></h4>
-<div class="outline-text-4" id="text-orged4cd1a">
+<div id="outline-container-org712a563" class="outline-4">
+<h4 id="org712a563"><code>company-lsp</code></h4>
+<div class="outline-text-4" id="text-org712a563">
 <p>
 For LSP, <code>company-lsp</code> is an optional package. It is essentially the company backend for <code>lsp-mode</code>, which can also be installed via ELPA.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb4c02e" class="outline-3">
-<h3 id="orgeb4c02e">Configuration</h3>
-<div class="outline-text-3" id="text-orgeb4c02e">
+<div id="outline-container-org75690a6" class="outline-3">
+<h3 id="org75690a6">Configuration</h3>
+<div class="outline-text-3" id="text-org75690a6">
 <p>
 Add following entries into <code>~/.emacs.d/init.el</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(add-to-list 'load-path "~/.emacs.d/cquery")
-(require 'cquery)
+<pre class="src src-emacs-lisp">(add-to-list 'load-path <span style="color: #8b2252;">"~/.emacs.d/cquery"</span>)
+(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">cquery</span>)
 (add-hook 'c-mode-common-hook 'lsp-cquery-enable)
-(setq cquery-cache-dir "/tmp/cquery_cache")
+(<span style="color: #a020f0;">setq</span> cquery-cache-dir <span style="color: #8b2252;">"/tmp/cquery_cache"</span>)
 </pre>
 </div>
 <p>
 With LSP, two company backends, <code>company-semantic</code> and <code>company-clang</code> can be removed if used before.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(setq company-backends (delete 'company-semantic company-backends))
-(setq company-backends (delete 'company-clang company-backends))
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">setq</span> company-backends (delete 'company-semantic company-backends))
+(<span style="color: #a020f0;">setq</span> company-backends (delete 'company-clang company-backends))
 </pre>
 </div>
 <p>
 If <code>company-lsp</code> is installed, it can be appended in variable <code>company-backends</code> by adding the following entry in <code>~/.emacs.d/init.el</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(push 'company-lsp company-backends)
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">push</span> 'company-lsp company-backends)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org628ee4d" class="outline-3">
-<h3 id="org628ee4d">Usage</h3>
-<div class="outline-text-3" id="text-org628ee4d">
+<div id="outline-container-org5634d0b" class="outline-3">
+<h3 id="org5634d0b">Usage</h3>
+<div class="outline-text-3" id="text-org5634d0b">
 </div>
-<div id="outline-container-org1825636" class="outline-4">
-<h4 id="org1825636"><code>compile_commands.json</code></h4>
-<div class="outline-text-4" id="text-org1825636">
+<div id="outline-container-org46361b9" class="outline-4">
+<h4 id="org46361b9"><code>compile_commands.json</code></h4>
+<div class="outline-text-4" id="text-org46361b9">
 <p>
 In the normal utilization of LSP, a compilation database is required<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>, i.e., <code>compile_commands.json</code>. It can be generated by a variety of tools, e.g., <a href="https://cmake.org">cmake</a>, <a href="https://github.com/rizsotto/Bear">build ear</a>, <a href="https://ninja-build.org">ninja</a>, <a href="https://waf.io">waf</a>, etc.
 </p>
@@ -421,29 +408,29 @@ a <code>compile_commands.json</code> can be generated by compiling the target pr
 </div>
 </div>
 </div>
-<div id="outline-container-orgeca0922" class="outline-4">
-<h4 id="orgeca0922"><code>.cquery</code></h4>
-<div class="outline-text-4" id="text-orgeca0922">
+<div id="outline-container-org833cbac" class="outline-4">
+<h4 id="org833cbac"><code>.cquery</code></h4>
+<div class="outline-text-4" id="text-org833cbac">
 <p>
 If <code>compile_commands.json</code> cannot be generated, an alternative solution is to create a file <code>.cquery</code> in the root directory of each project with its content as follows.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"># Driver
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Driver</span>
 /usr/bin/clang
 
-# Language
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Language</span>
 -xc++
 -std=c++14
 
-# Includes
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Includes</span>
 -I/opt/cquery/third_party
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge69a4c4" class="outline-4">
-<h4 id="orge69a4c4">Provision</h4>
-<div class="outline-text-4" id="text-orge69a4c4">
+<div id="outline-container-org69874b5" class="outline-4">
+<h4 id="org69874b5">Provision</h4>
+<div class="outline-text-4" id="text-org69874b5">
 <p>
 By default, the LSP client uses <code>company-capf</code> for completion, which is a company backend. Therefore, function <code>company-complete</code> can list the candidates for completion offered by LSP.
 </p>

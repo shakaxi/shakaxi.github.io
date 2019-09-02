@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Convex Optimization</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -268,9 +255,9 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org183f216">Least squares (LS)</a></li>
-<li><a href="#org9ebaa4b">Linear programming (LP)</a></li>
-<li><a href="#org7fd7237">Convex optimization</a></li>
+<li><a href="#org6a6f8bb">Least squares (LS)</a></li>
+<li><a href="#orgfa4a3b0">Linear programming (LP)</a></li>
+<li><a href="#orgce75ced">Convex optimization</a></li>
 </ul>
 </div>
 </div>
@@ -306,9 +293,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 <li><i>Convex optimization</i></li>
 </ul>
 
-<div id="outline-container-org183f216" class="outline-2">
-<h2 id="org183f216">Least squares (LS)</h2>
-<div class="outline-text-2" id="text-org183f216">
+<div id="outline-container-org6a6f8bb" class="outline-2">
+<h2 id="org6a6f8bb">Least squares (LS)</h2>
+<div class="outline-text-2" id="text-org6a6f8bb">
 \begin{align*}
 \min \|Ax - b\|_2^2
 \end{align*}
@@ -320,9 +307,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 </ul>
 </div>
 </div>
-<div id="outline-container-org9ebaa4b" class="outline-2">
-<h2 id="org9ebaa4b">Linear programming (LP)</h2>
-<div class="outline-text-2" id="text-org9ebaa4b">
+<div id="outline-container-orgfa4a3b0" class="outline-2">
+<h2 id="orgfa4a3b0">Linear programming (LP)</h2>
+<div class="outline-text-2" id="text-orgfa4a3b0">
 \begin{align*}
 \min & c^Tx \\
 \text{subject to} & a_i^Tx \le b_i,\quad i=1, \ldots, m
@@ -335,9 +322,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 </ul>
 </div>
 </div>
-<div id="outline-container-org7fd7237" class="outline-2">
-<h2 id="org7fd7237">Convex optimization</h2>
-<div class="outline-text-2" id="text-org7fd7237">
+<div id="outline-container-orgce75ced" class="outline-2">
+<h2 id="orgce75ced">Convex optimization</h2>
+<div class="outline-text-2" id="text-orgce75ced">
 \begin{align*}
 \min & f_0(x) \\
 \text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m

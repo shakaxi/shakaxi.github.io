@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Gantt Chart</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -268,33 +255,33 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org39b2db4">Introduction</a></li>
-<li><a href="#orged68a2c">Usage</a></li>
+<li><a href="#orgffae3b8">Introduction</a></li>
+<li><a href="#org9fbe53b">Usage</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org39b2db4" class="outline-2">
-<h2 id="org39b2db4">Introduction</h2>
-<div class="outline-text-2" id="text-org39b2db4">
+<div id="outline-container-orgffae3b8" class="outline-2">
+<h2 id="orgffae3b8">Introduction</h2>
+<div class="outline-text-2" id="text-orgffae3b8">
 <p>
 Today, I found an interesting \(\LaTeX\) package, <i>pgfgantt</i>. This package provides a <code>ganttchart</code> environment and, as its name indicates, can produce <i>Gantt</i> charts.
 </p>
 </div>
 </div>
-<div id="outline-container-orged68a2c" class="outline-2">
-<h2 id="orged68a2c">Usage</h2>
-<div class="outline-text-2" id="text-orged68a2c">
+<div id="outline-container-org9fbe53b" class="outline-2">
+<h2 id="org9fbe53b">Usage</h2>
+<div class="outline-text-2" id="text-org9fbe53b">
 <p>
 The framework of using the package can be illustrated as
 </p>
 <div class="org-src-container">
-<pre class="src src-latex">\usepackage{pgfgantt}
+<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">pgfgantt</span>}
 ...
-\begin{ganttchart}[OPTIONS]{STARTING}{ENDING}
+<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">ganttchart</span>}[OPTIONS]{STARTING}{ENDING}
   TITLE
   CHARTELEMENT
-\end{ganttchart}
+<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">ganttchart</span>}
 </pre>
 </div>
 <p>

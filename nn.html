@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Neural Network</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -268,38 +255,38 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org07d37eb">Introducation</a></li>
-<li><a href="#org379897a">McCulloch and Pitts (M-P) model for neurons</a></li>
-<li><a href="#orgb7e8100">Activation function</a>
+<li><a href="#org293d2d4">Introducation</a></li>
+<li><a href="#org4036bd1">McCulloch and Pitts (M-P) model for neurons</a></li>
+<li><a href="#org158e034">Activation function</a>
 <ul>
-<li><a href="#org34cc62e">Sign</a></li>
-<li><a href="#orge46544e">Sigmoid</a></li>
-<li><a href="#orgfd1c34a">ReLU</a></li>
-<li><a href="#org36b28ae">Softmax</a></li>
+<li><a href="#orgbe2295e">Sign</a></li>
+<li><a href="#orgbcc713e">Sigmoid</a></li>
+<li><a href="#org878c4a9">ReLU</a></li>
+<li><a href="#org83764e7">Softmax</a></li>
 </ul>
 </li>
-<li><a href="#org052113a">Cost function</a>
+<li><a href="#org174b64d">Cost function</a>
 <ul>
-<li><a href="#org6e2fd2e">Cross-entropy</a></li>
+<li><a href="#org3881692">Cross-entropy</a></li>
 </ul>
 </li>
-<li><a href="#orge2ccc66">Multi-layer feedforward neural network</a></li>
+<li><a href="#org3152955">Multi-layer feedforward neural network</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org07d37eb" class="outline-2">
-<h2 id="org07d37eb">Introducation</h2>
-<div class="outline-text-2" id="text-org07d37eb">
+<div id="outline-container-org293d2d4" class="outline-2">
+<h2 id="org293d2d4">Introducation</h2>
+<div class="outline-text-2" id="text-org293d2d4">
 <ul class="org-ul">
 <li>The network is composed of an input layer, an output layer, and optionally a series of hidden layers.</li>
 <li>Input layer does not carry out any operation/function, but the hidden and output layers consist of functional neurons, i.e., have activation functions.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org379897a" class="outline-2">
-<h2 id="org379897a">McCulloch and Pitts (M-P) model for neurons</h2>
-<div class="outline-text-2" id="text-org379897a">
+<div id="outline-container-org4036bd1" class="outline-2">
+<h2 id="org4036bd1">McCulloch and Pitts (M-P) model for neurons</h2>
+<div class="outline-text-2" id="text-org4036bd1">
 \begin{align*}
   y = f(\mathbf{w} \mathbf{x} - \theta)
 \end{align*}
@@ -308,16 +295,16 @@ where \(f\) is termed <i>activation function</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb7e8100" class="outline-2">
-<h2 id="orgb7e8100">Activation function</h2>
-<div class="outline-text-2" id="text-orgb7e8100">
+<div id="outline-container-org158e034" class="outline-2">
+<h2 id="org158e034">Activation function</h2>
+<div class="outline-text-2" id="text-org158e034">
 <p>
 Activation function aims to introduce the non-linear capability, compensate the shortage of linear models.
 </p>
 </div>
-<div id="outline-container-org34cc62e" class="outline-3">
-<h3 id="org34cc62e">Sign</h3>
-<div class="outline-text-3" id="text-org34cc62e">
+<div id="outline-container-orgbe2295e" class="outline-3">
+<h3 id="orgbe2295e">Sign</h3>
+<div class="outline-text-3" id="text-orgbe2295e">
 \begin{align*}
   \text{sign}(x) = \begin{cases}
     1, & x \ge 0; \\
@@ -326,25 +313,25 @@ Activation function aims to introduce the non-linear capability, compensate the 
 \end{align*}
 </div>
 </div>
-<div id="outline-container-orge46544e" class="outline-3">
-<h3 id="orge46544e">Sigmoid</h3>
-<div class="outline-text-3" id="text-orge46544e">
+<div id="outline-container-orgbcc713e" class="outline-3">
+<h3 id="orgbcc713e">Sigmoid</h3>
+<div class="outline-text-3" id="text-orgbcc713e">
 \begin{align*}
   \text{sigmoid}(x) = \frac{1}{1 + e^{-x}}.
 \end{align*}
 </div>
 </div>
-<div id="outline-container-orgfd1c34a" class="outline-3">
-<h3 id="orgfd1c34a">ReLU</h3>
-<div class="outline-text-3" id="text-orgfd1c34a">
+<div id="outline-container-org878c4a9" class="outline-3">
+<h3 id="org878c4a9">ReLU</h3>
+<div class="outline-text-3" id="text-org878c4a9">
 \begin{align*}
   \text{ReLU}(x) = \max(x, 0)
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org36b28ae" class="outline-3">
-<h3 id="org36b28ae">Softmax</h3>
-<div class="outline-text-3" id="text-org36b28ae">
+<div id="outline-container-org83764e7" class="outline-3">
+<h3 id="org83764e7">Softmax</h3>
+<div class="outline-text-3" id="text-org83764e7">
 <p>
 Softmax function can transform scores/logits into a valid probability distribution.
 </p>
@@ -354,13 +341,13 @@ Softmax function can transform scores/logits into a valid probability distributi
 </div>
 </div>
 </div>
-<div id="outline-container-org052113a" class="outline-2">
-<h2 id="org052113a">Cost function</h2>
-<div class="outline-text-2" id="text-org052113a">
+<div id="outline-container-org174b64d" class="outline-2">
+<h2 id="org174b64d">Cost function</h2>
+<div class="outline-text-2" id="text-org174b64d">
 </div>
-<div id="outline-container-org6e2fd2e" class="outline-3">
-<h3 id="org6e2fd2e">Cross-entropy</h3>
-<div class="outline-text-3" id="text-org6e2fd2e">
+<div id="outline-container-org3881692" class="outline-3">
+<h3 id="org3881692">Cross-entropy</h3>
+<div class="outline-text-3" id="text-org3881692">
 \begin{align*}
   \mathcal{H}_{p}(p^{\prime}) = \sum_{i}p_{i}\log\frac{1}{p^{\prime}_i}
 \end{align*}
@@ -374,9 +361,9 @@ where
 </div>
 </div>
 </div>
-<div id="outline-container-orge2ccc66" class="outline-2">
-<h2 id="orge2ccc66">Multi-layer feedforward neural network</h2>
-<div class="outline-text-2" id="text-orge2ccc66">
+<div id="outline-container-org3152955" class="outline-2">
+<h2 id="org3152955">Multi-layer feedforward neural network</h2>
+<div class="outline-text-2" id="text-org3152955">
 <ul class="org-ul">
 <li>Full connection between neurons of the adjacent ranks.</li>
 <li>No connection between neurons of the identical rank.</li>

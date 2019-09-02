@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 22:13 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - PTRS</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -268,42 +255,64 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org812c7b4">Introduction</a></li>
+<li><a href="#org1e441f9">Introduction</a></li>
 <li><a href="#sec:pn-model">Phase Noise and Models</a></li>
 <li><a href="#sec:presence-density">Presence and Density</a>
 <ul>
-<li><a href="#orgf63580f">Downlink</a></li>
-<li><a href="#orgaa5774f">Uplink - CP-OFDM</a></li>
-<li><a href="#org86e58fb">Uplink - DFT-S-OFDM</a></li>
-<li><a href="#org9c4f1a5">Some Miscellaneous for CP-OFDM</a></li>
+<li><a href="#org625a15c">Downlink</a></li>
+<li><a href="#org782c36f">Uplink - CP-OFDM</a></li>
+<li><a href="#orgbaf5812">Uplink - DFT-S-OFDM</a></li>
+<li><a href="#orgb30cf73">Some Miscellaneous for CP-OFDM</a></li>
+</ul>
+</li>
+<li><a href="#sec:port-num">Port Number</a>
+<ul>
+<li><a href="#org758005a">Downlink</a></li>
+<li><a href="#org07d5c59">Uplink</a>
+<ul>
+<li><a href="#org56b7390">CP-OFDM</a>
+<ul>
+<li><a href="#org6852a26">Non-codebook based transmission</a></li>
+<li><a href="#orgf216b0e">Codebook-based transmission</a></li>
+</ul>
+</li>
+<li><a href="#org4b8dde3">DFT-S-OFDM</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec:port-association">Port Association</a>
 <ul>
-<li><a href="#downlink">Downlink</a>
+<li><a href="#org9585aa9">Downlink</a></li>
+<li><a href="#org20af468">Uplink</a></li>
+</ul>
+</li>
+<li><a href="#sec:res-map">Resource Mapping</a>
 <ul>
-<li><a href="#one-ptrs-port">One PTRS port</a></li>
-<li><a href="#two-ptrs-ports">Two PTRS ports</a></li>
+<li><a href="#org1a58f25">CP-OFDM</a></li>
+<li><a href="#orgcb9fb6d">DFT-S-OFDM</a></li>
 </ul>
 </li>
-<li><a href="#uplink"><span class="todo TODO">TODO</span> Uplink</a></li>
+<li><a href="#sec:seq-gen">Sequence Generation</a>
+<ul>
+<li><a href="#orgecfca52">DFT-S-OFDM</a></li>
+<li><a href="#orgf228699">CP-OFDM</a></li>
 </ul>
 </li>
-<li><a href="#sec:sequ-gener-reso"><span class="todo TODO">TODO</span> Sequence Generation and Resource Mapping</a></li>
 <li><a href="#sec:pn-estim-compl">Phase Noise Estimation and Complementation</a>
 <ul>
 <li><a href="#cp-ofdm">CP-OFDM</a></li>
 <li><a href="#dft-s-ofdm">DFT-S-OFDM</a></li>
 </ul>
 </li>
-<li><a href="#sec:summary"><span class="todo TODO">TODO</span> Summary</a></li>
+<li><a href="#sec:summary">Summary</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org812c7b4" class="outline-2">
-<h2 id="org812c7b4">Introduction</h2>
-<div class="outline-text-2" id="text-org812c7b4">
+<div id="outline-container-org1e441f9" class="outline-2">
+<h2 id="org1e441f9">Introduction</h2>
+<div class="outline-text-2" id="text-org1e441f9">
 <p>
 Targetting for the great goal of the 5th generation (5G) system, the <i>new radio (NR)</i> system, proposed by the 3rd generation partner project (3GPP), has employed a variety of cutting-edge technologies, including advanced channel coding schemes, e.g., low density parity code (LDPC) and polar code, higher-order modulation schemes, e.g., 256QAM, etc. Considering the fact that the lower frequency spectrum has already been so crowded and overutilized, NR decided to explore higher frequency band, e.g., million meter wave (mmWave). After all, much richer spectrum resources are available at higher frequency bands than lower frequency spectrum.
 </p>
@@ -317,7 +326,7 @@ Generally, an oscillator always produces phase noise, which is essentially an im
 </p>
 
 <p>
-This report intends to cover everything detail relating to PTRS. The remaining of this report is structured as follows. Section <a href="#sec:pn-model">Phase Noise and Models</a> briefly introduces the models of phase noise, and Section <a href="#sec:presence-density">Presence and Density</a> provides the configuration of PTRS, including its presence and density in the time and frequency domain. The PTRS port association is presented in Section <a href="#sec:port-association">Port Association</a>. Then, sequence generation and resource mapping follows in Section <a href="#sec:sequ-gener-reso">Sequence Generation and Resource Mapping</a>. In Section <a href="#sec:pn-estim-compl">Phase Noise Estimation and Complementation</a>, the methodology of phase noise estimation and complementation are described in details. Finally, Section <a href="#sec:summary">Summary</a> summarizes the report.
+This report intends to cover everything detail relating to PTRS. The remaining of this report is structured as follows. Section <a href="#sec:pn-model">Phase Noise and Models</a> briefly introduces the models of phase noise, and Section <a href="#sec:presence-density">Presence and Density</a> provides the configuration of PTRS, including its presence and density in the time and frequency domain. The number of PTRS supported is given in Section <a href="#sec:port-num">Port Number</a>. The PTRS port association follows in Section <a href="#sec:port-association">Port Association</a>. Then, resource mapping and sequence generation are presented in Section <a href="#sec:res-map">Resource Mapping</a> and <a href="#sec:seq-gen">Sequence Generation</a> respectively. In Section <a href="#sec:pn-estim-compl">Phase Noise Estimation and Complementation</a>, the methodology of phase noise estimation and complementation are described in details. Finally, Section <a href="#sec:summary">Summary</a> summarizes the report.
 </p>
 
 <p>
@@ -326,8 +335,8 @@ For clear description, following denotation conventions are adopted throughout t
 </div>
 </div>
 
-<div id="outline-container-org24ce7ed" class="outline-2">
-<h2 id="sec:pn-model">Phase Noise and Models</h2>
+<div id="outline-container-org2c5bc35" class="outline-2">
+<h2 id="sec:pn-model"><a id="org2c5bc35"></a>Phase Noise and Models</h2>
 <div class="outline-text-2" id="text-sec:pn-model">
 <p>
 As its name implies, a phase noise model is utilized to depict the behavior and the property of the phase noise. In fact, phase noise modelling plays an extremely important role in the estimation and complementation of the phase noise as well as the design of PTRS.
@@ -360,17 +369,17 @@ where \(\widetilde{X}(k)\), \(X(k)\), and \(\Phi(k)\) are respectively the FFT o
 \end{align*}
 
 <p>
-According to (\ref{eq:pn-freq}), the influence of phase noise can be divided into two aspects, a multiplicative \(\Phi(0)\) and an additive \(\sum_{i=1, i\neq k}^NX(i) \cdot \Phi(k - i)\), termed <i>common phase error (CPE)</i> and <i>inter-carrier interference (ICI)</i> respectively. For CPE, it essentially rotates the whole constellation with \(\Phi(0)\), and Figure <a href="#orgeee185e">1</a> illustrates the impact on a 16QAM constellation. A 64QAM constellation impacted by ICI can be illustrated by Figure <a href="#orgb6bc139">2</a>.
+According to (\ref{eq:pn-freq}), the influence of phase noise can be divided into two aspects, a multiplicative \(\Phi(0)\) and an additive \(\sum_{i=1, i\neq k}^NX(i) \cdot \Phi(k - i)\), termed <i>common phase error (CPE)</i> and <i>inter-carrier interference (ICI)</i> respectively. For CPE, it essentially rotates the whole constellation with \(\Phi(0)\), and Figure <a href="#org609cc10">1</a> illustrates the impact on a 16QAM constellation. A 64QAM constellation impacted by ICI can be illustrated by Figure <a href="#org2af1656">2</a>.
 </p>
 
-<div id="orgeee185e" class="figure">
+<div id="org609cc10" class="figure">
 <p><img src="cpe.png" alt="cpe.png">
 </p>
 <p><span class="figure-number">Figure 1: </span>A 16QAM constellation contaminated by CPE</p>
 </div>
 
 
-<div id="orgb6bc139" class="figure">
+<div id="org2af1656" class="figure">
 <p><img src="ici.png" alt="ici.png">
 </p>
 <p><span class="figure-number">Figure 2: </span>A 64QAM constellation contaminated by ICI</p>
@@ -381,19 +390,19 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 </p>
 </div>
 </div>
-<div id="outline-container-org0297047" class="outline-2">
-<h2 id="sec:presence-density">Presence and Density</h2>
+<div id="outline-container-orgc48ebb6" class="outline-2">
+<h2 id="sec:presence-density"><a id="orgc48ebb6"></a>Presence and Density</h2>
 <div class="outline-text-2" id="text-sec:presence-density">
 </div>
-<div id="outline-container-orgf63580f" class="outline-3">
-<h3 id="orgf63580f">Downlink</h3>
-<div class="outline-text-3" id="text-orgf63580f">
+<div id="outline-container-org625a15c" class="outline-3">
+<h3 id="org625a15c">Downlink</h3>
+<div class="outline-text-3" id="text-org625a15c">
 <ul class="org-ul">
 <li>If <i>phaseTrackingRS</i> in <i>DMRS-DownlinkConfig</i> is configured,
 <ul class="org-ul">
 <li>If RNTI equals MCS-C-RNTI, C-RNTI, or CS-RNTI,
 <ul class="org-ul">
-<li>If at least <i>timeDensity</i> or <i>frequencyDensity</i> in <i>PTRS-DownlinkConfig</i> is configured, the time domain density (L<sub>PT-RS</sub>) is a function of scheduled MCS (see Table <a href="#org96c859a">1</a>), and frequency domain density (K<sub>PT-RS</sub>) is a function of scheduled bandwidth (see Table <a href="#org3a3e09e">2</a>). If not configured, the default values, L<sub>PT-RS</sub> = 1, K<sub>PT-RS</sub> = 2, apply.</li>
+<li>If at least <i>timeDensity</i> or <i>frequencyDensity</i> in <i>PTRS-DownlinkConfig</i> is configured, the time domain density (L<sub>PT-RS</sub>) is a function of scheduled MCS (see Table <a href="#org6ca521a">1</a>), and frequency domain density (K<sub>PT-RS</sub>) is a function of scheduled bandwidth (see Table <a href="#orgfc48b48">2</a>). If not configured, the default values, L<sub>PT-RS</sub> = 1, K<sub>PT-RS</sub> = 2, apply.</li>
 <li>If neither of <i>timeDensity</i> and <i>frequencyDensity</i> in <i>PTRS-DownlinkConfig</i> is configured,
 <ul class="org-ul">
 <li>For QPSK or scheduled bandwidth &lt; 3 RB's, PTRS is not present;</li>
@@ -405,7 +414,7 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 <li>Else, PTRS is not present.</li>
 </ul>
 
-<table id="org96c859a" align="center" width="800px">
+<table id="org6ca521a" align="center" width="800px">
 <caption class="t-above"><span class="table-number">Table 1:</span> Time-domain density for CP-OFDM (the thresholds are configured by <i>timeDensity</i>)</caption>
 
 <colgroup>
@@ -442,7 +451,7 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 </tbody>
 </table>
 
-<table id="org3a3e09e" align="center" width="800px">
+<table id="orgfc48b48" align="center" width="1000px">
 <caption class="t-above"><span class="table-number">Table 2:</span> Frequency-domain density for CP-OFDM (the thresholds are configured by <i>frequencyDensity</i>)</caption>
 
 <colgroup>
@@ -475,15 +484,15 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 </table>
 </div>
 </div>
-<div id="outline-container-orgaa5774f" class="outline-3">
-<h3 id="orgaa5774f">Uplink - CP-OFDM</h3>
-<div class="outline-text-3" id="text-orgaa5774f">
+<div id="outline-container-org782c36f" class="outline-3">
+<h3 id="org782c36f">Uplink - CP-OFDM</h3>
+<div class="outline-text-3" id="text-org782c36f">
 <ul class="org-ul">
 <li>If <i>phaseTrackingRS</i> in <i>DMRS-UplinkConfig</i> is configured,
 <ul class="org-ul">
 <li>If RNTI equals MCS-C-RNTI, C-RNTI, CS-RNTI, or SP-CSI-RNTI,
 <ul class="org-ul">
-<li>If at least <i>timeDensity</i> or <i>frequencyDensity</i> in <i>PTRS-UplinkConfig</i> is configured, the time domain density (L<sub>PT-RS</sub>) is a function of scheduled MCS (see Table <a href="#org96c859a">1</a>), and frequency domain density (K<sub>PT-RS</sub>) is a function of scheduled bandwidth (see Table <a href="#org3a3e09e">2</a>). If not configured, the default values, L<sub>PT-RS</sub> = 1, K<sub>PT-RS</sub> = 2, apply.</li>
+<li>If at least <i>timeDensity</i> or <i>frequencyDensity</i> in <i>PTRS-UplinkConfig</i> is configured, the time domain density (L<sub>PT-RS</sub>) is a function of scheduled MCS (see Table <a href="#org6ca521a">1</a>), and frequency domain density (K<sub>PT-RS</sub>) is a function of scheduled bandwidth (see Table <a href="#orgfc48b48">2</a>). If not configured, the default values, L<sub>PT-RS</sub> = 1, K<sub>PT-RS</sub> = 2, apply.</li>
 <li>If neither of <i>timeDensity</i> and <i>frequencyDensity</i> in <i>PTRS-UplinkConfig</i> is configured, L<sub>PT-RS</sub> = 1, K<sub>PT-RS</sub> = 2.</li>
 </ul></li>
 <li>Else, PTRS is not present.</li>
@@ -492,19 +501,19 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 </ul>
 </div>
 </div>
-<div id="outline-container-org86e58fb" class="outline-3">
-<h3 id="org86e58fb">Uplink - DFT-S-OFDM</h3>
-<div class="outline-text-3" id="text-org86e58fb">
+<div id="outline-container-orgbaf5812" class="outline-3">
+<h3 id="orgbaf5812">Uplink - DFT-S-OFDM</h3>
+<div class="outline-text-3" id="text-orgbaf5812">
 <ul class="org-ul">
 <li>If <i>transformPrecoderEnabled</i> in <i>PTRS-UplinkConfig</i> is configured,
 <ul class="org-ul">
 <li>If <i>timeDensityTransformPrecoding</i> is configured to 2, L<sub>PT-RS</sub> = 2;</li>
 <li>Else, L<sub>PT-RS</sub> = 1.</li>
-<li>With <i>sampleDensity</i> configured, the group pattern of PTRS is a function of scheduled bandwidth (see Table <a href="#orgfcfcb46">3</a>).</li>
+<li>With <i>sampleDensity</i> configured, the group pattern of PTRS is a function of scheduled bandwidth (see Table <a href="#orgc4d5a17">3</a>).</li>
 </ul></li>
 </ul>
 
-<table id="orgfcfcb46" align="center" width="800px">
+<table id="orgc4d5a17" align="center" width="800px">
 <caption class="t-above"><span class="table-number">Table 3:</span> PTRS group pattern for DFT-S-OFDM (the thresholds are configured by <i>SampleDensity</i>)</caption>
 
 <colgroup>
@@ -555,9 +564,9 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 </table>
 </div>
 </div>
-<div id="outline-container-org9c4f1a5" class="outline-3">
-<h3 id="org9c4f1a5">Some Miscellaneous for CP-OFDM</h3>
-<div class="outline-text-3" id="text-org9c4f1a5">
+<div id="outline-container-orgb30cf73" class="outline-3">
+<h3 id="orgb30cf73">Some Miscellaneous for CP-OFDM</h3>
+<div class="outline-text-3" id="text-orgb30cf73">
 <ul class="org-ul">
 <li>Threshold ptrs-MCS<sub>4</sub> is not explicitly configured, and it equals the lowest MCS level for retransmission.</li>
 <li>For retransmission, the time-domain density is determined by the MCS in the initial transmission.</li>
@@ -566,85 +575,484 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 </div>
 </div>
 </div>
-<div id="outline-container-orgfda5e1d" class="outline-2">
-<h2 id="sec:port-association">Port Association</h2>
+<div id="outline-container-org8fc3d32" class="outline-2">
+<h2 id="sec:port-num"><a id="org8fc3d32"></a>Port Number</h2>
+<div class="outline-text-2" id="text-sec:port-num">
+<p>
+In essence, as mentioned before, phase noise is generated by an oscillator. The number of PTRS port in the downlink and uplink depends on the number of oscillator as well as the concrete implementation of the gNB and the UE, respectively. Therefore, it is not necessary to configure a PTRS port for each DMRS port. Instead, one or more DMRS ports corresponding to one oscillator can share one PTRS port.
+</p>
+</div>
+<div id="outline-container-org758005a" class="outline-3">
+<h3 id="org758005a">Downlink</h3>
+<div class="outline-text-3" id="text-org758005a">
+<p>
+In NR release 15, there is at most only one PTRS port in the downlink.
+</p>
+</div>
+</div>
+<div id="outline-container-org07d5c59" class="outline-3">
+<h3 id="org07d5c59">Uplink</h3>
+<div class="outline-text-3" id="text-org07d5c59">
+</div>
+<div id="outline-container-org56b7390" class="outline-4">
+<h4 id="org56b7390">CP-OFDM</h4>
+<div class="outline-text-4" id="text-org56b7390">
+<p>
+In CP-OFDM case, there are up to two PTRS ports, indicated by <i>maxNrofPorts</i> in <i>PTRS-UplinkConfig</i>.
+</p>
+
+<p>
+If a UE supports full-coherent transmission, only single PTRS port is supported if present.
+</p>
+</div>
+<div id="outline-container-org6852a26" class="outline-5">
+<h5 id="org6852a26">Non-codebook based transmission</h5>
+<div class="outline-text-5" id="text-org6852a26">
+<p>
+The actual number of PTRS port is determined by sounding reference signal resource indicator (SRI), since each SRS resource is configured with a PTRS port index by <i>ptrs-PortIndex</i> in <i>SRS-Config</i>, if <i>phaseTrackingRS</i> is configured in <i>DMRS-UplinkConfig</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf216b0e" class="outline-5">
+<h5 id="orgf216b0e">Codebook-based transmission</h5>
+<div class="outline-text-5" id="text-orgf216b0e">
+<p>
+In partial-coherent or non-coherent case, the actual number of PTRS ports depends on TPMI and/or TRI in DCI format 0-1.
+</p>
+<ul class="org-ul">
+<li>PTRS port 0 is shared by SRS port 1000 and 1002.</li>
+<li>PTRS port 1 is shared by SRS port 1001 and 1003.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4b8dde3" class="outline-4">
+<h4 id="org4b8dde3">DFT-S-OFDM</h4>
+<div class="outline-text-4" id="text-org4b8dde3">
+<p>
+For DFT-S-OFDM, only single-layer transmission is supported. Hence, at most one PTRS port is present.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga24b595" class="outline-2">
+<h2 id="sec:port-association"><a id="orga24b595"></a>Port Association</h2>
 <div class="outline-text-2" id="text-sec:port-association">
 <p>
-In essence, as mentioned before, phase noise is generated by an oscillator. Therefore, the number of PTRS port in the downlink and uplink depends on the number of oscillator as well as the concrete implementation of the gNB and the UE, respectively. In other words, the number of PTRS port can be much smaller than that of DMRS port in the transmission. A PTRS port can corresponds with more than one DMRS ports and transmission layers. This is just the reason why there are at most two PTRS ports available in NR system.
-</p>
-
-<p>
-In the case that a PTRS port is shared by more than one DMRS ports, theoretically the PTRS can be associated and mapped to any one of the corresponding DMRS ports. For the sake of precise phase noise estimation, irrespective of downlink or uplink, a PTRS port is expected to be transmitted over the DMRS port with the best radio condition. This section provides the detail that a PTRS port is associated and mapped to the best DMRS port in the downlink and uplink respectively.
+If a PTRS port is shared by more than one DMRS ports, the PTRS port and the DMRS ports are <i>Type-A</i> and <i>Type-D</i> QCLed. Theoretically, the PTRS can be associated and mapped to any one of the corresponding DMRS ports. However, for the sake of precise phase noise estimation, irrespective of downlink or uplink, a PTRS port is expected to be transmitted over the DMRS port with the best radio condition.
 </p>
 </div>
-<div id="outline-container-org8269267" class="outline-3">
-<h3 id="downlink">Downlink</h3>
-<div class="outline-text-3" id="text-downlink">
+<div id="outline-container-org9585aa9" class="outline-3">
+<h3 id="org9585aa9">Downlink</h3>
+<div class="outline-text-3" id="text-org9585aa9">
 <p>
-In the downlink, DMRS ports are divided into DMRS port groups based on the QCL relationship, i.e., QCL holds within each DMRS port group, but does not across different DMRS port groups. Given a DMRS port group, if it is configured with a PTRS port, all the component DMRS ports within the DMRS port group share the configured PTRS port.
+In order to facilitate the PTRS port association, a UE reports a <i>layer index (LI)</i> to its serving gNB, which indicates the index of the layer with best quality.
 </p>
 
 <p>
-As stated before, a PTRS port needs to be assocated and mapped to a unique DMRS port with the strongest transmission quality in the one or two corresponding DMRS port groups. For a gNB, it has to understand which DMRS port or which PDSCH layer is the target for PTRS port association. To this end, a UE reports a <i>layer index (LI)</i> to its serving gNB.
-</p>
-
-<p>
-With the LI at hand, a gNB can associate the PTRS port to the strongest DMRS port before transmission. At the UE side, it also requires the knowledge of the DMRS port carrying PTRS port. Otherwise, it cannot locate the PTRS port and determine the exact port index of the carrying DMRS port, since the processing relating to PTRS usually precedes that of DMRS, i.e., phase noise must be estimated and complemented first before any time domain interpolation in the DMRS-based channel estimation, e.g., 2-dimension MMSE.
-</p>
-
-<p>
-If explicit signaling is adopted to indicate the PTRS port association, e.g., introducing a dedicated field in the downlink DCI, additional signalling will be involved. From overhead reduction perspective, compared to explict signalling, implicit indication is more encouraged and preferred. Considering the fact that there are not CRS any longer and all the PDSCH layers are transmitted based on DMRS in the NR system, each PDSCH transmission is absolutely transparent to the target UE. In this case, a gNB can flexibly permute and reorder the PDSCH layers by exchanging the columns of the precoding matrix. What is more, such kind of behavior is a completely gNB implementation related issue, and consequently no specification effort is needed. In this way, in order to avoid the introduction of additional overhead for PTRS port association, a gNB can permute the precoding vector corresponding to the strongest DMRS port to a specific column position first and then map the PTRS port to the DMRS port corresponding to the aforementioned precoding vector. Without loss of generality, first column is selected as the specific column and the corresponding DMRS port which has the lowest port index in the DMRS port group is utilized to carry the PTRS port.
-</p>
-</div>
-<div id="outline-container-org034ddaa" class="outline-4">
-<h4 id="one-ptrs-port">One PTRS port</h4>
-<div class="outline-text-4" id="text-one-ptrs-port">
-<p>
-If a UE is configured with one PTRS port, then the UE can be scheduled with one or two DMRS port group(s). The PTRS port association depends on the number of codeword scheduled for the UE, i.e.,
+With LI at hand, a gNB can always associate the PTRS port to the DMRS port with the best channel quality. Moreover, for the purpose of signalling overhead reduction, a gNB can permute and reorder the precoding vectors until the lowest indexed DMRS port has the most excellent channel quality. Clearly, the operation is a completely gNB implementation related issue without any specification effort. To sum up, the PTRS port is associated to a unique DMRS port as follows.
 </p>
 <ul class="org-ul">
-<li>In single-codeword case, the PTRS port is associated to the DMRS port with the lowest port index.</li>
-<li>In double-codeword case, the PTRS port is associated to the lowest-indexed DMRS port within the DMRS port group with higher MCS. Particularly, if the two codewords have equal MCS, the PTRS port is associated to the lowest-indexed DMRS port corresponding to the first codeword, i.e., codeword 0.</li>
-</ul>
-
-<p>
-In the case of two DMRS port groups, all the DMRS ports from the two DMRS port groups share the one PTRS port. Once the PTRS port is associated to a determined DMRS port, different types of QCL relationship are established between the PTRS port and the both DMRS port groups.
-</p>
-<ul class="org-ul">
-<li>The PTRS port and the DMRS port group containing the associated DMRS port are <i>Type-A</i> and <i>Type-D</i> QCLed.</li>
-<li>The PTRS port and the DMRS port group not containing the associated DMRS port are <i>Type-B</i> QCLed.</li>
+<li>In single-codeword case, the PTRS port is assocated to the lowest-indexed DMRS port.</li>
+<li>For double-codeword, the PTRS port is associated to the lowest-indexed DMRS port corresponding to the codeword with highest MCS level.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbf9a31d" class="outline-4">
-<h4 id="two-ptrs-ports">Two PTRS ports</h4>
-<div class="outline-text-4" id="text-two-ptrs-ports">
+<div id="outline-container-org20af468" class="outline-3">
+<h3 id="org20af468">Uplink</h3>
+<div class="outline-text-3" id="text-org20af468">
 <p>
-If a UE is configured with two PTRS ports, it is always scheduled with DMRS ports from two DMRS port groups. Each PTRS port corresponds with one DMRS port group, and is associated to the DMRS port with the lowest port index within its corresponding DMRS port group. Moreover, each PTRS and its corresponding DMRS port group are Type-A and Type-D QCLed.
+The association between PTRS ports and DMRS ports is signalled by the field of <i>PTRS-DMRS assocation</i> in DCI format 0-1.
+</p>
+<ul class="org-ul">
+<li>If at least one of the following condition is satisfied, <i>PTRS-DMRS assocation</i> is not present.
+<ul class="org-ul">
+<li>CP-OFDM: <i>PTRS-UplinkConfig</i> is not configured.</li>
+<li>DFT-S-OFDM</li>
+<li><i>maxRank</i> = 1</li>
+</ul></li>
+<li>Else, 2-bit <i>PTRS-DMRS assocation</i> is present (see Tables <a href="#orgd4c90d7">4</a> and <a href="#orge14561c">5</a> for one and two PTRS ports, respectively)</li>
+</ul>
+
+<table id="orgd4c90d7" align="center" width="600px">
+<caption class="t-above"><span class="table-number">Table 4:</span> PTRS-DMRS association for UL PTRS port 0</caption>
+
+<colgroup>
+<col  class="org-center">
+
+<col  class="org-center">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">Value</th>
+<th scope="col" class="org-center">DMRS port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">0</td>
+<td class="org-center">1st scheduled DMRS port</td>
+</tr>
+
+<tr>
+<td class="org-center">1</td>
+<td class="org-center">2nd scheduled DMRS port</td>
+</tr>
+
+<tr>
+<td class="org-center">2</td>
+<td class="org-center">3rd scheduled DMRS port</td>
+</tr>
+
+<tr>
+<td class="org-center">3</td>
+<td class="org-center">4th scheduled DMRS port</td>
+</tr>
+</tbody>
+</table>
+
+<table id="orge14561c" align="center" width="1000px">
+<caption class="t-above"><span class="table-number">Table 5:</span> PTRS-DMRS association for UL PTRS ports 0 and 1</caption>
+
+<colgroup>
+<col  class="org-center">
+
+<col  class="org-center">
+
+<col  class="org-center">
+
+<col  class="org-center">
+
+<col  class="org-center">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">Value of MSB</th>
+<th scope="col" class="org-center">DMRS port</th>
+<th scope="col" class="org-center">&#xa0;</th>
+<th scope="col" class="org-center">Value of LSB</th>
+<th scope="col" class="org-center">DMRS port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">0</td>
+<td class="org-center">1st DMRS port which shares PTRS port 0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">0</td>
+<td class="org-center">1st DMRS port which shares PTRS port 1</td>
+</tr>
+
+<tr>
+<td class="org-center">1</td>
+<td class="org-center">2nd DMRS port which shares PTRS port 0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">1</td>
+<td class="org-center">2nd DMRS port which shares PTRS port 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orgad688a5" class="outline-2">
+<h2 id="sec:res-map"><a id="orgad688a5"></a>Resource Mapping</h2>
+<div class="outline-text-2" id="text-sec:res-map">
+</div>
+<div id="outline-container-org1a58f25" class="outline-3">
+<h3 id="org1a58f25">CP-OFDM</h3>
+<div class="outline-text-3" id="text-org1a58f25">
+<p>
+The target subcarriers for PTRS mapping can be expressed as
+</p>
+\begin{align*}
+  k = k_\text{ref}^\text{RE} + (iK_\text{PT-RS} + k_\text{ref}^\text{RB})N_\text{sc}^\text{RB}, \quad i = 0, 1, \ldots,
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(k_\text{ref}^\text{RE}\) is subcarrier-level offset, indicated by <i>resourceElementOffset</i> in <i>PTRS-DownlinkConfig</i> as shown in Table <a href="#org59bac5b">6</a>.</li>
+</ul>
+<table id="org59bac5b" align="center" width="800px">
+<caption class="t-above"><span class="table-number">Table 6:</span> RE-level offset</caption>
+
+<colgroup>
+<col  class="org-center">
+
+<col  class="org-center">
+
+<col  class="org-center">
+
+<col  class="org-center">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">DMRS antenna port</th>
+<th scope="col" class="org-center"><i>resourceElementOffset</i></th>
+<th scope="col" class="org-center">\(k_\text{ref}^\text{RE}\) for type-1 DMRS</th>
+<th scope="col" class="org-center">\(k_\text{ref}^\text{RE}\) for type-2 DMRS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">1000</td>
+<td class="org-center">00</td>
+<td class="org-center">0</td>
+<td class="org-center">0</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">01</td>
+<td class="org-center">2</td>
+<td class="org-center">1</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">10</td>
+<td class="org-center">6</td>
+<td class="org-center">6</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">11</td>
+<td class="org-center">8</td>
+<td class="org-center">7</td>
+</tr>
+
+<tr>
+<td class="org-center">1001</td>
+<td class="org-center">00</td>
+<td class="org-center">2</td>
+<td class="org-center">1</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">01</td>
+<td class="org-center">4</td>
+<td class="org-center">6</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">10</td>
+<td class="org-center">8</td>
+<td class="org-center">7</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">11</td>
+<td class="org-center">10</td>
+<td class="org-center">0</td>
+</tr>
+
+<tr>
+<td class="org-center">1002</td>
+<td class="org-center">00</td>
+<td class="org-center">1</td>
+<td class="org-center">2</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">01</td>
+<td class="org-center">3</td>
+<td class="org-center">3</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">10</td>
+<td class="org-center">7</td>
+<td class="org-center">8</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">11</td>
+<td class="org-center">9</td>
+<td class="org-center">9</td>
+</tr>
+
+<tr>
+<td class="org-center">1003</td>
+<td class="org-center">00</td>
+<td class="org-center">3</td>
+<td class="org-center">3</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">01</td>
+<td class="org-center">5</td>
+<td class="org-center">8</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">10</td>
+<td class="org-center">9</td>
+<td class="org-center">9</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">11</td>
+<td class="org-center">11</td>
+<td class="org-center">2</td>
+</tr>
+
+<tr>
+<td class="org-center">1004</td>
+<td class="org-center">00</td>
+<td class="org-center">-</td>
+<td class="org-center">4</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">01</td>
+<td class="org-center">-</td>
+<td class="org-center">5</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">10</td>
+<td class="org-center">-</td>
+<td class="org-center">10</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">11</td>
+<td class="org-center">-</td>
+<td class="org-center">11</td>
+</tr>
+
+<tr>
+<td class="org-center">1005</td>
+<td class="org-center">00</td>
+<td class="org-center">-</td>
+<td class="org-center">5</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">01</td>
+<td class="org-center">-</td>
+<td class="org-center">10</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">10</td>
+<td class="org-center">-</td>
+<td class="org-center">11</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">11</td>
+<td class="org-center">-</td>
+<td class="org-center">4</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>\(k_\text{ref}^\text{RB}\) is PRB-level offset.</li>
+</ul>
+\begin{align*}
+  k_\text{ref}^\text{RB} = \begin{cases}
+      n_\text{RNTI} \mod K_\text{PT-RS}, & N_\text{RB} \mod K_\text{PT-RS} = 0; \\
+      n_\text{RNTI} \mod (N_\text{RB} \mod K_\text{PT-RS}), & \text{otherwise}.
+\end{cases}
+\end{align*}
+</div>
+</div>
+<div id="outline-container-orgcb9fb6d" class="outline-3">
+<h3 id="orgcb9fb6d">DFT-S-OFDM</h3>
+<div class="outline-text-3" id="text-orgcb9fb6d">
+<p>
+In DFT-S-OFDM case, PTRS samples are inserted before DFT operation, a.k.a. pre-DFT. Given a OFDM symbol with PTRS, PTRS samples are divided into a series of chunks/groups and then scattered in the PUSCH samples prior to DFT. The pattern depends on the number of samples in each group (\(N_\text{samp}^\text{group}\)) and the number of group (\(N_{\text{group}}^{\text{PT-RS}}\)), as shown in Table <a href="#orgc018ec1">7</a>, where letters \(M, H, T\) mean the PTRS group is respectively inserted in the <i>middle</i>, <i>head</i>, and <i>tail</i> of the corresponding PUSCH sample segment.
+</p>
+<table id="orgc018ec1" align="center" width="400px">
+<caption class="t-above"><span class="table-number">Table 7:</span> PTRS pattern for DFT-S-OFDM</caption>
+
+<colgroup>
+<col  class="org-center">
+
+<col  class="org-center">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">\(N_\text{samp}^\text{group}\)</th>
+<th scope="col" class="org-center">Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">2</td>
+<td class="org-center">\(\underbrace{M\ldots M}_{N_{\text{group}}^{\text{PT-RS}}}\)</td>
+</tr>
+
+<tr>
+<td class="org-center">4</td>
+<td class="org-center">\(H\underbrace{M\ldots M}_{N_{\text{group}}^{\text{PT-RS}}-2}T\)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2c9f90" class="outline-2">
+<h2 id="sec:seq-gen"><a id="orge2c9f90"></a>Sequence Generation</h2>
+<div class="outline-text-2" id="text-sec:seq-gen">
+</div>
+<div id="outline-container-orgecfca52" class="outline-3">
+<h3 id="orgecfca52">DFT-S-OFDM</h3>
+<div class="outline-text-3" id="text-orgecfca52">
+<p>
+PTRS samples are generated according to
+\[
+  r_m(m^{\prime}) = w(k^{\prime}) \frac{1 + j}{\sqrt{2}}[1 - 2c(m^{\prime})]e^{j\frac{\pi}{2}(m \mod 2)},
+\]
+where
+</p>
+<ul class="org-ul">
+<li>\(c(\cdot)\) is a Gold sequence initialized with \(c_{\text{init}} = [2^{17}(N_{\text{symb}}^{\text{slot}} n_{s,f}^{\mu} + \ell + 1)(2N_{\text{ID}} + 1) + 2 N_{\text{ID}}] \mod 2^{31}\).</li>
+<li>\(m\) is the global index of a PTRS sample with PUSCH samples considered.</li>
+<li>\(m^{\prime} = N_{\text{samp}}^{\text{group}} s^{\prime} + k^{\prime}\) is the intra-sequence index of a PTRS sample.</li>
+<li>\(s^{\prime} = 0, 1, \ldots, N_{\text{group}}^{\text{PT-RS}} - 1\) are the indices of PTRS groups.</li>
+<li>\(k^{\prime} = 0, 1, \ldots, N_{\text{samp}}^{\text{group}} - 1\) are the intra-group indices of samples.</li>
+<li>\(w(\cdot)\) is the <i>orthogonal cover code (OCC)</i> for port multiplexing purpose, which is essentially a Walse code of length \(N_{\text{samp}}^{\text{group}}\), implicitly indicated by \(n_{\text{RNTI}} \mod N_{\text{samp}}^{\text{group}}\).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf228699" class="outline-3">
+<h3 id="orgf228699">CP-OFDM</h3>
+<div class="outline-text-3" id="text-orgf228699">
+<p>
+On each PTRS subcarrier, the QPSK symbol of the assocated DMRS port on the same subcarrier is reused and placed on the PTRS RE's.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5ad3507" class="outline-3">
-<h3 id="uplink"><span class="todo TODO">TODO</span> Uplink</h3>
-<div class="outline-text-3" id="text-uplink">
-</div>
-</div>
-</div>
-<div id="outline-container-orgcdd5333" class="outline-2">
-<h2 id="sec:sequ-gener-reso"><span class="todo TODO">TODO</span> Sequence Generation and Resource Mapping</h2>
-<div class="outline-text-2" id="text-sec:sequ-gener-reso">
-</div>
-</div>
-<div id="outline-container-orgbffa195" class="outline-2">
-<h2 id="sec:pn-estim-compl">Phase Noise Estimation and Complementation</h2>
+<div id="outline-container-org310d0b0" class="outline-2">
+<h2 id="sec:pn-estim-compl"><a id="org310d0b0"></a>Phase Noise Estimation and Complementation</h2>
 <div class="outline-text-2" id="text-sec:pn-estim-compl">
 <p>
 Due to its non-selective nature in the frequency domain, phase noise is estimated in the frequency domain through the whole bandwidth scheduled, and then interpolation is performed in the time domain for the CP-OFDM or DFT-S-OFDM symbols without PTRS. The procedure is different for different waveforms. Hence, the procedure is presented in details for CP-OFDM based and DFT-S-OFDM based transmission, respectively.
 </p>
 </div>
-<div id="outline-container-org8e63281" class="outline-3">
-<h3 id="cp-ofdm">CP-OFDM</h3>
+<div id="outline-container-org6b34832" class="outline-3">
+<h3 id="cp-ofdm"><a id="org6b34832"></a>CP-OFDM</h3>
 <div class="outline-text-3" id="text-cp-ofdm">
 <p>
 For clear description, taking a PTRS port for instance, we suppose that a PTRS symbol \(x_{m, n}\) is transmitted over its associated DMRS port on a RE \((k_m, l_n)\), which corresponds to subcarrier \(k_m\) and OFDM symbol \(l_n\), i.e.,
@@ -667,8 +1075,8 @@ Then, if the time density of the PTRS is less than 1, i.e., \(L_\text{PTRS} > 1\
 </p>
 </div>
 </div>
-<div id="outline-container-org7be81f8" class="outline-3">
-<h3 id="dft-s-ofdm">DFT-S-OFDM</h3>
+<div id="outline-container-org6556421" class="outline-3">
+<h3 id="dft-s-ofdm"><a id="org6556421"></a>DFT-S-OFDM</h3>
 <div class="outline-text-3" id="text-dft-s-ofdm">
 <p>
 In DFT-S-OFDM case, which is different from CP-OFDM waveform, the PTRS samples are inserted into PUSCH samples before the DFT operation, i.e., in the time domain. Accordingly, the phase noise should also be estimated and complemented in the time domain, i.e., after the IDFT processing. Taking \(X\) PTRS groups/chunks with each comprised of \(K\) samples for instance, the received signal can be expressed as
@@ -679,12 +1087,22 @@ In DFT-S-OFDM case, which is different from CP-OFDM waveform, the PTRS samples a
 <p>
 where the subscript tuple \((m, g, l_n)\) means \(m\) th sample position within \(g\) th PTRS group in DFT-S-OFDM symbol \(l_n\); accordingly, \(x_{m, g, l_n}\), \(\theta_{m, g, l_n}\), \(r_{m, g, l_n}\), \(h_{m, g, l_n}\), and \(n_{m, g, l_n}\) are the PTRS sample, the phase noise, the received signal (after IDFT), the effective channel fading and the effective additive white Gaussian noise at the sample position.
 </p>
+
+<p>
+Then, the phase noises can be estimated by
+\[
+\theta_{m, g+1, l_n} - \theta_{m, g, l_n} = \arg \frac{\sum_{m=1}^K r_{m, g+1, l_n} x_{m, g+1, l_n}^{*}}{\sum_{m=1}^K r_{m, g, l_n} x_{m, g, l_n}^{*}}, \quad g = 1, \ldots, X - 1.
+\]
+</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org868c885" class="outline-2">
-<h2 id="sec:summary"><span class="todo TODO">TODO</span> Summary</h2>
+<div id="outline-container-orgdbcd04e" class="outline-2">
+<h2 id="sec:summary"><a id="orgdbcd04e"></a>Summary</h2>
 <div class="outline-text-2" id="text-sec:summary">
+<p>
+This report summarized PTRS related knowledge, from principle to specification. However, the existing PTRS cannot satisfy the requirements of ongoing research topics, e.g., multi-panel and multi-TRP. Therefore, PTRS is bound to be extended and enhanced further in the near future.
+</p>
 </div>
 </div>
 </div>

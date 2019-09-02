@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-24 Sat 21:26 -->
+<!-- 2019-09-02 Mon 13:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - YCMD</title>
@@ -159,19 +159,6 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -246,67 +233,67 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org32fe366">Introduction</a></li>
-<li><a href="#org4fd0c06">Installation</a>
+<li><a href="#org6802853">Introduction</a></li>
+<li><a href="#orgcdecf21">Installation</a>
 <ul>
-<li><a href="#org7e438cf">Emacs packages</a></li>
-<li><a href="#org5a1f909">Dependency</a></li>
-<li><a href="#orgcd6ca19">YCMD</a></li>
-<li><a href="#org29820b1">Configurations</a></li>
+<li><a href="#orgc41b373">Emacs packages</a></li>
+<li><a href="#org17bc1dc">Dependency</a></li>
+<li><a href="#orgae023bd">YCMD</a></li>
+<li><a href="#org246d0ed">Configurations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org32fe366" class="outline-2">
-<h2 id="org32fe366">Introduction</h2>
-<div class="outline-text-2" id="text-org32fe366">
+<div id="outline-container-org6802853" class="outline-2">
+<h2 id="org6802853">Introduction</h2>
+<div class="outline-text-2" id="text-org6802853">
 <p>
 YouCompleteMe (YCM) is originally a completion framework for VIM<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, and afterwards splitted into a general server and a client. The general server, namely YCM daemon (YCMD)<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, is able to provide interface to a variety of clients beyond VIM, e.g. Emacs. Moreover, both <code>company</code> and <code>auto-complete</code> can directly utilize what the server/daemon provides.
 </p>
 </div>
 </div>
-<div id="outline-container-org4fd0c06" class="outline-2">
-<h2 id="org4fd0c06">Installation</h2>
-<div class="outline-text-2" id="text-org4fd0c06">
+<div id="outline-container-orgcdecf21" class="outline-2">
+<h2 id="orgcdecf21">Installation</h2>
+<div class="outline-text-2" id="text-orgcdecf21">
 </div>
-<div id="outline-container-org7e438cf" class="outline-3">
-<h3 id="org7e438cf">Emacs packages</h3>
-<div class="outline-text-3" id="text-org7e438cf">
+<div id="outline-container-orgc41b373" class="outline-3">
+<h3 id="orgc41b373">Emacs packages</h3>
+<div class="outline-text-3" id="text-orgc41b373">
 <p>
 Install the Emacs packages via ELPA, <code>ycmd</code>, <code>company-ycmd</code>, <code>company</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org5a1f909" class="outline-3">
-<h3 id="org5a1f909">Dependency</h3>
-<div class="outline-text-3" id="text-org5a1f909">
+<div id="outline-container-org17bc1dc" class="outline-3">
+<h3 id="org17bc1dc">Dependency</h3>
+<div class="outline-text-3" id="text-org17bc1dc">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S boost
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd6ca19" class="outline-3">
-<h3 id="orgcd6ca19">YCMD</h3>
-<div class="outline-text-3" id="text-orgcd6ca19">
+<div id="outline-container-orgae023bd" class="outline-3">
+<h3 id="orgae023bd">YCMD</h3>
+<div class="outline-text-3" id="text-orgae023bd">
 <p>
 Install the <code>YCMD</code> to <code>~/.emacs.d/ycmd</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">cd ~/.emacs.d
+<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/.emacs.d
 git clone https://github.com/Valloric/ycmd.git
-cd ycmd
+<span style="color: #483d8b;">cd</span> ycmd
 git submodule update --init --recursive
 ./build.py --clang-completer --system-libclang --system-boost
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org29820b1" class="outline-3">
-<h3 id="org29820b1">Configurations</h3>
-<div class="outline-text-3" id="text-org29820b1">
+<div id="outline-container-org246d0ed" class="outline-3">
+<h3 id="org246d0ed">Configurations</h3>
+<div class="outline-text-3" id="text-org246d0ed">
 <ul class="org-ul">
 <li><code>~/.emacs.d/ycmd/global_config.py</code></li>
 </ul>
@@ -323,15 +310,15 @@ After that, customize it to meet your requirements.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">...
 
-;;; Company
+<span style="color: #b22222;">;;; </span><span style="color: #b22222;">Company</span>
 (add-hook 'after-init-hook 'global-company-mode) 
-(setq company-idle-delay 0) 
+(<span style="color: #a020f0;">setq</span> company-idle-delay 0) 
 (company-auctex-init) 
 
-;;; Ycmd
+<span style="color: #b22222;">;;; </span><span style="color: #b22222;">Ycmd</span>
 (add-hook 'after-init-hook #'global-ycmd-mode)
-(set-variable 'ycmd-server-command '("python2" "/home/shaka/.emacs.d/ycmd/ycmd"))
-(set-variable 'ycmd-global-config "/home/shaka/.emacs.d/ycmd/global_config.py") 
+(set-variable 'ycmd-server-command '(<span style="color: #8b2252;">"python2"</span> <span style="color: #8b2252;">"/home/shaka/.emacs.d/ycmd/ycmd"</span>))
+(set-variable 'ycmd-global-config <span style="color: #8b2252;">"/home/shaka/.emacs.d/ycmd/global_config.py"</span>) 
 (company-ycmd-setup)
 
 ...
