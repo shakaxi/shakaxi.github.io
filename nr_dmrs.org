@@ -21,23 +21,23 @@ In NR system, there are two types of DMRS, a.k.a., type-1 and type-2.
 - For DFT-S-OFDM, only type-1 is supported.
 ** Type-1
 - In single-symbol case, up to 4 ports are supported.
-  + 2x comb
+  + 2x comb (corresponding to /CDM groups 0 and 1/)
   + 2x frequency domain orthogonal cover code (OCC)[fn:2]
 - In double-symbol case, up to 8 ports are supported.
-  + 2x comb
+  + 2x comb (corresponding to CDM groups 0 and 1)
   + 2x frequency-domain OCC[fn:2]
   + 2x time-domain OCC
 ** Type-2
 - In single-symbol case, up to 6 ports are supported.
-  + 3x frequency division multiplex (FDM)
-  + 2x frequency domain OCC[fn:2]
+  + 3x FDM (corresponding to /CDM groups 0, 1, and 2/)
+  + 2x frequency domain OCC
 - In double-symbol case, up to 12 ports are supported.
-  + 3x FDM
-  + 2x frequency domain OCC[fn:2]
+  + 3x FDM (corresponding to CDM groups 0, 1, and 2)
+  + 2x frequency domain OCC
   + 2x time domain OCC
 
 * Footnotes
 
-[fn:2] For OCC code \([1, -1]\) with 2x comb, it is essentially a cyclic shift with phase rotation \(\dfrac{\pi}{2}\).
+[fn:2] For OCC code \([1, -1]\) with 2x comb, it is essentially a cyclic shift of \(\dfrac{N_{FFT}}{4}\), corresponding to a phase rotation \(\dfrac{\pi}{2}\).
 
 [fn:1] DMRS types are configured by a high layer parameter. Before configuration, type-1 DMRS is applied by default.
