@@ -1,4 +1,4 @@
-#+TITLE: NR - PTRS
+#+TITLE: NR - Phase Tracking Reference Signal (PTRS)
 
 * Introduction
 Targetting for the great goal of the 5th generation (5G) system, the /new radio (NR)/ system, proposed by the 3rd generation partner project (3GPP), has employed a variety of cutting-edge technologies, including advanced channel coding schemes, e.g., low density parity code (LDPC) and polar code, higher-order modulation schemes, e.g., 256QAM, etc. Considering the fact that the lower frequency spectrum has already been so crowded and overutilized, NR decided to explore higher frequency band, e.g., million meter wave (mmWave). After all, much richer spectrum resources are available at higher frequency bands than lower frequency spectrum.
