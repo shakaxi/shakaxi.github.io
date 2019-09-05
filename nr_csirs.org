@@ -1,0 +1,33 @@
+#+TITLE: NR - Channel State Information Reference Signal (CSI-RS)
+#+PROPERTY: header-args:latex :results raw :headers '("\\usepackage{tikz}") :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
+
+* Introduction
+In NR system, /channel state information reference signal (CSI-RS)/ can be utilized for
+- CSI acquisition
+- Beam management
+- Tracking
+- Mobility management
+- Rate match
+* CSI-RS for CSI Acquisition
+In NR system, a CSI-RS resource can be configured with up to 32 antenna ports, i.e., 1/2/4/8/12/16/24/32. Moreover, 8/12/16/24/32-port CSI-RS is comprised of 2/4-port CSI-RS.
+- A single-port CSI-RS resource occupies one RE.
+- A 2-port CSI-RS resource occupies 2 x 1 RE's.
+- A 4-port CSI-RS resource occupies 4 x 1 or 2 x 2 RE's.
+
+The coordinate of a CSI-RS resource in the resource grid is indicated by a bitmap.
+* CSI-RS for Tracking
+In NR system, a single-port CSI-RS is used as /tracking reference signal (TRS)/, targetting for time/frequency tracking.
+
+#+BEGIN_SRC latex :file trs_1sym.png
+  \begin{tikzpicture}
+      \draw (0, 0) -- (1, 0);
+  \end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:trs_1sym.png]]
+
+- /Periodic TRS/ is essentially a periodic CSI-RS resource set, which is configured by high layer signalling.
+- /Aperiodic TRS/ has the same structure as periodic TRS. The difference lies that it is triggered by /downlink control information (DCI)/.
+* CSI-RS for Rate Match
+In NR system, zero-power (ZP) CSI-RS can be used for rate match, which is exclusive for PDSCH transmission. There are 3 types of ZP-CSI-RS, periodic, semi-persistent, and aperiodic.
