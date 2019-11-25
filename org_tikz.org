@@ -1,0 +1,11 @@
+#+TITLE: Orgmode - Tikz
+
+Tikz/pgf is an excellent LaTeX package to draw pictures. It can be used in Emacs =org mode=. An example can be provided as follows.
+
+#+BEGIN_SRC shell
+  ,#+BEGIN_SRC latex :file FILE.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 600
+  \begin{tikzpicture}
+     tikz statements;
+  \end{tikzpicture}
+  ,#+END_SRC
+#+END_SRC
