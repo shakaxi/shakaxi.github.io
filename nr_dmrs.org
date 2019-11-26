@@ -10,6 +10,12 @@ Frontloaded DMRS aims to reduce the duration of demodulation and decoding. There
 Additional DMRS is proposed to support high speed transmission, e.g., 500km/h. Each additional DMRS is a simple repetition of the corresponding frontloaded DMRS, e.g., identical subcarriers and equal OFDM symbol number.
 - For single-symbol frontloaded DMRS, up to 3 additional DMRS can be supported.
 - For double-symbol frontloaded DMRS, at most 1 additional DMRS is supported.
+* Sequence Generation
+DMRS symbols are a sequence of QPSK-modulated Gold sequence, which is initialized with
+\[
+c_{\text{init}} = \left[ 2^{17}(N_{\text{symb}}^{\text{slot}}n_{s,f}^{\mu} + \ell + 1)(2N_{\text{ID}}^{n_{\text{SCID}}}+1) + 2N_{\text{ID}}^{n_{\text{SCID}}} + n_{\text{SCID}} \right] \mod 2^{31}
+\]
+where
 * Layer Number
 ** SU-MIMO
 Up to 8 or 4 layers can be supported for downlink and uplink transmission, respectively.
@@ -38,6 +44,6 @@ In NR system, there are two types of DMRS, a.k.a., type-1 and type-2.
 
 * Footnotes
 
-[fn:2] For OCC code \([1, -1]\) with 2x comb, it is essentially a cyclic shift of \(\dfrac{N_{FFT}}{4}\), corresponding to a phase rotation \(\dfrac{\pi}{2}\).
+[fn:2] For OCC code \([1, -1]\) with 2x comb, it is essentially a cyclic shift of \(\dfrac{N_{FFT}}{4}\), corresponding to a phase rotation of \(\dfrac{\pi}{2}\).
 
 [fn:1] DMRS types are configured by a high layer parameter. Before configuration, type-1 DMRS is applied by default.

@@ -7,9 +7,7 @@ As is well-known, high frequency transmission suffers severe attenuation loss in
 
 Generally, an oscillator always produces phase noise, which is essentially an impairment of the oscillator. Nevertheless, the phase noise soars as the operation frequency grows. In the NR system, which operates on higher frequency spectrum, the impact of phase noise cannot be ignored. Instead, the phase noise must be accurately estimated and complemented before data detection. To this end, a dedicated reference signal, termed /phase tracking reference signal (PTRS)/ has been proposed to track the fluctuation of the phase noise.
 
-This report intends to cover everything detail relating to PTRS. The remaining of this report is structured as follows. Section [[#sec:pn-model]] briefly introduces the models of phase noise, and Section [[#sec:presence-density]] provides the configuration of PTRS, including its presence and density in the time and frequency domain. The number of PTRS supported is given in Section [[#sec:port-num]]. The PTRS port association follows in Section [[#sec:port-association]]. Then, resource mapping and sequence generation are presented in Section [[#sec:res-map]] and [[#sec:seq-gen]] respectively. In Section [[#sec:pn-estim-compl]], the methodology of phase noise estimation and complementation are described in details. Finally, Section [[#sec:summary]] summarizes the report.
-
-For clear description, following denotation conventions are adopted throughout the document. $\otimes$ is the operator of circular convolution.
+This report intends to cover everything detail relating to PTRS. The remaining of this report is structured as follows. Section [[#sec:pn-model]] briefly introduces the models of phase noise, and Section [[#sec:presence-density]] provides the configuration of PTRS, including its presence and density in the time and frequency domain. The number of PTRS supported is given in Section [[#sec:port-num]]. The PTRS port association follows in Section [[#sec:port-association]]. Then, resource mapping and sequence generation are presented in Sections [[#sec:res-map]] and [[#sec:seq-gen]] respectively. In Section [[#sec:pn-estim-compl]], the methodology of phase noise estimation and complementation are described in details. Finally, Section [[#sec:summary]] summarizes the report.
 
 * Phase Noise and Models
 :PROPERTIES:
@@ -18,7 +16,7 @@ For clear description, following denotation conventions are adopted throughout t
 
 As its name implies, a phase noise model is utilized to depict the behavior and the property of the phase noise. In fact, phase noise modelling plays an extremely important role in the estimation and complementation of the phase noise as well as the design of PTRS.
 
-In order to accurately describe the variation and fluctuation of the phase noise in a statistic sense, phase noise modelling was intensively discussed. Based on the numerous measurement and evaluation of the realistic phase noise, there were totally 11 models proposed in RAN1 meeting #85. Finally, targetting for fair performance evaluation and comparison of different candidate designs and solusions, the phase noise modelling converged into 4 mainstream models \cite{r1-164041, r1-165005, r1-163984, mmmagic}.
+In order to accurately describe the variation and fluctuation of the phase noise in a statistic sense, phase noise modelling was intensively discussed. Based on the numerous measurement and evaluation of the realistic phase noise, there were totally 11 models proposed in RAN1 meeting #85, e.g., R1-164041, R1-165005, R1-163984.
 
 Without loss of generality, we take one OFDM symbol for instance to reveal the impact of phase noise. The actual output of an oscillator can be denoted by
 \begin{align}
@@ -29,7 +27,7 @@ where $x(n)$ is the desired signal without any contamination of phase noise and 
   \widetilde{X}(k) &= X(k) \otimes \Phi(k) \nonumber \\
   &= X(k) \cdot \Phi(0) + \sum_{i=1, i\neq k}^NX(i) \cdot \Phi(k - i), \label{eq:pn-freq}
 \end{align}
-where $\widetilde{X}(k)$, $X(k)$, and $\Phi(k)$ are respectively the FFT of $\widetilde{x}(n)$, $x(n)$, and $\exp[j\phi(n)]$, i.e.,
+where $\otimes$ is the operator of circular convolution; $\widetilde{X}(k)$, $X(k)$, and $\Phi(k)$ are respectively the FFT of $\widetilde{x}(n)$, $x(n)$, and $\exp[j\phi(n)]$, i.e.,
 \begin{align*}
   \widetilde{X}(k) &= \sum_{n=1}^N \widetilde{x}(n) \cdot \exp\left(j\frac{2\pi}{N}kn\right) \\
   X(k) &= \sum_{n=1}^N x(n) \cdot \exp\left(j\frac{2\pi}{N}kn\right) \\
