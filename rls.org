@@ -1,0 +1,128 @@
+#+TITLE: Least Square and Its Iterative Approach
+
+* Introduction
+As is well-known, /least square (LS)/ is the optimal linear unbiased estimator, which plays an extremely important role in the classic estimation theory. This document motivates to illustrate the fundamental of LS algorithm. However, LS algorithm suffers rather high complexity, especially for the operation of matrix inversion, which greatly limits its application in practice. In order to reduce the computational complexity, an iterative approach, a.k.a. /recursive LS (RLS)/, has been proposed.
+
+The remainder part of the document is structured as follows. In Section [[#sec:ls]], the principle of LS algorithm is derived in detail. Then its iterative solution, i.e., RLS algorithm, follows in Section [[#sec:rls]].
+
+* Least Square (LS)
+:PROPERTIES:
+:CUSTOM_ID: sec:ls
+:END:
+A series of signal $x(n)$ passes through a linear dynamic channel, characterized by /channel impulse response (CIR)/ $\mathbf{h}(n) = [h(n, 0), h(n, 1), \ldots, h(n, p-1)]^T$, where $p$ is the memory length of the channel. Then the output signal $y(n)$ can be expressed by
+\begin{align*}
+  y(n) = \sum_{\tau=0}^{p-1} h(n, \tau)x(n-\tau) + v(n)
+\end{align*}
+where $v(n)$ is additive Gaussian noise, $n = 0, 1, \ldots$.
+
+In order to recover the desired signal $x(n)$, a dynamic /finite impulse response (FIR)/ filter $\mathbf{w}(n) = [w(n, 0), w(n, 1), \ldots, w(n, q-1)]^T$ takes $\mathbf{y}(n) = [y(n), y(n-1), \ldots, y(n-q+1)]^T$ as input and outputs $\tilde{x}(n)$.
+\begin{align*}
+  \tilde{x}(n) &= \sum_{\tau=0}^{q-1} w(n, \tau) y(n-\tau) \\
+  &= \mathbf{w}^T(n) \mathbf{y}(n).
+\end{align*}
+
+Given $\mathbf{w}(n)$, the sample-wise error[fn:1] can be denoted as
+\begin{align*}
+  e_{\mathbf{w}(n)}(i) &= \tilde{x}(i) - x(i) \\
+  &= \mathbf{w}^T(n) \mathbf{y}(i) - x(i), \quad i = 0, 1, \ldots, n.
+\end{align*}
+Taking $C_{\mathbf{w}(n)} = \sum_{i=0}^n \lambda^{n-i} e_{\mathbf{w}(n)}^2(i)$ as cost function[fn:2], the filter can be obtained by making
+\begin{align*}
+  \frac{\partial C_{\mathbf{w}(n)}}{\partial \mathbf{w}(n)} &= 2\sum_{i=0}^n \lambda^{n-i} e_{\mathbf{w}(n)}(i) \frac{\partial e_{\mathbf{w}(n)}(i)}{\partial \mathbf{w}(n)} \\
+                                                            &= 2\sum_{i=0}^n \lambda^{n-i} \mathbf{y}(i)[\mathbf{y}^T(i) \mathbf{w}(n) - x(i)]  \\
+  &= 2 \left[ \sum_{i=0}^n \lambda^{n-i} \mathbf{y}(i)\mathbf{y}^T(i) \right] \mathbf{w}(n) - 2 \sum_{i=0}^{n} \lambda^{n-i}x(i) \mathbf{y}(i) \\
+  &= \mathbf{0}.
+\end{align*}
+Clearly, the impulse response of the filter can be written as
+\begin{align}
+  \label{eq:ls}
+\mathbf{w}(n) = \left[ \sum_{i=0}^n \lambda^{n-i} \mathbf{y}(i)\mathbf{y}^T(i) \right]^{-1} \sum_{i=0}^{n} \lambda^{n-i}x(i) \mathbf{y}(i)
+\end{align}
+For simple description, define /weighted auto-correlation/ matrix as
+\begin{align}
+  \label{eq:cov}
+\mathbf{R}(n) \triangleq \sum_{i=0}^n \lambda^{n-i} \mathbf{y}(i)\mathbf{y}^T(i)
+\end{align}
+and /weighted cross-correlation/ vector as
+\begin{align}
+  \label{eq:corr}
+\mathbf{r}(n) \triangleq \sum_{i=0}^{n} \lambda^{n-i}x(i) \mathbf{y}(i).
+\end{align}
+Then, by substituting \eqref{eq:cov} and \eqref{eq:corr} into \eqref{eq:ls}, the impulse response can be rewritten as
+\begin{align}
+  \label{eq:ls-brief}
+\mathbf{w}(n) = \mathbf{R}^{-1}(n) \mathbf{r}(n).
+\end{align}
+
+* Recursive Least Square (RLS)
+:PROPERTIES:
+:CUSTOM_ID: sec:rls
+:END:
+In this section, RLS algorithm is derived in detail.
+** Iteration of Auto/Cross-Correlation
+According to \eqref{eq:cov}, we have
+\begin{align}
+  \mathbf{R}(n) &= \lambda \sum_{i=0}^{n-1} \lambda^{n-1-i} \mathbf{y}(i)\mathbf{y}^T(i) + \mathbf{y}(n) \mathbf{y}^T(n) \nonumber \\
+  &= \lambda \mathbf{R}(n-1) + \mathbf{y}(n) \mathbf{y}^T(n). \label{eq:iter-R}
+\end{align}
+Applying matrix inversion lemma to \eqref{eq:iter-R} can yield the iteration between $\mathbf{R}^{-1}(n)$ and $\mathbf{R}^{-1}(n-1)$, i.e.,
+\begin{align*}
+\mathbf{R}^{-1}(n) = \frac{1}{\lambda} \left[ \mathbf{R}^{-1}(n-1) - \frac{\mathbf{R}^{-1}(n-1) \mathbf{y}(n) \mathbf{y}^T(n) \mathbf{R}^{-1}(n-1)}{\lambda + \mathbf{y}^T(n) \mathbf{R}^{-1}(n-1) \mathbf{y}(n)} \right]
+\end{align*}
+For the sake of compact expression, denote $\mathbf{P}(n) = \mathbf{R}^{-1}(n)$ and define /Kalman gain/ vector
+\begin{align}
+  \mathbf{k}(n) &= \frac{\mathbf{R}^{-1}(n-1) \mathbf{y}(n)}{\lambda + \mathbf{y}^T(n) \mathbf{R}^{-1}(n-1) \mathbf{y}(n)} \nonumber \\
+  &= \frac{\mathbf{P}(n-1) \mathbf{y}(n)}{\lambda + \mathbf{y}^T(n) \mathbf{P}(n-1) \mathbf{y}(n)}. \label{eq:kalman-gain}
+\end{align}
+Then, the iteration above becomes
+\begin{align}
+    \label{eq:iter-p}
+  \mathbf{P}(n) = \frac{1}{\lambda} [\mathbf{P}(n-1) - \mathbf{k}(n) \mathbf{y}^T(n) \mathbf{P}(n-1)].
+\end{align}
+By reducing the entry of $\mathbf{k}(n) \mathbf{y}^T(n) \mathbf{P}(n-1) \mathbf{y}(n)$ in \eqref{eq:kalman-gain} and \eqref{eq:iter-p}, we can get
+\begin{align}
+  \label{eq:k-p}
+\mathbf{k}(n) = \mathbf{P}(n) \mathbf{y}(n).
+\end{align}
+
+Simlarly, according to \eqref{eq:corr}, the iteration of the weighted cross-correlation is available, i.e.,
+\begin{align}
+  \mathbf{r}(n) &= \lambda \sum_{i=0}^{n-1} \lambda^{n-1-i}x(i) \mathbf{y}(i) + x(n) \mathbf{y}(n) \nonumber \\
+  &= \lambda \mathbf{r}(n-1) + x(n) \mathbf{y}(n). \label{eq:iter-r}
+\end{align}
+
+** Iteration of LS Filter
+Substituting \eqref{eq:iter-p}, \eqref{eq:k-p} and \eqref{eq:iter-r} into \eqref{eq:ls-brief} produces the iteration between $\mathbf{w}(n)$ and $\mathbf{w}(n-1)$, i.e.,
+\begin{align}
+  \label{eq:iter-w}
+  \mathbf{w}(n) &= \mathbf{P}(n) \mathbf{r}(n) \nonumber \\
+                &= \mathbf{P}(n) [ \lambda \mathbf{r}(n-1) + x(n) \mathbf{y}(n) ] \nonumber \\
+                & = [\mathbf{P}(n-1) - \mathbf{k}(n) \mathbf{y}^T(n) \mathbf{P}(n-1)] \mathbf{r}(n-1) + x(n) \mathbf{k}(n) \nonumber \\
+                & = \mathbf{w}(n-1) - \mathbf{k}(n) \mathbf{y}^T(n) \mathbf{w}(n-1) + x(n) \mathbf{k}(n) \nonumber \\
+  &= \mathbf{w}(n-1) + \alpha(n) \mathbf{k}(n)
+\end{align}
+where
+\begin{align}
+  \label{eq:apriori-err}
+\alpha(n) \triangleq x(n) - \mathbf{y}^T(n) \mathbf{w}(n-1)
+\end{align}
+is termed /a priori estimation error/.
+
+** Procedure
+By collecting the operations scattered above, the detailed procedure of RLS algorithm can be summarized as follows, where the values of the two parameters should be offered in advance. $\lambda \in (0, 1]$ is the forgetting factor, while $\delta$ is a small positive number used for $\mathbf{P}(0)$ initialization.
+
+#+attr_html: :align center
+| *Init.*: | $\mathbf{y}(0) = \mathbf{0}$, $\mathbf{w}(0) = \mathbf{0}$, $\mathbf{P}(0) = \delta \mathbf{I}$.                 |
+| *for*    | $n = 1, 2, \ldots$ *do*                                                                                          |
+|          | $\mathbf{y}(n) = [y(n), y(n-1), \ldots, y(n-q+1)]^T$                                                             |
+|          | $\mathbf{k}(n) = \dfrac{\mathbf{P}(n-1) \mathbf{y}(n)}{\lambda + \mathbf{y}^T(n) \mathbf{P}(n-1) \mathbf{y}(n)}$ |
+|          | $\mathbf{P}(n) = \dfrac{1}{\lambda} [\mathbf{P}(n-1) - \mathbf{k}(n) \mathbf{y}^T(n) \mathbf{P}(n-1)]$           |
+|          | $\alpha(n) \triangleq x(n) - \mathbf{y}^T(n) \mathbf{w}(n-1)$                                                    |
+|          | $\mathbf{w}(n) = \mathbf{w}(n-1) +\alpha(n)\mathbf{k}(n)$                                                        |
+| *end*    | *for*                                                                                                            |
+
+* Footnotes
+
+[fn:2] Herein, $\lambda \in (0, 1]$ is termed /forgetting factor/.
+
+[fn:1] To be precise, it is /a posterior estimation error/.

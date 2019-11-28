@@ -1,4 +1,6 @@
 #+TITLE: NR - Phase Tracking Reference Signal (PTRS)
+#+MACRO: rrc @@html:<span style="color: blue">$1</span>@@@@latex:\textcolor{blue}{$1}@@
+#+MACRO: dci @@html:<span style="color: orange">$1</span>@@@@latex:\textcolor{orange}{$1}@@
 
 * Introduction
 Targetting for the great goal of the 5th generation (5G) system, the /new radio (NR)/ system, proposed by the 3rd generation partner project (3GPP), has employed a variety of cutting-edge technologies, including advanced channel coding schemes, e.g., low density parity code (LDPC) and polar code, higher-order modulation schemes, e.g., 256QAM, etc. Considering the fact that the lower frequency spectrum has already been so crowded and overutilized, NR decided to explore higher frequency band, e.g., million meter wave (mmWave). After all, much richer spectrum resources are available at higher frequency bands than lower frequency spectrum.
@@ -7,7 +9,9 @@ As is well-known, high frequency transmission suffers severe attenuation loss in
 
 Generally, an oscillator always produces phase noise, which is essentially an impairment of the oscillator. Nevertheless, the phase noise soars as the operation frequency grows. In the NR system, which operates on higher frequency spectrum, the impact of phase noise cannot be ignored. Instead, the phase noise must be accurately estimated and complemented before data detection. To this end, a dedicated reference signal, termed /phase tracking reference signal (PTRS)/ has been proposed to track the fluctuation of the phase noise.
 
-This report intends to cover everything detail relating to PTRS. The remaining of this report is structured as follows. Section [[#sec:pn-model]] briefly introduces the models of phase noise, and Section [[#sec:presence-density]] provides the configuration of PTRS, including its presence and density in the time and frequency domain. The number of PTRS supported is given in Section [[#sec:port-num]]. The PTRS port association follows in Section [[#sec:port-association]]. Then, resource mapping and sequence generation are presented in Sections [[#sec:res-map]] and [[#sec:seq-gen]] respectively. In Section [[#sec:pn-estim-compl]], the methodology of phase noise estimation and complementation are described in details. Finally, Section [[#sec:summary]] summarizes the report.
+This report intends to cover the detail relating to PTRS. The remaining of this report is structured as follows. Section [[#sec:pn-model]] briefly introduces the models of phase noise, and Section [[#sec:presence-density]] provides the configuration of PTRS, including its presence and density in the time and frequency domain. The number of PTRS supported is given in Section [[#sec:port-num]]. The PTRS port association follows in Section [[#sec:port-association]]. Then, resource mapping and sequence generation are presented in Sections [[#sec:res-map]] and [[#sec:seq-gen]] respectively. In Section [[#sec:pn-estim-compl]], the methodology of phase noise estimation and complementation are described in details. Finally, Section [[#sec:summary]] summarizes the report.
+
+For clear description, following denotation conventions are adopted throughout the document. $\otimes$ is the operator of circular convolution. $\mathcal{F}_N \left\{ \cdot \right\} $ is the $N$-point fast Fourier transformation (FFT) operator. /Radio resource control (RRC)/ signaling and /downlink control indicator (DCI)/ parameters are illustrated as blue and orange phrases, respectively.
 
 * Phase Noise and Models
 :PROPERTIES:
@@ -34,14 +38,37 @@ where $\otimes$ is the operator of circular convolution; $\widetilde{X}(k)$, $X(
   \Phi(k) &= \sum_{n=1}^N \exp\left\{j\left[\phi(n) + \frac{2\pi}{N}kn\right]\right\}.
 \end{align*}
 
-According to (\ref{eq:pn-freq}), the influence of phase noise can be divided into two aspects, a multiplicative $\Phi(0)$ and an additive $\sum_{i=1, i\neq k}^NX(i) \cdot \Phi(k - i)$, termed /common phase error (CPE)/ and /inter-carrier interference (ICI)/ respectively. For CPE, it essentially rotates the whole constellation with $\Phi(0)$, and Figure [[fig:cpe]] illustrates the impact on a 16QAM constellation. A 64QAM constellation impacted by ICI can be illustrated by Figure [[fig:ici]].
-#+CAPTION: A 16QAM constellation contaminated by CPE
-#+NAME: fig:cpe
-[[file:cpe.png]]
+According to (\ref{eq:pn-freq}), the influence of phase noise can be divided into two aspects, a multiplicative $\Phi(0)$ and an additive $\sum_{i=1, i\neq k}^NX(i) \cdot \Phi(k - i)$, termed /common phase error (CPE)/ and /inter-carrier interference (ICI)/ respectively, whose imapct can be illustrated in Figure [[fig:pn-impact]].
 
-#+CAPTION: A 64QAM constellation contaminated by ICI
-#+NAME: fig:ici
-[[file:ici.png]]
+#+BEGIN_SRC latex :file nr_ptrs_pn_impact.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}[scale=2]
+      \foreach \p in {1, ..., 4}
+      {
+        \foreach \x in {0, 0.1, ..., 0.3}
+        \foreach \y in {0, 0.1, ..., 0.3}
+        {
+          \fill (30 + \p * 90:1)+(\x, \y) circle (0.03);
+        }
+      }
+  \end{tikzpicture}\hspace{3cm}
+  \begin{tikzpicture}[scale=2]
+      \foreach \p in {1, ..., 4}
+      {
+        \foreach \x in {0, 0.1, ..., 0.3}
+        \foreach \y in {0, 0.1, ..., 0.3}
+        {
+          \fill (35 + \p * 90:1)+(\x, \y) circle (0.03);
+          \fill (45 + \p * 90:1)+(\x, \y) circle (0.03);            
+          \fill (55 + \p * 90:1)+(\x, \y) circle (0.03);
+        }
+      }
+  \end{tikzpicture}
+#+END_SRC
+
+#+CAPTION: A QPSK constellation contaminated by phase noise
+#+NAME: fig:pn-impact
+#+ATTR_HTML: :width 800px
+[[file:nr_ptrs_pn_impact.png]]
 
 From system performance perspective, CPE is more harmful than ICI, and is prioritized to be complemented. Its frequency-flat property gives rise to its dense distribution in the time domain and sparse scattering in the frequency domain.
 * Presence and Density
@@ -49,17 +76,17 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 :CUSTOM_ID: sec:presence-density
 :END:
 ** Downlink
-- If /phaseTrackingRS/ in /DMRS-DownlinkConfig/ is configured,
+- If {{{rrc(phaseTrackingRS)}}} in {{{rrc(DMRS-DownlinkConfig)}}} is configured,
   + If RNTI equals MCS-C-RNTI, C-RNTI, or CS-RNTI,
-    - If at least /timeDensity/ or /frequencyDensity/ in /PTRS-DownlinkConfig/ is configured, the time domain density (L_{PT-RS}) is a function of scheduled MCS (see Table [[tab:td-density-cp-ofdm]]), and frequency domain density (K_{PT-RS}) is a function of scheduled bandwidth (see Table [[tab:fd-density-cp-ofdm]]). If not configured, the default values, L_{PT-RS} = 1, K_{PT-RS} = 2, apply.
-    - If neither of /timeDensity/ and /frequencyDensity/ in /PTRS-DownlinkConfig/ is configured,
+    - If at least {{{rrc(timeDensity)}}} or {{{rrc(frequencyDensity)}}} in {{{rrc(PTRS-DownlinkConfig)}}} is configured, the time domain density (L_{PT-RS}) is a function of scheduled MCS (see Table [[tab:td-density-cp-ofdm]]), and frequency domain density (K_{PT-RS}) is a function of scheduled bandwidth (see Table [[tab:fd-density-cp-ofdm]]). If not configured, the default values, L_{PT-RS} = 1, K_{PT-RS} = 2, apply.
+    - If neither of {{{rrc(timeDensity)}}} and {{{rrc(frequencyDensity)}}} in {{{rrc(PTRS-DownlinkConfig)}}} is configured,
       + For QPSK or scheduled bandwidth < 3 RB's, PTRS is not present;
       + Else, L_{PT-RS} = 1, K_{PT-RS} = 2.
   + If RNTI equals RA-RNTI, SI-RNTI, or P-RNTI, PTRS is not present.
 - Else, PTRS is not present.
 
-#+CAPTION: Time-domain density for CP-OFDM (the thresholds are configured by /timeDensity/)
-#+ATTR_HTML: :align center :width 800px
+#+CAPTION: Time-domain density for CP-OFDM (the thresholds are configured by {{{rrc(timeDensity)}}})
+#+ATTR_HTML: :align center :width 800px :border 3
 #+NAME: tab:td-density-cp-ofdm
 |                 <c>                 |     <c>     |
 |            Scheduled MCS            |  L_{PT-RS}  |
@@ -69,8 +96,8 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 | ptrs-MCS_2 \le I_{MCS} < ptrs-MCS_3 |      2      |
 | ptrs-MCS_3 \le I_{MCS} < ptrs-MCS_4 |      1      |
 
-#+CAPTION: Frequency-domain density for CP-OFDM (the thresholds are configured by /frequencyDensity/)
-#+ATTR_HTML: :align center :width 1000px
+#+CAPTION: Frequency-domain density for CP-OFDM (the thresholds are configured by {{{rrc(frequencyDensity)}}})
+#+ATTR_HTML: :align center :width 1000px :border 3
 #+NAME: tab:fd-density-cp-ofdm
 |             <c>              |     <c>     |
 |     Scheduled bandwidth      |  K_{PT-RS}  |
@@ -79,20 +106,20 @@ From system performance perspective, CPE is more harmful than ICI, and is priori
 | N_{RB0} \le N_{RB} < N_{RB1} |      2      |
 |      N_{RB1} \le N_{RB}      |      4      |
 ** Uplink - CP-OFDM
-- If /phaseTrackingRS/ in /DMRS-UplinkConfig/ is configured,
+- If {{{rrc(phaseTrackingRS)}}} in {{{rrc(DMRS-UplinkConfig)}}} is configured,
   + If RNTI equals MCS-C-RNTI, C-RNTI, CS-RNTI, or SP-CSI-RNTI,
-    - If at least /timeDensity/ or /frequencyDensity/ in /PTRS-UplinkConfig/ is configured, the time domain density (L_{PT-RS}) is a function of scheduled MCS (see Table [[tab:td-density-cp-ofdm]]), and frequency domain density (K_{PT-RS}) is a function of scheduled bandwidth (see Table [[tab:fd-density-cp-ofdm]]). If not configured, the default values, L_{PT-RS} = 1, K_{PT-RS} = 2, apply.
-    - If neither of /timeDensity/ and /frequencyDensity/ in /PTRS-UplinkConfig/ is configured, L_{PT-RS} = 1, K_{PT-RS} = 2.
+    - If at least {{{rrc(timeDensity)}}} or {{{rrc(frequencyDensity)}}} in {{{rrc(PTRS-UplinkConfig)}}} is configured, the time domain density (L_{PT-RS}) is a function of scheduled MCS (see Table [[tab:td-density-cp-ofdm]]), and frequency domain density (K_{PT-RS}) is a function of scheduled bandwidth (see Table [[tab:fd-density-cp-ofdm]]). If not configured, the default values, L_{PT-RS} = 1, K_{PT-RS} = 2, apply.
+    - If neither of {{{rrc(timeDensity)}}} and {{{rrc(frequencyDensity)}}} in {{{rrc(PTRS-UplinkConfig)}}} is configured, L_{PT-RS} = 1, K_{PT-RS} = 2.
   + Else, PTRS is not present.
 - Else, PTRS is not present.
 ** Uplink - DFT-S-OFDM
-- If /transformPrecoderEnabled/ in /PTRS-UplinkConfig/ is configured,
-  + If /timeDensityTransformPrecoding/ is configured to 2, L_{PT-RS} = 2;
+- If {{{rrc(transformPrecoderEnabled)}}} in {{{rrc(PTRS-UplinkConfig)}}} is configured,
+  + If {{{rrc(timeDensityTransformPrecoding)}}} is configured to 2, L_{PT-RS} = 2;
   + Else, L_{PT-RS} = 1.
-  + With /sampleDensity/ configured, the group pattern of PTRS is a function of scheduled bandwidth (see Table [[tab:grp-pattern-dft-s-ofdm]]).
+  + With {{{rrc(sampleDensity)}}} configured, the group pattern of PTRS is a function of scheduled bandwidth (see Table [[tab:grp-pattern-dft-s-ofdm]]).
 
-#+CAPTION: PTRS group pattern for DFT-S-OFDM (the thresholds are configured by /SampleDensity/)
-#+ATTR_HTML: :align center :width 800px
+#+CAPTION: PTRS group pattern for DFT-S-OFDM (the thresholds are configured by {{{rrc(SampleDensity)}}})
+#+ATTR_HTML: :align center :width 800px :border 3
 #+NAME: tab:grp-pattern-dft-s-ofdm
 |             <c>              |     <c>      |    <c>     |
 |     Scheduled bandwidth      | Group number | Group size |
@@ -115,11 +142,11 @@ In essence, as mentioned before, phase noise is generated by an oscillator. The 
 In NR release 15, there is at most only one PTRS port in the downlink.
 ** Uplink
 *** CP-OFDM
-In CP-OFDM case, there are up to two PTRS ports, indicated by /maxNrofPorts/ in /PTRS-UplinkConfig/.
+In CP-OFDM case, there are up to two PTRS ports, indicated by {{{rrc(maxNrofPorts)}}} in {{{rrc(PTRS-UplinkConfig)}}}.
 
 If a UE supports full-coherent transmission, only single PTRS port is supported if present.
 **** Non-codebook based transmission
-The actual number of PTRS port is determined by sounding reference signal resource indicator (SRI), since each SRS resource is configured with a PTRS port index by /ptrs-PortIndex/ in /SRS-Config/, if /phaseTrackingRS/ is configured in /DMRS-UplinkConfig/.
+The actual number of PTRS port is determined by sounding reference signal resource indicator (SRI), since each SRS resource is configured with a PTRS port index by {{{rrc(ptrs-PortIndex)}}} in {{{rrc(SRS-Config)}}}, if {{{rrc(phaseTrackingRS)}}} is configured in {{{rrc(DMRS-UplinkConfig)}}}.
 **** Codebook-based transmission
 In partial-coherent or non-coherent case, the actual number of PTRS ports depends on TPMI and/or TRI in DCI format 0-1.
 - PTRS port 0 is shared by SRS port 1000 and 1002.
@@ -138,15 +165,15 @@ With LI at hand, a gNB can always associate the PTRS port to the DMRS port with 
 - In single-codeword case, the PTRS port is assocated to the lowest-indexed DMRS port.
 - For double-codeword, the PTRS port is associated to the lowest-indexed DMRS port corresponding to the codeword with highest MCS level.
 ** Uplink
-The association between PTRS ports and DMRS ports is signalled by the field of /PTRS-DMRS assocation/ in DCI format 0-1.
-- If at least one of the following condition is satisfied, /PTRS-DMRS assocation/ is not present.
-  + CP-OFDM: /PTRS-UplinkConfig/ is not configured.
+The association between PTRS ports and DMRS ports is signalled by the field of {{{dci(PTRS-DMRS assocation)}}} in DCI format 0-1.
+- If at least one of the following condition is satisfied, {{{dci(PTRS-DMRS assocation)}}} is not present.
+  + CP-OFDM: {{{rrc(PTRS-UplinkConfig)}}} is not configured.
   + DFT-S-OFDM
-  + /maxRank/ = 1
-- Else, 2-bit /PTRS-DMRS assocation/ is present (see Tables [[tab:assocation-single-port]] and [[tab:assocation-two-port]] for one and two PTRS ports, respectively)
+  + {{{rrc(maxRank)}}} = 1
+- Else, 2-bit {{{dci(PTRS-DMRS assocation)}}} is present (see Tables [[tab:assocation-single-port]] and [[tab:assocation-two-port]] for one and two PTRS ports, respectively)
 
-#+CAPTION: PTRS-DMRS association for UL PTRS port 0
-#+ATTR_HTML: :align center :width 600px
+#+CAPTION: {{{dci(PTRS-DMRS assocation)}}} for UL PTRS port 0
+#+ATTR_HTML: :align center :width 600px :border 3
 #+NAME: tab:assocation-single-port
 | <c>   | <c>                     |
 | Value | DMRS port               |
@@ -156,8 +183,8 @@ The association between PTRS ports and DMRS ports is signalled by the field of /
 | 2     | 3rd scheduled DMRS port |
 | 3     | 4th scheduled DMRS port |
 
-#+CAPTION: PTRS-DMRS association for UL PTRS ports 0 and 1
-#+ATTR_HTML: :align center :width 1000px
+#+CAPTION: {{{dci(PTRS-DMRS assocation)}}} for UL PTRS ports 0 and 1
+#+ATTR_HTML: :align center :width 1000px :border 3
 #+NAME: tab:assocation-two-port
 | <c>          | <c>                                    | <c> | <c>          | <c>                                    |
 | Value of MSB | DMRS port                              |     | Value of LSB | DMRS port                              |
@@ -174,37 +201,37 @@ The target subcarriers for PTRS mapping can be expressed as
   k = k_\text{ref}^\text{RE} + (iK_\text{PT-RS} + k_\text{ref}^\text{RB})N_\text{sc}^\text{RB}, \quad i = 0, 1, \ldots,
 \end{align*}
 where
-- \(k_\text{ref}^\text{RE}\) is subcarrier-level offset, indicated by /resourceElementOffset/ in /PTRS-DownlinkConfig/ as shown in Table [[tab:subc_offset]].
+- \(k_\text{ref}^\text{RE}\) is subcarrier-level offset, indicated by {{{rrc(resourceElementOffset)}}} in {{{rrc(PTRS-DownlinkConfig)}}} as shown in Table [[tab:subc_offset]].
 #+CAPTION: RE-level offset
-#+ATTR_HTML: :align center :width 800px
+#+ATTR_HTML: :align center :width 800px :border 3
 #+NAME: tab:subc_offset
-| <c>               | <c>                     | <c>                                        | <c>                                        |
-| DMRS antenna port | /resourceElementOffset/ | \(k_\text{ref}^\text{RE}\) for type-1 DMRS | \(k_\text{ref}^\text{RE}\) for type-2 DMRS |
-|-------------------+-------------------------+--------------------------------------------+--------------------------------------------|
-| 1000              | 00                      | 0                                          | 0                                          |
-|                   | 01                      | 2                                          | 1                                          |
-|                   | 10                      | 6                                          | 6                                          |
-|                   | 11                      | 8                                          | 7                                          |
-| 1001              | 00                      | 2                                          | 1                                          |
-|                   | 01                      | 4                                          | 6                                          |
-|                   | 10                      | 8                                          | 7                                          |
-|                   | 11                      | 10                                         | 0                                          |
-| 1002              | 00                      | 1                                          | 2                                          |
-|                   | 01                      | 3                                          | 3                                          |
-|                   | 10                      | 7                                          | 8                                          |
-|                   | 11                      | 9                                          | 9                                          |
-| 1003              | 00                      | 3                                          | 3                                          |
-|                   | 01                      | 5                                          | 8                                          |
-|                   | 10                      | 9                                          | 9                                          |
-|                   | 11                      | 11                                         | 2                                          |
-| 1004              | 00                      | -                                          | 4                                          |
-|                   | 01                      | -                                          | 5                                          |
-|                   | 10                      | -                                          | 10                                         |
-|                   | 11                      | -                                          | 11                                         |
-| 1005              | 00                      | -                                          | 5                                          |
-|                   | 01                      | -                                          | 10                                         |
-|                   | 10                      | -                                          | 11                                         |
-|                   | 11                      | -                                          | 4                                          |
+| <c>               | <c>                              | <c>                                        | <c>                                        |
+| DMRS antenna port | {{{rrc(resourceElementOffset)}}} | \(k_\text{ref}^\text{RE}\) for type-1 DMRS | \(k_\text{ref}^\text{RE}\) for type-2 DMRS |
+|-------------------+----------------------------------+--------------------------------------------+--------------------------------------------|
+| 1000              | 00                               | 0                                          | 0                                          |
+|                   | 01                               | 2                                          | 1                                          |
+|                   | 10                               | 6                                          | 6                                          |
+|                   | 11                               | 8                                          | 7                                          |
+| 1001              | 00                               | 2                                          | 1                                          |
+|                   | 01                               | 4                                          | 6                                          |
+|                   | 10                               | 8                                          | 7                                          |
+|                   | 11                               | 10                                         | 0                                          |
+| 1002              | 00                               | 1                                          | 2                                          |
+|                   | 01                               | 3                                          | 3                                          |
+|                   | 10                               | 7                                          | 8                                          |
+|                   | 11                               | 9                                          | 9                                          |
+| 1003              | 00                               | 3                                          | 3                                          |
+|                   | 01                               | 5                                          | 8                                          |
+|                   | 10                               | 9                                          | 9                                          |
+|                   | 11                               | 11                                         | 2                                          |
+| 1004              | 00                               | -                                          | 4                                          |
+|                   | 01                               | -                                          | 5                                          |
+|                   | 10                               | -                                          | 10                                         |
+|                   | 11                               | -                                          | 11                                         |
+| 1005              | 00                               | -                                          | 5                                          |
+|                   | 01                               | -                                          | 10                                         |
+|                   | 10                               | -                                          | 11                                         |
+|                   | 11                               | -                                          | 4                                          |
 - \(k_\text{ref}^\text{RB}\) is PRB-level offset.
 \begin{align*}
   k_\text{ref}^\text{RB} = \begin{cases}
@@ -215,7 +242,7 @@ where
 ** DFT-S-OFDM
 In DFT-S-OFDM case, PTRS samples are inserted before DFT operation, a.k.a. pre-DFT. Given a OFDM symbol with PTRS, PTRS samples are divided into a series of chunks/groups and then scattered in the PUSCH samples prior to DFT. The pattern depends on the number of samples in each group (\(N_\text{samp}^\text{group}\)) and the number of group (\(N_{\text{group}}^{\text{PT-RS}}\)), as shown in Table [[tab:pat_dft_s_ofdm]], where letters \(M, H, T\) mean the PTRS group is respectively inserted in the /middle/, /head/, and /tail/ of the corresponding PUSCH sample segment.
 #+CAPTION: PTRS pattern for DFT-S-OFDM
-#+ATTR_HTML: :align center :width 400px
+#+ATTR_HTML: :align center :width 400px :border 3
 #+NAME: tab:pat_dft_s_ofdm
 | <c>                            | <c>                                                          |
 | \(N_\text{samp}^\text{group}\) | Pattern                                                      |
@@ -257,7 +284,7 @@ where $y_{k_m, l_n}$, $H_{k_m, l_n}$, and $n_{k_m, l_n}$ are the received signal
 
 Since phase noise fluctuates as time, the impairment of phase noise can be completely complemented by a phase difference relative to a reference. Without loss of generality, we identify the phase noise on the first PTRS symbol as the reference, and the phase noise on the symbol is zero, i.e. $\theta_{l_1} = 0$. Then, the phase noise on PTRS symbol $l_n$ can be estimated according to
 \begin{align}
-  \hat{\theta}_{l_n} = \arg \sum_{m=1}^M \dfrac{y_{k_m, l_n}x_{m, n}^*}{y_{k_m, l_1}x_{m, 1}^*}, \quad n = 2, 3, \ldots, N.
+  \hat{\theta}_{l_n} = \arg \sum_{m=1}^M y_{k_m, l_n} y_{k_m, l_1}^* x_{m, n}^* x_{m, 1}, \quad n = 2, 3, \ldots, N.
 \end{align}
 Then, if the time density of the PTRS is less than 1, i.e., $L_\text{PTRS} > 1$, the phase noise of the OFDM symbols without PTRS can be obtained by interpolation.
 ** DFT-S-OFDM
@@ -266,13 +293,14 @@ Then, if the time density of the PTRS is less than 1, i.e., $L_\text{PTRS} > 1$,
 :END:
 In DFT-S-OFDM case, which is different from CP-OFDM waveform, the PTRS samples are inserted into PUSCH samples before the DFT operation, i.e., in the time domain. Accordingly, the phase noise should also be estimated and complemented in the time domain, i.e., after the IDFT processing. Taking $X$ PTRS groups/chunks with each comprised of $K$ samples for instance, the received signal can be expressed as
 \begin{align}
-  r_{m, g, l_n} = h_{m, g, l_n} e^{j\theta_{m, g, l_n}} x_{m, g, l_n} + n_{m, g, l_n}, \quad m = 1, 2, \ldots, K; g = 1, 2, \ldots, X,
+  r_{m, g, l_n} = h_{m, g, l_n} e^{j\theta_{m, g, l_n}} x_{m, g, l_n} + n_{m, g, l_n}, \quad m = 1, \ldots, K; g = 1, \ldots, X,
 \end{align}
 where the subscript tuple $(m, g, l_n)$ means $m$ th sample position within $g$ th PTRS group in DFT-S-OFDM symbol $l_n$; accordingly, $x_{m, g, l_n}$, $\theta_{m, g, l_n}$, $r_{m, g, l_n}$, $h_{m, g, l_n}$, and $n_{m, g, l_n}$ are the PTRS sample, the phase noise, the received signal (after IDFT), the effective channel fading and the effective additive white Gaussian noise at the sample position.
 
 Then, the phase noises can be estimated by
 \[
-\theta_{m, g+1, l_n} - \theta_{m, g, l_n} = \arg \frac{\sum_{m=1}^K r_{m, g+1, l_n} x_{m, g+1, l_n}^{*}}{\sum_{m=1}^K r_{m, g, l_n} x_{m, g, l_n}^{*}}, \quad g = 1, \ldots, X - 1.
+\theta_{m, g+1, l_n} - \theta_{m, g, l_n} = \arg
+\left(\sum_{m=1}^K r_{m, g+1, l_n} x_{m, g+1, l_n}^*\right) \left(\sum_{m=1}^K r_{m, g, l_n}^* x_{m, g, l_n}\right), \quad g = 1, \ldots, X - 1.
 \]
 * Summary
 :PROPERTIES:
