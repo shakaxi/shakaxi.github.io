@@ -1,0 +1,568 @@
+#+TITLE: Sway
+
+* Introduction
+[[https://swaywm.org][Sway]] is a tiling compositor based on [[https://wayland.freedesktop.org][Wayland]]. It can be identified as a counterpart of [[http://i3wm.org][i3]] in Wayland, and as resource saving and lightweight as i3. Even, sway has a completely compatible configuration to i3.
+
+Sway's core components and necessary applications can be simply installed and configured, e.g.,
+- =sway=: core components
+- =swaylock=: a screen locker
+- =swayidle=: an idle management daemon
+- =termite=: a native terminal in wayland
+- =rofi=: an application launcher and window switcher
+- =waybar=: a bar utility in wayland
+- =light=: a backlight controller
+- =mako=: a notification daemon
+- =grim=: a screenshot utility
+- =slurp=: a region selection utility in wayland
+* Installation
+#+BEGIN_SRC sh
+  pacman -S sway swaylock swayidle termite rofi waybar light mako grim slurp
+#+END_SRC
+* Configuration
+For centralized management, the configuration files can be gathered in directory =~/.config/sway=.
+** =~/.config/sway/config=
+#+BEGIN_SRC sh
+  # Default config for sway
+  #
+  # Copy this to ~/.config/sway/config and edit it to your liking.
+  #
+  # Read `man 5 sway` for a complete reference.
+
+  ### Variables
+  set $mod Mod4
+  set $term termite -c ~/.config/sway/termite.conf
+  set $menu "/usr/bin/rofi -combi-modi window,drun,ssh -show combi -show-icons -lines 9 -width 100 -location 7 -font 'Source Code Pro 12'"
+  # set $menu /usr/bin/bemenu-run --fn 'Source Code Pro 12' --list 9 -b -i -p '' | xargs swaymsg exec --
+  set $wallpaper ~/Pictures/wallpaper.jpg
+  set $locker swaylock -f -i $wallpaper
+
+  ### Font
+  font pango: Source Sans Pro 12
+
+  ### Output
+  output * {
+         background $wallpaper fill
+         resolution 1920x1080
+  }
+
+  ### Idle configuration
+  exec swayidle -w \
+           timeout 300 $locker \
+           timeout 600 'swaymsg "output * dpms off"' \
+           resume 'swaymsg "output * dpms on"' \
+           before-sleep $locker
+
+  ### Key bindings
+  #
+  # Basics:
+  #
+      # start a terminal
+      bindsym $mod+Return exec $term
+
+      # kill focused window
+      bindsym $mod+q kill
+
+      # start your launcher
+      bindsym $mod+d exec $menu
+
+      # Drag floating windows by holding down $mod and left mouse button.
+      # Resize them with right mouse button + $mod.
+      # Despite the name, also works for non-floating windows.
+      # Change normal to inverse to use left mouse button for resizing and right
+      # mouse button for dragging.
+      floating_modifier $mod normal
+
+      # reload the configuration file
+      bindsym $mod+Shift+c reload
+
+  #
+  # Moving around:
+  #
+      # Move your focus around
+      bindsym $mod+Left focus left
+      bindsym $mod+Down focus down
+      bindsym $mod+Up focus up
+      bindsym $mod+Right focus right
+
+      # Move the focused window with the same, but add Shift
+      bindsym $mod+Shift+Left move left
+      bindsym $mod+Shift+Down move down
+      bindsym $mod+Shift+Up move up
+      bindsym $mod+Shift+Right move right
+    
+  #
+  # Workspaces:
+  #
+      # define names for workspaces
+      set $ws0 "0"
+      set $ws1 "1"
+      set $ws2 "2"
+      set $ws3 "3"
+      set $ws4 "4"
+      set $ws5 "5"
+      set $ws6 "6"
+      set $ws7 "7"
+      set $ws8 "8"
+      set $ws9 "9"
+
+      # switch to workspace
+      bindsym $mod+0 workspace $ws0
+      bindsym $mod+1 workspace $ws1
+      bindsym $mod+2 workspace $ws2
+      bindsym $mod+3 workspace $ws3
+      bindsym $mod+4 workspace $ws4
+      bindsym $mod+5 workspace $ws5
+      bindsym $mod+6 workspace $ws6
+      bindsym $mod+7 workspace $ws7
+      bindsym $mod+8 workspace $ws8
+      bindsym $mod+9 workspace $ws9
+    
+      # move focused container to workspace
+      bindsym $mod+Shift+0 move container to workspace $ws0
+      bindsym $mod+Shift+1 move container to workspace $ws1
+      bindsym $mod+Shift+2 move container to workspace $ws2
+      bindsym $mod+Shift+3 move container to workspace $ws3
+      bindsym $mod+Shift+4 move container to workspace $ws4
+      bindsym $mod+Shift+5 move container to workspace $ws5
+      bindsym $mod+Shift+6 move container to workspace $ws6
+      bindsym $mod+Shift+7 move container to workspace $ws7
+      bindsym $mod+Shift+8 move container to workspace $ws8
+      bindsym $mod+Shift+9 move container to workspace $ws9
+
+  #
+  # Layout stuff:
+  #
+      # You can "split" the current object of your focus with
+      # $mod+b or $mod+v, for horizontal and vertical splits
+      # respectively.
+      # Split
+      bindsym $mod+h splith
+      bindsym $mod+v splitv
+
+      # Switch the current container between different layout styles
+      bindsym $mod+s layout stacking
+      bindsym $mod+w layout tabbed
+      bindsym $mod+e layout toggle split
+
+      # Make the current focus fullscreen
+      bindsym $mod+f fullscreen
+
+      # Toggle the current focus between tiling and floating mode
+      bindsym $mod+Shift+space floating toggle
+
+      # Swap focus between the tiling area and the floating area
+      bindsym $mod+space focus mode_toggle
+
+      # Move focus to the parent container
+      bindsym $mod+a focus parent
+
+  ### Resize mode
+  mode "resize" {
+      bindsym Left resize shrink width 10px
+      bindsym Up resize grow height 10px
+      bindsym Down resize shrink height 10px
+      bindsym Right resize grow width 10px
+
+      # return to default mode
+      bindsym Return mode "default"
+      bindsym Escape mode "default"
+  }
+  bindsym $mod+r mode "resize"
+
+  ### System mode
+  mode "system" {
+          bindsym h exec systemctl poweroff, mode "default"
+          bindsym l exec $locker, mode "default"
+          bindsym r exec systemctl reboot, mode "default"
+          bindsym s exec $locker && systemctl suspend, mode "default"
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+  }
+  bindsym $mod+Shift+e mode "system"
+
+  ### Status Bar:
+  # Read `man 5 sway-bar` for more information about this section.
+  bar {
+      swaybar_command "waybar -c ~/.config/sway/waybar.config -s ~/.config/sway/waybar.style.css"
+  }
+
+  ### Appearance and behavior 
+  workspace_layout default
+  default_border none
+  default_floating_border pixel
+  popup_during_fullscreen smart
+
+  ### Startup
+  exec mako --anchor bottom-right --default-timeout 6000
+  exec LANG="zh_CN.UTF-8" fcitx &
+
+  ### Screenshot
+  bindsym --release {
+          Print exec grim $(date +'%Y%m%d-%H%M%S.png')
+          Shift+Print exec grim -g "$(slurp)" $(date +'%Y%m%d-%H%M%S.png')
+  }
+
+  ### Keyboard
+  input type:keyboard {
+        xkb_options ctrl:nocaps
+  }
+
+  ### Touchpad of laptop
+  input type:touchpad {
+        dwt enabled
+  }
+
+  ### Lid related event for laptop
+  bindswitch {
+        lid:on output * disable
+        lid:off output * enable
+  }
+
+  ### Special keys for laptop
+  bindsym {
+          # Volume
+          XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+          XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+          XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+          XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+          # Brightness
+          XF86MonBrightnessUp exec light -A 5
+          XF86MonBrightnessDown exec light -U 5
+  }
+
+  include /etc/sway/config.d/*
+  xwayland enable
+#+END_SRC
+** =~/.config/sway/termite.conf=
+#+BEGIN_SRC sh
+  [options]
+  font = Source Code Pro 16
+  scrollback_lines = 10000
+  cursor_blink = off
+
+  [colors]
+  foreground = #ffffff
+  background = rgba(63, 63, 63, 0.8)
+  highlight = #2f2f2f
+  color0 = #3f3f3f
+  color1 = #705050
+  color2 = #60b48a
+  color3 = #dfaf8f
+  color4 = #506070
+  color5 = #dc8cc3
+  color6 = #8cd0d3
+  color7 = #dcdccc
+  color8 = #709080
+  color9 = #dca3a3
+  color10 = #c3bf9f
+  color11 = #f0dfaf
+  color12 = #94bff3
+  color13 = #ec93d3
+  color14 = #93e0e3
+  color15 = #ffffff
+
+  [hints]
+#+END_SRC
+** =~/.config/sway/waybar.config=
+#+BEGIN_SRC sh
+  {
+      "layer": "top",
+      "modules-left": ["sway/workspaces"],
+      "modules-center": [],
+      "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "clock", "tray"],
+      // Modules configuration
+      "sway/workspaces": {
+          "disable-scroll": true,
+          "all-outputs": true
+      },
+      "tray": {
+          "spacing": 10
+      },
+      "clock": {
+          "format": "{: %Y-%m-%d %a %H:%M}",
+          "tooltip": false
+      },
+      "cpu": {
+          "format": "{usage}% ",
+          "tooltip": false
+      },
+      "memory": {
+          "format": "{}% ",
+          "tooltip": true
+      },
+      "temperature": {
+          "critical-threshold": 80,
+          "format": "{temperatureC}°C {icon}",
+          "format-icons": ["", "", ""]
+      },
+      "backlight": {
+          "format": "{percent}% {icon}",
+          "format-icons": ["", ""]
+      },
+      "battery": {
+          "states": {
+              // "good": 95,
+              "warning": 30,
+              "critical": 15
+          },
+          "format": "{capacity}% {icon}",
+          "format-charging": "{capacity}% ",
+          "format-plugged": "{capacity}% ",
+          "format-alt": "{time} {icon}",
+          "tooltip": false,
+          "format-icons": ["", "", "", "", ""]
+      },
+      "network": {
+          "format-wifi": "{essid} ({signalStrength}%) ",
+          "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+          "format-linked": "{ifname} (No IP) ",
+          "format-disconnected": "Disconnected ⚠",
+          "format-alt": "{ifname}: {ipaddr}/{cidr}",
+          "tooltip": false
+      },
+      "pulseaudio": {
+          "scroll-step": 10, // %, can be a float
+          "format": "{volume}% {icon} {format_source}",
+          "format-bluetooth": "{volume}% {icon} {format_source}",
+          "format-muted": "{volume}%  {format_source}",
+          "format-source": "{volume}% ",
+          "format-source-muted": "{volume}% ",
+          "format-icons": {
+              "headphones": "",
+              "handsfree": "",
+              "headset": "",
+              "phone": "",
+              "portable": "",
+              "car": "",
+              "default": ["", "", ""]
+          },
+          "on-click": "pavucontrol"
+      }
+  }
+#+END_SRC
+** =~/.config/sway/waybar.style.css=
+#+BEGIN_SRC sh
+  ,* {
+      border: none;
+      border-radius: 0;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      min-height: 0;
+  }
+
+  window#waybar {
+      background-color: rgba(43, 48, 59, 0.5);
+      border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+      color: #ffffff;
+      transition-property: background-color;
+      transition-duration: .5s;
+  }
+
+  window#waybar.hidden {
+      opacity: 0.3;
+  }
+
+  /*
+  window#waybar.empty {
+      background-color: transparent;
+  }
+  window#waybar.solo {
+      background-color: #FFFFFF;
+  }
+  ,*/
+
+  window#waybar.termite {
+      background-color: #3F3F3F;
+  }
+
+  window#waybar.chromium {
+      background-color: #000000;
+      border: none;
+  }
+
+  #workspaces button {
+      padding: 0 5px;
+      background-color: transparent;
+      color: #ffffff;
+      border-bottom: 3px solid transparent;
+  }
+
+  /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+  #workspaces button:hover {
+      background: rgba(0, 0, 0, 0.2);
+      box-shadow: inherit;
+      border-bottom: 3px solid #ffffff;
+  }
+
+  #workspaces button.focused {
+      background-color: #64727D;
+      border-bottom: 3px solid #ffffff;
+  }
+
+  #workspaces button.urgent {
+      background-color: #eb4d4b;
+  }
+
+  #mode {
+      background-color: #64727D;
+      border-bottom: 3px solid #ffffff;
+  }
+
+  #clock,
+  #battery,
+  #cpu,
+  #memory,
+  #temperature,
+  #backlight,
+  #network,
+  #pulseaudio,
+  #custom-media,
+  #tray,
+  #mode,
+  #idle_inhibitor {
+      padding: 0 10px;
+      margin: 0 0px;
+      color: #ffffff;
+  }
+
+  #clock {
+      background-color: #64727D;
+  }
+
+  #battery {
+      background-color: #ffffff;
+      color: #000000;
+  }
+
+  #battery.charging {
+      color: #ffffff;
+      background-color: #26A65B;
+  }
+
+  @keyframes blink {
+      to {
+          background-color: #ffffff;
+          color: #000000;
+      }
+  }
+
+  #battery.critical:not(.charging) {
+      background-color: #f53c3c;
+      color: #ffffff;
+      animation-name: blink;
+      animation-duration: 0.5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+  }
+
+  label:focus {
+      background-color: #000000;
+  }
+
+  #cpu {
+      background-color: #2ecc71;
+      color: #000000;
+  }
+
+  #memory {
+      background-color: #9b59b6;
+  }
+
+  #backlight {
+      background-color: #90b1b1;
+  }
+
+  #network {
+      background-color: #2980b9;
+  }
+
+  #network.disconnected {
+      background-color: #f53c3c;
+  }
+
+  #pulseaudio {
+      background-color: #f1c40f;
+      color: #000000;
+  }
+
+  #pulseaudio.muted {
+      background-color: #90b1b1;
+      color: #2a5c45;
+  }
+
+  #custom-media {
+      background-color: #66cc99;
+      color: #2a5c45;
+      min-width: 100px;
+  }
+
+  #custom-media.custom-spotify {
+      background-color: #66cc99;
+  }
+
+  #custom-media.custom-vlc {
+      background-color: #ffa000;
+  }
+
+  #temperature {
+      background-color: #f0932b;
+  }
+
+  #temperature.critical {
+      background-color: #eb4d4b;
+  }
+
+  #tray {
+      background-color: #2980b9;
+  }
+
+  #idle_inhibitor {
+      background-color: #2d3436;
+  }
+
+  #idle_inhibitor.activated {
+      background-color: #ecf0f1;
+      color: #2d3436;
+  }
+
+  #mpd {
+      background-color: #66cc99;
+      color: #2a5c45;
+  }
+
+  #mpd.disconnected {
+      background-color: #f53c3c;
+  }
+
+  #mpd.stopped {
+      background-color: #90b1b1;
+  }
+
+  #mpd.paused {
+      background-color: #51a37a;
+  }
+#+END_SRC
+* Startup
+After the installation and configuration, sway can be started by running command =sway= from a TTY after login.
+* KDE Applications
+There are a rich number of applications dedicated for KDE, e.g., file manager =dolphin= and PDF reader =okular=. On =sway=, they can be installed and configured as follows.
+** Installation
+#+BEGIN_SRC sh
+  pacman -S dolphin okular
+#+END_SRC
+** Configuration
+- Install icons of =breeze= theme.
+  #+BEGIN_SRC sh
+    pacman -S breeze-icons
+  #+END_SRC
+- Install configuration tool =qt5ct=.
+  #+BEGIN_SRC sh
+    pacman -S qt5ct
+  #+END_SRC
+- Append the following entry into =~/.pam_environment=.
+  #+BEGIN_SRC sh
+    QT_QPA_PLATFORMTHEME=qt5ct
+  #+END_SRC
+- Run =qt5ct= to configure the font and icon.
