@@ -4,7 +4,7 @@
 <!-- 2019-11-30 Sat 10:39 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NR - Demodulation Reference Signal (DMRS)</title>
+<title>NR - Channel State Information Reference Signal (CSI-RS)</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -225,204 +225,81 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">NR - Demodulation Reference Signal (DMRS)</h1>
+<h1 class="title">NR - Channel State Information Reference Signal (CSI-RS)</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbaf1a4d">Conceptions</a>
-<ul>
-<li><a href="#org117f80e">Frontloaded DMRS</a></li>
-<li><a href="#org18be34d">Additional DMRS</a></li>
-</ul>
-</li>
-<li><a href="#org6f13e54">Sequence Generation</a></li>
-<li><a href="#org789bb3f">Port Number</a></li>
-<li><a href="#orgd81743a">Pattern</a>
-<ul>
-<li><a href="#orgccf95f6">Type-1</a></li>
-<li><a href="#org9424fd7">Type-2</a></li>
-</ul>
-</li>
+<li><a href="#org9200310">Introduction</a></li>
+<li><a href="#org705d175">CSI-RS for CSI Acquisition</a></li>
+<li><a href="#orgdf26426">CSI-RS for Tracking</a></li>
+<li><a href="#org4be5623">CSI-RS for Rate Match</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbaf1a4d" class="outline-2">
-<h2 id="orgbaf1a4d">Conceptions</h2>
-<div class="outline-text-2" id="text-orgbaf1a4d">
+<div id="outline-container-org9200310" class="outline-2">
+<h2 id="org9200310">Introduction</h2>
+<div class="outline-text-2" id="text-org9200310">
 <p>
-Just as its name indicates, <i>demodulation reference signal (DMRS)</i> is the reference signal dedicated for demodulation. Different from LTE system, the DMRS in NR system is comprised of a <i>frontloaded DMRS</i> and a few optional <i>additional DMRS</i>.
-</p>
-</div>
-<div id="outline-container-org117f80e" class="outline-3">
-<h3 id="org117f80e">Frontloaded DMRS</h3>
-<div class="outline-text-3" id="text-org117f80e">
-<p>
-Frontloaded DMRS aims to reduce the duration of demodulation and decoding. There are a couple of mapping schemes.
+In NR system, <i>channel state information reference signal (CSI-RS)</i> can be utilized for
 </p>
 <ul class="org-ul">
-<li><i>Mapping type A</i>: it lies the symbol second to the PDCCH region, e.g., in normal-slot-based transmission.</li>
-<li><i>Mapping type B</i>: it begins with the first data symbol scheduled, e.g., in mini-slot-based transmission.</li>
+<li>CSI acquisition</li>
+<li>Beam management</li>
+<li>Tracking</li>
+<li>Mobility management</li>
+<li>Rate match</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org18be34d" class="outline-3">
-<h3 id="org18be34d">Additional DMRS</h3>
-<div class="outline-text-3" id="text-org18be34d">
+<div id="outline-container-org705d175" class="outline-2">
+<h2 id="org705d175">CSI-RS for CSI Acquisition</h2>
+<div class="outline-text-2" id="text-org705d175">
 <p>
-Additional DMRS is proposed to support high speed mobility, e.g., 500km/h. Each additional DMRS is a simple repetition of the corresponding frontloaded DMRS, e.g., identical subcarriers and equal OFDM symbol number.
+In NR system, a CSI-RS resource can be configured with up to 32 antenna ports, i.e., 1/2/4/8/12/16/24/32. Moreover, 8/12/16/24/32-port CSI-RS is comprised of 2/4-port CSI-RS.
 </p>
 <ul class="org-ul">
-<li>For single-symbol frontloaded DMRS, up to 3 additional DMRS can be supported.</li>
-<li>For double-symbol frontloaded DMRS, at most 1 additional DMRS is supported.</li>
+<li>A single-port CSI-RS resource occupies one RE.</li>
+<li>A 2-port CSI-RS resource occupies 2 x 1 RE's.</li>
+<li>A 4-port CSI-RS resource occupies 4 x 1 or 2 x 2 RE's.</li>
+</ul>
+
+<p>
+The coordinate of a CSI-RS resource in the resource grid is indicated by a bitmap.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdf26426" class="outline-2">
+<h2 id="orgdf26426">CSI-RS for Tracking</h2>
+<div class="outline-text-2" id="text-orgdf26426">
+<p>
+In NR system, a single-port CSI-RS is used as <i>tracking reference signal (TRS)</i>, targetting for time/frequency tracking.
+</p>
+
+
+<div class="figure">
+<p><img src="trs_1sym.png" alt="trs_1sym.png">
+</p>
+</div>
+
+<ul class="org-ul">
+<li><i>Periodic TRS</i> is essentially a periodic CSI-RS resource set, which is configured by high layer signalling.</li>
+<li><i>Aperiodic TRS</i> has the same structure as periodic TRS. The difference lies that it is triggered by <i>downlink control information (DCI)</i>.</li>
 </ul>
 </div>
 </div>
-</div>
-<div id="outline-container-org6f13e54" class="outline-2">
-<h2 id="org6f13e54">Sequence Generation</h2>
-<div class="outline-text-2" id="text-org6f13e54">
+<div id="outline-container-org4be5623" class="outline-2">
+<h2 id="org4be5623">CSI-RS for Rate Match</h2>
+<div class="outline-text-2" id="text-org4be5623">
 <p>
-DMRS symbols are a sequence of QPSK-modulated Gold sequence, which is initialized with
-</p>
-\begin{align*}
-  c_{\text{init}} = \left[ 2^{17}(N_{\text{symb}}^{\text{slot}}n_{s,f}^{\mu} + \ell + 1)(2N_{\text{ID}}^{n_{\text{SCID}}}+1) + 2N_{\text{ID}}^{n_{\text{SCID}}} + n_{\text{SCID}} \right] \mod 2^{31}
-\end{align*}
-<p>
-where
-</p>
-<ul class="org-ul">
-<li>\(N_{\text{symb}}^{\text{slot}}\) is the number of symbols in a slot.</li>
-<li>\(n_{s,f}^{\mu}\) is the index of the slot within the frame.</li>
-<li>\(\ell\) is the index of the symbol within the slot.</li>
-<li>If DCI format 1-1 is used, \(n_{\text{SCID}} \in \{0, 1\}\) is configured by the field of <span style="color: orange">DMRS sequence initialization</span>; otherwise, \(n_{\text{SCID}} = 0\).</li>
-<li>16-bit \(N_{\text{ID}}^0\), \(N_{\text{ID}}^1\) are respectively configured by <span style="color: blue">scramblingID0</span> and <span style="color: blue">scramblingID1</span> in <span style="color: blue">DMRS-DownlinkConfig</span>/<span style="color: blue">DMRS-UplinkConfig</span> for downlink/uplink transmission.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org789bb3f" class="outline-2">
-<h2 id="org789bb3f">Port Number</h2>
-<div class="outline-text-2" id="text-org789bb3f">
-<p>
-Irrespective of downlink or uplink transmission, the number of layers depend on the number of DMRS ports. In NR system, DMRS ports are multiplexed based on <i>frequency division multiplexing (FDM)</i> and <i>orthogonal cover code (OCC)</i>. A FDM entry corresponds to a <i>code division multiplexing (CDM) group</i>. Within a CDM group, OCC is applied in the frequency domain in single-symbol DMRS case and in both frequency and time domains for double-symbol DMRS.
-</p>
-<ul class="org-ul">
-<li>For SU-MIMO, up to 8 and 4 layers can be supported for downlink and uplink transmission, respectively.</li>
-<li>For MU-MIMO, irrespective of downlink or uplink, up to 12 layers can be supported, constrain to at most 4 layers for each user.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd81743a" class="outline-2">
-<h2 id="orgd81743a">Pattern</h2>
-<div class="outline-text-2" id="text-orgd81743a">
-<p>
-In NR system, there are two types of DMRS, a.k.a., <i>type-1</i> and <i>type-2</i>, configured by <span style="color: blue">dmrs-Type</span>.
-</p>
-<ul class="org-ul">
-<li>For CP-OFDM, both types are supported<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.</li>
-<li>For DFT-S-OFDM, only type-1 is supported.</li>
-</ul>
-<p>
-Regardless of DMRS type, a frontloaded DMRS has one or two OFDM symbols, which is configured by <span style="color: blue">maxLength</span> in <span style="color: blue">DMRS-DownlinkConfig</span>/<span style="color: blue">DMRS-UplinkConfig</span> for downlink/uplink transmission, and dynamically indicated by DCI.
+In NR system, zero-power (ZP) CSI-RS can be used for rate match, which is exclusive for PDSCH transmission. There are 3 types of ZP-CSI-RS, periodic, semi-persistent, and aperiodic.
 </p>
 </div>
-<div id="outline-container-orgccf95f6" class="outline-3">
-<h3 id="orgccf95f6">Type-1</h3>
-<div class="outline-text-3" id="text-orgccf95f6">
-<p>
-For type-1 DMRS, an example pattern can be illustrated in Figure <a href="#org9e45f97">1</a>, with 2 combs corresponding to 2 CDM groups.
-</p>
-
-<div id="org9e45f97" class="figure">
-<p><img src="nr_dmrs_type1.png" alt="nr_dmrs_type1.png" width="1000px">
-</p>
-<p><span class="figure-number">Figure 1: </span>Type-1 DMRS</p>
-</div>
-
-<ul class="org-ul">
-<li>In single-symbol case, up to 4 ports are supported
-<ul class="org-ul">
-<li>2x comb</li>
-<li>2x frequency domain OCC<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></li>
-</ul></li>
-<li>In double-symbol case, up to 8 ports are supported.
-<ul class="org-ul">
-<li>2x comb</li>
-<li>2x frequency-domain OCC<sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup></li>
-<li>2x time-domain OCC</li>
-</ul></li>
-</ul>
 </div>
 </div>
-<div id="outline-container-org9424fd7" class="outline-3">
-<h3 id="org9424fd7">Type-2</h3>
-<div class="outline-text-3" id="text-org9424fd7">
-<p>
-Similarly, an example pattern of type-2 DMRS can be shown in Figure <a href="#org3d78b67">2</a> with 3 FDM entries corresponding to 3 CDM groups.
-</p>
-
-<div id="org3d78b67" class="figure">
-<p><img src="nr_dmrs_type2.png" alt="nr_dmrs_type2.png" width="1000px">
-</p>
-<p><span class="figure-number">Figure 2: </span>Type-2 DMRS</p>
-</div>
-
-<ul class="org-ul">
-<li>In single-symbol case, up to 6 ports are supported.
-<ul class="org-ul">
-<li>3x FDM</li>
-<li>2x frequency domain OCC</li>
-</ul></li>
-<li>In double-symbol case, up to 12 ports are supported.
-<ul class="org-ul">
-<li>3x FDM</li>
-<li>2x frequency domain OCC</li>
-<li>2x time domain OCC</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-Before configuration, type-1 is applied by default.
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-For OCC code \([1, -1]\) with 2x comb, it is essentially a cyclic shift of \(N_{\text{FFT}}/4\), corresponding to a phase rotation of \(\pi/2\).
-</p></div></div>
-
-
-</div>
-</div></div>
 </body>
 </html>
