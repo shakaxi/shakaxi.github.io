@@ -4,7 +4,7 @@
 <!-- 2019-11-30 Sat 10:39 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NR - Demodulation Reference Signal (DMRS)</title>
+<title>Least Square and Its Iterative Approach</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -250,162 +250,244 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">NR - Demodulation Reference Signal (DMRS)</h1>
+<h1 class="title">Least Square and Its Iterative Approach</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbaf1a4d">Conceptions</a>
+<li><a href="#org2fb8262">Introduction</a></li>
+<li><a href="#sec:ls">Least Square (LS)</a></li>
+<li><a href="#sec:rls">Recursive Least Square (RLS)</a>
 <ul>
-<li><a href="#org117f80e">Frontloaded DMRS</a></li>
-<li><a href="#org18be34d">Additional DMRS</a></li>
-</ul>
-</li>
-<li><a href="#org6f13e54">Sequence Generation</a></li>
-<li><a href="#org789bb3f">Port Number</a></li>
-<li><a href="#orgd81743a">Pattern</a>
-<ul>
-<li><a href="#orgccf95f6">Type-1</a></li>
-<li><a href="#org9424fd7">Type-2</a></li>
+<li><a href="#org37771f8">Iteration of Auto/Cross-Correlation</a></li>
+<li><a href="#org2cb04e3">Iteration of LS Filter</a></li>
+<li><a href="#org849ebc2">Procedure</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbaf1a4d" class="outline-2">
-<h2 id="orgbaf1a4d">Conceptions</h2>
-<div class="outline-text-2" id="text-orgbaf1a4d">
+<div id="outline-container-org2fb8262" class="outline-2">
+<h2 id="org2fb8262">Introduction</h2>
+<div class="outline-text-2" id="text-org2fb8262">
 <p>
-Just as its name indicates, <i>demodulation reference signal (DMRS)</i> is the reference signal dedicated for demodulation. Different from LTE system, the DMRS in NR system is comprised of a <i>frontloaded DMRS</i> and a few optional <i>additional DMRS</i>.
+As is well-known, <i>least square (LS)</i> is the optimal linear unbiased estimator, which plays an extremely important role in the classic estimation theory. This document motivates to illustrate the fundamental of LS algorithm. However, LS algorithm suffers rather high complexity, especially for the operation of matrix inversion, which greatly limits its application in practice. In order to reduce the computational complexity, an iterative approach, a.k.a. <i>recursive LS (RLS)</i>, has been proposed.
+</p>
+
+<p>
+The remainder part of the document is structured as follows. In Section <a href="#sec:ls">Least Square (LS)</a>, the principle of LS algorithm is derived in detail. Then its iterative solution, i.e., RLS algorithm, follows in Section <a href="#sec:rls">Recursive Least Square (RLS)</a>.
 </p>
 </div>
-<div id="outline-container-org117f80e" class="outline-3">
-<h3 id="org117f80e">Frontloaded DMRS</h3>
-<div class="outline-text-3" id="text-org117f80e">
+</div>
+
+<div id="outline-container-org85f33d6" class="outline-2">
+<h2 id="sec:ls"><a id="org85f33d6"></a>Least Square (LS)</h2>
+<div class="outline-text-2" id="text-sec:ls">
 <p>
-Frontloaded DMRS aims to reduce the duration of demodulation and decoding. There are a couple of mapping schemes.
-</p>
-<ul class="org-ul">
-<li><i>Mapping type A</i>: it lies the symbol second to the PDCCH region, e.g., in normal-slot-based transmission.</li>
-<li><i>Mapping type B</i>: it begins with the first data symbol scheduled, e.g., in mini-slot-based transmission.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org18be34d" class="outline-3">
-<h3 id="org18be34d">Additional DMRS</h3>
-<div class="outline-text-3" id="text-org18be34d">
-<p>
-Additional DMRS is proposed to support high speed mobility, e.g., 500km/h. Each additional DMRS is a simple repetition of the corresponding frontloaded DMRS, e.g., identical subcarriers and equal OFDM symbol number.
-</p>
-<ul class="org-ul">
-<li>For single-symbol frontloaded DMRS, up to 3 additional DMRS can be supported.</li>
-<li>For double-symbol frontloaded DMRS, at most 1 additional DMRS is supported.</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org6f13e54" class="outline-2">
-<h2 id="org6f13e54">Sequence Generation</h2>
-<div class="outline-text-2" id="text-org6f13e54">
-<p>
-DMRS symbols are a sequence of QPSK-modulated Gold sequence, which is initialized with
+A series of signal \(x(n)\) passes through a linear dynamic channel, characterized by <i>channel impulse response (CIR)</i> \(\mathbf{h}(n) = [h(n, 0), h(n, 1), \ldots, h(n, p-1)]^T\), where \(p\) is the memory length of the channel. Then the output signal \(y(n)\) can be expressed by
 </p>
 \begin{align*}
-  c_{\text{init}} = \left[ 2^{17}(N_{\text{symb}}^{\text{slot}}n_{s,f}^{\mu} + \ell + 1)(2N_{\text{ID}}^{n_{\text{SCID}}}+1) + 2N_{\text{ID}}^{n_{\text{SCID}}} + n_{\text{SCID}} \right] \mod 2^{31}
+  y(n) = \sum_{\tau=0}^{p-1} h(n, \tau)x(n-\tau) + v(n)
 \end{align*}
+<p>
+where \(v(n)\) is additive Gaussian noise, \(n = 0, 1, \ldots\).
+</p>
+
+<p>
+In order to recover the desired signal \(x(n)\), a dynamic <i>finite impulse response (FIR)</i> filter \(\mathbf{w}(n) = [w(n, 0), w(n, 1), \ldots, w(n, q-1)]^T\) takes \(\mathbf{y}(n) = [y(n), y(n-1), \ldots, y(n-q+1)]^T\) as input and outputs \(\tilde{x}(n)\).
+</p>
+\begin{align*}
+  \tilde{x}(n) &= \sum_{\tau=0}^{q-1} w(n, \tau) y(n-\tau) \\
+  &= \mathbf{w}^T(n) \mathbf{y}(n).
+\end{align*}
+
+<p>
+Given \(\mathbf{w}(n)\), the sample-wise error<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> can be denoted as
+</p>
+\begin{align*}
+  e_{\mathbf{w}(n)}(i) &= \tilde{x}(i) - x(i) \\
+  &= \mathbf{w}^T(n) \mathbf{y}(i) - x(i), \quad i = 0, 1, \ldots, n.
+\end{align*}
+<p>
+Taking \(C_{\mathbf{w}(n)} = \sum_{i=0}^n \lambda^{n-i} e_{\mathbf{w}(n)}^2(i)\) as cost function<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, the filter can be obtained by making
+</p>
+\begin{align*}
+  \frac{\partial C_{\mathbf{w}(n)}}{\partial \mathbf{w}(n)} &= 2\sum_{i=0}^n \lambda^{n-i} e_{\mathbf{w}(n)}(i) \frac{\partial e_{\mathbf{w}(n)}(i)}{\partial \mathbf{w}(n)} \\
+                                                            &= 2\sum_{i=0}^n \lambda^{n-i} \mathbf{y}(i)[\mathbf{y}^T(i) \mathbf{w}(n) - x(i)]  \\
+  &= 2 \left[ \sum_{i=0}^n \lambda^{n-i} \mathbf{y}(i)\mathbf{y}^T(i) \right] \mathbf{w}(n) - 2 \sum_{i=0}^{n} \lambda^{n-i}x(i) \mathbf{y}(i) \\
+  &= \mathbf{0}.
+\end{align*}
+<p>
+Clearly, the impulse response of the filter can be written as
+</p>
+\begin{align}
+  \label{eq:ls}
+\mathbf{w}(n) = \left[ \sum_{i=0}^n \lambda^{n-i} \mathbf{y}(i)\mathbf{y}^T(i) \right]^{-1} \sum_{i=0}^{n} \lambda^{n-i}x(i) \mathbf{y}(i)
+\end{align}
+<p>
+For simple description, define <i>weighted auto-correlation</i> matrix as
+</p>
+\begin{align}
+  \label{eq:cov}
+\mathbf{R}(n) \triangleq \sum_{i=0}^n \lambda^{n-i} \mathbf{y}(i)\mathbf{y}^T(i)
+\end{align}
+<p>
+and <i>weighted cross-correlation</i> vector as
+</p>
+\begin{align}
+  \label{eq:corr}
+\mathbf{r}(n) \triangleq \sum_{i=0}^{n} \lambda^{n-i}x(i) \mathbf{y}(i).
+\end{align}
+<p>
+Then, by substituting \eqref{eq:cov} and \eqref{eq:corr} into \eqref{eq:ls}, the impulse response can be rewritten as
+</p>
+\begin{align}
+  \label{eq:ls-brief}
+\mathbf{w}(n) = \mathbf{R}^{-1}(n) \mathbf{r}(n).
+\end{align}
+</div>
+</div>
+
+<div id="outline-container-orgf5583ce" class="outline-2">
+<h2 id="sec:rls"><a id="orgf5583ce"></a>Recursive Least Square (RLS)</h2>
+<div class="outline-text-2" id="text-sec:rls">
+<p>
+In this section, RLS algorithm is derived in detail.
+</p>
+</div>
+<div id="outline-container-org37771f8" class="outline-3">
+<h3 id="org37771f8">Iteration of Auto/Cross-Correlation</h3>
+<div class="outline-text-3" id="text-org37771f8">
+<p>
+According to \eqref{eq:cov}, we have
+</p>
+\begin{align}
+  \mathbf{R}(n) &= \lambda \sum_{i=0}^{n-1} \lambda^{n-1-i} \mathbf{y}(i)\mathbf{y}^T(i) + \mathbf{y}(n) \mathbf{y}^T(n) \nonumber \\
+  &= \lambda \mathbf{R}(n-1) + \mathbf{y}(n) \mathbf{y}^T(n). \label{eq:iter-R}
+\end{align}
+<p>
+Applying matrix inversion lemma to \eqref{eq:iter-R} can yield the iteration between \(\mathbf{R}^{-1}(n)\) and \(\mathbf{R}^{-1}(n-1)\), i.e.,
+</p>
+\begin{align*}
+\mathbf{R}^{-1}(n) = \frac{1}{\lambda} \left[ \mathbf{R}^{-1}(n-1) - \frac{\mathbf{R}^{-1}(n-1) \mathbf{y}(n) \mathbf{y}^T(n) \mathbf{R}^{-1}(n-1)}{\lambda + \mathbf{y}^T(n) \mathbf{R}^{-1}(n-1) \mathbf{y}(n)} \right]
+\end{align*}
+<p>
+For the sake of compact expression, denote \(\mathbf{P}(n) = \mathbf{R}^{-1}(n)\) and define <i>Kalman gain</i> vector
+</p>
+\begin{align}
+  \mathbf{k}(n) &= \frac{\mathbf{R}^{-1}(n-1) \mathbf{y}(n)}{\lambda + \mathbf{y}^T(n) \mathbf{R}^{-1}(n-1) \mathbf{y}(n)} \nonumber \\
+  &= \frac{\mathbf{P}(n-1) \mathbf{y}(n)}{\lambda + \mathbf{y}^T(n) \mathbf{P}(n-1) \mathbf{y}(n)}. \label{eq:kalman-gain}
+\end{align}
+<p>
+Then, the iteration above becomes
+</p>
+\begin{align}
+    \label{eq:iter-p}
+  \mathbf{P}(n) = \frac{1}{\lambda} [\mathbf{P}(n-1) - \mathbf{k}(n) \mathbf{y}^T(n) \mathbf{P}(n-1)].
+\end{align}
+<p>
+By reducing the entry of \(\mathbf{k}(n) \mathbf{y}^T(n) \mathbf{P}(n-1) \mathbf{y}(n)\) in \eqref{eq:kalman-gain} and \eqref{eq:iter-p}, we can get
+</p>
+\begin{align}
+  \label{eq:k-p}
+\mathbf{k}(n) = \mathbf{P}(n) \mathbf{y}(n).
+\end{align}
+
+<p>
+Simlarly, according to \eqref{eq:corr}, the iteration of the weighted cross-correlation is available, i.e.,
+</p>
+\begin{align}
+  \mathbf{r}(n) &= \lambda \sum_{i=0}^{n-1} \lambda^{n-1-i}x(i) \mathbf{y}(i) + x(n) \mathbf{y}(n) \nonumber \\
+  &= \lambda \mathbf{r}(n-1) + x(n) \mathbf{y}(n). \label{eq:iter-r}
+\end{align}
+</div>
+</div>
+
+<div id="outline-container-org2cb04e3" class="outline-3">
+<h3 id="org2cb04e3">Iteration of LS Filter</h3>
+<div class="outline-text-3" id="text-org2cb04e3">
+<p>
+Substituting \eqref{eq:iter-p}, \eqref{eq:k-p} and \eqref{eq:iter-r} into \eqref{eq:ls-brief} produces the iteration between \(\mathbf{w}(n)\) and \(\mathbf{w}(n-1)\), i.e.,
+</p>
+\begin{align}
+  \label{eq:iter-w}
+  \mathbf{w}(n) &= \mathbf{P}(n) \mathbf{r}(n) \nonumber \\
+                &= \mathbf{P}(n) [ \lambda \mathbf{r}(n-1) + x(n) \mathbf{y}(n) ] \nonumber \\
+                & = [\mathbf{P}(n-1) - \mathbf{k}(n) \mathbf{y}^T(n) \mathbf{P}(n-1)] \mathbf{r}(n-1) + x(n) \mathbf{k}(n) \nonumber \\
+                & = \mathbf{w}(n-1) - \mathbf{k}(n) \mathbf{y}^T(n) \mathbf{w}(n-1) + x(n) \mathbf{k}(n) \nonumber \\
+  &= \mathbf{w}(n-1) + \alpha(n) \mathbf{k}(n)
+\end{align}
 <p>
 where
 </p>
-<ul class="org-ul">
-<li>\(N_{\text{symb}}^{\text{slot}}\) is the number of symbols in a slot.</li>
-<li>\(n_{s,f}^{\mu}\) is the index of the slot within the frame.</li>
-<li>\(\ell\) is the index of the symbol within the slot.</li>
-<li>If DCI format 1-1 is used, \(n_{\text{SCID}} \in \{0, 1\}\) is configured by the field of <span style="color: orange">DMRS sequence initialization</span>; otherwise, \(n_{\text{SCID}} = 0\).</li>
-<li>16-bit \(N_{\text{ID}}^0\), \(N_{\text{ID}}^1\) are respectively configured by <span style="color: blue">scramblingID0</span> and <span style="color: blue">scramblingID1</span> in <span style="color: blue">DMRS-DownlinkConfig</span>/<span style="color: blue">DMRS-UplinkConfig</span> for downlink/uplink transmission.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org789bb3f" class="outline-2">
-<h2 id="org789bb3f">Port Number</h2>
-<div class="outline-text-2" id="text-org789bb3f">
+\begin{align}
+  \label{eq:apriori-err}
+\alpha(n) \triangleq x(n) - \mathbf{y}^T(n) \mathbf{w}(n-1)
+\end{align}
 <p>
-Irrespective of downlink or uplink transmission, the number of layers depend on the number of DMRS ports. In NR system, DMRS ports are multiplexed based on <i>frequency division multiplexing (FDM)</i> and <i>orthogonal cover code (OCC)</i>. A FDM entry corresponds to a <i>code division multiplexing (CDM) group</i>. Within a CDM group, OCC is applied in the frequency domain in single-symbol DMRS case and in both frequency and time domains for double-symbol DMRS.
-</p>
-<ul class="org-ul">
-<li>For SU-MIMO, up to 8 and 4 layers can be supported for downlink and uplink transmission, respectively.</li>
-<li>For MU-MIMO, irrespective of downlink or uplink, up to 12 layers can be supported, constrain to at most 4 layers for each user.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd81743a" class="outline-2">
-<h2 id="orgd81743a">Pattern</h2>
-<div class="outline-text-2" id="text-orgd81743a">
-<p>
-In NR system, there are two types of DMRS, a.k.a., <i>type-1</i> and <i>type-2</i>, configured by <span style="color: blue">dmrs-Type</span>.
-</p>
-<ul class="org-ul">
-<li>For CP-OFDM, both types are supported<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.</li>
-<li>For DFT-S-OFDM, only type-1 is supported.</li>
-</ul>
-<p>
-Regardless of DMRS type, a frontloaded DMRS has one or two OFDM symbols, which is configured by <span style="color: blue">maxLength</span> in <span style="color: blue">DMRS-DownlinkConfig</span>/<span style="color: blue">DMRS-UplinkConfig</span> for downlink/uplink transmission, and dynamically indicated by DCI.
+is termed <i>a priori estimation error</i>.
 </p>
 </div>
-<div id="outline-container-orgccf95f6" class="outline-3">
-<h3 id="orgccf95f6">Type-1</h3>
-<div class="outline-text-3" id="text-orgccf95f6">
-<p>
-For type-1 DMRS, an example pattern can be illustrated in Figure <a href="#org9e45f97">1</a>, with 2 combs corresponding to 2 CDM groups.
-</p>
-
-<div id="org9e45f97" class="figure">
-<p><img src="nr_dmrs_type1.png" alt="nr_dmrs_type1.png" width="1000px">
-</p>
-<p><span class="figure-number">Figure 1: </span>Type-1 DMRS</p>
 </div>
 
-<ul class="org-ul">
-<li>In single-symbol case, up to 4 ports are supported
-<ul class="org-ul">
-<li>2x comb</li>
-<li>2x frequency domain OCC<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></li>
-</ul></li>
-<li>In double-symbol case, up to 8 ports are supported.
-<ul class="org-ul">
-<li>2x comb</li>
-<li>2x frequency-domain OCC<sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup></li>
-<li>2x time-domain OCC</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org9424fd7" class="outline-3">
-<h3 id="org9424fd7">Type-2</h3>
-<div class="outline-text-3" id="text-org9424fd7">
+<div id="outline-container-org849ebc2" class="outline-3">
+<h3 id="org849ebc2">Procedure</h3>
+<div class="outline-text-3" id="text-org849ebc2">
 <p>
-Similarly, an example pattern of type-2 DMRS can be shown in Figure <a href="#org3d78b67">2</a> with 3 FDM entries corresponding to 3 CDM groups.
+By collecting the operations scattered above, the detailed procedure of RLS algorithm can be summarized as follows, where the values of the two parameters should be offered in advance. \(\lambda \in (0, 1]\) is the forgetting factor, while \(\delta\) is a small positive number used for \(\mathbf{P}(0)\) initialization.
 </p>
 
-<div id="org3d78b67" class="figure">
-<p><img src="nr_dmrs_type2.png" alt="nr_dmrs_type2.png" width="1000px">
-</p>
-<p><span class="figure-number">Figure 2: </span>Type-2 DMRS</p>
-</div>
+<table align="center">
 
-<ul class="org-ul">
-<li>In single-symbol case, up to 6 ports are supported.
-<ul class="org-ul">
-<li>3x FDM</li>
-<li>2x frequency domain OCC</li>
-</ul></li>
-<li>In double-symbol case, up to 12 ports are supported.
-<ul class="org-ul">
-<li>3x FDM</li>
-<li>2x frequency domain OCC</li>
-<li>2x time domain OCC</li>
-</ul></li>
-</ul>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>Init.</b>:</td>
+<td class="org-left">\(\mathbf{y}(0) = \mathbf{0}\), \(\mathbf{w}(0) = \mathbf{0}\), \(\mathbf{P}(0) = \delta \mathbf{I}\).</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>for</b></td>
+<td class="org-left">\(n = 1, 2, \ldots\) <b>do</b></td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(\mathbf{y}(n) = [y(n), y(n-1), \ldots, y(n-q+1)]^T\)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(\mathbf{k}(n) = \dfrac{\mathbf{P}(n-1) \mathbf{y}(n)}{\lambda + \mathbf{y}^T(n) \mathbf{P}(n-1) \mathbf{y}(n)}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(\mathbf{P}(n) = \dfrac{1}{\lambda} [\mathbf{P}(n-1) - \mathbf{k}(n) \mathbf{y}^T(n) \mathbf{P}(n-1)]\)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(\alpha(n) \triangleq x(n) - \mathbf{y}^T(n) \mathbf{w}(n-1)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(\mathbf{w}(n) = \mathbf{w}(n-1) +\alpha(n)\mathbf{k}(n)\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>end</b></td>
+<td class="org-left"><b>for</b></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -414,11 +496,11 @@ Similarly, an example pattern of type-2 DMRS can be shown in Figure <a href="#or
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-Before configuration, type-1 is applied by default.
+To be precise, it is <i>a posterior estimation error</i>.
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-For OCC code \([1, -1]\) with 2x comb, it is essentially a cyclic shift of \(N_{\text{FFT}}/4\), corresponding to a phase rotation of \(\pi/2\).
+Herein, \(\lambda \in (0, 1]\) is termed <i>forgetting factor</i>.
 </p></div></div>
 
 
