@@ -1,0 +1,37 @@
+#+TITLE: C++ - Thread Pool
+
+* Introduction
+[[http://www.sourceforge.net/projects/threadpool][Threadpool]] is a C++ thread pool written by Philipp Henkel based on [[http://www.boost.org][boost]] library. It provides a variety of thread pools with easy usage.
+* Installation
+As a prequisite, boost library should be installed in advance, e.g.,
+#+begin_src sh
+  pacman -S boost
+#+end_src
+Threadpool consists only of header files, and therefore the building operation is not needed. The only operation is to copy the header file =threadpool.hpp= and folder =threadpool/= to directory =/usr/include/boost=.
+* Usage
+For usage, header file =#include <boost/threadpool.hpp>= should be included.
+
+An example of first-in first-out (FIFO) thread pool utilization can be provided as follows.
+#+begin_src c++
+  #include <memory>
+  #include <boost/threadpool.hpp>
+
+  using namespace std;
+  using namespace boost::threadpool;
+
+  int main(int argc, char *argv[])
+  {
+      /// Create a FIFO thread pool with 9 worker threads.
+      unique_ptr<pool> tp = make_unique<pool>(9);
+
+      /// Submit 10000 tasks, function(para1, para2), to the thread pool for excutation.
+      for (size_t para1 = 0; para1 < 100; ++para1)
+          for (size_t para2 = 0; para2 < 100; ++para2)
+              tp->schedule(bind(&function, para1, para2));
+
+      /// Synchronization for all the threads.
+      tp->wait();
+
+      return 0;
+  }
+#+end_src
