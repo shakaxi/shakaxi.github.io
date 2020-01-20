@@ -74,7 +74,7 @@ The $\mathbf{W}_1$ in \eqref{eq:w} can be further expressed as
                &= \mathbf{I}_2 \otimes \mathbf{B},
 \end{align*}
 where $\mathbf{B} \triangleq \begin{bmatrix} \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_L \end{bmatrix} \in \mathbb{C}^{N_1N_2 \times L}$ are the candidate beams/vectors over the whole bandwidth.
-- For rank 1 or 2, $L$ can be configured to 1 or 4 by \rrc{CodebookMode}. Otherwise, $L$ is fixed to 1.
+- For rank 1 or 2, $L$ can be configured to 1 or 4 by {{{rrc(CodebookMode)}}}. Otherwise, $L$ is fixed to 1.
 - Component columns of $\mathbf{B}$ are spatially correlated.
 - There are two structures for $\mathbf{B}$.
   + $\mathbf{b}_i \in \mathcal{F}_{N_1 \times N_2}^{O_1 \times O_2}$, $i = 1, \ldots, L$.
