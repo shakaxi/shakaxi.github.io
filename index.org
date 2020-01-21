@@ -7,6 +7,7 @@
 - [[file:cpp_multithread.org][C++ - Multithread]]
 - [[file:cpp_polymorphism.org][C++ - Polymorphism]]
 - [[file:cpp_stl.org][C++ - Standard Template Library]]
+- [[file:cpp_tp.org][C++ - Thread Pool]]
 - [[file:cpp_sl.org][C++ - 标准库]]
 - [[file:cpp_switch.org][C/C++ - switch]]
 - [[file:cvx_opt.org][Convex Optimization]]
@@ -87,3 +88,4 @@
 - [[file:wiener_filter.org][Wiener Filter]]
 - [[file:zc.org][ZC]]
 - [[file:zathura.org][Zathura]]
+- [[file:guiqulaixici.org][归去来兮辞]]
