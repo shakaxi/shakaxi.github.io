@@ -19,14 +19,14 @@ DMRS symbols are a sequence of QPSK-modulated Gold sequence, which is initialize
 \end{align*}
 where
 - $N_{\text{symb}}^{\text{slot}}$ is the number of symbols in a slot.
-- $n_{s,f}^{\mu}$ is the index of the slot within the frame.
-- $\ell$ is the index of the symbol within the slot.
+- $n_{s,f}^{\mu}$ is the index of the slot within a frame.
+- $\ell$ is the index of the symbol within a slot.
 - If DCI format 1-1 is used, $n_{\text{SCID}} \in \{0, 1\}$ is configured by the field of {{{dci(DMRS sequence initialization)}}}; otherwise, $n_{\text{SCID}} = 0$.
 - 16-bit $N_{\text{ID}}^0$, $N_{\text{ID}}^1$ are respectively configured by {{{rrc(scramblingID0)}}} and {{{rrc(scramblingID1)}}} in {{{rrc(DMRS-DownlinkConfig)}}}/{{{rrc(DMRS-UplinkConfig)}}} for downlink/uplink transmission.
 * Port Number
 Irrespective of downlink or uplink transmission, the number of layers depend on the number of DMRS ports. In NR system, DMRS ports are multiplexed based on /frequency division multiplexing (FDM)/ and /orthogonal cover code (OCC)/. A FDM entry corresponds to a /code division multiplexing (CDM) group/. Within a CDM group, OCC is applied in the frequency domain in single-symbol DMRS case and in both frequency and time domains for double-symbol DMRS.
 - For SU-MIMO, up to 8 and 4 layers can be supported for downlink and uplink transmission, respectively.
-- For MU-MIMO, irrespective of downlink or uplink, up to 12 layers can be supported, constrain to at most 4 layers for each user.
+- For MU-MIMO, irrespective of downlink or uplink, up to 12 layers can be supported, constrained to at most 4 layers for each user.
 * Pattern
 In NR system, there are two types of DMRS, a.k.a., /type-1/ and /type-2/, configured by {{{rrc(dmrs-Type)}}}.
 - For CP-OFDM, both types are supported[fn:1].

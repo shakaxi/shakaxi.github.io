@@ -1,33 +1,557 @@
 #+TITLE: NR - Channel State Information Reference Signal (CSI-RS)
-#+PROPERTY: header-args:latex :results raw :headers '("\\usepackage{tikz}") :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
+#+MACRO: rrc @@html:<span style="color: blue">$1</span>@@@@latex:\textcolor{blue}{$1}@@
+#+MACRO: dci @@html:<span style="color: orange">$1</span>@@@@latex:\textcolor{orange}{$1}@@
 
 * Introduction
-In NR system, /channel state information reference signal (CSI-RS)/ can be utilized for
-- CSI acquisition
+In NR system, /channel state information reference signal (CSI-RS)/ plays a variety of roles, including
+- CSI measurement
 - Beam management
 - Tracking
 - Mobility management
 - Rate match
-* CSI-RS for CSI Acquisition
-In NR system, a CSI-RS resource can be configured with up to 32 antenna ports, i.e., 1/2/4/8/12/16/24/32. Moreover, 8/12/16/24/32-port CSI-RS is comprised of 2/4-port CSI-RS.
+
+Generally, there are two types of CSI-RS, termed /non-zero-power (NZP)/ CSI-RS and /zero-power (ZP)/ CSI-RS, respectively. The former is configured by {{{rrc(NZP-CSI-RS-Resource)}}} or {{{rrc(CSI-RS-Resource-Mobility)}}} in {{{rrc(CSI-RS-ResourceConfigMobility)}}}, while the latter is configured by {{{rrc(ZP-CSI-RS-Resource)}}}.
+* Sequence Generation
+CSI-RS symbols are a sequence of QPSK-modulated Gold sequence, which is initialized with
+\begin{align*}
+  c_{\text{init}} = \left[ 2^{10}(N_{\text{symb}}^{\text{slot}}n_{s,f}^{\mu} + \ell + 1)(2n_{\text{ID}}+1) + n_{\text{ID}} \right] \mod 2^{31}
+\end{align*}
+where
+- $N_{\text{symb}}^{\text{slot}}$ is the number of symbols in a slot.
+- $n_{s,f}^{\mu}$ is the index of the slot within a frame.
+- $\ell$ is the index of the symbol within a slot.
+- $n_{\text{ID}}$ is configured by {{{rrc(scramblingID)}}} or {{{rrc(sequenceGenerationConfig)}}}.
+* Resource Mapping
+** Parameters
+Regarding the resource mapping of CSI-RS, following parameters are involved.
+- Density $\rho$ is configured by {{{rrc(density)}}} in {{{rrc(CSI-RS-ResourceMapping)}}}/{{{rrc(CSI-RS-CellMobility)}}}.
+- Port number $X$ is configured by {{{rrc(nrofPorts)}}}.
+- Power offset $\beta_{\text{CSIRS}}$ is configured by {{{rrc(powerControlOffsetSS)}}} in {{{rrc(NZP-CSI-RS-Resource)}}}.
+- CDM type is configured by {{{rrc(cdm-Type)}}} in {{{rrc(CSI-RS-ResourceMapping)}}}.
+- Time-domain location
+  + Slot-level: period and offset are indicated by {{{rrc(CSI-ResourcePeriodicityAndOffset)}}}/{{{rrc(slotConfig)}}}.
+  + Symbol-level: $\ell_0 \in \left\{0, 1, \ldots, 13\right\}$ and $\ell_1 \in \left\{2, 3, \ldots, 12\right\}$ are respectively configured by {{{rrc(firstOFDMSymbolInTimeDomain)}}} and {{{rrc(firstOFDMSymbolInTimeDomain2)}}} in {{{rrc(CSI-RS-ResourceMapping)}}}/{{{rrc(CSI-RS-ResourceConfigMobility)}}}.
+- Frequency-domain location
+  + RB-level: the starting position and number are configured by
+    - {{{rrc(freqBand)}}} and {{{rrc(density)}}} in {{{rrc(CSI-RS-ResourceMapping)}}}, or
+    - {{{rrc(startPRB)}}} and {{{rrc(nrofPRBs)}}} in {{{rrc(csi-rs-MeasurementBW)}}} in {{{rrc(CSI-RS-CellMobility)}}}.
+  + Subcarrier-level: indicated by a bitmap configured by {{{rrc(frequencyDomainAllocation)}}} in {{{rrc(CSI-RS-ResourceMapping)}}}/{{{rrc(CSI-RS-ResourceConfigMobility)}}}.
+** Patterns
+In NR systems, 1/2/4/8/12/16/24/32-port CSI-RS are defined. The multi-port CSI-RS are constructed based on 2/4-port CSI-RS using frequency domain (FD) and time domain (TD) /orthogonal cover code (OCC)/. The coordinate of a CSI-RS resource in the resource grid is indicated by a bitmap.
 - A single-port CSI-RS resource occupies one RE.
 - A 2-port CSI-RS resource occupies 2 x 1 RE's.
 - A 4-port CSI-RS resource occupies 4 x 1 or 2 x 2 RE's.
+*** 1-port CSI-RS
+In case of $\rho = 3$, there are 4 candidates available, as shown in Figure [[fig:pat-1port]]; Otherwise, i.e., $\rho = 1$ or $0.5$, there are $C_{12}^1$ candidates for the subcarrier index.
+#+begin_src latex :file nr_csirs_1port.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \foreach \bmp in {0, 1, 2}
+      {
+        \filldraw [bmp1] (0, \bmp * 4) rectangle +(1, 1);
+        \filldraw [bmp2] (0, \bmp * 4 + 1) rectangle +(1, 1);
+        \filldraw [bmp3] (0, \bmp * 4 + 2) rectangle +(1, 1);
+        \filldraw [bmp4] (0, \bmp * 4 + 3) rectangle +(1, 1);
+      }
+  \end{tikzpicture}
+#+end_src
 
-The coordinate of a CSI-RS resource in the resource grid is indicated by a bitmap.
-* CSI-RS for Tracking
+#+name: fig:pat-1port
+#+caption: 1-port CSI-RS ($\rho = 3$)
+#+attr_html: :width 50px
+[[file:nr_csirs_1port.png]]
+*** 2-port CSI-RS
+For 2-port CSI-RS, as shown in Figure [[fig:pat-2port]], there are $C_6^1$ candidates.
+#+begin_src latex :file nr_csirs_2port.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}
+      \node [anchor=south] at (0.5, 12) {2x-FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      {
+        \filldraw [bmp1] (0, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (0, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (0, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (0, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (0, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (0, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture}
+#+end_src
+
+#+name: fig:pat-2port
+#+caption: 2-port CSI-RS
+#+attr_html: :width 100px
+[[file:nr_csirs_2port.png]]
+*** 4-port CSI-RS
+As shown in Figure [[fig:pat-4port]], there are $C_3^1$ and $C_6^1$ candidates for single-symbol and double-symbol 4-port CSI-RS, respectively.
+#+begin_src latex :file nr_csirs_4port.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}
+      \node [anchor=south] at (0.5, 12) {2x-FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=red!60]
+      \tikzstyle{bmp5} = [thick, fill=green!60]
+      \tikzstyle{bmp6} = [thick, fill=blue!60]
+      \foreach \bmp in {0, 1}
+      {
+        \filldraw [bmp1] (0, \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (0, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (0, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (0, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (0, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (0, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture} \hspace{1cm}
+  \begin{tikzpicture}
+      \node [anchor=south] at (1, 12) {2x-FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \tikzstyle{bmp11} = [thick, fill=red!60]
+      \tikzstyle{bmp22} = [thick, fill=green!60]
+      \tikzstyle{bmp33} = [thick, fill=blue!60]
+      \tikzstyle{bmp44} = [thick, fill=yellow!60]
+      \tikzstyle{bmp55} = [thick, fill=orange!60]
+      \tikzstyle{bmp66} = [thick, fill=magenta!60]
+      \foreach \bmp in {0, 1}
+      {
+        \filldraw [bmp1] (0, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (0, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (0, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (0, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (0, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (0, 10 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp11] (1, \bmp) rectangle +(1, 1);
+        \filldraw [bmp22] (1, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp33] (1, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp44] (1, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp55] (1, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp66] (1, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture}
+#+end_src
+
+#+name: fig:pat-4port
+#+caption: 4-port CSI-RS
+#+attr_html: :width 300px
+[[file:nr_csirs_4port.png]]
+*** 8-port CSI-RS
+As shown in Figure [[fig:pat-8port]], there are $C_6^4$ and $C_6^2$ candidates for single-symbol and double-symbol 8-port CSI-RS, respectively.
+#+begin_src latex :file nr_csirs_8port.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}
+      \node [anchor=south] at (0.5, 12) {2x-FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      {
+        \filldraw [bmp1] (0, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (0, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (0, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (0, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (0, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (0, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture} \hspace{1cm}
+  \begin{tikzpicture}
+      \node [anchor=south] at (1, 12) {2x-FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \tikzstyle{bmp11} = [thick, fill=red!60]
+      \tikzstyle{bmp22} = [thick, fill=green!60]
+      \tikzstyle{bmp33} = [thick, fill=blue!60]
+      \tikzstyle{bmp44} = [thick, fill=yellow!60]
+      \tikzstyle{bmp55} = [thick, fill=orange!60]
+      \tikzstyle{bmp66} = [thick, fill=magenta!60]
+      \foreach \bmp in {0, 1}
+      {
+        \filldraw [bmp1] (0, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (0, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (0, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (0, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (0, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (0, 10 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp11] (1, \bmp) rectangle +(1, 1);
+        \filldraw [bmp22] (1, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp33] (1, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp44] (1, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp55] (1, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp66] (1, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture} \hspace{1cm}
+  \begin{tikzpicture}
+      \node [anchor=south] at (0.5, 12) {2x-FD-OCC + 2x-TD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      \foreach \x in {0, 1}
+      {
+        \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture}
+#+end_src
+
+#+name: fig:pat-8port
+#+caption: 8-port CSI-RS
+#+attr_html: :width 500px
+[[file:nr_csirs_8port.png]]
+*** 12-port CSI-RS
+As shown in Figure [[fig:pat-12port]], for single-symbol case, there is only one candidate; while for double-symbol case, there are $C_6^3$ candidates.
+#+begin_src latex :file nr_csirs_12port.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}
+      \node [anchor=south] at (0.5, 12) {2x-FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      {
+        \filldraw [bmp1] (0, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (0, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (0, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (0, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (0, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (0, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture} \hspace{1cm}
+  \begin{tikzpicture}
+      \node [anchor=south] at (0.5, 12) {2x-FD-OCC + 2x-TD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      \foreach \x in {0, 1}
+      {
+        \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture}
+#+end_src
+
+#+name: fig:pat-12port
+#+caption: 12-port CSI-RS
+#+attr_html: :width 300px
+[[file:nr_csirs_12port.png]]
+*** 16-port CSI-RS
+The pattern of 16-port CSI-RS can be shown in Figure [[fig:pat-16port]]. There are $C_6^4$ candidates.
+#+begin_src latex :file nr_csirs_16port.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}
+      \node [anchor=south] at (1, 12) {2x-FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \tikzstyle{bmp11} = [thick, fill=red!60]
+      \tikzstyle{bmp22} = [thick, fill=green!60]
+      \tikzstyle{bmp33} = [thick, fill=blue!60]
+      \tikzstyle{bmp44} = [thick, fill=yellow!60]
+      \tikzstyle{bmp55} = [thick, fill=orange!60]
+      \tikzstyle{bmp66} = [thick, fill=magenta!60]
+      \foreach \bmp in {0, 1}
+      {
+        \filldraw [bmp1] (0, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (0, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (0, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (0, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (0, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (0, 10 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp11] (1, \bmp) rectangle +(1, 1);
+        \filldraw [bmp22] (1, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp33] (1, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp44] (1, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp55] (1, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp66] (1, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture} \hspace{1cm}
+    \begin{tikzpicture}
+        \node [anchor=south] at (0.5, 12) {2x-FD-OCC + 2x-TD-OCC};
+        \node [anchor=north] at (0.5, 0) {$\ell_0$};
+        \tikzstyle{bmp1} = [thick, fill=red]
+        \tikzstyle{bmp2} = [thick, fill=green]
+        \tikzstyle{bmp3} = [thick, fill=blue]
+        \tikzstyle{bmp4} = [thick, fill=yellow]
+        \tikzstyle{bmp5} = [thick, fill=orange]
+        \tikzstyle{bmp6} = [thick, fill=magenta]
+        \foreach \bmp in {0, 1}
+        \foreach \x in {0, 1}
+        {
+          \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+          \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+          \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+          \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+          \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+          \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+        }
+    \end{tikzpicture}
+#+end_src
+
+#+name: fig:pat-16port
+#+caption: 16-port CSI-RS
+#+attr_html: :width 300px
+[[file:nr_csirs_16port.png]]
+*** 24-port CSI-RS
+For 24-port CSI-RS, there are $C_6^3$ candidates, as shown in Figure [[fig:pat-24port]].
+#+begin_src latex :file nr_csirs_24port.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}
+      \node [anchor=south] at (2.5, 12) {2x-FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \node [anchor=north] at (3.5, 0) {$\ell_1$};
+      \draw [thick] (0, 0) rectangle (5, 12);
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \tikzstyle{bmp11} = [thick, fill=red!60]
+      \tikzstyle{bmp22} = [thick, fill=green!60]
+      \tikzstyle{bmp33} = [thick, fill=blue!60]
+      \tikzstyle{bmp44} = [thick, fill=yellow!60]
+      \tikzstyle{bmp55} = [thick, fill=orange!60]
+      \tikzstyle{bmp66} = [thick, fill=magenta!60]
+      \foreach \bmp in {0, 1}
+      \foreach \x in {0, 3}
+      {
+        \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp11] (\x + 1, \bmp) rectangle +(1, 1);
+        \filldraw [bmp22] (\x + 1, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp33] (\x + 1, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp44] (\x + 1, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp55] (\x + 1, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp66] (\x + 1, 10 + \bmp) rectangle +(1, 1);
+      }
+      \node at (2.5, 6) {$\cdots$};
+  \end{tikzpicture} \hspace{1cm}
+  \begin{tikzpicture}
+      \node [anchor=south] at (2.5, 12) {2x-FD-OCC + 2x-TD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \node [anchor=north] at (3.5, 0) {$\ell_1$};
+      \draw [thick] (0, 0) rectangle (5, 12);
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      \foreach \x in {0, 1, 3, 4}
+      {
+        \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+      }
+      \node at (2.5, 6) {$\cdots$};
+  \end{tikzpicture} \hspace{1cm}
+  \begin{tikzpicture}
+      \node [anchor=south] at (2, 12) {2x-FD-OCC + 4x-TD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      \foreach \x in {0, 1, 2, 3}
+      {
+        \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture}
+#+end_src
+
+#+name: fig:pat-24port
+#+caption: 24-port CSI-RS
+#+attr_html: :width 900px
+[[file:nr_csirs_24port.png]]
+*** 32-port CSI-RS
+For 32-port CSI-RS, there are $C_6^4$ candidates, as shown in Figure [[fig:pat-32port]].
+#+begin_src latex :file nr_csirs_32port.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+  \begin{tikzpicture}
+      \node [anchor=south] at (2.5, 12) {2x FD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \node [anchor=north] at (3.5, 0) {$\ell_1$};
+      \draw [thick] (0, 0) rectangle (5, 12);
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \tikzstyle{bmp11} = [thick, fill=red!60]
+      \tikzstyle{bmp22} = [thick, fill=green!60]
+      \tikzstyle{bmp33} = [thick, fill=blue!60]
+      \tikzstyle{bmp44} = [thick, fill=yellow!60]
+      \tikzstyle{bmp55} = [thick, fill=orange!60]
+      \tikzstyle{bmp66} = [thick, fill=magenta!60]
+      \foreach \bmp in {0, 1}
+      \foreach \x in {0, 3}
+      {
+        \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp11] (\x + 1, \bmp) rectangle +(1, 1);
+        \filldraw [bmp22] (\x + 1, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp33] (\x + 1, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp44] (\x + 1, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp55] (\x + 1, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp66] (\x + 1, 10 + \bmp) rectangle +(1, 1);
+      }
+      \node at (2.5, 6) {$\cdots$};
+  \end{tikzpicture} \hspace{1cm}
+  \begin{tikzpicture}
+      \node [anchor=south] at (2.5, 12) {2x-FD-OCC + 2x-TD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \node [anchor=north] at (3.5, 0) {$\ell_1$};
+      \draw [thick] (0, 0) rectangle (5, 12);
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      \foreach \x in {0, 1, 3, 4}
+      {
+        \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+      }
+      \node at (2.5, 6) {$\cdots$};
+  \end{tikzpicture} \hspace{1cm}
+  \begin{tikzpicture}
+      \node [anchor=south] at (2, 12) {2x-FD-OCC + 4x-TD-OCC};
+      \node [anchor=north] at (0.5, 0) {$\ell_0$};
+      \tikzstyle{bmp1} = [thick, fill=red]
+      \tikzstyle{bmp2} = [thick, fill=green]
+      \tikzstyle{bmp3} = [thick, fill=blue]
+      \tikzstyle{bmp4} = [thick, fill=yellow]
+      \tikzstyle{bmp5} = [thick, fill=orange]
+      \tikzstyle{bmp6} = [thick, fill=magenta]
+      \foreach \bmp in {0, 1}
+      \foreach \x in {0, 1, 2, 3}
+      {
+        \filldraw [bmp1] (\x, \bmp) rectangle +(1, 1);
+        \filldraw [bmp2] (\x, 2 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp3] (\x, 4 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp4] (\x, 6 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp5] (\x, 8 + \bmp) rectangle +(1, 1);
+        \filldraw [bmp6] (\x, 10 + \bmp) rectangle +(1, 1);
+      }
+  \end{tikzpicture}
+#+end_src
+
+#+name: fig:pat-32port
+#+caption: 32-port CSI-RS
+#+attr_html: :width 900px
+[[file:nr_csirs_32port.png]]
+* Functionality
+** CSI-RS for CSI Measurement
+*** Framework
+Just as its name indicates, CSI-RS can be used to measure CSI, e.g., CQI, PMI, CRI, SS/PBCH block resource indicator (SSBRI), layer indicator (LI), RI, L1-RSRP.
+
+A UE can be configured with
+- $N \ge 1$ {{{rrc(CSI-ReportConfig)}}}, in which
+  + The time domain behavior is indicated by {{{rrc(reportConfigType)}}}, whose candidate values are {{{rrc(aperiodic)}}}/{{{rrc(periodic)}}}/{{{rrc(semiPersistentOnPUCCH)}}}/{{{rrc(semiPersistentOnPUSCH)}}}.
+  + CSI-related or L1-RSRP-related quantities are indicated by {{{rrc(reportQuantity)}}};
+  + Reporting granularity in the frequency domain is indicated by {{{rrc(reportFreqConfiguration)}}}.
+  + Time domain restriction for channel and interference measurements (IM) are indicated by {{{rrc(timeRestrictionForChannelMeasurements)}}} and {{{rrc(timeRestrictionForInterferenceMeasurements)}}}, respectively.
+  + Codebook-related configurations are indicated by {{{rrc(CodebookConfig)}}}.
+- $M \ge 1$ {{{rrc(CSI-ResourceConfig)}}}, in which
+  + $S \ge 1$ CSI resource sets are indicated by {{{rrc(csi-RS-ResourceSetList)}}}.
+  + The time domain behavior is indicated by {{{rrc(resourceType)}}}, whose candidate values are {{{rrc(aperiodic)}}}/{{{rrc(periodic)}}}/{{{rrc(semi-persistent)}}}. All the {{{rrc(CSI-ResourceConfig)}}} linked to one {{{rrc(CSI-ReportConfig)}}} have the same time domain behavior.
+  + The NZP CSI-RS resource(s) for channel/interference measurement and CSI-IM resource(s) for IM corresponding to one {{{rrc(CSI-ReportConfig)}}} are QCLed with respect to {{{rrc(QCL-TypeD)}}}.
+- One or two lists of trigger states ({{{rrc(CSI-AperiodicTriggerStateList)}}} and {{{rrc(CSI-SemiPersistentOnPUSCH-TriggerStateList)}}}), with each trigger state consisting of a list of associated {{{rrc(CSI-ReportConfig)}}}.
+*** NZP CSI-RS
+For each {{{rrc(CSI-ResourceConfig)}}}, a UE can be configured with one or more NZP CSI-RS resource set(s) by {{{rrc(NZP-CSI-RS-ResourceSet)}}}, with each consisting of $K \ge 1$ NZP CSI-RS resource(s).
+- All the CSI-RS resource(s) except the NZP CSI-RS resources used for IM within one set are configured with the same {{{rrc(density)}}} and {{{rrc(nrofPorts)}}}.
+- All the CSI-RS resource(s) within one set are expected to configured with the same {{{rrc(startingRB)}}}, {{{rrc(nrofRBs)}}}, and {{{rrc(cdm-type)}}}.
+*** CSI-IM
+A UE can be configured with one or more CSI-IM resource set(s) by {{{rrc(CSI-IM-ResourceSet)}}}, with each consisting of $K \ge 1$ {{{rrc(CSI-IM-Resource)}}}, in which
+- 
+
+** CSI-RS for Tracking
 In NR system, a single-port CSI-RS is used as /tracking reference signal (TRS)/, targetting for time/frequency tracking.
 
-#+BEGIN_SRC latex :file trs_1sym.png
-  \begin{tikzpicture}
-      \draw (0, 0) -- (1, 0);
-  \end{tikzpicture}
-#+END_SRC
+# #+BEGIN_SRC latex :file nr_trs_1sym.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
+#   \begin{tikzpicture}
+#       \draw (0, 0) -- (1, 0);
+#   \end{tikzpicture}
+# #+END_SRC
 
-#+RESULTS:
-[[file:trs_1sym.png]]
+# #+name: fig:trs
+# #+caption: CSI-RS for tracking
+# #+attr_html: :width 900px
+# [[file:nr_trs_1sym.png]]
 
 - /Periodic TRS/ is essentially a periodic CSI-RS resource set, which is configured by high layer signalling.
 - /Aperiodic TRS/ has the same structure as periodic TRS. The difference lies that it is triggered by /downlink control information (DCI)/.
-* CSI-RS for Rate Match
+** CSI-RS for Rate Match
 In NR system, zero-power (ZP) CSI-RS can be used for rate match, which is exclusive for PDSCH transmission. There are 3 types of ZP-CSI-RS, periodic, semi-persistent, and aperiodic.
