@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Basic Configuration</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -253,7 +266,7 @@ As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a pow
 <h2 id="orgfbb2935">Set values for predefined variables</h2>
 <div class="outline-text-2" id="text-orgfbb2935">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">setq</span> variable value)
+<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">setq</span> variable value)
 </pre>
 </div>
 </div>
@@ -303,7 +316,7 @@ After the installation, the configuration includes two steps
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'load-path path-of-the-extension)
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">extension-name</span>)
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">extension-name</span>)
 </pre>
 </div>
 </div>

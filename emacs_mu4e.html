@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Mu4e</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -289,7 +302,7 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-orgd7745ef">
 <div class="org-src-container">
 <pre class="src src-sh">git clone --depth=1 git://github.com/djcb/mu.git
-<span style="color: #483d8b;">cd</span> mu
+<span style="color: #e090d7;">cd</span> mu
 autoreconf -i
 ./configure --prefix=/opt/mu
 make
@@ -318,21 +331,21 @@ ln -s /opt/mu/bin/mu /usr/local/bin
 <div class="outline-text-3" id="text-org63f54ef">
 <div class="org-src-container">
 <pre class="src src-sh">[retriever]
-<span style="color: #483d8b;">type</span> = SimplePOP3SSLRetriever
+<span style="color: #e090d7;">type</span> = SimplePOP3SSLRetriever
 server = POP_SERVER
 port = PORT_NUM
 username = USER_NAME
 password = PASSWORD
 
 [destination]
-<span style="color: #483d8b;">type</span> = MDA_external
+<span style="color: #e090d7;">type</span> = MDA_external
 path = /usr/bin/procmail
 
 [options]
 read_all = false
 delete = false
 verbose = 0
-message_log = $<span style="color: #a0522d;">HOME</span>/.Mail/getmail.log
+message_log = $<span style="color: #fcaf3e;">HOME</span>/.Mail/getmail.log
 </pre>
 </div>
 </div>
@@ -341,10 +354,10 @@ message_log = $<span style="color: #a0522d;">HOME</span>/.Mail/getmail.log
 <h3 id="org742fb16"><code>~/.procmailrc</code></h3>
 <div class="outline-text-3" id="text-org742fb16">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a0522d;">MAILDIR</span>=$<span style="color: #a0522d;">HOME</span>/.Mail
-<span style="color: #a0522d;">DEFAULT</span>=$<span style="color: #a0522d;">MAILDIR</span>/inbox/
-<span style="color: #a0522d;">LOGFILE</span>=$<span style="color: #a0522d;">MAILDIR</span>/procmail.log
-<span style="color: #a0522d;">VERBOSE</span>=yes
+<pre class="src src-sh"><span style="color: #fcaf3e;">MAILDIR</span>=$<span style="color: #fcaf3e;">HOME</span>/.Mail
+<span style="color: #fcaf3e;">DEFAULT</span>=$<span style="color: #fcaf3e;">MAILDIR</span>/inbox/
+<span style="color: #fcaf3e;">LOGFILE</span>=$<span style="color: #fcaf3e;">MAILDIR</span>/procmail.log
+<span style="color: #fcaf3e;">VERBOSE</span>=yes
 
 :0:
 * ^(To|Cc): 3GPP_TSG_RAN_WG1@LIST.ETSI.ORG
@@ -365,39 +378,39 @@ rp/
 <h3 id="org64f70f3"><code>~/.emacs.d/init.el</code></h3>
 <div class="outline-text-3" id="text-org64f70f3">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(add-to-list 'load-path <span style="color: #8b2252;">"/opt/mu/share/emacs/site-lisp/mu4e"</span>)
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">mu4e</span>)
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">org-mu4e</span>)
+<pre class="src src-emacs-lisp">(add-to-list 'load-path <span style="color: #e9b96e;">"/opt/mu/share/emacs/site-lisp/mu4e"</span>)
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">mu4e</span>)
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">org-mu4e</span>)
 
-(<span style="color: #a020f0;">setq</span> user-full-name <span style="color: #8b2252;">"NAME"</span>
-      user-mail-address <span style="color: #8b2252;">"EMAIL_ADDRESS"</span>
-      mu4e-compose-signature <span style="color: #8b2252;">"SIGNATURE"</span>)
+(<span style="color: #b4fa70;">setq</span> user-full-name <span style="color: #e9b96e;">"NAME"</span>
+      user-mail-address <span style="color: #e9b96e;">"EMAIL_ADDRESS"</span>
+      mu4e-compose-signature <span style="color: #e9b96e;">"SIGNATURE"</span>)
 
-(<span style="color: #a020f0;">setq</span> mu4e-maildir <span style="color: #8b2252;">"~/.Mail"</span>
-      mu4e-drafts-folder <span style="color: #8b2252;">"/drafts"</span>
-      mu4e-sent-folder <span style="color: #8b2252;">"/sent"</span>
-      mu4e-trash-folder <span style="color: #8b2252;">"/trash"</span>)
+(<span style="color: #b4fa70;">setq</span> mu4e-maildir <span style="color: #e9b96e;">"~/.Mail"</span>
+      mu4e-drafts-folder <span style="color: #e9b96e;">"/drafts"</span>
+      mu4e-sent-folder <span style="color: #e9b96e;">"/sent"</span>
+      mu4e-trash-folder <span style="color: #e9b96e;">"/trash"</span>)
 
-(<span style="color: #a020f0;">setq</span> mu4e-headers-fields '((<span style="color: #483d8b;">:human-date</span> . 12)
-                            (<span style="color: #483d8b;">:flags</span> . 6)
-                            (<span style="color: #483d8b;">:mailing-list</span> . 10)
-                            (<span style="color: #483d8b;">:from</span> . 22)
-                            (<span style="color: #483d8b;">:thread-subject</span>)))
+(<span style="color: #b4fa70;">setq</span> mu4e-headers-fields '((<span style="color: #e090d7;">:human-date</span> . 12)
+                            (<span style="color: #e090d7;">:flags</span> . 6)
+                            (<span style="color: #e090d7;">:mailing-list</span> . 10)
+                            (<span style="color: #e090d7;">:from</span> . 22)
+                            (<span style="color: #e090d7;">:thread-subject</span>)))
 
-(<span style="color: #a020f0;">setq</span> message-send-mail-function 'smtpmail-send-it
-      smtpmail-default-smtp-server <span style="color: #8b2252;">"SMTP_SERVER"</span>
-      smtpmail-smtp-server <span style="color: #8b2252;">"SMTP_SERVER"</span>
+(<span style="color: #b4fa70;">setq</span> message-send-mail-function 'smtpmail-send-it
+      smtpmail-default-smtp-server <span style="color: #e9b96e;">"SMTP_SERVER"</span>
+      smtpmail-smtp-server <span style="color: #e9b96e;">"SMTP_SERVER"</span>
       smtpmail-stream-type 'starttls
       smtpmail-smtp-service PORT_NUM)
 
-(<span style="color: #a020f0;">setq</span> mu4e-get-mail-command <span style="color: #8b2252;">"getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc"</span>)
+(<span style="color: #b4fa70;">setq</span> mu4e-get-mail-command <span style="color: #e9b96e;">"getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc"</span>)
 
-(<span style="color: #a020f0;">setq</span> mail-user-agent 'mu4e-user-agent
-      mu4e-user-mail-address-list '(<span style="color: #8b2252;">"EMAIL_ADDRESS"</span>)
-      mu4e-completing-read-function (<span style="color: #a020f0;">quote</span> completing-read)
+(<span style="color: #b4fa70;">setq</span> mail-user-agent 'mu4e-user-agent
+      mu4e-user-mail-address-list '(<span style="color: #e9b96e;">"EMAIL_ADDRESS"</span>)
+      mu4e-completing-read-function (<span style="color: #b4fa70;">quote</span> completing-read)
       mu4e-confirm-quit nil
-      mu4e-attachment-dir <span style="color: #8b2252;">"~/Downloads"</span>
-      mu4e-html2text-command <span style="color: #8b2252;">"w3m -dump -T text/html -M"</span>
+      mu4e-attachment-dir <span style="color: #e9b96e;">"~/Downloads"</span>
+      mu4e-html2text-command <span style="color: #e9b96e;">"w3m -dump -T text/html -M"</span>
       mu4e-use-fancy-chars t
       mu4e-view-show-images t
       mu4e-view-show-addresses t

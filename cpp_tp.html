@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-22 Wed 00:03 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Linux - Microcode</title>
+<title>C++ - Thread Pool</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -241,55 +241,75 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Linux - Microcode</h1>
+<h1 class="title">C++ - Thread Pool</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2fb1bf7">Introduction</a></li>
-<li><a href="#orgf51a8f0">Installation</a></li>
-<li><a href="#org146b654">Configuration</a></li>
+<li><a href="#org2bba3b4">Introduction</a></li>
+<li><a href="#org005fe1e">Installation</a></li>
+<li><a href="#orgf386fb1">Usage</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2fb1bf7" class="outline-2">
-<h2 id="org2fb1bf7">Introduction</h2>
-<div class="outline-text-2" id="text-org2fb1bf7">
+<div id="outline-container-org2bba3b4" class="outline-2">
+<h2 id="org2bba3b4">Introduction</h2>
+<div class="outline-text-2" id="text-org2bba3b4">
 <p>
-<i>Microcode</i> is a technique that imposes an interpreter between the hardware and the architectural level of a computer. Processor vendors, e.g., Intel and AMD, release updates to the processor microcode for some reasons, e.g., bug fixes, which can be applied by the Linux kernel during boot.
+<a href="http://www.sourceforge.net/projects/threadpool">Threadpool</a> is a C++ thread pool written by Philipp Henkel based on <a href="http://www.boost.org">boost</a> library. It provides a variety of thread pools with easy usage.
+</p>
+</div>
+</div>
+<div id="outline-container-org005fe1e" class="outline-2">
+<h2 id="org005fe1e">Installation</h2>
+<div class="outline-text-2" id="text-org005fe1e">
+<p>
+As a prequisite, boost library should be installed in advance, e.g.,
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S boost
+</pre>
+</div>
+<p>
+Threadpool consists only of header files, and therefore the building operation is not needed. The only operation is to copy the header file <code>threadpool.hpp</code> and folder <code>threadpool/</code> to directory <code>/usr/include/boost</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf386fb1" class="outline-2">
+<h2 id="orgf386fb1">Usage</h2>
+<div class="outline-text-2" id="text-orgf386fb1">
+<p>
+For usage, header file <code>#include &lt;boost/threadpool.hpp&gt;</code> should be included.
 </p>
 
 <p>
-For AMD processors, the microcode is covered by package <code>linux-firmware</code> which is installed as part of the base system. Therefore, no specific processing is needed. While for Intel processors, it is not the truth. Package <code>intel-ucode</code> must be manually installed.
-</p>
-</div>
-</div>
-<div id="outline-container-orgf51a8f0" class="outline-2">
-<h2 id="orgf51a8f0">Installation</h2>
-<div class="outline-text-2" id="text-orgf51a8f0">
-<p>
-For Arch Linux OS, the package <code>intel-ucode</code> can be conveniently installed by following command.
+An example of first-in first-out (FIFO) thread pool utilization can be provided as follows.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">pacman -S intel-ucode
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;memory&gt;</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;boost/threadpool.hpp&gt;</span>
+
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">boost</span>::<span style="color: #e9b2e3;">threadpool</span>;
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #73d216;">/// </span><span style="color: #73d216;">Create a FIFO thread pool with 9 worker threads.</span>
+    <span style="color: #8cc4ff;">unique_ptr</span>&lt;pool&gt; <span style="color: #fcaf3e;">tp</span> = make_unique&lt;pool&gt;(9);
+
+    <span style="color: #73d216;">/// </span><span style="color: #73d216;">Submit 10000 tasks, function(para1, para2), to the thread pool for excutation.</span>
+    <span style="color: #b4fa70;">for</span> (<span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">para1</span> = 0; para1 &lt; 100; ++para1)
+        <span style="color: #b4fa70;">for</span> (<span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">para2</span> = 0; para2 &lt; 100; ++para2)
+            tp-&gt;schedule(bind(&amp;function, para1, para2));
+
+    <span style="color: #73d216;">/// </span><span style="color: #73d216;">Synchronization for all the threads.</span>
+    tp-&gt;wait();
+
+    <span style="color: #b4fa70;">return</span> 0;
+}
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org146b654" class="outline-2">
-<h2 id="org146b654">Configuration</h2>
-<div class="outline-text-2" id="text-org146b654">
-<p>
-After the installation, in order to make the Linux kernel apply the microcode, image <code>/boot/intel-ucode.img</code> must be enabled as te first initrd in the bootloader configuration file. Taking <code>grub</code> for instance, its configuration file must be regenerated.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh">grub-mkconfig -o /boot/grub/grub.cfg
-</pre>
-</div>
-<p>
-Afterwards, the updated microcode is able to be loaded at the boot.
-</p>
 </div>
 </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Flycheck</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -265,14 +278,14 @@ flycheck
 <h2 id="org9df1de0">Configuration</h2>
 <div class="outline-text-2" id="text-org9df1de0">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">Enable global flycheck mode</span>
+<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">Enable global flycheck mode</span>
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Clang support (C++14)</span>
-(<span style="color: #a020f0;">setq</span> flycheck-clang-language-standard <span style="color: #8b2252;">"c++14"</span>)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">Clang support (C++14)</span>
+(<span style="color: #b4fa70;">setq</span> flycheck-clang-language-standard <span style="color: #e9b96e;">"c++14"</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Elpy support (use flycheck instead of flymake)</span>
-(<span style="color: #a020f0;">setq</span> elpy-modules (delete 'elpy-module-flymake elpy-modules))
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">Elpy support (use flycheck instead of flymake)</span>
+(<span style="color: #b4fa70;">setq</span> elpy-modules (delete 'elpy-module-flymake elpy-modules))
 (add-hook 'elpy-mode-hook 'flycheck-mode)
 </pre>
 </div>

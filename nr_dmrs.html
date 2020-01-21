@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-11-30 Sat 10:39 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - Demodulation Reference Signal (DMRS)</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -319,8 +332,8 @@ where
 </p>
 <ul class="org-ul">
 <li>\(N_{\text{symb}}^{\text{slot}}\) is the number of symbols in a slot.</li>
-<li>\(n_{s,f}^{\mu}\) is the index of the slot within the frame.</li>
-<li>\(\ell\) is the index of the symbol within the slot.</li>
+<li>\(n_{s,f}^{\mu}\) is the index of the slot within a frame.</li>
+<li>\(\ell\) is the index of the symbol within a slot.</li>
 <li>If DCI format 1-1 is used, \(n_{\text{SCID}} \in \{0, 1\}\) is configured by the field of <span style="color: orange">DMRS sequence initialization</span>; otherwise, \(n_{\text{SCID}} = 0\).</li>
 <li>16-bit \(N_{\text{ID}}^0\), \(N_{\text{ID}}^1\) are respectively configured by <span style="color: blue">scramblingID0</span> and <span style="color: blue">scramblingID1</span> in <span style="color: blue">DMRS-DownlinkConfig</span>/<span style="color: blue">DMRS-UplinkConfig</span> for downlink/uplink transmission.</li>
 </ul>
@@ -334,7 +347,7 @@ Irrespective of downlink or uplink transmission, the number of layers depend on 
 </p>
 <ul class="org-ul">
 <li>For SU-MIMO, up to 8 and 4 layers can be supported for downlink and uplink transmission, respectively.</li>
-<li>For MU-MIMO, irrespective of downlink or uplink, up to 12 layers can be supported, constrain to at most 4 layers for each user.</li>
+<li>For MU-MIMO, irrespective of downlink or uplink, up to 12 layers can be supported, constrained to at most 4 layers for each user.</li>
 </ul>
 </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-11-30 Sat 10:39 -->
+<!-- 2020-01-22 Wed 00:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NR - Channel State Information Reference Signal (CSI-RS)</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -225,6 +238,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -234,9 +269,37 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org9200310">Introduction</a></li>
-<li><a href="#org705d175">CSI-RS for CSI Acquisition</a></li>
+<li><a href="#org67b2c0d">Sequence Generation</a></li>
+<li><a href="#orgabbea57">Resource Mapping</a>
+<ul>
+<li><a href="#orga8e6ad7">Parameters</a></li>
+<li><a href="#org2158836">Patterns</a>
+<ul>
+<li><a href="#org40962b5">1-port CSI-RS</a></li>
+<li><a href="#org9dcb896">2-port CSI-RS</a></li>
+<li><a href="#orgdd1cf1c">4-port CSI-RS</a></li>
+<li><a href="#org329fb55">8-port CSI-RS</a></li>
+<li><a href="#orgb90ad9f">12-port CSI-RS</a></li>
+<li><a href="#org540e3b7">16-port CSI-RS</a></li>
+<li><a href="#org22f0605">24-port CSI-RS</a></li>
+<li><a href="#org4d8efd2">32-port CSI-RS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org04b425e">Functionality</a>
+<ul>
+<li><a href="#org27307af">CSI-RS for CSI Measurement</a>
+<ul>
+<li><a href="#org76f8190">Framework</a></li>
+<li><a href="#org9e5461b">NZP CSI-RS</a></li>
+<li><a href="#org11ada71">CSI-IM</a></li>
+</ul>
+</li>
 <li><a href="#orgdf26426">CSI-RS for Tracking</a></li>
 <li><a href="#org4be5623">CSI-RS for Rate Match</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -245,46 +308,267 @@ for the JavaScript code in this tag.
 <h2 id="org9200310">Introduction</h2>
 <div class="outline-text-2" id="text-org9200310">
 <p>
-In NR system, <i>channel state information reference signal (CSI-RS)</i> can be utilized for
+In NR system, <i>channel state information reference signal (CSI-RS)</i> plays a variety of roles, including
 </p>
 <ul class="org-ul">
-<li>CSI acquisition</li>
+<li>CSI measurement</li>
 <li>Beam management</li>
 <li>Tracking</li>
 <li>Mobility management</li>
 <li>Rate match</li>
 </ul>
-</div>
-</div>
-<div id="outline-container-org705d175" class="outline-2">
-<h2 id="org705d175">CSI-RS for CSI Acquisition</h2>
-<div class="outline-text-2" id="text-org705d175">
+
 <p>
-In NR system, a CSI-RS resource can be configured with up to 32 antenna ports, i.e., 1/2/4/8/12/16/24/32. Moreover, 8/12/16/24/32-port CSI-RS is comprised of 2/4-port CSI-RS.
+Generally, there are two types of CSI-RS, termed <i>non-zero-power (NZP)</i> CSI-RS and <i>zero-power (ZP)</i> CSI-RS, respectively. The former is configured by <span style="color: blue">NZP-CSI-RS-Resource</span> or <span style="color: blue">CSI-RS-Resource-Mobility</span> in <span style="color: blue">CSI-RS-ResourceConfigMobility</span>, while the latter is configured by <span style="color: blue">ZP-CSI-RS-Resource</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org67b2c0d" class="outline-2">
+<h2 id="org67b2c0d">Sequence Generation</h2>
+<div class="outline-text-2" id="text-org67b2c0d">
+<p>
+CSI-RS symbols are a sequence of QPSK-modulated Gold sequence, which is initialized with
+</p>
+\begin{align*}
+  c_{\text{init}} = \left[ 2^{10}(N_{\text{symb}}^{\text{slot}}n_{s,f}^{\mu} + \ell + 1)(2n_{\text{ID}}+1) + n_{\text{ID}} \right] \mod 2^{31}
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(N_{\text{symb}}^{\text{slot}}\) is the number of symbols in a slot.</li>
+<li>\(n_{s,f}^{\mu}\) is the index of the slot within a frame.</li>
+<li>\(\ell\) is the index of the symbol within a slot.</li>
+<li>\(n_{\text{ID}}\) is configured by <span style="color: blue">scramblingID</span> or <span style="color: blue">sequenceGenerationConfig</span>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgabbea57" class="outline-2">
+<h2 id="orgabbea57">Resource Mapping</h2>
+<div class="outline-text-2" id="text-orgabbea57">
+</div>
+<div id="outline-container-orga8e6ad7" class="outline-3">
+<h3 id="orga8e6ad7">Parameters</h3>
+<div class="outline-text-3" id="text-orga8e6ad7">
+<p>
+Regarding the resource mapping of CSI-RS, following parameters are involved.
+</p>
+<ul class="org-ul">
+<li>Density \(\rho\) is configured by <span style="color: blue">density</span> in <span style="color: blue">CSI-RS-ResourceMapping</span>/<span style="color: blue">CSI-RS-CellMobility</span>.</li>
+<li>Port number \(X\) is configured by <span style="color: blue">nrofPorts</span>.</li>
+<li>Power offset \(\beta_{\text{CSIRS}}\) is configured by <span style="color: blue">powerControlOffsetSS</span> in <span style="color: blue">NZP-CSI-RS-Resource</span>.</li>
+<li>CDM type is configured by <span style="color: blue">cdm-Type</span> in <span style="color: blue">CSI-RS-ResourceMapping</span>.</li>
+<li>Time-domain location
+<ul class="org-ul">
+<li>Slot-level: period and offset are indicated by <span style="color: blue">CSI-ResourcePeriodicityAndOffset</span>/<span style="color: blue">slotConfig</span>.</li>
+<li>Symbol-level: \(\ell_0 \in \left\{0, 1, \ldots, 13\right\}\) and \(\ell_1 \in \left\{2, 3, \ldots, 12\right\}\) are respectively configured by <span style="color: blue">firstOFDMSymbolInTimeDomain</span> and <span style="color: blue">firstOFDMSymbolInTimeDomain2</span> in <span style="color: blue">CSI-RS-ResourceMapping</span>/<span style="color: blue">CSI-RS-ResourceConfigMobility</span>.</li>
+</ul></li>
+<li>Frequency-domain location
+<ul class="org-ul">
+<li>RB-level: the starting position and number are configured by
+<ul class="org-ul">
+<li><span style="color: blue">freqBand</span> and <span style="color: blue">density</span> in <span style="color: blue">CSI-RS-ResourceMapping</span>, or</li>
+<li><span style="color: blue">startPRB</span> and <span style="color: blue">nrofPRBs</span> in <span style="color: blue">csi-rs-MeasurementBW</span> in <span style="color: blue">CSI-RS-CellMobility</span>.</li>
+</ul></li>
+<li>Subcarrier-level: indicated by a bitmap configured by <span style="color: blue">frequencyDomainAllocation</span> in <span style="color: blue">CSI-RS-ResourceMapping</span>/<span style="color: blue">CSI-RS-ResourceConfigMobility</span>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2158836" class="outline-3">
+<h3 id="org2158836">Patterns</h3>
+<div class="outline-text-3" id="text-org2158836">
+<p>
+In NR systems, 1/2/4/8/12/16/24/32-port CSI-RS are defined. The multi-port CSI-RS are constructed based on 2/4-port CSI-RS using frequency domain (FD) and time domain (TD) <i>orthogonal cover code (OCC)</i>. The coordinate of a CSI-RS resource in the resource grid is indicated by a bitmap.
 </p>
 <ul class="org-ul">
 <li>A single-port CSI-RS resource occupies one RE.</li>
 <li>A 2-port CSI-RS resource occupies 2 x 1 RE's.</li>
 <li>A 4-port CSI-RS resource occupies 4 x 1 or 2 x 2 RE's.</li>
 </ul>
+</div>
+<div id="outline-container-org40962b5" class="outline-4">
+<h4 id="org40962b5">1-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org40962b5">
+<p>
+In case of \(\rho = 3\), there are 4 candidates available, as shown in Figure <a href="#orgaa07fc4">1</a>; Otherwise, i.e., \(\rho = 1\) or \(0.5\), there are \(C_{12}^1\) candidates for the subcarrier index.
+</p>
+
+<div id="orgaa07fc4" class="figure">
+<p><img src="nr_csirs_1port.png" alt="nr_csirs_1port.png" width="50px">
+</p>
+<p><span class="figure-number">Figure 1: </span>1-port CSI-RS (\(\rho = 3\))</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9dcb896" class="outline-4">
+<h4 id="org9dcb896">2-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org9dcb896">
+<p>
+For 2-port CSI-RS, as shown in Figure <a href="#org19829dd">2</a>, there are \(C_6^1\) candidates.
+</p>
+
+<div id="org19829dd" class="figure">
+<p><img src="nr_csirs_2port.png" alt="nr_csirs_2port.png" width="100px">
+</p>
+<p><span class="figure-number">Figure 2: </span>2-port CSI-RS</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd1cf1c" class="outline-4">
+<h4 id="orgdd1cf1c">4-port CSI-RS</h4>
+<div class="outline-text-4" id="text-orgdd1cf1c">
+<p>
+As shown in Figure <a href="#orga9a570b">3</a>, there are \(C_3^1\) and \(C_6^1\) candidates for single-symbol and double-symbol 4-port CSI-RS, respectively.
+</p>
+
+<div id="orga9a570b" class="figure">
+<p><img src="nr_csirs_4port.png" alt="nr_csirs_4port.png" width="300px">
+</p>
+<p><span class="figure-number">Figure 3: </span>4-port CSI-RS</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org329fb55" class="outline-4">
+<h4 id="org329fb55">8-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org329fb55">
+<p>
+As shown in Figure <a href="#org92a62fc">4</a>, there are \(C_6^4\) and \(C_6^2\) candidates for single-symbol and double-symbol 8-port CSI-RS, respectively.
+</p>
+
+<div id="org92a62fc" class="figure">
+<p><img src="nr_csirs_8port.png" alt="nr_csirs_8port.png" width="500px">
+</p>
+<p><span class="figure-number">Figure 4: </span>8-port CSI-RS</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb90ad9f" class="outline-4">
+<h4 id="orgb90ad9f">12-port CSI-RS</h4>
+<div class="outline-text-4" id="text-orgb90ad9f">
+<p>
+As shown in Figure <a href="#org6320375">5</a>, for single-symbol case, there is only one candidate; while for double-symbol case, there are \(C_6^3\) candidates.
+</p>
+
+<div id="org6320375" class="figure">
+<p><img src="nr_csirs_12port.png" alt="nr_csirs_12port.png" width="300px">
+</p>
+<p><span class="figure-number">Figure 5: </span>12-port CSI-RS</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org540e3b7" class="outline-4">
+<h4 id="org540e3b7">16-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org540e3b7">
+<p>
+The pattern of 16-port CSI-RS can be shown in Figure <a href="#org2fcb3bd">6</a>. There are \(C_6^4\) candidates.
+</p>
+
+<div id="org2fcb3bd" class="figure">
+<p><img src="nr_csirs_16port.png" alt="nr_csirs_16port.png" width="300px">
+</p>
+<p><span class="figure-number">Figure 6: </span>16-port CSI-RS</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org22f0605" class="outline-4">
+<h4 id="org22f0605">24-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org22f0605">
+<p>
+For 24-port CSI-RS, there are \(C_6^3\) candidates, as shown in Figure <a href="#org090c616">7</a>.
+</p>
+
+<div id="org090c616" class="figure">
+<p><img src="nr_csirs_24port.png" alt="nr_csirs_24port.png" width="900px">
+</p>
+<p><span class="figure-number">Figure 7: </span>24-port CSI-RS</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d8efd2" class="outline-4">
+<h4 id="org4d8efd2">32-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org4d8efd2">
+<p>
+For 32-port CSI-RS, there are \(C_6^4\) candidates, as shown in Figure <a href="#orgbbd9ca9">8</a>.
+</p>
+
+<div id="orgbbd9ca9" class="figure">
+<p><img src="nr_csirs_32port.png" alt="nr_csirs_32port.png" width="900px">
+</p>
+<p><span class="figure-number">Figure 8: </span>32-port CSI-RS</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org04b425e" class="outline-2">
+<h2 id="org04b425e">Functionality</h2>
+<div class="outline-text-2" id="text-org04b425e">
+</div>
+<div id="outline-container-org27307af" class="outline-3">
+<h3 id="org27307af">CSI-RS for CSI Measurement</h3>
+<div class="outline-text-3" id="text-org27307af">
+</div>
+<div id="outline-container-org76f8190" class="outline-4">
+<h4 id="org76f8190">Framework</h4>
+<div class="outline-text-4" id="text-org76f8190">
+<p>
+Just as its name indicates, CSI-RS can be used to measure CSI, e.g., CQI, PMI, CRI, SS/PBCH block resource indicator (SSBRI), layer indicator (LI), RI, L1-RSRP.
+</p>
 
 <p>
-The coordinate of a CSI-RS resource in the resource grid is indicated by a bitmap.
+A UE can be configured with
 </p>
+<ul class="org-ul">
+<li>\(N \ge 1\) <span style="color: blue">CSI-ReportConfig</span>, in which
+<ul class="org-ul">
+<li>The time domain behavior is indicated by <span style="color: blue">reportConfigType</span>, whose candidate values are <span style="color: blue">aperiodic</span>/<span style="color: blue">periodic</span>/<span style="color: blue">semiPersistentOnPUCCH</span>/<span style="color: blue">semiPersistentOnPUSCH</span>.</li>
+<li>CSI-related or L1-RSRP-related quantities are indicated by <span style="color: blue">reportQuantity</span>;</li>
+<li>Reporting granularity in the frequency domain is indicated by <span style="color: blue">reportFreqConfiguration</span>.</li>
+<li>Time domain restriction for channel and interference measurements (IM) are indicated by <span style="color: blue">timeRestrictionForChannelMeasurements</span> and <span style="color: blue">timeRestrictionForInterferenceMeasurements</span>, respectively.</li>
+<li>Codebook-related configurations are indicated by <span style="color: blue">CodebookConfig</span>.</li>
+</ul></li>
+<li>\(M \ge 1\) <span style="color: blue">CSI-ResourceConfig</span>, in which
+<ul class="org-ul">
+<li>\(S \ge 1\) CSI resource sets are indicated by <span style="color: blue">csi-RS-ResourceSetList</span>.</li>
+<li>The time domain behavior is indicated by <span style="color: blue">resourceType</span>, whose candidate values are <span style="color: blue">aperiodic</span>/<span style="color: blue">periodic</span>/<span style="color: blue">semi-persistent</span>. All the <span style="color: blue">CSI-ResourceConfig</span> linked to one <span style="color: blue">CSI-ReportConfig</span> have the same time domain behavior.</li>
+<li>The NZP CSI-RS resource(s) for channel/interference measurement and CSI-IM resource(s) for IM corresponding to one <span style="color: blue">CSI-ReportConfig</span> are QCLed with respect to <span style="color: blue">QCL-TypeD</span>.</li>
+</ul></li>
+<li>One or two lists of trigger states (<span style="color: blue">CSI-AperiodicTriggerStateList</span> and <span style="color: blue">CSI-SemiPersistentOnPUSCH-TriggerStateList</span>), with each trigger state consisting of a list of associated <span style="color: blue">CSI-ReportConfig</span>.</li>
+</ul>
 </div>
 </div>
-<div id="outline-container-orgdf26426" class="outline-2">
-<h2 id="orgdf26426">CSI-RS for Tracking</h2>
-<div class="outline-text-2" id="text-orgdf26426">
+<div id="outline-container-org9e5461b" class="outline-4">
+<h4 id="org9e5461b">NZP CSI-RS</h4>
+<div class="outline-text-4" id="text-org9e5461b">
+<p>
+For each <span style="color: blue">CSI-ResourceConfig</span>, a UE can be configured with one or more NZP CSI-RS resource set(s) by <span style="color: blue">NZP-CSI-RS-ResourceSet</span>, with each consisting of \(K \ge 1\) NZP CSI-RS resource(s).
+</p>
+<ul class="org-ul">
+<li>All the CSI-RS resource(s) except the NZP CSI-RS resources used for IM within one set are configured with the same <span style="color: blue">density</span> and <span style="color: blue">nrofPorts</span>.</li>
+<li>All the CSI-RS resource(s) within one set are expected to configured with the same <span style="color: blue">startingRB</span>, <span style="color: blue">nrofRBs</span>, and <span style="color: blue">cdm-type</span>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org11ada71" class="outline-4">
+<h4 id="org11ada71">CSI-IM</h4>
+<div class="outline-text-4" id="text-org11ada71">
+<p>
+A UE can be configured with one or more CSI-IM resource set(s) by <span style="color: blue">CSI-IM-ResourceSet</span>, with each consisting of \(K \ge 1\) <span style="color: blue">CSI-IM-Resource</span>, in which
+</p>
+<ul class="org-ul">
+<li></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdf26426" class="outline-3">
+<h3 id="orgdf26426">CSI-RS for Tracking</h3>
+<div class="outline-text-3" id="text-orgdf26426">
 <p>
 In NR system, a single-port CSI-RS is used as <i>tracking reference signal (TRS)</i>, targetting for time/frequency tracking.
 </p>
-
-
-<div class="figure">
-<p><img src="trs_1sym.png" alt="trs_1sym.png">
-</p>
-</div>
 
 <ul class="org-ul">
 <li><i>Periodic TRS</i> is essentially a periodic CSI-RS resource set, which is configured by high layer signalling.</li>
@@ -292,12 +576,13 @@ In NR system, a single-port CSI-RS is used as <i>tracking reference signal (TRS)
 </ul>
 </div>
 </div>
-<div id="outline-container-org4be5623" class="outline-2">
-<h2 id="org4be5623">CSI-RS for Rate Match</h2>
-<div class="outline-text-2" id="text-org4be5623">
+<div id="outline-container-org4be5623" class="outline-3">
+<h3 id="org4be5623">CSI-RS for Rate Match</h3>
+<div class="outline-text-3" id="text-org4be5623">
 <p>
 In NR system, zero-power (ZP) CSI-RS can be used for rate match, which is exclusive for PDSCH transmission. There are 3 types of ZP-CSI-RS, periodic, semi-persistent, and aperiodic.
 </p>
+</div>
 </div>
 </div>
 </div>

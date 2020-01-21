@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Pgfplots</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -273,29 +286,29 @@ Pgfplots depends on <a href="./latex_pgf_tikz.html">pgf/tikz</a>, and the statem
 Templates for pgfplots usage can be presented as follows.
 </p>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">pgfplots</span>}
-<span style="color: #696969;">\pgfplotsset</span>{GLOBAL-OPTIONS}
+<pre class="src src-latex"><span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">pgfplots</span>}
+<span style="color: #d3d3d3;">\pgfplotsset</span>{GLOBAL-OPTIONS}
 ...
-<span style="color: #b22222;">% </span><span style="color: #b22222;">For single curve plot</span>
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}
-  <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">AXIS-TYPE</span>}[AXIS-OPTIONS]
-  <span style="color: #696969;">\addplot/\addplot3</span>[PLOT-OPTIONS] {FORMULA};
-  <span style="color: #696969;">\legend</span>{LABEL};
-  <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">AXIS-TYPE</span>}
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
+<span style="color: #73d216;">% </span><span style="color: #73d216;">For single curve plot</span>
+<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">tikzpicture</span>}
+  <span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">AXIS-TYPE</span>}[AXIS-OPTIONS]
+  <span style="color: #d3d3d3;">\addplot</span>/<span style="color: #d3d3d3;">\addplot</span>3[PLOT-OPTIONS] {FORMULA};
+  <span style="color: #d3d3d3;">\legend</span>{LABEL};
+  <span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">AXIS-TYPE</span>}
+<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">tikzpicture</span>}
 
-<span style="color: #b22222;">% </span><span style="color: #b22222;">For multi-curve plot</span>
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">tikzpicture</span>}
-  <span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">AXIS-TYPE</span>}[AXIS-OPTIONS]
-  <span style="color: #696969;">\addplot/\addplot3</span>[PLOT-OPTIONS] {FORMULA1};
-  <span style="color: #696969;">\addlegendentry</span>{LABEL1};
-  <span style="color: #696969;">\node</span> at (AXIS-TYPE cs:x1,y1) {TEXT}; <span style="color: #b22222;">% Annotation for the curve.</span>
+<span style="color: #73d216;">% </span><span style="color: #73d216;">For multi-curve plot</span>
+<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">tikzpicture</span>}
+  <span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">AXIS-TYPE</span>}[AXIS-OPTIONS]
+  <span style="color: #d3d3d3;">\addplot</span>/<span style="color: #d3d3d3;">\addplot</span>3[PLOT-OPTIONS] {FORMULA1};
+  <span style="color: #d3d3d3;">\addlegendentry</span>{LABEL1};
+  <span style="color: #d3d3d3;">\node</span> at (AXIS-TYPE cs:x1,y1) {TEXT}; <span style="color: #73d216;">% Annotation for the curve.</span>
 
-  <span style="color: #696969;">\addplot/\addplot3</span>[PLOT-OPTIONS] {FORMULA2};
-  <span style="color: #696969;">\addlegendentry</span>{LABEL2};
+  <span style="color: #d3d3d3;">\addplot</span>/<span style="color: #d3d3d3;">\addplot</span>3[PLOT-OPTIONS] {FORMULA2};
+  <span style="color: #d3d3d3;">\addlegendentry</span>{LABEL2};
   ...
-  <span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">AXIS-TYPE</span>}
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">tikzpicture</span>}
+  <span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">AXIS-TYPE</span>}
+<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">tikzpicture</span>}
 </pre>
 </div>
 </div>
@@ -314,28 +327,28 @@ The candidate values are <code>axis/semilogxaxis/semilogyaxis/loglogaxis/polarax
 <li>plain function<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\addplot</span> {f(x)};
+<pre class="src src-latex"><span style="color: #d3d3d3;">\addplot</span> {f(x)};
 </pre>
 </div>
 <ul class="org-ul">
 <li>parameter function, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\addplot</span> ({x(t)}, {y(t)});
+<pre class="src src-latex"><span style="color: #d3d3d3;">\addplot</span> ({x(t)}, {y(t)});
 </pre>
 </div>
 <ul class="org-ul">
 <li>coordinates, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\addplot</span> coordinates{(x1, y1)(x2, y2)...(xn, yn)}
+<pre class="src src-latex"><span style="color: #d3d3d3;">\addplot</span> coordinates{(x1, y1)(x2, y2)...(xn, yn)}
 </pre>
 </div>
 <ul class="org-ul">
 <li>data in a file, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\addplot</span> table [x = COLUMN1, y = COLUMN2]{DATA-FILE};
+<pre class="src src-latex"><span style="color: #d3d3d3;">\addplot</span> table [x = COLUMN1, y = COLUMN2]{DATA-FILE};
 </pre>
 </div>
 <p>
@@ -352,7 +365,7 @@ a2 b2 c2
 <li>shade a region, e.g.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #696969;">\addplot</span> [...] {...} <span style="color: #696969;">\closedcycle</span>;
+<pre class="src src-latex"><span style="color: #d3d3d3;">\addplot</span> [...] {...} <span style="color: #d3d3d3;">\closedcycle</span>;
 </pre>
 </div>
 </div>
@@ -385,9 +398,9 @@ a2 b2 c2
 <li>customize font size</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-latex">tick label style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
-label style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
-legend style={font=<span style="color: #228b22;">\normalsize</span><span style="color: #696969;">\small</span><span style="color: #228b22;">\footnotesize</span><span style="color: #696969;">\tiny</span>}
+<pre class="src src-latex">tick label style={font=<span style="color: #8cc4ff;">\normalsize</span><span style="color: #d3d3d3;">\small</span><span style="color: #8cc4ff;">\footnotesize</span><span style="color: #d3d3d3;">\tiny</span>}
+label style={font=<span style="color: #8cc4ff;">\normalsize</span><span style="color: #d3d3d3;">\small</span><span style="color: #8cc4ff;">\footnotesize</span><span style="color: #d3d3d3;">\tiny</span>}
+legend style={font=<span style="color: #8cc4ff;">\normalsize</span><span style="color: #d3d3d3;">\small</span><span style="color: #8cc4ff;">\footnotesize</span><span style="color: #d3d3d3;">\tiny</span>}
 </pre>
 </div>
 <ul class="org-ul">

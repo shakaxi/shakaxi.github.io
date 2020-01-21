@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-11-30 Sat 10:39 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Least Square and Its Iterative Approach</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -282,7 +295,7 @@ The remainder part of the document is structured as follows. In Section <a href=
 </div>
 
 <div id="outline-container-org85f33d6" class="outline-2">
-<h2 id="sec:ls"><a id="org85f33d6"></a>Least Square (LS)</h2>
+<h2 id="sec:ls">Least Square (LS)</h2>
 <div class="outline-text-2" id="text-sec:ls">
 <p>
 A series of signal \(x(n)\) passes through a linear dynamic channel, characterized by <i>channel impulse response (CIR)</i> \(\mathbf{h}(n) = [h(n, 0), h(n, 1), \ldots, h(n, p-1)]^T\), where \(p\) is the memory length of the channel. Then the output signal \(y(n)\) can be expressed by
@@ -350,7 +363,7 @@ Then, by substituting \eqref{eq:cov} and \eqref{eq:corr} into \eqref{eq:ls}, the
 </div>
 
 <div id="outline-container-orgf5583ce" class="outline-2">
-<h2 id="sec:rls"><a id="orgf5583ce"></a>Recursive Least Square (RLS)</h2>
+<h2 id="sec:rls">Recursive Least Square (RLS)</h2>
 <div class="outline-text-2" id="text-sec:rls">
 <p>
 In this section, RLS algorithm is derived in detail.

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Data Type</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -306,17 +319,17 @@ for the JavaScript code in this tag.
 <li>方法 <code>get</code> 可以返回一个默认值。也即</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a0522d;">VALUE</span> = SOME_DICT.get(KEY, DEFAULT_VALUE)
+<pre class="src src-python"><span style="color: #fcaf3e;">VALUE</span> = SOME_DICT.get(KEY, DEFAULT_VALUE)
 </pre>
 </div>
 <p>
 等价于
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a020f0;">if</span> KEY <span style="color: #a020f0;">in</span> SOME_DICT:
-    <span style="color: #a0522d;">VALUE</span> = SOME_DICT[KEY]
-<span style="color: #a020f0;">else</span>:
-    <span style="color: #a0522d;">VALUE</span> = DEFAULT_VALUE
+<pre class="src src-python"><span style="color: #b4fa70;">if</span> KEY <span style="color: #b4fa70;">in</span> SOME_DICT:
+    <span style="color: #fcaf3e;">VALUE</span> = SOME_DICT[KEY]
+<span style="color: #b4fa70;">else</span>:
+    <span style="color: #fcaf3e;">VALUE</span> = DEFAULT_VALUE
 </pre>
 </div>
 </div>
@@ -339,16 +352,16 @@ for the JavaScript code in this tag.
 <li>列表的推导式如下:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a0522d;">LIST</span> = [EXPRESSION <span style="color: #a020f0;">for</span> VALUE <span style="color: #a020f0;">in</span> COLLECTION <span style="color: #a020f0;">if</span> CONDITION]
+<pre class="src src-python"><span style="color: #fcaf3e;">LIST</span> = [EXPRESSION <span style="color: #b4fa70;">for</span> VALUE <span style="color: #b4fa70;">in</span> COLLECTION <span style="color: #b4fa70;">if</span> CONDITION]
 </pre>
 </div>
 <p>
 其等价于
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a0522d;">LIST</span> = []
-<span style="color: #a020f0;">for</span> VALUE <span style="color: #a020f0;">in</span> COLLECTION:
-    <span style="color: #a020f0;">if</span> CONDITION:
+<pre class="src src-python"><span style="color: #fcaf3e;">LIST</span> = []
+<span style="color: #b4fa70;">for</span> VALUE <span style="color: #b4fa70;">in</span> COLLECTION:
+    <span style="color: #b4fa70;">if</span> CONDITION:
         LIST.append(EXPRESSION)
 </pre>
 </div>
@@ -359,14 +372,14 @@ for the JavaScript code in this tag.
 <li>字典的推导式如下:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a0522d;">DICTIONARY</span> = {KEY: VALUE <span style="color: #a020f0;">for</span> VALUE <span style="color: #a020f0;">in</span> COLLECTION <span style="color: #a020f0;">if</span> CONDITION}
+<pre class="src src-python"><span style="color: #fcaf3e;">DICTIONARY</span> = {KEY: VALUE <span style="color: #b4fa70;">for</span> VALUE <span style="color: #b4fa70;">in</span> COLLECTION <span style="color: #b4fa70;">if</span> CONDITION}
 </pre>
 </div>
 <ul class="org-ul">
 <li>集合的推导式如下:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a0522d;">SET</span> = {EXPRESSION <span style="color: #a020f0;">for</span> VALUE <span style="color: #a020f0;">in</span> COLLECTION <span style="color: #a020f0;">if</span> CONDITION}
+<pre class="src src-python"><span style="color: #fcaf3e;">SET</span> = {EXPRESSION <span style="color: #b4fa70;">for</span> VALUE <span style="color: #b4fa70;">in</span> COLLECTION <span style="color: #b4fa70;">if</span> CONDITION}
 </pre>
 </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Doxygen</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -309,7 +322,7 @@ Hierachical lists can be created by using different indents for different levels
 <h4 id="org0bf0c95">Group</h4>
 <div class="outline-text-4" id="text-org0bf0c95">
 <div class="org-src-container">
-<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;title&gt;<span style="color: #8b2252;">''</span> */
+<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;title&gt;<span style="color: #e9b96e;">''</span> */
 /* @{ */
    // group memebers here ...
 /* @} */
@@ -319,7 +332,7 @@ Hierachical lists can be created by using different indents for different levels
 or
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;title&gt;<span style="color: #8b2252;">''</span> */
+<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;title&gt;<span style="color: #e9b96e;">''</span> */
 // @{
    // group memebers here ...
 // @}
@@ -329,7 +342,7 @@ or
 where the <code>title</code> is optional while the <code>label</code> is mandatory and can be used for reference by
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">\ref &lt;label&gt; <span style="color: #8b2252;">''</span>&lt;link&gt;<span style="color: #8b2252;">''</span>
+<pre class="src src-sh">\ref &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;link&gt;<span style="color: #e9b96e;">''</span>
 </pre>
 </div>
 </div>
@@ -421,10 +434,10 @@ For ArchLinux, doxymacs can be easily installed by AUR.
 After the installation, following configuration should be inserted into Emacs configuration file <code>.emacs</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">doxymacs</span>)                                                                                              
+<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">doxymacs</span>)                                                                                              
 (add-hook 'c-mode-common-hook 'doxymacs-mode)                                                                    
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">my-doxymacs-font-lock-hook</span> ()                                                                             
-  (<span style="color: #a020f0;">if</span> (<span style="color: #a020f0;">or</span> (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+(<span style="color: #b4fa70;">defun</span> <span style="color: #fce94f;">my-doxymacs-font-lock-hook</span> ()                                                                             
+  (<span style="color: #b4fa70;">if</span> (<span style="color: #b4fa70;">or</span> (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
       (doxymacs-font-lock)))
 (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
 </pre>

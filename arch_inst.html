@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Linux - An Installation Guide for Arch Linux</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -330,9 +343,9 @@ mount -t ext4 /dev/sda7 /mnt/home
 <pre class="src src-sh">systemctl stop dhcpcd
 ip addr add IP_ADDR/24 broadcast BROADCAST_ADDR dev eth0
 ip route add default via GATEWAY_IP_ADDR
-<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">http_proxy</span>=<span style="color: #8b2252;">"http://PROXY_IP_ADDR:PORT"</span>
-<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">https_proxy</span>=<span style="color: #8b2252;">"https://PROXY_IP_ADDR:PORT"</span>
-<span style="color: #483d8b;">echo</span> nameserver DNS_SERVER_IP_ADDR &gt;&gt; /etc/resolv.conf
+<span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">http_proxy</span>=<span style="color: #e9b96e;">"http://PROXY_IP_ADDR:PORT"</span>
+<span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">https_proxy</span>=<span style="color: #e9b96e;">"https://PROXY_IP_ADDR:PORT"</span>
+<span style="color: #e090d7;">echo</span> nameserver DNS_SERVER_IP_ADDR &gt;&gt; /etc/resolv.conf
 </pre>
 </div>
 </div>
@@ -344,7 +357,7 @@ ip route add default via GATEWAY_IP_ADDR
 Edit <code>/etc/pacman.d/mirrorlist</code> as
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">Server = http://mirrors.163.com/archlinux/$<span style="color: #a0522d;">repo</span>/os/$<span style="color: #a0522d;">arch</span>
+<pre class="src src-sh">Server = http://mirrors.163.com/archlinux/$<span style="color: #fcaf3e;">repo</span>/os/$<span style="color: #fcaf3e;">arch</span>
 </pre>
 </div>
 </div>
@@ -380,7 +393,7 @@ Edit <code>/etc/pacman.d/mirrorlist</code> as
 <h3 id="org0a98f95">Set hostname</h3>
 <div class="outline-text-3" id="text-org0a98f95">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #483d8b;">echo</span> COMPUTER_NAME &gt; /etc/hostname
+<pre class="src src-sh"><span style="color: #e090d7;">echo</span> COMPUTER_NAME &gt; /etc/hostname
 </pre>
 </div>
 </div>
@@ -437,7 +450,7 @@ Generate and set locales
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">locale-gen
-<span style="color: #483d8b;">echo</span> <span style="color: #a0522d;">LANG</span>=en_US.UTF-8 &gt; /etc/locale.conf
+<span style="color: #e090d7;">echo</span> <span style="color: #fcaf3e;">LANG</span>=en_US.UTF-8 &gt; /etc/locale.conf
 </pre>
 </div>
 </div>
@@ -469,21 +482,21 @@ Edit <code>/etc/profile</code> and append following two lines to configure the p
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">...
-<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">http_proxy</span>=<span style="color: #8b2252;">"http://PROXY_IP_ADDR:PORT"</span>
-<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">https_proxy</span>=<span style="color: #8b2252;">"https://PROXY_IP_ADDR:PORT"</span>
+<span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">http_proxy</span>=<span style="color: #e9b96e;">"http://PROXY_IP_ADDR:PORT"</span>
+<span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">https_proxy</span>=<span style="color: #e9b96e;">"https://PROXY_IP_ADDR:PORT"</span>
 </pre>
 </div>
 <p>
 Create file <code>/etc/netctl/ethernet_static</code> with its content
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a0522d;">Description</span>=<span style="color: #8b2252;">'A static ethernet connection'</span>
-<span style="color: #a0522d;">Interface</span>=enp1s0f0
-<span style="color: #a0522d;">Connection</span>=ethernet
-<span style="color: #a0522d;">IP</span>=static
-<span style="color: #a0522d;">Address</span>=(<span style="color: #8b2252;">'IP_ADDR/24'</span>)
-<span style="color: #a0522d;">Gateway</span>=<span style="color: #8b2252;">'GATEWAY_ADDR'</span>
-<span style="color: #a0522d;">DNS</span>=(<span style="color: #8b2252;">'DNS_SERVER_IP_ADDR'</span>)
+<pre class="src src-sh"><span style="color: #fcaf3e;">Description</span>=<span style="color: #e9b96e;">'A static ethernet connection'</span>
+<span style="color: #fcaf3e;">Interface</span>=enp1s0f0
+<span style="color: #fcaf3e;">Connection</span>=ethernet
+<span style="color: #fcaf3e;">IP</span>=static
+<span style="color: #fcaf3e;">Address</span>=(<span style="color: #e9b96e;">'IP_ADDR/24'</span>)
+<span style="color: #fcaf3e;">Gateway</span>=<span style="color: #e9b96e;">'GATEWAY_ADDR'</span>
+<span style="color: #fcaf3e;">DNS</span>=(<span style="color: #e9b96e;">'DNS_SERVER_IP_ADDR'</span>)
 </pre>
 </div>
 <p>
@@ -538,7 +551,7 @@ Enable the SSH service
 <h3 id="org22d9d3c">Unmount and reboot</h3>
 <div class="outline-text-3" id="text-org22d9d3c">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a020f0;">exit</span>
+<pre class="src src-sh"><span style="color: #b4fa70;">exit</span>
 umount -R /mnt
 reboot
 </pre>

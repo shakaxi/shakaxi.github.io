@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Basic</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -403,8 +416,8 @@ Python语言的一个重要特征就是对象模型的一致性。每一个数�
 与C++、Java等大多数编译型语言不同，Python中的对象引用并不涉及类型。变量对于对象来说只是特定命名空间中的名称，类型信息是存储在对象自身里的。可以使用函数 <code>isinstance</code> 来检查一个对象是否是特定类型的实例，该函数可以接受一个包含类型的元组作为参数，用于检查对象的类型是否在元组中的类型中。如：
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #483d8b;">isinstance</span>(a, <span style="color: #483d8b;">int</span>)
-<span style="color: #483d8b;">isinstance</span>(a, (<span style="color: #483d8b;">int</span>, <span style="color: #483d8b;">float</span>))
+<pre class="src src-python"><span style="color: #e090d7;">isinstance</span>(a, <span style="color: #e090d7;">int</span>)
+<span style="color: #e090d7;">isinstance</span>(a, (<span style="color: #e090d7;">int</span>, <span style="color: #e090d7;">float</span>))
 </pre>
 </div>
 
@@ -550,17 +563,17 @@ Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， 
 <li>Python的三元表达式可以将一个 <code>if-else</code>  联合起来，在一行代码或一个语句中生成数据。其语法为：</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a0522d;">value</span> = true-expression <span style="color: #a020f0;">if</span> condition <span style="color: #a020f0;">else</span> false-expression
+<pre class="src src-python"><span style="color: #fcaf3e;">value</span> = true-expression <span style="color: #b4fa70;">if</span> condition <span style="color: #b4fa70;">else</span> false-expression
 </pre>
 </div>
 <p>
 其结果与如下代码块的结果相同：
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a020f0;">if</span> condition:
-    <span style="color: #a0522d;">value</span> = true-expression
-<span style="color: #a020f0;">else</span>:
-    <span style="color: #a0522d;">value</span> = false-expression
+<pre class="src src-python"><span style="color: #b4fa70;">if</span> condition:
+    <span style="color: #fcaf3e;">value</span> = true-expression
+<span style="color: #b4fa70;">else</span>:
+    <span style="color: #fcaf3e;">value</span> = false-expression
 </pre>
 </div>
 </div>

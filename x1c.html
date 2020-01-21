@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Installation of ArchLinux on Thinkpad X1 Carbon 2018</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -277,7 +290,7 @@ This post aims to record the procedure that I installed ArchLinux on my new note
 <li>Burn the image into a USB stick.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh">dd <span style="color: #a0522d;">if</span>=/path/to/image/ <span style="color: #a0522d;">of</span>=/dev/sdb <span style="color: #a0522d;">status</span>=progress <span style="color: #a0522d;">bs</span>=10M
+<pre class="src src-sh">dd <span style="color: #fcaf3e;">if</span>=/path/to/image/ <span style="color: #fcaf3e;">of</span>=/dev/sdb <span style="color: #fcaf3e;">status</span>=progress <span style="color: #fcaf3e;">bs</span>=10M
 </pre>
 </div>
 <ul class="org-ul">
@@ -423,7 +436,7 @@ swapon /dev/nvme0n1p6
 Edit <code>/etc/pacman.d/mirrorlist</code> as
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">Server = http://mirrors.163.com/archlinux/$<span style="color: #a0522d;">repo</span>/os/$<span style="color: #a0522d;">arch</span>
+<pre class="src src-sh">Server = http://mirrors.163.com/archlinux/$<span style="color: #fcaf3e;">repo</span>/os/$<span style="color: #fcaf3e;">arch</span>
 </pre>
 </div>
 </div>
@@ -469,8 +482,8 @@ Create file <code>/etc/hostname</code>.
 Revise file <code>/etc/hosts</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Static table lookup for hostnames.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">See hosts(5) for details.</span>
+<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">Static table lookup for hostnames.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">See hosts(5) for details.</span>
 172.0.0.1      localhost
 ::1            localhost
 172.0.0.1      notebook.localdomain notebook
@@ -510,7 +523,7 @@ Generate and set locales.
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">locale-gen
-<span style="color: #483d8b;">echo</span> <span style="color: #a0522d;">LANG</span>=en_US.UTF-8 &gt; /etc/locale.conf
+<span style="color: #e090d7;">echo</span> <span style="color: #fcaf3e;">LANG</span>=en_US.UTF-8 &gt; /etc/locale.conf
 </pre>
 </div>
 </div>
@@ -608,7 +621,7 @@ Install the boot manager.
 Add a new boot entry.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">efibootmgr -d /dev/nvme0n1 -p 1 --create --gpt --label <span style="color: #8b2252;">"Arch Linux"</span> --loader /EFI/arch/vmlinuz-linux --unicode <span style="color: #8b2252;">"root=/dev/nvme0n1p5 rw initrd=/EFI/arch/intel-ucode.img initrd=/EFI/arch/initramfs-linux.img"</span>
+<pre class="src src-sh">efibootmgr -d /dev/nvme0n1 -p 1 --create --gpt --label <span style="color: #e9b96e;">"Arch Linux"</span> --loader /EFI/arch/vmlinuz-linux --unicode <span style="color: #e9b96e;">"root=/dev/nvme0n1p5 rw initrd=/EFI/arch/intel-ucode.img initrd=/EFI/arch/initramfs-linux.img"</span>
 </pre>
 </div>
 <p>
@@ -641,7 +654,7 @@ Verify the configuration.
 <h3 id="orgc81df8c">Unmount and reboot</h3>
 <div class="outline-text-3" id="text-orgc81df8c">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a020f0;">exit</span>
+<pre class="src src-sh"><span style="color: #b4fa70;">exit</span>
 umount -R /mnt
 reboot
 </pre>

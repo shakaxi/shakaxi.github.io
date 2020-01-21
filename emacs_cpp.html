@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - C/C++ Programming</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -237,8 +250,8 @@ This page is written to summarize my configuration for C/C++ programming with Em
 Besides Emacs, following extensions are also needed. The installation can be finished by the built-in package manager, <code>elpa</code>. Before the installation, following configuration in <code>~/.emacs</code> for <code>elpa</code> is necessary.
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">setq</span> package-archives '((<span style="color: #8b2252;">"gnu"</span> . <span style="color: #8b2252;">"http://elpa.gnu.org/packages/"</span>)
-             (<span style="color: #8b2252;">"melpa"</span> . <span style="color: #8b2252;">"http://melpa.milkbox.net/packages/"</span>)))
+<pre class="src src-elisp">(<span style="color: #b4fa70;">setq</span> package-archives '((<span style="color: #e9b96e;">"gnu"</span> . <span style="color: #e9b96e;">"http://elpa.gnu.org/packages/"</span>)
+             (<span style="color: #e9b96e;">"melpa"</span> . <span style="color: #e9b96e;">"http://melpa.milkbox.net/packages/"</span>)))
 (package-initialize)
 </pre>
 </div>
@@ -250,8 +263,8 @@ Through <code>elpa</code>, install following extensions.
 </dl>
 <div class="org-src-container">
 <pre class="src src-elisp">(global-company-mode t)
-(<span style="color: #a020f0;">setq</span> company-idle-delay 0)
-(<span style="color: #a020f0;">setq</span> company-backends (delete 'company-semantic company-backends))
+(<span style="color: #b4fa70;">setq</span> company-idle-delay 0)
+(<span style="color: #b4fa70;">setq</span> company-backends (delete 'company-semantic company-backends))
 (add-to-list 'company-backends 'company-c-headers)
 </pre>
 </div>
@@ -259,14 +272,14 @@ Through <code>elpa</code>, install following extensions.
 BTW, for sake of completion based on other third-party libraries, we can create an elisp file <code>.dir-locals.el</code> in the project root. E.g. <i>ITPP</i> library installed in <code>/opt/itpp</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">((nil . ((company-clang-arguments . (<span style="color: #8b2252;">"-I/opt/itpp/include"</span>)))))
+<pre class="src src-elisp">((nil . ((company-clang-arguments . (<span style="color: #e9b96e;">"-I/opt/itpp/include"</span>)))))
 </pre>
 </div>
 <dl class="org-dl">
 <dt>yasnippet</dt><dd>It stands for <i>yet another snippet</i> and can be directly installed via <code>elpa</code>. As its name indicates, it provides a large number of useful snippets and templates.</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">yasnippet</span>)
+<pre class="src src-elisp">(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">yasnippet</span>)
 (yas-global-mode t)
 </pre>
 </div>
@@ -274,10 +287,10 @@ BTW, for sake of completion based on other third-party libraries, we can create 
 <dt>doxymacs<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></dt><dd>This extension aims to integrate <code>doxygen</code> into emacs. The related functionalities are bound to keys with prefix <code>C-c C-d</code>.</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">doxymacs</span>)
+<pre class="src src-elisp">(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">doxymacs</span>)
 (add-hook 'c-mode-common-hook 'doxymacs-mode)
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">my-doxymacs-font-lock-hook</span> ()
-  (<span style="color: #a020f0;">if</span> (<span style="color: #a020f0;">or</span> (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+(<span style="color: #b4fa70;">defun</span> <span style="color: #fce94f;">my-doxymacs-font-lock-hook</span> ()
+  (<span style="color: #b4fa70;">if</span> (<span style="color: #b4fa70;">or</span> (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
       (doxymacs-font-lock)))
 (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
 </pre>
@@ -286,7 +299,7 @@ BTW, for sake of completion based on other third-party libraries, we can create 
 <dt>cscope<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></dt><dd>Index the source codes and enable freely jumping between definitions, declarations and provokings of variables or functions. The related functionalities are bound to keys with prefix <code>C-c s</code>.</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-elisp">(add-hook 'c-mode-common-hook '(lambda() (<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">xcscope</span>) (cscope-setup)))
+<pre class="src src-elisp">(add-hook 'c-mode-common-hook '(lambda() (<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">xcscope</span>) (cscope-setup)))
 </pre>
 </div>
 

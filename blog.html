@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blog on GitHub</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -306,34 +319,34 @@ In order to publish your webpages, i.e. html files, you should configure your Em
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp"><span class="linenr"> 1: </span>...
-<span class="linenr"> 2: </span>(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
-<span class="linenr"> 3: </span>(<span style="color: #a020f0;">setq</span> org-publish-project-alist
+<span class="linenr"> 2: </span>(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">ox-publish</span>)
+<span class="linenr"> 3: </span>(<span style="color: #b4fa70;">setq</span> org-publish-project-alist
 <span class="linenr"> 4: </span>      '(
-<span class="linenr"> 5: </span>        (<span style="color: #8b2252;">"org"</span>
-<span class="linenr"> 6: </span>        <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/blog/org"</span>
-<span class="linenr"> 7: </span>        <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/blog/html"</span>
-<span class="linenr"> 8: </span>        <span style="color: #483d8b;">:recursive</span> t
-<span class="linenr"> 9: </span>        <span style="color: #483d8b;">:publishing-function</span> org-html-publish-to-html
-<span class="linenr">10: </span>        <span style="color: #483d8b;">:headline-levels</span> 6
-<span class="linenr">11: </span>        <span style="color: #483d8b;">:section-numbers</span> nil
-<span class="linenr">12: </span>        <span style="color: #483d8b;">:auto-sitemap</span> t
-<span class="linenr">13: </span>        <span style="color: #483d8b;">:sitemap-filename</span> <span style="color: #8b2252;">"index.org"</span>
-<span class="linenr">14: </span>        <span style="color: #483d8b;">:sitemap-title</span> <span style="color: #8b2252;">"Blog Site"</span>
-<span class="linenr">15: </span>        <span style="color: #483d8b;">:sitemap-style</span> <span style="color: #8b2252;">"list"</span>
-<span class="linenr">16: </span>        <span style="color: #483d8b;">:sitemap-sort-folders</span> <span style="color: #8b2252;">"first"</span>
-<span class="linenr">17: </span>        <span style="color: #483d8b;">:author</span> <span style="color: #8b2252;">"AUTHOR"</span>
-<span class="linenr">18: </span>        <span style="color: #483d8b;">:email</span> <span style="color: #8b2252;">"NAME@email"</span>
-<span class="linenr">19: </span>        <span style="color: #483d8b;">:html-head</span> <span style="color: #8b2252;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/&gt;"</span>
-<span class="linenr">20: </span>        <span style="color: #483d8b;">:html-postamble</span> nil
+<span class="linenr"> 5: </span>        (<span style="color: #e9b96e;">"org"</span>
+<span class="linenr"> 6: </span>        <span style="color: #e090d7;">:base-directory</span> <span style="color: #e9b96e;">"~/blog/org"</span>
+<span class="linenr"> 7: </span>        <span style="color: #e090d7;">:publishing-directory</span> <span style="color: #e9b96e;">"~/blog/html"</span>
+<span class="linenr"> 8: </span>        <span style="color: #e090d7;">:recursive</span> t
+<span class="linenr"> 9: </span>        <span style="color: #e090d7;">:publishing-function</span> org-html-publish-to-html
+<span class="linenr">10: </span>        <span style="color: #e090d7;">:headline-levels</span> 6
+<span class="linenr">11: </span>        <span style="color: #e090d7;">:section-numbers</span> nil
+<span class="linenr">12: </span>        <span style="color: #e090d7;">:auto-sitemap</span> t
+<span class="linenr">13: </span>        <span style="color: #e090d7;">:sitemap-filename</span> <span style="color: #e9b96e;">"index.org"</span>
+<span class="linenr">14: </span>        <span style="color: #e090d7;">:sitemap-title</span> <span style="color: #e9b96e;">"Blog Site"</span>
+<span class="linenr">15: </span>        <span style="color: #e090d7;">:sitemap-style</span> <span style="color: #e9b96e;">"list"</span>
+<span class="linenr">16: </span>        <span style="color: #e090d7;">:sitemap-sort-folders</span> <span style="color: #e9b96e;">"first"</span>
+<span class="linenr">17: </span>        <span style="color: #e090d7;">:author</span> <span style="color: #e9b96e;">"AUTHOR"</span>
+<span class="linenr">18: </span>        <span style="color: #e090d7;">:email</span> <span style="color: #e9b96e;">"NAME@email"</span>
+<span class="linenr">19: </span>        <span style="color: #e090d7;">:html-head</span> <span style="color: #e9b96e;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"default.css\"/&gt;"</span>
+<span class="linenr">20: </span>        <span style="color: #e090d7;">:html-postamble</span> nil
 <span class="linenr">21: </span>        )
-<span class="linenr">22: </span>        (<span style="color: #8b2252;">"attachment"</span>
-<span class="linenr">23: </span>         <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/blog/org"</span>
-<span class="linenr">24: </span>         <span style="color: #483d8b;">:base-extension</span> <span style="color: #8b2252;">"css</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">js</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">png</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">jpg</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">gif</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">pdf</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">mp3</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">ogg</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">swf"</span>
-<span class="linenr">25: </span>         <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/blog/html"</span>
-<span class="linenr">26: </span>         <span style="color: #483d8b;">:recursive</span> t
-<span class="linenr">27: </span>         <span style="color: #483d8b;">:publishing-function</span> org-publish-attachment
+<span class="linenr">22: </span>        (<span style="color: #e9b96e;">"attachment"</span>
+<span class="linenr">23: </span>         <span style="color: #e090d7;">:base-directory</span> <span style="color: #e9b96e;">"~/blog/org"</span>
+<span class="linenr">24: </span>         <span style="color: #e090d7;">:base-extension</span> <span style="color: #e9b96e;">"css</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">js</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">png</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">jpg</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">gif</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">pdf</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">mp3</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">ogg</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">swf"</span>
+<span class="linenr">25: </span>         <span style="color: #e090d7;">:publishing-directory</span> <span style="color: #e9b96e;">"~/blog/html"</span>
+<span class="linenr">26: </span>         <span style="color: #e090d7;">:recursive</span> t
+<span class="linenr">27: </span>         <span style="color: #e090d7;">:publishing-function</span> org-publish-attachment
 <span class="linenr">28: </span>         )
-<span class="linenr">29: </span>        (<span style="color: #8b2252;">"blog"</span> <span style="color: #483d8b;">:components</span> (<span style="color: #8b2252;">"org"</span> <span style="color: #8b2252;">"attachment"</span>))
+<span class="linenr">29: </span>        (<span style="color: #e9b96e;">"blog"</span> <span style="color: #e090d7;">:components</span> (<span style="color: #e9b96e;">"org"</span> <span style="color: #e9b96e;">"attachment"</span>))
 <span class="linenr">30: </span>        ))
 <span class="linenr">31: </span>...
 </pre>
@@ -370,7 +383,7 @@ In fact, you can only push the published html webpages to GitHub. Pushing the or
 Enter the local directory, e.g. <code>~/blog</code> and clone the both branches.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/blog
+<pre class="src src-sh"><span style="color: #e090d7;">cd</span> ~/blog
 git clone -b master git@github.com:USERNAME/USERNAME.github.io html
 git clone -b org git@github.com:USERNAME/USERNAME.github.io org
 </pre>
@@ -390,11 +403,11 @@ For sake of publishing beautiful webpages, you can customize your css and drop i
 <li>Push to GitHub.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/blog/org
-git commit -am <span style="color: #8b2252;">"A new blog post"</span>
+<pre class="src src-sh"><span style="color: #e090d7;">cd</span> ~/blog/org
+git commit -am <span style="color: #e9b96e;">"A new blog post"</span>
 git push origin org
-<span style="color: #483d8b;">cd</span> ~/blog/html
-git commit -am <span style="color: #8b2252;">"A new blog post"</span>
+<span style="color: #e090d7;">cd</span> ~/blog/html
+git commit -am <span style="color: #e9b96e;">"A new blog post"</span>
 git push origin master
 </pre>
 </div>

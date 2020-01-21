@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-11-30 Sat 10:39 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sway</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -234,8 +247,8 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org058484c">Introduction</a></li>
-<li><a href="#org115c6ce">Installation</a></li>
-<li><a href="#orgfb68e16">Configuration</a>
+<li><a href="#org7ae5155">Installation</a></li>
+<li><a href="#orgf6bc284">Configuration</a>
 <ul>
 <li><a href="#orgd3605ad"><code>~/.config/sway/config</code></a></li>
 <li><a href="#orgb3af124"><code>~/.config/sway/termite.conf</code></a></li>
@@ -246,8 +259,8 @@ for the JavaScript code in this tag.
 <li><a href="#org23daf3c">Startup</a></li>
 <li><a href="#org15068d5">KDE Applications</a>
 <ul>
-<li><a href="#org7ae5155">Installation</a></li>
-<li><a href="#orgf6bc284">Configuration</a></li>
+<li><a href="#org87ead61">Installation</a></li>
+<li><a href="#org52fabbe">Configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -278,18 +291,18 @@ Sway's core components and necessary applications can be simply installed and co
 </ul>
 </div>
 </div>
-<div id="outline-container-org115c6ce" class="outline-2">
-<h2 id="org115c6ce">Installation</h2>
-<div class="outline-text-2" id="text-org115c6ce">
+<div id="outline-container-org7ae5155" class="outline-2">
+<h2 id="org7ae5155">Installation</h2>
+<div class="outline-text-2" id="text-org7ae5155">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S sway swaylock swayidle termite rofi waybar light mako grim slurp
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfb68e16" class="outline-2">
-<h2 id="orgfb68e16">Configuration</h2>
-<div class="outline-text-2" id="text-orgfb68e16">
+<div id="outline-container-orgf6bc284" class="outline-2">
+<h2 id="orgf6bc284">Configuration</h2>
+<div class="outline-text-2" id="text-orgf6bc284">
 <p>
 For centralized management, the configuration files can be gathered in directory <code>~/.config/sway</code>.
 </p>
@@ -854,18 +867,18 @@ After the installation and configuration, sway can be started by running command
 There are a rich number of applications dedicated for KDE, e.g., file manager <code>dolphin</code> and PDF reader <code>okular</code>. On <code>sway</code>, they can be installed and configured as follows.
 </p>
 </div>
-<div id="outline-container-org7ae5155" class="outline-3">
-<h3 id="org7ae5155">Installation</h3>
-<div class="outline-text-3" id="text-org7ae5155">
+<div id="outline-container-org87ead61" class="outline-3">
+<h3 id="org87ead61">Installation</h3>
+<div class="outline-text-3" id="text-org87ead61">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S dolphin okular
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf6bc284" class="outline-3">
-<h3 id="orgf6bc284">Configuration</h3>
-<div class="outline-text-3" id="text-orgf6bc284">
+<div id="outline-container-org52fabbe" class="outline-3">
+<h3 id="org52fabbe">Configuration</h3>
+<div class="outline-text-3" id="text-org52fabbe">
 <ul class="org-ul">
 <li><p>
 Install icons of <code>breeze</code> theme.

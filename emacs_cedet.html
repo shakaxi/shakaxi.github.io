@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - CEDET</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -255,7 +268,7 @@ CEDET<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> stands for coll
 Through following commands, the latest version of CEDET can be installed into <code>~/.emacs.d/cedet</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #483d8b;">cd</span> ~/.emacs.d
+<pre class="src src-sh"><span style="color: #e090d7;">cd</span> ~/.emacs.d
 git clone http://git.code.sf.net/p/cedet/git cedet
 make
 </pre>
@@ -266,11 +279,11 @@ make
 <h2 id="org7a9e5ba">Configuration</h2>
 <div class="outline-text-2" id="text-org7a9e5ba">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">load CEDET</span>
-(add-to-list 'load-path <span style="color: #8b2252;">"~/.emacs.d/cedet"</span>)
-(load-file <span style="color: #8b2252;">"~/.emacs.d/cedet/cedet-devel-load.el"</span>)
+<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">load CEDET</span>
+(add-to-list 'load-path <span style="color: #e9b96e;">"~/.emacs.d/cedet"</span>)
+(load-file <span style="color: #e9b96e;">"~/.emacs.d/cedet/cedet-devel-load.el"</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable the required features</span>
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable the required features</span>
 (semantic-load-enable-minimum-features)
 (semantic-load-enable-code-helpers)
 (semantic-load-enable-gaudy-code-helpers)
@@ -287,19 +300,19 @@ make
 (add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode t)
 (add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode t)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable semantic mode</span>
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable semantic mode</span>
 (semantic-mode 1)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.</span>
-(<span style="color: #a020f0;">setq</span> semantic-c-dependency-system-include-path (<span style="color: #a020f0;">quote</span> (<span style="color: #8b2252;">"/usr/include"</span> <span style="color: #8b2252;">"/usr/local/include"</span> <span style="color: #8b2252;">"/opt/itpp/include"</span>)))
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">semantic/ia</span>)
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">semantic/bovine/gcc</span>)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">enable semantic to access and parse the headers of system libaries, e.g. /usr/include, /usr/local/include, /opt/itpp/include.</span>
+(<span style="color: #b4fa70;">setq</span> semantic-c-dependency-system-include-path (<span style="color: #b4fa70;">quote</span> (<span style="color: #e9b96e;">"/usr/include"</span> <span style="color: #e9b96e;">"/usr/local/include"</span> <span style="color: #e9b96e;">"/opt/itpp/include"</span>)))
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">semantic/ia</span>)
+(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">semantic/bovine/gcc</span>)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">jump to tags</span>
-(global-set-key (kbd <span style="color: #8b2252;">"M-."</span>) 'semantic-ia-fast-jump)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">jump to tags</span>
+(global-set-key (kbd <span style="color: #e9b96e;">"M-."</span>) 'semantic-ia-fast-jump)
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">jump back from tags</span>
-(global-set-key (kbd <span style="color: #8b2252;">"M-*"</span>) 'semantic-mrub-switch-tags)
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">jump back from tags</span>
+(global-set-key (kbd <span style="color: #e9b96e;">"M-*"</span>) 'semantic-mrub-switch-tags)
 </pre>
 </div>
 </div>

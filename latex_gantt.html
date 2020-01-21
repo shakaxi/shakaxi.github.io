@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX - Gantt Chart</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -276,12 +289,12 @@ Today, I found an interesting \(\LaTeX\) package, <i>pgfgantt</i>. This package 
 The framework of using the package can be illustrated as
 </p>
 <div class="org-src-container">
-<pre class="src src-latex"><span style="color: #a020f0;">\usepackage</span>{<span style="color: #0000ff;">pgfgantt</span>}
+<pre class="src src-latex"><span style="color: #b4fa70;">\usepackage</span>{<span style="color: #fce94f;">pgfgantt</span>}
 ...
-<span style="color: #a020f0;">\begin</span>{<span style="color: #0000ff;">ganttchart</span>}[OPTIONS]{STARTING}{ENDING}
+<span style="color: #b4fa70;">\begin</span>{<span style="color: #fce94f;">ganttchart</span>}[OPTIONS]{STARTING}{ENDING}
   TITLE
   CHARTELEMENT
-<span style="color: #a020f0;">\end</span>{<span style="color: #0000ff;">ganttchart</span>}
+<span style="color: #b4fa70;">\end</span>{<span style="color: #fce94f;">ganttchart</span>}
 </pre>
 </div>
 <p>

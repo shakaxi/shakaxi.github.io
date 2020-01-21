@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tensorflow</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -340,8 +353,8 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 <li>A session should be closed to release resources using <code>close</code> method. The procedure can also be automatically performed with a <code>with</code> block, i.e.,</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a020f0;">with</span> tensorflow.Session() <span style="color: #a020f0;">as</span> s:
-    <span style="color: #b22222;"># </span><span style="color: #b22222;">Some operations</span>
+<pre class="src src-python"><span style="color: #b4fa70;">with</span> tensorflow.Session() <span style="color: #b4fa70;">as</span> s:
+    <span style="color: #73d216;"># </span><span style="color: #73d216;">Some operations</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -371,12 +384,12 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 Tensorflow programs are usually structured into a construction phase, that assembles a graph, and an execution phase that uses a session to execute ops in the graph.
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #b22222;"># </span><span style="color: #b22222;">Create a new graph.</span>
-<span style="color: #a0522d;">g</span> = tensorflow.Graph()
+<pre class="src src-python"><span style="color: #73d216;"># </span><span style="color: #73d216;">Create a new graph.</span>
+<span style="color: #fcaf3e;">g</span> = tensorflow.Graph()
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Register the graph g as the default one to add nodes.</span>
-<span style="color: #a020f0;">with</span> g.as_default():
-    <span style="color: #b22222;"># </span><span style="color: #b22222;">Add operation nodes.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Register the graph g as the default one to add nodes.</span>
+<span style="color: #b4fa70;">with</span> g.as_default():
+    <span style="color: #73d216;"># </span><span style="color: #73d216;">Add operation nodes.</span>
 </pre>
 </div>
 <p>

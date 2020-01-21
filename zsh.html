@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-22 Wed 00:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Linux - ZSH</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -314,109 +327,109 @@ Regarding the customization, there exists a toolkit already, e.g., <code>oh-my-z
 Here is an example <code>~/.zshrc</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Lines configured by zsh-newuser-install</span>
+<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">Lines configured by zsh-newuser-install</span>
 setopt notify
 unsetopt beep
 bindkey -e
-<span style="color: #b22222;"># </span><span style="color: #b22222;">End of lines configured by zsh-newuser-install</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">End of lines configured by zsh-newuser-install</span>
 
-[[ $<span style="color: #a0522d;">TERM</span>==<span style="color: #8b2252;">"xterm"</span> ]] &amp;&amp; <span style="color: #483d8b;">export</span> <span style="color: #a0522d;">TERM</span>=xterm-256color
+[[ $<span style="color: #fcaf3e;">TERM</span>==<span style="color: #e9b96e;">"xterm"</span> ]] &amp;&amp; <span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">TERM</span>=xterm-256color
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">If you come from bash you might have to change your $PATH.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">export PATH=$HOME/bin:/usr/local/bin:$PATH</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">If you come from bash you might have to change your $PATH.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">export PATH=$HOME/bin:/usr/local/bin:$PATH</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Path to your oh-my-zsh installation.</span>
-<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">ZSH</span>=/usr/share/oh-my-zsh
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Path to your oh-my-zsh installation.</span>
+<span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">ZSH</span>=/usr/share/oh-my-zsh
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Set name of the theme to load. Optionally, if you set this to "random"</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">it'll load a random theme each time that oh-my-zsh is loaded.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes</span>
-<span style="color: #a0522d;">ZSH_THEME</span>=<span style="color: #8b2252;">"robbyrussell"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Set name of the theme to load. Optionally, if you set this to "random"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">it'll load a random theme each time that oh-my-zsh is loaded.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes</span>
+<span style="color: #fcaf3e;">ZSH_THEME</span>=<span style="color: #e9b96e;">"robbyrussell"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line to use case-sensitive completion.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">CASE_SENSITIVE="true"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line to use case-sensitive completion.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">CASE_SENSITIVE="true"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line to use hyphen-insensitive completion. Case</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">sensitive completion must be off. _ and - will be interchangeable.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">HYPHEN_INSENSITIVE="true"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line to use hyphen-insensitive completion. Case</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">sensitive completion must be off. _ and - will be interchangeable.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">HYPHEN_INSENSITIVE="true"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line to disable bi-weekly auto-update checks.</span>
-<span style="color: #a0522d;">DISABLE_AUTO_UPDATE</span>=<span style="color: #8b2252;">"true"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line to disable bi-weekly auto-update checks.</span>
+<span style="color: #fcaf3e;">DISABLE_AUTO_UPDATE</span>=<span style="color: #e9b96e;">"true"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line to change how often to auto-update (in days).</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">export UPDATE_ZSH_DAYS=13</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line to change how often to auto-update (in days).</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">export UPDATE_ZSH_DAYS=13</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line to disable colors in ls.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">DISABLE_LS_COLORS="true"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line to disable colors in ls.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">DISABLE_LS_COLORS="true"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line to disable auto-setting terminal title.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">DISABLE_AUTO_TITLE="true"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line to disable auto-setting terminal title.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">DISABLE_AUTO_TITLE="true"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line to enable command auto-correction.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">ENABLE_CORRECTION="true"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line to enable command auto-correction.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">ENABLE_CORRECTION="true"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line to display red dots whilst waiting for completion.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">COMPLETION_WAITING_DOTS="true"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line to display red dots whilst waiting for completion.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">COMPLETION_WAITING_DOTS="true"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line if you want to disable marking untracked files</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">under VCS as dirty. This makes repository status check for large repositories</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">much, much faster.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">DISABLE_UNTRACKED_FILES_DIRTY="true"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line if you want to disable marking untracked files</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">under VCS as dirty. This makes repository status check for large repositories</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">much, much faster.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">DISABLE_UNTRACKED_FILES_DIRTY="true"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Uncomment the following line if you want to change the command execution time</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">stamp shown in the history command output.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">HIST_STAMPS="mm/dd/yyyy"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Uncomment the following line if you want to change the command execution time</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">stamp shown in the history command output.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">HIST_STAMPS="mm/dd/yyyy"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Would you like to use another custom folder than $ZSH/custom?</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">ZSH_CUSTOM=/path/to/new-custom-folder</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Would you like to use another custom folder than $ZSH/custom?</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">ZSH_CUSTOM=/path/to/new-custom-folder</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Example format: plugins=(rails git textmate ruby lighthouse)</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Add wisely, as too many plugins slow down shell startup.</span>
-<span style="color: #a0522d;">plugins</span>=(git)
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Example format: plugins=(rails git textmate ruby lighthouse)</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Add wisely, as too many plugins slow down shell startup.</span>
+<span style="color: #fcaf3e;">plugins</span>=(git)
 
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">User configuration</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">User configuration</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">export MANPATH="/usr/local/man:$MANPATH"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">export MANPATH="/usr/local/man:$MANPATH"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">You may need to manually set your language environment</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">export LANG=en_US.UTF-8</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">You may need to manually set your language environment</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">export LANG=en_US.UTF-8</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Preferred editor for local and remote sessions</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">if [[ -n $SSH_CONNECTION ]]; then</span>
-<span style="color: #b22222;">#   </span><span style="color: #b22222;">export EDITOR='vim'</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">else</span>
-<span style="color: #b22222;">#   </span><span style="color: #b22222;">export EDITOR='mvim'</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">fi</span>
-<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">EDITOR</span>=<span style="color: #8b2252;">'emacs -nw'</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Preferred editor for local and remote sessions</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">if [[ -n $SSH_CONNECTION ]]; then</span>
+<span style="color: #73d216;">#   </span><span style="color: #73d216;">export EDITOR='vim'</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">else</span>
+<span style="color: #73d216;">#   </span><span style="color: #73d216;">export EDITOR='mvim'</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">fi</span>
+<span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">EDITOR</span>=<span style="color: #e9b96e;">'emacs -nw'</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Compilation flags</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">export ARCHFLAGS="-arch x86_64"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Compilation flags</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">export ARCHFLAGS="-arch x86_64"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">ssh</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">export SSH_KEY_PATH="~/.ssh/rsa_id"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">ssh</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">export SSH_KEY_PATH="~/.ssh/rsa_id"</span>
 
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Set personal aliases, overriding those provided by oh-my-zsh libs,</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">plugins, and themes. Aliases can be placed here, though oh-my-zsh</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">users are encouraged to define aliases within the ZSH_CUSTOM folder.</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">For a full list of active aliases, run `alias`.</span>
-<span style="color: #b22222;">#</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">Example aliases</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">alias zshconfig="mate ~/.zshrc"</span>
-<span style="color: #b22222;"># </span><span style="color: #b22222;">alias ohmyzsh="mate ~/.oh-my-zsh"</span>
-<span style="color: #483d8b;">alias</span> <span style="color: #a0522d;">ls</span>=<span style="color: #8b2252;">'ls --color=auto'</span>
-<span style="color: #483d8b;">alias</span> <span style="color: #a0522d;">e</span>=<span style="color: #8b2252;">'/usr/bin/emacs -nw'</span>
-<span style="color: #483d8b;">alias</span> <span style="color: #a0522d;">sudo</span>=<span style="color: #8b2252;">'sudo '</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Set personal aliases, overriding those provided by oh-my-zsh libs,</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">plugins, and themes. Aliases can be placed here, though oh-my-zsh</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">users are encouraged to define aliases within the ZSH_CUSTOM folder.</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">For a full list of active aliases, run `alias`.</span>
+<span style="color: #73d216;">#</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Example aliases</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">alias zshconfig="mate ~/.zshrc"</span>
+<span style="color: #73d216;"># </span><span style="color: #73d216;">alias ohmyzsh="mate ~/.oh-my-zsh"</span>
+<span style="color: #e090d7;">alias</span> <span style="color: #fcaf3e;">ls</span>=<span style="color: #e9b96e;">'ls --color=auto'</span>
+<span style="color: #e090d7;">alias</span> <span style="color: #fcaf3e;">e</span>=<span style="color: #e9b96e;">'/usr/bin/emacs -nw'</span>
+<span style="color: #e090d7;">alias</span> <span style="color: #fcaf3e;">sudo</span>=<span style="color: #e9b96e;">'sudo '</span>
 
-<span style="color: #a0522d;">ZSH_CACHE_DIR</span>=$<span style="color: #a0522d;">HOME</span>/.oh-my-zsh-cache
-<span style="color: #a020f0;">if</span> [[ ! -d $<span style="color: #a0522d;">ZSH_CACHE_DIR</span> ]]; <span style="color: #a020f0;">then</span>
-    mkdir $<span style="color: #a0522d;">ZSH_CACHE_DIR</span>
-<span style="color: #a020f0;">fi</span>
+<span style="color: #fcaf3e;">ZSH_CACHE_DIR</span>=$<span style="color: #fcaf3e;">HOME</span>/.oh-my-zsh-cache
+<span style="color: #b4fa70;">if</span> [[ ! -d $<span style="color: #fcaf3e;">ZSH_CACHE_DIR</span> ]]; <span style="color: #b4fa70;">then</span>
+    mkdir $<span style="color: #fcaf3e;">ZSH_CACHE_DIR</span>
+<span style="color: #b4fa70;">fi</span>
 
-<span style="color: #483d8b;">source</span> $<span style="color: #a0522d;">ZSH</span>/oh-my-zsh.sh
+<span style="color: #e090d7;">source</span> $<span style="color: #fcaf3e;">ZSH</span>/oh-my-zsh.sh
 
 </pre>
 </div>

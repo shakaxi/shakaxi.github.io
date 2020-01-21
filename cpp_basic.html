@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-02 Mon 13:22 -->
+<!-- 2020-01-21 Tue 23:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Basic</title>
@@ -159,6 +159,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -264,7 +277,7 @@ for the JavaScript code in this tag.
 <li><a href="#org611bc7d">引用</a>
 <ul>
 <li><a href="#org091a961">引用变量</a></li>
-<li><a href="#org4cd883c">引用数据成员</a></li>
+<li><a href="#org534b237">引用数据成员</a></li>
 <li><a href="#org517104d">引用参数</a></li>
 <li><a href="#orga5e24da">引用返回值</a></li>
 <li><a href="#orge4ec098">引用与指针</a></li>
@@ -312,11 +325,11 @@ for the JavaScript code in this tag.
 <li><a href="#orgc718777">类和对象</a>
 <ul>
 <li><a href="#org735df98">定义</a></li>
-<li><a href="#org9a76dcd">访问控制</a></li>
+<li><a href="#org9c53996">访问控制</a></li>
 <li><a href="#org63ec880"><code>this</code></a></li>
 <li><a href="#orgc5da90b">构造函数(<code>constructor</code>)</a>
 <ul>
-<li><a href="#orgaee39d3">基本概念</a></li>
+<li><a href="#org31c0be0">基本概念</a></li>
 <li><a href="#org18be01c">构造函数初始化器</a></li>
 <li><a href="#org207263a">复制构造函数</a></li>
 <li><a href="#org4a9cdb7">初始化列表构造函数</a></li>
@@ -327,7 +340,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orged24826">析构函数</a>
 <ul>
-<li><a href="#org546eb61">基本概念</a></li>
+<li><a href="#org92f4199">基本概念</a></li>
 </ul>
 </li>
 <li><a href="#orga4f790c">对象赋值</a></li>
@@ -335,7 +348,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org4adf51f">静态数据成员</a></li>
 <li><a href="#org418d633">常量数据成员</a></li>
-<li><a href="#org534b237">引用数据成员</a></li>
+<li><a href="#orgc235af2">引用数据成员</a></li>
 </ul>
 </li>
 <li><a href="#org76cec87">方法</a>
@@ -354,8 +367,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org5a7e4d0">继承</a>
 <ul>
-<li><a href="#org31c0be0">基本概念</a></li>
-<li><a href="#org9c53996">访问控制</a></li>
+<li><a href="#org61cb1de">基本概念</a></li>
+<li><a href="#org391286e">访问控制</a></li>
 <li><a href="#org3205774">禁止继承</a></li>
 <li><a href="#org4c126fc">方法和类的虚化</a></li>
 <li><a href="#org81f79dd">向上转型和向下转型</a></li>
@@ -436,16 +449,16 @@ for the JavaScript code in this tag.
 <li><code>main()</code> 函数是程序的入口. <code>main()</code> 函数返回一个 <code>int</code> 值以指示程序的最终执行状态. <code>main()</code> 函数或者没有参数, 或者具有两个参数.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">argc</span>, <span style="color: #228b22;">char</span>* <span style="color: #a0522d;">argv</span>[])
+<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
 </pre>
 </div>
 <ul class="org-ul">
 <li>自C++11以来, C++通过拖尾返回类型(trailing return type)支持一种替代的函数语法. 函数的返回类型不再位于开头, 而放在行尾的箭头 <code>-&gt;</code> 后面. 这在指定模板函数的返回类型时非常有用.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #a020f0;">auto</span> <span style="color: #0000ff;">func</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>) -&gt; <span style="color: #228b22;">int</span>
+<pre class="src src-c++"><span style="color: #b4fa70;">auto</span> <span style="color: #fce94f;">func</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>) -&gt; <span style="color: #8cc4ff;">int</span>
 {
-    <span style="color: #a020f0;">return</span> i + 1;
+    <span style="color: #b4fa70;">return</span> i + 1;
 }
 </pre>
 </div>
@@ -468,7 +481,7 @@ for the JavaScript code in this tag.
 <li><code>typedef</code> 的最常见用法是当实际类型的声明过于笨拙时, 提供易于管理的名称, 这一情形通常出现在模板中. STL广泛使用 <code>typedef</code> 提供类型的简短名称. 如 <code>string</code> 实际上是一个 <code>typedef</code>.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #a020f0;">typedef</span> <span style="color: #228b22;">basic_string</span>&lt;<span style="color: #228b22;">char</span>, <span style="color: #228b22;">char_traits</span>&lt;<span style="color: #228b22;">char</span>&gt;, <span style="color: #228b22;">allocator</span>&lt;<span style="color: #228b22;">char</span>&gt;&gt; <span style="color: #228b22;">string</span>
+<pre class="src src-c++"><span style="color: #b4fa70;">typedef</span> <span style="color: #8cc4ff;">basic_string</span>&lt;<span style="color: #8cc4ff;">char</span>, <span style="color: #8cc4ff;">char_traits</span>&lt;<span style="color: #8cc4ff;">char</span>&gt;, <span style="color: #8cc4ff;">allocator</span>&lt;<span style="color: #8cc4ff;">char</span>&gt;&gt; <span style="color: #8cc4ff;">string</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -483,14 +496,14 @@ for the JavaScript code in this tag.
 某些情况下, 类型别名比 <code>typedef</code> 更容易理解. 例如,
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #a020f0;">typedef</span> <span style="color: #228b22;">int</span> <span style="color: #228b22;">my_int</span>;
+<pre class="src src-c++"><span style="color: #b4fa70;">typedef</span> <span style="color: #8cc4ff;">int</span> <span style="color: #8cc4ff;">my_int</span>;
 </pre>
 </div>
 <p>
 可以重写为
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #a020f0;">using</span> <span style="color: #228b22;">my_int</span> = <span style="color: #228b22;">int</span>;
+<pre class="src src-c++"><span style="color: #b4fa70;">using</span> <span style="color: #8cc4ff;">my_int</span> = <span style="color: #8cc4ff;">int</span>;
 </pre>
 </div>
 </div>
@@ -649,9 +662,9 @@ C/C++常常会发生与内存有关的问题, 如
 </ul>
 </div>
 </div>
-<div id="outline-container-org4cd883c" class="outline-3">
-<h3 id="org4cd883c">引用数据成员</h3>
-<div class="outline-text-3" id="text-org4cd883c">
+<div id="outline-container-org534b237" class="outline-3">
+<h3 id="org534b237">引用数据成员</h3>
+<div class="outline-text-3" id="text-org534b237">
 <p>
 引用可以作为类的数据成员, 也即引用数据成员. 引用数据成员必须在类的构造函数初始化器中初始化它, 而不是在构造函数体内.
 </p>
@@ -756,26 +769,26 @@ C/C++常常会发生与内存有关的问题, 如
 <li>数值转换</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #b22222;">// </span><span style="color: #b22222;">Transformation to string</span>
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">val</span>);
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">unsigned</span> <span style="color: #a0522d;">val</span>);
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">long</span> <span style="color: #a0522d;">val</span>);
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #a0522d;">val</span>);
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #a0522d;">val</span>);
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #a0522d;">val</span>);
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">float</span> <span style="color: #a0522d;">val</span>);
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">double</span> <span style="color: #a0522d;">val</span>);
-<span style="color: #228b22;">string</span> <span style="color: #0000ff;">to_string</span>(<span style="color: #228b22;">long</span> <span style="color: #228b22;">double</span> <span style="color: #a0522d;">val</span>);
+<pre class="src src-c++"><span style="color: #73d216;">// </span><span style="color: #73d216;">Transformation to string</span>
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">val</span>);
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">unsigned</span> <span style="color: #fcaf3e;">val</span>);
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">long</span> <span style="color: #fcaf3e;">val</span>);
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">unsigned</span> <span style="color: #8cc4ff;">long</span> <span style="color: #fcaf3e;">val</span>);
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">long</span> <span style="color: #8cc4ff;">long</span> <span style="color: #fcaf3e;">val</span>);
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">unsigned</span> <span style="color: #8cc4ff;">long</span> <span style="color: #8cc4ff;">long</span> <span style="color: #fcaf3e;">val</span>);
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">float</span> <span style="color: #fcaf3e;">val</span>);
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">val</span>);
+<span style="color: #8cc4ff;">string</span> <span style="color: #fce94f;">to_string</span>(<span style="color: #8cc4ff;">long</span> <span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">val</span>);
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">Transformation from string</span>
-<span style="color: #228b22;">int</span> <span style="color: #0000ff;">stoi</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">size_t</span> *<span style="color: #a0522d;">idx</span> = 0, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span> = 10);
-<span style="color: #228b22;">long</span> <span style="color: #0000ff;">stol</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">size_t</span> *<span style="color: #a0522d;">idx</span> = 0, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span> = 10);
-<span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #0000ff;">stoul</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">size_t</span> *<span style="color: #a0522d;">idx</span> = 0, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span> = 10);
-<span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #0000ff;">stoll</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">size_t</span> *<span style="color: #a0522d;">idx</span> = 0, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span> = 10);
-<span style="color: #228b22;">unsigned</span> <span style="color: #228b22;">long</span> <span style="color: #228b22;">long</span> <span style="color: #0000ff;">stoll</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">size_t</span> *<span style="color: #a0522d;">idx</span> = 0, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span> = 10);
-<span style="color: #228b22;">float</span> <span style="color: #0000ff;">stof</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">size_t</span> *<span style="color: #a0522d;">idx</span> = 0, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span> = 10);
-<span style="color: #228b22;">double</span> <span style="color: #0000ff;">stof</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">size_t</span> *<span style="color: #a0522d;">idx</span> = 0, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span> = 10);
-<span style="color: #228b22;">long</span> <span style="color: #228b22;">double</span> <span style="color: #0000ff;">stof</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">string</span> &amp;<span style="color: #a0522d;">str</span>, <span style="color: #228b22;">size_t</span> *<span style="color: #a0522d;">idx</span> = 0, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">base</span> = 10);
+<span style="color: #73d216;">// </span><span style="color: #73d216;">Transformation from string</span>
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">stoi</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
+<span style="color: #8cc4ff;">long</span> <span style="color: #fce94f;">stol</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
+<span style="color: #8cc4ff;">unsigned</span> <span style="color: #8cc4ff;">long</span> <span style="color: #fce94f;">stoul</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
+<span style="color: #8cc4ff;">long</span> <span style="color: #8cc4ff;">long</span> <span style="color: #fce94f;">stoll</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
+<span style="color: #8cc4ff;">unsigned</span> <span style="color: #8cc4ff;">long</span> <span style="color: #8cc4ff;">long</span> <span style="color: #fce94f;">stoll</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
+<span style="color: #8cc4ff;">float</span> <span style="color: #fce94f;">stof</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
+<span style="color: #8cc4ff;">double</span> <span style="color: #fce94f;">stof</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
+<span style="color: #8cc4ff;">long</span> <span style="color: #8cc4ff;">double</span> <span style="color: #fce94f;">stof</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">string</span> &amp;<span style="color: #fcaf3e;">str</span>, <span style="color: #8cc4ff;">size_t</span> *<span style="color: #fcaf3e;">idx</span> = 0, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">base</span> = 10);
 </pre>
 </div>
 </div>
@@ -795,9 +808,9 @@ C/C++常常会发生与内存有关的问题, 如
 基于区间的 <code>for</code> 循环(range-based for loop)允许方便地迭代容器中的元素. 这种循环类型可以用于C风格的数组, 初始化列表, 也可以用于具有返回迭代器的 <code>begin()</code> 和 <code>end()</code> 函数的类型, 如 <code>std::array</code> 和其他所有STL容器.
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #008b8b;">std</span>::<span style="color: #228b22;">array</span>&lt;<span style="color: #228b22;">int</span>, 3&gt; <span style="color: #a0522d;">arr</span> = {1, 2, 3};
-<span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> : arr)
-    <span style="color: #008b8b;">std</span>::cout &lt;&lt; i &lt;&lt; <span style="color: #008b8b;">std</span>::endl;
+<pre class="src src-c++"><span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">array</span>&lt;<span style="color: #8cc4ff;">int</span>, 3&gt; <span style="color: #fcaf3e;">arr</span> = {1, 2, 3};
+<span style="color: #b4fa70;">for</span> (<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span> : arr)
+    <span style="color: #e9b2e3;">std</span>::cout &lt;&lt; i &lt;&lt; <span style="color: #e9b2e3;">std</span>::endl;
 </pre>
 </div>
 </div>
@@ -813,7 +826,7 @@ C/C++常常会发生与内存有关的问题, 如
 <li>统一初始化可以用来初始化动态分配的数组. 如</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #228b22;">int</span> *<span style="color: #a0522d;">p</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">int</span>[3]{0, 1, 2};
+<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> *<span style="color: #fcaf3e;">p</span> = <span style="color: #b4fa70;">new</span> <span style="color: #8cc4ff;">int</span>[3]{0, 1, 2};
 </pre>
 </div>
 <ul class="org-ul">
@@ -850,19 +863,19 @@ C++语言提供了一个名为"异常"的特性，用来处理不正常的但能
 使用异常要在程序中包括两个部分：处理异常的try/catch结构和抛出异常的throw语句。二者都必须以某种形式出现，以进行异常处理。然而在许多情况下，throw在一些库的深处（包括C++运行时）发生，无法看到，但仍然不得不用try/catch结构处理抛出的异常。try/catch结构如下所示：
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #a020f0;">try</span>
+<pre class="src src-C++"><span style="color: #b4fa70;">try</span>
 {
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">... code which may result in an exception being thrown</span>
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">... code which may result in an exception being thrown</span>
 }
-<span style="color: #a020f0;">catch</span> (exception-type1 exception-name)
+<span style="color: #b4fa70;">catch</span> (exception-type1 exception-name)
 {
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">... code which responds to the exception of type 1</span>
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">... code which responds to the exception of type 1</span>
 }
-<span style="color: #a020f0;">catch</span> (exception-type2 exception-name)
+<span style="color: #b4fa70;">catch</span> (exception-type2 exception-name)
 {
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">... code which responds to the exception of type 2</span>
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">... code which responds to the exception of type 2</span>
 }
-<span style="color: #b22222;">// </span><span style="color: #b22222;">... remaining code</span>
+<span style="color: #73d216;">// </span><span style="color: #73d216;">... remaining code</span>
 </pre>
 </div>
 <p>
@@ -933,15 +946,15 @@ C++保证会运行任何构建完整“子对象”的析构函数。因此，�
 如果在构造函数的初始化器（ctor-initializer）中抛出异常，需要 <code>function-try-blocks</code> 来捕获。=function-try-blocks= 用于普通函数和构造函数。构造函数 <code>function-try-blocks</code> 的基本语法为
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #008b8b;">My_Class</span>::My_Class()
-<span style="color: #a020f0;">try</span>
+<pre class="src src-c++"><span style="color: #e9b2e3;">My_Class</span>::My_Class()
+<span style="color: #b4fa70;">try</span>
     : &lt;ctor-initializer&gt;
 {
-    <span style="color: #b22222;">/* </span><span style="color: #b22222;">... constructor body ...</span><span style="color: #b22222;"> */</span>
+    <span style="color: #73d216;">/* </span><span style="color: #73d216;">... constructor body ...</span><span style="color: #73d216;"> */</span>
 }
-<span style="color: #a020f0;">catch</span> (<span style="color: #a020f0;">const</span> <span style="color: #228b22;">exception</span> &amp;<span style="color: #a0522d;">e</span>)
+<span style="color: #b4fa70;">catch</span> (<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">exception</span> &amp;<span style="color: #fcaf3e;">e</span>)
 {
-    <span style="color: #b22222;">/* </span><span style="color: #b22222;">...</span><span style="color: #b22222;"> */</span>
+    <span style="color: #73d216;">/* </span><span style="color: #73d216;">...</span><span style="color: #73d216;"> */</span>
 }
 </pre>
 </div>
@@ -1125,9 +1138,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 </p>
 </div>
 </div>
-<div id="outline-container-org9a76dcd" class="outline-3">
-<h3 id="org9a76dcd">访问控制</h3>
-<div class="outline-text-3" id="text-org9a76dcd">
+<div id="outline-container-org9c53996" class="outline-3">
+<h3 id="org9c53996">访问控制</h3>
+<div class="outline-text-3" id="text-org9c53996">
 <p>
 类中的每个方法和成员都可以用如下访问说明符(access specifiers)来说明. 访问说明符将应用于其后声明的所有成员, 直到遇到另一个访问说明符.
 </p>
@@ -1158,9 +1171,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <h3 id="orgc5da90b">构造函数(<code>constructor</code>)</h3>
 <div class="outline-text-3" id="text-orgc5da90b">
 </div>
-<div id="outline-container-orgaee39d3" class="outline-4">
-<h4 id="orgaee39d3">基本概念</h4>
-<div class="outline-text-4" id="text-orgaee39d3">
+<div id="outline-container-org31c0be0" class="outline-4">
+<h4 id="org31c0be0">基本概念</h4>
+<div class="outline-text-4" id="text-org31c0be0">
 <p>
 当创建对象时(同时也会创建内嵌的对象), 会执行一个构造函数. 从语法上讲, 构造函数是与类同名的方法, 没有返回类型, 可以有也可以没有参数. 没有参数的构造函数称为默认构造函数或者零参数构造函数.
 </p>
@@ -1245,9 +1258,9 @@ C++每个源文件都是单独编译的, 编译得到的目标文件会彼此链
 <h3 id="orged24826">析构函数</h3>
 <div class="outline-text-3" id="text-orged24826">
 </div>
-<div id="outline-container-org546eb61" class="outline-4">
-<h4 id="org546eb61">基本概念</h4>
-<div class="outline-text-4" id="text-org546eb61">
+<div id="outline-container-org92f4199" class="outline-4">
+<h4 id="org92f4199">基本概念</h4>
+<div class="outline-text-4" id="text-org92f4199">
 <ul class="org-ul">
 <li>析构函数与类(以及构造函数)同名, 前面有一个波浪号(<code>~</code>).</li>
 <li>析构函数没有参数, 并且一个类只能有一个析构函数.</li>
@@ -1302,9 +1315,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </p>
 </div>
 </div>
-<div id="outline-container-org534b237" class="outline-4">
-<h4 id="org534b237">引用数据成员</h4>
-<div class="outline-text-4" id="text-org534b237">
+<div id="outline-container-orgc235af2" class="outline-4">
+<h4 id="orgc235af2">引用数据成员</h4>
+<div class="outline-text-4" id="text-orgc235af2">
 <p>
 在初始化一个引用之后, 不能改变它引用的对象. 因此不可能在赋值运算符中对引用赋值. 就像普通引用可以引用常量对象一样, 引用成员也可以引用常量对象.
 </p>
@@ -1474,9 +1487,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 <h2 id="org5a7e4d0">继承</h2>
 <div class="outline-text-2" id="text-org5a7e4d0">
 </div>
-<div id="outline-container-org31c0be0" class="outline-3">
-<h3 id="org31c0be0">基本概念</h3>
-<div class="outline-text-3" id="text-org31c0be0">
+<div id="outline-container-org61cb1de" class="outline-3">
+<h3 id="org61cb1de">基本概念</h3>
+<div class="outline-text-3" id="text-org61cb1de">
 <ul class="org-ul">
 <li>继承的运行方式是单向的. 基类并不知道派生类的任何信息.</li>
 <li>指向某个对象的指针或者引用可以指向声明类的对象, 也可以指向其任意派生类的对象. 指向基类对象的指针可以指向派生类对象, 对于引用也是如此. 然而, 不能通过基类对象的指针调用派生类的方法. 即使基类的引用或者指针知道所指的是一个派生类, 也无法访问没有在基类中定义的派生类方法或者成员.</li>
@@ -1484,9 +1497,9 @@ C++为所有的类提供了赋值的方法, 也即赋值运算符 <code>operator
 </ul>
 </div>
 </div>
-<div id="outline-container-org9c53996" class="outline-3">
-<h3 id="org9c53996">访问控制</h3>
-<div class="outline-text-3" id="text-org9c53996">
+<div id="outline-container-org391286e" class="outline-3">
+<h3 id="org391286e">访问控制</h3>
+<div class="outline-text-3" id="text-org391286e">
 <p>
 派生类可以访问基类中声明为 <code>public</code>, <code>protected</code> 的数据成员和方法, 就好像这些数据成员和方法是派生类自己的. 如果类将数据成员和方法声明为 <code>protected</code>, 派生类就可以访问它们; 如果声明为 <code>private</code>, 派生类就不能访问它们. 建议将所有数据成员都默认声明为 <code>private</code>, 这会提供最高级别的封装. 如果希望任何代码都能访问这些数据成员, 就可以提供 <code>public</code> 的 <code>getter/setter</code>; 如果只希望派生类访问它们, 就可以提供 <code>protected</code> 的 <code>getter/setter</code>.
 </p>
@@ -1604,23 +1617,23 @@ C++根据描述对象的表达式类型在编译时绑定默认参数, 而不是
 <li>显式地向上转型, 其本质是向编译器隐藏多余的方法版本.</li>
 </ol>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #228b22;">C</span> <span style="color: #a0522d;">c</span>;
-<span style="color: #a020f0;">dynamic_cast</span>&lt;<span style="color: #228b22;">A</span>&amp;&gt;(c).F();
+<pre class="src src-c++"><span style="color: #8cc4ff;">C</span> <span style="color: #fcaf3e;">c</span>;
+<span style="color: #b4fa70;">dynamic_cast</span>&lt;<span style="color: #8cc4ff;">A</span>&amp;&gt;(c).F();
 </pre>
 </div>
 <ol class="org-ol">
 <li>使用与访问基类方法相同的语法(<code>::</code> 运算符).</li>
 </ol>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #228b22;">C</span> <span style="color: #a0522d;">c</span>;
-c.<span style="color: #008b8b;">A</span>::F();
+<pre class="src src-c++"><span style="color: #8cc4ff;">C</span> <span style="color: #fcaf3e;">c</span>;
+c.<span style="color: #e9b2e3;">A</span>::F();
 </pre>
 </div>
 <ol class="org-ol">
 <li>在类C的声明中使用 <code>using</code> 语句显式指定.</li>
 </ol>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #a020f0;">using</span> <span style="color: #008b8b;">A</span>::<span style="color: #228b22;">F</span>;
+<pre class="src src-c++"><span style="color: #b4fa70;">using</span> <span style="color: #e9b2e3;">A</span>::<span style="color: #8cc4ff;">F</span>;
 </pre>
 </div>
 </div>
@@ -1653,7 +1666,7 @@ c.<span style="color: #008b8b;">A</span>::F();
 <code>lambda</code> 表达式可以编写内嵌的匿名函数, 而不必编写独立函数或函数对象, 使代码更容易阅读和理解. <code>lambda</code> 表达式以方括号 <code>[]</code> 开始, 其后是花括号 <code>{}</code>, 其中包含了 <code>lambda</code> 表达式体. 完整的语法为
 </p>
 <div class="org-src-container">
-<pre class="src src-c++">[<span style="color: #008b8b;">capture_block</span>] (parameters) <span style="color: #a020f0;">mutable</span> <span style="color: #228b22;">exception_specification</span> <span style="color: #a0522d;">attribute_specifier</span> -&gt; return_type {body}
+<pre class="src src-c++">[<span style="color: #e9b2e3;">capture_block</span>] (parameters) <span style="color: #b4fa70;">mutable</span> <span style="color: #8cc4ff;">exception_specification</span> <span style="color: #fcaf3e;">attribute_specifier</span> -&gt; return_type {body}
 </pre>
 </div>
 <p>
@@ -1689,41 +1702,41 @@ c.<span style="color: #008b8b;">A</span>::F();
 模板"参数化"类型的方式和函数"参数化"值的方式相同. 例如:
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span class="linenr"> 1: </span><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span>&gt;
-<span class="linenr"> 2: </span><span style="color: #a020f0;">class</span> <span style="color: #228b22;">Template_Name</span>
+<pre class="src src-c++"><span class="linenr"> 1: </span><span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">T</span>&gt;
+<span class="linenr"> 2: </span><span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Template_Name</span>
 <span class="linenr"> 3: </span>{
-<span class="linenr"> 4: </span><span style="color: #a020f0;">private</span>:
-<span class="linenr"> 5: </span>    <span style="color: #228b22;">T</span> <span style="color: #a0522d;">prop</span>;
-<span class="linenr"> 6: </span><span style="color: #a020f0;">public</span>:
-<span class="linenr"> 7: </span>    <span style="color: #a020f0;">explicit</span> <span style="color: #0000ff;">Template_Name</span>(<span style="color: #228b22;">T</span> <span style="color: #a0522d;">p</span>);
-<span class="linenr"> 8: </span>    <span style="color: #0000ff;">Template_Name</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;&amp; <span style="color: #a0522d;">src</span>);
-<span class="linenr"> 9: </span>    <span style="color: #228b22;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;&amp; <span style="color: #a020f0;">operator</span><span style="color: #0000ff;">=</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;&amp; <span style="color: #a0522d;">rhs</span>);
-<span class="linenr">10: </span>    <span style="color: #228b22;">T</span> <span style="color: #0000ff;">get_prop</span>() <span style="color: #a020f0;">const</span>;
+<span class="linenr"> 4: </span><span style="color: #b4fa70;">private</span>:
+<span class="linenr"> 5: </span>    <span style="color: #8cc4ff;">T</span> <span style="color: #fcaf3e;">prop</span>;
+<span class="linenr"> 6: </span><span style="color: #b4fa70;">public</span>:
+<span class="linenr"> 7: </span>    <span style="color: #b4fa70;">explicit</span> <span style="color: #fce94f;">Template_Name</span>(<span style="color: #8cc4ff;">T</span> <span style="color: #fcaf3e;">p</span>);
+<span class="linenr"> 8: </span>    <span style="color: #fce94f;">Template_Name</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;&amp; <span style="color: #fcaf3e;">src</span>);
+<span class="linenr"> 9: </span>    <span style="color: #8cc4ff;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;&amp; <span style="color: #b4fa70;">operator</span><span style="color: #fce94f;">=</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;&amp; <span style="color: #fcaf3e;">rhs</span>);
+<span class="linenr">10: </span>    <span style="color: #8cc4ff;">T</span> <span style="color: #fce94f;">get_prop</span>() <span style="color: #b4fa70;">const</span>;
 <span class="linenr">11: </span>};
 <span class="linenr">12: </span>
-<span class="linenr">13: </span><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span>&gt;
-<span class="linenr">14: </span><span style="color: #008b8b;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;::<span style="color: #0000ff;">Template_Name</span>(<span style="color: #228b22;">T</span> <span style="color: #a0522d;">p</span>)
+<span class="linenr">13: </span><span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">T</span>&gt;
+<span class="linenr">14: </span><span style="color: #e9b2e3;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;::<span style="color: #fce94f;">Template_Name</span>(<span style="color: #8cc4ff;">T</span> <span style="color: #fcaf3e;">p</span>)
 <span class="linenr">15: </span>{
 <span class="linenr">16: </span>    prop = p;
 <span class="linenr">17: </span>}
 <span class="linenr">18: </span>
-<span class="linenr">19: </span><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span>&gt;
-<span class="linenr">20: </span><span style="color: #008b8b;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;::<span style="color: #0000ff;">Template_Name</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;&amp; <span style="color: #a0522d;">src</span>)
+<span class="linenr">19: </span><span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">T</span>&gt;
+<span class="linenr">20: </span><span style="color: #e9b2e3;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;::<span style="color: #fce94f;">Template_Name</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;&amp; <span style="color: #fcaf3e;">src</span>)
 <span class="linenr">21: </span>{
 <span class="linenr">22: </span>    prop = src.get_prop();
 <span class="linenr">23: </span>}
 <span class="linenr">24: </span>
-<span class="linenr">25: </span><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span>&gt;
-<span class="linenr">26: </span><span style="color: #228b22;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;&amp; <span style="color: #008b8b;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;::<span style="color: #a020f0;">operator</span><span style="color: #0000ff;">=</span>(<span style="color: #a020f0;">const</span> <span style="color: #228b22;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;&amp; <span style="color: #a0522d;">rhs</span>)
+<span class="linenr">25: </span><span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">T</span>&gt;
+<span class="linenr">26: </span><span style="color: #8cc4ff;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;&amp; <span style="color: #e9b2e3;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;::<span style="color: #b4fa70;">operator</span><span style="color: #fce94f;">=</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;&amp; <span style="color: #fcaf3e;">rhs</span>)
 <span class="linenr">27: </span>{
 <span class="linenr">28: </span>    prop = rhs.get_prop();
-<span class="linenr">29: </span>    <span style="color: #a020f0;">return</span> *<span style="color: #a020f0;">this</span>;
+<span class="linenr">29: </span>    <span style="color: #b4fa70;">return</span> *<span style="color: #b4fa70;">this</span>;
 <span class="linenr">30: </span>}
 <span class="linenr">31: </span>
-<span class="linenr">32: </span><span style="color: #a020f0;">template</span> &lt;<span style="color: #a020f0;">typename</span> <span style="color: #228b22;">T</span>&gt;
-<span class="linenr">33: </span><span style="color: #228b22;">T</span> <span style="color: #008b8b;">Template_Name</span>&lt;<span style="color: #228b22;">T</span>&gt;::<span style="color: #0000ff;">get_prop</span>() <span style="color: #a020f0;">const</span>
+<span class="linenr">32: </span><span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">T</span>&gt;
+<span class="linenr">33: </span><span style="color: #8cc4ff;">T</span> <span style="color: #e9b2e3;">Template_Name</span>&lt;<span style="color: #8cc4ff;">T</span>&gt;::<span style="color: #fce94f;">get_prop</span>() <span style="color: #b4fa70;">const</span>
 <span class="linenr">34: </span>{
-<span class="linenr">35: </span>    <span style="color: #a020f0;">return</span> prop;
+<span class="linenr">35: </span>    <span style="color: #b4fa70;">return</span> prop;
 <span class="linenr">36: </span>}
 </pre>
 </div>
@@ -1754,8 +1767,8 @@ c.<span style="color: #008b8b;">A</span>::F();
 模板的另一个实现称为模板特例化(template specialization). 例如:
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #a020f0;">template</span> &lt;&gt;
-<span style="color: #a020f0;">class</span> <span style="color: #228b22;">Template_Name</span>&lt;<span style="color: #228b22;">int</span>&gt;
+<pre class="src src-c++"><span style="color: #b4fa70;">template</span> &lt;&gt;
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">Template_Name</span>&lt;<span style="color: #8cc4ff;">int</span>&gt;
 {
     ...
 }
