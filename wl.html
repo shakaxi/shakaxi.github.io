@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2020-02-11 Tue 14:34 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emacs - Wanderlust</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs - Wanderlust</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf77980b">Introduction</a></li>
+<li><a href="#orge7e2a01">Installation</a></li>
+<li><a href="#orga64d9a9">Configuration</a></li>
+<li><a href="#org842cc89">Usage</a>
+<ul>
+<li><a href="#org84b8445">Startup</a></li>
+<li><a href="#org6498440">Key bindings</a>
+<ul>
+<li><a href="#orgd6c43bf">Draft buffer</a></li>
+<li><a href="#orgf0ac735">Summary buffer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf77980b" class="outline-2">
+<h2 id="orgf77980b">Introduction</h2>
+<div class="outline-text-2" id="text-orgf77980b">
+<p>
+Wanderlust is also a mail client within Emacs. This post aims to summarize the procedure of its installation and configurations.
+</p>
+</div>
+</div>
+<div id="outline-container-orge7e2a01" class="outline-2">
+<h2 id="orge7e2a01">Installation</h2>
+<div class="outline-text-2" id="text-orge7e2a01">
+<p>
+Wanderlust can be directly installed via ELPA. APEL, SEMI and FLIM are also installed as dependency.
+</p>
+</div>
+</div>
+<div id="outline-container-orga64d9a9" class="outline-2">
+<h2 id="orga64d9a9">Configuration</h2>
+<div class="outline-text-2" id="text-orga64d9a9">
+<p>
+We postulate that all the mails are stored in <code>~/.Mail</code>, in which there are a plurality of Maildir folders, e.g., <code>draft</code>, <code>queue</code>, <code>sent</code>, <code>trash</code>, <code>boc</code>, <code>edas</code>, <code>home</code>, <code>office</code>, <code>linkedin</code>, <code>r1</code>, <code>r1nr</code>, <code>rp</code>. Mails are periodically fetched by getmail or offlineimap, e.g.,
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">*/10 * * * * /usr/bin/getmail --new --getmaildir=/PATH/TO/GETMAILRC --rcfile=GETMAILRC
+</pre>
+</div>
+<p>
+or
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">*/10 * * * * /usr/bin/offlineimap -c /PATH/TO/OFFLINEIMAPRC -a ACCOUNT
+</pre>
+</div>
+
+<p>
+In this case, following configurations are needed for wanderlust.
+</p>
+<ul class="org-ul">
+<li><p>
+<code>~/.config/emacs/init.el</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">use-package</span> <span style="color: #e9b2e3;">wl</span>
+  <span style="color: #e090d7;">:ensure</span> wanderlust
+  <span style="color: #e090d7;">:init</span>
+  (<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">mime-w3m</span>)
+  (autoload 'wl <span style="color: #e9b96e;">"wl"</span> <span style="color: #e9b96e;">"Wanderlust"</span> t)
+  (autoload 'wl-other-frame <span style="color: #e9b96e;">"wl"</span> <span style="color: #e9b96e;">"Wanderlust on new frame."</span> t)
+  (autoload 'wl-draft <span style="color: #e9b96e;">"wl-draft"</span> <span style="color: #e9b96e;">"Write draft with Wanderlust."</span> t)
+  (autoload 'wl-user-agent-compose <span style="color: #e9b96e;">"wl-draft"</span> nil t)
+  <span style="color: #e090d7;">:config</span>
+  (<span style="color: #b4fa70;">if</span> (boundp 'mail-user-agent)
+      (<span style="color: #b4fa70;">setq</span> mail-user-agent 'wl-user-agent))
+  (<span style="color: #b4fa70;">if</span> (fboundp 'define-mail-user-agent)
+      (define-mail-user-agent
+        'wl-user-agent
+        'wl-user-agent-compose
+        'wl-draft-send
+        'wl-draft-kill
+        'mail-send-hook))
+  <span style="color: #e090d7;">:custom</span>
+  (wl-from <span style="color: #e9b96e;">"Shaka <a href="mailto:shaka%40company.com">&lt;shaka@company.com&gt;</a>"</span>)
+  (org-mime-library 'semi)
+  (wl-folder-check-async t)
+  (wl-stay-folder-window t)
+  (wl-fcc-force-as-read t)
+  (wl-interactive-exit nil)
+  (wl-insert-message-id nil)
+  (wl-quicksearch-folder <span style="color: #e9b96e;">"[]"</span>)
+  (elmo-search-default-engine 'notmuch)
+  <span style="color: #73d216;">;; </span><span style="color: #73d216;">Folders</span>
+  (wl-folder-desktop-name <span style="color: #e9b96e;">"xi"</span>)
+  (wl-folders-file <span style="color: #e9b96e;">"~/.config/emacs/xi/folders"</span>)
+  (elmo-maildir-folder-path <span style="color: #e9b96e;">"~/.Mail"</span>)
+  (elmo-localdir-folder-path <span style="color: #e9b96e;">"~/.Mail"</span>)
+  (wl-temporary-file-directory <span style="color: #e9b96e;">"/tmp"</span>)
+  (wl-default-spec <span style="color: #e9b96e;">"."</span>)
+  (wl-trash-folder <span style="color: #e9b96e;">".trash"</span>)
+  (wl-fcc <span style="color: #e9b96e;">".sent"</span>)
+  (wl-draft-folder <span style="color: #e9b96e;">".draft"</span>)
+  (wl-queue-folder <span style="color: #e9b96e;">".queue"</span>)
+  (wl-summary-auto-refile-skip-marks nil)
+  <span style="color: #73d216;">;; </span><span style="color: #73d216;">Auto refile</span>
+  (wl-refile-rule-alist
+   '(((<span style="color: #e9b96e;">"To"</span> <span style="color: #e9b96e;">"Cc"</span>)
+      (<span style="color: #e9b96e;">".*3gpp_tsg_ran@list\\.etsi\\.org.*"</span> . <span style="color: #e9b96e;">".~/.Mail/rp"</span>)
+      (<span style="color: #e9b96e;">".*3gpp_tsg_ran_wg1@list\\.etsi\\.org.*"</span> . <span style="color: #e9b96e;">".~/.Mail/r1"</span>)
+      (<span style="color: #e9b96e;">".*3gpp_tsg_ran_wg1_nr@list\\.etsi\\.org.*"</span> . <span style="color: #e9b96e;">".~/.Mail/r1nr"</span>))
+     (<span style="color: #e9b96e;">"From"</span>
+      (<span style="color: #e9b96e;">".*personalservice@bank-of-china\\.com.*"</span> . <span style="color: #e9b96e;">".~/.Mail/boc"</span>)
+      (<span style="color: #e9b96e;">".*10000bj@189\\.cn.*"</span> . <span style="color: #e9b96e;">".~/.Mail/telecomm"</span>)
+      (<span style="color: #e9b96e;">".+@linkedin\\.com.*"</span> . <span style="color: #e9b96e;">".~/.Mail/linkedin"</span>))
+     (<span style="color: #e9b96e;">"Subject"</span> (<span style="color: #e9b96e;">".*EDAS-CFP.*"</span> . <span style="color: #e9b96e;">".~/.Mail/edas"</span>))
+     (<span style="color: #e9b96e;">"To"</span>
+      (<span style="color: #e9b96e;">".*shaka@home\\.com.*"</span> . <span style="color: #e9b96e;">".~/.Mail/home"</span>)
+      (<span style="color: #e9b96e;">".*shaka@company\\.com.*"</span> . <span style="color: #e9b96e;">".~/.Mail/office"</span>))))
+  <span style="color: #73d216;">;; </span><span style="color: #73d216;">Send mail with msmtp.</span>
+  (wl-draft-send-mail-function 'wl-draft-send-mail-with-sendmail)
+  (message-sendmail-envelope-from 'header)
+  (mail-envelope-from 'header)
+  (mail-specify-envelope-from t)
+  (sendmail-program <span style="color: #e9b96e;">"/usr/bin/msmtp"</span>)
+  <span style="color: #73d216;">;; </span><span style="color: #73d216;">Appearance</span>
+  (mime-header-accept-quoted-encoded-words t)
+  (wl-message-ignored-field-list '(<span style="color: #e9b96e;">"."</span>))
+  (wl-message-visible-field-list '(<span style="color: #e9b96e;">"^Subject:"</span> <span style="color: #e9b96e;">"^Date:"</span> <span style="color: #e9b96e;">"^From:"</span> <span style="color: #e9b96e;">"^</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">(</span><span style="color: #e9b96e;">To</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">Cc</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">)</span><span style="color: #e9b96e;">:"</span>))
+  (wl-summary-width 100)
+  (wl-biff-check-folder-list '(<span style="color: #e9b96e;">".~/.Mail/home"</span> <span style="color: #e9b96e;">".~/.Mail/office"</span>))
+  (wl-summary-line-format <span style="color: #e9b96e;">"%5(%n%) %3(%T%P%) %15(%f%) %23(%Y-%M-%D(%W) %h:%m%) %t%C%s"</span>))
+</pre>
+</div></li>
+<li><p>
+<code>~/.config/emacs/xi/folders</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">.~/.Mail/home <span style="color: #e9b96e;">"home"</span>
+home{
+.~/.Mail/boc <span style="color: #e9b96e;">"boc"</span>
+.~/.Mail/telecomm <span style="color: #e9b96e;">"telecomm"</span>
+.~/.Mail/linkedin <span style="color: #e9b96e;">"linkedin"</span>
+.~/.Mail/edas <span style="color: #e9b96e;">"edas"</span>
+}
+
+.~/.Mail/office <span style="color: #e9b96e;">"office"</span>
+office{
+.~/.Mail/rp <span style="color: #e9b96e;">"rp"</span>
+.~/.Mail/r1 <span style="color: #e9b96e;">"r1"</span>
+.~/.Mail/r1nr <span style="color: #e9b96e;">"r1nr"</span>
+}
+
+.~/.Mail/sent <span style="color: #e9b96e;">"sent"</span>
+.~/.Mail/draft <span style="color: #e9b96e;">"draft"</span>
+.~/.Mail/trash <span style="color: #e9b96e;">"trash"</span>
+
+# %INBOX:shaka/clear@imap.home.com:143 <span style="color: #e9b96e;">"home"</span>
+# %INBOX:shaka/clear@imap.company.com:993! <span style="color: #e9b96e;">"office"</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org842cc89" class="outline-2">
+<h2 id="org842cc89">Usage</h2>
+<div class="outline-text-2" id="text-org842cc89">
+</div>
+<div id="outline-container-org84b8445" class="outline-3">
+<h3 id="org84b8445">Startup</h3>
+<div class="outline-text-3" id="text-org84b8445">
+<p>
+In an emacs, wanderlust can be started by <code>M-x wl</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org6498440" class="outline-3">
+<h3 id="org6498440">Key bindings</h3>
+<div class="outline-text-3" id="text-org6498440">
+</div>
+<div id="outline-container-orgd6c43bf" class="outline-4">
+<h4 id="orgd6c43bf">Draft buffer</h4>
+<div class="outline-text-4" id="text-orgd6c43bf">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Function and description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c TAB</code></td>
+<td class="org-left">Insert a file at the end of the buffer, with separator lines around it, <code>mail-insert-file</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-x TAB</code></td>
+<td class="org-left">Enclose a file as attachment, <code>mime-edit-insert-file</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-k</code></td>
+<td class="org-left">Kill a draft, <code>wl-draft-kill</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-c</code></td>
+<td class="org-left">Send and exit, <code>wl-draft-send-and-exit</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-w</code></td>
+<td class="org-left"><code>mail-signature</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-t</code></td>
+<td class="org-left"><code>mail-text</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-f</code></td>
+<td class="org-left">Edit fields in mail header, e.g., cc, bcc.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgf0ac735" class="outline-4">
+<h4 id="orgf0ac735">Summary buffer</h4>
+<div class="outline-text-4" id="text-orgf0ac735">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Function and description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>l</code></td>
+<td class="org-left"><code>wl-summary-toggle-disp-folder</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>v</code></td>
+<td class="org-left"><code>wl-summary-toggle-disp-msg</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>n/p</code></td>
+<td class="org-left"><code>wl-summary-next/wl-summary-prev</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>N/P</code></td>
+<td class="org-left">Move to next/previous unread mail, <code>wl-summary-down/wl-summary-up</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>*</code></td>
+<td class="org-left">Mark, <code>wl-summary-target-mark</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>u</code></td>
+<td class="org-left"><code>wl-summary-unmark</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>U</code></td>
+<td class="org-left"><code>wl-summary-unmark-all</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>q</code></td>
+<td class="org-left"><code>wl-summary-exit</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>SPC</code></td>
+<td class="org-left"><code>wl-summary-read</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s</code></td>
+<td class="org-left"><code>wl-summary-sync</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>/</code></td>
+<td class="org-left">Toggle a thread, <code>wl-summary-open-close</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>[</code></td>
+<td class="org-left"><code>wl-thread-open-all</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>]</code></td>
+<td class="org-left"><code>wl-thread-close-all</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>a</code></td>
+<td class="org-left"><code>wl-summary-reply</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>f</code></td>
+<td class="org-left"><code>wl-summary-forward</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>w</code></td>
+<td class="org-left"><code>wl-summary-write</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>z</code></td>
+<td class="org-left"><code>wl-summary-suspend</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>!</code></td>
+<td class="org-left"><code>wl-summary-mark-as-unread</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>R</code></td>
+<td class="org-left"><code>wl-summary-mark-as-read</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>d</code></td>
+<td class="org-left"><code>wl-summary-dispose</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-o</code></td>
+<td class="org-left"><code>wl-summary-auto-refile</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>$</code></td>
+<td class="org-left"><code>wl-summary-mark-as-important</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
