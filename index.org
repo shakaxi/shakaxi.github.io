@@ -26,6 +26,7 @@
 - [[file:emacs_movement.org][Emacs - Movement]]
 - [[file:emacs_mu4e.org][Emacs - Mu4e]]
 - [[file:notmuch.org][Emacs - Notmuch]]
+- [[file:wl.org][Emacs - Wanderlust]]
 - [[file:emacs_ycmd.org][Emacs - YCMD]]
 - [[file:font.org][Fonts for Linux]]
 - [[file:gdb.org][GDB]]
