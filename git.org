@@ -39,28 +39,26 @@ remote [style = filled, color = red];
 
 ** Configuration
 Command =git config= can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or repository-specifically.
-- List the configuration
+- List the per-repository/per-user/system-wide configuration.
 #+BEGIN_SRC sh
-git config --list
+git config --list [--global/--system]
 #+END_SRC
-- Repository-specific configuration
+- Per-repository/per-user/system-wide configuration
 #+BEGIN_SRC sh
-git config -e
+git config -e [--global/--system]
+git config [--global/--system] user.name "NAME"
+git config [--global/--system] user.email "EMAIL@COMPANY.COM"
 #+END_SRC
-- Global configuration
+- Store password to avoid repeated password input.
 #+BEGIN_SRC sh
-git config -e --global
-#+END_SRC
-- Store password to avoid repeated password input
-#+BEGIN_SRC sh
-git config --global credential.helper store
+git config [--global/--system] credential.helper store
 #+END_SRC
 ** Create repositories
 - Create an empty repository (=git init= can also reinitialize an existing repository).
 #+BEGIN_SRC sh
 git init /path/to/project
 #+END_SRC
-- Initialize the belonging directory as a repository.
+- Initialize the current directory as a repository.
 #+BEGIN_SRC sh
 git init
 #+END_SRC
@@ -70,11 +68,15 @@ git clone url
 #+END_SRC
 ** Basic snapshotting
 *** Add file(s)
-Add the content from the workspace into index area for the next commit.
+- Add the content from the workspace into index area for the next commit.
 #+BEGIN_SRC sh
-git add file1 [file2]
-git add directory
+  git add file1 [file2]
+  git add directory
 #+END_SRC
+- Add the revisions for the already tracked files.
+#+begin_src sh
+  git add -u
+#+end_src
 *** Remove file(s)
 - Stop tracking file(s)
 #+BEGIN_SRC sh
@@ -99,14 +101,15 @@ git commit file1 [file2] [-m message]
 git commit --amend [-m message]
 git commit --amend [file]
 #+END_SRC
+*** Rebase
+An interactive interface is available if option =-i= is given whereby a variety of operations can be completed, e.g., =pick= / =squash=.
+#+begin_src sh
+  git rebase -i father_commit
+#+end_src
 *** Branch operations
-- List all the local branches
+- List all the local/remote branches
 #+BEGIN_SRC sh
-git branch
-#+END_SRC
-- List all the remote branches
-#+BEGIN_SRC sh
-git branch -r
+git branch [-r]
 #+END_SRC
 - List all the branches including both local and remote ones
 #+BEGIN_SRC sh
@@ -131,8 +134,6 @@ git branch --set-upstream local_branch_name remote_name/remote_branch_name
 - Create a new branch and associate it to a remote branch
 #+BEGIN_SRC sh
 git branch --track branch_name remote_name/remote_branch_name
-#+END_SRC
-#+BEGIN_SRC sh
 git fetch remote_name remote_branch_name:branch_name
 #+END_SRC
 - Merge a given branch into the current branch
@@ -226,9 +227,9 @@ git blame file_name
 #+BEGIN_SRC sh
 git diff
 #+END_SRC
-- Show the difference between the index and the last commit
+- Show the difference between the index and =HEAD=.
 #+BEGIN_SRC sh
-git diff --cached
+git diff --cached/--staged
 #+END_SRC
 - Show the difference between two commits
 #+BEGIN_SRC sh
@@ -288,7 +289,6 @@ git reset --hard commit_name
 #+BEGIN_SRC sh
 git reset --keep commit_name
 #+END_SRC
-
 ** Temporary switch
 - Buffer the workspace temporarily
 #+BEGIN_SRC sh
