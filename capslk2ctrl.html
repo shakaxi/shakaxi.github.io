@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
+<!-- 2020-02-28 Fri 00:25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emacs - CapsLock as Ctrl</title>
+<title>Remap CapsLock as Ctrl</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -241,38 +241,77 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Emacs - CapsLock as Ctrl</h1>
+<h1 class="title">Remap CapsLock as Ctrl</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org716a0da">Background</a></li>
-<li><a href="#orgc99507c">Methods</a>
+<li><a href="#org2a03d38">Background</a></li>
+<li><a href="#org2fa93a7">Linux</a>
 <ul>
-<li><a href="#orga6755eb">Xmodmap</a></li>
-<li><a href="#org29da50e">Gnome</a></li>
-<li><a href="#orga45f792">KDE</a></li>
+<li><a href="#org138b31d">Sway</a></li>
+<li><a href="#orgbeba846">KDE</a></li>
+<li><a href="#org6ecad71">Gnome</a></li>
+<li><a href="#org457fe28">Xmodmap</a></li>
 </ul>
 </li>
+<li><a href="#orgbeda3d6">Windows 10</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org716a0da" class="outline-2">
-<h2 id="org716a0da">Background</h2>
-<div class="outline-text-2" id="text-org716a0da">
+<div id="outline-container-org2a03d38" class="outline-2">
+<h2 id="org2a03d38">Background</h2>
+<div class="outline-text-2" id="text-org2a03d38">
 <p>
 Usually, key <code>CapsLock</code> is seldom used in our daily utilization, while key <code>Ctrl</code> is frequently used, esp. for Emacs users. Therefore, we can turn <code>CapsLock</code> into an additional <code>Ctrl</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc99507c" class="outline-2">
-<h2 id="orgc99507c">Methods</h2>
-<div class="outline-text-2" id="text-orgc99507c">
+<div id="outline-container-org2fa93a7" class="outline-2">
+<h2 id="org2fa93a7">Linux</h2>
+<div class="outline-text-2" id="text-org2fa93a7">
 </div>
-<div id="outline-container-orga6755eb" class="outline-3">
-<h3 id="orga6755eb">Xmodmap</h3>
-<div class="outline-text-3" id="text-orga6755eb">
+<div id="outline-container-org138b31d" class="outline-3">
+<h3 id="org138b31d">Sway</h3>
+<div class="outline-text-3" id="text-org138b31d">
+<p>
+For sway, the remapping can be directly realized by inserting following entry in <code>~/.config/sway/config</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">input type:keyboard {
+      xkb_options ctrl:nocaps
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbeba846" class="outline-3">
+<h3 id="orgbeba846">KDE</h3>
+<div class="outline-text-3" id="text-orgbeba846">
+<p>
+For KDE, the transformation can be directly finished in the <code>system settings</code>. Enter <code>Input Devices</code> -&gt; <code>Keyboard</code> -&gt; <code>Advanced</code>, and tick the radio <code>Caps Lock is also a Ctrl</code> in <code>Caps Lock behavior</code> and <code>Caps Lock as Ctrl</code> in <code>Ctrl position</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org6ecad71" class="outline-3">
+<h3 id="org6ecad71">Gnome</h3>
+<div class="outline-text-3" id="text-org6ecad71">
+<p>
+For Gnome, it is extremely easy to turn <code>CapsLock</code> into an additional <code>Ctrl</code>. Install package <code>gnome-tweak-tool</code>, e.g.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">pacman -S gnome-tweak-tool
+</pre>
+</div>
+<p>
+and configure it in the installed <code>Tweak Tool</code>. Enter <code>Typing</code> -&gt; <code>Caps Lock key behavior</code> and tick the radio <code>Caps Lock is also a Ctrl</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org457fe28" class="outline-3">
+<h3 id="org457fe28">Xmodmap</h3>
+<div class="outline-text-3" id="text-org457fe28">
 <p>
 <code>xmodmap</code> is a utility for remapping keys in <code>Xorg</code>. To turn <code>CapsLock</code> into another <code>Ctrl</code>, install package <code>xorg-xmodmap</code>, e.g.
 </p>
@@ -299,28 +338,25 @@ For display manager, e.g. GDM, KDM, XDM, based startup, that is all. For <code>s
 </div>
 </div>
 </div>
-<div id="outline-container-org29da50e" class="outline-3">
-<h3 id="org29da50e">Gnome</h3>
-<div class="outline-text-3" id="text-org29da50e">
+</div>
+<div id="outline-container-orgbeda3d6" class="outline-2">
+<h2 id="orgbeda3d6">Windows 10</h2>
+<div class="outline-text-2" id="text-orgbeda3d6">
 <p>
-For Gnome, it is extremely easy to turn <code>CapsLock</code> into an additional <code>Ctrl</code>. Install package <code>gnome-tweak-tool</code>, e.g.
+Given a Windows 10 OS, the remapping can be achieved by two steps.
 </p>
+<ol class="org-ol">
+<li>Create a plain text file <code>capslk2ctrl.reg</code> with following content.</li>
+</ol>
 <div class="org-src-container">
-<pre class="src src-sh">pacman -S gnome-tweak-tool
+<pre class="src src-sh">Windows Registry Editor Version 5.00
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+<span style="color: #e9b96e;">"Scancode Map"</span>=hex:00,00,00,00,00,00,00,00,02,00,00,00,1d,00,3a,00,00,00,00,00 
 </pre>
 </div>
-<p>
-and configure it in the installed <code>Tweak Tool</code>. Enter <code>Typing</code> -&gt; <code>Caps Lock key behavior</code> and tick the radio <code>Caps Lock is also a Ctrl</code>.
-</p>
-</div>
-</div>
-<div id="outline-container-orga45f792" class="outline-3">
-<h3 id="orga45f792">KDE</h3>
-<div class="outline-text-3" id="text-orga45f792">
-<p>
-For KDE, the transformation can be directly finished in the <code>system settings</code>. Enter <code>Input Devices</code> -&gt; <code>Keyboard</code> -&gt; <code>Advanced</code>, and tick the radio <code>Caps Lock is also a Ctrl</code> in <code>Caps Lock behavior</code> and <code>Caps Lock as Ctrl</code> in <code>Ctrl position</code>.
-</p>
-</div>
+<ol class="org-ol">
+<li>Run it by double-click.</li>
+</ol>
 </div>
 </div>
 </div>
