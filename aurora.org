@@ -1,0 +1,16 @@
+#+title: Aurora - A LaTeX Plugin for Microsoft Word
+
+[[http://elevatorlady.ca][Aurora]] is an excellent LaTeX addon, which enables LaTeX based mathematical support, including a variety of symbols and equations.
+
+For Microsoft Office-32, there is a dedicated tab for Aurora in Word. For Office-64, however, there is no tab at all. In this case, aurora has to be activated by =insert= \to =object=. Clearly, the access is neither direct nor convenience. Targetting better convenience, macros can be defined and then placed in a card, e.g., following scripts define two macros, =aurora_inline= and =aurora_display=, to input inline and display style equations.
+#+begin_src sh
+  Sub aurora_inline()
+  Selection.InlineShapes.AddOLEObject ClassType:="Equation.Ribbit", FileName:="", LinkToFile:=False, DisplayAsIcon:=False
+  End Sub
+
+  Sub aurora_display()
+  Selection.TypeParagraph
+  Selection.ParagraphFormat.Alignment = wdAlignParagraphCenter
+  Selection.InlineShapes.AddOLEObject ClassType:="Equation.Ribbit", FileName:="", LinkToFile:=False, DisplayAsIcon:=False
+  End Sub
+#+end_src
