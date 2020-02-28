@@ -1,0 +1,45 @@
+#+TITLE: Remap CapsLock as Ctrl
+
+* Background
+Usually, key =CapsLock= is seldom used in our daily utilization, while key =Ctrl= is frequently used, esp. for Emacs users. Therefore, we can turn =CapsLock= into an additional =Ctrl=.
+* Linux
+** Sway
+For sway, the remapping can be directly realized by inserting following entry in =~/.config/sway/config=.
+#+begin_src sh
+  input type:keyboard {
+        xkb_options ctrl:nocaps
+  }
+#+end_src
+** KDE
+For KDE, the transformation can be directly finished in the =system settings=. Enter =Input Devices= -> =Keyboard= -> =Advanced=, and tick the radio =Caps Lock is also a Ctrl= in =Caps Lock behavior= and =Caps Lock as Ctrl= in =Ctrl position=.
+** Gnome
+For Gnome, it is extremely easy to turn =CapsLock= into an additional =Ctrl=. Install package =gnome-tweak-tool=, e.g.
+#+begin_src sh
+  pacman -S gnome-tweak-tool
+#+end_src
+and configure it in the installed =Tweak Tool=. Enter =Typing= -> =Caps Lock key behavior= and tick the radio =Caps Lock is also a Ctrl=.
+** Xmodmap
+=xmodmap= is a utility for remapping keys in =Xorg=. To turn =CapsLock= into another =Ctrl=, install package =xorg-xmodmap=, e.g.
+#+begin_src sh
+  pacman -S xorg-xmodmap
+#+end_src
+and create =~/.Xmodmap= with its contents as follows.
+#+begin_src sh
+  clear lock
+  clear control
+  add control = Caps_Lock Control_L Control_R
+  keycode 66 = Control_L
+#+end_src
+For display manager, e.g. GDM, KDM, XDM, based startup, that is all. For =startx=-based, add a following entry in =~/.xinitrc=.
+#+begin_src sh
+  [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+#+end_src
+* Windows 10
+Given a Windows 10 OS, the remapping can be achieved by two steps.
+1. Create a plain text file =capslk2ctrl.reg= with following content.
+#+begin_src sh
+  Windows Registry Editor Version 5.00
+  [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+  "Scancode Map"=hex:00,00,00,00,00,00,00,00,02,00,00,00,1d,00,3a,00,00,00,00,00 
+#+end_src
+2. Run it by double-click.

@@ -39,74 +39,81 @@ remote [style = filled, color = red];
 
 ** Configuration
 Command =git config= can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or repository-specifically.
-- List the configuration
+- List the per-repository/per-user/system-wide configuration.
 #+BEGIN_SRC sh
-git config --list
+  git config --list [--global/--system]
 #+END_SRC
-- Repository-specific configuration
+- Per-repository/per-user/system-wide configuration
 #+BEGIN_SRC sh
-git config -e
+  git config -e [--global/--system]
+  git config [--global/--system] user.name "NAME"
+  git config [--global/--system] user.email "EMAIL@COMPANY.COM"
 #+END_SRC
-- Global configuration
+- Store password to avoid repeated password input.
 #+BEGIN_SRC sh
-git config -e --global
-#+END_SRC
-- Store password to avoid repeated password input
-#+BEGIN_SRC sh
-git config --global credential.helper store
+git config [--global/--system] credential.helper store
 #+END_SRC
 ** Create repositories
 - Create an empty repository (=git init= can also reinitialize an existing repository).
 #+BEGIN_SRC sh
-git init /path/to/project
+git init /PATH/TO/REPOSITORY
 #+END_SRC
-- Initialize the belonging directory as a repository.
+- Initialize the current directory as a repository.
 #+BEGIN_SRC sh
-git init
+  git init
 #+END_SRC
-- Download from a remote repository.
+- Download from a remote repository. Option =--bare= can be used for a repository without workspace.
 #+BEGIN_SRC sh
-git clone url
+  git clone [--bare] /PATH/TO/REPOSITORY.git
+  git clone [--bare] file:///PATH/TO/REPOSITORY.git
+  git clone [--bare] http://SERVER:PORT/PATH/TO/REPOSITORY.git
+  git clone [--bare] https://SERVER:PORT/PATH/TO/REPOSITORY.git
+  git clone [--bare] USER@SERVER:/PATH/TO/REPOSITORY.git
 #+END_SRC
 ** Basic snapshotting
 *** Add file(s)
-Add the content from the workspace into index area for the next commit.
+- Add the content from the workspace into index area for the next commit.
 #+BEGIN_SRC sh
-git add file1 [file2]
-git add directory
+  git add FILE1 [FILE2]
+  git add DIRECTORY
 #+END_SRC
+- Add the revisions for the already tracked files.
+#+begin_src sh
+  git add -u
+#+end_src
 *** Remove file(s)
 - Stop tracking file(s)
 #+BEGIN_SRC sh
-git rm --cached file1 [file2]
+git rm --cached FILE1 [FILE2]
 #+END_SRC
 - Remove file(s) in workspace and index the removal in index
 #+BEGIN_SRC sh
-git rm file1 [file2]
+git rm FILE1 [FILE2]
 #+END_SRC
 *** Commit the revision(s)
 The commands take the all/or the specific file(s) that have been staged with =git add= and record a new permanent snapshot in the repository and then moves the branch pointer on the current branch up to it.
 - Commit all the files in the index
 #+BEGIN_SRC sh
-git commit [-m message]
+git commit [-m MESSAGE]
 #+END_SRC
 - Commit specific file(s) in the index
 #+BEGIN_SRC sh
-git commit file1 [file2] [-m message]
+git commit FILE1 [FILE2] [-m MESSAGE]
 #+END_SRC
 - Replace the last commit with the new commit. If no changes for the codes compared to the last commit, only commit message will be updated.
 #+BEGIN_SRC sh
-git commit --amend [-m message]
-git commit --amend [file]
+git commit --amend [-m MESSAGE]
+git commit --amend [FILE]
 #+END_SRC
+*** Rebase
+An interactive interface is available if option =-i= is given whereby a variety of operations can be completed, e.g., =pick= / =squash=.
+#+begin_src sh
+  git rebase -i FATHER_COMMIT
+#+end_src
 *** Branch operations
-- List all the local branches
+- List all the local/remote branches
 #+BEGIN_SRC sh
-git branch
-#+END_SRC
-- List all the remote branches
-#+BEGIN_SRC sh
-git branch -r
+git branch [-r]
 #+END_SRC
 - List all the branches including both local and remote ones
 #+BEGIN_SRC sh
@@ -114,30 +121,28 @@ git branch -a
 #+END_SRC
 - Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is =HEAD=[fn:2].
 #+BEGIN_SRC sh
-git branch branch_name [commit_name]
+git branch BRANCH_NAME [COMMIT_NAME]
 #+END_SRC
 - Switch to an existing branch
 #+BEGIN_SRC sh
-git checkout branch_name
+git checkout BRANCH_NAME
 #+END_SRC
 - Create a new branch and switch to it
 #+BEGIN_SRC sh
-git checkout -b branch_name [remote_name/remote_branch_name]
+git checkout -b BRANCH_NAME [REMOTE_NAME/REMOTE_BRANCH_NAME]
 #+END_SRC
 - Associate a local branch to a remote branch
 #+BEGIN_SRC sh
-git branch --set-upstream local_branch_name remote_name/remote_branch_name
+git branch --set-upstream LOCAL_BRANCH_NAME REMOTE_NAME/REMOTE_BRANCH_NAME
 #+END_SRC
 - Create a new branch and associate it to a remote branch
 #+BEGIN_SRC sh
-git branch --track branch_name remote_name/remote_branch_name
-#+END_SRC
-#+BEGIN_SRC sh
+git branch --track BRANCH_NAME REMOTE_NAME/REMOTE_BRANCH_NAME
 git fetch remote_name remote_branch_name:branch_name
 #+END_SRC
 - Merge a given branch into the current branch
 #+BEGIN_SRC sh
-git merge -m message branch_name
+git merge -m MESSAGE BRANCH_NAME
 #+END_SRC
 Git labels the difference between branches, e.g.,
 #+BEGIN_SRC sh
@@ -151,20 +156,20 @@ abcdefg
 #+END_SRC
 In this case, manual merge (edit) is necessary. After that, add the merged files into index area (=git add=) and commit them (=git commit=). At the stage of merge, if possible, git always tries to merge branches using =fast forward= by default. However, it can be disabled by option =--no-ff=, i.e.,
 #+BEGIN_SRC sh
-git merge --no-ff branch_name
+git merge --no-ff BRANCH_NAME
 #+END_SRC
 - Remove a local branch
 #+BEGIN_SRC sh
-git branch -d branch_name
+git branch -d BRANCH_NAME
 #+END_SRC
 - Remove a local (not merged) branch forcely
 #+BEGIN_SRC sh
-git branch -D branch_name
+git branch -D BRANCH_NAME
 #+END_SRC
 - Remove a remote branch
 #+BEGIN_SRC sh
-git push origin --delete branch_name
-git branch -dr remote_name/branch_name
+git push origin --delete BRANCH_NAME
+git branch -dr REMOTE_NAME/BRANCH_NAME
 #+END_SRC
 *** Tag operations
 - List all tags
@@ -173,32 +178,32 @@ git tag
 #+END_SRC
 - Create a new tag for a commit. If not provided, the tag is labeled on =HEAD=.
 #+BEGIN_SRC sh
-git tag tag_name commit_name
+git tag TAG_NAME COMMIT_NAME
 #+END_SRC
 - Remove a tag
 #+BEGIN_SRC sh
-git tag -d tag_name
+git tag -d TAG_NAME
 #+END_SRC
 - Remove a remote tag
 #+BEGIN_SRC sh
-git tag -d tag_name
-git push origin :refs/tags/tag_name
+git tag -d TAG_NAME
+git push origin :refs/tags/TAG_NAME
 #+END_SRC
 - Show information of a tag
 #+BEGIN_SRC sh
-git show tag_name
+git show TAG_NAME
 #+END_SRC
 - Commit a tag
 #+BEGIN_SRC sh
-git push remote_name tag_name
+git push REMOTE_NAME TAG_NAME
 #+END_SRC
 - Commit all tags
 #+BEGIN_SRC sh
-git push remote_name --tags
+git push REMOTE_NAME --tags
 #+END_SRC
 - Create a new branch pointing to a tag
 #+BEGIN_SRC sh
-git checkout -b branch_name tag_name
+git checkout -b BRANCH_NAME TAG_NAME
 #+END_SRC
 *** Information query
 - Show revised file(s) in workspace compared to those in index
@@ -207,7 +212,7 @@ git status
 #+END_SRC
 - Show the revisions in a commit
 #+BEGIN_SRC sh
-git show commit_name
+git show COMMIT_NAME
 #+END_SRC
 - Show the history of current branch (option =--stat= can list the revised files, and option =--graph= can show the merging of branches.)
 #+BEGIN_SRC sh
@@ -219,20 +224,20 @@ git reflog
 #+END_SRC
 - Show the modifier and time of a file
 #+BEGIN_SRC sh
-git blame file_name
+git blame FILE_NAME
 #+END_SRC
 *** Show the difference
 - Show the difference between the workspace and the index
 #+BEGIN_SRC sh
 git diff
 #+END_SRC
-- Show the difference between the index and the last commit
+- Show the difference between the index and =HEAD=.
 #+BEGIN_SRC sh
-git diff --cached
+git diff --cached/--staged
 #+END_SRC
 - Show the difference between two commits
 #+BEGIN_SRC sh
-git diff commit1 commit2
+git diff COMMIT1 COMMIT2
 #+END_SRC
 *** Remote operation
 - List all the remote repositories
@@ -241,54 +246,53 @@ git remote [-v]
 #+END_SRC
 - Show the information of a remote repository
 #+BEGIN_SRC sh
-git remote show remote_name
+git remote show REMOTE_NAME
 #+END_SRC
 - Add a remote repository
 #+BEGIN_SRC sh
-git remote add remote_alias remote_url
+git remote add REMOTE_ALIAS REMOTE_URL
 #+END_SRC
 - Remove a remote repository
 #+BEGIN_SRC sh
-git remote remove remote_alias
+git remote remove REMOTE_ALIAS
 #+END_SRC
 - Download all the commit records from a remote repository
 #+BEGIN_SRC sh
-git fetch remote_name
+git fetch REMOTE_NAME
 #+END_SRC
 - Download all the commit records from a remote repository and merge it into a local branch
 #+BEGIN_SRC sh
-git pull remote_name remote_branch_name
+git pull REMOTE_NAME REMOTE_BRANCH_NAME
 #+END_SRC
 - Upload the local branch to a remote repository. If not provided, it will push to =master= of =origin=.
 #+BEGIN_SRC sh
-git push remote_name remote_branch_name
+git push REMOTE_NAME REMOTE_BRANCH_NAME
 #+END_SRC
 - Upload all the local branches to a remote repository.
 #+BEGIN_SRC sh
-git push remote_name --all
+git push REMOTE_NAME --all
 #+END_SRC
 *** Undo operation
 - Recover the workspace from index
 #+BEGIN_SRC sh
-git checkout -- [file1]
+git checkout -- [FILE]
 #+END_SRC
 - Recover the workspace from a commit
 #+BEGIN_SRC sh
-git checkout commit_name [file1]
+git checkout COMMIT_NAME [FILE]
 #+END_SRC
 - Recover index from a commit
 #+BEGIN_SRC sh
-git reset commit_name
+git reset COMMIT_NAME
 #+END_SRC
 - Recover index and workspace from a commit
 #+BEGIN_SRC sh
-git reset --hard commit_name
+git reset --hard COMMIT_NAME
 #+END_SRC
 - Move pointer =HEAD= to a commit
 #+BEGIN_SRC sh
-git reset --keep commit_name
+git reset --keep COMMIT_NAME
 #+END_SRC
-
 ** Temporary switch
 - Buffer the workspace temporarily
 #+BEGIN_SRC sh

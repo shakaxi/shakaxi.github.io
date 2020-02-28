@@ -1,0 +1,151 @@
+#+TITLE: Emacs - Wanderlust
+
+* Introduction
+Wanderlust is also a mail client within Emacs. This post aims to summarize the procedure of its installation and configurations.
+* Installation
+Wanderlust can be directly installed via ELPA. APEL, SEMI and FLIM are also installed as dependency.
+* Configuration
+We postulate that all the mails are stored in =~/.Mail=, in which there are a plurality of Maildir folders, e.g., =draft=, =queue=, =sent=, =trash=, =boc=, =edas=, =home=, =office=, =linkedin=, =r1=, =r1nr=, =rp=. Mails are periodically fetched by getmail or offlineimap, e.g.,
+#+begin_src sh
+  */10 * * * * /usr/bin/getmail --new --getmaildir=/PATH/TO/GETMAILRC --rcfile=GETMAILRC
+#+end_src
+or
+#+begin_src sh
+  */10 * * * * /usr/bin/offlineimap -c /PATH/TO/OFFLINEIMAPRC -a ACCOUNT
+#+end_src
+
+In this case, following configurations are needed for wanderlust.
+- =~/.config/emacs/init.el=
+  #+begin_src emacs-lisp
+    (use-package wl
+      :ensure wanderlust
+      :init
+      (require 'mime-w3m)
+      (autoload 'wl "wl" "Wanderlust" t)
+      (autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
+      (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+      (autoload 'wl-user-agent-compose "wl-draft" nil t)
+      :config
+      (if (boundp 'mail-user-agent)
+          (setq mail-user-agent 'wl-user-agent))
+      (if (fboundp 'define-mail-user-agent)
+          (define-mail-user-agent
+            'wl-user-agent
+            'wl-user-agent-compose
+            'wl-draft-send
+            'wl-draft-kill
+            'mail-send-hook))
+      :custom
+      (wl-from "Shaka <shaka@company.com>")
+      (org-mime-library 'semi)
+      (wl-folder-check-async t)
+      (wl-stay-folder-window t)
+      (wl-fcc-force-as-read t)
+      (wl-interactive-exit nil)
+      (wl-insert-message-id nil)
+      (wl-quicksearch-folder "[]")
+      (elmo-search-default-engine 'notmuch)
+      ;; Folders
+      (wl-folder-desktop-name "xi")
+      (wl-folders-file "~/.config/emacs/xi/folders")
+      (elmo-maildir-folder-path "~/.Mail")
+      (elmo-localdir-folder-path "~/.Mail")
+      (wl-temporary-file-directory "/tmp")
+      (wl-default-spec ".")
+      (wl-trash-folder ".trash")
+      (wl-fcc ".sent")
+      (wl-draft-folder ".draft")
+      (wl-queue-folder ".queue")
+      (wl-summary-auto-refile-skip-marks nil)
+      ;; Auto refile
+      (wl-refile-rule-alist
+       '((("To" "Cc")
+          (".*3gpp_tsg_ran@list\\.etsi\\.org.*" . ".~/.Mail/rp")
+          (".*3gpp_tsg_ran_wg1@list\\.etsi\\.org.*" . ".~/.Mail/r1")
+          (".*3gpp_tsg_ran_wg1_nr@list\\.etsi\\.org.*" . ".~/.Mail/r1nr"))
+         ("From"
+          (".*personalservice@bank-of-china\\.com.*" . ".~/.Mail/boc")
+          (".*10000bj@189\\.cn.*" . ".~/.Mail/telecomm")
+          (".+@linkedin\\.com.*" . ".~/.Mail/linkedin"))
+         ("Subject" (".*EDAS-CFP.*" . ".~/.Mail/edas"))
+         ("To"
+          (".*shaka@home\\.com.*" . ".~/.Mail/home")
+          (".*shaka@company\\.com.*" . ".~/.Mail/office"))))
+      ;; Send mail with msmtp.
+      (wl-draft-send-mail-function 'wl-draft-send-mail-with-sendmail)
+      (message-sendmail-envelope-from 'header)
+      (mail-envelope-from 'header)
+      (mail-specify-envelope-from t)
+      (sendmail-program "/usr/bin/msmtp")
+      ;; Appearance
+      (mime-header-accept-quoted-encoded-words t)
+      (wl-message-ignored-field-list '("."))
+      (wl-message-visible-field-list '("^Subject:" "^Date:" "^From:" "^\\(To\\|Cc\\):"))
+      (wl-summary-width 100)
+      (wl-biff-check-folder-list '(".~/.Mail/home" ".~/.Mail/office"))
+      (wl-summary-line-format "%5(%n%) %3(%T%P%) %15(%f%) %23(%Y-%M-%D(%W) %h:%m%) %t%C%s"))
+  #+end_src
+- =~/.config/emacs/xi/folders=
+  #+begin_src emacs-lisp
+  .~/.Mail/home "home"
+  home{
+  .~/.Mail/boc "boc"
+  .~/.Mail/telecomm "telecomm"
+  .~/.Mail/linkedin "linkedin"
+  .~/.Mail/edas "edas"
+  }
+
+  .~/.Mail/office "office"
+  office{
+  .~/.Mail/rp "rp"
+  .~/.Mail/r1 "r1"
+  .~/.Mail/r1nr "r1nr"
+  }
+
+  .~/.Mail/sent "sent"
+  .~/.Mail/draft "draft"
+  .~/.Mail/trash "trash"
+
+  # %INBOX:shaka/clear@imap.home.com:143 "home"
+  # %INBOX:shaka/clear@imap.company.com:993! "office"
+#+end_src
+* Usage
+** Startup
+In an emacs, wanderlust can be started by =M-x wl=.
+** Key bindings
+*** Draft buffer
+| Key           | Function and description                                                                   |
+|---------------+--------------------------------------------------------------------------------------------|
+| =C-c TAB=     | Insert a file at the end of the buffer, with separator lines around it, =mail-insert-file= |
+| =C-c C-x TAB= | Enclose a file as attachment, =mime-edit-insert-file=                                      |
+| =C-c C-k=     | Kill a draft, =wl-draft-kill=                                                              |
+| =C-c C-c=     | Send and exit, =wl-draft-send-and-exit=                                                    |
+| =C-c C-w=     | =mail-signature=                                                                           |
+| =C-c C-t=     | =mail-text=                                                                                |
+| =C-c C-f=     | Edit fields in mail header, e.g., cc, bcc.                                                 |
+*** Summary buffer
+| Key   | Function and description                                           |
+|-------+--------------------------------------------------------------------|
+| =l=   | =wl-summary-toggle-disp-folder=                                    |
+| =v=   | =wl-summary-toggle-disp-msg=                                       |
+| =n/p= | =wl-summary-next/wl-summary-prev=                                  |
+| =N/P= | Move to next/previous unread mail, =wl-summary-down/wl-summary-up= |
+| =*=   | Mark, =wl-summary-target-mark=                                     |
+| =u=   | =wl-summary-unmark=                                                |
+| =U=   | =wl-summary-unmark-all=                                            |
+| =q=   | =wl-summary-exit=                                                  |
+| =SPC= | =wl-summary-read=                                                  |
+| =s=   | =wl-summary-sync=                                                  |
+| =/=   | Toggle a thread, =wl-summary-open-close=                           |
+| =[=   | =wl-thread-open-all=                                               |
+| =]=   | =wl-thread-close-all=                                              |
+| =a=   | =wl-summary-reply=                                                 |
+| =f=   | =wl-summary-forward=                                               |
+| =w=   | =wl-summary-write=                                                 |
+| =z=   | =wl-summary-suspend=                                               |
+| =!=   | =wl-summary-mark-as-unread=                                        |
+| =R=   | =wl-summary-mark-as-read=                                          |
+| =d=   | =wl-summary-dispose=                                               |
+| =C-o= | =wl-summary-auto-refile=                                           |
+| =$=   | =wl-summary-mark-as-important=                                     |
+
