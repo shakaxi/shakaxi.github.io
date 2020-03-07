@@ -1,5 +1,6 @@
 #+TITLE: Shaka's Blog Site
 
+- [[file:aurora.org][Aurora - A LaTeX Plugin for Microsoft Word]]
 - [[file:bash.org][Bash]]
 - [[file:blog.org][Blog on GitHub]]
 - [[file:cpp_basic.org][C++ - Basic]]
