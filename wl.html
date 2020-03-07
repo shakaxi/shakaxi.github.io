@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-02-11 Tue 14:34 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Wanderlust</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -306,100 +306,100 @@ In this case, following configurations are needed for wanderlust.
 <code>~/.config/emacs/init.el</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">use-package</span> <span style="color: #e9b2e3;">wl</span>
-  <span style="color: #e090d7;">:ensure</span> wanderlust
-  <span style="color: #e090d7;">:init</span>
-  (<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">mime-w3m</span>)
-  (autoload 'wl <span style="color: #e9b96e;">"wl"</span> <span style="color: #e9b96e;">"Wanderlust"</span> t)
-  (autoload 'wl-other-frame <span style="color: #e9b96e;">"wl"</span> <span style="color: #e9b96e;">"Wanderlust on new frame."</span> t)
-  (autoload 'wl-draft <span style="color: #e9b96e;">"wl-draft"</span> <span style="color: #e9b96e;">"Write draft with Wanderlust."</span> t)
-  (autoload 'wl-user-agent-compose <span style="color: #e9b96e;">"wl-draft"</span> nil t)
-  <span style="color: #e090d7;">:config</span>
-  (<span style="color: #b4fa70;">if</span> (boundp 'mail-user-agent)
-      (<span style="color: #b4fa70;">setq</span> mail-user-agent 'wl-user-agent))
-  (<span style="color: #b4fa70;">if</span> (fboundp 'define-mail-user-agent)
+<pre class="src src-emacs-lisp">(use-package wl
+  :ensure wanderlust
+  :init
+  (require 'mime-w3m)
+  (autoload 'wl "wl" "Wanderlust" t)
+  (autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
+  (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+  (autoload 'wl-user-agent-compose "wl-draft" nil t)
+  :config
+  (if (boundp 'mail-user-agent)
+      (setq mail-user-agent 'wl-user-agent))
+  (if (fboundp 'define-mail-user-agent)
       (define-mail-user-agent
         'wl-user-agent
         'wl-user-agent-compose
         'wl-draft-send
         'wl-draft-kill
         'mail-send-hook))
-  <span style="color: #e090d7;">:custom</span>
-  (wl-from <span style="color: #e9b96e;">"Shaka <a href="mailto:shaka%40company.com">&lt;shaka@company.com&gt;</a>"</span>)
+  :custom
+  (wl-from "Shaka &lt;shaka@company.com&gt;")
   (org-mime-library 'semi)
   (wl-folder-check-async t)
   (wl-stay-folder-window t)
   (wl-fcc-force-as-read t)
   (wl-interactive-exit nil)
   (wl-insert-message-id nil)
-  (wl-quicksearch-folder <span style="color: #e9b96e;">"[]"</span>)
+  (wl-quicksearch-folder "[]")
   (elmo-search-default-engine 'notmuch)
-  <span style="color: #73d216;">;; </span><span style="color: #73d216;">Folders</span>
-  (wl-folder-desktop-name <span style="color: #e9b96e;">"xi"</span>)
-  (wl-folders-file <span style="color: #e9b96e;">"~/.config/emacs/xi/folders"</span>)
-  (elmo-maildir-folder-path <span style="color: #e9b96e;">"~/.Mail"</span>)
-  (elmo-localdir-folder-path <span style="color: #e9b96e;">"~/.Mail"</span>)
-  (wl-temporary-file-directory <span style="color: #e9b96e;">"/tmp"</span>)
-  (wl-default-spec <span style="color: #e9b96e;">"."</span>)
-  (wl-trash-folder <span style="color: #e9b96e;">".trash"</span>)
-  (wl-fcc <span style="color: #e9b96e;">".sent"</span>)
-  (wl-draft-folder <span style="color: #e9b96e;">".draft"</span>)
-  (wl-queue-folder <span style="color: #e9b96e;">".queue"</span>)
+  ;; Folders
+  (wl-folder-desktop-name "xi")
+  (wl-folders-file "~/.config/emacs/xi/folders")
+  (elmo-maildir-folder-path "~/.Mail")
+  (elmo-localdir-folder-path "~/.Mail")
+  (wl-temporary-file-directory "/tmp")
+  (wl-default-spec ".")
+  (wl-trash-folder ".trash")
+  (wl-fcc ".sent")
+  (wl-draft-folder ".draft")
+  (wl-queue-folder ".queue")
   (wl-summary-auto-refile-skip-marks nil)
-  <span style="color: #73d216;">;; </span><span style="color: #73d216;">Auto refile</span>
+  ;; Auto refile
   (wl-refile-rule-alist
-   '(((<span style="color: #e9b96e;">"To"</span> <span style="color: #e9b96e;">"Cc"</span>)
-      (<span style="color: #e9b96e;">".*3gpp_tsg_ran@list\\.etsi\\.org.*"</span> . <span style="color: #e9b96e;">".~/.Mail/rp"</span>)
-      (<span style="color: #e9b96e;">".*3gpp_tsg_ran_wg1@list\\.etsi\\.org.*"</span> . <span style="color: #e9b96e;">".~/.Mail/r1"</span>)
-      (<span style="color: #e9b96e;">".*3gpp_tsg_ran_wg1_nr@list\\.etsi\\.org.*"</span> . <span style="color: #e9b96e;">".~/.Mail/r1nr"</span>))
-     (<span style="color: #e9b96e;">"From"</span>
-      (<span style="color: #e9b96e;">".*personalservice@bank-of-china\\.com.*"</span> . <span style="color: #e9b96e;">".~/.Mail/boc"</span>)
-      (<span style="color: #e9b96e;">".*10000bj@189\\.cn.*"</span> . <span style="color: #e9b96e;">".~/.Mail/telecomm"</span>)
-      (<span style="color: #e9b96e;">".+@linkedin\\.com.*"</span> . <span style="color: #e9b96e;">".~/.Mail/linkedin"</span>))
-     (<span style="color: #e9b96e;">"Subject"</span> (<span style="color: #e9b96e;">".*EDAS-CFP.*"</span> . <span style="color: #e9b96e;">".~/.Mail/edas"</span>))
-     (<span style="color: #e9b96e;">"To"</span>
-      (<span style="color: #e9b96e;">".*shaka@home\\.com.*"</span> . <span style="color: #e9b96e;">".~/.Mail/home"</span>)
-      (<span style="color: #e9b96e;">".*shaka@company\\.com.*"</span> . <span style="color: #e9b96e;">".~/.Mail/office"</span>))))
-  <span style="color: #73d216;">;; </span><span style="color: #73d216;">Send mail with msmtp.</span>
+   '((("To" "Cc")
+      (".*3gpp_tsg_ran@list\\.etsi\\.org.*" . ".~/.Mail/rp")
+      (".*3gpp_tsg_ran_wg1@list\\.etsi\\.org.*" . ".~/.Mail/r1")
+      (".*3gpp_tsg_ran_wg1_nr@list\\.etsi\\.org.*" . ".~/.Mail/r1nr"))
+     ("From"
+      (".*personalservice@bank-of-china\\.com.*" . ".~/.Mail/boc")
+      (".*10000bj@189\\.cn.*" . ".~/.Mail/telecomm")
+      (".+@linkedin\\.com.*" . ".~/.Mail/linkedin"))
+     ("Subject" (".*EDAS-CFP.*" . ".~/.Mail/edas"))
+     ("To"
+      (".*shaka@home\\.com.*" . ".~/.Mail/home")
+      (".*shaka@company\\.com.*" . ".~/.Mail/office"))))
+  ;; Send mail with msmtp.
   (wl-draft-send-mail-function 'wl-draft-send-mail-with-sendmail)
   (message-sendmail-envelope-from 'header)
   (mail-envelope-from 'header)
   (mail-specify-envelope-from t)
-  (sendmail-program <span style="color: #e9b96e;">"/usr/bin/msmtp"</span>)
-  <span style="color: #73d216;">;; </span><span style="color: #73d216;">Appearance</span>
+  (sendmail-program "/usr/bin/msmtp")
+  ;; Appearance
   (mime-header-accept-quoted-encoded-words t)
-  (wl-message-ignored-field-list '(<span style="color: #e9b96e;">"."</span>))
-  (wl-message-visible-field-list '(<span style="color: #e9b96e;">"^Subject:"</span> <span style="color: #e9b96e;">"^Date:"</span> <span style="color: #e9b96e;">"^From:"</span> <span style="color: #e9b96e;">"^</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">(</span><span style="color: #e9b96e;">To</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">|</span><span style="color: #e9b96e;">Cc</span><span style="color: #e9b96e; font-weight: bold;">\\</span><span style="color: #e9b96e; font-weight: bold;">)</span><span style="color: #e9b96e;">:"</span>))
+  (wl-message-ignored-field-list '("."))
+  (wl-message-visible-field-list '("^Subject:" "^Date:" "^From:" "^\\(To\\|Cc\\):"))
   (wl-summary-width 100)
-  (wl-biff-check-folder-list '(<span style="color: #e9b96e;">".~/.Mail/home"</span> <span style="color: #e9b96e;">".~/.Mail/office"</span>))
-  (wl-summary-line-format <span style="color: #e9b96e;">"%5(%n%) %3(%T%P%) %15(%f%) %23(%Y-%M-%D(%W) %h:%m%) %t%C%s"</span>))
+  (wl-biff-check-folder-list '(".~/.Mail/home" ".~/.Mail/office"))
+  (wl-summary-line-format "%5(%n%) %3(%T%P%) %15(%f%) %23(%Y-%M-%D(%W) %h:%m%) %t%C%s"))
 </pre>
 </div></li>
 <li><p>
 <code>~/.config/emacs/xi/folders</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">.~/.Mail/home <span style="color: #e9b96e;">"home"</span>
+<pre class="src src-emacs-lisp">.~/.Mail/home "home"
 home{
-.~/.Mail/boc <span style="color: #e9b96e;">"boc"</span>
-.~/.Mail/telecomm <span style="color: #e9b96e;">"telecomm"</span>
-.~/.Mail/linkedin <span style="color: #e9b96e;">"linkedin"</span>
-.~/.Mail/edas <span style="color: #e9b96e;">"edas"</span>
+.~/.Mail/boc "boc"
+.~/.Mail/telecomm "telecomm"
+.~/.Mail/linkedin "linkedin"
+.~/.Mail/edas "edas"
 }
 
-.~/.Mail/office <span style="color: #e9b96e;">"office"</span>
+.~/.Mail/office "office"
 office{
-.~/.Mail/rp <span style="color: #e9b96e;">"rp"</span>
-.~/.Mail/r1 <span style="color: #e9b96e;">"r1"</span>
-.~/.Mail/r1nr <span style="color: #e9b96e;">"r1nr"</span>
+.~/.Mail/rp "rp"
+.~/.Mail/r1 "r1"
+.~/.Mail/r1nr "r1nr"
 }
 
-.~/.Mail/sent <span style="color: #e9b96e;">"sent"</span>
-.~/.Mail/draft <span style="color: #e9b96e;">"draft"</span>
-.~/.Mail/trash <span style="color: #e9b96e;">"trash"</span>
+.~/.Mail/sent "sent"
+.~/.Mail/draft "draft"
+.~/.Mail/trash "trash"
 
-# %INBOX:shaka/clear@imap.home.com:143 <span style="color: #e9b96e;">"home"</span>
-# %INBOX:shaka/clear@imap.company.com:993! <span style="color: #e9b96e;">"office"</span>
+# %INBOX:shaka/clear@imap.home.com:143 "home"
+# %INBOX:shaka/clear@imap.company.com:993! "office"
 </pre>
 </div></li>
 </ul>

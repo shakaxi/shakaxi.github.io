@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-22 Wed 00:03 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Doxygen</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -322,7 +322,7 @@ Hierachical lists can be created by using different indents for different levels
 <h4 id="org0bf0c95">Group</h4>
 <div class="outline-text-4" id="text-org0bf0c95">
 <div class="org-src-container">
-<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;title&gt;<span style="color: #e9b96e;">''</span> */
+<pre class="src src-sh">/** \defgroup &lt;label&gt; ''&lt;title&gt;'' */
 /* @{ */
    // group memebers here ...
 /* @} */
@@ -332,7 +332,7 @@ Hierachical lists can be created by using different indents for different levels
 or
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">/** \defgroup &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;title&gt;<span style="color: #e9b96e;">''</span> */
+<pre class="src src-sh">/** \defgroup &lt;label&gt; ''&lt;title&gt;'' */
 // @{
    // group memebers here ...
 // @}
@@ -342,7 +342,7 @@ or
 where the <code>title</code> is optional while the <code>label</code> is mandatory and can be used for reference by
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">\ref &lt;label&gt; <span style="color: #e9b96e;">''</span>&lt;link&gt;<span style="color: #e9b96e;">''</span>
+<pre class="src src-sh">\ref &lt;label&gt; ''&lt;link&gt;''
 </pre>
 </div>
 </div>
@@ -434,10 +434,10 @@ For ArchLinux, doxymacs can be easily installed by AUR.
 After the installation, following configuration should be inserted into Emacs configuration file <code>.emacs</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">doxymacs</span>)                                                                                              
+<pre class="src src-emacs-lisp">(require 'doxymacs)                                                                                              
 (add-hook 'c-mode-common-hook 'doxymacs-mode)                                                                    
-(<span style="color: #b4fa70;">defun</span> <span style="color: #fce94f;">my-doxymacs-font-lock-hook</span> ()                                                                             
-  (<span style="color: #b4fa70;">if</span> (<span style="color: #b4fa70;">or</span> (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+(defun my-doxymacs-font-lock-hook ()                                                                             
+  (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
       (doxymacs-font-lock)))
 (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
 </pre>

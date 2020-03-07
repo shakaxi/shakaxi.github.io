@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - YCMD</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -295,9 +295,9 @@ Install the Emacs packages via ELPA, <code>ycmd</code>, <code>company-ycmd</code
 Install the <code>YCMD</code> to <code>~/.emacs.d/ycmd</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #e090d7;">cd</span> ~/.emacs.d
+<pre class="src src-sh">cd ~/.emacs.d
 git clone https://github.com/Valloric/ycmd.git
-<span style="color: #e090d7;">cd</span> ycmd
+cd ycmd
 git submodule update --init --recursive
 ./build.py --clang-completer --system-libclang --system-boost
 </pre>
@@ -323,15 +323,15 @@ After that, customize it to meet your requirements.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">...
 
-<span style="color: #73d216;">;;; </span><span style="color: #73d216;">Company</span>
+;;; Company
 (add-hook 'after-init-hook 'global-company-mode) 
-(<span style="color: #b4fa70;">setq</span> company-idle-delay 0) 
+(setq company-idle-delay 0) 
 (company-auctex-init) 
 
-<span style="color: #73d216;">;;; </span><span style="color: #73d216;">Ycmd</span>
+;;; Ycmd
 (add-hook 'after-init-hook #'global-ycmd-mode)
-(set-variable 'ycmd-server-command '(<span style="color: #e9b96e;">"python2"</span> <span style="color: #e9b96e;">"/home/shaka/.emacs.d/ycmd/ycmd"</span>))
-(set-variable 'ycmd-global-config <span style="color: #e9b96e;">"/home/shaka/.emacs.d/ycmd/global_config.py"</span>) 
+(set-variable 'ycmd-server-command '("python2" "/home/shaka/.emacs.d/ycmd/ycmd"))
+(set-variable 'ycmd-global-config "/home/shaka/.emacs.d/ycmd/global_config.py") 
 (company-ycmd-setup)
 
 ...

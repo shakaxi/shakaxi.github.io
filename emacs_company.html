@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-22 Wed 00:03 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Company</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -299,18 +299,18 @@ company
 After the installation, following configurations should be added in <code>~/.emacs</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">enable global company mode</span>
+<pre class="src src-emacs-lisp">;; enable global company mode
 (add-hook 'after-init-hook 'global-company-mode)
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">completion immediately</span>
-(<span style="color: #b4fa70;">setq</span> company-idle-delay 0)
+;; completion immediately
+(setq company-idle-delay 0)
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">move the selection to the next/previous candidate using C-n/p instead of M-n/p</span>
-(<span style="color: #b4fa70;">with-eval-after-load</span> 'company
-  (define-key company-active-map (kbd <span style="color: #e9b96e;">"M-n"</span>) nil)
-  (define-key company-active-map (kbd <span style="color: #e9b96e;">"M-p"</span>) nil)
-  (define-key company-active-map (kbd <span style="color: #e9b96e;">"C-n"</span>) #'company-select-next)
-  (define-key company-active-map (kbd <span style="color: #e9b96e;">"C-p"</span>) #'company-select-previous))
+;; move the selection to the next/previous candidate using C-n/p instead of M-n/p
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 </pre>
 </div>
 </div>
@@ -322,11 +322,11 @@ After the installation, following configurations should be added in <code>~/.ema
 Clang support is out-of-the-box. Additional package installation is not necessary. However, company-semantic is also built-in and precedes company-clang. Therefore, it is necessary to remove company-semantic. To this end, following configurations are needed.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">remove company-semantic from company-backends.</span>
-(<span style="color: #b4fa70;">setq</span> company-backends (delete 'company-semantic company-backends))
+<pre class="src src-emacs-lisp">;; remove company-semantic from company-backends.
+(setq company-backends (delete 'company-semantic company-backends))
 
-<span style="color: #73d216;">;; </span><span style="color: #73d216;">make company-clang find IT++ headers and support c++11.</span>
-(<span style="color: #b4fa70;">setq</span> company-clang-arguments (<span style="color: #b4fa70;">quote</span> (<span style="color: #e9b96e;">"-I/opt/itpp/include/"</span> <span style="color: #e9b96e;">"-std=c++14"</span>)))
+;; make company-clang find IT++ headers and support c++11.
+(setq company-clang-arguments (quote ("-I/opt/itpp/include/" "-std=c++14")))
 </pre>
 </div>
 </div>
@@ -347,7 +347,7 @@ and configured by
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'company-backends 'company-c-headers)
-(<span style="color: #b4fa70;">setq</span> company-c-headers-path-system (<span style="color: #b4fa70;">quote</span> (<span style="color: #e9b96e;">"/usr/include/"</span> <span style="color: #e9b96e;">"/usr/local/include/"</span> <span style="color: #e9b96e;">"/usr/include/c++/6.1.1/"</span> <span style="color: #e9b96e;">"/opt/itpp/include/"</span>)))
+(setq company-c-headers-path-system (quote ("/usr/include/" "/usr/local/include/" "/usr/include/c++/6.1.1/" "/opt/itpp/include/")))
 </pre>
 </div>
 </div>
@@ -367,7 +367,7 @@ company-auctex
 Accordingly, append the following line to the configuration of company in <code>~/.emacs</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">enable company backends for LaTeX (based on AucTeX)</span>
+<pre class="src src-emacs-lisp">;; enable company backends for LaTeX (based on AucTeX)
 (company-auctex-init)
 </pre>
 </div>

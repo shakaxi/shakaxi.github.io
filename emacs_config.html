@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Basic Configuration</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -266,7 +266,7 @@ As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a pow
 <h2 id="orgfbb2935">Set values for predefined variables</h2>
 <div class="outline-text-2" id="text-orgfbb2935">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">setq</span> variable value)
+<pre class="src src-emacs-lisp">(setq variable value)
 </pre>
 </div>
 </div>
@@ -316,7 +316,7 @@ After the installation, the configuration includes two steps
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'load-path path-of-the-extension)
-(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">extension-name</span>)
+(require 'extension-name)
 </pre>
 </div>
 </div>

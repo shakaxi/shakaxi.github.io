@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Notmuch</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -305,25 +305,25 @@ The basic configuration can be performed by either
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">[database]
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Mail storage in maildir format</span>
-<span style="color: #fcaf3e;">path</span>=/MAIL/REPO
+# Mail storage in maildir format
+path=/MAIL/REPO
 
 [user]
-<span style="color: #fcaf3e;">name</span>=NAME
-<span style="color: #fcaf3e;">primary_email</span>=EMAILADDRESS
+name=NAME
+primary_email=EMAILADDRESS
 
 [new]
-<span style="color: #fcaf3e;">tags</span>=unread;inbox;
-<span style="color: #fcaf3e;">ignore</span>=
+tags=unread;inbox;
+ignore=
 
 [search]
-<span style="color: #fcaf3e;">exclude_tags</span>=deleted;spam;
+exclude_tags=deleted;spam;
 
 [maildir]
-<span style="color: #fcaf3e;">synchronize_flags</span>=true
+synchronize_flags=true
 
 [crypto]
-<span style="color: #fcaf3e;">gpg_path</span>=gpg
+gpg_path=gpg
 </pre>
 </div>
 </div>
@@ -335,36 +335,36 @@ The basic configuration can be performed by either
 Add following content to the configuration of Emacs.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #b4fa70;">require</span> '<span style="color: #e9b2e3;">notmuch</span>)
-(<span style="color: #b4fa70;">setq</span> user-full-name <span style="color: #e9b96e;">"NAME"</span>
-      user-mail-address <span style="color: #e9b96e;">"EMAILADDRESS"</span>)
+<pre class="src src-emacs-lisp">(require 'notmuch)
+(setq user-full-name "NAME"
+      user-mail-address "EMAILADDRESS")
 
-(<span style="color: #b4fa70;">setq</span> mail-user-agent 'message-user-agent
+(setq mail-user-agent 'message-user-agent
       message-kill-buffer-on-exit t
       mm-text-html-renderer 'w3m)
 
-(<span style="color: #b4fa70;">setq</span> notmuch-search-oldest-first nil
+(setq notmuch-search-oldest-first nil
       notmuch-show-all-multipart/alternative-parts nil
       mail-interactive t
       notmuch-always-prompt-for-sender nil
       notmuch-show-indent-messages-width 3)
 
-(<span style="color: #b4fa70;">setq</span> mail-specify-envelope-from t
+(setq mail-specify-envelope-from t
       message-sendmail-envelope-from 'header
       mail-envelope-from 'header)
 
-(<span style="color: #b4fa70;">setq</span> message-directory <span style="color: #e9b96e;">"."</span>
-      notmuch-fcc-dirs <span style="color: #e9b96e;">"."</span>)
+(setq message-directory "."
+      notmuch-fcc-dirs ".")
 
-(<span style="color: #b4fa70;">setq</span> message-send-mail-function 'smtpmail-send-it
-      smtpmail-smtp-server <span style="color: #e9b96e;">"SMTPSERVER"</span>
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-smtp-server "SMTPSERVER"
       smtpmail-stream-type 'ssl
       smtpmail-smtp-service PORT)
 
-(<span style="color: #b4fa70;">setq</span> notmuch-saved-searches '((<span style="color: #e090d7;">:name</span> <span style="color: #e9b96e;">"inbox"</span>
-                                      <span style="color: #e090d7;">:query</span> <span style="color: #e9b96e;">"tag:inbox"</span>
-                                      <span style="color: #e090d7;">:count-query</span> <span style="color: #e9b96e;">"tag:inbox and tag:unread"</span>
-                                      <span style="color: #e090d7;">:sort-order</span> newest-first)
+(setq notmuch-saved-searches '((:name "inbox"
+                                      :query "tag:inbox"
+                                      :count-query "tag:inbox and tag:unread"
+                                      :sort-order newest-first)
 </pre>
 </div>
 </div>
@@ -379,7 +379,7 @@ Additionally, notmuch supports hooks which are essentially scripts in <code>/MAI
 <dt><code>pre-new</code></dt><dd>Hook/script provoked before command <code>notmuch new</code>, which is usually used to fetch mails.</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #73d216;">#</span><span style="color: #73d216;">!/bin/</span><span style="color: #b4fa70;">sh</span>
+<pre class="src src-sh">#!/bin/sh
 /usr/bin/offlineimap -c /PATH/TO/OFFLINEIMAPRC -a ACCOUNT
 </pre>
 </div>
@@ -387,7 +387,7 @@ Additionally, notmuch supports hooks which are essentially scripts in <code>/MAI
 or
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #73d216;">#</span><span style="color: #73d216;">!/bin/</span><span style="color: #b4fa70;">sh</span>
+<pre class="src src-sh">#!/bin/sh
 /usr/bin/getmail --new --getmaildir=/PATH/TO/GETMAILRC --rcfile=GETMAILRC
 </pre>
 </div>
@@ -395,7 +395,7 @@ or
 <dt><code>post-new</code></dt><dd>Hook/script provoked after command <code>notmuch new</code>, which is usually used to tag the newly imported mails.</dd>
 </dl>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #73d216;">#</span><span style="color: #73d216;">!/bin/</span><span style="color: #b4fa70;">sh</span>
+<pre class="src src-sh">#!/bin/sh
 notmuch tag -inbox +sent -- from:EMAILADDRESS
 notmuch tag -inbox +ML -- to:MAILLIST@EXAMPLE.COM
 notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
@@ -437,7 +437,7 @@ systemctl start cronie.service
 By default, notmuch cannot separate Chinese correctly, Japanese, or Korean words due to the non-space separator. A workaround is to <a href="https://notmuchmail.org/howto/#index10h2">set a environment variable</a> as follows.
 </p>
 <div class="org-src-container">
-<pre class="src src-shell"><span style="color: #e090d7;">export</span> <span style="color: #fcaf3e;">XAPIAN_CJK_NGRAM</span>=1
+<pre class="src src-shell">export XAPIAN_CJK_NGRAM=1
 </pre>
 </div>
 </div>

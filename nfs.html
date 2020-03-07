@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NFS</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -279,18 +279,18 @@ Network file system (NFS) is a simple approach for share and exchange files in U
 Edit <code>/etc/exports</code>, e.g.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">/etc/exports - exports(5) - directories exported to NFS clients</span>
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Example for NFSv2 and NFSv3:</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/home        hostname1(rw,sync) hostname2(ro,sync)</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Example for NFSv4:</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/nfs4        hostname1(rw,sync,fsid=0)</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/nfs4/home   hostname1(rw,sync,nohide)</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Using Kerberos and integrity checking:</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)</span>
-<span style="color: #73d216;">#  </span><span style="color: #73d216;">/srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)</span>
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Use `exportfs -arv` to reload.</span>
+<pre class="src src-sh"># /etc/exports - exports(5) - directories exported to NFS clients
+#
+# Example for NFSv2 and NFSv3:
+#  /srv/home        hostname1(rw,sync) hostname2(ro,sync)
+# Example for NFSv4:
+#  /srv/nfs4	    hostname1(rw,sync,fsid=0)
+#  /srv/nfs4/home   hostname1(rw,sync,nohide)
+# Using Kerberos and integrity checking:
+#  /srv/nfs4        *(rw,sync,sec=krb5i,fsid=0)
+#  /srv/nfs4/home   *(rw,sync,sec=krb5i,nohide)
+#
+# Use `exportfs -arv` to reload.
 
 /home 192.168.2.0/24(rw,async,subtree_check,no_root_squash)
 /opt 192.168.2.0/24(ro,async,subtree_check,no_root_squash)

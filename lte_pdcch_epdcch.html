@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LTE - PDCCH &amp; EPDCCH</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -269,12 +269,12 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org565b797">Introduction</a></li>
-<li><a href="#org62d3a94">PDCCH</a></li>
-<li><a href="#org6a1ccd2">EPDCCH</a></li>
-<li><a href="#org7b13249">Blind decoding of PDCCH and EPDCCH</a>
-<ul>
 <li><a href="#org96b9ca1">PDCCH</a></li>
 <li><a href="#org6e33cd1">EPDCCH</a></li>
+<li><a href="#org7b13249">Blind decoding of PDCCH and EPDCCH</a>
+<ul>
+<li><a href="#org9620917">PDCCH</a></li>
+<li><a href="#org5ec8fc8">EPDCCH</a></li>
 <li><a href="#org627dbe8">Blind decoding attempts</a></li>
 </ul>
 </li>
@@ -292,9 +292,9 @@ This post provides a brief summary on <i>physical downlink control channel (PDCC
 </div>
 </div>
 
-<div id="outline-container-org62d3a94" class="outline-2">
-<h2 id="org62d3a94">PDCCH</h2>
-<div class="outline-text-2" id="text-org62d3a94">
+<div id="outline-container-org96b9ca1" class="outline-2">
+<h2 id="org96b9ca1">PDCCH</h2>
+<div class="outline-text-2" id="text-org96b9ca1">
 <p>
 PDCCH carries <i>downlink control information (DCI)</i>, e.g. scheduling decisions and power control commands. Since each scheduling message is transmitted on a separate PDCCH, there are multiple simultaneous PDCCH transmission within each cell. From a UE perspective, each UE can receive multiple DCI messages in the same subframe, e.g. it is scheduled simultaneously in uplink and downlink.
 </p>
@@ -317,9 +317,9 @@ Since a UE is not signalled about the aggregation level of each PDCCH, it has to
 </div>
 </div>
 
-<div id="outline-container-org6a1ccd2" class="outline-2">
-<h2 id="org6a1ccd2">EPDCCH</h2>
-<div class="outline-text-2" id="text-org6a1ccd2">
+<div id="outline-container-org6e33cd1" class="outline-2">
+<h2 id="org6e33cd1">EPDCCH</h2>
+<div class="outline-text-2" id="text-org6e33cd1">
 <p>
 EPDCCH was introduced as a complementary control channel in release 11. Different from PDCCH, EPDCCH can use precoding and be detected based on DMRS. Moreover, EPDCCH is mapped to PDSCH region.
 </p>
@@ -346,9 +346,9 @@ A <i>search space</i> is a set of candidate control channels formed by CCE's/ECC
 </p>
 </div>
 
-<div id="outline-container-org96b9ca1" class="outline-3">
-<h3 id="org96b9ca1">PDCCH</h3>
-<div class="outline-text-3" id="text-org96b9ca1">
+<div id="outline-container-org9620917" class="outline-3">
+<h3 id="org9620917">PDCCH</h3>
+<div class="outline-text-3" id="text-org9620917">
 <p>
 Each UE has a <i>UE-specific search space</i> at each aggregation level. UE-specific search spaces for PDCCH are defined as a function of the UE identity and the subframe number. Thus, UE-specific search space is different from one subframe to another.
 </p>
@@ -362,9 +362,9 @@ There are 16 and 9 PDCCH candidates in the UE-specific and common search spaces,
 </p>
 </div>
 </div>
-<div id="outline-container-org6e33cd1" class="outline-3">
-<h3 id="org6e33cd1">EPDCCH</h3>
-<div class="outline-text-3" id="text-org6e33cd1">
+<div id="outline-container-org5ec8fc8" class="outline-3">
+<h3 id="org5ec8fc8">EPDCCH</h3>
+<div class="outline-text-3" id="text-org5ec8fc8">
 <p>
 Basically, EPDCCH blind decoding follows the same principles as PDCCH. What is different, only UE-specific search spaces are supported<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>. Given a UE configured to use EPDCCH, it monitors the EPDCCH UE-specific search spaces in lieu of PDCCH UE-specific search spaces. The common search spaces of PDCCH are always monitored regardless whether an EPDCCH is configured.
 </p>

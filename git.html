@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-02-28 Fri 00:25 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Git</title>
@@ -246,11 +246,16 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0c075b1">Introduction</a></li>
+<li><a href="#org0c075b1">Introduction</a>
+<ul>
+<li><a href="#org804cc7a">Objects</a></li>
+<li><a href="#org33758e7">Areas</a></li>
+</ul>
+</li>
 <li><a href="#org27991e4">Installation</a></li>
+<li><a href="#orgd8734b2">Configuration</a></li>
 <li><a href="#orgc5fcd01">Usage</a>
 <ul>
-<li><a href="#orgd8734b2">Configuration</a></li>
 <li><a href="#org354e370">Create repositories</a></li>
 <li><a href="#org75d3ddc">Basic snapshotting</a>
 <ul>
@@ -280,6 +285,36 @@ for the JavaScript code in this tag.
 <i>Git</i> is a famous and powerful open-source software for version control and management. It was developed by Linus Torvalds with C programing language. What is different from <i>subversion</i>, git adopts a completely distributed manner. Regarding its utilization, besides its built-in manual, there is also an excellent book, <i>Pro Git</i>, which can be obtained for free<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. This post just summarizes the preliminary usage of git, which is referred from the book.
 </p>
 </div>
+<div id="outline-container-org804cc7a" class="outline-3">
+<h3 id="org804cc7a">Objects</h3>
+<div class="outline-text-3" id="text-org804cc7a">
+<p>
+In git, there are 3 types of objects defined, <i>blob</i>, <i>tree</i>, and <i>commit</i>. In order to view its properties, a dedicated command <code>git cat-file</code> is provided. Its type and content can be returned with option <code>-t</code> and <code>-p</code> respectively.
+</p>
+<ul class="org-ul">
+<li>A blob keeps the content of a binary compressed file.</li>
+<li>A tree represents a directory, including its hierarchy, permission, and the names of its componential files.</li>
+<li>A commit is essentially a SHA-1 hash.</li>
+</ul>
+
+<p>
+A branch or a tag is nothing but a pointer pointing at the SHA-1 hash of a commit. Moreover, <code>HEAD</code> is also a pointer, which always points the active branch at the time.
+</p>
+</div>
+</div>
+<div id="outline-container-org33758e7" class="outline-3">
+<h3 id="org33758e7">Areas</h3>
+<div class="outline-text-3" id="text-org33758e7">
+<p>
+In the utilization of git, there are four important areas for storage, <i>workspace</i>, <i>index</i> (or <i>stage</i>), <i>repository</i> and <i>remote</i>. Their relationship can be illustrated by the figure below.
+</p>
+
+<div class="figure">
+<p><img src="git.png" alt="git.png">
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-org27991e4" class="outline-2">
 <h2 id="org27991e4">Installation</h2>
@@ -295,7 +330,7 @@ On Unix/Linux operation systems, git can be easily installed. Taking <i>ArchLinu
 In order to enable bash-like auto completion, add following entry to <code>~/.bashrc</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #e090d7;">source</span> /usr/share/git/completion/git-completion.bash
+<pre class="src src-sh">source /usr/share/git/completion/git-completion.bash
 </pre>
 </div>
 <p>
@@ -307,22 +342,9 @@ For GUI, package <i>tk</i> needs to be installed additionally.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc5fcd01" class="outline-2">
-<h2 id="orgc5fcd01">Usage</h2>
-<div class="outline-text-2" id="text-orgc5fcd01">
-<p>
-In the utilization of git, there are four important areas for storage, <i>workspace</i>, <i>index</i> (or <i>stage</i>), <i>repository</i> and <i>remote</i>. Their relationship can be illustrated by the figure below.
-</p>
-
-<div class="figure">
-<p><img src="git.png" alt="git.png">
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd8734b2" class="outline-3">
-<h3 id="orgd8734b2">Configuration</h3>
-<div class="outline-text-3" id="text-orgd8734b2">
+<div id="outline-container-orgd8734b2" class="outline-2">
+<h2 id="orgd8734b2">Configuration</h2>
+<div class="outline-text-2" id="text-orgd8734b2">
 <p>
 Command <code>git config</code> can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or repository-specifically.
 </p>
@@ -338,8 +360,8 @@ Command <code>git config</code> can define the default preference or behavior of
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git config -e [--global/--system]
-git config [--global/--system] user.name <span style="color: #e9b96e;">"NAME"</span>
-git config [--global/--system] user.email <span style="color: #e9b96e;">"EMAIL@COMPANY.COM"</span>
+git config [--global/--system] user.name "NAME"
+git config [--global/--system] user.email "EMAIL@COMPANY.COM"
 </pre>
 </div>
 <ul class="org-ul">
@@ -350,6 +372,10 @@ git config [--global/--system] user.email <span style="color: #e9b96e;">"EMAIL@C
 </pre>
 </div>
 </div>
+</div>
+<div id="outline-container-orgc5fcd01" class="outline-2">
+<h2 id="orgc5fcd01">Usage</h2>
+<div class="outline-text-2" id="text-orgc5fcd01">
 </div>
 <div id="outline-container-org354e370" class="outline-3">
 <h3 id="org354e370">Create repositories</h3>
@@ -458,10 +484,33 @@ git commit --amend [FILE]
 <h4 id="org56daef2">Rebase</h4>
 <div class="outline-text-4" id="text-org56daef2">
 <p>
-An interactive interface is available if option <code>-i</code> is given whereby a variety of operations can be completed, e.g., <code>pick</code> / <code>squash</code>.
+Taking rebasing the current branch, e.g. <code>BRANCH_NAME</code>, onto a target, e.g. <code>master</code> branch, for instance, a basic work flow for <code>git rebase</code> can be listed as follows.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">git rebase -i FATHER_COMMIT
+<pre class="src src-sh"># Switch to branch BRANCH_NAME.
+git checkout BRANCH_NAME
+
+# Rebase the related commits onto master branch.
+git rebase master
+
+# For any conflicts, several cycles of following steps are indispensable.
+# 1) Resolve the conflicts manually.
+# 2) Add the revised files by "git add".
+# 3) Continue the rebasing operation by "git rebase --continue" until all the conflicts resolved.
+
+# Switch back to master branch.
+git checkout master
+
+# Merge BRANCH_NAME into master in a fast-forward way.
+git merge BRANCH_NAME
+</pre>
+</div>
+
+<p>
+An interactive interface is available if option <code>-i</code> is given whereby a variety of operations can be completed, e.g., <code>pick</code>, <code>reword</code>, <code>edit</code>, <code>squash</code>, <code>fixup</code>, <code>exec</code>, <code>drop</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git rebase -i TARGET
 </pre>
 </div>
 </div>
@@ -484,7 +533,7 @@ An interactive interface is available if option <code>-i</code> is given whereby
 </pre>
 </div>
 <ul class="org-ul">
-<li>Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is <code>HEAD</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</li>
+<li>Create a new branch pointing to a given commit. If not provided, the initial pointing of the new branch is <code>HEAD</code>.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch BRANCH_NAME [COMMIT_NAME]
@@ -520,7 +569,7 @@ git fetch remote_name remote_branch_name:branch_name
 </pre>
 </div>
 <ul class="org-ul">
-<li>Merge a given branch into the current branch</li>
+<li>Merge a given branch into the current branch.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git merge -m MESSAGE BRANCH_NAME
@@ -546,6 +595,9 @@ In this case, manual merge (edit) is necessary. After that, add the merged files
 <pre class="src src-sh">git merge --no-ff BRANCH_NAME
 </pre>
 </div>
+<p>
+Clearly, <code>git merge</code> will keep the history of a series of commits and produce a new commit; while <code>git rebase</code> will guarantee a linear commit history without generating any new commits.
+</p>
 <ul class="org-ul">
 <li>Remove a local branch</li>
 </ul>
@@ -737,10 +789,17 @@ git push origin :refs/tags/TAG_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Download all the commit records from a remote repository and merge it into a local branch</li>
+<li>Download all the commit records from a remote repository and merge it into the current local branch. In this sense, <code>git pull = git fetch + git merge</code>.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git pull REMOTE_NAME REMOTE_BRANCH_NAME
+</pre>
+</div>
+<ul class="org-ul">
+<li>Download all the commit records from a remote repository and rebase the current local branch onto it. Similarly, <code>git pull --rebase = git fetch + git rebase</code>.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git pull --rebase REMOTE_NAME REMOTE_BRANCH_NAME
 </pre>
 </div>
 <ul class="org-ul">
@@ -847,10 +906,6 @@ git push origin :refs/tags/TAG_NAME
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 <a href="http://git-scm.com/book/en/v2">http://git-scm.com/book/en/v2</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-<code>HEAD</code> is essentially a pointer, which always points the active branch at the time.
 </p></div></div>
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sway</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -247,8 +247,8 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org058484c">Introduction</a></li>
-<li><a href="#org7ae5155">Installation</a></li>
-<li><a href="#orgf6bc284">Configuration</a>
+<li><a href="#org87ead61">Installation</a></li>
+<li><a href="#org52fabbe">Configuration</a>
 <ul>
 <li><a href="#orgd3605ad"><code>~/.config/sway/config</code></a></li>
 <li><a href="#orgb3af124"><code>~/.config/sway/termite.conf</code></a></li>
@@ -259,8 +259,8 @@ for the JavaScript code in this tag.
 <li><a href="#org23daf3c">Startup</a></li>
 <li><a href="#org15068d5">KDE Applications</a>
 <ul>
-<li><a href="#org87ead61">Installation</a></li>
-<li><a href="#org52fabbe">Configuration</a></li>
+<li><a href="#orgc44ae19">Installation</a></li>
+<li><a href="#orgf3fe101">Configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -291,18 +291,18 @@ Sway's core components and necessary applications can be simply installed and co
 </ul>
 </div>
 </div>
-<div id="outline-container-org7ae5155" class="outline-2">
-<h2 id="org7ae5155">Installation</h2>
-<div class="outline-text-2" id="text-org7ae5155">
+<div id="outline-container-org87ead61" class="outline-2">
+<h2 id="org87ead61">Installation</h2>
+<div class="outline-text-2" id="text-org87ead61">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S sway swaylock swayidle termite rofi waybar light mako grim slurp
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf6bc284" class="outline-2">
-<h2 id="orgf6bc284">Configuration</h2>
-<div class="outline-text-2" id="text-orgf6bc284">
+<div id="outline-container-org52fabbe" class="outline-2">
+<h2 id="org52fabbe">Configuration</h2>
+<div class="outline-text-2" id="text-org52fabbe">
 <p>
 For centralized management, the configuration files can be gathered in directory <code>~/.config/sway</code>.
 </p>
@@ -311,211 +311,211 @@ For centralized management, the configuration files can be gathered in directory
 <h3 id="orgd3605ad"><code>~/.config/sway/config</code></h3>
 <div class="outline-text-3" id="text-orgd3605ad">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">Default config for sway</span>
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Copy this to ~/.config/sway/config and edit it to your liking.</span>
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Read `man 5 sway` for a complete reference.</span>
+<pre class="src src-sh"># Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Variables</span>
-<span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">mod</span> Mod4
-<span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">term</span> termite -c ~/.config/sway/termite.conf
-<span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">menu</span> <span style="color: #e9b96e;">"/usr/bin/rofi -combi-modi window,drun,ssh -show combi -show-icons -lines 9 -width 100 -location 7 -font 'Source Code Pro 12'"</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">set $menu /usr/bin/bemenu-run --fn 'Source Code Pro 12' --list 9 -b -i -p '' | xargs swaymsg exec --</span>
-<span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">wallpaper</span> ~/Pictures/wallpaper.jpg
-<span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">locker</span> swaylock -f -i $<span style="color: #fcaf3e;">wallpaper</span>
+### Variables
+set $mod Mod4
+set $term termite -c ~/.config/sway/termite.conf
+set $menu "/usr/bin/rofi -combi-modi window,drun,ssh -show combi -show-icons -lines 9 -width 100 -location 7 -font 'Source Code Pro 12'"
+# set $menu /usr/bin/bemenu-run --fn 'Source Code Pro 12' --list 9 -b -i -p '' | xargs swaymsg exec --
+set $wallpaper ~/Pictures/wallpaper.jpg
+set $locker swaylock -f -i $wallpaper
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Font</span>
+### Font
 font pango: Source Sans Pro 12
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Output</span>
+### Output
 output * {
-       background $<span style="color: #fcaf3e;">wallpaper</span> fill
+       background $wallpaper fill
        resolution 1920x1080
 }
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Idle configuration</span>
-<span style="color: #b4fa70;">exec</span> swayidle -w <span style="color: #e9b96e;">\</span>
-         timeout 300 $<span style="color: #fcaf3e;">locker</span> <span style="color: #e9b96e;">\</span>
-         timeout 600 <span style="color: #e9b96e;">'swaymsg "output * dpms off"'</span> <span style="color: #e9b96e;">\</span>
-         resume <span style="color: #e9b96e;">'swaymsg "output * dpms on"'</span> <span style="color: #e9b96e;">\</span>
-         before-sleep $<span style="color: #fcaf3e;">locker</span>
+### Idle configuration
+exec swayidle -w \
+         timeout 300 $locker \
+         timeout 600 'swaymsg "output * dpms off"' \
+         resume 'swaymsg "output * dpms on"' \
+         before-sleep $locker
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Key bindings</span>
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Basics:</span>
-<span style="color: #73d216;">#</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">start a terminal</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Return exec $<span style="color: #fcaf3e;">term</span>
+### Key bindings
+#
+# Basics:
+#
+    # start a terminal
+    bindsym $mod+Return exec $term
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">kill focused window</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+q kill
+    # kill focused window
+    bindsym $mod+q kill
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">start your launcher</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+d exec $<span style="color: #fcaf3e;">menu</span>
+    # start your launcher
+    bindsym $mod+d exec $menu
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Drag floating windows by holding down $mod and left mouse button.</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Resize them with right mouse button + $mod.</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Despite the name, also works for non-floating windows.</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Change normal to inverse to use left mouse button for resizing and right</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">mouse button for dragging.</span>
-    floating_modifier $<span style="color: #fcaf3e;">mod</span> normal
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">reload the configuration file</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+c reload
+    # reload the configuration file
+    bindsym $mod+Shift+c reload
 
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Moving around:</span>
-<span style="color: #73d216;">#</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Move your focus around</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Left focus left
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Down focus down
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Up focus up
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Right focus right
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Move the focused window with the same, but add Shift</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+Left move left
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+Down move down
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+Up move up
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+Right move right
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
 
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Workspaces:</span>
-<span style="color: #73d216;">#</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">define names for workspaces</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws0</span> <span style="color: #e9b96e;">"0"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws1</span> <span style="color: #e9b96e;">"1"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws2</span> <span style="color: #e9b96e;">"2"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws3</span> <span style="color: #e9b96e;">"3"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws4</span> <span style="color: #e9b96e;">"4"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws5</span> <span style="color: #e9b96e;">"5"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws6</span> <span style="color: #e9b96e;">"6"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws7</span> <span style="color: #e9b96e;">"7"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws8</span> <span style="color: #e9b96e;">"8"</span>
-    <span style="color: #e090d7;">set</span> $<span style="color: #fcaf3e;">ws9</span> <span style="color: #e9b96e;">"9"</span>
+#
+# Workspaces:
+#
+    # define names for workspaces
+    set $ws0 "0"
+    set $ws1 "1"
+    set $ws2 "2"
+    set $ws3 "3"
+    set $ws4 "4"
+    set $ws5 "5"
+    set $ws6 "6"
+    set $ws7 "7"
+    set $ws8 "8"
+    set $ws9 "9"
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">switch to workspace</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+0 workspace $<span style="color: #fcaf3e;">ws0</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+1 workspace $<span style="color: #fcaf3e;">ws1</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+2 workspace $<span style="color: #fcaf3e;">ws2</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+3 workspace $<span style="color: #fcaf3e;">ws3</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+4 workspace $<span style="color: #fcaf3e;">ws4</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+5 workspace $<span style="color: #fcaf3e;">ws5</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+6 workspace $<span style="color: #fcaf3e;">ws6</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+7 workspace $<span style="color: #fcaf3e;">ws7</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+8 workspace $<span style="color: #fcaf3e;">ws8</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+9 workspace $<span style="color: #fcaf3e;">ws9</span>
+    # switch to workspace
+    bindsym $mod+0 workspace $ws0
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">move focused container to workspace</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+0 move container to workspace $<span style="color: #fcaf3e;">ws0</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+1 move container to workspace $<span style="color: #fcaf3e;">ws1</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+2 move container to workspace $<span style="color: #fcaf3e;">ws2</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+3 move container to workspace $<span style="color: #fcaf3e;">ws3</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+4 move container to workspace $<span style="color: #fcaf3e;">ws4</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+5 move container to workspace $<span style="color: #fcaf3e;">ws5</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+6 move container to workspace $<span style="color: #fcaf3e;">ws6</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+7 move container to workspace $<span style="color: #fcaf3e;">ws7</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+8 move container to workspace $<span style="color: #fcaf3e;">ws8</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+9 move container to workspace $<span style="color: #fcaf3e;">ws9</span>
+    # move focused container to workspace
+    bindsym $mod+Shift+0 move container to workspace $ws0
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
 
-<span style="color: #73d216;">#</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Layout stuff:</span>
-<span style="color: #73d216;">#</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">You can "split" the current object of your focus with</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">$mod+b or $mod+v, for horizontal and vertical splits</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">respectively.</span>
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Split</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+h splith
-    bindsym $<span style="color: #fcaf3e;">mod</span>+v splitv
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    # Split
+    bindsym $mod+h splith
+    bindsym $mod+v splitv
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Switch the current container between different layout styles</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+s layout stacking
-    bindsym $<span style="color: #fcaf3e;">mod</span>+w layout tabbed
-    bindsym $<span style="color: #fcaf3e;">mod</span>+e layout toggle split
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Make the current focus fullscreen</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+f fullscreen
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Toggle the current focus between tiling and floating mode</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+space floating toggle
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Swap focus between the tiling area and the floating area</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+space focus mode_toggle
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">Move focus to the parent container</span>
-    bindsym $<span style="color: #fcaf3e;">mod</span>+a focus parent
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Resize mode</span>
-mode <span style="color: #e9b96e;">"resize"</span> {
+### Resize mode
+mode "resize" {
     bindsym Left resize shrink width 10px
     bindsym Up resize grow height 10px
     bindsym Down resize shrink height 10px
     bindsym Right resize grow width 10px
 
-    <span style="color: #73d216;"># </span><span style="color: #73d216;">return to default mode</span>
-    bindsym Return mode <span style="color: #e9b96e;">"default"</span>
-    bindsym Escape mode <span style="color: #e9b96e;">"default"</span>
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
-bindsym $<span style="color: #fcaf3e;">mod</span>+r mode <span style="color: #e9b96e;">"resize"</span>
+bindsym $mod+r mode "resize"
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">System mode</span>
-mode <span style="color: #e9b96e;">"system"</span> {
-        bindsym h exec systemctl poweroff, mode <span style="color: #e9b96e;">"default"</span>
-        bindsym l exec $<span style="color: #fcaf3e;">locker</span>, mode <span style="color: #e9b96e;">"default"</span>
-        bindsym r exec systemctl reboot, mode <span style="color: #e9b96e;">"default"</span>
-        bindsym s exec $<span style="color: #fcaf3e;">locker</span> &amp;&amp; systemctl suspend, mode <span style="color: #e9b96e;">"default"</span>
-        bindsym Return mode <span style="color: #e9b96e;">"default"</span>
-        bindsym Escape mode <span style="color: #e9b96e;">"default"</span>
+### System mode
+mode "system" {
+        bindsym h exec systemctl poweroff, mode "default"
+        bindsym l exec $locker, mode "default"
+        bindsym r exec systemctl reboot, mode "default"
+        bindsym s exec $locker &amp;&amp; systemctl suspend, mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
-bindsym $<span style="color: #fcaf3e;">mod</span>+Shift+e mode <span style="color: #e9b96e;">"system"</span>
+bindsym $mod+Shift+e mode "system"
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Status Bar:</span>
-<span style="color: #73d216;"># </span><span style="color: #73d216;">Read `man 5 sway-bar` for more information about this section.</span>
+### Status Bar:
+# Read `man 5 sway-bar` for more information about this section.
 bar {
-    swaybar_command <span style="color: #e9b96e;">"waybar -c ~/.config/sway/waybar.config -s ~/.config/sway/waybar.style.css"</span>
+    swaybar_command "waybar -c ~/.config/sway/waybar.config -s ~/.config/sway/waybar.style.css"
 }
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Appearance and behavior </span>
+### Appearance and behavior 
 workspace_layout default
 default_border none
 default_floating_border pixel
 popup_during_fullscreen smart
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Startup</span>
-<span style="color: #b4fa70;">exec</span> mako --anchor bottom-right --default-timeout 6000
-<span style="color: #b4fa70;">exec</span> <span style="color: #fcaf3e;">LANG</span>=<span style="color: #e9b96e;">"zh_CN.UTF-8"</span> fcitx &amp;
+### Startup
+exec mako --anchor bottom-right --default-timeout 6000
+exec LANG="zh_CN.UTF-8" fcitx &amp;
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Screenshot</span>
+### Screenshot
 bindsym --release {
-        Print exec grim $(<span style="color: #fa8072;">date</span> +<span style="color: #e9b96e;">'%Y%m%d-%H%M%S.png'</span>)
-        Shift+Print exec grim -g <span style="color: #e9b96e;">"$(</span><span style="color: #fa8072;">slurp</span><span style="color: #e9b96e;">)"</span> $(<span style="color: #fa8072;">date</span> +<span style="color: #e9b96e;">'%Y%m%d-%H%M%S.png'</span>)
+        Print exec grim $(date +'%Y%m%d-%H%M%S.png')
+        Shift+Print exec grim -g "$(slurp)" $(date +'%Y%m%d-%H%M%S.png')
 }
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Keyboard</span>
+### Keyboard
 input type:keyboard {
       xkb_options ctrl:nocaps
 }
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Touchpad of laptop</span>
+### Touchpad of laptop
 input type:touchpad {
       dwt enabled
 }
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Lid related event for laptop</span>
+### Lid related event for laptop
 bindswitch {
       lid:on output * disable
       lid:off output * enable
 }
 
-<span style="color: #73d216;">### </span><span style="color: #73d216;">Special keys for laptop</span>
+### Special keys for laptop
 bindsym {
-        <span style="color: #73d216;"># </span><span style="color: #73d216;">Volume</span>
+        # Volume
         XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
         XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
         XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
         XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-        <span style="color: #73d216;"># </span><span style="color: #73d216;">Brightness</span>
+        # Brightness
         XF86MonBrightnessUp exec light -A 5
         XF86MonBrightnessDown exec light -U 5
 }
@@ -536,25 +536,25 @@ scrollback_lines = 10000
 cursor_blink = off
 
 [colors]
-foreground = <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff</span>
+foreground = #ffffff
 background = rgba(63, 63, 63, 0.8)
-highlight = <span style="color: #73d216;">#</span><span style="color: #73d216;">2f2f2f</span>
-color0 = <span style="color: #73d216;">#</span><span style="color: #73d216;">3f3f3f</span>
-color1 = <span style="color: #73d216;">#</span><span style="color: #73d216;">705050</span>
-color2 = <span style="color: #73d216;">#</span><span style="color: #73d216;">60b48a</span>
-color3 = <span style="color: #73d216;">#</span><span style="color: #73d216;">dfaf8f</span>
-color4 = <span style="color: #73d216;">#</span><span style="color: #73d216;">506070</span>
-color5 = <span style="color: #73d216;">#</span><span style="color: #73d216;">dc8cc3</span>
-color6 = <span style="color: #73d216;">#</span><span style="color: #73d216;">8cd0d3</span>
-color7 = <span style="color: #73d216;">#</span><span style="color: #73d216;">dcdccc</span>
-color8 = <span style="color: #73d216;">#</span><span style="color: #73d216;">709080</span>
-color9 = <span style="color: #73d216;">#</span><span style="color: #73d216;">dca3a3</span>
-color10 = <span style="color: #73d216;">#</span><span style="color: #73d216;">c3bf9f</span>
-color11 = <span style="color: #73d216;">#</span><span style="color: #73d216;">f0dfaf</span>
-color12 = <span style="color: #73d216;">#</span><span style="color: #73d216;">94bff3</span>
-color13 = <span style="color: #73d216;">#</span><span style="color: #73d216;">ec93d3</span>
-color14 = <span style="color: #73d216;">#</span><span style="color: #73d216;">93e0e3</span>
-color15 = <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff</span>
+highlight = #2f2f2f
+color0 = #3f3f3f
+color1 = #705050
+color2 = #60b48a
+color3 = #dfaf8f
+color4 = #506070
+color5 = #dc8cc3
+color6 = #8cd0d3
+color7 = #dcdccc
+color8 = #709080
+color9 = #dca3a3
+color10 = #c3bf9f
+color11 = #f0dfaf
+color12 = #94bff3
+color13 = #ec93d3
+color14 = #93e0e3
+color15 = #ffffff
 
 [hints]
 </pre>
@@ -566,77 +566,77 @@ color15 = <span style="color: #73d216;">#</span><span style="color: #73d216;">ff
 <div class="outline-text-3" id="text-org8abbdd1">
 <div class="org-src-container">
 <pre class="src src-sh">{
-    <span style="color: #e9b96e;">"layer"</span>: <span style="color: #e9b96e;">"top"</span>,
-    <span style="color: #e9b96e;">"modules-left"</span>: [<span style="color: #e9b96e;">"sway/workspaces"</span>],
-    <span style="color: #e9b96e;">"modules-center"</span>: [],
-    <span style="color: #e9b96e;">"modules-right"</span>: [<span style="color: #e9b96e;">"pulseaudio"</span>, <span style="color: #e9b96e;">"network"</span>, <span style="color: #e9b96e;">"cpu"</span>, <span style="color: #e9b96e;">"memory"</span>, <span style="color: #e9b96e;">"temperature"</span>, <span style="color: #e9b96e;">"backlight"</span>, <span style="color: #e9b96e;">"battery"</span>, <span style="color: #e9b96e;">"clock"</span>, <span style="color: #e9b96e;">"tray"</span>],
+    "layer": "top",
+    "modules-left": ["sway/workspaces"],
+    "modules-center": [],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "clock", "tray"],
     // Modules configuration
-    <span style="color: #e9b96e;">"sway/workspaces"</span>: {
-        <span style="color: #e9b96e;">"disable-scroll"</span>: true,
-        <span style="color: #e9b96e;">"all-outputs"</span>: true
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true
     },
-    <span style="color: #e9b96e;">"tray"</span>: {
-        <span style="color: #e9b96e;">"spacing"</span>: 10
+    "tray": {
+        "spacing": 10
     },
-    <span style="color: #e9b96e;">"clock"</span>: {
-        <span style="color: #e9b96e;">"format"</span>: <span style="color: #e9b96e;">"{:&#61555; %Y-%m-%d %a %H:%M}"</span>,
-        <span style="color: #e9b96e;">"tooltip"</span>: false
+    "clock": {
+        "format": "{: %Y-%m-%d %a %H:%M}",
+        "tooltip": false
     },
-    <span style="color: #e9b96e;">"cpu"</span>: {
-        <span style="color: #e9b96e;">"format"</span>: <span style="color: #e9b96e;">"{usage}% &#62171;"</span>,
-        <span style="color: #e9b96e;">"tooltip"</span>: false
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
     },
-    <span style="color: #e9b96e;">"memory"</span>: {
-        <span style="color: #e9b96e;">"format"</span>: <span style="color: #e9b96e;">"{}% &#61641;"</span>,
-        <span style="color: #e9b96e;">"tooltip"</span>: true
+    "memory": {
+        "format": "{}% ",
+        "tooltip": true
     },
-    <span style="color: #e9b96e;">"temperature"</span>: {
-        <span style="color: #e9b96e;">"critical-threshold"</span>: 80,
-        <span style="color: #e9b96e;">"format"</span>: <span style="color: #e9b96e;">"{temperatureC}&#176;C {icon}"</span>,
-        <span style="color: #e9b96e;">"format-icons"</span>: [<span style="color: #e9b96e;">"&#63339;"</span>, <span style="color: #e9b96e;">"&#62153;"</span>, <span style="color: #e9b96e;">"&#63337;"</span>]
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
     },
-    <span style="color: #e9b96e;">"backlight"</span>: {
-        <span style="color: #e9b96e;">"format"</span>: <span style="color: #e9b96e;">"{percent}% {icon}"</span>,
-        <span style="color: #e9b96e;">"format-icons"</span>: [<span style="color: #e9b96e;">"&#61829;"</span>, <span style="color: #e9b96e;">"&#61713;"</span>]
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
     },
-    <span style="color: #e9b96e;">"battery"</span>: {
-        <span style="color: #e9b96e;">"states"</span>: {
-            // <span style="color: #e9b96e;">"good"</span>: 95,
-            <span style="color: #e9b96e;">"warning"</span>: 30,
-            <span style="color: #e9b96e;">"critical"</span>: 15
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
         },
-        <span style="color: #e9b96e;">"format"</span>: <span style="color: #e9b96e;">"{capacity}% {icon}"</span>,
-        <span style="color: #e9b96e;">"format-charging"</span>: <span style="color: #e9b96e;">"{capacity}% &#62951;"</span>,
-        <span style="color: #e9b96e;">"format-plugged"</span>: <span style="color: #e9b96e;">"{capacity}% &#61926;"</span>,
-        <span style="color: #e9b96e;">"format-alt"</span>: <span style="color: #e9b96e;">"{time} {icon}"</span>,
-        <span style="color: #e9b96e;">"tooltip"</span>: false,
-        <span style="color: #e9b96e;">"format-icons"</span>: [<span style="color: #e9b96e;">"&#62020;"</span>, <span style="color: #e9b96e;">"&#62019;"</span>, <span style="color: #e9b96e;">"&#62018;"</span>, <span style="color: #e9b96e;">"&#62017;"</span>, <span style="color: #e9b96e;">"&#62016;"</span>]
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "tooltip": false,
+        "format-icons": ["", "", "", "", ""]
     },
-    <span style="color: #e9b96e;">"network"</span>: {
-        <span style="color: #e9b96e;">"format-wifi"</span>: <span style="color: #e9b96e;">"{essid} ({signalStrength}%) &#61931;"</span>,
-        <span style="color: #e9b96e;">"format-ethernet"</span>: <span style="color: #e9b96e;">"{ifname}: {ipaddr}/{cidr} &#63382;"</span>,
-        <span style="color: #e9b96e;">"format-linked"</span>: <span style="color: #e9b96e;">"{ifname} (No IP) &#63382;"</span>,
-        <span style="color: #e9b96e;">"format-disconnected"</span>: <span style="color: #e9b96e;">"Disconnected &#9888;"</span>,
-        <span style="color: #e9b96e;">"format-alt"</span>: <span style="color: #e9b96e;">"{ifname}: {ipaddr}/{cidr}"</span>,
-        <span style="color: #e9b96e;">"tooltip"</span>: false
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip": false
     },
-    <span style="color: #e9b96e;">"pulseaudio"</span>: {
-        <span style="color: #e9b96e;">"scroll-step"</span>: 10, // %, can be a float
-        <span style="color: #e9b96e;">"format"</span>: <span style="color: #e9b96e;">"{volume}% {icon} {format_source}"</span>,
-        <span style="color: #e9b96e;">"format-bluetooth"</span>: <span style="color: #e9b96e;">"{volume}% {icon}&#62100; {format_source}"</span>,
-        <span style="color: #e9b96e;">"format-muted"</span>: <span style="color: #e9b96e;">"{volume}% &#63145; {format_source}"</span>,
-        <span style="color: #e9b96e;">"format-source"</span>: <span style="color: #e9b96e;">"{volume}% &#61744;"</span>,
-        <span style="color: #e9b96e;">"format-source-muted"</span>: <span style="color: #e9b96e;">"{volume}% &#61745;"</span>,
-        <span style="color: #e9b96e;">"format-icons"</span>: {
-            <span style="color: #e9b96e;">"headphones"</span>: <span style="color: #e9b96e;">"&#61477;"</span>,
-            <span style="color: #e9b96e;">"handsfree"</span>: <span style="color: #e9b96e;">"&#62864;"</span>,
-            <span style="color: #e9b96e;">"headset"</span>: <span style="color: #e9b96e;">"&#62864;"</span>,
-            <span style="color: #e9b96e;">"phone"</span>: <span style="color: #e9b96e;">"&#61589;"</span>,
-            <span style="color: #e9b96e;">"portable"</span>: <span style="color: #e9b96e;">"&#61589;"</span>,
-            <span style="color: #e9b96e;">"car"</span>: <span style="color: #e9b96e;">"&#61881;"</span>,
-            <span style="color: #e9b96e;">"default"</span>: [<span style="color: #e9b96e;">"&#61478;"</span>, <span style="color: #e9b96e;">"&#61479;"</span>, <span style="color: #e9b96e;">"&#61480;"</span>]
+    "pulseaudio": {
+        "scroll-step": 10, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-muted": "{volume}%  {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "{volume}% ",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
         },
-        <span style="color: #e9b96e;">"on-click"</span>: <span style="color: #e9b96e;">"pavucontrol"</span>
+        "on-click": "pavucontrol"
     }
 }
 </pre>
@@ -658,7 +658,7 @@ color15 = <span style="color: #73d216;">#</span><span style="color: #73d216;">ff
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
+    color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -672,88 +672,88 @@ window#waybar.empty {
     background-color: transparent;
 }
 window#waybar.solo {
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">FFFFFF;</span>
+    background-color: #FFFFFF;
 }
 */
 
 window#waybar.termite {
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">3F3F3F;</span>
+    background-color: #3F3F3F;
 }
 
 window#waybar.chromium {
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">000000;</span>
+    background-color: #000000;
     border: none;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">workspaces button {</span>
+#workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
+    color: #ffffff;
     border-bottom: 3px solid transparent;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-<span style="color: #73d216;">#</span><span style="color: #73d216;">workspaces button:hover {</span>
+#workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
     box-shadow: inherit;
-    border-bottom: 3px solid <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
+    border-bottom: 3px solid #ffffff;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">workspaces button.focused {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">64727D;</span>
-    border-bottom: 3px solid <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
+#workspaces button.focused {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">workspaces button.urgent {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">eb4d4b;</span>
+#workspaces button.urgent {
+    background-color: #eb4d4b;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">mode {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">64727D;</span>
-    border-bottom: 3px solid <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">clock,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">battery,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">cpu,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">memory,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">temperature,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">backlight,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">network,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">pulseaudio,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">custom-media,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">tray,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">mode,</span>
-<span style="color: #73d216;">#</span><span style="color: #73d216;">idle_inhibitor {</span>
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor {
     padding: 0 10px;
     margin: 0 0px;
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
+    color: #ffffff;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">clock {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">64727D;</span>
+#clock {
+    background-color: #64727D;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">battery {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">000000;</span>
+#battery {
+    background-color: #ffffff;
+    color: #000000;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">battery.charging {</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">26A65B;</span>
+#battery.charging {
+    color: #ffffff;
+    background-color: #26A65B;
 }
 
 @keyframes blink {
     to {
-        background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
-        color: <span style="color: #73d216;">#</span><span style="color: #73d216;">000000;</span>
+        background-color: #ffffff;
+        color: #000000;
     }
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">battery.critical:not(.charging) {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">f53c3c;</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ffffff;</span>
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -762,90 +762,90 @@ window#waybar.chromium {
 }
 
 label:focus {
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">000000;</span>
+    background-color: #000000;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">cpu {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">2ecc71;</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">000000;</span>
+#cpu {
+    background-color: #2ecc71;
+    color: #000000;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">memory {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">9b59b6;</span>
+#memory {
+    background-color: #9b59b6;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">backlight {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">90b1b1;</span>
+#backlight {
+    background-color: #90b1b1;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">network {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">2980b9;</span>
+#network {
+    background-color: #2980b9;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">network.disconnected {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">f53c3c;</span>
+#network.disconnected {
+    background-color: #f53c3c;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">pulseaudio {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">f1c40f;</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">000000;</span>
+#pulseaudio {
+    background-color: #f1c40f;
+    color: #000000;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">pulseaudio.muted {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">90b1b1;</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">2a5c45;</span>
+#pulseaudio.muted {
+    background-color: #90b1b1;
+    color: #2a5c45;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">custom-media {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">66cc99;</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">2a5c45;</span>
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
     min-width: 100px;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">custom-media.custom-spotify {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">66cc99;</span>
+#custom-media.custom-spotify {
+    background-color: #66cc99;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">custom-media.custom-vlc {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ffa000;</span>
+#custom-media.custom-vlc {
+    background-color: #ffa000;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">temperature {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">f0932b;</span>
+#temperature {
+    background-color: #f0932b;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">temperature.critical {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">eb4d4b;</span>
+#temperature.critical {
+    background-color: #eb4d4b;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">tray {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">2980b9;</span>
+#tray {
+    background-color: #2980b9;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">idle_inhibitor {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">2d3436;</span>
+#idle_inhibitor {
+    background-color: #2d3436;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">idle_inhibitor.activated {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">ecf0f1;</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">2d3436;</span>
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">mpd {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">66cc99;</span>
-    color: <span style="color: #73d216;">#</span><span style="color: #73d216;">2a5c45;</span>
+#mpd {
+    background-color: #66cc99;
+    color: #2a5c45;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">mpd.disconnected {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">f53c3c;</span>
+#mpd.disconnected {
+    background-color: #f53c3c;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">mpd.stopped {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">90b1b1;</span>
+#mpd.stopped {
+    background-color: #90b1b1;
 }
 
-<span style="color: #73d216;">#</span><span style="color: #73d216;">mpd.paused {</span>
-    background-color: <span style="color: #73d216;">#</span><span style="color: #73d216;">51a37a;</span>
+#mpd.paused {
+    background-color: #51a37a;
 }
 </pre>
 </div>
@@ -867,18 +867,18 @@ After the installation and configuration, sway can be started by running command
 There are a rich number of applications dedicated for KDE, e.g., file manager <code>dolphin</code> and PDF reader <code>okular</code>. On <code>sway</code>, they can be installed and configured as follows.
 </p>
 </div>
-<div id="outline-container-org87ead61" class="outline-3">
-<h3 id="org87ead61">Installation</h3>
-<div class="outline-text-3" id="text-org87ead61">
+<div id="outline-container-orgc44ae19" class="outline-3">
+<h3 id="orgc44ae19">Installation</h3>
+<div class="outline-text-3" id="text-orgc44ae19">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S dolphin okular
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org52fabbe" class="outline-3">
-<h3 id="org52fabbe">Configuration</h3>
-<div class="outline-text-3" id="text-org52fabbe">
+<div id="outline-container-orgf3fe101" class="outline-3">
+<h3 id="orgf3fe101">Configuration</h3>
+<div class="outline-text-3" id="text-orgf3fe101">
 <ul class="org-ul">
 <li><p>
 Install icons of <code>breeze</code> theme.
@@ -898,7 +898,7 @@ Install configuration tool <code>qt5ct</code>.
 Append the following entry into <code>~/.pam_environment</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #fcaf3e;">QT_QPA_PLATFORMTHEME</span>=qt5ct
+<pre class="src src-sh">QT_QPA_PLATFORMTHEME=qt5ct
 </pre>
 </div></li>
 <li>Run <code>qt5ct</code> to configure the font and icon.</li>

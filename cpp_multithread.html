@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-22 Wed 00:03 -->
+<!-- 2020-03-07 Sat 17:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ - Multithread</title>
@@ -197,7 +197,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -323,17 +323,17 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 标准C++的 <code>thread</code> 类的构造函数是一个可变参数模板, 可以接受任意数目的参数. 第一个参数为函数名称, 其余参数为函数的参数. 如
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;thread&gt;</span>
+<pre class="src src-C++">#include &lt;thread&gt;
 
-<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+using namespace std;
 
-<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">f</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>, <span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">j</span>, <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">k</span>);
+void f(int i, double j, bool k);
 
-<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+int main(int argc, char *argv[])
 {
-    <span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>(f, 1, 2.0, <span style="color: #e9b2e3;">true</span>);
+    thread t(f, 1, 2.0, true);
     t.join();
-    <span style="color: #b4fa70;">return</span> 0;
+    return 0;
 }
 </pre>
 </div>
@@ -349,22 +349,22 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 使用函数指针技术, 向线程传递信息的唯一方式是向函数传递参数. 而使用函数对象, 可向函数对象类添加成员变量, 并可以采用任何方式初始化和使用这些变量. 如
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;thread&gt;</span>
+<pre class="src src-C++">#include &lt;thread&gt;
 
-<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+using namespace std;
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">A</span>
+class A
 {
-<span style="color: #b4fa70;">public</span>:
-    <span style="color: #fce94f;">A</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>, <span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">j</span>, <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">k</span>);
-    <span style="color: #8cc4ff;">void</span> <span style="color: #b4fa70;">operator</span><span style="color: #fce94f;">()</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>);
+public:
+    A(int i, double j, bool k);
+    void operator()(int i);
 };
 
-<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+int main(int argc, char *argv[])
 {
-    <span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>(A(1));
+    thread t(A(1));
     t.join();
-    <span style="color: #b4fa70;">return</span> 0;
+    return 0;
 }
 </pre>
 </div>
@@ -380,16 +380,16 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 如
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;thread&gt;</span>
+<pre class="src src-C++">#include &lt;thread&gt;
 
-<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+using namespace std;
 
-<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+int main(int argc, char *argv[])
 {
-    <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span> = 3;
-    <span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>([&amp;<span style="color: #fcaf3e;">i</span>]{i += 1;});
+    int i = 3;
+    thread t([&amp;i]{i += 1;});
     t.join();
-    <span style="color: #b4fa70;">return</span> 0;
+    return 0;
 }
 </pre>
 </div>
@@ -402,22 +402,22 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 第一个参数为成员函数指针, 第二个参数为类对象指针, 其余参数为成员函数的参数.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;thread&gt;</span>
+<pre class="src src-C++">#include &lt;thread&gt;
 
-<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
+using namespace std;
 
-<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">A</span>
+class A
 {
-<span style="color: #b4fa70;">public</span>:
-    <span style="color: #fce94f;">A</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>, <span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">j</span>, <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">k</span>);
-    <span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">process</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>);
+public:
+    A(int i, double j, bool k);
+    void process(int i);
 };
 
-<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+int main(int argc, char *argv[])
 {
-    <span style="color: #8cc4ff;">A</span> <span style="color: #fcaf3e;">a</span>(1, 2.0, <span style="color: #e9b2e3;">true</span>);
-    <span style="color: #8cc4ff;">thread</span> <span style="color: #fcaf3e;">t</span>{&amp;<span style="color: #e9b2e3;">A</span>::process, &amp;a, 3};
-    <span style="color: #b4fa70;">return</span> 0;
+    A a(1, 2.0, true);
+    thread t{&amp;A::process, &amp;a, 3};
+    return 0;
 }
 </pre>
 </div>
@@ -438,9 +438,9 @@ C++线程库定义在头文件 <code>&lt;thread&gt;</code> 中.
 以下代码中, 多个线程共享唯一的j副本, 而每个线程都有自己的i副本.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #b4fa70;">thread_local</span> <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">i</span>;
-<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">j</span>;
-<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">process</span>();
+<pre class="src src-C++">thread_local int i;
+int j;
+void process();
 </pre>
 </div>
 </div>
