@@ -89,21 +89,21 @@ Command =git config= can define the default preference or behavior of git. There
   git add -u
 #+end_src
 *** Remove file(s)
-- Stop tracking file(s)
+- Stop tracking file(s).
 #+begin_src sh
   git rm --cached FILE1 [FILE2]
 #+end_src
-- Remove file(s) in workspace and index the removal in index
+- Remove file(s) in workspace and index the removal in index.
 #+begin_src sh
   git rm FILE1 [FILE2]
 #+end_src
 *** Commit the revision(s)
 The commands take the all/or the specific file(s) that have been staged with =git add= and record a new permanent snapshot in the repository and then moves the branch pointer on the current branch up to it.
-- Commit all the files in the index
+- Commit all the files in the index.
 #+begin_src sh
   git commit [-m MESSAGE]
 #+end_src
-- Commit specific file(s) in the index
+- Commit specific file(s) in the index.
 #+begin_src sh
   git commit FILE1 [FILE2] [-m MESSAGE]
 #+end_src
@@ -138,11 +138,11 @@ An interactive interface is available if option =-i= is given whereby a variety 
   git rebase -i TARGET
 #+end_src
 *** Branch operations
-- List all the local/remote branches
+- List all the local/remote branches.
 #+begin_src sh
   git branch [-r]
 #+end_src
-- List all the branches including both local and remote ones
+- List all the branches including both local and remote ones.
 #+begin_src sh
   git branch -a
 #+end_src
@@ -150,19 +150,19 @@ An interactive interface is available if option =-i= is given whereby a variety 
 #+begin_src sh
   git branch BRANCH_NAME [COMMIT_NAME]
 #+end_src
-- Switch to an existing branch
+- Switch to an existing branch.
 #+begin_src sh
   git checkout BRANCH_NAME
 #+end_src
-- Create a new branch and switch to it
+- Create a new branch and switch to it.
 #+begin_src sh
   git checkout -b BRANCH_NAME [REMOTE_NAME/REMOTE_BRANCH_NAME]
 #+end_src
-- Associate a local branch to a remote branch
+- Associate a local branch to a remote branch.
 #+begin_src sh
   git branch --set-upstream LOCAL_BRANCH_NAME REMOTE_NAME/REMOTE_BRANCH_NAME
 #+end_src
-- Create a new branch and associate it to a remote branch
+- Create a new branch and associate it to a remote branch.
 #+begin_src sh
   git branch --track BRANCH_NAME REMOTE_NAME/REMOTE_BRANCH_NAME
   git fetch remote_name remote_branch_name:branch_name
@@ -186,21 +186,21 @@ In this case, manual merge (edit) is necessary. After that, add the merged files
   git merge --no-ff BRANCH_NAME
 #+end_src
 Clearly, =git merge= will keep the history of a series of commits and produce a new commit; while =git rebase= will guarantee a linear commit history without generating any new commits.
-- Remove a local branch
+- Remove a local branch.
 #+begin_src sh
   git branch -d BRANCH_NAME
 #+end_src
-- Remove a local (not merged) branch forcely
+- Remove a local (not merged) branch forcely.
 #+begin_src sh
   git branch -D BRANCH_NAME
 #+end_src
-- Remove a remote branch
+- Remove a remote branch.
 #+begin_src sh
   git push origin --delete BRANCH_NAME
   git branch -dr REMOTE_NAME/BRANCH_NAME
 #+end_src
 *** Tag operations
-- List all tags
+- List all tags.
 #+begin_src sh
   git tag
 #+end_src
@@ -208,54 +208,54 @@ Clearly, =git merge= will keep the history of a series of commits and produce a 
 #+begin_src sh
   git tag TAG_NAME COMMIT_NAME
 #+end_src
-- Remove a tag
+- Remove a tag.
 #+begin_src sh
   git tag -d TAG_NAME
 #+end_src
-- Remove a remote tag
+- Remove a remote tag.
 #+begin_src sh
   git tag -d TAG_NAME
   git push origin :refs/tags/TAG_NAME
 #+end_src
-- Show information of a tag
+- Show information of a tag.
 #+begin_src sh
   git show TAG_NAME
 #+end_src
-- Commit a tag
+- Commit a tag.
 #+begin_src sh
   git push REMOTE_NAME TAG_NAME
 #+end_src
-- Commit all tags
+- Commit all tags.
 #+begin_src sh
   git push REMOTE_NAME --tags
 #+end_src
-- Create a new branch pointing to a tag
+- Create a new branch pointing to a tag.
 #+begin_src sh
   git checkout -b BRANCH_NAME TAG_NAME
 #+end_src
 *** Information query
-- Show revised file(s) in workspace compared to those in index
+- Show revised file(s) in workspace compared to those in index.
 #+begin_src sh
   git status
 #+end_src
-- Show the revisions in a commit
+- Show the revisions in a commit.
 #+begin_src sh
   git show COMMIT_NAME
 #+end_src
-- Show the history of current branch (option =--stat= can list the revised files, and option =--graph= can show the merging of branches.)
+- Show the history of current branch (option =--stat= can list the revised files, and option =--graph= can show the merging of branches).
 #+begin_src sh
   git log [--stat] [--graph]
 #+end_src
-- List the command record
+- List the command record.
 #+begin_src sh
   git reflog
 #+end_src
-- Show the modifier and time of a file
+- Show the modifier and time of a file.
 #+begin_src sh
   git blame FILE_NAME
 #+end_src
 *** Show the difference
-- Show the difference between the workspace and the index
+- Show the difference between the workspace and the index.
 #+begin_src sh
   git diff
 #+end_src
@@ -263,28 +263,28 @@ Clearly, =git merge= will keep the history of a series of commits and produce a 
 #+begin_src sh
   git diff --cached/--staged
 #+end_src
-- Show the difference between two commits
+- Show the difference between two commits.
 #+begin_src sh
   git diff COMMIT1 COMMIT2
 #+end_src
 *** Remote operation
-- List all the remote repositories
+- List all the remote repositories.
 #+begin_src sh
   git remote [-v]
 #+end_src
-- Show the information of a remote repository
+- Show the information of a remote repository.
 #+begin_src sh
   git remote show REMOTE_NAME
 #+end_src
-- Add a remote repository
+- Add a remote repository.
 #+begin_src sh
   git remote add REMOTE_ALIAS REMOTE_URL
 #+end_src
-- Remove a remote repository
+- Remove a remote repository.
 #+begin_src sh
   git remote remove REMOTE_ALIAS
 #+end_src
-- Download all the commit records from a remote repository
+- Download all the commit records from a remote repository.
 #+begin_src sh
   git fetch REMOTE_NAME
 #+end_src
@@ -305,47 +305,107 @@ Clearly, =git merge= will keep the history of a series of commits and produce a 
   git push REMOTE_NAME --all
 #+end_src
 *** Undo operation
-- Recover the workspace from index
+- Recover the workspace from index.
 #+begin_src sh
   git checkout -- [FILE]
 #+end_src
-- Recover the workspace from a commit
+- Recover the workspace from a commit.
 #+begin_src sh
   git checkout COMMIT_NAME [FILE]
 #+end_src
-- Recover index from a commit
+- Recover index from a commit.
 #+begin_src sh
   git reset COMMIT_NAME
 #+end_src
-- Recover index and workspace from a commit
+- Recover index and workspace from a commit.
 #+begin_src sh
   git reset --hard COMMIT_NAME
 #+end_src
-- Move pointer =HEAD= to a commit
+- Move pointer =HEAD= to a commit.
 #+begin_src sh
   git reset --keep COMMIT_NAME
 #+end_src
 ** Temporary switch
-- Buffer the workspace temporarily
+- Buffer the workspace temporarily.
 #+begin_src sh
   git stash
 #+end_src
-- List the buffered workspace
+- List the buffered workspace.
 #+begin_src sh
   git stash list
 #+end_src
-- Recover the buffered workspace
+- Recover the buffered workspace.
 #+begin_src sh
   git stash apply
 #+end_src
-- Remove the buffer or the buffered workspace
+- Remove the buffer or the buffered workspace.
 #+begin_src sh
   git stash drop
 #+end_src
-- Recover the buffered workspace and remove the buffer
+- Recover the buffered workspace and remove the buffer.
 #+begin_src sh
   git stash pop
 #+end_src
+** Submodule
+As its name implies, a submodule is a relatively independent feature which can be imported from another repository. The information relating to a submodule is scattered in following 3 places.
+- File =.gitmodules=
+#+begin_src sh
+  [submodule "/PATH/TO/SUBMODULE"]
+          path = PATH/TO/SUBMODULE
+          url = SUBMODULE_REPOSITORY_URL
+          branch = BRANCH_NAME
+#+end_src
+- File =.git/config=
+#+begin_src sh
+  [submodule "/PATH/TO/SUBMODULE"]
+          url = SUBMODULE_REPOSITORY_URL
+#+end_src
+- Directory =.git/modules/PATH/TO/SUBMODULE=
+
+Moreover, a submodule can further consist of one or more subsubmodule(s). A recursive operation can be performed by option =--recursive=.
+*** Usage
+- Add a submodule to the current repository, with =/PATH/TO/SUBMODULE= as the relative location for the submodule, and =SUBMODULE_NAME= as its name.
+  #+begin_src sh
+    git submodule add [-b|--branch BRANCH_NAME] [-f|--force] [--name SUBMODULE_NAME] [--depth N] SUBMODULE_REPOSITORY_URL /PATH/TO/SUBMODULE
+  #+end_src
+- Register an added submodule, i.e., add a new section in =.git/config= using the corresponding section in =.gitmodules= as a template. For each registered submodule, further calls to =git submodule update/foreach/sync= apply.
+  #+begin_src sh
+    git submodule init /PATH/TO/SUBMODULE
+  #+end_src
+- Update one or all registered submodule(s).
+  #+begin_src sh
+    git submodule update [--init] [--checkout/rebase/merge] [--remote] [/PATH/TO/SUBMODULE]
+  #+end_src
+  where
+  + =--init= performs =git submodule init= for each uninitialized submodule before update.
+  + =--checkout/rebase/merge= indicates the behavior for the update.
+    - =--checkout= is the default behavior, which checks out the commit recorded in the belonging repository on a detached HEAD in the submodule.
+    - =--rebase= rebases the submodule's remote-tracking branch onto the commit recorded in the belonging repository.
+    - =--merge= merges the commit recorded in the belonging repository into the submodule's remote-tracking branch.
+  + =--remote= uses the status of the submodule's remote-tracking branch instead of the SHA-1 recorded in the belonging repository. In this case, its behavior is =--merge= in the last option, equivalent to run =git pull= in the target submodule(s).
+- Show the status of a submodule. E.g., prefix =-= indicates an uninitialized submodule; prefix =+= means that the submodule commit currently checked out does not match the SHA-1 found in the index of the belonging repository; prefix =U= implies merge conflicts.
+  #+begin_src sh
+    git submodule status [/PATH/TO/SUBMODULE]
+  #+end_src
+- Unregister a registered submodule, i.e., remove the corresponding section from =.git/config= as well as the work tree. For a unregistered submodule, further calls to =git submodule update/foreach/sync= will skip.
+  #+begin_src sh
+    git submodule deinit [-f|--force] /PATH/TO/SUBMODULE
+  #+end_src
+  All the submodules can be unregistered by
+  #+begin_src sh
+    git submodule deinit [-f|--force] --all
+  #+end_src
+- Remove a submodule from the current repository.
+  #+begin_src sh
+    git submodule deinit -f /PATH/TO/SUBMODULE
+    rm -fr .git/modules/PATH/TO/SUBMODULE
+    git rm -f /PATH/TO/SUBMODULE
+  #+end_src
+- Evaluate an arbitrary shell command in each checked out submodule.
+  #+begin_src sh
+    git submodule foreach COMMAND
+  #+end_src
+
 * Footnotes
 
 [fn:1] http://git-scm.com/book/en/v2

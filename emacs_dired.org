@@ -9,13 +9,12 @@ Dired can be entered in following ways:
   + =C-x d= is equivalent to the command above.
   + =C-x 4 d= open a dired buffer in another window.
 * Navigation
-| Key     | Description                  |
-|---------+------------------------------|
-| =RET=   | Visit the file/directory     |
-| =^=     | Go up one directory          |
-| =q=     | Quit dired                   |
-| =n/C-n= | Move the point down an entry |
-| =p/C-p= | Move the point up an entry   |
+| Key     | Description                               |
+|---------+-------------------------------------------|
+| =^=     | Go up one directory                       |
+| =n/C-n= | Move the point down an entry              |
+| =p/C-p= | Move the point up an entry                |
+| =q=     | Quit dired                                |
 * Marking & unmarking
 Marking and unmarking enable operations on multiple files or directories.
 | Key   | Description                                    |
@@ -27,18 +26,21 @@ Marking and unmarking enable operations on multiple files or directories.
 | =t=   | Toggle existing marking                        |
 | =* %= | Mark files and directories by regexp           |
 | =* c= | Change marks                                   |
+| =~=   | Mark backup files                              |
 * Operations
-| Key | Description                                        |
-|-----+----------------------------------------------------|
-| =g= | Refresh dired buffer                               |
-| =+= | Create a sub-directory                             |
-| =C= | Copy marked files/directories                      |
-| =R= | Rename/move marked files/directories               |
-| =O= | Perform =chown= on marked files/directories        |
-| =G= | Perform =chgrp= on marked files/directories        |
-| =M= | Perform =chmod= on marked files/directories        |
-| =D= | Delete marked files/directories                    |
-| =x= | Delete /flagged/ (marked by =d=) files/directories |
+| Key     | Description                                        |
+|---------+----------------------------------------------------|
+| =f/RET= | Visit the file/directory                           |
+| =v=     | View the file/directory in read-only mode          |
+| =g=     | Refresh dired buffer                               |
+| =+=     | Create a directory                                 |
+| =C=     | Copy marked files/directories                      |
+| =R=     | Rename/move marked files/directories               |
+| =O=     | Perform =chown= on marked files/directories        |
+| =G=     | Perform =chgrp= on marked files/directories        |
+| =M=     | Perform =chmod= on marked files/directories        |
+| =D=     | Delete marked files/directories                    |
+| =x=     | Delete /flagged/ (marked by =d=) files/directories |
 * Working across directories
 In dired buffer, typing =i= on a directory will insert it in the same dired buffer as a sub-directory.
 
