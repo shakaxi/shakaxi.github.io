@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
+<!-- 2020-03-30 Mon 01:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Git</title>
@@ -254,7 +254,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#org27991e4">Installation</a></li>
 <li><a href="#orgd8734b2">Configuration</a></li>
-<li><a href="#orgc5fcd01">Usage</a>
+<li><a href="#orgee4ec27">Usage</a>
 <ul>
 <li><a href="#org354e370">Create repositories</a></li>
 <li><a href="#org75d3ddc">Basic snapshotting</a>
@@ -272,6 +272,11 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#org558ea01">Temporary switch</a></li>
+<li><a href="#orgb35eab1">Submodule</a>
+<ul>
+<li><a href="#orgc5fcd01">Usage</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -373,9 +378,9 @@ git config [--global/--system] user.email "EMAIL@COMPANY.COM"
 </div>
 </div>
 </div>
-<div id="outline-container-orgc5fcd01" class="outline-2">
-<h2 id="orgc5fcd01">Usage</h2>
-<div class="outline-text-2" id="text-orgc5fcd01">
+<div id="outline-container-orgee4ec27" class="outline-2">
+<h2 id="orgee4ec27">Usage</h2>
+<div class="outline-text-2" id="text-orgee4ec27">
 </div>
 <div id="outline-container-org354e370" class="outline-3">
 <h3 id="org354e370">Create repositories</h3>
@@ -435,14 +440,14 @@ git add DIRECTORY
 <h4 id="org2db7148">Remove file(s)</h4>
 <div class="outline-text-4" id="text-org2db7148">
 <ul class="org-ul">
-<li>Stop tracking file(s)</li>
+<li>Stop tracking file(s).</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git rm --cached FILE1 [FILE2]
 </pre>
 </div>
 <ul class="org-ul">
-<li>Remove file(s) in workspace and index the removal in index</li>
+<li>Remove file(s) in workspace and index the removal in index.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git rm FILE1 [FILE2]
@@ -457,14 +462,14 @@ git add DIRECTORY
 The commands take the all/or the specific file(s) that have been staged with <code>git add</code> and record a new permanent snapshot in the repository and then moves the branch pointer on the current branch up to it.
 </p>
 <ul class="org-ul">
-<li>Commit all the files in the index</li>
+<li>Commit all the files in the index.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git commit [-m MESSAGE]
 </pre>
 </div>
 <ul class="org-ul">
-<li>Commit specific file(s) in the index</li>
+<li>Commit specific file(s) in the index.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git commit FILE1 [FILE2] [-m MESSAGE]
@@ -519,14 +524,14 @@ An interactive interface is available if option <code>-i</code> is given whereby
 <h4 id="org86e4413">Branch operations</h4>
 <div class="outline-text-4" id="text-org86e4413">
 <ul class="org-ul">
-<li>List all the local/remote branches</li>
+<li>List all the local/remote branches.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch [-r]
 </pre>
 </div>
 <ul class="org-ul">
-<li>List all the branches including both local and remote ones</li>
+<li>List all the branches including both local and remote ones.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch -a
@@ -540,28 +545,28 @@ An interactive interface is available if option <code>-i</code> is given whereby
 </pre>
 </div>
 <ul class="org-ul">
-<li>Switch to an existing branch</li>
+<li>Switch to an existing branch.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git checkout BRANCH_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Create a new branch and switch to it</li>
+<li>Create a new branch and switch to it.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git checkout -b BRANCH_NAME [REMOTE_NAME/REMOTE_BRANCH_NAME]
 </pre>
 </div>
 <ul class="org-ul">
-<li>Associate a local branch to a remote branch</li>
+<li>Associate a local branch to a remote branch.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch --set-upstream LOCAL_BRANCH_NAME REMOTE_NAME/REMOTE_BRANCH_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Create a new branch and associate it to a remote branch</li>
+<li>Create a new branch and associate it to a remote branch.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch --track BRANCH_NAME REMOTE_NAME/REMOTE_BRANCH_NAME
@@ -599,21 +604,21 @@ In this case, manual merge (edit) is necessary. After that, add the merged files
 Clearly, <code>git merge</code> will keep the history of a series of commits and produce a new commit; while <code>git rebase</code> will guarantee a linear commit history without generating any new commits.
 </p>
 <ul class="org-ul">
-<li>Remove a local branch</li>
+<li>Remove a local branch.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch -d BRANCH_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Remove a local (not merged) branch forcely</li>
+<li>Remove a local (not merged) branch forcely.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git branch -D BRANCH_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Remove a remote branch</li>
+<li>Remove a remote branch.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git push origin --delete BRANCH_NAME
@@ -626,7 +631,7 @@ git branch -dr REMOTE_NAME/BRANCH_NAME
 <h4 id="org25daf3f">Tag operations</h4>
 <div class="outline-text-4" id="text-org25daf3f">
 <ul class="org-ul">
-<li>List all tags</li>
+<li>List all tags.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git tag
@@ -640,14 +645,14 @@ git branch -dr REMOTE_NAME/BRANCH_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Remove a tag</li>
+<li>Remove a tag.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git tag -d TAG_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Remove a remote tag</li>
+<li>Remove a remote tag.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git tag -d TAG_NAME
@@ -655,28 +660,28 @@ git push origin :refs/tags/TAG_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Show information of a tag</li>
+<li>Show information of a tag.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git show TAG_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Commit a tag</li>
+<li>Commit a tag.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git push REMOTE_NAME TAG_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Commit all tags</li>
+<li>Commit all tags.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git push REMOTE_NAME --tags
 </pre>
 </div>
 <ul class="org-ul">
-<li>Create a new branch pointing to a tag</li>
+<li>Create a new branch pointing to a tag.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git checkout -b BRANCH_NAME TAG_NAME
@@ -688,35 +693,35 @@ git push origin :refs/tags/TAG_NAME
 <h4 id="orgb66038a">Information query</h4>
 <div class="outline-text-4" id="text-orgb66038a">
 <ul class="org-ul">
-<li>Show revised file(s) in workspace compared to those in index</li>
+<li>Show revised file(s) in workspace compared to those in index.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git status
 </pre>
 </div>
 <ul class="org-ul">
-<li>Show the revisions in a commit</li>
+<li>Show the revisions in a commit.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git show COMMIT_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Show the history of current branch (option <code>--stat</code> can list the revised files, and option <code>--graph</code> can show the merging of branches.)</li>
+<li>Show the history of current branch (option <code>--stat</code> can list the revised files, and option <code>--graph</code> can show the merging of branches).</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git log [--stat] [--graph]
 </pre>
 </div>
 <ul class="org-ul">
-<li>List the command record</li>
+<li>List the command record.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git reflog
 </pre>
 </div>
 <ul class="org-ul">
-<li>Show the modifier and time of a file</li>
+<li>Show the modifier and time of a file.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git blame FILE_NAME
@@ -728,7 +733,7 @@ git push origin :refs/tags/TAG_NAME
 <h4 id="org71990c3">Show the difference</h4>
 <div class="outline-text-4" id="text-org71990c3">
 <ul class="org-ul">
-<li>Show the difference between the workspace and the index</li>
+<li>Show the difference between the workspace and the index.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git diff
@@ -742,7 +747,7 @@ git push origin :refs/tags/TAG_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Show the difference between two commits</li>
+<li>Show the difference between two commits.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git diff COMMIT1 COMMIT2
@@ -754,35 +759,35 @@ git push origin :refs/tags/TAG_NAME
 <h4 id="org0140930">Remote operation</h4>
 <div class="outline-text-4" id="text-org0140930">
 <ul class="org-ul">
-<li>List all the remote repositories</li>
+<li>List all the remote repositories.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git remote [-v]
 </pre>
 </div>
 <ul class="org-ul">
-<li>Show the information of a remote repository</li>
+<li>Show the information of a remote repository.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git remote show REMOTE_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Add a remote repository</li>
+<li>Add a remote repository.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git remote add REMOTE_ALIAS REMOTE_URL
 </pre>
 </div>
 <ul class="org-ul">
-<li>Remove a remote repository</li>
+<li>Remove a remote repository.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git remote remove REMOTE_ALIAS
 </pre>
 </div>
 <ul class="org-ul">
-<li>Download all the commit records from a remote repository</li>
+<li>Download all the commit records from a remote repository.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git fetch REMOTE_NAME
@@ -822,35 +827,35 @@ git push origin :refs/tags/TAG_NAME
 <h4 id="orgab94c10">Undo operation</h4>
 <div class="outline-text-4" id="text-orgab94c10">
 <ul class="org-ul">
-<li>Recover the workspace from index</li>
+<li>Recover the workspace from index.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git checkout -- [FILE]
 </pre>
 </div>
 <ul class="org-ul">
-<li>Recover the workspace from a commit</li>
+<li>Recover the workspace from a commit.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git checkout COMMIT_NAME [FILE]
 </pre>
 </div>
 <ul class="org-ul">
-<li>Recover index from a commit</li>
+<li>Recover index from a commit.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git reset COMMIT_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Recover index and workspace from a commit</li>
+<li>Recover index and workspace from a commit.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git reset --hard COMMIT_NAME
 </pre>
 </div>
 <ul class="org-ul">
-<li>Move pointer <code>HEAD</code> to a commit</li>
+<li>Move pointer <code>HEAD</code> to a commit.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git reset --keep COMMIT_NAME
@@ -863,39 +868,150 @@ git push origin :refs/tags/TAG_NAME
 <h3 id="org558ea01">Temporary switch</h3>
 <div class="outline-text-3" id="text-org558ea01">
 <ul class="org-ul">
-<li>Buffer the workspace temporarily</li>
+<li>Buffer the workspace temporarily.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git stash
 </pre>
 </div>
 <ul class="org-ul">
-<li>List the buffered workspace</li>
+<li>List the buffered workspace.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git stash list
 </pre>
 </div>
 <ul class="org-ul">
-<li>Recover the buffered workspace</li>
+<li>Recover the buffered workspace.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git stash apply
 </pre>
 </div>
 <ul class="org-ul">
-<li>Remove the buffer or the buffered workspace</li>
+<li>Remove the buffer or the buffered workspace.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git stash drop
 </pre>
 </div>
 <ul class="org-ul">
-<li>Recover the buffered workspace and remove the buffer</li>
+<li>Recover the buffered workspace and remove the buffer.</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">git stash pop
 </pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb35eab1" class="outline-3">
+<h3 id="orgb35eab1">Submodule</h3>
+<div class="outline-text-3" id="text-orgb35eab1">
+<p>
+As its name implies, a submodule is a relatively independent feature which can be imported from another repository. The information relating to a submodule is scattered in following 3 places.
+</p>
+<ul class="org-ul">
+<li>File <code>.gitmodules</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">[submodule "/PATH/TO/SUBMODULE"]
+        path = PATH/TO/SUBMODULE
+        url = SUBMODULE_REPOSITORY_URL
+        branch = BRANCH_NAME
+</pre>
+</div>
+<ul class="org-ul">
+<li>File <code>.git/config</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">[submodule "/PATH/TO/SUBMODULE"]
+        url = SUBMODULE_REPOSITORY_URL
+</pre>
+</div>
+<ul class="org-ul">
+<li>Directory <code>.git/modules/PATH/TO/SUBMODULE</code></li>
+</ul>
+
+<p>
+Moreover, a submodule can further consist of one or more subsubmodule(s). A recursive operation can be performed by option <code>--recursive</code>.
+</p>
+</div>
+<div id="outline-container-orgc5fcd01" class="outline-4">
+<h4 id="orgc5fcd01">Usage</h4>
+<div class="outline-text-4" id="text-orgc5fcd01">
+<ul class="org-ul">
+<li><p>
+Add a submodule to the current repository, with <code>/PATH/TO/SUBMODULE</code> as the relative location for the submodule, and <code>SUBMODULE_NAME</code> as its name.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git submodule add [-b|--branch BRANCH_NAME] [-f|--force] [--name SUBMODULE_NAME] [--depth N] SUBMODULE_REPOSITORY_URL /PATH/TO/SUBMODULE
+</pre>
+</div></li>
+<li><p>
+Register an added submodule, i.e., add a new section in <code>.git/config</code> using the corresponding section in <code>.gitmodules</code> as a template. For each registered submodule, further calls to <code>git submodule update/foreach/sync</code> apply.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git submodule init /PATH/TO/SUBMODULE
+</pre>
+</div></li>
+<li><p>
+Update one or all registered submodule(s).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git submodule update [--init] [--checkout/rebase/merge] [--remote] [/PATH/TO/SUBMODULE]
+</pre>
+</div>
+<p>
+where
+</p>
+<ul class="org-ul">
+<li><code>--init</code> performs <code>git submodule init</code> for each uninitialized submodule before update.</li>
+<li><code>--checkout/rebase/merge</code> indicates the behavior for the update.
+<ul class="org-ul">
+<li><code>--checkout</code> is the default behavior, which checks out the commit recorded in the belonging repository on a detached HEAD in the submodule.</li>
+<li><code>--rebase</code> rebases the submodule's remote-tracking branch onto the commit recorded in the belonging repository.</li>
+<li><code>--merge</code> merges the commit recorded in the belonging repository into the submodule's remote-tracking branch.</li>
+</ul></li>
+<li><code>--remote</code> uses the status of the submodule's remote-tracking branch instead of the SHA-1 recorded in the belonging repository. In this case, its behavior is <code>--merge</code> in the last option, equivalent to run <code>git pull</code> in the target submodule(s).</li>
+</ul></li>
+<li><p>
+Show the status of a submodule. E.g., prefix <code>-</code> indicates an uninitialized submodule; prefix <code>+</code> means that the submodule commit currently checked out does not match the SHA-1 found in the index of the belonging repository; prefix <code>U</code> implies merge conflicts.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git submodule status [/PATH/TO/SUBMODULE]
+</pre>
+</div></li>
+<li><p>
+Unregister a registered submodule, i.e., remove the corresponding section from <code>.git/config</code> as well as the work tree. For a unregistered submodule, further calls to <code>git submodule update/foreach/sync</code> will skip.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git submodule deinit [-f|--force] /PATH/TO/SUBMODULE
+</pre>
+</div>
+<p>
+All the submodules can be unregistered by
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git submodule deinit [-f|--force] --all
+</pre>
+</div></li>
+<li><p>
+Remove a submodule from the current repository.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git submodule deinit -f /PATH/TO/SUBMODULE
+rm -fr .git/modules/PATH/TO/SUBMODULE
+git rm -f /PATH/TO/SUBMODULE
+</pre>
+</div></li>
+<li><p>
+Evaluate an arbitrary shell command in each checked out submodule.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git submodule foreach COMMAND
+</pre>
+</div></li>
+</ul>
 </div>
 </div>
 </div>

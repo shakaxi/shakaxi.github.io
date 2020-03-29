@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
+<!-- 2020-03-30 Mon 01:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs - Dired</title>
@@ -299,18 +299,8 @@ Dired can be entered in following ways:
 </thead>
 <tbody>
 <tr>
-<td class="org-left"><code>RET</code></td>
-<td class="org-left">Visit the file/directory</td>
-</tr>
-
-<tr>
 <td class="org-left"><code>^</code></td>
 <td class="org-left">Go up one directory</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>q</code></td>
-<td class="org-left">Quit dired</td>
 </tr>
 
 <tr>
@@ -321,6 +311,11 @@ Dired can be entered in following ways:
 <tr>
 <td class="org-left"><code>p/C-p</code></td>
 <td class="org-left">Move the point up an entry</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>q</code></td>
+<td class="org-left">Quit dired</td>
 </tr>
 </tbody>
 </table>
@@ -381,6 +376,11 @@ Marking and unmarking enable operations on multiple files or directories.
 <td class="org-left"><code>* c</code></td>
 <td class="org-left">Change marks</td>
 </tr>
+
+<tr>
+<td class="org-left"><code>~</code></td>
+<td class="org-left">Mark backup files</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -404,13 +404,23 @@ Marking and unmarking enable operations on multiple files or directories.
 </thead>
 <tbody>
 <tr>
+<td class="org-left"><code>f/RET</code></td>
+<td class="org-left">Visit the file/directory</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>v</code></td>
+<td class="org-left">View the file/directory in read-only mode</td>
+</tr>
+
+<tr>
 <td class="org-left"><code>g</code></td>
 <td class="org-left">Refresh dired buffer</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>+</code></td>
-<td class="org-left">Create a sub-directory</td>
+<td class="org-left">Create a directory</td>
 </tr>
 
 <tr>
