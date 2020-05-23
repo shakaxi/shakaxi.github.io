@@ -1,0 +1,48 @@
+#+title: Z Transform
+
+* Bilateral Transform
+\begin{align*}
+  X(z) = \sum_{n=-\infty}^{+\infty} x(n) z^{-n}
+\end{align*}
+* Unilateral Transform
+\begin{align*}
+  X(z) = \sum_{n=0}^{+\infty} x(n) z^{-n}
+\end{align*}
+* Inverse Transform
+\begin{align*}
+    x(n) = \frac{1}{j2\pi}\oint_C X(z)z^{n-1} dz
+\end{align*}
+* Properties
+Denote the region of convergence (ROC) as $\alpha < |z| < \beta$, $0 \le\alpha < \beta$.
+- Common to both bilateral and unilateral transforms
+\begin{align*}
+  a^n x(n), \quad a \neq 0. &\leftrightarrow X \left( \frac{z}{a} \right), \quad \alpha |a| < |z| < \beta |a|. \\
+  x_1(n) * x_2(n) &\leftrightarrow X_1(z) X_2(z), \quad \max(\alpha_1, \alpha_2) < |z| < \min(\beta_1, \beta_2). \\
+  n^mx(n), \quad m > 0. &\leftrightarrow \left(-z\frac{d}{dz}\right)^m X(z), \quad \alpha < |z| < \beta.\\
+  \frac{x(n)}{n+m}, \quad n+m > 0. &\leftrightarrow z^m \int_z^{\infty}X(\eta)\eta^{-(m+1)}d\eta, \quad \alpha < |z| < \beta. \\
+  x^*(n) &\leftrightarrow X^*(z^*) \\
+  x_1(n) * x_2(n) &\leftrightarrow X_1(z) X_2(z) \\
+  x(-n) &\leftrightarrow X\left(\frac{1}{z}\right), \quad \frac{1}{\beta} < |z| < \frac{1}{\alpha}.\\
+  \sum_{i=-\infty}^nx(i) &\leftrightarrow \frac{z}{z-1}X(z), \quad \max(\alpha, 1) < |z| < \beta.
+\end{align*}
+- Dedicated to bilateral transform
+\begin{align*}
+  x(n + m) \leftrightarrow z^m X(z), \quad \alpha < |z| < \beta \\
+\end{align*}
+- Dedicated to unilateral transform
+\begin{align*}
+  x(n-m), \quad m > 0. &\leftrightarrow z^{-m}X(z) + \sum_{n=0}^{m-1}x(n-m)z^{-n}, \quad |z| > \alpha. \\
+  x(n+m), \quad m > 0. &\leftrightarrow z^mX(z) - \sum_{n=0}^{m-1}x(n)z^{m-n}, \quad |z| > \alpha.
+\end{align*}
+* Z Transform Pairs
+\begin{align*}
+  \delta(n) &\leftrightarrow 1 \\
+  \varepsilon(n) &\leftrightarrow \frac{z}{z-1}, \quad |z| > 1. \\
+  a^n\varepsilon(n) &\leftrightarrow \frac{z}{z-a}, \quad |z| > 1. \\
+  n\varepsilon(n) &\leftrightarrow \frac{z}{(z-1)^2}, \quad |z| > 1. \\
+  \delta(n-m), \quad m > 0. &\leftrightarrow z^{-m}, \quad |z| > 0. \\
+  -\varepsilon(-n-1) &\leftrightarrow \frac{z}{z-1}, \quad |z| < 1. \\
+  -a^n\varepsilon(-n-1) &\leftrightarrow \frac{z}{z-a}, \quad |z| < a. \\
+  -n\varepsilon(-n-1) &\leftrightarrow \frac{z}{(z-1)^2}, \quad |z| < 1. \\
+  \delta(n+m), \quad m > 0. &\leftrightarrow z^m
+\end{align*}
