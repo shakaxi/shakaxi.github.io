@@ -1,0 +1,57 @@
+#+title: Fourier Transform
+
+* Continuous
+** Definition
+\begin{align*}
+  F(j\omega) &= \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt \\
+             &= |F(j\omega)|e^{j\phi(\omega)} \\
+             &= R(\omega) + jX(\omega) \\
+  f(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(j\omega) e^{j\omega t} d\omega
+\end{align*}
+** Properties
+\begin{align*}
+  a_1 f_1(t) + a_2 f_2(t) &\leftrightarrow a_1 F_1(j\omega) + a_2 F_2(j\omega) \\
+  f_1(t) * f_2(t) &\leftrightarrow F_1(j\omega) F_2(j\omega) \\
+  f_1(t) f_2(t) &\leftrightarrow \frac{1}{2\pi} F_1(j\omega) * F_2(j\omega) \\
+  f(-t) &\leftrightarrow F(-j\omega) \\
+  f(t+t_0) &\leftrightarrow F(j\omega) e^{j\omega t_0} \\
+  f(t) e^{j\omega_0 t} &\leftrightarrow F[j(\omega - \omega_0)] \\
+  F(jt) &\leftrightarrow 2\pi f(-\omega) \\
+  f(at) &\leftrightarrow \frac{1}{|a|} F \left( j\frac{\omega}{a} \right) \\
+  \frac{d^nf(t)}{dt^n} &\leftrightarrow (j\omega)^n F(j\omega) \\
+  (-jt)^n f(t) &\leftrightarrow \frac{d^n F(j\omega)}{d\omega^n} \\
+  \int_{-\infty}^t f(\tau)d\tau, f(-\infty)=0. &\leftrightarrow \pi F(0) \delta(\omega) + \frac{1}{j\omega} F(j\omega) \\
+  \pi f(0) \delta(t) - \frac{1}{jt} f(t) &\leftrightarrow \int_{-\infty}^{\omega} F(j \eta) d\eta, F(-j\infty) = 0. \\
+  f(t) \sum_{n=-\infty}^{\infty} \delta(t-nT) &\leftrightarrow \frac{1}{T} \sum_{n=-\infty}^{\infty} F \left[ j \left( \omega - n\frac{2\pi}{T} \right) \right] \\
+  \frac{1}{\omega_0} \sum_{n=-\infty}^{\infty} f \left( t - n \frac{2\pi}{\omega_0} \right) &\leftrightarrow F(j\omega) \sum_{n=-\infty}^{\infty} \delta(\omega-n \omega_0)
+\end{align*}
+*** Parseval Theorem
+\begin{align*}
+  W &= \int_{-\infty}^{\infty} |f(t)|^2 dt \\
+  &= \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(j\omega)|^2 d\omega
+\end{align*}
+** Fourier Transform Pairs
+\begin{align*}
+  \delta(t) &\leftrightarrow 1 \\
+  \varepsilon(t) &\leftrightarrow \frac{1}{j\omega} + \pi \delta(\omega) \\
+  t\varepsilon(t) &\leftrightarrow j\pi \delta^{\prime}(\omega) - \frac{1}{\omega^2} \\
+  \delta^{(k)}(t) &\leftrightarrow (j\omega)^k \\
+  \delta(t-t_0) &\leftrightarrow e^{-j\omega t_0} \\
+  \text{sign}(t) &\leftrightarrow \frac{2}{j\omega} \\
+  \cos(\omega_0 t) &\leftrightarrow \pi [\delta(\omega+\omega_0) + \delta(\omega-\omega_0)] \\
+  \sin(\omega_0 t) &\leftrightarrow j\pi [\delta(\omega+\omega_0) - \delta(\omega-\omega_0)] \\
+  \text{rect}_{\tau}(t) &\leftrightarrow \tau \text{Sa} \left( \frac{\omega \tau}{2} \right) \\
+  \left( 1 - \frac{|t|}{\tau} \right) \text{rect}_{2\tau}(t) &\leftrightarrow \tau \text{Sa}^2 \left( \frac{\omega \tau}{2} \right) \\
+  e^{-at} \varepsilon(t), a > 0. &\leftrightarrow \frac{1}{a+j\omega} \\
+  te^{-at} \varepsilon(t), a > 0. &\leftrightarrow \frac{1}{(a+j\omega)^2} \\
+  \frac{t^{k-1}e^{-at}}{(k-1)!}\varepsilon(t), a > 0. &\leftrightarrow \frac{1}{(a+j\omega)^k} \\
+  e^{-a|t|}, a > 0. &\leftrightarrow \frac{2a}{\omega^2 + a^2} \\
+  e^{-a|t|}\text{sign}(t), a > 0. &\leftrightarrow -\frac{2j\omega}{\omega^2+a^2} \\
+  e^{-at} \cos(\omega_0t)\varepsilon(t), a > 0. &\leftrightarrow \frac{a+j\omega}{(a+j\omega)^2 + \omega_0^2} \\
+  e^{-at} \sin(\omega_0t)\varepsilon(t), a > 0. &\leftrightarrow \frac{\omega_0}{(a+j\omega)^2 + \omega_0^2} \\
+  e^{-a|t|}\cos(\omega_0t), a > 0. &\leftrightarrow \frac{2a(\omega^2 + \omega_0^2 + a^2)}{[\omega^2-(a^2+\omega_0^2)]^2 + 4a^2\omega^2} \\
+  e^{-a|t|}\sin(\omega_0t), a > 0. &\leftrightarrow -\frac{j4a\omega_0 \omega}{[\omega^2-(a^2+\omega_0^2)]^2 + 4a^2\omega^2} \\
+  e^{-\left(\dfrac{t}{\tau} \right)^{2}} &\leftrightarrow \sqrt{\pi} \tau e^{-\left(\dfrac{\omega\tau}{2}\right)^2} \\
+  \sum_{n=-\infty}^{\infty} \delta(t-nT) &\leftrightarrow \frac{2\pi}{T} \sum_{n=-\infty}^{\infty} \delta \left( \omega - n\frac{2\pi}{T} \right) \\
+  \sum_{n=-\infty}^{\infty} F_n e^{jn\omega_0t} &\leftrightarrow 2\pi \sum_{n=-\infty}^{\infty}F_n\delta(\omega - n\omega_0)
+\end{align*}
