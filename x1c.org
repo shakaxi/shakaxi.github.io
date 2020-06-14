@@ -169,7 +169,7 @@ pacman -S intel-ucode
 #+END_SRC
 *** Init ram disk
 #+BEGIN_SRC sh
-mkinitcpio -p linux
+mkinitcpio -P
 #+END_SRC
 *** Boot manager
 Install the boot manager.
@@ -178,7 +178,7 @@ pacman -S efibootmgr
 #+END_SRC
 Add a new boot entry.
 #+BEGIN_SRC sh
-efibootmgr -d /dev/nvme0n1 -p 1 --create --gpt --label "Arch Linux" --loader /EFI/arch/vmlinuz-linux --unicode "root=/dev/nvme0n1p5 rw initrd=/EFI/arch/intel-ucode.img initrd=/EFI/arch/initramfs-linux.img"
+efibootmgr --disk /dev/nvme0n1 --part 1 --create --gpt --label "Arch Linux" --loader /EFI/arch/vmlinuz-linux --unicode "root=/dev/nvme0n1p5 rw initrd=\EFI\arch\intel-ucode.img initrd=\EFI\arch\initramfs-linux.img"
 #+END_SRC
 Set the boot order.
 #+BEGIN_SRC sh
