@@ -1,0 +1,157 @@
+#+title: Fourier Transform
+
+* Continuous Fourier Series
+** Definition
+\begin{align*}
+  \tilde{x}(t) &= \frac{1}{T} \sum_{k=-\infty}^{\infty}X_a \left( k\frac{2\pi}{T} \right) e^{j\frac{2\pi}{T}kt} \\
+X_a \left( k\frac{2\pi}{T} \right)  &= \int_{-\frac{T}{2}}^{\frac{T}{2}} \tilde{x}(t) e^{-j\frac{2\pi}{T}kt} dt
+\end{align*}
+* Discrete Fourier Series
+** Definition
+\begin{align*}
+  \tilde{x}(n) &= \frac{1}{N} \sum_{k=0}^{N-1} \tilde{X}(k)e^{j\frac{2\pi}{N}kn} \\
+  \tilde{X}(k) &= \sum_{n=0}^{N-1} \tilde{x}(n) e^{-j\frac{2\pi}{N}nk}
+\end{align*}
+** Properties
+\begin{align*}
+  \tilde{x}(n+m) &\leftrightarrow \tilde{X}(k)e^{j\frac{2\pi}{N}km} \\
+  \tilde{x}^{*}(n) &\leftrightarrow \tilde{X}^{*}(-k) \\
+  \tilde{x}(-n) &\leftrightarrow \tilde{X}(-k) \\
+  \sum_{m=0}^\tilde{N-1} \tilde{x}_1(m) \tilde{x}_2(n-m) &\leftrightarrow \tilde{X}_1(k) \tilde{X}_2(k) \\
+  \tilde{x}_1(n) \tilde{x}_2(n) &\leftrightarrow \frac{1}{N} \sum_{\ell=0}^{N-1} \tilde{X}_1(\ell) \tilde{X}_2(k-\ell) \\
+  \tilde{x}_e(n) &\leftrightarrow \tilde{X}_r(k) \\
+  \tilde{x}_o(n) &\leftrightarrow j\tilde{X}_i(k) \\
+  \tilde{x}_r(n) &\leftrightarrow \tilde{X}_e(k) \\
+  j\tilde{x}_i(n) &\leftrightarrow \tilde{X}_o(k)
+\end{align*}
+where subscript $r$, $i$, $e$, and $o$ mean the real, imagnary, even, and odd parts of an expression, respectively, i.e,
+\begin{align*}
+  \tilde{x}(n) &= \tilde{x}_e(n) + \tilde{x}_o(n) \\
+       &= \tilde{x}_r(n) + j \tilde{x}_i(n) \\
+  \tilde{x}_e(n) &= \frac{\tilde{x}(n) + \tilde{x}(-n)}{2} \\
+  \tilde{x}_o(n) &= \frac{\tilde{x}(n) - \tilde{x}(-n)}{2} \\
+  \tilde{X}(k) &= \tilde{X}_e(k) + \tilde{X}_o(k) \\
+       &= \tilde{X}_r(k) + j \tilde{X}_i(k) \\
+  \tilde{X}_e(k) &= \frac{\tilde{X}(k) + \tilde{X}(k)}{2} \\
+  \tilde{X}_o(k) &= \frac{\tilde{X}(k) - \tilde{X}(k)}{2}.
+\end{align*}
+* Continuous Fourier Transform
+** Definition
+\begin{align*}
+  F(j\omega) &= \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt \\
+             &= |F(j\omega)|e^{j\phi(\omega)} \\
+             &= R(\omega) + jX(\omega) \\
+  f(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(j\omega) e^{j\omega t} d\omega
+\end{align*}
+** Properties
+\begin{align*}
+  a_1 f_1(t) + a_2 f_2(t) &\leftrightarrow a_1 F_1(j\omega) + a_2 F_2(j\omega) \\
+  f_1(t) * f_2(t) &\leftrightarrow F_1(j\omega) F_2(j\omega) \\
+  f_1(t) f_2(t) &\leftrightarrow \frac{1}{2\pi} F_1(j\omega) * F_2(j\omega) \\
+  f(-t) &\leftrightarrow F(-j\omega) \\
+  f(t+t_0) &\leftrightarrow F(j\omega) e^{j\omega t_0} \\
+  f(t) e^{j\omega_0 t} &\leftrightarrow F[j(\omega - \omega_0)] \\
+  F(jt) &\leftrightarrow 2\pi f(-\omega) \\
+  f(at) &\leftrightarrow \frac{1}{|a|} F \left( j\frac{\omega}{a} \right) \\
+  \frac{d^nf(t)}{dt^n} &\leftrightarrow (j\omega)^n F(j\omega) \\
+  (-jt)^n f(t) &\leftrightarrow \frac{d^n F(j\omega)}{d\omega^n} \\
+  \int_{-\infty}^t f(\tau)d\tau, f(-\infty)=0. &\leftrightarrow \pi F(0) \delta(\omega) + \frac{1}{j\omega} F(j\omega) \\
+  \pi f(0) \delta(t) - \frac{1}{jt} f(t) &\leftrightarrow \int_{-\infty}^{\omega} F(j \eta) d\eta, F(-j\infty) = 0. \\
+  f(t) \sum_{n=-\infty}^{\infty} \delta(t-nT) &\leftrightarrow \frac{1}{T} \sum_{n=-\infty}^{\infty} F \left[ j \left( \omega - n\frac{2\pi}{T} \right) \right] \\
+  \frac{1}{\omega_0} \sum_{n=-\infty}^{\infty} f \left( t - n \frac{2\pi}{\omega_0} \right) &\leftrightarrow F(j\omega) \sum_{n=-\infty}^{\infty} \delta(\omega-n \omega_0)
+\end{align*}
+*** Parseval Theorem
+\begin{align*}
+  \int_{-\infty}^{\infty} |f(t)|^2 dt = \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(j\omega)|^2 d\omega
+\end{align*}
+** Fourier Transform Pairs
+\begin{align*}
+  \delta(t) &\leftrightarrow 1 \\
+  \varepsilon(t) &\leftrightarrow \frac{1}{j\omega} + \pi \delta(\omega) \\
+  t\varepsilon(t) &\leftrightarrow j\pi \delta^{\prime}(\omega) - \frac{1}{\omega^2} \\
+  \delta^{(k)}(t) &\leftrightarrow (j\omega)^k \\
+  \delta(t-t_0) &\leftrightarrow e^{-j\omega t_0} \\
+  \text{sign}(t) &\leftrightarrow \frac{2}{j\omega} \\
+  \cos(\omega_0 t) &\leftrightarrow \pi [\delta(\omega+\omega_0) + \delta(\omega-\omega_0)] \\
+  \sin(\omega_0 t) &\leftrightarrow j\pi [\delta(\omega+\omega_0) - \delta(\omega-\omega_0)] \\
+  \text{rect}_{\tau}(t) &\leftrightarrow \tau \text{Sa} \left( \frac{\omega \tau}{2} \right) \\
+  \left( 1 - \frac{|t|}{\tau} \right) \text{rect}_{2\tau}(t) &\leftrightarrow \tau \text{Sa}^2 \left( \frac{\omega \tau}{2} \right) \\
+  e^{-at} \varepsilon(t), a > 0. &\leftrightarrow \frac{1}{a+j\omega} \\
+  te^{-at} \varepsilon(t), a > 0. &\leftrightarrow \frac{1}{(a+j\omega)^2} \\
+  \frac{t^{k-1}e^{-at}}{(k-1)!}\varepsilon(t), a > 0. &\leftrightarrow \frac{1}{(a+j\omega)^k} \\
+  e^{-a|t|}, a > 0. &\leftrightarrow \frac{2a}{\omega^2 + a^2} \\
+  e^{-a|t|}\text{sign}(t), a > 0. &\leftrightarrow -\frac{2j\omega}{\omega^2+a^2} \\
+  e^{-at} \cos(\omega_0t)\varepsilon(t), a > 0. &\leftrightarrow \frac{a+j\omega}{(a+j\omega)^2 + \omega_0^2} \\
+  e^{-at} \sin(\omega_0t)\varepsilon(t), a > 0. &\leftrightarrow \frac{\omega_0}{(a+j\omega)^2 + \omega_0^2} \\
+  e^{-a|t|}\cos(\omega_0t), a > 0. &\leftrightarrow \frac{2a(\omega^2 + \omega_0^2 + a^2)}{[\omega^2-(a^2+\omega_0^2)]^2 + 4a^2\omega^2} \\
+  e^{-a|t|}\sin(\omega_0t), a > 0. &\leftrightarrow -\frac{j4a\omega_0 \omega}{[\omega^2-(a^2+\omega_0^2)]^2 + 4a^2\omega^2} \\
+  e^{-\left(\dfrac{t}{\tau} \right)^{2}} &\leftrightarrow \sqrt{\pi} \tau e^{-\left(\dfrac{\omega\tau}{2}\right)^2} \\
+  \sum_{n=-\infty}^{\infty} \delta(t-nT) &\leftrightarrow \frac{2\pi}{T} \sum_{n=-\infty}^{\infty} \delta \left( \omega - n\frac{2\pi}{T} \right) \\
+  \sum_{n=-\infty}^{\infty} F_n e^{jn\omega_0t} &\leftrightarrow 2\pi \sum_{n=-\infty}^{\infty}F_n\delta(\omega - n\omega_0)
+\end{align*}
+* Discrete Time Fourier Transform
+** Definition
+\begin{align*}
+  X(e^{j\omega}) &= \sum_{n=-\infty}^{\infty} x(n) e^{-j\omega n} \\
+  x(n) &= \frac{1}{2\pi} \int_{-\pi}^{\pi} X(e^{j\omega})e^{j\omega} d\omega
+\end{align*}
+** Properties
+\begin{align*}
+  x_1(n) * x_2(n) &\leftrightarrow X_1(e^{j\omega}) X_2(e^{j\omega}) \\
+  x^{*}(n) &\leftrightarrow X^{*}(e^{-j\omega}) \\
+  x(-n) &\leftrightarrow X(e^{-j\omega}) \\
+  x_e(n) &\leftrightarrow X_r(e^{j\omega}) \\
+  x_o(n) &\leftrightarrow jX_i(e^{j\omega}) \\
+  x_r(n) &\leftrightarrow X_e(e^{j\omega}) \\
+  jx_i(n) &\leftrightarrow X_o(e^{j\omega})
+\end{align*}
+where subscript $r$, $i$, $e$, and $o$ mean the real, imagnary, even, and odd parts of an expression, respectively, i.e,
+\begin{align*}
+  x(n) &= x_e(n) + x_o(n) \\
+       &= x_r(n) + j x_i(n) \\
+  x_e(n) &= \frac{x(n) + x^{*}(-n)}{2} \\
+  x_o(n) &= \frac{x(n) - x^{*}(-n)}{2} \\
+  X(e^{j\omega}) &= X_e(e^{j\omega}) + X_o(e^{j\omega}) \\
+       &= X_r(e^{j\omega}) + j X_i(e^{j\omega}) \\
+  X_e(e^{j\omega}) &= \frac{X(e^{j\omega}) + X^{*}(e^{-j\omega})}{2} \\
+  X_o(e^{j\omega}) &= \frac{X(e^{j\omega}) - X^{*}(e^{-j\omega})}{2}.
+\end{align*}
+*** Parseval Theorem
+\begin{align*}
+  \sum_{n=-\infty}^{\infty}|x(n)|^2 = \frac{1}{2\pi} \int_{-\infty}^{\infty} |X(e^{$j\omega})|^2 d\omega
+\end{align*}
+* Discrete Fourier Transform
+** Definition
+\begin{align*}
+  X(k) &= \sum_{n=0}^{N-1} x(n) e^{-j\frac{2\pi}{N}nk} \\
+  x(n) &= \frac{1}{N} \sum_{k=0}^{N-1} e^{j\frac{2\pi}{N}kn}
+\end{align*}
+** Properties
+\begin{align*}
+  x^{*}(n) &\leftrightarrow X^{*}(N-k) \\
+  x^{*}(N-n) &\leftrightarrow X^{*}(k) \\
+  x_e(n) &\leftrightarrow X_r(k) \\
+  x_o(n) &\leftrightarrow jX_i(k) \\
+  x_r(n) &\leftrightarrow X_e(k) \\
+  jx_i(n) &\leftrightarrow X_o(k)
+\end{align*}
+where subscript $r$, $i$, $e$, and $o$ mean the real, imagnary, conjugate symmetric, and conjugate antisymmetric parts of an expression, respectively, i.e,
+\begin{align*}
+  x(n) &= x_e(n) + x_o(n) \\
+       &= x_r(n) + j x_i(n) \\
+  x_e(n) &= \frac{x(n) + x^{*}(N-n)}{2} \\
+  x_o(n) &= \frac{x(n) - x^{*}(N-n)}{2} \\
+  X(k) &= X_e(k) + X_o(k) \\
+       &= X_r(k) + j X_i(k) \\
+  X_e(k) &= \frac{X(k) + X^{*}(N-k)}{2} \\
+  X_o(k) &= \frac{X(k) - X^{*}(N-k)}{2}.
+\end{align*}
+* Summary
+- $X(k) = X(e^{j\omega}) \mid_{\omega=\frac{2\pi}{N}k} = X(z)\mid_{z=e^{j\frac{2\pi}{N}k}}$, $k = 0, \ldots, N-1$.
+- Correspondences
+  + Time domain $\leftrightarrow$ frequency domain
+  + Frequency domain $\leftrightarrow$ time domain
+  + Real $\leftrightarrow$ conjugate symmetric
+  + Pure imagnary $\leftrightarrow$ conjugate antisymmetric
+  + Discrete $\leftrightarrow$ periodic
+  + Continuous $\leftrightarrow$ aperiodic
