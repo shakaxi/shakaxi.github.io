@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-06-08 Mon 00:08 -->
+<!-- 2020-07-05 Sun 17:09 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fourier Transform</title>
+<title>Z Transform</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -263,99 +263,111 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Fourier Transform</h1>
+<h1 class="title">Z Transform</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd6620c9">Continuous</a>
+<li><a href="#orgabc5250">Definition</a></li>
+<li><a href="#orge784ecd">Properties</a>
 <ul>
-<li><a href="#org639593f">Definition</a></li>
-<li><a href="#orga3bc444">Properties</a>
-<ul>
-<li><a href="#orgb35b438">Parseval Theorem</a></li>
+<li><a href="#orgae7e8fe">Initial value theorem</a></li>
+<li><a href="#org4f77349">Final value theorem</a></li>
 </ul>
 </li>
-<li><a href="#orge1ee28f">Fourier Transform Pairs</a></li>
-</ul>
-</li>
+<li><a href="#org61dd1e6">Z Transform Pairs</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd6620c9" class="outline-2">
-<h2 id="orgd6620c9">Continuous</h2>
-<div class="outline-text-2" id="text-orgd6620c9">
-</div>
-<div id="outline-container-org639593f" class="outline-3">
-<h3 id="org639593f">Definition</h3>
-<div class="outline-text-3" id="text-org639593f">
+<div id="outline-container-orgabc5250" class="outline-2">
+<h2 id="orgabc5250">Definition</h2>
+<div class="outline-text-2" id="text-orgabc5250">
+<ul class="org-ul">
+<li>Bilateral transform</li>
+</ul>
 \begin{align*}
-  F(j\omega) &= \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt \\
-             &= |F(j\omega)|e^{j\phi(\omega)} \\
-             &= R(\omega) + jX(\omega) \\
-  f(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(j\omega) e^{j\omega t} d\omega
+  X(z) = \sum_{n=-\infty}^{\infty} x(n) z^{-n}
+\end{align*}
+<ul class="org-ul">
+<li>Unilateral transform</li>
+</ul>
+\begin{align*}
+  X(z) = \sum_{n=0}^{\infty} x(n) z^{-n}
+\end{align*}
+<ul class="org-ul">
+<li>Inverse transform</li>
+</ul>
+\begin{align*}
+  x(n) &= \frac{1}{2\pi j}\oint_C X(z)z^{n-1} dz \\
+       &= \sum_{k} \text{Res} \left[ X(z)z^{n-1}, z_k \right].
 \end{align*}
 </div>
 </div>
-<div id="outline-container-orga3bc444" class="outline-3">
-<h3 id="orga3bc444">Properties</h3>
-<div class="outline-text-3" id="text-orga3bc444">
+<div id="outline-container-orge784ecd" class="outline-2">
+<h2 id="orge784ecd">Properties</h2>
+<div class="outline-text-2" id="text-orge784ecd">
+<p>
+Denote the region of convergence (ROC) as \(\alpha < |z| < \beta\), \(0 \le\alpha < \beta\).
+</p>
+<ul class="org-ul">
+<li>Common to both bilateral and unilateral transforms</li>
+</ul>
 \begin{align*}
-  a_1 f_1(t) + a_2 f_2(t) &\leftrightarrow a_1 F_1(j\omega) + a_2 F_2(j\omega) \\
-  f_1(t) * f_2(t) &\leftrightarrow F_1(j\omega) F_2(j\omega) \\
-  f_1(t) f_2(t) &\leftrightarrow \frac{1}{2\pi} F_1(j\omega) * F_2(j\omega) \\
-  f(-t) &\leftrightarrow F(-j\omega) \\
-  f(t+t_0) &\leftrightarrow F(j\omega) e^{j\omega t_0} \\
-  f(t) e^{j\omega_0 t} &\leftrightarrow F[j(\omega - \omega_0)] \\
-  F(jt) &\leftrightarrow 2\pi f(-\omega) \\
-  f(at) &\leftrightarrow \frac{1}{|a|} F \left( j\frac{\omega}{a} \right) \\
-  \frac{d^nf(t)}{dt^n} &\leftrightarrow (j\omega)^n F(j\omega) \\
-  (-jt)^n f(t) &\leftrightarrow \frac{d^n F(j\omega)}{d\omega^n} \\
-  \int_{-\infty}^t f(\tau)d\tau, f(-\infty)=0. &\leftrightarrow \pi F(0) \delta(\omega) + \frac{1}{j\omega} F(j\omega) \\
-  \pi f(0) \delta(t) - \frac{1}{jt} f(t) &\leftrightarrow \int_{-\infty}^{\omega} F(j \eta) d\eta, F(-j\infty) = 0. \\
-  f(t) \sum_{n=-\infty}^{\infty} \delta(t-nT) &\leftrightarrow \frac{1}{T} \sum_{n=-\infty}^{\infty} F \left[ j \left( \omega - n\frac{2\pi}{T} \right) \right] \\
-  \frac{1}{\omega_0} \sum_{n=-\infty}^{\infty} f \left( t - n \frac{2\pi}{\omega_0} \right) &\leftrightarrow F(j\omega) \sum_{n=-\infty}^{\infty} \delta(\omega-n \omega_0)
+  a^n x(n), \quad a \neq 0. &\leftrightarrow X \left( \frac{z}{a} \right), \quad \alpha |a| < |z| < \beta |a|. \\
+  x_1(n) * x_2(n) &\leftrightarrow X_1(z) X_2(z), \quad \max(\alpha_1, \alpha_2) < |z| < \min(\beta_1, \beta_2). \\
+  n^mx(n), \quad m > 0. &\leftrightarrow \left(-z\frac{d}{dz}\right)^m X(z), \quad \alpha < |z| < \beta.\\
+  \frac{x(n)}{n+m}, \quad n+m > 0. &\leftrightarrow z^m \int_z^{\infty}X(\eta)\eta^{-(m+1)}d\eta, \quad \alpha < |z| < \beta. \\
+  x^*(n) &\leftrightarrow X^*(z^*) \\
+  x_1(n) * x_2(n) &\leftrightarrow X_1(z) X_2(z) \\
+  x(-n) &\leftrightarrow X\left(\frac{1}{z}\right), \quad \frac{1}{\beta} < |z| < \frac{1}{\alpha}.\\
+  \sum_{i=-\infty}^nx(i) &\leftrightarrow \frac{z}{z-1}X(z), \quad \max(\alpha, 1) < |z| < \beta.
+\end{align*}
+<ul class="org-ul">
+<li>Dedicated to bilateral transform</li>
+</ul>
+\begin{align*}
+  x(n + m) \leftrightarrow z^m X(z), \quad \alpha < |z| < \beta \\
+\end{align*}
+<ul class="org-ul">
+<li>Dedicated to unilateral transform</li>
+</ul>
+\begin{align*}
+  x(n-m), \quad m > 0. &\leftrightarrow z^{-m}X(z) + \sum_{n=0}^{m-1}x(n-m)z^{-n}, \quad |z| > \alpha. \\
+  x(n+m), \quad m > 0. &\leftrightarrow z^mX(z) - \sum_{n=0}^{m-1}x(n)z^{m-n}, \quad |z| > \alpha.
 \end{align*}
 </div>
-<div id="outline-container-orgb35b438" class="outline-4">
-<h4 id="orgb35b438">Parseval Theorem</h4>
-<div class="outline-text-4" id="text-orgb35b438">
+<div id="outline-container-orgae7e8fe" class="outline-3">
+<h3 id="orgae7e8fe">Initial value theorem</h3>
+<div class="outline-text-3" id="text-orgae7e8fe">
 \begin{align*}
-  W &= \int_{-\infty}^{\infty} |f(t)|^2 dt \\
-  &= \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(j\omega)|^2 d\omega
+  x(0) = \lim_{z\to\infty}X(z)
+\end{align*}
+</div>
+</div>
+<div id="outline-container-org4f77349" class="outline-3">
+<h3 id="org4f77349">Final value theorem</h3>
+<div class="outline-text-3" id="text-org4f77349">
+\begin{align*}
+  \lim_{n\to\infty}x(n) = \lim_{z\to 1}(z-1)X(z)
 \end{align*}
 </div>
 </div>
 </div>
-<div id="outline-container-orge1ee28f" class="outline-3">
-<h3 id="orge1ee28f">Fourier Transform Pairs</h3>
-<div class="outline-text-3" id="text-orge1ee28f">
+<div id="outline-container-org61dd1e6" class="outline-2">
+<h2 id="org61dd1e6">Z Transform Pairs</h2>
+<div class="outline-text-2" id="text-org61dd1e6">
 \begin{align*}
-  \delta(t) &\leftrightarrow 1 \\
-  \varepsilon(t) &\leftrightarrow \frac{1}{j\omega} + \pi \delta(\omega) \\
-  t\varepsilon(t) &\leftrightarrow j\pi \delta^{\prime}(\omega) - \frac{1}{\omega^2} \\
-  \delta^{(k)}(t) &\leftrightarrow (j\omega)^k \\
-  \delta(t-t_0) &\leftrightarrow e^{-j\omega t_0} \\
-  \text{sign}(t) &\leftrightarrow \frac{2}{j\omega} \\
-  \cos(\omega_0 t) &\leftrightarrow \pi [\delta(\omega+\omega_0) + \delta(\omega-\omega_0)] \\
-  \sin(\omega_0 t) &\leftrightarrow j\pi [\delta(\omega+\omega_0) - \delta(\omega-\omega_0)] \\
-  \text{rect}_{\tau}(t) &\leftrightarrow \tau \text{Sa} \left( \frac{\omega \tau}{2} \right) \\
-  \left( 1 - \frac{|t|}{\tau} \right) \text{rect}_{2\tau}(t) &\leftrightarrow \tau \text{Sa}^2 \left( \frac{\omega \tau}{2} \right) \\
-  e^{-at} \varepsilon(t), a > 0. &\leftrightarrow \frac{1}{a+j\omega} \\
-  te^{-at} \varepsilon(t), a > 0. &\leftrightarrow \frac{1}{(a+j\omega)^2} \\
-  \frac{t^{k-1}e^{-at}}{(k-1)!}\varepsilon(t), a > 0. &\leftrightarrow \frac{1}{(a+j\omega)^k} \\
-  e^{-a|t|}, a > 0. &\leftrightarrow \frac{2a}{\omega^2 + a^2} \\
-  e^{-a|t|}\text{sign}(t), a > 0. &\leftrightarrow -\frac{2j\omega}{\omega^2+a^2} \\
-  e^{-at} \cos(\omega_0t)\varepsilon(t), a > 0. &\leftrightarrow \frac{a+j\omega}{(a+j\omega)^2 + \omega_0^2} \\
-  e^{-at} \sin(\omega_0t)\varepsilon(t), a > 0. &\leftrightarrow \frac{\omega_0}{(a+j\omega)^2 + \omega_0^2} \\
-  e^{-a|t|}\cos(\omega_0t), a > 0. &\leftrightarrow \frac{2a(\omega^2 + \omega_0^2 + a^2)}{[\omega^2-(a^2+\omega_0^2)]^2 + 4a^2\omega^2} \\
-  e^{-a|t|}\sin(\omega_0t), a > 0. &\leftrightarrow -\frac{j4a\omega_0 \omega}{[\omega^2-(a^2+\omega_0^2)]^2 + 4a^2\omega^2} \\
-  e^{-\left(\dfrac{t}{\tau} \right)^{2}} &\leftrightarrow \sqrt{\pi} \tau e^{-\left(\dfrac{\omega\tau}{2}\right)^2} \\
-  \sum_{n=-\infty}^{\infty} \delta(t-nT) &\leftrightarrow \frac{2\pi}{T} \sum_{n=-\infty}^{\infty} \delta \left( \omega - n\frac{2\pi}{T} \right) \\
-  \sum_{n=-\infty}^{\infty} F_n e^{jn\omega_0t} &\leftrightarrow 2\pi \sum_{n=-\infty}^{\infty}F_n\delta(\omega - n\omega_0)
+  \delta(n) &\leftrightarrow 1 \\
+  \varepsilon(n) &\leftrightarrow \frac{z}{z-1}, \quad |z| > 1. \\
+  a^n\varepsilon(n) &\leftrightarrow \frac{z}{z-a}, \quad |z| > 1. \\
+  n\varepsilon(n) &\leftrightarrow \frac{z}{(z-1)^2}, \quad |z| > 1. \\
+  \delta(n-m), \quad m > 0. &\leftrightarrow z^{-m}, \quad |z| > 0. \\
+  -\varepsilon(-n-1) &\leftrightarrow \frac{z}{z-1}, \quad |z| < 1. \\
+  -a^n\varepsilon(-n-1) &\leftrightarrow \frac{z}{z-a}, \quad |z| < a. \\
+  -n\varepsilon(-n-1) &\leftrightarrow \frac{z}{(z-1)^2}, \quad |z| < 1. \\
+  \delta(n+m), \quad m > 0. &\leftrightarrow z^m
 \end{align*}
-</div>
 </div>
 </div>
 </div>

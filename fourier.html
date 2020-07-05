@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2020-07-05 Sun 17:09 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fourier Transform</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Fourier Transform</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgaf4d6ef">Continuous Fourier Series</a>
+<ul>
+<li><a href="#org3acff1e">Definition</a></li>
+</ul>
+</li>
+<li><a href="#orga10ae1e">Discrete Fourier Series</a>
+<ul>
+<li><a href="#org1c05d41">Definition</a></li>
+<li><a href="#orgf49aea1">Properties</a></li>
+</ul>
+</li>
+<li><a href="#orgec13d5a">Continuous Fourier Transform</a>
+<ul>
+<li><a href="#org8d91bfc">Definition</a></li>
+<li><a href="#org34565c3">Properties</a>
+<ul>
+<li><a href="#orgb496430">Parseval Theorem</a></li>
+</ul>
+</li>
+<li><a href="#org6c0c0f4">Fourier Transform Pairs</a></li>
+</ul>
+</li>
+<li><a href="#org34607b8">Discrete Time Fourier Transform</a>
+<ul>
+<li><a href="#org98c2e4a">Definition</a></li>
+<li><a href="#org2fb94c9">Properties</a>
+<ul>
+<li><a href="#org533e126">Parseval Theorem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org83490a7">Discrete Fourier Transform</a>
+<ul>
+<li><a href="#org89d78d0">Definition</a></li>
+<li><a href="#orgfb8edaf">Properties</a></li>
+</ul>
+</li>
+<li><a href="#orge506f9d">Summary</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaf4d6ef" class="outline-2">
+<h2 id="orgaf4d6ef">Continuous Fourier Series</h2>
+<div class="outline-text-2" id="text-orgaf4d6ef">
+</div>
+<div id="outline-container-org3acff1e" class="outline-3">
+<h3 id="org3acff1e">Definition</h3>
+<div class="outline-text-3" id="text-org3acff1e">
+\begin{align*}
+  \tilde{x}(t) &= \frac{1}{T} \sum_{k=-\infty}^{\infty}X_a \left( k\frac{2\pi}{T} \right) e^{j\frac{2\pi}{T}kt} \\
+X_a \left( k\frac{2\pi}{T} \right)  &= \int_{-\frac{T}{2}}^{\frac{T}{2}} \tilde{x}(t) e^{-j\frac{2\pi}{T}kt} dt
+\end{align*}
+</div>
+</div>
+</div>
+<div id="outline-container-orga10ae1e" class="outline-2">
+<h2 id="orga10ae1e">Discrete Fourier Series</h2>
+<div class="outline-text-2" id="text-orga10ae1e">
+</div>
+<div id="outline-container-org1c05d41" class="outline-3">
+<h3 id="org1c05d41">Definition</h3>
+<div class="outline-text-3" id="text-org1c05d41">
+\begin{align*}
+  \tilde{x}(n) &= \frac{1}{N} \sum_{k=0}^{N-1} \tilde{X}(k)e^{j\frac{2\pi}{N}kn} \\
+  \tilde{X}(k) &= \sum_{n=0}^{N-1} \tilde{x}(n) e^{-j\frac{2\pi}{N}nk}
+\end{align*}
+</div>
+</div>
+<div id="outline-container-orgf49aea1" class="outline-3">
+<h3 id="orgf49aea1">Properties</h3>
+<div class="outline-text-3" id="text-orgf49aea1">
+\begin{align*}
+  \tilde{x}(n+m) &\leftrightarrow \tilde{X}(k)e^{j\frac{2\pi}{N}km} \\
+  \tilde{x}^{*}(n) &\leftrightarrow \tilde{X}^{*}(-k) \\
+  \tilde{x}(-n) &\leftrightarrow \tilde{X}(-k) \\
+  \sum_{m=0}^\tilde{N-1} \tilde{x}_1(m) \tilde{x}_2(n-m) &\leftrightarrow \tilde{X}_1(k) \tilde{X}_2(k) \\
+  \tilde{x}_1(n) \tilde{x}_2(n) &\leftrightarrow \frac{1}{N} \sum_{\ell=0}^{N-1} \tilde{X}_1(\ell) \tilde{X}_2(k-\ell) \\
+  \tilde{x}_e(n) &\leftrightarrow \tilde{X}_r(k) \\
+  \tilde{x}_o(n) &\leftrightarrow j\tilde{X}_i(k) \\
+  \tilde{x}_r(n) &\leftrightarrow \tilde{X}_e(k) \\
+  j\tilde{x}_i(n) &\leftrightarrow \tilde{X}_o(k)
+\end{align*}
+<p>
+where subscript \(r\), \(i\), \(e\), and \(o\) mean the real, imagnary, even, and odd parts of an expression, respectively, i.e,
+</p>
+\begin{align*}
+  \tilde{x}(n) &= \tilde{x}_e(n) + \tilde{x}_o(n) \\
+       &= \tilde{x}_r(n) + j \tilde{x}_i(n) \\
+  \tilde{x}_e(n) &= \frac{\tilde{x}(n) + \tilde{x}(-n)}{2} \\
+  \tilde{x}_o(n) &= \frac{\tilde{x}(n) - \tilde{x}(-n)}{2} \\
+  \tilde{X}(k) &= \tilde{X}_e(k) + \tilde{X}_o(k) \\
+       &= \tilde{X}_r(k) + j \tilde{X}_i(k) \\
+  \tilde{X}_e(k) &= \frac{\tilde{X}(k) + \tilde{X}(k)}{2} \\
+  \tilde{X}_o(k) &= \frac{\tilde{X}(k) - \tilde{X}(k)}{2}.
+\end{align*}
+</div>
+</div>
+</div>
+<div id="outline-container-orgec13d5a" class="outline-2">
+<h2 id="orgec13d5a">Continuous Fourier Transform</h2>
+<div class="outline-text-2" id="text-orgec13d5a">
+</div>
+<div id="outline-container-org8d91bfc" class="outline-3">
+<h3 id="org8d91bfc">Definition</h3>
+<div class="outline-text-3" id="text-org8d91bfc">
+\begin{align*}
+  F(j\omega) &= \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt \\
+             &= |F(j\omega)|e^{j\phi(\omega)} \\
+             &= R(\omega) + jX(\omega) \\
+  f(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(j\omega) e^{j\omega t} d\omega
+\end{align*}
+</div>
+</div>
+<div id="outline-container-org34565c3" class="outline-3">
+<h3 id="org34565c3">Properties</h3>
+<div class="outline-text-3" id="text-org34565c3">
+\begin{align*}
+  a_1 f_1(t) + a_2 f_2(t) &\leftrightarrow a_1 F_1(j\omega) + a_2 F_2(j\omega) \\
+  f_1(t) * f_2(t) &\leftrightarrow F_1(j\omega) F_2(j\omega) \\
+  f_1(t) f_2(t) &\leftrightarrow \frac{1}{2\pi} F_1(j\omega) * F_2(j\omega) \\
+  f(-t) &\leftrightarrow F(-j\omega) \\
+  f(t+t_0) &\leftrightarrow F(j\omega) e^{j\omega t_0} \\
+  f(t) e^{j\omega_0 t} &\leftrightarrow F[j(\omega - \omega_0)] \\
+  F(jt) &\leftrightarrow 2\pi f(-\omega) \\
+  f(at) &\leftrightarrow \frac{1}{|a|} F \left( j\frac{\omega}{a} \right) \\
+  \frac{d^nf(t)}{dt^n} &\leftrightarrow (j\omega)^n F(j\omega) \\
+  (-jt)^n f(t) &\leftrightarrow \frac{d^n F(j\omega)}{d\omega^n} \\
+  \int_{-\infty}^t f(\tau)d\tau, f(-\infty)=0. &\leftrightarrow \pi F(0) \delta(\omega) + \frac{1}{j\omega} F(j\omega) \\
+  \pi f(0) \delta(t) - \frac{1}{jt} f(t) &\leftrightarrow \int_{-\infty}^{\omega} F(j \eta) d\eta, F(-j\infty) = 0. \\
+  f(t) \sum_{n=-\infty}^{\infty} \delta(t-nT) &\leftrightarrow \frac{1}{T} \sum_{n=-\infty}^{\infty} F \left[ j \left( \omega - n\frac{2\pi}{T} \right) \right] \\
+  \frac{1}{\omega_0} \sum_{n=-\infty}^{\infty} f \left( t - n \frac{2\pi}{\omega_0} \right) &\leftrightarrow F(j\omega) \sum_{n=-\infty}^{\infty} \delta(\omega-n \omega_0)
+\end{align*}
+</div>
+<div id="outline-container-orgb496430" class="outline-4">
+<h4 id="orgb496430">Parseval Theorem</h4>
+<div class="outline-text-4" id="text-orgb496430">
+\begin{align*}
+  \int_{-\infty}^{\infty} |f(t)|^2 dt = \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(j\omega)|^2 d\omega
+\end{align*}
+</div>
+</div>
+</div>
+<div id="outline-container-org6c0c0f4" class="outline-3">
+<h3 id="org6c0c0f4">Fourier Transform Pairs</h3>
+<div class="outline-text-3" id="text-org6c0c0f4">
+\begin{align*}
+  \delta(t) &\leftrightarrow 1 \\
+  \varepsilon(t) &\leftrightarrow \frac{1}{j\omega} + \pi \delta(\omega) \\
+  t\varepsilon(t) &\leftrightarrow j\pi \delta^{\prime}(\omega) - \frac{1}{\omega^2} \\
+  \delta^{(k)}(t) &\leftrightarrow (j\omega)^k \\
+  \delta(t-t_0) &\leftrightarrow e^{-j\omega t_0} \\
+  \text{sign}(t) &\leftrightarrow \frac{2}{j\omega} \\
+  \cos(\omega_0 t) &\leftrightarrow \pi [\delta(\omega+\omega_0) + \delta(\omega-\omega_0)] \\
+  \sin(\omega_0 t) &\leftrightarrow j\pi [\delta(\omega+\omega_0) - \delta(\omega-\omega_0)] \\
+  \text{rect}_{\tau}(t) &\leftrightarrow \tau \text{Sa} \left( \frac{\omega \tau}{2} \right) \\
+  \left( 1 - \frac{|t|}{\tau} \right) \text{rect}_{2\tau}(t) &\leftrightarrow \tau \text{Sa}^2 \left( \frac{\omega \tau}{2} \right) \\
+  e^{-at} \varepsilon(t), a > 0. &\leftrightarrow \frac{1}{a+j\omega} \\
+  te^{-at} \varepsilon(t), a > 0. &\leftrightarrow \frac{1}{(a+j\omega)^2} \\
+  \frac{t^{k-1}e^{-at}}{(k-1)!}\varepsilon(t), a > 0. &\leftrightarrow \frac{1}{(a+j\omega)^k} \\
+  e^{-a|t|}, a > 0. &\leftrightarrow \frac{2a}{\omega^2 + a^2} \\
+  e^{-a|t|}\text{sign}(t), a > 0. &\leftrightarrow -\frac{2j\omega}{\omega^2+a^2} \\
+  e^{-at} \cos(\omega_0t)\varepsilon(t), a > 0. &\leftrightarrow \frac{a+j\omega}{(a+j\omega)^2 + \omega_0^2} \\
+  e^{-at} \sin(\omega_0t)\varepsilon(t), a > 0. &\leftrightarrow \frac{\omega_0}{(a+j\omega)^2 + \omega_0^2} \\
+  e^{-a|t|}\cos(\omega_0t), a > 0. &\leftrightarrow \frac{2a(\omega^2 + \omega_0^2 + a^2)}{[\omega^2-(a^2+\omega_0^2)]^2 + 4a^2\omega^2} \\
+  e^{-a|t|}\sin(\omega_0t), a > 0. &\leftrightarrow -\frac{j4a\omega_0 \omega}{[\omega^2-(a^2+\omega_0^2)]^2 + 4a^2\omega^2} \\
+  e^{-\left(\dfrac{t}{\tau} \right)^{2}} &\leftrightarrow \sqrt{\pi} \tau e^{-\left(\dfrac{\omega\tau}{2}\right)^2} \\
+  \sum_{n=-\infty}^{\infty} \delta(t-nT) &\leftrightarrow \frac{2\pi}{T} \sum_{n=-\infty}^{\infty} \delta \left( \omega - n\frac{2\pi}{T} \right) \\
+  \sum_{n=-\infty}^{\infty} F_n e^{jn\omega_0t} &\leftrightarrow 2\pi \sum_{n=-\infty}^{\infty}F_n\delta(\omega - n\omega_0)
+\end{align*}
+</div>
+</div>
+</div>
+<div id="outline-container-org34607b8" class="outline-2">
+<h2 id="org34607b8">Discrete Time Fourier Transform</h2>
+<div class="outline-text-2" id="text-org34607b8">
+</div>
+<div id="outline-container-org98c2e4a" class="outline-3">
+<h3 id="org98c2e4a">Definition</h3>
+<div class="outline-text-3" id="text-org98c2e4a">
+\begin{align*}
+  X(e^{j\omega}) &= \sum_{n=-\infty}^{\infty} x(n) e^{-j\omega n} \\
+  x(n) &= \frac{1}{2\pi} \int_{-\pi}^{\pi} X(e^{j\omega})e^{j\omega} d\omega
+\end{align*}
+</div>
+</div>
+<div id="outline-container-org2fb94c9" class="outline-3">
+<h3 id="org2fb94c9">Properties</h3>
+<div class="outline-text-3" id="text-org2fb94c9">
+\begin{align*}
+  x_1(n) * x_2(n) &\leftrightarrow X_1(e^{j\omega}) X_2(e^{j\omega}) \\
+  x^{*}(n) &\leftrightarrow X^{*}(e^{-j\omega}) \\
+  x(-n) &\leftrightarrow X(e^{-j\omega}) \\
+  x_e(n) &\leftrightarrow X_r(e^{j\omega}) \\
+  x_o(n) &\leftrightarrow jX_i(e^{j\omega}) \\
+  x_r(n) &\leftrightarrow X_e(e^{j\omega}) \\
+  jx_i(n) &\leftrightarrow X_o(e^{j\omega})
+\end{align*}
+<p>
+where subscript \(r\), \(i\), \(e\), and \(o\) mean the real, imagnary, even, and odd parts of an expression, respectively, i.e,
+</p>
+\begin{align*}
+  x(n) &= x_e(n) + x_o(n) \\
+       &= x_r(n) + j x_i(n) \\
+  x_e(n) &= \frac{x(n) + x^{*}(-n)}{2} \\
+  x_o(n) &= \frac{x(n) - x^{*}(-n)}{2} \\
+  X(e^{j\omega}) &= X_e(e^{j\omega}) + X_o(e^{j\omega}) \\
+       &= X_r(e^{j\omega}) + j X_i(e^{j\omega}) \\
+  X_e(e^{j\omega}) &= \frac{X(e^{j\omega}) + X^{*}(e^{-j\omega})}{2} \\
+  X_o(e^{j\omega}) &= \frac{X(e^{j\omega}) - X^{*}(e^{-j\omega})}{2}.
+\end{align*}
+</div>
+<div id="outline-container-org533e126" class="outline-4">
+<h4 id="org533e126">Parseval Theorem</h4>
+<div class="outline-text-4" id="text-org533e126">
+\begin{align*}
+  \sum_{n=-\infty}^{\infty}|x(n)|^2 = \frac{1}{2\pi} \int_{-\infty}^{\infty} |X(e^{$j\omega})|^2 d\omega
+\end{align*}
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org83490a7" class="outline-2">
+<h2 id="org83490a7">Discrete Fourier Transform</h2>
+<div class="outline-text-2" id="text-org83490a7">
+</div>
+<div id="outline-container-org89d78d0" class="outline-3">
+<h3 id="org89d78d0">Definition</h3>
+<div class="outline-text-3" id="text-org89d78d0">
+\begin{align*}
+  X(k) &= \sum_{n=0}^{N-1} x(n) e^{-j\frac{2\pi}{N}nk} \\
+  x(n) &= \frac{1}{N} \sum_{k=0}^{N-1} e^{j\frac{2\pi}{N}kn}
+\end{align*}
+</div>
+</div>
+<div id="outline-container-orgfb8edaf" class="outline-3">
+<h3 id="orgfb8edaf">Properties</h3>
+<div class="outline-text-3" id="text-orgfb8edaf">
+\begin{align*}
+  x^{*}(n) &\leftrightarrow X^{*}(N-k) \\
+  x^{*}(N-n) &\leftrightarrow X^{*}(k) \\
+  x_e(n) &\leftrightarrow X_r(k) \\
+  x_o(n) &\leftrightarrow jX_i(k) \\
+  x_r(n) &\leftrightarrow X_e(k) \\
+  jx_i(n) &\leftrightarrow X_o(k)
+\end{align*}
+<p>
+where subscript \(r\), \(i\), \(e\), and \(o\) mean the real, imagnary, conjugate symmetric, and conjugate antisymmetric parts of an expression, respectively, i.e,
+</p>
+\begin{align*}
+  x(n) &= x_e(n) + x_o(n) \\
+       &= x_r(n) + j x_i(n) \\
+  x_e(n) &= \frac{x(n) + x^{*}(N-n)}{2} \\
+  x_o(n) &= \frac{x(n) - x^{*}(N-n)}{2} \\
+  X(k) &= X_e(k) + X_o(k) \\
+       &= X_r(k) + j X_i(k) \\
+  X_e(k) &= \frac{X(k) + X^{*}(N-k)}{2} \\
+  X_o(k) &= \frac{X(k) - X^{*}(N-k)}{2}.
+\end{align*}
+</div>
+</div>
+</div>
+<div id="outline-container-orge506f9d" class="outline-2">
+<h2 id="orge506f9d">Summary</h2>
+<div class="outline-text-2" id="text-orge506f9d">
+<ul class="org-ul">
+<li>\(X(k) = X(e^{j\omega}) \mid_{\omega=\frac{2\pi}{N}k} = X(z)\mid_{z=e^{j\frac{2\pi}{N}k}}\), \(k = 0, \ldots, N-1\).</li>
+<li>Correspondences
+<ul class="org-ul">
+<li>Time domain \(\leftrightarrow\) frequency domain</li>
+<li>Frequency domain \(\leftrightarrow\) time domain</li>
+<li>Real \(\leftrightarrow\) conjugate symmetric</li>
+<li>Pure imagnary \(\leftrightarrow\) conjugate antisymmetric</li>
+<li>Discrete \(\leftrightarrow\) periodic</li>
+<li>Continuous \(\leftrightarrow\) aperiodic</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
