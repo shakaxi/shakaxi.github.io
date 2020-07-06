@@ -4,7 +4,7 @@
 <!-- 2020-07-06 Mon 17:09 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Z Transform</title>
+<title>Laplace Transform</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -263,118 +263,95 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Z Transform</h1>
+<h1 class="title">Laplace Transform</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgabc5250">Definition</a></li>
-<li><a href="#orge784ecd">Properties</a>
+<li><a href="#org91e8312">Definition</a></li>
+<li><a href="#orgeaf48f0">Properties (Unilateral Transform)</a>
 <ul>
-<li><a href="#org8a25bb1">Initial Value Theorem</a></li>
-<li><a href="#org9db8c39">Final Value Theorem</a></li>
+<li><a href="#orga7a9361">Initial Value Theorem</a></li>
+<li><a href="#orgc31c153">Final Value Theorem</a></li>
 </ul>
 </li>
-<li><a href="#orgdf6e408">Transform Pairs</a></li>
+<li><a href="#org9c617ed">Transform Pairs (Unilateral Transform)</a></li>
 </ul>
 </div>
 </div>
 <p>
-Given a time domain discrete signal, i.e., a sequence, it can be represented in the <i>complex frequency domain</i> by <i>Z transform</i>. It is essentially an extension of <i>discrete time Fourier transform (DTFT)</i>.
+Given a time domain continuous signal, it can be represented in the <i>complex frequency domain</i> by <i>Laplace transform</i>. It is essentially an extension of <i>Continuous Fourier transform</i>.
 </p>
 
-<div id="outline-container-orgabc5250" class="outline-2">
-<h2 id="orgabc5250">Definition</h2>
-<div class="outline-text-2" id="text-orgabc5250">
+<div id="outline-container-org91e8312" class="outline-2">
+<h2 id="org91e8312">Definition</h2>
+<div class="outline-text-2" id="text-org91e8312">
 <ul class="org-ul">
 <li><p>
 Bilateral transform
 </p>
 \begin{align*}
-  X(z) = \sum_{n=-\infty}^{\infty} x(n) z^{-n}
+  X(s) = \int_{-\infty}^{\infty} x(t) e^{-st} dt
 \end{align*}</li>
 <li><p>
 Unilateral transform
 </p>
 \begin{align*}
-  X(z) = \sum_{n=0}^{\infty} x(n) z^{-n}
+  X(s) = \int_{0_-}^{\infty} x(t) e^{-st} dt
 \end{align*}</li>
 <li><p>
 Inverse transform
 </p>
 \begin{align*}
-  x(n) &= \frac{1}{2\pi j}\oint_C X(z)z^{n-1} dz \\
-       &= \sum_{k} \text{Res} \left[ X(z)z^{n-1}, z_k \right].
+  x(t) = \frac{1}{2\pi j} \int_{\sigma-j\infty}^{\sigma+j\infty} X(s) e^{st} ds
 \end{align*}</li>
-<li><i>Region of convergence (ROC)</i>: Considering the fact that \(X(z)\) is an infinite summation, the convergence must be ensured. To this end, ROC is defined, which is comprised of the candidate values of \(z\) keeping the convergence. \(z\) is termed <i>complex frequency</i>.</li>
+<li>Region of convergence (ROC): Considering the fact that \(X(s)\) is an infinite integration, the convergence must be ensured. To this end, ROC is defined, which is comprised of the candidate values of \(s\) keeping the convergence. \(s\) is termed <i>complex frequency</i>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge784ecd" class="outline-2">
-<h2 id="orge784ecd">Properties</h2>
-<div class="outline-text-2" id="text-orge784ecd">
-<p>
-Denote the ROC as \(\alpha < |z| < \beta\), \(0 \le\alpha < \beta\).
-</p>
-<ul class="org-ul">
-<li><p>
-Common to both bilateral and unilateral transforms
-</p>
+<div id="outline-container-orgeaf48f0" class="outline-2">
+<h2 id="orgeaf48f0">Properties (Unilateral Transform)</h2>
+<div class="outline-text-2" id="text-orgeaf48f0">
 \begin{align*}
-  a^n x(n), \quad a \neq 0. &\leftrightarrow X \left( \frac{z}{a} \right), \quad \alpha |a| < |z| < \beta |a|. \\
-  x_1(n) * x_2(n) &\leftrightarrow X_1(z) X_2(z), \quad \max(\alpha_1, \alpha_2) < |z| < \min(\beta_1, \beta_2). \\
-  n^mx(n), \quad m > 0. &\leftrightarrow \left(-z\frac{d}{dz}\right)^m X(z), \quad \alpha < |z| < \beta.\\
-  \frac{x(n)}{n+m}, \quad n+m > 0. &\leftrightarrow z^m \int_z^{\infty}X(\eta)\eta^{-(m+1)}d\eta, \quad \alpha < |z| < \beta. \\
-  x^*(n) &\leftrightarrow X^*(z^*) \\
-  x_1(n) * x_2(n) &\leftrightarrow X_1(z) X_2(z) \\
-  x(-n) &\leftrightarrow X\left(\frac{1}{z}\right), \quad \frac{1}{\beta} < |z| < \frac{1}{\alpha}.\\
-  \sum_{i=-\infty}^nx(i) &\leftrightarrow \frac{z}{z-1}X(z), \quad \max(\alpha, 1) < |z| < \beta.
-\end{align*}</li>
-<li><p>
-Dedicated to bilateral transform
-</p>
-\begin{align*}
-  x(n + m) \leftrightarrow z^m X(z), \quad \alpha < |z| < \beta \\
-\end{align*}</li>
-<li><p>
-Dedicated to unilateral transform
-</p>
-\begin{align*}
-  x(n-m), \quad m > 0. &\leftrightarrow z^{-m}X(z) + \sum_{n=0}^{m-1}x(n-m)z^{-n}, \quad |z| > \alpha. \\
-  x(n+m), \quad m > 0. &\leftrightarrow z^mX(z) - \sum_{n=0}^{m-1}x(n)z^{m-n}, \quad |z| > \alpha.
-\end{align*}</li>
-</ul>
+  x(t), t \ge 0_{-} &\leftrightarrow X(s) \\
+  x(at), a > 0 &\leftrightarrow \frac{1}{a}X \left( \frac{s}{a} \right) \\
+  x(t - t_0)\varepsilon(t - t_0), t_0>0 &\leftrightarrow X(s) e^{-st_0} \\
+  x(t)e^{s_0}t &\leftrightarrow X(s - s_0) \\
+  x^{(n)}(t) &\leftrightarrow s^nX(s) - s^{n-1}x(0_{-}) - \cdots - s^0x^{(n-1)}(0_{-}) \\
+  x_1(t) * x_2(t) &\leftrightarrow X_1(s) X_2(s) \\
+  x_1(t) x_2(t) &\leftrightarrow \frac{1}{2\pi j} \int_{C-j\infty}^{C+j\infty} X_1(\eta)X_2(s-\eta) d \eta \\
+  (-t)^nx(t) &\leftrightarrow \frac{d^nX(s)}{ds^{n}} \\
+  \frac{x(t)}{t} &\leftrightarrow \int_s^{\infty}X(\eta)d\eta
+\end{align*}
 </div>
-<div id="outline-container-org8a25bb1" class="outline-3">
-<h3 id="org8a25bb1">Initial Value Theorem</h3>
-<div class="outline-text-3" id="text-org8a25bb1">
+<div id="outline-container-orga7a9361" class="outline-3">
+<h3 id="orga7a9361">Initial Value Theorem</h3>
+<div class="outline-text-3" id="text-orga7a9361">
 \begin{align*}
-  x(0) = \lim_{z\to\infty}X(z)
+  x(0_{+}) = \lim_{s\to \infty}sX(s)
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org9db8c39" class="outline-3">
-<h3 id="org9db8c39">Final Value Theorem</h3>
-<div class="outline-text-3" id="text-org9db8c39">
+<div id="outline-container-orgc31c153" class="outline-3">
+<h3 id="orgc31c153">Final Value Theorem</h3>
+<div class="outline-text-3" id="text-orgc31c153">
 \begin{align*}
-  \lim_{n\to\infty}x(n) = \lim_{z\to 1}(z-1)X(z)
+  x(\infty) = \lim_{s\to 0} sX(s)
 \end{align*}
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf6e408" class="outline-2">
-<h2 id="orgdf6e408">Transform Pairs</h2>
-<div class="outline-text-2" id="text-orgdf6e408">
+<div id="outline-container-org9c617ed" class="outline-2">
+<h2 id="org9c617ed">Transform Pairs (Unilateral Transform)</h2>
+<div class="outline-text-2" id="text-org9c617ed">
 \begin{align*}
-  \delta(n) &\leftrightarrow 1 \\
-  \varepsilon(n) &\leftrightarrow \frac{z}{z-1}, \quad |z| > 1. \\
-  a^n\varepsilon(n) &\leftrightarrow \frac{z}{z-a}, \quad |z| > 1. \\
-  n\varepsilon(n) &\leftrightarrow \frac{z}{(z-1)^2}, \quad |z| > 1. \\
-  \delta(n-m), \quad m > 0. &\leftrightarrow z^{-m}, \quad |z| > 0. \\
-  -\varepsilon(-n-1) &\leftrightarrow \frac{z}{z-1}, \quad |z| < 1. \\
-  -a^n\varepsilon(-n-1) &\leftrightarrow \frac{z}{z-a}, \quad |z| < a. \\
-  -n\varepsilon(-n-1) &\leftrightarrow \frac{z}{(z-1)^2}, \quad |z| < 1. \\
-  \delta(n+m), \quad m > 0. &\leftrightarrow z^m
+  x(t), t \ge 0_{-} &\leftrightarrow X(s) \\
+  \delta(t) &\leftrightarrow 1 \\
+  \varepsilon(t) &\leftrightarrow \frac{1}{s} \\
+  e^{-s_0t} &\leftrightarrow \frac{1}{s+s_0} \\
+  t^n, n \in \mathbb{Z}^+ &\leftrightarrow \frac{n!}{s^{n+1}} \\
+  \sin \omega t &\leftrightarrow \frac{\omega_0}{s^2 + \omega_0^2} \\
+  \cos \omega t &\leftrightarrow \frac{s}{s^2 + \omega_0^2}
 \end{align*}
 </div>
 </div>
