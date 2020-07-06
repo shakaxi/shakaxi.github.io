@@ -1,0 +1,48 @@
+#+title: Laplace Transform
+
+Given a time domain continuous signal, it can be represented in the /complex frequency domain/ by /Laplace transform/. It is essentially an extension of /Continuous Fourier transform/.
+
+* Definition
+- Bilateral transform
+  \begin{align*}
+    X(s) = \int_{-\infty}^{\infty} x(t) e^{-st} dt
+  \end{align*}
+- Unilateral transform
+  \begin{align*}
+    X(s) = \int_{0_-}^{\infty} x(t) e^{-st} dt
+  \end{align*}
+- Inverse transform
+  \begin{align*}
+    x(t) = \frac{1}{2\pi j} \int_{\sigma-j\infty}^{\sigma+j\infty} X(s) e^{st} ds
+  \end{align*}
+- Region of convergence (ROC): Considering the fact that $X(s)$ is an infinite integration, the convergence must be ensured. To this end, ROC is defined, which is comprised of the candidate values of $s$ keeping the convergence. $s$ is termed /complex frequency/.
+* Properties (Unilateral Transform)
+\begin{align*}
+  x(t), t \ge 0_{-} &\leftrightarrow X(s) \\
+  x(at), a > 0 &\leftrightarrow \frac{1}{a}X \left( \frac{s}{a} \right) \\
+  x(t - t_0)\varepsilon(t - t_0), t_0>0 &\leftrightarrow X(s) e^{-st_0} \\
+  x(t)e^{s_0}t &\leftrightarrow X(s - s_0) \\
+  x^{(n)}(t) &\leftrightarrow s^nX(s) - s^{n-1}x(0_{-}) - \cdots - s^0x^{(n-1)}(0_{-}) \\
+  x_1(t) * x_2(t) &\leftrightarrow X_1(s) X_2(s) \\
+  x_1(t) x_2(t) &\leftrightarrow \frac{1}{2\pi j} \int_{C-j\infty}^{C+j\infty} X_1(\eta)X_2(s-\eta) d \eta \\
+  (-t)^nx(t) &\leftrightarrow \frac{d^nX(s)}{ds^{n}} \\
+  \frac{x(t)}{t} &\leftrightarrow \int_s^{\infty}X(\eta)d\eta
+\end{align*}
+** Initial Value Theorem
+\begin{align*}
+  x(0_{+}) = \lim_{s\to \infty}sX(s)
+\end{align*}
+** Final Value Theorem
+\begin{align*}
+  x(\infty) = \lim_{s\to 0} sX(s)
+\end{align*}
+* Transform Pairs (Unilateral Transform)
+\begin{align*}
+  x(t), t \ge 0_{-} &\leftrightarrow X(s) \\
+  \delta(t) &\leftrightarrow 1 \\
+  \varepsilon(t) &\leftrightarrow \frac{1}{s} \\
+  e^{-s_0t} &\leftrightarrow \frac{1}{s+s_0} \\
+  t^n, n \in \mathbb{Z}^+ &\leftrightarrow \frac{n!}{s^{n+1}} \\
+  \sin \omega t &\leftrightarrow \frac{\omega_0}{s^2 + \omega_0^2} \\
+  \cos \omega t &\leftrightarrow \frac{s}{s^2 + \omega_0^2}
+\end{align*}
