@@ -1,18 +1,18 @@
 #+title: Fourier Transform
+#+options: \usepackage{amsfonts}
 
-* Continuous Fourier Series
-** Definition
+* Fourier Series
+** Continuous Fourier Series
 \begin{align*}
   \tilde{x}(t) &= \frac{1}{T} \sum_{k=-\infty}^{\infty}X_a \left( k\frac{2\pi}{T} \right) e^{j\frac{2\pi}{T}kt} \\
 X_a \left( k\frac{2\pi}{T} \right)  &= \int_{-\frac{T}{2}}^{\frac{T}{2}} \tilde{x}(t) e^{-j\frac{2\pi}{T}kt} dt
 \end{align*}
-* Discrete Fourier Series
-** Definition
+** Discrete Fourier Series
 \begin{align*}
   \tilde{x}(n) &= \frac{1}{N} \sum_{k=0}^{N-1} \tilde{X}(k)e^{j\frac{2\pi}{N}kn} \\
   \tilde{X}(k) &= \sum_{n=0}^{N-1} \tilde{x}(n) e^{-j\frac{2\pi}{N}nk}
 \end{align*}
-** Properties
+*** Properties
 \begin{align*}
   \tilde{x}(n+m) &\leftrightarrow \tilde{X}(k)e^{j\frac{2\pi}{N}km} \\
   \tilde{x}^{*}(n) &\leftrightarrow \tilde{X}^{*}(-k) \\
@@ -34,6 +34,25 @@ where subscript $r$, $i$, $e$, and $o$ mean the real, imagnary, even, and odd pa
        &= \tilde{X}_r(k) + j \tilde{X}_i(k) \\
   \tilde{X}_e(k) &= \frac{\tilde{X}(k) + \tilde{X}(k)}{2} \\
   \tilde{X}_o(k) &= \frac{\tilde{X}(k) - \tilde{X}(k)}{2}.
+\end{align*}
+** Wide Sense Fourier Series
+*** Continuous
+Given a continuous time signal space $\mathcal{S}$ defined in range $(t_1, t_2)$, if $\{\phi_i(t) \mid i=1, 2, \ldots, N\}$ is a complete orthogonal basis in $\mathcal{S}$, $\forall x(t) \in \mathcal{S}$, it can be represented as a linear combination of the basis, i.e.,
+\begin{align*}
+  x(t) = \sum_{i=1}^N a_i \phi_i(t),
+\end{align*}
+where
+\begin{align*}
+  a_i = \dfrac{\int_{t_1}^{t_2} x(t) \phi_i^{*}(t) dt}{\int_{t_1}^{t_2}|\phi_i(t)|^2dt}, \quad i = 1, 2, \ldots, N.
+\end{align*}
+*** Discrete
+Given a discrete time signal space $\mathcal{S}$ defined in range $(n_1, n_2)$, if $\{\phi_i[n] \mid i=1, 2, \ldots, N\}$ is a complete orthogonal basis in $\mathcal{S}$, $\forall x[n] \in \mathcal{S}$, it can be represented as a linear combination of the basis, i.e.,
+\begin{align*}
+  x[n] = \sum_{i=1}^N a_i \phi_i[n],
+\end{align*}
+where
+\begin{align*}
+  a_i = \dfrac{\sum_{n=n_1}^{n_2} x[n] \phi_i^{*}[n]}{\sum_{n=n_1}^{n_2}|\phi_i[n]|^2}, \quad i = 1, 2, \ldots, N.
 \end{align*}
 * Continuous Fourier Transform
 ** Definition
