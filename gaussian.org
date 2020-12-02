@@ -1,0 +1,30 @@
+#+title: Gaussian Distribution
+
+* Probability density function
+- $X \sim \mathcal{N}(\mu, \sigma^2)$
+  \begin{align*}
+    p(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right]
+  \end{align*}
+* Distribution function
+- Q-function
+  + Definition
+    \begin{align*}
+      Q(x) \triangleq \int_x^{\infty} \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right)dx
+    \end{align*}
+  + Properties
+    \begin{align*}
+      Q(-x) + Q(x) &= 1 \\
+      Q(0) &= \frac{1}{2}
+    \end{align*}
+- Error function and complementary error function
+  + Definitions
+    \begin{align*}
+      \text{erf}(x) &\triangleq \frac{2}{\sqrt{\pi}} \int_0^x \exp\left(-x^2\right)dx \\
+      \text{erfc}(x) &\triangleq \frac{2}{\sqrt{\pi}} \int_x^{\infty} \exp\left(-x^2\right)dx
+    \end{align*}
+  + Properties
+    \begin{align*}
+      \text{erf}(x) + \text{erfc}(x) &= 1 \\
+      \text{erf}(x) &= 1 - 2Q(\sqrt{2}x) \\
+      \text{erfc}(x) &= 2Q(\sqrt{2}x)
+    \end{align*}

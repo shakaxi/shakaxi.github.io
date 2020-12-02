@@ -43,7 +43,7 @@
   %% Theme setting
   % \setbeamercolor{frametitle}{fg=black}
   \setbeamercovered{transparent}
-  \hypersetup{pdfpagemode=FullScreen}
+  \hypersetup{pdfpagemode=FullScreen, colorlinks=true}
   \setbeamertemplate{caption}[numbered]
   \useinnertheme{circles}
   \useoutertheme{default}

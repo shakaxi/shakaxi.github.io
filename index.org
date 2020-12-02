@@ -32,6 +32,7 @@
 - [[file:fourier.org][Fourier Transform]]
 - [[file:gdb.org][GDB]]
 - [[file:grub.org][GRUB]]
+- [[file:gaussian.org][Gaussian Distribution]]
 - [[file:git.org][Git]]
 - [[file:gitlab.org][GitLab]]
 - [[file:x1c.org][Installation of ArchLinux on Thinkpad X1 Carbon 2018]]
