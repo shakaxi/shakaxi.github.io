@@ -1,0 +1,36 @@
+#+TITLE: C++ - Singleton
+
+*Singleton* plays an important role in program architecturing for its global visibility. For instance, system parameters are usually structured as a singleton. What deserves to be noticed, a singleton can be realized in a variety of manners.
+
+Taking C++ for instance, a typical singleton can be simply defined as
+* =singleton.h=
+#+begin_src c++
+  #ifndef SINGLETON_H
+  #define SINGLETON_H
+
+  class Singleton
+  {
+  private:
+      static Singleton *instance;
+      Singleton() = default;
+      Singleton(const Singleton &rhs) = delete;
+      Singleton& operator=(const Singleton &rhs) = delete;
+  public:
+      static Singleton* get_instance();
+  };
+
+  #endif /* SINGLETON_H */
+#+end_src
+* =singleton.cpp=
+#+begin_src c++
+  #include "singleton.h"
+
+  Singleton *Singleton::instance = nullptr;
+
+  Singleton* Singleton::get_instance()
+  {
+      if (instance == nullptr)
+          instance = new Singleton;
+      return instance;
+  }
+#+end_src

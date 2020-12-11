@@ -7,6 +7,7 @@
 - [[file:cpp_itpp.org][C++ - IT++]]
 - [[file:cpp_multithread.org][C++ - Multithread]]
 - [[file:cpp_polymorphism.org][C++ - Polymorphism]]
+- [[file:cpp_singleton.org][C++ - Singleton]]
 - [[file:cpp_stl.org][C++ - Standard Template Library]]
 - [[file:cpp_tp.org][C++ - Thread Pool]]
 - [[file:cpp_sl.org][C++ - 标准库]]
