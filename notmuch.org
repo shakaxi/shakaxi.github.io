@@ -87,12 +87,16 @@ or
 - =post-new= :: Hook/script provoked after command =notmuch new=, which is usually used to tag the newly imported mails.
 #+BEGIN_SRC sh
 #!/bin/sh
-notmuch tag -inbox +sent -- from:EMAILADDRESS
 notmuch tag -inbox +ML -- to:MAILLIST@EXAMPLE.COM
 notmuch tag -inbox +SOMEONE -- from:SOMEONE@EXAMPLE.COM
 /usr/bin/notmuch search --output=files tag:deleted OR tag:spam | xargs -r rm
 #+END_SRC
 - =post-insert= :: Hook/script called after command =notmuch insert=, which is provoked after mails are delivered, imported into database and labelled with initial tags.
+#+BEGIN_SRC sh
+#!/bin/sh
+notmuch tag -inbox -unread +sent -- from:MYEMAILADDRESS
+/usr/bin/notmuch search --output=files tag:deleted OR tag:spam | xargs -r rm
+#+END_SRC  
 ** Automatics
 - Add new intended task by =crontab -e= with following content
 #+BEGIN_SRC sh
