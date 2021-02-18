@@ -1,0 +1,28 @@
+#+title: C++ - Output Object
+
+In object oriented programming (OOP) based C++ program, we usually need to output the properties and members of one or more objects. In this case, overriding the ostream operator, =<<=, is a convenient and intuitional method. Here is an example for class =CLASS=.
+
+* =class.h=
+#+begin_src C++
+  #include <ostream>
+
+  class CLASS
+  {
+  private:
+      int mem_int;
+      double mem_double;
+  public:
+      CLASS();
+      friend std::ostream& operator<<(std::ostream& str, const CLASS& c);
+  };
+#+end_src
+* =class.cpp=
+#+begin_src C++
+  #include <class.h>
+
+  std::ostream& operator<<(std::ostream& str, const CLASS& c)
+  {
+      str << c.mem_int << ',' << c.mem_double;
+      return str;
+  }
+#+end_src

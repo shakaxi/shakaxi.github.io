@@ -6,6 +6,7 @@
 - [[file:cpp_basic.org][C++ - Basic]]
 - [[file:cpp_itpp.org][C++ - IT++]]
 - [[file:cpp_multithread.org][C++ - Multithread]]
+- [[file:cpp_class_output.org][C++ - Output Object]]
 - [[file:cpp_polymorphism.org][C++ - Polymorphism]]
 - [[file:cpp_singleton.org][C++ - Singleton]]
 - [[file:cpp_stl.org][C++ - Standard Template Library]]
