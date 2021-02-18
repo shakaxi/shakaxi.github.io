@@ -2,6 +2,7 @@
 
 - [[file:aurora.org][Aurora - A LaTeX Plugin for Microsoft Word]]
 - [[file:bash.org][Bash]]
+- [[file:beam_pattern.org][Beam Pattern]]
 - [[file:blog.org][Blog on GitHub]]
 - [[file:cpp_basic.org][C++ - Basic]]
 - [[file:cpp_itpp.org][C++ - IT++]]
