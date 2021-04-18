@@ -52,7 +52,7 @@ For DFT beams, the beamwidth depends on the aperture size of an antenna array. G
       w = np.zeros(n, dtype=complex)
       for g in np.arange(x):
           idx_range = grp_sz * g + np.arange(grp_sz)
-          w[idx_range] = w_prime[idx_range] * np.exp(-1j * np.pi * (idx_range - (n - 1) / 2) * np.cos(theta))
+          w[idx_range] = w_prime[idx_range] * np.exp(1j * np.pi * (idx_range - (n - 1) / 2) * np.cos(theta))
       return w / np.sqrt(n)
 #+end_src
 

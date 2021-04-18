@@ -82,6 +82,7 @@
 - [[file:python_basic.org][Python - Basic]]
 - [[file:python_data_type.org][Python - Data Type]]
 - [[file:python_pkg_mgmt.org][Python - Package Management]]
+- [[file:python_pytorch.org][Python - Pytorch]]
 - [[file:rcs.org][RCS]]
 - [[file:reg_exp.org][Regular Expression]]
 - [[file:capslk2ctrl.org][Remap CapsLock as Ctrl]]
