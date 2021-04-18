@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-02-18 Thu 17:45 -->
+<!-- 2021-04-19 Mon 00:29 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Beam Pattern</title>
@@ -334,7 +334,7 @@ def gen_wide_beam(n: int, theta: float, x: int) -&gt; np.ndarray:
     w = np.zeros(n, dtype=complex)
     for g in np.arange(x):
         idx_range = grp_sz * g + np.arange(grp_sz)
-        w[idx_range] = w_prime[idx_range] * np.exp(-1j * np.pi * (idx_range - (n - 1) / 2) * np.cos(theta))
+        w[idx_range] = w_prime[idx_range] * np.exp(1j * np.pi * (idx_range - (n - 1) / 2) * np.cos(theta))
     return w / np.sqrt(n)
 </pre>
 </div>
