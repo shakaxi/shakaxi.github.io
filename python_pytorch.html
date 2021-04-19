@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-19 Mon 01:24 -->
+<!-- 2021-04-20 Tue 00:57 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Pytorch</title>
@@ -230,6 +230,8 @@
 <li><a href="#org8e8d72f">定义网络</a></li>
 </ul>
 </li>
+<li><a href="#org973cbad">数据集</a></li>
+<li><a href="#org7845546">数据加载器</a></li>
 </ul>
 </div>
 </div>
@@ -298,6 +300,41 @@
 <li><code>torch.nn</code> 包中定义了很多损失函数(如 <code>torch.nn.MSELoss</code>)。</li>
 </ul>
 </div>
+</div>
+</div>
+<div id="outline-container-org973cbad" class="outline-2">
+<h2 id="org973cbad">数据集</h2>
+<div class="outline-text-2" id="text-org973cbad">
+<p>
+自定义的数据集可以通过定义以(<code>torch.utils.data.Dataset</code>)为基类的派生类完成。具体地，需要重载如下三个函数：
+</p>
+<ul class="org-ul">
+<li><code>__init__(self)</code>: 载入数据；</li>
+<li><code>__getitem__(self, index)</code>: 根据索引返回数据集中相应的样本点；</li>
+<li><code>__len(self)__</code>: 返回数据集的大小，也即数据集中样本点的数量。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7845546" class="outline-2">
+<h2 id="org7845546">数据加载器</h2>
+<div class="outline-text-2" id="text-org7845546">
+<p>
+基于自定义的数据集，可以使用类 <code>torch.utils.data.DataLoader</code> 来生成相应的数据加载器。如
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from torch.utils.data import Dataset, DataLoader
+dataloader = DataLoader(dataset=My_Dataset, batch_size=BATCH_SIZE, shuffle=SHUFFLE, num_workers=NUM_WORKERS)
+</pre>
+</div>
+<p>
+其中，
+</p>
+<ul class="org-ul">
+<li><code>My_Dataset</code> 为自定义的数据集；</li>
+<li><code>BATCH_SIZE</code> 为每个batch中含有的样本点个数；</li>
+<li><code>SHUFFLE</code> 为布尔型变量，用于指定数据集是否会被随机打乱顺序；</li>
+<li><code>NUM_WORKERS</code> 为用于数据加载的线程个数。</li>
+</ul>
 </div>
 </div>
 </div>
