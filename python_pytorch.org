@@ -2,6 +2,17 @@
 
 * 张量
 在pytorch中，神经网络的输入、输出、以及网络的参数等都采用了“张量”的数据结构。张量与numpy中的多维数组(=numpy.ndarray=)非常类似，区别在于张量可以在GPU或其他硬件上运行。
+
+- 成员函数名称末尾加上 =_= ，会采用替换模式，也即该成员函数直接修改张量对象本身。
+- =.item()= 返回其具体数值，该方法仅适用于大小为1（也即只含有一个元素）的张量。
+- =.view()= 功能为reshape该张量（保持元素个数不变），其参数为新的shape。特别地，值为-1的维度可以通过元素总数不变推导得出。
+- 定义一个张量时，可以通过参数 =device= 参数指定该张量存储于CPU还是GPU。也可以通过其成员函数 =.to()= 来转换。
+- 定义一个张量时，参数 =requires_grad=True= 表示需要计算并存储该张量的梯度。
+** 与 numpy.ndarray 相互转换
+- 张量的成员函数 =.numpy()= 返回对应的 =numpy.ndarray= 。但是，该方法仅适用于存储在CPU的张量。
+- 函数 =torch.from_numpy()= 可以将一个 =numpy.ndarray= 转换为张量。
+
+值得注意的是，当一个张量存储在CPU上时，该张量与其对应的 =numpy.ndarray= 是连接着的，也即对其中一个的修改会导致另一个也会被修改。
 * 神经网络
 ** 正向传播与反向传播
 神经网络的训练包括两个步骤
@@ -37,10 +48,10 @@
 基于自定义的数据集，可以使用类 =torch.utils.data.DataLoader= 来生成相应的数据加载器。如
 #+begin_src python
   from torch.utils.data import Dataset, DataLoader
-  dataloader = DataLoader(dataset=My_Dataset, batch_size=BATCH_SIZE, shuffle=SHUFFLE, num_workers=NUM_WORKERS)
+  dataloader = DataLoader(dataset=DATASET, batch_size=BATCH_SIZE, shuffle=SHUFFLE, num_workers=NUM_WORKERS)
 #+end_src
 其中，
-- =My_Dataset= 为自定义的数据集；
+- =DATASET= 为自定义的数据集；
 - =BATCH_SIZE= 为每个batch中含有的样本点个数；
 - =SHUFFLE= 为布尔型变量，用于指定数据集是否会被随机打乱顺序；
 - =NUM_WORKERS= 为用于数据加载的线程个数。
