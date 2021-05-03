@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
+<!-- 2021-05-04 Tue 00:36 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Data Type</title>
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -193,50 +193,26 @@
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 </head>
 <body>
@@ -246,6 +222,8 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
+<li><a href="#org8ffcafc">标量</a></li>
+<li><a href="#orga3b7bc9">日期和时间</a></li>
 <li><a href="#org0ca5969">元组</a></li>
 <li><a href="#org46ffde4">列表</a></li>
 <li><a href="#orgc74e6a2">内建序列函数</a></li>
@@ -255,7 +233,163 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
+<p>
+Python中的大部分对象，如列表、字典、 <code>Numpy</code> 数组都是可变对象，大多数用户定义的类型（类）也是可变的。可变对象中包含的对象和值是可以被修改的。但是有一些对象是不可变的，如字符串、元组。
+</p>
+<div id="outline-container-org8ffcafc" class="outline-2">
+<h2 id="org8ffcafc">标量</h2>
+<div class="outline-text-2" id="text-org8ffcafc">
+<p>
+Python的标准库中有一个小的内建类型集合，用来处理数值、字符串、布尔值以及日期和时间。这类“单值”类型被称为标量。主要的标量类型有
+</p>
+<ul class="org-ul">
+<li><code>int</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+<ul class="org-ul">
+<li>前缀 <code>0x</code> 表示16进制整数。</li>
+<li>整数除法会把结果自动转型为浮点数。</li>
+<li>如果需要C风格的整数除法（去掉小数部分），可以使用整除操作符 <code>//</code> 。</li>
+</ul></li>
+<li><code>float</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></li>
+<li><code>str</code>
+<ul class="org-ul">
+<li>可以使用单引号 <code>'</code> 或双引号 <code>"</code> 写一个字符串字面值。</li>
+<li>字符串是Unicode字符的序列，是不可改变的。很多Python对象可以通过函数 <code>str</code> 转成字符串。</li>
+<li>对于单个字符，函数 <code>ord</code> 把字符转换为其对应的整数表示；函数 <code>chr</code> 把编码转换为对应的字符。</li>
+<li>对于含有换行的多行字符串，可以使用三个单引号（ <code>'''</code> ）或三个双引号（ <code>"""</code> ）。</li>
+<li>反斜杠 <code>\</code> 是转移符号，它用来指明特殊符号。可以在字符串前面加上前缀符号 <code>r</code> （raw的简写）避免对字符串转义。</li>
+<li>字符串对象有一个 <code>format</code> 方法，可以用来代替字符串中的格式化参数，并产生一个新的字符串。</li>
+<li>带有前缀符号 <code>f</code> （format的简写）的字符串被称之为 <code>f-string</code> 。如果其包含 <code>{xxx}</code> ，就会以对应的变量替换。</li>
+</ul></li>
+<li><code>bool</code>
+<ul class="org-ul">
+<li>布尔值有两个： <code>True</code> 和 <code>False</code> 。</li>
+<li>布尔运算符包括： <code>and</code> ， <code>or</code> ， <code>not</code> 。</li>
+</ul></li>
+<li><code>None</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></li>
+<li><code>bytes</code>
+<ul class="org-ul">
+<li>字符串在内存中以Unicode表示，每个字符对应若干个字节。</li>
+<li>字符串在硬盘上存储或在网络上传输的时候，需要转换为以字节为单位的 <code>bytes</code> 类型。</li>
+<li>在Python中， <code>bytes</code> 类型的数据为以前缀 <code>b</code> 开头的单引号（如 <code>b'xyz'</code> ， <code>b"xyz"</code> ）或双引号表示。</li>
+<li><code>str</code> 的方法 <code>encode</code> 可以将其编码为制定的 <code>bytes</code> 。</li>
+<li><code>bytes</code> 的方法 <code>decode</code> 可以将其转换为字符串（ <code>str</code> ）。</li>
+<li><p>
+当Python源代码中包含中文时，必须指定UTF-8编码保存。为了让Python解释器按照UTF-8编码读取Python程序代码，通常在源代码文件指定UTF-8编码。例如，文件开头为
+</p>
+<div class="org-src-container">
+<pre class="src src-python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+</pre>
+</div></li>
+</ul></li>
+<li>常量
+<ul class="org-ul">
+<li>常量就是不能变的变量。在Python中，通常用全部大写的变量名来表示常量。</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga3b7bc9" class="outline-2">
+<h2 id="orga3b7bc9">日期和时间</h2>
+<div class="outline-text-2" id="text-orga3b7bc9">
+<p>
+Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， <code>date</code> 和 <code>time</code> 类型。
+</p>
+<ul class="org-ul">
+<li>对于 <code>datetime</code> 实例，可以分别使用 <code>date</code> 和 <code>time</code> 方法获取它的 <code>date</code> 和 <code>time</code> 对象。</li>
+<li><code>strftime</code> 方法可以将 <code>datetime</code> 转换为字符串。格式化说明见下表。</li>
+<li><code>strptime</code> 函数可以将字符串转换为 <code>datetime</code> 对象。</li>
+<li><code>datetime.datetime</code> 是不可变类型。</li>
+<li>两个不同的 <code>datetime</code> 对象可以产生一个 <code>datetime.timedelta</code> 对象。</li>
+</ul>
+<table>
 
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">类型</th>
+<th scope="col" class="org-left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">%Y</td>
+<td class="org-left">四位数年份</td>
+</tr>
+
+<tr>
+<td class="org-left">%y</td>
+<td class="org-left">两位数年份</td>
+</tr>
+
+<tr>
+<td class="org-left">%m</td>
+<td class="org-left">两位数月份[01, 12]</td>
+</tr>
+
+<tr>
+<td class="org-left">%d</td>
+<td class="org-left">两位数的天数[01, 31]</td>
+</tr>
+
+<tr>
+<td class="org-left">%H</td>
+<td class="org-left">小时（24小时制）[00, 23]</td>
+</tr>
+
+<tr>
+<td class="org-left">%I</td>
+<td class="org-left">小时（12小时制）[01, 12]</td>
+</tr>
+
+<tr>
+<td class="org-left">%M</td>
+<td class="org-left">两位数分钟[00, 59]</td>
+</tr>
+
+<tr>
+<td class="org-left">%S</td>
+<td class="org-left">秒</td>
+</tr>
+
+<tr>
+<td class="org-left">%w</td>
+<td class="org-left">星期[0, 6]</td>
+</tr>
+
+<tr>
+<td class="org-left">%U</td>
+<td class="org-left">一年中的第几个星期值（星期天是每周第一天）[00, 53]</td>
+</tr>
+
+<tr>
+<td class="org-left">%W</td>
+<td class="org-left">一年中的第几个星期值（星期一是每周第一天）[00, 53]</td>
+</tr>
+
+<tr>
+<td class="org-left">%z</td>
+<td class="org-left">UTC时区偏移值</td>
+</tr>
+
+<tr>
+<td class="org-left">%F</td>
+<td class="org-left">%Y-%m-%d的简写</td>
+</tr>
+
+<tr>
+<td class="org-left">%D</td>
+<td class="org-left">%m/%d/%y的简写</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="outline-container-org0ca5969" class="outline-2">
 <h2 id="org0ca5969">元组</h2>
 <div class="outline-text-2" id="text-org0ca5969">
@@ -263,7 +397,7 @@ for the JavaScript code in this tag.
 <li>元组是一种固定长度、不可变的Python对象序列。创建元组最简单的方法就是用逗号分隔序列值。</li>
 <li>元组可嵌套，通常需要用括号将值包起来。</li>
 <li>可以使用函数 <code>tuple</code> 将任意序列或迭代器转换为元组。</li>
-<li>元组可以通过中括号 <code>[]</code> 来索引（获取）元组的元素<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。</li>
+<li>元组可以通过中括号 <code>[]</code> 来索引（获取）元组的元素<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>。</li>
 <li>可以使用 <code>+</code> 连接元组生成更长的元组。</li>
 <li>如果需要将元组表达式赋值给变量，Python会对等号右边的值进行拆包。即使是嵌套元组，也可以拆包。拆包的一个常用场景就是遍历元组或列表的序列。拆包过程中，带有 <code>*</code> 前缀的变量名可以匹配任意长度的位置参数列表。为了方便，可以使用下划线 <code>_</code> 表示不想要的变量。</li>
 <li>方法 <code>count</code> 用于计算某个值在元组中出现的次数。</li>
@@ -389,6 +523,18 @@ for VALUE in COLLECTION:
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+可以存储任意大小数字。 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+双精度64位数值。 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+Python的 <code>null</code> 值，只存在一个实例。 如果一个函数没有显式的返回值，则它会隐式地返回 <code>None</code> 。它不仅是一个关键字，还是 <code>NoneType</code> 类型的唯一实例。
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
 索引从0开始。 
 </p></div></div>
 

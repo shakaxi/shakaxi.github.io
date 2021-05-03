@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
+<!-- 2021-05-04 Tue 00:36 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Basic</title>
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -193,50 +193,26 @@
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 </head>
 <body>
@@ -246,16 +222,18 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
+<li><a href="#org6342545">Python解释器</a>
+<ul>
+<li><a href="#orgc3b3911">CPython</a></li>
+<li><a href="#org7c51b0e">PyPy</a></li>
+<li><a href="#org0c8757f">Jython</a></li>
 <li><a href="#org6dffb6c">IPython</a></li>
+</ul>
+</li>
 <li><a href="#orgae68a55">Python语法</a>
 <ul>
 <li><a href="#org4340a0d">基础</a></li>
-<li><a href="#org0e0fd4f">基本类型</a>
-<ul>
-<li><a href="#org3bb1db1">字符串</a></li>
-<li><a href="#org71f09ec">日期和时间</a></li>
-</ul>
-</li>
+<li><a href="#orgafc1c25">输入输出</a></li>
 <li><a href="#org0c2effd">控制流</a></li>
 </ul>
 </li>
@@ -263,11 +241,42 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org6dffb6c" class="outline-2">
-<h2 id="org6dffb6c">IPython</h2>
-<div class="outline-text-2" id="text-org6dffb6c">
+<div id="outline-container-org6342545" class="outline-2">
+<h2 id="org6342545">Python解释器</h2>
+<div class="outline-text-2" id="text-org6342545">
 <p>
-IPython是一个加强版的Python解释器。
+Python程序运行时，需要Python解释器去执行 <code>.py</code> 文件。下面是一些常见的Python解释器。
+</p>
+</div>
+<div id="outline-container-orgc3b3911" class="outline-3">
+<h3 id="orgc3b3911">CPython</h3>
+<div class="outline-text-3" id="text-orgc3b3911">
+<p>
+当Python安装好之后，CPython解释器就已经安装好了。该解释器是用C语言开发的，所以被称为CPython。在终端执行 <code>python</code> 命令后启动的就是该解释器。
+</p>
+</div>
+</div>
+<div id="outline-container-org7c51b0e" class="outline-3">
+<h3 id="org7c51b0e">PyPy</h3>
+<div class="outline-text-3" id="text-org7c51b0e">
+<p>
+PyPy解释器采用JIT技术对Python程序代码进行动态编译，所以PyPy以执行速度见长。
+</p>
+</div>
+</div>
+<div id="outline-container-org0c8757f" class="outline-3">
+<h3 id="org0c8757f">Jython</h3>
+<div class="outline-text-3" id="text-org0c8757f">
+<p>
+Jython解释器可以将Python程序代码转换为Java字节码，在Java平台上运行。
+</p>
+</div>
+</div>
+<div id="outline-container-org6dffb6c" class="outline-3">
+<h3 id="org6dffb6c">IPython</h3>
+<div class="outline-text-3" id="text-org6dffb6c">
+<p>
+IPython是基于CPython之上的一个交互式（interactive）Python解释器，所以被称为IPython。
 </p>
 <ul class="org-ul">
 <li>没有内建到Python自身中的IPython特殊命令称为魔术命令，可以看作是IPython系统内部的命令行程序。魔术命令的前缀符号是百分号 <code>%</code> 。使用魔术命令也可以不加百分号，只要没有变量被定义与魔术函数名字相同即可。这种特性称为自动魔术，通过 <code>%automagic</code> 进行启动禁用。</li>
@@ -385,6 +394,7 @@ IPython是一个加强版的Python解释器。
 </p>
 </div>
 </div>
+</div>
 <div id="outline-container-orgae68a55" class="outline-2">
 <h2 id="orgae68a55">Python语法</h2>
 <div class="outline-text-2" id="text-orgae68a55">
@@ -426,129 +436,13 @@ isinstance(a, (int, float))
 </p>
 </div>
 </div>
-<div id="outline-container-org0e0fd4f" class="outline-3">
-<h3 id="org0e0fd4f">基本类型</h3>
-<div class="outline-text-3" id="text-org0e0fd4f">
-<p>
-Python中的大部分对象，如列表、字典、 <code>Numpy</code> 数组都是可变对象，大多数用户定义的类型（类）也是可变的。可变对象中包含的对象和值是可以被修改的。但是有一些对象是不可变的，如字符串、元组。
-</p>
-
-<p>
-Python的标准库中有一个小的内建类型集合，用来处理数值、字符串、布尔值以及日期和时间。这类“单值”类型被称为标量。主要的标量类型有 <code>None</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>、 <code>str</code> 、 <code>bytes</code> 、 <code>float</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> 、 <code>bool</code> 、 <code>int</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> 等。
-</p>
-
-<p>
-整数除法会把结果自动转型为浮点数。如果需要C风格的整数除法（去掉小数部分），可以使用整除操作符 <code>//</code> 。
-</p>
-</div>
-<div id="outline-container-org3bb1db1" class="outline-4">
-<h4 id="org3bb1db1">字符串</h4>
-<div class="outline-text-4" id="text-org3bb1db1">
-<p>
-字符串是Unicode字符的序列。可以使用单引号 <code>'</code> 或双引号 <code>"</code> 写一个字符串字面值。对于含有换行的多行字符串，可以使用三个单引号（ <code>'''</code> ）或三个双引号（ <code>"""</code> ）。另外，值得注意的是，字符串是不可改变的。很多Python对象可以通过函数 <code>str</code> 转成字符串。反斜杠 <code>\</code> 是转移符号，它用来指明特殊符号。可以在字符串前面加上前缀符号 <code>r</code> （raw的简写）避免对字符串转义。字符串对象有一个 <code>format</code> 方法，可以用来代替字符串中的格式化参数，并产生一个新的字符串。
-</p>
-</div>
-</div>
-<div id="outline-container-org71f09ec" class="outline-4">
-<h4 id="org71f09ec">日期和时间</h4>
-<div class="outline-text-4" id="text-org71f09ec">
-<p>
-Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， <code>date</code> 和 <code>time</code> 类型。
-</p>
+<div id="outline-container-orgafc1c25" class="outline-3">
+<h3 id="orgafc1c25">输入输出</h3>
+<div class="outline-text-3" id="text-orgafc1c25">
 <ul class="org-ul">
-<li>对于 <code>datetime</code> 实例，可以分别使用 <code>date</code> 和 <code>time</code> 方法获取它的 <code>date</code> 和 <code>time</code> 对象。</li>
-<li><code>strftime</code> 方法可以将 <code>datetime</code> 转换为字符串。格式化说明见下表。</li>
-<li><code>strptime</code> 函数可以将字符串转换为 <code>datetime</code> 对象。</li>
-<li><code>datetime.datetime</code> 是不可变类型。</li>
-<li>两个不同的 <code>datetime</code> 对象可以产生一个 <code>datetime.timedelta</code> 对象。</li>
+<li>函数 <code>print()</code> 可以接受一个字符串作为参数打印输出；也可以接受以逗号分隔的多个字符串作为参数，打印输出拼接起来的字符串（参数之间的分隔逗号会转化为空格）。</li>
+<li>函数 <code>intput()</code> 可以将用户在终端的输入赋给字符串变量。</li>
 </ul>
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">类型</th>
-<th scope="col" class="org-left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">%Y</td>
-<td class="org-left">四位数年份</td>
-</tr>
-
-<tr>
-<td class="org-left">%y</td>
-<td class="org-left">两位数年份</td>
-</tr>
-
-<tr>
-<td class="org-left">%m</td>
-<td class="org-left">两位数月份[01, 12]</td>
-</tr>
-
-<tr>
-<td class="org-left">%d</td>
-<td class="org-left">两位数的天数[01, 31]</td>
-</tr>
-
-<tr>
-<td class="org-left">%H</td>
-<td class="org-left">小时（24小时制）[00, 23]</td>
-</tr>
-
-<tr>
-<td class="org-left">%I</td>
-<td class="org-left">小时（12小时制）[01, 12]</td>
-</tr>
-
-<tr>
-<td class="org-left">%M</td>
-<td class="org-left">两位数分钟[00, 59]</td>
-</tr>
-
-<tr>
-<td class="org-left">%S</td>
-<td class="org-left">秒</td>
-</tr>
-
-<tr>
-<td class="org-left">%w</td>
-<td class="org-left">星期[0, 6]</td>
-</tr>
-
-<tr>
-<td class="org-left">%U</td>
-<td class="org-left">一年中的第几个星期值（星期天是每周第一天）[00, 53]</td>
-</tr>
-
-<tr>
-<td class="org-left">%W</td>
-<td class="org-left">一年中的第几个星期值（星期一是每周第一天）[00, 53]</td>
-</tr>
-
-<tr>
-<td class="org-left">%z</td>
-<td class="org-left">UTC时区偏移值</td>
-</tr>
-
-<tr>
-<td class="org-left">%F</td>
-<td class="org-left">%Y-%m-%d的简写</td>
-</tr>
-
-<tr>
-<td class="org-left">%D</td>
-<td class="org-left">%m/%d/%y的简写</td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 <div id="outline-container-org0c2effd" class="outline-3">
@@ -579,24 +473,6 @@ else:
 </div>
 </div>
 </div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-Python的 <code>null</code> 值，只存在一个实例。 如果一个函数没有显式的返回值，则它会隐式地返回 <code>None</code> 。它不仅是一个关键字，还是 <code>NoneType</code> 类型的唯一实例。
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-双精度64位数值。 
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
-可以存储任意大小数字。 
-</p></div></div>
-
-
 </div>
-</div></div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-04-20 Tue 00:57 -->
+<!-- 2021-05-04 Tue 00:36 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Pytorch</title>
@@ -222,7 +222,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd79d47d">张量</a></li>
+<li><a href="#orgd79d47d">张量</a>
+<ul>
+<li><a href="#orgaa01882">与 numpy.ndarray 相互转换</a></li>
+</ul>
+</li>
 <li><a href="#orgee97e64">神经网络</a>
 <ul>
 <li><a href="#org393490d">正向传播与反向传播</a></li>
@@ -242,6 +246,27 @@
 <p>
 在pytorch中，神经网络的输入、输出、以及网络的参数等都采用了“张量”的数据结构。张量与numpy中的多维数组(<code>numpy.ndarray</code>)非常类似，区别在于张量可以在GPU或其他硬件上运行。
 </p>
+
+<ul class="org-ul">
+<li>成员函数名称末尾加上 <code>_</code> ，会采用替换模式，也即该成员函数直接修改张量对象本身。</li>
+<li><code>.item()</code> 返回其具体数值，该方法仅适用于大小为1（也即只含有一个元素）的张量。</li>
+<li><code>.view()</code> 功能为reshape该张量（保持元素个数不变），其参数为新的shape。特别地，值为-1的维度可以通过元素总数不变推导得出。</li>
+<li>定义一个张量时，可以通过参数 <code>device</code> 参数指定该张量存储于CPU还是GPU。也可以通过其成员函数 <code>.to()</code> 来转换。</li>
+<li>定义一个张量时，参数 <code>requires_grad=True</code> 表示需要计算并存储该张量的梯度。</li>
+</ul>
+</div>
+<div id="outline-container-orgaa01882" class="outline-3">
+<h3 id="orgaa01882">与 numpy.ndarray 相互转换</h3>
+<div class="outline-text-3" id="text-orgaa01882">
+<ul class="org-ul">
+<li>张量的成员函数 <code>.numpy()</code> 返回对应的 <code>numpy.ndarray</code> 。但是，该方法仅适用于存储在CPU的张量。</li>
+<li>函数 <code>torch.from_numpy()</code> 可以将一个 <code>numpy.ndarray</code> 转换为张量。</li>
+</ul>
+
+<p>
+值得注意的是，当一个张量存储在CPU上时，该张量与其对应的 <code>numpy.ndarray</code> 是连接着的，也即对其中一个的修改会导致另一个也会被修改。
+</p>
+</div>
 </div>
 </div>
 <div id="outline-container-orgee97e64" class="outline-2">
@@ -323,14 +348,14 @@
 </p>
 <div class="org-src-container">
 <pre class="src src-python">from torch.utils.data import Dataset, DataLoader
-dataloader = DataLoader(dataset=My_Dataset, batch_size=BATCH_SIZE, shuffle=SHUFFLE, num_workers=NUM_WORKERS)
+dataloader = DataLoader(dataset=DATASET, batch_size=BATCH_SIZE, shuffle=SHUFFLE, num_workers=NUM_WORKERS)
 </pre>
 </div>
 <p>
 其中，
 </p>
 <ul class="org-ul">
-<li><code>My_Dataset</code> 为自定义的数据集；</li>
+<li><code>DATASET</code> 为自定义的数据集；</li>
 <li><code>BATCH_SIZE</code> 为每个batch中含有的样本点个数；</li>
 <li><code>SHUFFLE</code> 为布尔型变量，用于指定数据集是否会被随机打乱顺序；</li>
 <li><code>NUM_WORKERS</code> 为用于数据加载的线程个数。</li>
