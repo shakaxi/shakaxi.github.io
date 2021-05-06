@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-04 Tue 00:36 -->
+<!-- 2021-05-07 Fri 01:38 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Pytorch</title>
@@ -229,8 +229,8 @@
 </li>
 <li><a href="#orgee97e64">神经网络</a>
 <ul>
-<li><a href="#org393490d">正向传播与反向传播</a></li>
 <li><a href="#org6c9644c">典型训练过程</a></li>
+<li><a href="#org393490d">正向传播与反向传播</a></li>
 <li><a href="#org8e8d72f">定义网络</a></li>
 </ul>
 </li>
@@ -252,7 +252,13 @@
 <li><code>.item()</code> 返回其具体数值，该方法仅适用于大小为1（也即只含有一个元素）的张量。</li>
 <li><code>.view()</code> 功能为reshape该张量（保持元素个数不变），其参数为新的shape。特别地，值为-1的维度可以通过元素总数不变推导得出。</li>
 <li>定义一个张量时，可以通过参数 <code>device</code> 参数指定该张量存储于CPU还是GPU。也可以通过其成员函数 <code>.to()</code> 来转换。</li>
-<li>定义一个张量时，参数 <code>requires_grad=True</code> 表示需要计算并存储该张量的梯度。</li>
+<li>定义一个张量时，参数 <code>requires_grad=True</code> 表示需要计算并存储对于该张量的梯度。该张量的函数均带有 <code>grad_fn</code> 属性。对于其任一函数，当调用其成员函数 <code>.backward()</code> 时，该函数对于该张量自变量的梯度将会被计算并保存在该张量的 <code>.grad</code> 属性中。</li>
+<li>有时候需要停止跟踪记录某个张量（记为 <code>x</code> ）的梯度（比如在更新网络参数的权重系数时），可以采用以下任一方式：
+<ol class="org-ol">
+<li>调用该张量的成员函数 <code>x.requires_grad_(False)</code> 。</li>
+<li>调用该张量的成员函数 <code>x.detach()</code> 会产生一个新的张量，其属性 <code>requires_grad=False</code> 。</li>
+<li>采用with语句，也即 <code>with torch.no_grad():</code> 。</li>
+</ol></li>
 </ul>
 </div>
 <div id="outline-container-orgaa01882" class="outline-3">
@@ -272,6 +278,19 @@
 <div id="outline-container-orgee97e64" class="outline-2">
 <h2 id="orgee97e64">神经网络</h2>
 <div class="outline-text-2" id="text-orgee97e64">
+</div>
+<div id="outline-container-org6c9644c" class="outline-3">
+<h3 id="org6c9644c">典型训练过程</h3>
+<div class="outline-text-3" id="text-org6c9644c">
+<ul class="org-ul">
+<li>构建含有一些可学习参数(或权重)的神经网络。</li>
+<li>遍历训练数据集。</li>
+<li>让输入通过网络得到输出。</li>
+<li>计算预测误差(或损失函数)。</li>
+<li>通过反向传播，计算并存储网络各个参数的梯度。</li>
+<li>根据各个参数的梯度对其进行调整，如 <code>weight = weight - learning_rate x gradient</code> 。</li>
+</ul>
+</div>
 </div>
 <div id="outline-container-org393490d" class="outline-3">
 <h3 id="org393490d">正向传播与反向传播</h3>
@@ -293,19 +312,6 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org6c9644c" class="outline-3">
-<h3 id="org6c9644c">典型训练过程</h3>
-<div class="outline-text-3" id="text-org6c9644c">
-<ul class="org-ul">
-<li>构建含有一些可学习参数(或权重)的神经网络。</li>
-<li>遍历训练数据集。</li>
-<li>让输入通过网络得到输出。</li>
-<li>计算预测误差(或损失函数)。</li>
-<li>通过反向传播，计算并存储网络各个参数的梯度。</li>
-<li>根据各个参数的梯度对其进行调整，如 <code>weight = weight - learning_rate x gradient</code> 。</li>
-</ul>
-</div>
-</div>
 <div id="outline-container-org8e8d72f" class="outline-3">
 <h3 id="org8e8d72f">定义网络</h3>
 <div class="outline-text-3" id="text-org8e8d72f">
@@ -317,7 +323,7 @@
 <ul class="org-ul">
 <li>网络的各个层(作为类属性)，如输入层、输出层、隐藏层等。</li>
 <li>成员函数 <code>.forward</code> 。</li>
-<li>成员函数 <code>.zero_grad</code> ，用于清空神经网络中所有参数的梯度缓冲区。</li>
+<li>成员函数 <code>.zero_grad</code> ，用于清空神经网络中所有参数的梯度缓冲区。相当于整个网络中属性 <code>requires_grad=True</code> 的张量均调用成员函数 <code>.grad.zero_()</code> 。</li>
 </ul></li>
 <li>构建神经网络可以通过定义以 <code>torch.nn.Module</code> 为基类的派生类完成。</li>
 <li>只需要在派生类中重载成员函数 <code>.forward</code> ， <code>torch.autograd</code> 就会自动为网络各个参数定义 <code>.backward()</code> 函数。</li>
