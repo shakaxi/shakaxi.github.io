@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-16 Sun 22:58 -->
+<!-- 2021-05-23 Sun 23:41 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Neural Network</title>
+<title>Python - Matplotlib</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -214,157 +214,174 @@
     /*]]>*///-->
 // @license-end
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Neural Network</h1>
+<h1 class="title">Python - Matplotlib</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org293d2d4">Introducation</a></li>
-<li><a href="#org4036bd1">McCulloch and Pitts (M-P) model for neurons</a></li>
-<li><a href="#org158e034">Activation function</a>
+<li><a href="#org04ae2c5">Background</a></li>
+<li><a href="#org194a4f0">Installation</a></li>
+<li><a href="#org4e3de93">Submodules</a></li>
+<li><a href="#org44ce68d">General Concepts</a>
 <ul>
-<li><a href="#orgbe2295e">Sign</a></li>
-<li><a href="#orgbcc713e">Sigmoid</a></li>
-<li><a href="#orgb288a8c">Tanh</a></li>
-<li><a href="#org878c4a9">ReLU</a></li>
-<li><a href="#org83764e7">Softmax</a></li>
+<li><a href="#org36a1600"><code>Figure</code></a></li>
+<li><a href="#orgca2aa93"><code>Axes</code></a></li>
+<li><a href="#orgcda3537"><code>Axis</code></a></li>
 </ul>
 </li>
-<li><a href="#org174b64d">Cost function</a>
+<li><a href="#org26f0e43">Interfaces</a>
 <ul>
-<li><a href="#org3881692">Cross-entropy</a></li>
+<li><a href="#org65c37cf">Object-oriented (OO) style</a></li>
+<li><a href="#org3f3a8b8">Pyplot style</a></li>
 </ul>
 </li>
-<li><a href="#org3152955">Multi-layer feedforward neural network</a></li>
+<li><a href="#org52bf2f1">References</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org293d2d4" class="outline-2">
-<h2 id="org293d2d4">Introducation</h2>
-<div class="outline-text-2" id="text-org293d2d4">
+<div id="outline-container-org04ae2c5" class="outline-2">
+<h2 id="org04ae2c5">Background</h2>
+<div class="outline-text-2" id="text-org04ae2c5">
+<p>
+<a href="https://matplotlib.org">Matplotlib</a> is a popular python package for figure plot and data visualization.
+</p>
+</div>
+</div>
+<div id="outline-container-org194a4f0" class="outline-2">
+<h2 id="org194a4f0">Installation</h2>
+<div class="outline-text-2" id="text-org194a4f0">
+<div class="org-src-container">
+<pre class="src src-python">pip install matplotlib
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e3de93" class="outline-2">
+<h2 id="org4e3de93">Submodules</h2>
+<div class="outline-text-2" id="text-org4e3de93">
+<p>
+Matplotlib comes with a series of submodules, e.g.,
+</p>
 <ul class="org-ul">
-<li>The network is composed of an input layer, an output layer, and optionally a series of hidden layers.</li>
-<li>Input layer does not carry out any operation/function, but the hidden and output layers consist of functional neurons, i.e., have activation functions.</li>
+<li><code>matplotlib.pyplot</code> is the counterpart of Matlab in matplotlib, which is essentially a collection of functions similar to Matlab.</li>
+<li><code>matplotlib.pylab</code> is a convenience module which imports <code>matplotlib.pyplot</code> (for plotting) and <code>numpy</code> (for array related operations) in a single name space.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4036bd1" class="outline-2">
-<h2 id="org4036bd1">McCulloch and Pitts (M-P) model for neurons</h2>
-<div class="outline-text-2" id="text-org4036bd1">
-\begin{align*}
-  y = f(\mathbf{w} \mathbf{x} - \theta)
-\end{align*}
+<div id="outline-container-org44ce68d" class="outline-2">
+<h2 id="org44ce68d">General Concepts</h2>
+<div class="outline-text-2" id="text-org44ce68d">
 <p>
-where \(f\) is termed <i>activation function</i>.
+In Matplotlib, there are some important concepts which can be illustrated in <a href="#org4b1b7e1">Figure 1</a>. A typical matplotlib <code>Figure</code> is comprised of a variety of components, as show in <a href="#org079e109">Figure 2</a>.
 </p>
-</div>
-</div>
-<div id="outline-container-org158e034" class="outline-2">
-<h2 id="org158e034">Activation function</h2>
-<div class="outline-text-2" id="text-org158e034">
-<p>
-Activation function aims to introduce the non-linear capability, compensate the shortage of linear models.
+
+<div id="org4b1b7e1" class="figure">
+<p><img src="matplotlib_concept.png" alt="matplotlib_concept.png" width="300px">
 </p>
+<p><span class="figure-number">Figure 1: </span>Basic concepts in Matplotlib (from <a href="https://matplotlib.org/1.5.1/faq/usage_faq.html">https://matplotlib.org/1.5.1/faq/usage_faq.html</a>)</p>
 </div>
-<div id="outline-container-orgbe2295e" class="outline-3">
-<h3 id="orgbe2295e">Sign</h3>
-<div class="outline-text-3" id="text-orgbe2295e">
-\begin{align*}
-  \text{sign}(x) = \begin{cases}
-    1, & x \ge 0; \\
-    0, & x < 0.
-  \end{cases}
-\end{align*}
-</div>
-</div>
-<div id="outline-container-orgbcc713e" class="outline-3">
-<h3 id="orgbcc713e">Sigmoid</h3>
-<div class="outline-text-3" id="text-orgbcc713e">
-\begin{align*}
-  \text{sigmoid}(x) = \frac{1}{1 + e^{-x}}.
-\end{align*}
-</div>
-</div>
-<div id="outline-container-orgb288a8c" class="outline-3">
-<h3 id="orgb288a8c">Tanh</h3>
-<div class="outline-text-3" id="text-orgb288a8c">
-\begin{align*}
-  \text{tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}.
-\end{align*}
-</div>
-</div>
-<div id="outline-container-org878c4a9" class="outline-3">
-<h3 id="org878c4a9">ReLU</h3>
-<div class="outline-text-3" id="text-org878c4a9">
-\begin{align*}
-  \text{ReLU}(x) = \max(x, 0)
-\end{align*}
-</div>
-</div>
-<div id="outline-container-org83764e7" class="outline-3">
-<h3 id="org83764e7">Softmax</h3>
-<div class="outline-text-3" id="text-org83764e7">
-<p>
-Softmax function can transform scores/logits into a valid probability distribution.
+
+<div id="org079e109" class="figure">
+<p><img src="matplotlib_fig_component.png" alt="matplotlib_fig_component.png" width="300px">
 </p>
-\begin{align*}
-  \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
-\end{align*}
+<p><span class="figure-number">Figure 2: </span>Components of a figure in Matplotlib (from <a href="https://matplotlib.org/stable/tutorials/introductory/usage.html">https://matplotlib.org/stable/tutorials/introductory/usage.html</a>)</p>
 </div>
 </div>
-</div>
-<div id="outline-container-org174b64d" class="outline-2">
-<h2 id="org174b64d">Cost function</h2>
-<div class="outline-text-2" id="text-org174b64d">
-</div>
-<div id="outline-container-org3881692" class="outline-3">
-<h3 id="org3881692">Cross-entropy</h3>
-<div class="outline-text-3" id="text-org3881692">
-\begin{align*}
-  \mathcal{H}_{p}(p^{\prime}) = \sum_{i}p_{i}\log\frac{1}{p^{\prime}_i}
-\end{align*}
-<p>
-where
-</p>
+<div id="outline-container-org36a1600" class="outline-3">
+<h3 id="org36a1600"><code>Figure</code></h3>
+<div class="outline-text-3" id="text-org36a1600">
 <ul class="org-ul">
-<li>\(p\) is the true probability distribution.</li>
-<li>\(p^\prime\) is the predicted probability distribution.</li>
+<li><p>
+A <code>Figure</code> object is essentially a canvas on which plot operations are performed. Clearly, it consists of one or more <code>Axes</code> objects.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import matplotlib.pyplot as plt
+
+# Create an empty Figure object without any Axes.
+fig = plt.figure()
+fig = plt.figure(figsize=(WIDTH, HEIGHT), dpi=DPI)
+
+# Create a Figure object including one Axes.
+fig, ax = plt.subplots()
+
+# Create a Figure object including 2 x 3 Axes.
+fig, ax = plt.subplots(2, 3)
+</pre>
+</div></li>
+<li><code>matplotlib.pyplot.gcf()</code> can get the current <code>Figure</code> object.</li>
 </ul>
 </div>
 </div>
-</div>
-<div id="outline-container-org3152955" class="outline-2">
-<h2 id="org3152955">Multi-layer feedforward neural network</h2>
-<div class="outline-text-2" id="text-org3152955">
+<div id="outline-container-orgca2aa93" class="outline-3">
+<h3 id="orgca2aa93"><code>Axes</code></h3>
+<div class="outline-text-3" id="text-orgca2aa93">
 <ul class="org-ul">
-<li>Full connection between neurons of the adjacent ranks.</li>
-<li>No connection between neurons of the identical rank.</li>
+<li>Create <code>Axes</code> objects.
+<ul class="org-ul">
+<li><code>matplotlib.pyplot.subplots</code></li>
+<li><code>figure.add_axes</code></li>
+</ul></li>
+<li>A <code>Axes</code> object consists of a multiplicity <code>Axis</code> objects, e.g.,
+<ul class="org-ul">
+<li>2 <code>Axis</code> objects in a 2-dimension plot, e.g.., X-axis and Y-axis.</li>
+<li>3 <code>Axis</code> objects in a 3-dimension plot, e.g.., X-axis, Y-axis, and Z-axis.</li>
+</ul></li>
+<li>A <code>Figure</code> object's member function <code>gca()</code> can get the current <code>Axes</code> object.</li>
+<li>A <code>Figure</code> object's member function <code>subplots</code> can create one or more <code>Axes</code> objects.</li>
+<li>Member functions
+<ul class="org-ul">
+<li><code>plot(X, Y)</code></li>
+<li><code>set_xlabel("XLABEL")</code></li>
+<li><code>set_ylabel("YLABEL")</code></li>
+<li><code>set_title("TITLE")</code></li>
+<li><code>legend()</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcda3537" class="outline-3">
+<h3 id="orgcda3537"><code>Axis</code></h3>
+<div class="outline-text-3" id="text-orgcda3537">
+<p>
+Just as its name indicates, a <code>Axis</code> object defines the properties and attributes of a axis, e.g., limits, ticks, and ticklabels.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org26f0e43" class="outline-2">
+<h2 id="org26f0e43">Interfaces</h2>
+<div class="outline-text-2" id="text-org26f0e43">
+<p>
+As written in the tutorial, there are a couple of API styles provided by matplotlib.
+</p>
+</div>
+<div id="outline-container-org65c37cf" class="outline-3">
+<h3 id="org65c37cf">Object-oriented (OO) style</h3>
+<div class="outline-text-3" id="text-org65c37cf">
+<p>
+<code>Figures</code> and <code>Axes</code> objects are created and their member functions are provoked explicitly.
+</p>
+</div>
+</div>
+<div id="outline-container-org3f3a8b8" class="outline-3">
+<h3 id="org3f3a8b8">Pyplot style</h3>
+<div class="outline-text-3" id="text-org3f3a8b8">
+<p>
+<code>matplotlib.pyplot</code> directly provokes its own functions, e.g., <code>plot</code>, <code>xlabel</code>, <code>ylabel</code>, <code>title</code>, <code>legend</code>, etc.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52bf2f1" class="outline-2">
+<h2 id="org52bf2f1">References</h2>
+<div class="outline-text-2" id="text-org52bf2f1">
+<ul class="org-ul">
+<li><a href="https://matplotlib.org">https://matplotlib.org</a></li>
 </ul>
 </div>
 </div>
