@@ -1,0 +1,78 @@
+#+title: Python - Matplotlib
+
+* Background
+[[https://matplotlib.org][Matplotlib]] is a popular python package for figure plot and data visualization.
+* Installation
+#+begin_src python
+  pip install matplotlib
+#+end_src
+* Submodules
+Matplotlib comes with a series of submodules, e.g.,
+- =matplotlib.pyplot= is the counterpart of Matlab in matplotlib, which is essentially a collection of functions similar to Matlab.
+- =matplotlib.pylab= is a convenience module which imports =matplotlib.pyplot= (for plotting) and =numpy= (for array related operations) in a single name space.
+* General Concepts
+In Matplotlib, there are some important concepts which can be illustrated in [[fig:matplotlib-concept][Figure 1]]. A typical matplotlib =Figure= is comprised of a variety of components, as show in [[fig:matplotlib-fig-component][Figure 2]].
+#+name: fig:matplotlib-concept
+#+caption: Basic concepts in Matplotlib (from https://matplotlib.org/1.5.1/faq/usage_faq.html)
+#+attr_html: :width 300px
+[[file:matplotlib_concept.png]]
+#+name: fig:matplotlib-fig-component
+#+caption: Components of a figure in Matplotlib (from https://matplotlib.org/stable/tutorials/introductory/usage.html)
+#+attr_html: :width 300px
+[[file:matplotlib_fig_component.png]]
+** =Figure=
+- A =Figure= object is essentially a canvas on which plot operations are performed. Clearly, it consists of one or more =Axes= objects.
+  #+begin_src python
+    import matplotlib.pyplot as plt
+
+    # Create an empty Figure object without any Axes.
+    fig = plt.figure()
+    fig = plt.figure(figsize=(WIDTH, HEIGHT), dpi=DPI)
+
+    # Create a Figure object including one Axes.
+    fig, ax = plt.subplots()
+
+    # Create a Figure object including 2 x 3 Axes.
+    fig, ax = plt.subplots(2, 3)
+#+end_src
+- =matplotlib.pyplot.gcf()= can get the current =Figure= object.
+** =Axes=
+- Create =Axes= objects.
+  + =matplotlib.pyplot.subplots=
+  + =figure.add_axes=
+- A =Axes= object consists of a multiplicity =Axis= objects, e.g.,
+  + 2 =Axis= objects in a 2-dimension plot, e.g.., X-axis and Y-axis.
+  + 3 =Axis= objects in a 3-dimension plot, e.g.., X-axis, Y-axis, and Z-axis.
+- A =Figure= object's member function =gca()= can get the current =Axes= object.
+- A =Figure= object's member function =subplots= can create one or more =Axes= objects.  
+- Member functions
+  + =plot(X, Y)=
+  + =set_xlabel("XLABEL")=
+  + =set_ylabel("YLABEL")=
+  + =set_title("TITLE")=
+  + =set_xticks("XTICKS")=
+  + =set_yticks("YTICKS")=
+  + =set_xlim([XMIN, XMAX])=
+  + =set_ylim([YMIN, YMAX])=
+  + =legend()=
+  + =set_prop_cycle()= : Set the random seed of colors, e.g., =None= for reset to the default.
+** =Axis=
+Just as its name indicates, a =Axis= object defines the properties and attributes of a axis, e.g., limits, ticks, and ticklabels.
+* Interfaces
+As written in the tutorial, there are a couple of API styles provided by matplotlib.
+** Object-oriented (OO) style
+=Figures= and =Axes= objects are created and their member functions are provoked explicitly.
+** Pyplot style
+=matplotlib.pyplot= directly provokes its own functions, e.g., =plot=, =xlabel=, =ylabel=, =title=, =legend=, etc.
+
+* Miscellaneous
+** Default settings
+#+begin_src python
+  import matplotlib.pyplot as plt
+
+  plt.rcParams['font.family'] = "Consolas"
+  plt.rcParams['font.size'] = 12
+  plt.rcParams['savefig.dpi'] = 300
+#+end_src
+* References
+- https://matplotlib.org
