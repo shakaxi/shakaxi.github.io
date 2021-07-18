@@ -1,0 +1,85 @@
+#+title: Python - Pandas
+
+=Pandas= 支持大部分 =numpy= 语言风格的数组计算。尽管代码风格相似，但最大的不同在于前者是用来处理表格或不同类型数据的，而后者更适合处理相同类型数据的。
+
+* 数据结构
+** Series
+- =Series= 是一维数组的对象，包含 =index= 序列和 =values= 序列，分别可以通过对象的 =index= 和 =values= 属性获得。
+- 通常需要创建一个index序列来标识每个数据点。如果不显式指定，那么默认 =index= 为从0到N-1，其中N为Series对象的长度。
+- =index= 可以用来索引数据，在这种意义上， =Series= 就像一个有序的字典。 另外，可以通过字典直接生成 =Series= 对象。
+- =pandas= 用 =NaN (not a number)= 来标记缺失或NA值，用 =isnull= 和 =notnull= 函数来检查 =Series= 对象。同时， =isnull= 和 =notnull= 也是 =Series= 类的成员函数。
+** DataFrame
+- =DataFrame= 是二维数据表，既有行索引，又有列索引。可以通过属性 =T= 进行转置。每一列可以是不同的类型（数值、字符串、布尔值等）。
+- 和 =Series= 类似， =DataFrame= 的 =values= 属性会将数据以二维ndarray形式返回。
+- 虽然 =DataFrame= 是二维的，但是可以通过分层索引扩展到更高维度的数据。
+- 在将列表或数组赋值给某一列时，列表或数组的长度必须和 =DataFrame= 对象的长度相等。将 =Series= 对象赋值给某一列时， 其索引会按照 =DataFrame= 对象的索引重新排序，并用缺失值填充空缺位置。
+** 索引对象
+- =Pandas= 中的索引对象是用于存储轴标签和其他元数据的。构建 =Series= 或 =DataFrame= 对象时所使用的数组或标签序列都可以在内部转换为索引对象。
+- 索引对象是不可变的，不能修改。
+- 索引对象的 =is_unique= 属性可以返回其标签是否唯一。
+* 基本功能
+- 成员函数 =reindex= : 重建索引。支持如下参数：
+  + =index= : 作为新索引的序列。
+  + =level= : 匹配 =MultiIndex= 级别的简单索引。
+- 成员函数 =drop= : 删除行或列，参数为行或列索引列表。在删除列时，需要增加参数axis=1或axis='columns'。
+- 成员函数 =head()= 返回前五行。
+- 成员函数 =set_index= (参数可以为单个列名或多个列名的列表) 将选中的列转换为索引。
+- 成员函数 =filter(regex=KEYWORD)= 可以通过正则表达式对列名进行过滤筛选，返回一个符合筛选条件的新 =DataFrame= 。
+- 成员函数 =apply= 可以将函数应用到一列或一行的一维数组上。特别地，如果应用到行，除了函数作为参数外，还需要增加参数axis='columns'。另外，传递给apply的函数并不一定要返回一个标量值，也可以返回带有多个值的Series。
+- 成员函数 =applymap= 可以将函数应用到每一个元素上。
+- 成员函数 =plot= 可以直接调用 =matplotlib= 绘图。默认地，以索引作为x轴，各个数据列为y轴，列名作为图例名称。但是其行为可以定制。例如，
+  #+begin_src python
+    df.plot(ax=AX, x=COL1_NAME, y=COL2_NAME, title=TITLE, xlabel=XLABEL, ylabel=YLABEL, grid=True/False, legend=True/False, linestyle=LINESTYLE, xlim=[XMIN, XMAX], ylim=[YMIN, YMAX])
+  #+end_src
+- 成员函数 =sort_index= 可以按照行索引或列索引进行字典型排序，该方法返回一个新的排序好的 =DataFrame= 对象。
+  + 默认为按行排序。可以通过参数 =axis=1= 来按列排序。
+  + 默认为升序排序，可以通过参数 =ascending=False= 来降序排列。
+- 成员函数 =sort_values= 可以根据值来对 =Series= 对象或者 =DataFrame= 对象排序。
+  + 对于 =DataFrame= 对象，可以通过将列名或列名列表作为参数传给可选参数 =by= 来根据一列或者多列的值排序。
+- =DataFrame= 对象可以通过行索引返回 =Series= 对象，如 =DataFrame.loc['index_name']= 或 =DataFrame.iloc['index']= 。
+- =DataFrame= 对象可以通过列索引返回 =Series= 对象，如 =DataFrame.loc[:, 'index_name']= 或 =DataFrame.iloc[:, 'index']= 或 =DataFrame['column_name']= ，如果列名无效，那么会新建列。此外， =DataFrame.column_name= 也能达到相同目的，但仅当列名存在时才有效时。值得注意的是，索引的列是数据的视图，而不是拷贝。因此，对返回 =Series= 对象的修改会映射到 =DataFrame= 对象。如果需要复制，需要调用 =Series= 类的 =copy= 成员函数。
+- =DataFrame= 对象可以通过行列索引来返回单个标量值，如 =DataFrame.at['row_index_name', 'column_index_name']= 或 =DataFrame.iat['row_index, 'column_index']= 。
+- =concat= : 合并多个Series或DataFrame。例如，
+  #+begin_src python
+    import pandas as pd
+
+    df = pd.concat([df1, df2], axis=1)
+  #+end_src
+** 计算统计
+*** 可选参数
+| 参数     | 描述                                                 |
+|----------+------------------------------------------------------|
+| =axis=   | 归约轴，0为行，1为列。                               |
+| =skipna= | 是否跳过NaN ，默认值为 =True= 。                     |
+| =level=  | 如果是多层索引（MultiIndex），该参数可以降低索引层数。 |
+*** 汇总
+| 方法            | 描述                                      |
+|-----------------+-------------------------------------------|
+| =count=         | 非NaN值的个数                             |
+| =describe=      | Series对象或DataFrame对象各列的统计汇总。 |
+| =min/max=       | 最小/大值                                 |
+| =argmin/argmax= | 最小/大值的索引                           |
+| =idxmin/idxmax= |                                           |
+| =quantile=      | 计算0到1之间的分位数。                    |
+| =sum=           | 和                                        |
+| =mean=          | 均值                                      |
+| =prod=          | 积                                        |
+| =median=        | 中位数（0.5分位数）                       |
+| =mad=           |                                           |
+| =var=           | 方差                                      |
+| =std=           | 标准差                                    |
+| =skew=          |                                           |
+| =kurt=          |                                           |
+| =cumsum=        | 累加值                                    |
+| =cummin/cummax= |                                           |
+| =cumprod=       | 累积值                                    |
+| =diff=          |                                           |
+| =pct_change=    | 百分比                                       |
+* 输入输出
+- =read_csv=
+  #+begin_src python
+    import pandas as pd
+
+    df = pd.read_csv(FILENAME, [skiprows=N], [names=[COL1, COL2, COL3, ...]], [index_col=[0, 1]])
+  #+end_src
+- =to_csv=

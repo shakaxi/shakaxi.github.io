@@ -83,6 +83,7 @@
 - [[file:python_data_type.org][Python - Data Type]]
 - [[file:python_matplotlib.org][Python - Matplotlib]]
 - [[file:python_pkg_mgmt.org][Python - Package Management]]
+- [[file:python_pandas.org][Python - Pandas]]
 - [[file:python_pytorch.org][Python - Pytorch]]
 - [[file:python_virtualenv.org][Python - Virtual Environment]]
 - [[file:rcs.org][RCS]]
