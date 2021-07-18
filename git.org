@@ -112,31 +112,6 @@ The commands take the all/or the specific file(s) that have been staged with =gi
   git commit --amend [-m MESSAGE]
   git commit --amend [FILE]
 #+end_src
-*** Rebase
-Taking rebasing the current branch, e.g. =BRANCH_NAME=, onto a target, e.g. =master= branch, for instance, a basic work flow for =git rebase= can be listed as follows.
-#+begin_src sh
-  # Switch to branch BRANCH_NAME.
-  git checkout BRANCH_NAME
-
-  # Rebase the related commits onto master branch.
-  git rebase master
-
-  # For any conflicts, several cycles of following steps are indispensable.
-  # 1) Resolve the conflicts manually.
-  # 2) Add the revised files by "git add".
-  # 3) Continue the rebasing operation by "git rebase --continue" until all the conflicts resolved.
-
-  # Switch back to master branch.
-  git checkout master
-
-  # Merge BRANCH_NAME into master in a fast-forward way.
-  git merge BRANCH_NAME
-#+end_src
-
-An interactive interface is available if option =-i= is given whereby a variety of operations can be completed, e.g., =pick=, =reword=, =edit=, =squash=, =fixup=, =exec=, =drop=.
-#+begin_src sh
-  git rebase -i TARGET
-#+end_src
 *** Branch operations
 - List all the local/remote branches.
 #+begin_src sh
@@ -183,9 +158,17 @@ Git labels the difference between branches, e.g.,
 #+end_src
 In this case, manual merge (edit) is necessary. After that, add the merged files into index area (=git add=) and commit them (=git commit=). At the stage of merge, if possible, git always tries to merge branches using =fast forward= by default. However, it can be disabled by option =--no-ff=, i.e.,
 #+begin_src sh
-  git merge --no-ff BRANCH_NAME
+  git merge [--no-ff] BRANCH_NAME
 #+end_src
 Clearly, =git merge= will keep the history of a series of commits and produce a new commit; while =git rebase= will guarantee a linear commit history without generating any new commits.
+- Cherry-pick can pick/merge the revisions of one or more commits into the current branch.
+  #+begin_src sh
+    git cherry-pick COMMIT_HASH
+  #+end_src
+- Rebase is another operation to merge branch, which moves the revisions in the current branch to a target branch. Compared to =merge=, =rebase= has linear and clear commit history.
+  #+begin_src sh
+    git rebase BRANCH_NAME
+  #+end_src
 - Remove a local branch.
 #+begin_src sh
   git branch -d BRANCH_NAME
@@ -198,6 +181,31 @@ Clearly, =git merge= will keep the history of a series of commits and produce a 
 #+begin_src sh
   git push origin --delete BRANCH_NAME
   git branch -dr REMOTE_NAME/BRANCH_NAME
+#+end_src
+*** Rebase
+Taking rebasing the current branch, e.g. =BRANCH_NAME=, onto a target, e.g. =master= branch, for instance, a basic work flow for =git rebase= can be listed as follows.
+#+begin_src sh
+  # Switch to branch BRANCH_NAME.
+  git checkout BRANCH_NAME
+
+  # Rebase the related commits onto master branch.
+  git rebase master
+
+  # For any conflicts, several cycles of following steps are indispensable.
+  # 1) Resolve the conflicts manually.
+  # 2) Add the revised files by "git add".
+  # 3) Continue the rebasing operation by "git rebase --continue" until all the conflicts resolved.
+
+  # Switch back to master branch.
+  git checkout master
+
+  # Merge BRANCH_NAME into master in a fast-forward way.
+  git merge BRANCH_NAME
+#+end_src
+
+An interactive interface is available if option =-i= is given whereby a variety of operations can be completed, e.g., =pick=, =reword=, =edit=, =squash=, =fixup=, =exec=, =drop=.
+#+begin_src sh
+  git rebase -i TARGET
 #+end_src
 *** Tag operations
 - List all tags.
