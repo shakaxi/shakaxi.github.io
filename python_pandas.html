@@ -4,7 +4,7 @@
 <!-- 2021-07-18 Sun 09:31 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Python - Matplotlib</title>
+<title>Python - Pandas</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="shaka">
 <style type="text/css">
@@ -217,199 +217,107 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Python - Matplotlib</h1>
+<h1 class="title">Python - Pandas</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org04ae2c5">Background</a></li>
-<li><a href="#org194a4f0">Installation</a></li>
-<li><a href="#org4e3de93">Submodules</a></li>
-<li><a href="#org44ce68d">General Concepts</a>
+<li><a href="#org3fccb4b">数据结构</a>
 <ul>
-<li><a href="#org36a1600"><code>Figure</code></a></li>
-<li><a href="#orgca2aa93"><code>Axes</code></a></li>
-<li><a href="#orgcda3537"><code>Axis</code></a></li>
+<li><a href="#org4956026">Series</a></li>
+<li><a href="#orgdb4cc02">DataFrame</a></li>
+<li><a href="#org477ef17">索引对象</a></li>
 </ul>
 </li>
-<li><a href="#org26f0e43">Interfaces</a>
-<ul>
-<li><a href="#org65c37cf">Object-oriented (OO) style</a></li>
-<li><a href="#org3f3a8b8">Pyplot style</a></li>
-</ul>
-</li>
-<li><a href="#org093f6ae">Miscellaneous</a>
-<ul>
-<li><a href="#orgb2c625a">Default settings</a></li>
-</ul>
-</li>
-<li><a href="#org52bf2f1">References</a></li>
+<li><a href="#orgd60e3d7">基本功能</a></li>
+<li><a href="#orgaf59639">输入输出</a></li>
 </ul>
 </div>
 </div>
+<p>
+<code>Pandas</code> 支持大部分 <code>numpy</code> 语言风格的数组计算。尽管代码风格相似，但最大的不同在于前者是用来处理表格或不同类型数据的，而后者更适合处理相同类型数据的。
+</p>
 
-<div id="outline-container-org04ae2c5" class="outline-2">
-<h2 id="org04ae2c5">Background</h2>
-<div class="outline-text-2" id="text-org04ae2c5">
-<p>
-<a href="https://matplotlib.org">Matplotlib</a> is a popular python package for figure plot and data visualization.
-</p>
+<div id="outline-container-org3fccb4b" class="outline-2">
+<h2 id="org3fccb4b">数据结构</h2>
+<div class="outline-text-2" id="text-org3fccb4b">
 </div>
-</div>
-<div id="outline-container-org194a4f0" class="outline-2">
-<h2 id="org194a4f0">Installation</h2>
-<div class="outline-text-2" id="text-org194a4f0">
-<div class="org-src-container">
-<pre class="src src-python">pip install matplotlib
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org4e3de93" class="outline-2">
-<h2 id="org4e3de93">Submodules</h2>
-<div class="outline-text-2" id="text-org4e3de93">
-<p>
-Matplotlib comes with a series of submodules, e.g.,
-</p>
+<div id="outline-container-org4956026" class="outline-3">
+<h3 id="org4956026">Series</h3>
+<div class="outline-text-3" id="text-org4956026">
 <ul class="org-ul">
-<li><code>matplotlib.pyplot</code> is the counterpart of Matlab in matplotlib, which is essentially a collection of functions similar to Matlab.</li>
-<li><code>matplotlib.pylab</code> is a convenience module which imports <code>matplotlib.pyplot</code> (for plotting) and <code>numpy</code> (for array related operations) in a single name space.</li>
+<li><code>Series</code> 是一维数组的对象，包含 <code>index</code> 序列和 <code>values</code> 序列，分别可以通过对象的 <code>index</code> 和 <code>values</code> 属性获得。</li>
+<li>通常需要创建一个index序列来标识每个数据点。如果不显式指定，那么默认 <code>index</code> 为从0到N-1，其中N为Series对象的长度。</li>
+<li><code>index</code> 可以用来索引数据，在这种意义上， <code>Series</code> 就像一个有序的字典。 另外，可以通过字典直接生成 <code>Series</code> 对象。</li>
+<li><code>pandas</code> 用 <code>NaN (not a number)</code> 来标记缺失或NA值，用 <code>isnull</code> 和 <code>notnull</code> 函数来检查 <code>Series</code> 对象。同时， <code>isnull</code> 和 <code>notnull</code> 也是 <code>Series</code> 类的成员函数。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org44ce68d" class="outline-2">
-<h2 id="org44ce68d">General Concepts</h2>
-<div class="outline-text-2" id="text-org44ce68d">
-<p>
-In Matplotlib, there are some important concepts which can be illustrated in <a href="#org4b1b7e1">Figure 1</a>. A typical matplotlib <code>Figure</code> is comprised of a variety of components, as show in <a href="#org079e109">Figure 2</a>.
-</p>
-
-<div id="org4b1b7e1" class="figure">
-<p><img src="matplotlib_concept.png" alt="matplotlib_concept.png" width="300px">
-</p>
-<p><span class="figure-number">Figure 1: </span>Basic concepts in Matplotlib (from <a href="https://matplotlib.org/1.5.1/faq/usage_faq.html">https://matplotlib.org/1.5.1/faq/usage_faq.html</a>)</p>
-</div>
-
-<div id="org079e109" class="figure">
-<p><img src="matplotlib_fig_component.png" alt="matplotlib_fig_component.png" width="300px">
-</p>
-<p><span class="figure-number">Figure 2: </span>Components of a figure in Matplotlib (from <a href="https://matplotlib.org/stable/tutorials/introductory/usage.html">https://matplotlib.org/stable/tutorials/introductory/usage.html</a>)</p>
-</div>
-</div>
-<div id="outline-container-org36a1600" class="outline-3">
-<h3 id="org36a1600"><code>Figure</code></h3>
-<div class="outline-text-3" id="text-org36a1600">
+<div id="outline-container-orgdb4cc02" class="outline-3">
+<h3 id="orgdb4cc02">DataFrame</h3>
+<div class="outline-text-3" id="text-orgdb4cc02">
 <ul class="org-ul">
+<li><code>DataFrame</code> 是二维数据表，既有行索引，又有列索引。可以通过属性 <code>T</code> 进行转置。每一列可以是不同的类型（数值、字符串、布尔值等）。</li>
+<li>和 <code>Series</code> 类似， <code>DataFrame</code> 的 <code>values</code> 属性会将数据以二维ndarray形式返回。</li>
+<li>虽然 <code>DataFrame</code> 是二维的，但是可以通过分层索引扩展到更高维度的数据。</li>
+<li>成员函数 <code>head()</code> 返回前五行。</li>
+<li>成员函数 <code>set_index</code> (参数可以为单个列名或多个列名的列表) 将选中的列转换为索引。</li>
+<li>成员函数 <code>filter(regex=KEYWORD)</code> 可以通过正则表达式对列名进行过滤筛选，返回一个符合筛选条件的新 <code>DataFrame</code> 。</li>
 <li><p>
-A <code>Figure</code> object is essentially a canvas on which plot operations are performed. Clearly, it consists of one or more <code>Axes</code> objects.
+成员函数 <code>plot</code> 可以直接调用 <code>matplotlib</code> 绘图。默认地，以索引作为x轴，各个数据列为y轴，列名作为图例名称。但是其行为可以定制。例如，
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import matplotlib.pyplot as plt
-
-# Create an empty Figure object without any Axes.
-fig = plt.figure()
-fig = plt.figure(figsize=(WIDTH, HEIGHT), dpi=DPI)
-
-# Create a Figure object including one Axes.
-fig, ax = plt.subplots()
-
-# Create a Figure object including 2 x 3 Axes.
-fig, ax = plt.subplots(2, 3)
+<pre class="src src-python">df.plot(ax=AX, x=COL1_NAME, y=COL2_NAME, title=TITLE, xlabel=XLABEL, ylabel=YLABEL, grid=True/False, legend=True/False, linestyle=LINESTYLE, xlim=[XMIN, XMAX], ylim=[YMIN, YMAX])
 </pre>
 </div></li>
-<li><code>matplotlib.pyplot.gcf()</code> can get the current <code>Figure</code> object.</li>
+<li><code>DataFrame</code> 对象可以通过行索引返回 <code>Series</code> 对象。也即 <code>DataFrame.loc['index_name']</code> 。</li>
+<li><code>DataFrame</code> 对象可以通过列索引返回 <code>Series</code> 对象。也即 <code>DataFrame['column_name']</code> ，如果列名无效，那么会新建列。此外， <code>DataFrame.column_name</code> 也能达到相同目的，但仅当列名存在时才有效时。值得注意的是，索引的列是数据的视图，而不是拷贝。因此，对返回 <code>Series</code> 对象的修改会映射到 <code>DataFrame</code> 对象。如果需要复制，需要调用 <code>Series</code> 类的 <code>copy</code> 成员函数。</li>
+<li>在将列表或数组赋值给某一列时，列表或数组的长度必须和 <code>DataFrame</code> 对象的长度相等。将 <code>Series</code> 对象赋值给某一列时， 其索引会按照 <code>DataFrame</code> 对象的索引重新排序，并用缺失值填充空缺位置。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgca2aa93" class="outline-3">
-<h3 id="orgca2aa93"><code>Axes</code></h3>
-<div class="outline-text-3" id="text-orgca2aa93">
+<div id="outline-container-org477ef17" class="outline-3">
+<h3 id="org477ef17">索引对象</h3>
+<div class="outline-text-3" id="text-org477ef17">
 <ul class="org-ul">
-<li>Create <code>Axes</code> objects.
-<ul class="org-ul">
-<li><code>matplotlib.pyplot.subplots</code></li>
-<li><code>figure.add_axes</code></li>
-</ul></li>
-<li>A <code>Axes</code> object consists of a multiplicity <code>Axis</code> objects, e.g.,
-<ul class="org-ul">
-<li>2 <code>Axis</code> objects in a 2-dimension plot, e.g.., X-axis and Y-axis.</li>
-<li>3 <code>Axis</code> objects in a 3-dimension plot, e.g.., X-axis, Y-axis, and Z-axis.</li>
-</ul></li>
-<li>A <code>Figure</code> object's member function <code>gca()</code> can get the current <code>Axes</code> object.</li>
-<li>A <code>Figure</code> object's member function <code>subplots</code> can create one or more <code>Axes</code> objects.</li>
-<li>Member functions
-<ul class="org-ul">
-<li><code>plot(X, Y)</code></li>
-<li><code>set_xlabel("XLABEL")</code></li>
-<li><code>set_ylabel("YLABEL")</code></li>
-<li><code>set_title("TITLE")</code></li>
-<li><code>set_xticks("XTICKS")</code></li>
-<li><code>set_yticks("YTICKS")</code></li>
-<li><code>set_xlim([XMIN, XMAX])</code></li>
-<li><code>set_ylim([YMIN, YMAX])</code></li>
-<li><code>legend()</code></li>
-<li><code>set_prop_cycle()</code> : Set the random seed of colors, e.g., <code>None</code> for reset to the default.</li>
-</ul></li>
+<li><code>Pandas</code> 中的索引对象是用于存储轴标签和其他元数据的。构建 <code>Series</code> 或 <code>DataFrame</code> 对象时所使用的数组或标签序列都可以在内部转换为索引对象。</li>
+<li>索引对象是不可变的，不能修改。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcda3537" class="outline-3">
-<h3 id="orgcda3537"><code>Axis</code></h3>
-<div class="outline-text-3" id="text-orgcda3537">
-<p>
-Just as its name indicates, a <code>Axis</code> object defines the properties and attributes of a axis, e.g., limits, ticks, and ticklabels.
+</div>
+<div id="outline-container-orgd60e3d7" class="outline-2">
+<h2 id="orgd60e3d7">基本功能</h2>
+<div class="outline-text-2" id="text-orgd60e3d7">
+<ul class="org-ul">
+<li><code>reindex</code> : 重建索引。</li>
+<li><code>drop</code> : 删除行或列。</li>
+<li><p>
+<code>concat</code> : 合并多个Series或DataFrame。例如，
 </p>
-</div>
-</div>
-</div>
-<div id="outline-container-org26f0e43" class="outline-2">
-<h2 id="org26f0e43">Interfaces</h2>
-<div class="outline-text-2" id="text-org26f0e43">
-<p>
-As written in the tutorial, there are a couple of API styles provided by matplotlib.
-</p>
-</div>
-<div id="outline-container-org65c37cf" class="outline-3">
-<h3 id="org65c37cf">Object-oriented (OO) style</h3>
-<div class="outline-text-3" id="text-org65c37cf">
-<p>
-<code>Figures</code> and <code>Axes</code> objects are created and their member functions are provoked explicitly.
-</p>
-</div>
-</div>
-<div id="outline-container-org3f3a8b8" class="outline-3">
-<h3 id="org3f3a8b8">Pyplot style</h3>
-<div class="outline-text-3" id="text-org3f3a8b8">
-<p>
-<code>matplotlib.pyplot</code> directly provokes its own functions, e.g., <code>plot</code>, <code>xlabel</code>, <code>ylabel</code>, <code>title</code>, <code>legend</code>, etc.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org093f6ae" class="outline-2">
-<h2 id="org093f6ae">Miscellaneous</h2>
-<div class="outline-text-2" id="text-org093f6ae">
-</div>
-<div id="outline-container-orgb2c625a" class="outline-3">
-<h3 id="orgb2c625a">Default settings</h3>
-<div class="outline-text-3" id="text-orgb2c625a">
 <div class="org-src-container">
-<pre class="src src-python">import matplotlib.pyplot as plt
+<pre class="src src-python">import pandas as pd
 
-plt.rcParams['font.family'] = "Consolas"
-plt.rcParams['font.size'] = 12
-plt.rcParams['savefig.dpi'] = 300
+df = pd.concat([df1, df2], axis=1)
 </pre>
+</div></li>
+</ul>
 </div>
 </div>
-</div>
-</div>
-<div id="outline-container-org52bf2f1" class="outline-2">
-<h2 id="org52bf2f1">References</h2>
-<div class="outline-text-2" id="text-org52bf2f1">
+<div id="outline-container-orgaf59639" class="outline-2">
+<h2 id="orgaf59639">输入输出</h2>
+<div class="outline-text-2" id="text-orgaf59639">
 <ul class="org-ul">
-<li><a href="https://matplotlib.org">https://matplotlib.org</a></li>
+<li><p>
+<code>read_csv</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import pandas as pd
+
+df = pd.read_csv(FILENAME, [skiprows=N], [names=[COL1, COL2, COL3, ...]], [index_col=[0, 1]])
+</pre>
+</div></li>
+<li><code>to_csv</code></li>
 </ul>
 </div>
 </div>
