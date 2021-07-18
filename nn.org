@@ -5,7 +5,7 @@
 - Input layer does not carry out any operation/function, but the hidden and output layers consist of functional neurons, i.e., have activation functions.
 * McCulloch and Pitts (M-P) model for neurons
 \begin{align*}
-  y = f(\mathbf{w} \mathbf{x} - \theta)
+  y = f(\mathbf{W} \mathbf{x} - \theta)
 \end{align*}
 where \(f\) is termed /activation function/.
 * Activation function
@@ -45,3 +45,21 @@ where
 * Multi-layer feedforward neural network
 - Full connection between neurons of the adjacent ranks.
 - No connection between neurons of the identical rank.
+* Convolutional neural network (CNN)
+- The operation of a convolutional layer is to apply a filter on the input.
+  + The weights of the filter is termed /kernel/.
+- In fact, a convolutional layer is a simplified full connection layer, with following specialties.
+  + $\mathbf{W}$ is a diagonal matrix.
+  + The non-zero elements in different rows are equal.
+** Pooling
+- A convolutional layer is usually followed by a /pooling/ layer to
+  + Reduce the output of a convolutional layer.
+  + Ignore the subtle variations/shifts of the image position.
+- Popular pooling layers
+  + Maximum
+  + Average
+* Recurrent neural network (RNN)
+- A learned/trained function takes both input vector and its state vector as input and yields an output and an updated state vector.
+- In the front of large scale sequences, an ordinary/standard RNN suffers gradient disappear and gradient explosion. To solve the problems, some variants have been proposed, e.g. /long short term memory (LSTM)/.
+** Long short term memory (LSTM)
+
