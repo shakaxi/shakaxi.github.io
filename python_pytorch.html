@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-07 Fri 01:38 -->
+<!-- 2021-08-06 Fri 00:20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python - Pytorch</title>
@@ -330,6 +330,45 @@
 <li>所构建的神经网络的可学习参数由所述派生类的成员函数 <code>.parameters()</code> 返回。</li>
 <li><code>torch.nn</code> 包中定义了很多损失函数(如 <code>torch.nn.MSELoss</code>)。</li>
 </ul>
+
+<p>
+下面是一个非常简单的神经网络。该神经网络只包含一个全连接层和一个激活函数relu。包括两个成员函数， <code>TRAIN</code> 和 <code>TEST</code> 。顾名思义，前者用于从训练数据集中加载数据，并训练神经网络中的可学习参数，并把所有可学习参数的最终权重（训练结果）保存在文件中；后者从权重文件中读取并加载所有可学习参数的权重，然后从测试数据集中加载数据，计算误差，从而完成对训练结果（可学习参数的权重）的测试。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class NEURAL_NETWORK(torch.nn.Module):
+    def __init__(self, IN_FEATURES, OUT_FEATURES):
+        super(NEURAL_NETWORK, self).__init__()
+        self.FC = torch.nn.Module.Linear(IN_FEATURES, OUT_FEATURES)
+
+    def forward(self, INPUT):
+        return torch.nn.function.relu(self.FC(INPUT))
+
+    def TRAIN(self, DATALOADER_FOR_TRAIN):
+        OPT = torch.optim.Adam(self.parameters(), LEARNING_RATE)
+        LEARNING_RATE_SCHEDULER = torch.optim.lr_scheduler.ExponentialLR(OPT, gamma=0.9)
+        for EPOCH_INDEX in range(EPOCH_NUM):
+            for SAMPLE in DATALOADER_FOR_TRAIN:
+                SAMPLE = SAMPLE.to(torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu"))
+                VALUE_PREDICTED = self.forward(SAMPLE)
+                VALUE_IDEAL = CALC_VALUE_IDEAL(SAMPLE)
+                LOSS = torch.nn.MSELoss(VALUE_PREDICTED, VALUE_IDEAL)
+                LOSS.requires_grad_(True)
+                OPT.zero_grad()
+                LOSS.backward()
+                OPT.step()
+            LEARNING_RATE_SCHEDULER.step()
+            torch.save(self.state_dict(), "NEURAL_NETWORK_WEIGHT.pth")
+
+    def TEST(self, DATALOADER_FOR_TEST):
+        self.load_state_dict(torch.load("NEURAL_NETWORK_WEIGHT.pth", False))
+        with torch.no_grad():
+            for SAMPLE in DATALOADER_FOR_TEST:
+                SAMPLE = SAMPLE.to(torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu"))
+                VALUE_PREDICTED = self.forward(SAMPLE)
+                VALUE_IDEAL = CALC_VALUE_IDEAL(SAMPLE)
+                LOSS = torch.nn.MSELoss(VALUE_PREDICTED, VALUE_IDEAL)                
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -344,6 +383,26 @@
 <li><code>__getitem__(self, index)</code>: 根据索引返回数据集中相应的样本点；</li>
 <li><code>__len(self)__</code>: 返回数据集的大小，也即数据集中样本点的数量。</li>
 </ul>
+
+<p>
+Pytorch支持多种格式的数据集，下面是一个从HDF5文件中加载数据集的例子。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class DATASET(torch.utils.data.Dataset):
+    def __init__(self, FILE_NAME, SAMPLE_NUM):
+        super(DATASET, self).__init__()
+        f = h5py.File(FILE_NAME, 'r')
+        self.sample = torch.tensor(f.get("GROUP_NAME"))
+        self.sample_num = SAMPLE_NUM
+        f.close()
+
+    def __getitem__(self, INDEX):
+        return self.sample[INDEX]
+
+    def __len__(self):
+        return self.sample_num
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-org7845546" class="outline-2">
