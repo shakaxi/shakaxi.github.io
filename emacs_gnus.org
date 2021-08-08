@@ -1,0 +1,29 @@
+#+title: Emacs - Gnus
+
+[[https://www.gnu.org/software/emacs/manual/html_node/gnus][Gnus]] is the builtin mail client inside Emacs. As long as Emacs is installed, gnus is available.
+
+The bahavior of gnus can be customized in following two files.
+- =~/.gnus=
+  #+begin_src emacs-lisp
+    (setq user-full-name "NAME"
+          user-mail-address "USERNAME")
+
+    (setq gnus-select-method
+          '(nnimap "ACCOUNT_NAME" (nnimap-address "IMAP.SERVER.COM")))
+
+    (setq gnus-use-full-window nil
+          gnus-message-archive-group nil
+          gnus-fetch-old-headers t
+          nnmail-expiry-wait 'never)
+
+    (setq send-mail-function 'smtpmail-send-it
+          smtpmail-smtp-server "SMTP.SERVER.COM")
+  #+end_src
+
+- =~/.authinfo=
+  #+begin_src emacs-lisp
+    machine IMAP.SERVER.COM login USERNAME password PASSWORD port imap
+    machine SMTP.SERVER.COM login USERNAME password PASSWORD port smtp
+  #+end_src
+
+After the configuration above, gnus can be launched via =M-x gnus= inside Emacs.
