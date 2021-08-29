@@ -1,0 +1,287 @@
+#+title: Dynamic Window Manager
+
+[[https://dwm.suckless.org][Dynamic window manager (DWM)]], as one component of the [[https://suckless.org][suckless]] suite, is a flexible but lightweight window manager for X. This post just summarizes the procedure of installation and customization.
+
+* DWM
+** Download the source codes
+#+begin_src sh
+  git clone --depth=1 https://git.suckless.org/dwm
+#+end_src
+** Customization
+- Patch
+  + Addtional features are supported as patches, which can be downloaded from https://dwm.suckless.org/patches. E.g., =alpha=, =hide_vacant_tags=, =pertag=, =rotatestack=.
+  + In order to record and maintain the customization with git, patches can be applied by
+    #+begin_src sh
+      git apply PATCH.diff
+    #+end_src
+- =config.def.h=
+  + Users can further tweak DWM's appearance and behaviors by editing this file. E.g.,
+    #+begin_src c
+      /* See LICENSE file for copyright and license details. */
+      #include <X11/XF86keysym.h>
+
+      /* appearance */
+      static const unsigned int borderpx  = 1;        /* border pixel of windows */
+      static const unsigned int snap      = 32;       /* snap pixel */
+      static const int showbar            = 1;        /* 0 means no bar */
+      static const int topbar             = 1;        /* 0 means bottom bar */
+      static const char *fonts[]          = { "Sarasa Mono SC:size=18" };
+      /* static const char dmenufont[]       = "monospace:size=10"; */
+      static const char col_gray1[]       = "#222222";
+      static const char col_gray2[]       = "#444444";
+      static const char col_gray3[]       = "#bbbbbb";
+      static const char col_gray4[]       = "#eeeeee";
+      static const char col_cyan[]        = "#005577";
+      static const unsigned int baralpha = 0xd0;
+      static const unsigned int borderalpha = OPAQUE;
+      static const char *colors[][3]      = {
+          /*               fg         bg         border   */
+          [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+          [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+      };
+      static const unsigned int alphas[][3]      = {
+          /*               fg      bg        border     */
+          [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+          [SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+      };
+
+      /* tagging */
+      static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+      static const Rule rules[] = {
+          /* xprop(1):
+           ,*	WM_CLASS(STRING) = instance, class
+           ,*	WM_NAME(STRING) = title
+           ,*/
+          /* class      instance    title       tags mask     isfloating   monitor */
+          /* { "Gimp",     NULL,       NULL,       0,            1,           -1 }, */
+          { "Chromium",  NULL,       NULL,       0,       0,           -1 },
+      };
+
+      /* layout(s) */
+      static const float mfact     = 0.6; /* factor of master area size [0.05..0.95] */
+      static const int nmaster     = 1;    /* number of clients in master area */
+      static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+
+      static const Layout layouts[] = {
+          /* symbol     arrange function */
+          { "T",      tile },    /* first entry is default */
+          { "F",      NULL },    /* no layout function means floating behavior */
+          { "M",      monocle },
+      };
+
+      /* key definitions */
+      #define MODKEY Mod4Mask
+      #define TAGKEYS(KEY,TAG) \
+          { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+          { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+          { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+          { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+
+      /* helper for spawning shell commands in the pre dwm-5.0 fashion */
+      #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+
+      /* commands */
+      static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+      static const char *dmenucmd[] = { "/usr/bin/rofi", "-show", "drun", "-show-icons", "-lines", "9", "-width", "100", "-location", "7", "-font", "Sarasa Mono SC 18", NULL };
+      static const char *termcmd[]  = { "/usr/bin/alacritty", "--option", "font.normal.family=Sarasa Mono SC", "font.size=13", NULL };
+      static const char *volup[] = { "/usr/bin/amixer", "set", "Master", "5%+", "umute", NULL };
+      static const char *voldown[] = { "/usr/bin/amixer", "set", "Master", "5%-", "umute", NULL };
+      static const char *voltoggle[] = { "/usr/bin/amixer", "set", "Master", "toggle", NULL };
+      static const char *brightup[] = { "/usr/bin/xbacklight", "-inc", "5", NULL };
+      static const char *brightdown[] = { "/usr/bin/xbacklight", "-dec", "5", NULL };
+      static const char *fullscreenshot[] = { "/usr/bin/scrot", NULL };
+      static const char *selectscreenshot[] = { "/usr/bin/scrot", "-s", NULL };
+
+      static Key keys[] = {
+          /* modifier                     key        function        argument */
+          { MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+          { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+          { MODKEY,                       XK_b,      togglebar,      {0} },
+          { MODKEY|ShiftMask,             XK_o,      rotatestack,    {.i = +1 } },
+          { MODKEY,                       XK_o,      focusstack,     {.i = +1 } },
+          /* { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } }, */
+          /* { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } }, */
+          { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+          { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+          { MODKEY,                       XK_z,      zoom,           {0} },
+          { MODKEY,                       XK_Tab,    view,           {0} },
+          { MODKEY,                       XK_q,      killclient,     {0} },
+          { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+          /* { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} }, */
+          { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+          { MODKEY,                       XK_space,  setlayout,      {0} },
+          { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+          { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+          /* { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+             { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+             { MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+             { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+             { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } }, */
+          TAGKEYS(                        XK_1,                      0)
+          TAGKEYS(                        XK_2,                      1)
+          TAGKEYS(                        XK_3,                      2)
+          TAGKEYS(                        XK_4,                      3)
+          TAGKEYS(                        XK_5,                      4)
+          TAGKEYS(                        XK_6,                      5)
+          TAGKEYS(                        XK_7,                      6)
+          TAGKEYS(                        XK_8,                      7)
+          TAGKEYS(                        XK_9,                      8)
+          { MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+          { 0, XK_Print, spawn, {.v = fullscreenshot} },
+          { ShiftMask, XK_Print, spawn, {.v = selectscreenshot} },
+          { 0, XF86XK_AudioRaiseVolume, spawn, {.v = volup }},
+          { 0, XF86XK_AudioLowerVolume, spawn, {.v = voldown }},
+          { 0, XF86XK_AudioMute, spawn, {.v = voltoggle }},
+          { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightup }},
+          { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightdown }},
+      };
+
+      /* button definitions */
+      /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+      static Button buttons[] = {
+          /* click                event mask      button          function        argument */
+          { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+          { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+          { ClkWinTitle,          0,              Button2,        zoom,           {0} },
+          { ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+          { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+          { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+          { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+          { ClkTagBar,            0,              Button1,        view,           {0} },
+          { ClkTagBar,            0,              Button3,        toggleview,     {0} },
+          { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+          { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+      };
+
+    #+end_src
+** Build and install
+- Remove =config.h= if it exists.
+- Compile
+  #+begin_src sh
+    make
+  #+end_src
+- Install
+  #+begin_src sh
+    make install
+  #+end_src
+- Clean the temporary object files.
+  #+begin_src sh
+    make clean
+  #+end_src
+* Status bar
+On the [[https://dwm.suckless.org/status_monitor][web page]], there are many choices for status bar.
+** dwm-bar
+[[https://github.com/joestandring/dwm-bar][Dwm-bar]] is a good choice, which consists of a rich number of modules, written by shell scripts. Its codes can be easily obtained
+#+begin_src sh
+  git clone --depth=1 https://github.com/joestandring/dwm-bar.git
+#+end_src
+
+The concrete details can be customized by editing =dwm_bar.sh=, e.g.,
+#+begin_src sh
+  #!/bin/sh
+
+  # A modular status bar for dwm
+  # Joe Standring <git@joestandring.com>
+  # GNU GPLv3
+
+  # Dependencies: xorg-xsetroot
+
+  # Import functions with "$include /route/to/module"
+  # It is recommended that you place functions in the subdirectory ./bar-functions and use: . "$DIR/bar-functions/dwm_example.sh"
+
+  # Store the directory the script is running from
+  LOC=$(readlink -f "$0")
+  DIR=$(dirname "$LOC")
+
+  # Change the appearance of the module identifier. if this is set to "unicode", then symbols will be used as identifiers instead of text. E.g. [📪 0] instead of [MAIL 0].
+  # Requires a font with adequate unicode character support
+  export IDENTIFIER="unicode"
+
+  # Change the charachter(s) used to seperate modules. If two are used, they will be placed at the start and end.
+  export SEP1=" | "
+  export SEP2=""
+
+  # Import the modules
+  # . "$DIR/bar-functions/dwm_countdown.sh"
+  # . "$DIR/bar-functions/dwm_alarm.sh"
+  # . "$DIR/bar-functions/dwm_transmission.sh"
+  # . "$DIR/bar-functions/dwm_cmus.sh"
+  # . "$DIR/bar-functions/dwm_mpc.sh"
+  # . "$DIR/bar-functions/dwm_spotify.sh"
+  . "$DIR/bar-functions/dwm_resources.sh"
+  . "$DIR/bar-functions/dwm_battery.sh"
+  . "$DIR/bar-functions/dwm_backlight.sh"
+  . "$DIR/bar-functions/dwm_alsa.sh"
+  # . "$DIR/bar-functions/dwm_mail.sh"
+  # . "$DIR/bar-functions/dwm_pulse.sh"
+  # . "$DIR/bar-functions/dwm_weather.sh"
+  # . "$DIR/bar-functions/dwm_vpn.sh"
+  # . "$DIR/bar-functions/dwm_networkmanager.sh"
+  # . "$DIR/bar-functions/dwm_keyboard.sh"
+  # . "$DIR/bar-functions/dwm_ccurse.sh"
+  . "$DIR/bar-functions/dwm_date.sh"
+  # . "$DIR/bar-functions/dwm_connman.sh"
+  # . "$DIR/bar-functions/dwm_loadavg.sh"
+  # . "$DIR/bar-functions/dwm_currency.sh"
+
+  parallelize() {
+      while true
+      do
+          printf "Running parallel processes\n"
+          dwm_weather &
+          dwm_networkmanager &
+          sleep 5
+      done
+  }
+  parallelize &
+
+  # Update dwm status bar every second
+  while true
+  do
+      # Append results of each func one by one to the upperbar string
+      upperbar=""
+      # upperbar="$upperbar$(dwm_connman)"
+      # upperbar="$upperbar$(dwm_countdown)"
+      # upperbar="$upperbar$(dwm_alarm)"
+      # upperbar="$upperbar$(dwm_transmission)"
+      # upperbar="$upperbar$(dwm_cmus)"
+      # upperbar="$upperbar$(dwm_mpc)"
+      # upperbar="$upperbar$(dwm_spotify)"
+      upperbar="$upperbar$(dwm_resources)"
+      upperbar="$upperbar$(dwm_alsa)"
+      upperbar="$upperbar$(dwm_battery)"
+      upperbar="$upperbar$(dwm_backlight)"
+      # upperbar="$upperbar$(dwm_mail)"
+      # upperbar="$upperbar$(dwm_pulse)"
+      # upperbar="$upperbar${__DWM_BAR_WEATHER__}"
+      # upperbar="$upperbar$(dwm_vpn)"
+      # upperbar="$upperbar${__DWM_BAR_NETWORKMANAGER__}"
+      # upperbar="$upperbar$(dwm_keyboard)"
+      # upperbar="$upperbar$(dwm_ccurse)"
+      upperbar="$upperbar$(dwm_date)"
+      # upperbar="$upperbar$(dwm_loadavg)"
+      # upperbar="$upperbar$(dwm_currency)"
+   
+      # Append results of each func one by one to the lowerbar string
+      lowerbar=""
+
+    
+      xsetroot -name "$upperbar"
+    
+      # Uncomment the line below to enable the lowerbar 
+  #    xsetroot -name "$upperbar;$lowerbar"
+      sleep 1
+  done
+#+end_src
+* Autostart
+Some programs and scripts, e.g., relating to wallpaper setting, input method, dwm-bar, should be autostarted. For starting dwm with =startx=, =.xinitrc= can be customized as follows.
+#+begin_src sh
+  /usr/bin/setxkbmap -option 'caps:ctrl_modifier'
+  /bin/sh ~/.config/dwm/dwm-bar/dwm_bar.sh &
+  /usr/bin/nitrogen --restore &
+  /usr/bin/picom -b
+  /usr/bin/fcitx -r
+
+  exec dwm
+#+end_src

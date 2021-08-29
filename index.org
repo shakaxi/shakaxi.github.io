@@ -16,6 +16,7 @@
 - [[file:cpp_switch.org][C/C++ - switch]]
 - [[file:cvx_opt.org][Convex Optimization]]
 - [[file:dot.org][DOT]]
+- [[file:dwm.org][Dynamic Window Manager]]
 - [[file:emacs_config.org][Emacs - Basic Configuration]]
 - [[file:emacs_cpp.org][Emacs - C/C++ Programming]]
 - [[file:emacs_cdlatex.org][Emacs - CDLaTeX]]
