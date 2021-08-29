@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-08-29 Sun 13:05 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dynamic Window Manager</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="shaka">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Dynamic Window Manager</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org78724e3">DWM</a>
+<ul>
+<li><a href="#org761bb78">Download the source codes</a></li>
+<li><a href="#org3afea24">Customization</a></li>
+<li><a href="#org3d56b12">Build and install</a></li>
+</ul>
+</li>
+<li><a href="#org90acb48">Status bar</a>
+<ul>
+<li><a href="#org638f93c">dwm-bar</a></li>
+</ul>
+</li>
+<li><a href="#orgbad1197">Autostart</a></li>
+</ul>
+</div>
+</div>
+<p>
+<a href="https://dwm.suckless.org">Dynamic window manager (DWM)</a>, as one component of the <a href="https://suckless.org">suckless</a> suite, is a flexible but lightweight window manager for X. This post just summarizes the procedure of installation and customization.
+</p>
+
+<div id="outline-container-org78724e3" class="outline-2">
+<h2 id="org78724e3">DWM</h2>
+<div class="outline-text-2" id="text-org78724e3">
+</div>
+<div id="outline-container-org761bb78" class="outline-3">
+<h3 id="org761bb78">Download the source codes</h3>
+<div class="outline-text-3" id="text-org761bb78">
+<div class="org-src-container">
+<pre class="src src-sh">git clone --depth=1 https://git.suckless.org/dwm
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3afea24" class="outline-3">
+<h3 id="org3afea24">Customization</h3>
+<div class="outline-text-3" id="text-org3afea24">
+<ul class="org-ul">
+<li>Patch
+<ul class="org-ul">
+<li>Addtional features are supported as patches, which can be downloaded from <a href="https://dwm.suckless.org/patches">https://dwm.suckless.org/patches</a>. E.g., <code>alpha</code>, <code>hide_vacant_tags</code>, <code>pertag</code>, <code>rotatestack</code>.</li>
+<li><p>
+In order to record and maintain the customization with git, patches can be applied by
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git apply PATCH.diff
+</pre>
+</div></li>
+</ul></li>
+<li><code>config.def.h</code>
+<ul class="org-ul">
+<li><p>
+Users can further tweak DWM's appearance and behaviors by editing this file. E.g.,
+</p>
+<div class="org-src-container">
+<pre class="src src-c">/* See LICENSE file for copyright and license details. */
+#include &lt;X11/XF86keysym.h&gt;
+
+/* appearance */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int snap      = 32;       /* snap pixel */
+static const int showbar            = 1;        /* 0 means no bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
+static const char *fonts[]          = { "Sarasa Mono SC:size=18" };
+/* static const char dmenufont[]       = "monospace:size=10"; */
+static const char col_gray1[]       = "#222222";
+static const char col_gray2[]       = "#444444";
+static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray4[]       = "#eeeeee";
+static const char col_cyan[]        = "#005577";
+static const unsigned int baralpha = 0xd0;
+static const unsigned int borderalpha = OPAQUE;
+static const char *colors[][3]      = {
+    /*               fg         bg         border   */
+    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+    [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+};
+static const unsigned int alphas[][3]      = {
+    /*               fg      bg        border     */
+    [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+    [SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+};
+
+/* tagging */
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+static const Rule rules[] = {
+    /* xprop(1):
+     *	WM_CLASS(STRING) = instance, class
+     *	WM_NAME(STRING) = title
+     */
+    /* class      instance    title       tags mask     isfloating   monitor */
+    /* { "Gimp",     NULL,       NULL,       0,            1,           -1 }, */
+    { "Chromium",  NULL,       NULL,       0,       0,           -1 },
+};
+
+/* layout(s) */
+static const float mfact     = 0.6; /* factor of master area size [0.05..0.95] */
+static const int nmaster     = 1;    /* number of clients in master area */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+
+static const Layout layouts[] = {
+    /* symbol     arrange function */
+    { "T",      tile },    /* first entry is default */
+    { "F",      NULL },    /* no layout function means floating behavior */
+    { "M",      monocle },
+};
+
+/* key definitions */
+#define MODKEY Mod4Mask
+#define TAGKEYS(KEY,TAG) \
+    { MODKEY,                       KEY,      view,           {.ui = 1 &lt;&lt; TAG} }, \
+    { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 &lt;&lt; TAG} }, \
+    { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 &lt;&lt; TAG} }, \
+    { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 &lt;&lt; TAG} },
+
+/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+
+/* commands */
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "/usr/bin/rofi", "-show", "drun", "-show-icons", "-lines", "9", "-width", "100", "-location", "7", "-font", "Sarasa Mono SC 18", NULL };
+static const char *termcmd[]  = { "/usr/bin/alacritty", "--option", "font.normal.family=Sarasa Mono SC", "font.size=13", NULL };
+static const char *volup[] = { "/usr/bin/amixer", "set", "Master", "5%+", "umute", NULL };
+static const char *voldown[] = { "/usr/bin/amixer", "set", "Master", "5%-", "umute", NULL };
+static const char *voltoggle[] = { "/usr/bin/amixer", "set", "Master", "toggle", NULL };
+static const char *brightup[] = { "/usr/bin/xbacklight", "-inc", "5", NULL };
+static const char *brightdown[] = { "/usr/bin/xbacklight", "-dec", "5", NULL };
+static const char *fullscreenshot[] = { "/usr/bin/scrot", NULL };
+static const char *selectscreenshot[] = { "/usr/bin/scrot", "-s", NULL };
+
+static Key keys[] = {
+    /* modifier                     key        function        argument */
+    { MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+    { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+    { MODKEY,                       XK_b,      togglebar,      {0} },
+    { MODKEY|ShiftMask,             XK_o,      rotatestack,    {.i = +1 } },
+    { MODKEY,                       XK_o,      focusstack,     {.i = +1 } },
+    /* { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } }, */
+    /* { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } }, */
+    { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+    { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+    { MODKEY,                       XK_z,      zoom,           {0} },
+    { MODKEY,                       XK_Tab,    view,           {0} },
+    { MODKEY,                       XK_q,      killclient,     {0} },
+    { MODKEY,                       XK_t,      setlayout,      {.v = &amp;layouts[0]} },
+    /* { MODKEY,                       XK_f,      setlayout,      {.v = &amp;layouts[1]} }, */
+    { MODKEY,                       XK_m,      setlayout,      {.v = &amp;layouts[2]} },
+    { MODKEY,                       XK_space,  setlayout,      {0} },
+    { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+    { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+    /* { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+       { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+       { MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+       { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+       { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } }, */
+    TAGKEYS(                        XK_1,                      0)
+    TAGKEYS(                        XK_2,                      1)
+    TAGKEYS(                        XK_3,                      2)
+    TAGKEYS(                        XK_4,                      3)
+    TAGKEYS(                        XK_5,                      4)
+    TAGKEYS(                        XK_6,                      5)
+    TAGKEYS(                        XK_7,                      6)
+    TAGKEYS(                        XK_8,                      7)
+    TAGKEYS(                        XK_9,                      8)
+    { MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+    { 0, XK_Print, spawn, {.v = fullscreenshot} },
+    { ShiftMask, XK_Print, spawn, {.v = selectscreenshot} },
+    { 0, XF86XK_AudioRaiseVolume, spawn, {.v = volup }},
+    { 0, XF86XK_AudioLowerVolume, spawn, {.v = voldown }},
+    { 0, XF86XK_AudioMute, spawn, {.v = voltoggle }},
+    { 0, XF86XK_MonBrightnessUp, spawn, {.v = brightup }},
+    { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightdown }},
+};
+
+/* button definitions */
+/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+static Button buttons[] = {
+    /* click                event mask      button          function        argument */
+    { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+    { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &amp;layouts[2]} },
+    { ClkWinTitle,          0,              Button2,        zoom,           {0} },
+    { ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+    { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+    { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+    { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+    { ClkTagBar,            0,              Button1,        view,           {0} },
+    { ClkTagBar,            0,              Button3,        toggleview,     {0} },
+    { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+    { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+};
+
+</pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3d56b12" class="outline-3">
+<h3 id="org3d56b12">Build and install</h3>
+<div class="outline-text-3" id="text-org3d56b12">
+<ul class="org-ul">
+<li>Remove <code>config.h</code> if it exists.</li>
+<li><p>
+Compile
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">make
+</pre>
+</div></li>
+<li><p>
+Install
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">make install
+</pre>
+</div></li>
+<li><p>
+Clean the temporary object files.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">make clean
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org90acb48" class="outline-2">
+<h2 id="org90acb48">Status bar</h2>
+<div class="outline-text-2" id="text-org90acb48">
+<p>
+On the <a href="https://dwm.suckless.org/status_monitor">web page</a>, there are many choices for status bar.
+</p>
+</div>
+<div id="outline-container-org638f93c" class="outline-3">
+<h3 id="org638f93c">dwm-bar</h3>
+<div class="outline-text-3" id="text-org638f93c">
+<p>
+<a href="https://github.com/joestandring/dwm-bar">Dwm-bar</a> is a good choice, which consists of a rich number of modules, written by shell scripts. Its codes can be easily obtained
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git clone --depth=1 https://github.com/joestandring/dwm-bar.git
+</pre>
+</div>
+
+<p>
+The concrete details can be customized by editing <code>dwm_bar.sh</code>, e.g.,
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">#!/bin/sh
+
+# A modular status bar for dwm
+# Joe Standring &lt;git@joestandring.com&gt;
+# GNU GPLv3
+
+# Dependencies: xorg-xsetroot
+
+# Import functions with "$include /route/to/module"
+# It is recommended that you place functions in the subdirectory ./bar-functions and use: . "$DIR/bar-functions/dwm_example.sh"
+
+# Store the directory the script is running from
+LOC=$(readlink -f "$0")
+DIR=$(dirname "$LOC")
+
+# Change the appearance of the module identifier. if this is set to "unicode", then symbols will be used as identifiers instead of text. E.g. [📪 0] instead of [MAIL 0].
+# Requires a font with adequate unicode character support
+export IDENTIFIER="unicode"
+
+# Change the charachter(s) used to seperate modules. If two are used, they will be placed at the start and end.
+export SEP1=" | "
+export SEP2=""
+
+# Import the modules
+# . "$DIR/bar-functions/dwm_countdown.sh"
+# . "$DIR/bar-functions/dwm_alarm.sh"
+# . "$DIR/bar-functions/dwm_transmission.sh"
+# . "$DIR/bar-functions/dwm_cmus.sh"
+# . "$DIR/bar-functions/dwm_mpc.sh"
+# . "$DIR/bar-functions/dwm_spotify.sh"
+. "$DIR/bar-functions/dwm_resources.sh"
+. "$DIR/bar-functions/dwm_battery.sh"
+. "$DIR/bar-functions/dwm_backlight.sh"
+. "$DIR/bar-functions/dwm_alsa.sh"
+# . "$DIR/bar-functions/dwm_mail.sh"
+# . "$DIR/bar-functions/dwm_pulse.sh"
+# . "$DIR/bar-functions/dwm_weather.sh"
+# . "$DIR/bar-functions/dwm_vpn.sh"
+# . "$DIR/bar-functions/dwm_networkmanager.sh"
+# . "$DIR/bar-functions/dwm_keyboard.sh"
+# . "$DIR/bar-functions/dwm_ccurse.sh"
+. "$DIR/bar-functions/dwm_date.sh"
+# . "$DIR/bar-functions/dwm_connman.sh"
+# . "$DIR/bar-functions/dwm_loadavg.sh"
+# . "$DIR/bar-functions/dwm_currency.sh"
+
+parallelize() {
+    while true
+    do
+        printf "Running parallel processes\n"
+        dwm_weather &amp;
+        dwm_networkmanager &amp;
+        sleep 5
+    done
+}
+parallelize &amp;
+
+# Update dwm status bar every second
+while true
+do
+    # Append results of each func one by one to the upperbar string
+    upperbar=""
+    # upperbar="$upperbar$(dwm_connman)"
+    # upperbar="$upperbar$(dwm_countdown)"
+    # upperbar="$upperbar$(dwm_alarm)"
+    # upperbar="$upperbar$(dwm_transmission)"
+    # upperbar="$upperbar$(dwm_cmus)"
+    # upperbar="$upperbar$(dwm_mpc)"
+    # upperbar="$upperbar$(dwm_spotify)"
+    upperbar="$upperbar$(dwm_resources)"
+    upperbar="$upperbar$(dwm_alsa)"
+    upperbar="$upperbar$(dwm_battery)"
+    upperbar="$upperbar$(dwm_backlight)"
+    # upperbar="$upperbar$(dwm_mail)"
+    # upperbar="$upperbar$(dwm_pulse)"
+    # upperbar="$upperbar${__DWM_BAR_WEATHER__}"
+    # upperbar="$upperbar$(dwm_vpn)"
+    # upperbar="$upperbar${__DWM_BAR_NETWORKMANAGER__}"
+    # upperbar="$upperbar$(dwm_keyboard)"
+    # upperbar="$upperbar$(dwm_ccurse)"
+    upperbar="$upperbar$(dwm_date)"
+    # upperbar="$upperbar$(dwm_loadavg)"
+    # upperbar="$upperbar$(dwm_currency)"
+
+    # Append results of each func one by one to the lowerbar string
+    lowerbar=""
+
+
+    xsetroot -name "$upperbar"
+
+    # Uncomment the line below to enable the lowerbar 
+#    xsetroot -name "$upperbar;$lowerbar"
+    sleep 1
+done
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbad1197" class="outline-2">
+<h2 id="orgbad1197">Autostart</h2>
+<div class="outline-text-2" id="text-orgbad1197">
+<p>
+Some programs and scripts, e.g., relating to wallpaper setting, input method, dwm-bar, should be autostarted. For starting dwm with <code>startx</code>, <code>.xinitrc</code> can be customized as follows.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">/usr/bin/setxkbmap -option 'caps:ctrl_modifier'
+/bin/sh ~/.config/dwm/dwm-bar/dwm_bar.sh &amp;
+/usr/bin/nitrogen --restore &amp;
+/usr/bin/picom -b
+/usr/bin/fcitx -r
+
+exec dwm
+</pre>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
