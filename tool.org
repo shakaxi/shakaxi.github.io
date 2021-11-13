@@ -1,0 +1,76 @@
+#+title: Linux - Command Line Tools
+
+Targetting for more features and conveniences, some extremely excellent command line tools are listed in this document, which is encouraged to use.
+
+* Starship
+[[https://starship.rs][Starship]] can provide an exciting prompt to a variety of shells, e.g., bash, csh/tcsh, zsh, etc.
+- Installation (e.g., for Arch Linux)
+#+begin_src sh
+  pacman -S starship
+#+end_src
+- Configuration in =~/.bashrc= (e.g., for bash)
+#+begin_src sh
+  eval "$(starship init bash)"
+#+end_src
+* File finder
+** fd
+[[https://github.com/sharkdp/fd][Fd]] is a replacement for classic =find=, which can be easily installed by
+#+begin_src sh
+  pacman -S fd
+#+end_src
+** fzf
+[[https://github.com/jethrokuan/fzf][Fzf]] stands for /fuzzy finder/, which can be easily installed by
+#+begin_src sh
+  pacman -S fzf
+#+end_src
+* Ripgrep
+[[https://github.com/BurntSushi/ripgrep][Ripgrep]] is a replacement for classic =grep=, which can be easily installed by
+#+begin_src sh
+  pacman -S ripgrep
+#+end_src
+* System monitor
+** Htop
+[[https://htop.dev][Htop]] is an interactive provess viewer, envisaged as a replacement of classic =top=, which can be installed by
+#+begin_src sh
+  pacman -S htop
+#+end_src
+** Glance
+[[https://nicolargo.github.io/glances][Glances]] is a system monitor developped in Python, which can be installed by
+#+begin_src sh
+  pacman -S glances
+#+end_src
+* Ncdu
+[[https://dev.yorhel.nl/ncdu][Ncdu]], ncurses based disk usage, is a disk usage analyzer, and very useful to clean and release storage. It can be directly installed by
+#+begin_src sh
+  pacman -S ncdu
+#+end_src
+* Diff-so-fancy
+[[https://github.com/so-fancy/diff-so-fancy][Diff-so-fancy]] is a replacement of =diff=, with more colors and highlights, which can be installed by
+#+begin_src sh
+  pacman -S diff-so-fancy
+#+end_src
+It can be integrated with git, by running following commands.
+#+begin_src sh
+  git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+  git config --global interactive.diffFilter "diff-so-fancy --patch"
+#+end_src
+* Exa
+[[https://the.exa.website][Exa]] is a =ls= replacement. It can be installed by
+#+begin_src sh
+  pacman -S exa
+#+end_src
+* Bat
+[[https://github.com/sharkdp/bat][Bat]] is a replacement of =cat=, with more colorful syntax highlighting, which can be installed by
+#+begin_src sh
+  pacman -S bat
+#+end_src
+* Tldr
+[[https://tldr.sh][Tldr]] is a simplified manual tool, aiming to replace =man=.
+- Installation
+  #+begin_src sh
+    pacman -S tldr
+  #+end_src
+- Configuration
+  #+begin_src sh
+    tldr -u
+  #+end_src
