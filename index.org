@@ -24,6 +24,7 @@
 - [[file:emacs_company.org][Emacs - Company]]
 - [[file:emacs_dired.org][Emacs - Dired]]
 - [[file:doxygen.org][Emacs - Doxygen]]
+- [[file:emacs_ebib.org][Emacs - Ebib]]
 - [[file:emacs_flycheck.org][Emacs - Flycheck]]
 - [[file:emacs_gnus.org][Emacs - Gnus]]
 - [[file:emacs_helm.org][Emacs - Helm]]

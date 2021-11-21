@@ -1,0 +1,285 @@
+#+title: Emacs - Ebib
+
+[[https://github.com/joostkremers/ebib][Ebib]] is a tool inside Emacs for bibliography management, supporting /BibTeX/ and /biblatex/ files. This post is just a brief summary of the online [[https://joostkremers.github.io/ebib/ebib-manual.html][manual]].
+
+* Installation
+Ebib can be easily installed via [[http://melpa.org][Melpa]].
+* View
+When ebib is started, the Emacs frame is divided into 2 windows, /index buffer/ at the top and /entry buffer/ at the bottom.
+** Index buffer
+All the entries are listed in this buffer.
+- The fields or columns displayed in the buffer can be [[*Columns in index buffer][customized]].
+- The entries are by default sorted in ascending order on the first column defined in =ebib-index-columns=, but the sorting rule can be specified by option [[*Sort columns displayed in index buffer][ebib-index-default-sort]].
+** Entry buffer
+All the fields of the selected entry are shown in this buffer. The first field is =type= field, as the name indicates, it indicates the type of the entry, e.g., =article=, =book=. Besides, the remaining fields can be classified into 4 groups below. =Required fields= and =optional fields= are =type=-specific; while =extra fields= and =undefined fields= are not, but defined globally.
+- =Required fields=: Required by BibTeX/biblatex.
+- =Optional fields=
+- =Extra fields=: Usually ignored by BibTeX/biblatex.
+- =Undefined fields=
+* Configuration
+** Start
+Ebib can be started by running command =M-x ebib= inside Emacs. Optionally, it can be bound to a keyboard shortcut, e.g., adding the new line below to =~/.config/emacs/init.el=.
+#+begin_src elisp
+  (global-set-key (kbd "C-c e") 'ebib)
+#+end_src
+** Columns in index buffer
+#+begin_src elisp
+  (setq ebib-index-columns '(("Year" 6 t)
+                             ("Author/Editor" 40 t)
+                             ("Title" 50 t)))
+#+end_src
+** Sort columns displayed in index buffer
+#+begin_src elisp
+  (setq ebib-index-default-sort '("Year" . descend))
+#+end_src
+** Sort entries in a bib file[fn:2]
+#+begin_src elisp
+  (setq ebib-sort-order '(year author))
+#+end_src
+** Dialect
+Ebib supports two dialects, BibTeX and biblatex. The default dialect is BibTeX, but can be changed to biblatex, i.e.,
+#+begin_src elisp
+  (setq ebib-bibtex-dialect 'biblatex)
+#+end_src
+** Generate key
+- If =ebib-autogenerate-keys= is set to =t=, function =bibtex-generate-autokey= will automatically generate the key for the entry.
+- If =ebib-autogenerate-keys= is set to =nil=, the key can be manually specified.
+** Enable multiple citations
+#+begin_src elisp
+  (setq ebib-citations-insert-multiple t)
+#+end_src
+** File search directories
+For an entry with field =file=, ebib searches and opens it in a series of directories, i.e., =File Search Dirs=.
+#+begin_src elisp
+  (setq ebib-file-search-dirs '("~/ref/data"))
+#+end_src
+** File association
+Ebib opens different types of files, i.e., extensions of files, using different external programs.
+#+begin_src elisp
+  (setq ebib-file-associations '(("pdf" . "okular")))
+#+end_src
+** Notes
+- One file per note (default) :: The default note file name is the entry key appended with a =.org= extension. But the naming rule can be customized by option =ebib-notes-name-transform-function=. Otherwise, =ebib-name-transform-function= will be used.
+  #+begin_src elisp
+    (setq ebib-notes-storage 'one-file-per-note)
+    (setq ebib-notes-directory "~/ref/note")
+  #+end_src
+- Multiple notes per file :: Optionally, a default note file can be designated for new notes by option =ebib-notes-default-file=.
+  #+begin_src elisp
+    (setq ebib-notes-storage 'multiple-notes-per-file)
+    (setq ebib-notes-locations ("~/ref/note"))
+  #+end_src
+** Reading list
+=Reading list= is an Org file, which records the state of an entry, e.g.,
+- =TODO= for an entry to read
+- =DONE= for an entry read already
+#+begin_src elisp
+  (setq ebib-reading-list-file "~/ref/read.org")
+#+end_src
+** Keyword
+Ebib supports keywords by entry field =keywords=. Optionally, a canonical keywords list can be defined, e.g.,
+#+begin_src elisp
+  (setq ebib-keywords '("mimo" "ofdm"))
+#+end_src
+** Layout
+Ebib has 4 layout options.
+- Use the full frame (default)
+- Use the current window
+- Use the right part of the frame
+  + Ebib can be sent to background by pressing =Z= instead of =z=.
+  + Multiline edit buffer is not displayed.
+- Display the index window only
+  + The entry buffer does not appear by default, but can be displayed only when an entry is added or edited.
+  + =RET= can display the entry buffer by force.
+** Example
+#+begin_src elisp
+  (use-package ebib
+    :custom
+    (ebib-preload-bib-files '("~/ref/ref.bib"))
+    (ebib-index-columns '(("Year" 6 t)
+                          ("Author/Editor" 40 t)
+                          ("Title" 50 t)))
+    (ebib-index-default-sort '("timestamp" . descend))
+    (ebib-sort-order '(year author))
+    (ebib-bibtex-dialect 'biblatex)
+    (ebib-citations-insert-multiple t)
+    (ebib-file-search-dirs '("~/ref/data"))
+    (ebib-file-associations '(("pdf" . "okular")))
+    (ebib-notes-storage 'one-file-per-note)
+    (ebib-notes-directory "~/ref/note")
+    (ebib-reading-list-file "~/ref/read.org")
+    (ebib-keywords '("mimo" "ofdm"))
+    (ebib-autogenerate-keys t)
+    (bibtex-autokey-year-title-separator ":")
+    (bibtex-autokey-year-length 4))
+  (use-package ebib-biblio
+    :ensure biblio
+    :after (ebib biblio)
+    :custom
+    (biblio-download-directory "~/ref/data")
+    (biblio-bibtex-use-autokey 1))
+#+end_src
+* Usage
+** In index buffer
+*** Database
+| Shortcut              | Functionality                                       |
+|-----------------------+-----------------------------------------------------|
+| =q=                   | Quit ebib.                                          |
+| =z=                   | Put ebib in the background.                         |
+| =o=                   | Open an existing or create a new bib file.          |
+| =c=                   | Close a opened bib file.                            |
+| =s=                   | Save the current database to the original bib file. |
+| =w=                   | Save the current database to another bib file.      |
+| =1-9=                 | Switch to opened bib file indexed[fn:1] by 1-9.     |
+| =Left=                | Switch to previous database.                        |
+| =Right=               | Switch to next database.                            |
+| =P=                   | Create or edit a =@Preamble= definition.            |
+| =S=                   | Replace the entry buffer with string buffer.        |
+| =M c=                 | Create a =dependent database=[fn:4].                |
+| =M a=                 | Push entries to a =dependent database=.             |
+**** Import entries
+***** From a buffer
+| Function              | Functionality                                       |
+|-----------------------+-----------------------------------------------------|
+| =ebib-import-entries= | Load all entries found in the active buffer/region. |
+***** With [[https://github.com/cpitclaudel/biblio.el][biblio]] package
+#+begin_src elisp
+  (use-package ebib-biblio
+    :ensure biblio
+    :after (ebib biblio))
+#+end_src
+| Function                       | Functionality                                                    |
+|--------------------------------+------------------------------------------------------------------|
+| =biblio-lookup=                | Fetch entries from arXiv, CrossRef, DBLP, HAL, IEEE Xplore, etc. |
+| =ebib-biblio-selection-import= | Import the current entry in the =biblio.el= selection buffer.    |
+| =B= / =ebib-biblio-import-doi= | Fetch entries based on doi.                                      |
+**** Print
+***** As a bibliography
+Ebib creates a simple LaTeX document essentially consisting of 3 commands below.
+- =\nocite{*}=
+- =\printbibliography=
+- =\addbibresource=
+***** As index cards
+Ebib creates a LaTeX file in which a =tabular= environment is created for each entry including all the fields.
+*** Navigate entries
+| Shortcut                   | Functionality                                                            |
+|----------------------------+--------------------------------------------------------------------------|
+| =p= / =C-p=                | Move one entry up.                                                       |
+| =n= / =C-n=                | Move one entry down.                                                     |
+| =Space=                    | Move one page down.                                                      |
+| =b=                        | Move one page up.                                                        |
+| =g=                        | Move to the first entry.                                                 |
+| =G=                        | Move to the last entry.                                                  |
+| =j= / =ebib-jump-to-entry= | Jump to an entry in all open databases.                                  |
+| =C-u j=                    | Jump to an entry in the current database.                                |
+| =C=                        | For an entry without =crossref= field, jump to its parent/child entries. |
+*** View entries
+| Shortcut | Functionality                                                                                       |
+|----------+-----------------------------------------------------------------------------------------------------|
+| =f=      | Open the file specfied in field =file=.                                                             |
+| =u=      | Open the URL specfied in field =url= with default browser.                                          |
+| =I=      | Send the DOI of the current entry (may be prepended with =https://dx.doi.org/=) to default browser. |
+| =N=      | Create a new note for the entry.                                                                    |
+*** Sort entries
+| Shortcut | Functionality                     |
+|----------+-----------------------------------|
+| =<=      | Sort entries in asending order.   |
+| =>=      | Sort entries in descending order. |
+| ===      | Resort the default sorting order. |
+*** Search/filter entries
+| Shortcut            | Functionality                                                            |
+|---------------------+--------------------------------------------------------------------------|
+| =/= / =ebib-search= | Search for a string or a regular expression from the current entry.      |
+| =C-u /=             | Start searching with the string for previous search.                     |
+| =&=                 | Create a filter or perform a logical =and= on top of an existing filter. |
+| $\mid$              | Create a logical =or= on top of an existing filter.                      |
+| =C-u -=             | Negative prefix argument, used to create a logical =not=.                |
+| =~=                 | Invert the current filter built up so far.                               |
+| =F v=               | Display the filter in the minibuffer.                                    |
+*** Edit entries
+| Shortcut | Functionality                                                                          |
+|----------+----------------------------------------------------------------------------------------|
+| =a=      | Add an entry.                                                                          |
+| =d=      | Delete an entry from the database.                                                     |
+| =k=      | Delete an entry from the database and add it to the kill ring.                         |
+| =y=      | Yank an entry in the kill ring to the current database.                                |
+| =m=      | Mark an entry.                                                                         |
+| =C-u m=  | Unmark all the marked entries if it exists; otherwise, mark all the entries.           |
+| =e=      | Enter the mode of editing the fields of the current entry.                             |
+| =E=      | Edit the keyname of the current entry.                                                 |
+| =H=      | Show the hidden fields of the current entry.                                           |
+| =x=      | Export current or marked entries to another opened database.                           |
+| =C-u x=  | Export current or marked entries to a new bib file or append them to an existing file. |
+| =C k=    | Copy the entry key.                                                                    |
+| =C e=    | Copy the entire entry.                                                                 |
+| =C r=    | Copy a full reference.                                                                 |
+| =C c=    | Copy a citation.                                                                       |
+*** Reading list
+| Shortcut                  | Functionality                                                                          |
+|---------------------------+----------------------------------------------------------------------------------------|
+| =R v=                     | View the reading list.                                                                 |
+| =R a=                     | Add the current entry to the reading list.                                             |
+| =R d=                     | Mark the current entry done.                                                           |
+** In entry buffer
+*** Navigate fields
+| Shortcut    | Functionality                               |
+|-------------+---------------------------------------------|
+| =p= / =C-p= | Move one field up.                          |
+| =n= / =C-n= | Move one field down.                        |
+| =Space=     | Move to next field group.                   |
+| =b=         | Move to previous field group.               |
+| =g=         | Move to the first field.                    |
+| =G=         | Move to the last field.                     |
+| =q=         | Quit the editing mode of the current entry. |
+*** Edit fields
+| Shortcut      | Functionality                                           |
+|---------------+---------------------------------------------------------|
+| =e= / =Enter= | Edit a field value with completion.                     |
+| =s=           | Enter a =@String= abbreviation as the field value.      |
+| =C-u e=       | Edit a field value without completion.                  |
+| =m=           | Enter multiline mode for the current field.             |
+| =d=           | Delete an entry from the database.                      |
+| =a=           | Add a new field.                                        |
+| =c=           | Copy the content of the current field to the kill ring. |
+| =k=           | Kill the content of the current field to the kill ring. |
+| =y=           | Yank the content in the kill ring to the current field. |
+| =r=           | Mark the field as a =special field=[fn:3].              |
+** In string buffer
+| Shortcut    | Functionality                     |
+|-------------+-----------------------------------|
+| =p= / =C-p= | Move one string up.               |
+| =n= / =C-n= | Move one string down.             |
+| =Space=     | Move to 10 strings down.          |
+| =b=         | Move to 10 strings up.            |
+| =g=         | Move to the first string.         |
+| =G=         | Move to the last string.          |
+| =e=         | Edit a =@String= value.           |
+| =d=         | Delete a =@String= definition.    |
+| =c=         | Copy a =@String= value.           |
+| =x=         | Export a =@String= definition.    |
+| =X=         | Export all =@String= definitions. |
+** Insert citations into a text buffer
+To accommodate different modes or types of files, different citation commands are defined and can be redefined by customizing option =ebib-citation-commands=, e.g.,
+- =latex-mode= a.k.a. =LaTeX-mode=
+- =markdown-mode= :: =text=, =paren=, and =year=.
+
+In practice, citations can be inserted into a text buffer in two ways below.
+| Function               | Functionality                                                       |
+|------------------------+---------------------------------------------------------------------|
+| =ebib-insert-citation= | In a text buffer, insert one or more citations[fn:5] in the buffer. |
+| =ebib-push-citation=   | In ebib index buffer, push one or more citations to a buffer.       |
+** Link to external resources
+- Field =file= specifies the file(s) associated to the entry. If multiple files are associated to one entry, the content of field =file= is comprised of multiple paths separated by semicolon-space (; ). Each path can be a relative path to one of the directories specfied in =ebib-file-search-dirs=.
+- Shortcut =f= can make ebib search the file (indicated by field =file=) in the directories specfied in =ebib-file-search-dirs=.
+- Function =ebib-download-url= can transform the content in field =url= to a link[fn:7] whereby a pdf file will be downloaded. The downloaded file is renamed[fn:6] and saved to the first directory in =ebib-file-search-dirs=.
+- Function =ebib-import-file= can rename and move a local file to the first directory in =ebib-file-search-dirs=.
+
+* Footnotes
+
+[fn:7] The transformation rule can be customized by option =ebib-url-download-transformations=.
+[fn:6] By default, the file name is the entry key appended with a =.pdf= extension. But the naming rule can be customized by option =ebib-name-transform-function=.
+[fn:5] Option =ebib-citations-insert-multiple= should be set to select and insert multiple citations, in which ampersand & is used to separate two citations.
+[fn:4] A =dependent database= is a database comprised of a subset of entries of a =main database=.
+[fn:3] A special field is a field whose value is not surrounded by a pair of braces when the database is saved. 
+[fn:2] Option =ebib-save-xrefs-first= needs to be unset first.
+[fn:1] In ebib, a string of format "INDEX:BIB_FILE_NAME" is displayed in the mode line.
