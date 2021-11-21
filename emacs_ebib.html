@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-12-06 Mon 22:27 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs - Ebib</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Emacs - Ebib</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5c6741d">Installation</a></li>
+<li><a href="#org1dea629">View</a>
+<ul>
+<li><a href="#orge7ac39e">Index buffer</a></li>
+<li><a href="#org5aac403">Entry buffer</a></li>
+</ul>
+</li>
+<li><a href="#org3805fe3">Configuration</a>
+<ul>
+<li><a href="#org842a5fb">Start</a></li>
+<li><a href="#org7aa9668">Columns in index buffer</a></li>
+<li><a href="#orgfb54eaf">Sort columns displayed in index buffer</a></li>
+<li><a href="#orgbfac97f">Sort entries in a bib file</a></li>
+<li><a href="#org4272c3a">Dialect</a></li>
+<li><a href="#orgb177702">Generate key</a></li>
+<li><a href="#org65e5b1e">Enable multiple citations</a></li>
+<li><a href="#orge2c60f2">File search directories</a></li>
+<li><a href="#orga2a4001">File association</a></li>
+<li><a href="#org5ecd7c1">Notes</a></li>
+<li><a href="#org46745f5">Reading list</a></li>
+<li><a href="#orge0e60e6">Keyword</a></li>
+<li><a href="#org2d25c4f">Layout</a></li>
+<li><a href="#org9637082">Example</a></li>
+</ul>
+</li>
+<li><a href="#org17b7f0b">Usage</a>
+<ul>
+<li><a href="#org39b8e8e">In index buffer</a>
+<ul>
+<li><a href="#orgb099117">Database</a>
+<ul>
+<li><a href="#org0d7218f">Import entries</a>
+<ul>
+<li><a href="#orge998691">From a buffer</a></li>
+<li><a href="#orgeebf281">With biblio package</a></li>
+</ul>
+</li>
+<li><a href="#orgdca3e78">Print</a>
+<ul>
+<li><a href="#orgf531d46">As a bibliography</a></li>
+<li><a href="#org509c34c">As index cards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb90f227">Navigate entries</a></li>
+<li><a href="#org0a484c0">View entries</a></li>
+<li><a href="#orgee6a231">Sort entries</a></li>
+<li><a href="#org6fb78f4">Search/filter entries</a></li>
+<li><a href="#org928ede6">Edit entries</a></li>
+<li><a href="#orgbc91a14">Reading list</a></li>
+</ul>
+</li>
+<li><a href="#org96c769e">In entry buffer</a>
+<ul>
+<li><a href="#org7607dd4">Navigate fields</a></li>
+<li><a href="#org163d950">Edit fields</a></li>
+</ul>
+</li>
+<li><a href="#orgb4a4f7e">In string buffer</a></li>
+<li><a href="#org6d4acd6">Insert citations into a text buffer</a></li>
+<li><a href="#org3c5161c">Link to external resources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+<a href="https://github.com/joostkremers/ebib">Ebib</a> is a tool inside Emacs for bibliography management, supporting <i>BibTeX</i> and <i>biblatex</i> files. This post is just a brief summary of the online <a href="https://joostkremers.github.io/ebib/ebib-manual.html">manual</a>.
+</p>
+
+<div id="outline-container-org5c6741d" class="outline-2">
+<h2 id="org5c6741d">Installation</h2>
+<div class="outline-text-2" id="text-org5c6741d">
+<p>
+Ebib can be easily installed via <a href="http://melpa.org">Melpa</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org1dea629" class="outline-2">
+<h2 id="org1dea629">View</h2>
+<div class="outline-text-2" id="text-org1dea629">
+<p>
+When ebib is started, the Emacs frame is divided into 2 windows, <i>index buffer</i> at the top and <i>entry buffer</i> at the bottom.
+</p>
+</div>
+<div id="outline-container-orge7ac39e" class="outline-3">
+<h3 id="orge7ac39e">Index buffer</h3>
+<div class="outline-text-3" id="text-orge7ac39e">
+<p>
+All the entries are listed in this buffer.
+</p>
+<ul class="org-ul">
+<li>The fields or columns displayed in the buffer can be <a href="#org7aa9668">customized</a>.</li>
+<li>The entries are by default sorted in ascending order on the first column defined in <code>ebib-index-columns</code>, but the sorting rule can be specified by option <a href="#orgfb54eaf">ebib-index-default-sort</a>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5aac403" class="outline-3">
+<h3 id="org5aac403">Entry buffer</h3>
+<div class="outline-text-3" id="text-org5aac403">
+<p>
+All the fields of the selected entry are shown in this buffer. The first field is <code>type</code> field, as the name indicates, it indicates the type of the entry, e.g., <code>article</code>, <code>book</code>. Besides, the remaining fields can be classified into 4 groups below. <code>Required fields</code> and <code>optional fields</code> are <code>type</code>-specific; while <code>extra fields</code> and <code>undefined fields</code> are not, but defined globally.
+</p>
+<ul class="org-ul">
+<li><code>Required fields</code>: Required by BibTeX/biblatex.</li>
+<li><code>Optional fields</code></li>
+<li><code>Extra fields</code>: Usually ignored by BibTeX/biblatex.</li>
+<li><code>Undefined fields</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3805fe3" class="outline-2">
+<h2 id="org3805fe3">Configuration</h2>
+<div class="outline-text-2" id="text-org3805fe3">
+</div>
+<div id="outline-container-org842a5fb" class="outline-3">
+<h3 id="org842a5fb">Start</h3>
+<div class="outline-text-3" id="text-org842a5fb">
+<p>
+Ebib can be started by running command <code>M-x ebib</code> inside Emacs. Optionally, it can be bound to a keyboard shortcut, e.g., adding the new line below to <code>~/.config/emacs/init.el</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(global-set-key (kbd "C-c e") 'ebib)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7aa9668" class="outline-3">
+<h3 id="org7aa9668">Columns in index buffer</h3>
+<div class="outline-text-3" id="text-org7aa9668">
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-index-columns '(("Year" 6 t)
+                           ("Author/Editor" 40 t)
+                           ("Title" 50 t)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfb54eaf" class="outline-3">
+<h3 id="orgfb54eaf">Sort columns displayed in index buffer</h3>
+<div class="outline-text-3" id="text-orgfb54eaf">
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-index-default-sort '("Year" . descend))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbfac97f" class="outline-3">
+<h3 id="orgbfac97f">Sort entries in a bib file<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
+<div class="outline-text-3" id="text-orgbfac97f">
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-sort-order '(year author))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4272c3a" class="outline-3">
+<h3 id="org4272c3a">Dialect</h3>
+<div class="outline-text-3" id="text-org4272c3a">
+<p>
+Ebib supports two dialects, BibTeX and biblatex. The default dialect is BibTeX, but can be changed to biblatex, i.e.,
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-bibtex-dialect 'biblatex)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb177702" class="outline-3">
+<h3 id="orgb177702">Generate key</h3>
+<div class="outline-text-3" id="text-orgb177702">
+<ul class="org-ul">
+<li>If <code>ebib-autogenerate-keys</code> is set to <code>t</code>, function <code>bibtex-generate-autokey</code> will automatically generate the key for the entry.</li>
+<li>If <code>ebib-autogenerate-keys</code> is set to <code>nil</code>, the key can be manually specified.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org65e5b1e" class="outline-3">
+<h3 id="org65e5b1e">Enable multiple citations</h3>
+<div class="outline-text-3" id="text-org65e5b1e">
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-citations-insert-multiple t)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2c60f2" class="outline-3">
+<h3 id="orge2c60f2">File search directories</h3>
+<div class="outline-text-3" id="text-orge2c60f2">
+<p>
+For an entry with field <code>file</code>, ebib searches and opens it in a series of directories, i.e., <code>File Search Dirs</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-file-search-dirs '("~/ref/data"))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga2a4001" class="outline-3">
+<h3 id="orga2a4001">File association</h3>
+<div class="outline-text-3" id="text-orga2a4001">
+<p>
+Ebib opens different types of files, i.e., extensions of files, using different external programs.
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-file-associations '(("pdf" . "okular")))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5ecd7c1" class="outline-3">
+<h3 id="org5ecd7c1">Notes</h3>
+<div class="outline-text-3" id="text-org5ecd7c1">
+<dl class="org-dl">
+<dt>One file per note (default)</dt><dd><p>
+The default note file name is the entry key appended with a <code>.org</code> extension. But the naming rule can be customized by option <code>ebib-notes-name-transform-function</code>. Otherwise, <code>ebib-name-transform-function</code> will be used.
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-notes-storage 'one-file-per-note)
+(setq ebib-notes-directory "~/ref/note")
+</pre>
+</div></dd>
+<dt>Multiple notes per file</dt><dd><p>
+Optionally, a default note file can be designated for new notes by option <code>ebib-notes-default-file</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-notes-storage 'multiple-notes-per-file)
+(setq ebib-notes-locations ("~/ref/note"))
+</pre>
+</div></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org46745f5" class="outline-3">
+<h3 id="org46745f5">Reading list</h3>
+<div class="outline-text-3" id="text-org46745f5">
+<p>
+<code>Reading list</code> is an Org file, which records the state of an entry, e.g.,
+</p>
+<ul class="org-ul">
+<li><code>TODO</code> for an entry to read</li>
+<li><code>DONE</code> for an entry read already</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-reading-list-file "~/ref/read.org")
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge0e60e6" class="outline-3">
+<h3 id="orge0e60e6">Keyword</h3>
+<div class="outline-text-3" id="text-orge0e60e6">
+<p>
+Ebib supports keywords by entry field <code>keywords</code>. Optionally, a canonical keywords list can be defined, e.g.,
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(setq ebib-keywords '("mimo" "ofdm"))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2d25c4f" class="outline-3">
+<h3 id="org2d25c4f">Layout</h3>
+<div class="outline-text-3" id="text-org2d25c4f">
+<p>
+Ebib has 4 layout options.
+</p>
+<ul class="org-ul">
+<li>Use the full frame (default)</li>
+<li>Use the current window</li>
+<li>Use the right part of the frame
+<ul class="org-ul">
+<li>Ebib can be sent to background by pressing <code>Z</code> instead of <code>z</code>.</li>
+<li>Multiline edit buffer is not displayed.</li>
+</ul></li>
+<li>Display the index window only
+<ul class="org-ul">
+<li>The entry buffer does not appear by default, but can be displayed only when an entry is added or edited.</li>
+<li><code>RET</code> can display the entry buffer by force.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9637082" class="outline-3">
+<h3 id="org9637082">Example</h3>
+<div class="outline-text-3" id="text-org9637082">
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package ebib
+  :custom
+  (ebib-preload-bib-files '("~/ref/ref.bib"))
+  (ebib-index-columns '(("Year" 6 t)
+                        ("Author/Editor" 40 t)
+                        ("Title" 50 t)))
+  (ebib-index-default-sort '("timestamp" . descend))
+  (ebib-sort-order '(year author))
+  (ebib-bibtex-dialect 'biblatex)
+  (ebib-citations-insert-multiple t)
+  (ebib-file-search-dirs '("~/ref/data"))
+  (ebib-file-associations '(("pdf" . "okular")))
+  (ebib-notes-storage 'one-file-per-note)
+  (ebib-notes-directory "~/ref/note")
+  (ebib-reading-list-file "~/ref/read.org")
+  (ebib-keywords '("mimo" "ofdm"))
+  (ebib-autogenerate-keys t)
+  (bibtex-autokey-year-title-separator ":")
+  (bibtex-autokey-year-length 4))
+(use-package ebib-biblio
+  :ensure biblio
+  :after (ebib biblio)
+  :custom
+  (biblio-download-directory "~/ref/data")
+  (biblio-bibtex-use-autokey 1))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org17b7f0b" class="outline-2">
+<h2 id="org17b7f0b">Usage</h2>
+<div class="outline-text-2" id="text-org17b7f0b">
+</div>
+<div id="outline-container-org39b8e8e" class="outline-3">
+<h3 id="org39b8e8e">In index buffer</h3>
+<div class="outline-text-3" id="text-org39b8e8e">
+</div>
+<div id="outline-container-orgb099117" class="outline-4">
+<h4 id="orgb099117">Database</h4>
+<div class="outline-text-4" id="text-orgb099117">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>q</code></td>
+<td class="org-left">Quit ebib.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>z</code></td>
+<td class="org-left">Put ebib in the background.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>o</code></td>
+<td class="org-left">Open an existing or create a new bib file.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>c</code></td>
+<td class="org-left">Close a opened bib file.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s</code></td>
+<td class="org-left">Save the current database to the original bib file.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>w</code></td>
+<td class="org-left">Save the current database to another bib file.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>1-9</code></td>
+<td class="org-left">Switch to opened bib file indexed<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> by 1-9.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>Left</code></td>
+<td class="org-left">Switch to previous database.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>Right</code></td>
+<td class="org-left">Switch to next database.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>P</code></td>
+<td class="org-left">Create or edit a <code>@Preamble</code> definition.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S</code></td>
+<td class="org-left">Replace the entry buffer with string buffer.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M c</code></td>
+<td class="org-left">Create a <code>dependent database</code><sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M a</code></td>
+<td class="org-left">Push entries to a <code>dependent database</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org0d7218f" class="outline-5">
+<h5 id="org0d7218f">Import entries</h5>
+<div class="outline-text-5" id="text-org0d7218f">
+</div>
+<div id="outline-container-orge998691" class="outline-6">
+<h6 id="orge998691">From a buffer</h6>
+<div class="outline-text-6" id="text-orge998691">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Function</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>ebib-import-entries</code></td>
+<td class="org-left">Load all entries found in the active buffer/region.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgeebf281" class="outline-6">
+<h6 id="orgeebf281">With <a href="https://github.com/cpitclaudel/biblio.el">biblio</a> package</h6>
+<div class="outline-text-6" id="text-orgeebf281">
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package ebib-biblio
+  :ensure biblio
+  :after (ebib biblio))
+</pre>
+</div>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Function</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>biblio-lookup</code></td>
+<td class="org-left">Fetch entries from arXiv, CrossRef, DBLP, HAL, IEEE Xplore, etc.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>ebib-biblio-selection-import</code></td>
+<td class="org-left">Import the current entry in the <code>biblio.el</code> selection buffer.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>B</code> / <code>ebib-biblio-import-doi</code></td>
+<td class="org-left">Fetch entries based on doi.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdca3e78" class="outline-5">
+<h5 id="orgdca3e78">Print</h5>
+<div class="outline-text-5" id="text-orgdca3e78">
+</div>
+<div id="outline-container-orgf531d46" class="outline-6">
+<h6 id="orgf531d46">As a bibliography</h6>
+<div class="outline-text-6" id="text-orgf531d46">
+<p>
+Ebib creates a simple LaTeX document essentially consisting of 3 commands below.
+</p>
+<ul class="org-ul">
+<li><code>\nocite{*}</code></li>
+<li><code>\printbibliography</code></li>
+<li><code>\addbibresource</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org509c34c" class="outline-6">
+<h6 id="org509c34c">As index cards</h6>
+<div class="outline-text-6" id="text-org509c34c">
+<p>
+Ebib creates a LaTeX file in which a <code>tabular</code> environment is created for each entry including all the fields.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb90f227" class="outline-4">
+<h4 id="orgb90f227">Navigate entries</h4>
+<div class="outline-text-4" id="text-orgb90f227">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>p</code> / <code>C-p</code></td>
+<td class="org-left">Move one entry up.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>n</code> / <code>C-n</code></td>
+<td class="org-left">Move one entry down.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>Space</code></td>
+<td class="org-left">Move one page down.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>b</code></td>
+<td class="org-left">Move one page up.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>g</code></td>
+<td class="org-left">Move to the first entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>G</code></td>
+<td class="org-left">Move to the last entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>j</code> / <code>ebib-jump-to-entry</code></td>
+<td class="org-left">Jump to an entry in all open databases.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-u j</code></td>
+<td class="org-left">Jump to an entry in the current database.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C</code></td>
+<td class="org-left">For an entry without <code>crossref</code> field, jump to its parent/child entries.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org0a484c0" class="outline-4">
+<h4 id="org0a484c0">View entries</h4>
+<div class="outline-text-4" id="text-org0a484c0">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>f</code></td>
+<td class="org-left">Open the file specfied in field <code>file</code>.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>u</code></td>
+<td class="org-left">Open the URL specfied in field <code>url</code> with default browser.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>I</code></td>
+<td class="org-left">Send the DOI of the current entry (may be prepended with <code>https://dx.doi.org/</code>) to default browser.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>N</code></td>
+<td class="org-left">Create a new note for the entry.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgee6a231" class="outline-4">
+<h4 id="orgee6a231">Sort entries</h4>
+<div class="outline-text-4" id="text-orgee6a231">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>&lt;</code></td>
+<td class="org-left">Sort entries in asending order.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&gt;</code></td>
+<td class="org-left">Sort entries in descending order.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>=</code></td>
+<td class="org-left">Resort the default sorting order.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org6fb78f4" class="outline-4">
+<h4 id="org6fb78f4">Search/filter entries</h4>
+<div class="outline-text-4" id="text-org6fb78f4">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>/</code> / <code>ebib-search</code></td>
+<td class="org-left">Search for a string or a regular expression from the current entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-u /</code></td>
+<td class="org-left">Start searching with the string for previous search.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&amp;</code></td>
+<td class="org-left">Create a filter or perform a logical <code>and</code> on top of an existing filter.</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\mid\)</td>
+<td class="org-left">Create a logical <code>or</code> on top of an existing filter.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-u -</code></td>
+<td class="org-left">Negative prefix argument, used to create a logical <code>not</code>.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>~</code></td>
+<td class="org-left">Invert the current filter built up so far.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>F v</code></td>
+<td class="org-left">Display the filter in the minibuffer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org928ede6" class="outline-4">
+<h4 id="org928ede6">Edit entries</h4>
+<div class="outline-text-4" id="text-org928ede6">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>a</code></td>
+<td class="org-left">Add an entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>d</code></td>
+<td class="org-left">Delete an entry from the database.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>k</code></td>
+<td class="org-left">Delete an entry from the database and add it to the kill ring.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>y</code></td>
+<td class="org-left">Yank an entry in the kill ring to the current database.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>m</code></td>
+<td class="org-left">Mark an entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-u m</code></td>
+<td class="org-left">Unmark all the marked entries if it exists; otherwise, mark all the entries.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>e</code></td>
+<td class="org-left">Enter the mode of editing the fields of the current entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>E</code></td>
+<td class="org-left">Edit the keyname of the current entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>H</code></td>
+<td class="org-left">Show the hidden fields of the current entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x</code></td>
+<td class="org-left">Export current or marked entries to another opened database.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-u x</code></td>
+<td class="org-left">Export current or marked entries to a new bib file or append them to an existing file.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C k</code></td>
+<td class="org-left">Copy the entry key.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C e</code></td>
+<td class="org-left">Copy the entire entry.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C r</code></td>
+<td class="org-left">Copy a full reference.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C c</code></td>
+<td class="org-left">Copy a citation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgbc91a14" class="outline-4">
+<h4 id="orgbc91a14">Reading list</h4>
+<div class="outline-text-4" id="text-orgbc91a14">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>R v</code></td>
+<td class="org-left">View the reading list.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>R a</code></td>
+<td class="org-left">Add the current entry to the reading list.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>R d</code></td>
+<td class="org-left">Mark the current entry done.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org96c769e" class="outline-3">
+<h3 id="org96c769e">In entry buffer</h3>
+<div class="outline-text-3" id="text-org96c769e">
+</div>
+<div id="outline-container-org7607dd4" class="outline-4">
+<h4 id="org7607dd4">Navigate fields</h4>
+<div class="outline-text-4" id="text-org7607dd4">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>p</code> / <code>C-p</code></td>
+<td class="org-left">Move one field up.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>n</code> / <code>C-n</code></td>
+<td class="org-left">Move one field down.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>Space</code></td>
+<td class="org-left">Move to next field group.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>b</code></td>
+<td class="org-left">Move to previous field group.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>g</code></td>
+<td class="org-left">Move to the first field.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>G</code></td>
+<td class="org-left">Move to the last field.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>q</code></td>
+<td class="org-left">Quit the editing mode of the current entry.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org163d950" class="outline-4">
+<h4 id="org163d950">Edit fields</h4>
+<div class="outline-text-4" id="text-org163d950">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>e</code> / <code>Enter</code></td>
+<td class="org-left">Edit a field value with completion.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>s</code></td>
+<td class="org-left">Enter a <code>@String</code> abbreviation as the field value.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-u e</code></td>
+<td class="org-left">Edit a field value without completion.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>m</code></td>
+<td class="org-left">Enter multiline mode for the current field.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>d</code></td>
+<td class="org-left">Delete an entry from the database.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>a</code></td>
+<td class="org-left">Add a new field.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>c</code></td>
+<td class="org-left">Copy the content of the current field to the kill ring.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>k</code></td>
+<td class="org-left">Kill the content of the current field to the kill ring.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>y</code></td>
+<td class="org-left">Yank the content in the kill ring to the current field.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>r</code></td>
+<td class="org-left">Mark the field as a <code>special field</code><sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb4a4f7e" class="outline-3">
+<h3 id="orgb4a4f7e">In string buffer</h3>
+<div class="outline-text-3" id="text-orgb4a4f7e">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Shortcut</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>p</code> / <code>C-p</code></td>
+<td class="org-left">Move one string up.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>n</code> / <code>C-n</code></td>
+<td class="org-left">Move one string down.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>Space</code></td>
+<td class="org-left">Move to 10 strings down.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>b</code></td>
+<td class="org-left">Move to 10 strings up.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>g</code></td>
+<td class="org-left">Move to the first string.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>G</code></td>
+<td class="org-left">Move to the last string.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>e</code></td>
+<td class="org-left">Edit a <code>@String</code> value.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>d</code></td>
+<td class="org-left">Delete a <code>@String</code> definition.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>c</code></td>
+<td class="org-left">Copy a <code>@String</code> value.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x</code></td>
+<td class="org-left">Export a <code>@String</code> definition.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>X</code></td>
+<td class="org-left">Export all <code>@String</code> definitions.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org6d4acd6" class="outline-3">
+<h3 id="org6d4acd6">Insert citations into a text buffer</h3>
+<div class="outline-text-3" id="text-org6d4acd6">
+<p>
+To accommodate different modes or types of files, different citation commands are defined and can be redefined by customizing option <code>ebib-citation-commands</code>, e.g.,
+</p>
+<ul class="org-ul">
+<li><code>latex-mode</code> a.k.a. <code>LaTeX-mode</code></li>
+<li id="<code>markdown-mode</code>"><code>text</code>, <code>paren</code>, and <code>year</code>.</li>
+</ul>
+
+<p>
+In practice, citations can be inserted into a text buffer in two ways below.
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Function</th>
+<th scope="col" class="org-left">Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>ebib-insert-citation</code></td>
+<td class="org-left">In a text buffer, insert one or more citations<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup> in the buffer.</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>ebib-push-citation</code></td>
+<td class="org-left">In ebib index buffer, push one or more citations to a buffer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org3c5161c" class="outline-3">
+<h3 id="org3c5161c">Link to external resources</h3>
+<div class="outline-text-3" id="text-org3c5161c">
+<ul class="org-ul">
+<li>Field <code>file</code> specifies the file(s) associated to the entry. If multiple files are associated to one entry, the content of field <code>file</code> is comprised of multiple paths separated by semicolon-space (; ). Each path can be a relative path to one of the directories specfied in <code>ebib-file-search-dirs</code>.</li>
+<li>Shortcut <code>f</code> can make ebib search the file (indicated by field <code>file</code>) in the directories specfied in <code>ebib-file-search-dirs</code>.</li>
+<li>Function <code>ebib-download-url</code> can transform the content in field <code>url</code> to a link<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup> whereby a pdf file will be downloaded. The downloaded file is renamed<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup> and saved to the first directory in <code>ebib-file-search-dirs</code>.</li>
+<li>Function <code>ebib-import-file</code> can rename and move a local file to the first directory in <code>ebib-file-search-dirs</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Option <code>ebib-save-xrefs-first</code> needs to be unset first.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+In ebib, a string of format "INDEX:BIB<sub>FILE</sub><sub>NAME</sub>" is displayed in the mode line.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+A <code>dependent database</code> is a database comprised of a subset of entries of a <code>main database</code>.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+A special field is a field whose value is not surrounded by a pair of braces when the database is saved. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Option <code>ebib-citations-insert-multiple</code> should be set to select and insert multiple citations, in which ampersand &amp; is used to separate two citations.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+The transformation rule can be customized by option <code>ebib-url-download-transformations</code>.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+By default, the file name is the entry key appended with a <code>.pdf</code> extension. But the naming rule can be customized by option <code>ebib-name-transform-function</code>.
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>
