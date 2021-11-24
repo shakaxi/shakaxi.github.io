@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-18 Sun 09:31 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-11-25 Thu 00:04 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Matplotlib</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -39,21 +40,21 @@
   pre.src {
     position: relative;
     overflow: auto;
-    padding-top: 1.2em;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
   pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,85 +190,62 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
-<!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Python - Matplotlib</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org04ae2c5">Background</a></li>
-<li><a href="#org194a4f0">Installation</a></li>
-<li><a href="#org4e3de93">Submodules</a></li>
-<li><a href="#org44ce68d">General Concepts</a>
+<li><a href="#org9377fa7">Background</a></li>
+<li><a href="#orgc7c550c">Installation</a></li>
+<li><a href="#org8ee653b">Submodules</a></li>
+<li><a href="#orga24eb2c">General Concepts</a>
 <ul>
-<li><a href="#org36a1600"><code>Figure</code></a></li>
-<li><a href="#orgca2aa93"><code>Axes</code></a></li>
-<li><a href="#orgcda3537"><code>Axis</code></a></li>
+<li><a href="#org205daed"><code>Figure</code></a></li>
+<li><a href="#org9683737"><code>Axes</code></a></li>
+<li><a href="#org64a4765"><code>Axis</code></a></li>
 </ul>
 </li>
-<li><a href="#org26f0e43">Interfaces</a>
+<li><a href="#orgf5b8d37">Interfaces</a>
 <ul>
-<li><a href="#org65c37cf">Object-oriented (OO) style</a></li>
-<li><a href="#org3f3a8b8">Pyplot style</a></li>
+<li><a href="#org5aa21b9">Object-oriented (OO) style</a></li>
+<li><a href="#org9b4b265">Pyplot style</a></li>
 </ul>
 </li>
-<li><a href="#org093f6ae">Miscellaneous</a>
+<li><a href="#orgdcd4b12">Miscellaneous</a>
 <ul>
-<li><a href="#orgb2c625a">Default settings</a></li>
+<li><a href="#org826a212">Default settings</a></li>
 </ul>
 </li>
-<li><a href="#org52bf2f1">References</a></li>
+<li><a href="#org8a08313">References</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org04ae2c5" class="outline-2">
-<h2 id="org04ae2c5">Background</h2>
-<div class="outline-text-2" id="text-org04ae2c5">
+<div id="outline-container-org9377fa7" class="outline-2">
+<h2 id="org9377fa7">Background</h2>
+<div class="outline-text-2" id="text-org9377fa7">
 <p>
 <a href="https://matplotlib.org">Matplotlib</a> is a popular python package for figure plot and data visualization.
 </p>
 </div>
 </div>
-<div id="outline-container-org194a4f0" class="outline-2">
-<h2 id="org194a4f0">Installation</h2>
-<div class="outline-text-2" id="text-org194a4f0">
+<div id="outline-container-orgc7c550c" class="outline-2">
+<h2 id="orgc7c550c">Installation</h2>
+<div class="outline-text-2" id="text-orgc7c550c">
 <div class="org-src-container">
 <pre class="src src-python">pip install matplotlib
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4e3de93" class="outline-2">
-<h2 id="org4e3de93">Submodules</h2>
-<div class="outline-text-2" id="text-org4e3de93">
+<div id="outline-container-org8ee653b" class="outline-2">
+<h2 id="org8ee653b">Submodules</h2>
+<div class="outline-text-2" id="text-org8ee653b">
 <p>
 Matplotlib comes with a series of submodules, e.g.,
 </p>
@@ -277,28 +255,28 @@ Matplotlib comes with a series of submodules, e.g.,
 </ul>
 </div>
 </div>
-<div id="outline-container-org44ce68d" class="outline-2">
-<h2 id="org44ce68d">General Concepts</h2>
-<div class="outline-text-2" id="text-org44ce68d">
+<div id="outline-container-orga24eb2c" class="outline-2">
+<h2 id="orga24eb2c">General Concepts</h2>
+<div class="outline-text-2" id="text-orga24eb2c">
 <p>
-In Matplotlib, there are some important concepts which can be illustrated in <a href="#org4b1b7e1">Figure 1</a>. A typical matplotlib <code>Figure</code> is comprised of a variety of components, as show in <a href="#org079e109">Figure 2</a>.
+In Matplotlib, there are some important concepts which can be illustrated in <a href="#org4e2e936">Figure 1</a>. A typical matplotlib <code>Figure</code> is comprised of a variety of components, as show in <a href="#orge5a8fa1">Figure 2</a>.
 </p>
 
-<div id="org4b1b7e1" class="figure">
+<div id="org4e2e936" class="figure">
 <p><img src="matplotlib_concept.png" alt="matplotlib_concept.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 1: </span>Basic concepts in Matplotlib (from <a href="https://matplotlib.org/1.5.1/faq/usage_faq.html">https://matplotlib.org/1.5.1/faq/usage_faq.html</a>)</p>
 </div>
 
-<div id="org079e109" class="figure">
+<div id="orge5a8fa1" class="figure">
 <p><img src="matplotlib_fig_component.png" alt="matplotlib_fig_component.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 2: </span>Components of a figure in Matplotlib (from <a href="https://matplotlib.org/stable/tutorials/introductory/usage.html">https://matplotlib.org/stable/tutorials/introductory/usage.html</a>)</p>
 </div>
 </div>
-<div id="outline-container-org36a1600" class="outline-3">
-<h3 id="org36a1600"><code>Figure</code></h3>
-<div class="outline-text-3" id="text-org36a1600">
+<div id="outline-container-org205daed" class="outline-3">
+<h3 id="org205daed"><code>Figure</code></h3>
+<div class="outline-text-3" id="text-org205daed">
 <ul class="org-ul">
 <li><p>
 A <code>Figure</code> object is essentially a canvas on which plot operations are performed. Clearly, it consists of one or more <code>Axes</code> objects.
@@ -321,9 +299,9 @@ fig, ax = plt.subplots(2, 3)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgca2aa93" class="outline-3">
-<h3 id="orgca2aa93"><code>Axes</code></h3>
-<div class="outline-text-3" id="text-orgca2aa93">
+<div id="outline-container-org9683737" class="outline-3">
+<h3 id="org9683737"><code>Axes</code></h3>
+<div class="outline-text-3" id="text-org9683737">
 <ul class="org-ul">
 <li>Create <code>Axes</code> objects.
 <ul class="org-ul">
@@ -353,33 +331,33 @@ fig, ax = plt.subplots(2, 3)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcda3537" class="outline-3">
-<h3 id="orgcda3537"><code>Axis</code></h3>
-<div class="outline-text-3" id="text-orgcda3537">
+<div id="outline-container-org64a4765" class="outline-3">
+<h3 id="org64a4765"><code>Axis</code></h3>
+<div class="outline-text-3" id="text-org64a4765">
 <p>
 Just as its name indicates, a <code>Axis</code> object defines the properties and attributes of a axis, e.g., limits, ticks, and ticklabels.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org26f0e43" class="outline-2">
-<h2 id="org26f0e43">Interfaces</h2>
-<div class="outline-text-2" id="text-org26f0e43">
+<div id="outline-container-orgf5b8d37" class="outline-2">
+<h2 id="orgf5b8d37">Interfaces</h2>
+<div class="outline-text-2" id="text-orgf5b8d37">
 <p>
 As written in the tutorial, there are a couple of API styles provided by matplotlib.
 </p>
 </div>
-<div id="outline-container-org65c37cf" class="outline-3">
-<h3 id="org65c37cf">Object-oriented (OO) style</h3>
-<div class="outline-text-3" id="text-org65c37cf">
+<div id="outline-container-org5aa21b9" class="outline-3">
+<h3 id="org5aa21b9">Object-oriented (OO) style</h3>
+<div class="outline-text-3" id="text-org5aa21b9">
 <p>
 <code>Figures</code> and <code>Axes</code> objects are created and their member functions are provoked explicitly.
 </p>
 </div>
 </div>
-<div id="outline-container-org3f3a8b8" class="outline-3">
-<h3 id="org3f3a8b8">Pyplot style</h3>
-<div class="outline-text-3" id="text-org3f3a8b8">
+<div id="outline-container-org9b4b265" class="outline-3">
+<h3 id="org9b4b265">Pyplot style</h3>
+<div class="outline-text-3" id="text-org9b4b265">
 <p>
 <code>matplotlib.pyplot</code> directly provokes its own functions, e.g., <code>plot</code>, <code>xlabel</code>, <code>ylabel</code>, <code>title</code>, <code>legend</code>, etc.
 </p>
@@ -387,27 +365,28 @@ As written in the tutorial, there are a couple of API styles provided by matplot
 </div>
 </div>
 
-<div id="outline-container-org093f6ae" class="outline-2">
-<h2 id="org093f6ae">Miscellaneous</h2>
-<div class="outline-text-2" id="text-org093f6ae">
+<div id="outline-container-orgdcd4b12" class="outline-2">
+<h2 id="orgdcd4b12">Miscellaneous</h2>
+<div class="outline-text-2" id="text-orgdcd4b12">
 </div>
-<div id="outline-container-orgb2c625a" class="outline-3">
-<h3 id="orgb2c625a">Default settings</h3>
-<div class="outline-text-3" id="text-orgb2c625a">
+<div id="outline-container-org826a212" class="outline-3">
+<h3 id="org826a212">Default settings</h3>
+<div class="outline-text-3" id="text-org826a212">
 <div class="org-src-container">
 <pre class="src src-python">import matplotlib.pyplot as plt
 
 plt.rcParams['font.family'] = "Consolas"
 plt.rcParams['font.size'] = 12
 plt.rcParams['savefig.dpi'] = 300
+plt.rcParams['text.usetex'] = True
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org52bf2f1" class="outline-2">
-<h2 id="org52bf2f1">References</h2>
-<div class="outline-text-2" id="text-org52bf2f1">
+<div id="outline-container-org8a08313" class="outline-2">
+<h2 id="org8a08313">References</h2>
+<div class="outline-text-2" id="text-org8a08313">
 <ul class="org-ul">
 <li><a href="https://matplotlib.org">https://matplotlib.org</a></li>
 </ul>
