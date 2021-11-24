@@ -73,6 +73,7 @@ As written in the tutorial, there are a couple of API styles provided by matplot
   plt.rcParams['font.family'] = "Consolas"
   plt.rcParams['font.size'] = 12
   plt.rcParams['savefig.dpi'] = 300
+  plt.rcParams['text.usetex'] = True
 #+end_src
 * References
 - https://matplotlib.org
