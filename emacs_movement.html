@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Movement</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,79 +190,32 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Emacs - Movement</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc5000da">Character-wise movement</a></li>
-<li><a href="#org48478db">Word-wise movement</a></li>
-<li><a href="#org3ca6da8">Line-wise movement</a></li>
-<li><a href="#orgfc5f75e">Sexp-wise movement</a></li>
-<li><a href="#orga36959c">List-wise movement</a></li>
-<li><a href="#org9ad3ff1">Sentence-wise movement</a></li>
-<li><a href="#org1459a72">Paragraph-wise movement</a></li>
-<li><a href="#org7cfea42">Defun-wise movement</a></li>
-<li><a href="#orgf04e143">Page-wise movement</a></li>
+<li><a href="#org96bda57">Character-wise movement</a></li>
+<li><a href="#orgfbfd968">Word-wise movement</a></li>
+<li><a href="#orgefa4478">Line-wise movement</a></li>
+<li><a href="#org54ed7a7">Sexp-wise movement</a></li>
+<li><a href="#orge133707">List-wise movement</a></li>
+<li><a href="#orgdb3dc5c">Sentence-wise movement</a></li>
+<li><a href="#org81ce7e4">Paragraph-wise movement</a></li>
+<li><a href="#orgf912734">Defun-wise movement</a></li>
+<li><a href="#orgf9fd708">Page-wise movement</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc5000da" class="outline-2">
-<h2 id="orgc5000da">Character-wise movement</h2>
-<div class="outline-text-2" id="text-orgc5000da">
+<div id="outline-container-org96bda57" class="outline-2">
+<h2 id="org96bda57">Character-wise movement</h2>
+<div class="outline-text-2" id="text-org96bda57">
 <table>
 
 
@@ -300,9 +254,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org48478db" class="outline-2">
-<h2 id="org48478db">Word-wise movement</h2>
-<div class="outline-text-2" id="text-org48478db">
+<div id="outline-container-orgfbfd968" class="outline-2">
+<h2 id="orgfbfd968">Word-wise movement</h2>
+<div class="outline-text-2" id="text-orgfbfd968">
 <table>
 
 
@@ -331,9 +285,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org3ca6da8" class="outline-2">
-<h2 id="org3ca6da8">Line-wise movement</h2>
-<div class="outline-text-2" id="text-org3ca6da8">
+<div id="outline-container-orgefa4478" class="outline-2">
+<h2 id="orgefa4478">Line-wise movement</h2>
+<div class="outline-text-2" id="text-orgefa4478">
 <table>
 
 
@@ -367,9 +321,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orgfc5f75e" class="outline-2">
-<h2 id="orgfc5f75e">Sexp-wise movement</h2>
-<div class="outline-text-2" id="text-orgfc5f75e">
+<div id="outline-container-org54ed7a7" class="outline-2">
+<h2 id="org54ed7a7">Sexp-wise movement</h2>
+<div class="outline-text-2" id="text-org54ed7a7">
 <table>
 
 
@@ -398,9 +352,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orga36959c" class="outline-2">
-<h2 id="orga36959c">List-wise movement</h2>
-<div class="outline-text-2" id="text-orga36959c">
+<div id="outline-container-orge133707" class="outline-2">
+<h2 id="orge133707">List-wise movement</h2>
+<div class="outline-text-2" id="text-orge133707">
 <table>
 
 
@@ -439,9 +393,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org9ad3ff1" class="outline-2">
-<h2 id="org9ad3ff1">Sentence-wise movement</h2>
-<div class="outline-text-2" id="text-org9ad3ff1">
+<div id="outline-container-orgdb3dc5c" class="outline-2">
+<h2 id="orgdb3dc5c">Sentence-wise movement</h2>
+<div class="outline-text-2" id="text-orgdb3dc5c">
 <table>
 
 
@@ -470,9 +424,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org1459a72" class="outline-2">
-<h2 id="org1459a72">Paragraph-wise movement</h2>
-<div class="outline-text-2" id="text-org1459a72">
+<div id="outline-container-org81ce7e4" class="outline-2">
+<h2 id="org81ce7e4">Paragraph-wise movement</h2>
+<div class="outline-text-2" id="text-org81ce7e4">
 <table>
 
 
@@ -501,9 +455,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org7cfea42" class="outline-2">
-<h2 id="org7cfea42">Defun-wise movement</h2>
-<div class="outline-text-2" id="text-org7cfea42">
+<div id="outline-container-orgf912734" class="outline-2">
+<h2 id="orgf912734">Defun-wise movement</h2>
+<div class="outline-text-2" id="text-orgf912734">
 <table>
 
 
@@ -532,9 +486,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orgf04e143" class="outline-2">
-<h2 id="orgf04e143">Page-wise movement</h2>
-<div class="outline-text-2" id="text-orgf04e143">
+<div id="outline-container-orgf9fd708" class="outline-2">
+<h2 id="orgf9fd708">Page-wise movement</h2>
+<div class="outline-text-2" id="text-orgf9fd708">
 <table>
 
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - UCI</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,55 +190,8 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -258,35 +212,34 @@ for the JavaScript code in this tag.
              }
 });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">NR - UCI</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0613832">Introduction</a></li>
-<li><a href="#org6c9d9a8">UCI formats</a>
+<li><a href="#org9b3f451">Introduction</a></li>
+<li><a href="#org89d34ea">UCI formats</a>
 <ul>
-<li><a href="#org923d3cf">Format 0</a></li>
-<li><a href="#orgb16eef7">Format 1</a></li>
-<li><a href="#org06b8215">Format 2</a></li>
-<li><a href="#org23701a4">Format 3</a></li>
-<li><a href="#org8390104">Format 4</a></li>
+<li><a href="#orgdf9f2f5">Format 0</a></li>
+<li><a href="#org0bd8275">Format 1</a></li>
+<li><a href="#org05a70fb">Format 2</a></li>
+<li><a href="#org27f46cf">Format 3</a></li>
+<li><a href="#org1fcf493">Format 4</a></li>
 </ul>
 </li>
-<li><a href="#org01fd5c2">UCI on PUCCH</a></li>
-<li><a href="#org9925e38">UCI on PUSCH</a></li>
+<li><a href="#org423ff5b">UCI on PUCCH</a></li>
+<li><a href="#org366d516">UCI on PUSCH</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0613832" class="outline-2">
-<h2 id="org0613832">Introduction</h2>
-<div class="outline-text-2" id="text-org0613832">
+<div id="outline-container-org9b3f451" class="outline-2">
+<h2 id="org9b3f451">Introduction</h2>
+<div class="outline-text-2" id="text-org9b3f451">
 <p>
 Targetting for HARQ acknowledgement and scheduling request, similar to LTE, <i>uplink control information (UCI)</i> is transmitted on <i>physical uplink control channel (PUCCH)</i> or <i>physical uplink shared channel (PUSCH)</i>.
 </p>
@@ -304,9 +257,9 @@ For PUCCH, only a single antenna port is specified. Given a UE equipped with mul
 </p>
 </div>
 </div>
-<div id="outline-container-org6c9d9a8" class="outline-2">
-<h2 id="org6c9d9a8">UCI formats</h2>
-<div class="outline-text-2" id="text-org6c9d9a8">
+<div id="outline-container-org89d34ea" class="outline-2">
+<h2 id="org89d34ea">UCI formats</h2>
+<div class="outline-text-2" id="text-org89d34ea">
 <p>
 There are 5 PUCCH formats, termed formats 0, 1, 2, 3, and 4, respectively.
 </p>
@@ -316,9 +269,9 @@ There are 5 PUCCH formats, termed formats 0, 1, 2, 3, and 4, respectively.
 <dt>Long PUCCH formats</dt><dd>Formats 1, 3, 4 are termed long PUCCH formats due to its duration of 4-14 OFDM symbols. Formats 1 and 3 are the long PUCCH counterparts of formats 0 and 2, which can carry \(\le 2\) bits and \(\ge 2\) bits, respectively.</dd>
 </dl>
 </div>
-<div id="outline-container-org923d3cf" class="outline-3">
-<h3 id="org923d3cf">Format 0</h3>
-<div class="outline-text-3" id="text-org923d3cf">
+<div id="outline-container-orgdf9f2f5" class="outline-3">
+<h3 id="orgdf9f2f5">Format 0</h3>
+<div class="outline-text-3" id="text-orgdf9f2f5">
 <p>
 Format 0 can carry a HARQ acknowledgement or a scheduling request.
 </p>
@@ -336,17 +289,17 @@ If 2 OFDM symbols are occupied by PUCCH format 0, the same information is transm
 </p>
 </div>
 </div>
-<div id="outline-container-orgb16eef7" class="outline-3">
-<h3 id="orgb16eef7">Format 1</h3>
-<div class="outline-text-3" id="text-orgb16eef7">
+<div id="outline-container-org0bd8275" class="outline-3">
+<h3 id="org0bd8275">Format 1</h3>
+<div class="outline-text-3" id="text-org0bd8275">
 <p>
 Sequence hopping and CS hopping can be configured to randomize interference.
 </p>
 </div>
 </div>
-<div id="outline-container-org06b8215" class="outline-3">
-<h3 id="org06b8215">Format 2</h3>
-<div class="outline-text-3" id="text-org06b8215">
+<div id="outline-container-org05a70fb" class="outline-3">
+<h3 id="org05a70fb">Format 2</h3>
+<div class="outline-text-3" id="text-org05a70fb">
 <p>
 Format 2 can support simultaneous CSI reporting and HARQ acknowledgements, or a large number of HARQ acknowledgements. Additionally, a scheduling request can also be included by joint encoding. If the payload is too large, the CSI report will be dropped.
 </p>
@@ -366,9 +319,9 @@ For better performance, coherent detection is used with DMRS mapped to every 3rd
 </p>
 </div>
 </div>
-<div id="outline-container-org23701a4" class="outline-3">
-<h3 id="org23701a4">Format 3</h3>
-<div class="outline-text-3" id="text-org23701a4">
+<div id="outline-container-org27f46cf" class="outline-3">
+<h3 id="org27f46cf">Format 3</h3>
+<div class="outline-text-3" id="text-org27f46cf">
 <p>
 Similar to format 2, the basic procedure can be listed as below.
 </p>
@@ -388,18 +341,18 @@ In the mapping of UCI, the more critical bits, i.e., HARQ acknowledgements, sche
 </p>
 </div>
 </div>
-<div id="outline-container-org8390104" class="outline-3">
-<h3 id="org8390104">Format 4</h3>
-<div class="outline-text-3" id="text-org8390104">
+<div id="outline-container-org1fcf493" class="outline-3">
+<h3 id="org1fcf493">Format 4</h3>
+<div class="outline-text-3" id="text-org1fcf493">
 <p>
 Essentially, format 4 is the same as format 3, but it enables the multiplexing of users in the same resource.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org01fd5c2" class="outline-2">
-<h2 id="org01fd5c2">UCI on PUCCH</h2>
-<div class="outline-text-2" id="text-org01fd5c2">
+<div id="outline-container-org423ff5b" class="outline-2">
+<h2 id="org423ff5b">UCI on PUCCH</h2>
+<div class="outline-text-2" id="text-org423ff5b">
 <p>
 In NR, the concept of <i>PUCCH resource set</i> has been proposed.
 </p>
@@ -414,9 +367,9 @@ In NR, the concept of <i>PUCCH resource set</i> has been proposed.
 </ul>
 </div>
 </div>
-<div id="outline-container-org9925e38" class="outline-2">
-<h2 id="org9925e38">UCI on PUSCH</h2>
-<div class="outline-text-2" id="text-org9925e38">
+<div id="outline-container-org366d516" class="outline-2">
+<h2 id="org366d516">UCI on PUSCH</h2>
+<div class="outline-text-2" id="text-org366d516">
 <ul class="org-ul">
 <li>In NR, irrespective of CP-OFDM or DFT-S-OFDM based uplink, UCI on PUSCH is supported for simultaneous transmission of UCI and UL-SCH.</li>
 <li>Only HARQ acknowledgements and CSI reports can be transmitted over PUSCH, since there is no need to request a new scheduling grant for a user with a scheduling grant already.</li>

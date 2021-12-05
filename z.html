@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-07-06 Mon 17:09 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Z Transform</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,55 +190,8 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -258,24 +212,23 @@ for the JavaScript code in this tag.
              }
 });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Z Transform</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgabc5250">Definition</a></li>
-<li><a href="#orge784ecd">Properties</a>
+<li><a href="#orge9296c8">Definition</a></li>
+<li><a href="#org92d75a1">Properties</a>
 <ul>
-<li><a href="#org8a25bb1">Initial Value Theorem</a></li>
-<li><a href="#org9db8c39">Final Value Theorem</a></li>
+<li><a href="#org5f15e8f">Initial Value Theorem</a></li>
+<li><a href="#orgf0c2a5c">Final Value Theorem</a></li>
 </ul>
 </li>
-<li><a href="#orgdf6e408">Transform Pairs</a></li>
+<li><a href="#org6b4d27a">Transform Pairs</a></li>
 </ul>
 </div>
 </div>
@@ -283,9 +236,9 @@ for the JavaScript code in this tag.
 Given a time domain discrete signal, i.e., a sequence, it can be represented in the <i>complex frequency domain</i> by <i>Z transform</i>. It is essentially an extension of <i>discrete time Fourier transform (DTFT)</i>.
 </p>
 
-<div id="outline-container-orgabc5250" class="outline-2">
-<h2 id="orgabc5250">Definition</h2>
-<div class="outline-text-2" id="text-orgabc5250">
+<div id="outline-container-orge9296c8" class="outline-2">
+<h2 id="orge9296c8">Definition</h2>
+<div class="outline-text-2" id="text-orge9296c8">
 <ul class="org-ul">
 <li><p>
 Bilateral transform
@@ -310,9 +263,9 @@ Inverse transform
 </ul>
 </div>
 </div>
-<div id="outline-container-orge784ecd" class="outline-2">
-<h2 id="orge784ecd">Properties</h2>
-<div class="outline-text-2" id="text-orge784ecd">
+<div id="outline-container-org92d75a1" class="outline-2">
+<h2 id="org92d75a1">Properties</h2>
+<div class="outline-text-2" id="text-org92d75a1">
 <p>
 Denote the ROC as \(\alpha < |z| < \beta\), \(0 \le\alpha < \beta\).
 </p>
@@ -345,26 +298,26 @@ Dedicated to unilateral transform
 \end{align*}</li>
 </ul>
 </div>
-<div id="outline-container-org8a25bb1" class="outline-3">
-<h3 id="org8a25bb1">Initial Value Theorem</h3>
-<div class="outline-text-3" id="text-org8a25bb1">
+<div id="outline-container-org5f15e8f" class="outline-3">
+<h3 id="org5f15e8f">Initial Value Theorem</h3>
+<div class="outline-text-3" id="text-org5f15e8f">
 \begin{align*}
   x(0) = \lim_{z\to\infty}X(z)
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org9db8c39" class="outline-3">
-<h3 id="org9db8c39">Final Value Theorem</h3>
-<div class="outline-text-3" id="text-org9db8c39">
+<div id="outline-container-orgf0c2a5c" class="outline-3">
+<h3 id="orgf0c2a5c">Final Value Theorem</h3>
+<div class="outline-text-3" id="text-orgf0c2a5c">
 \begin{align*}
   \lim_{n\to\infty}x(n) = \lim_{z\to 1}(z-1)X(z)
 \end{align*}
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf6e408" class="outline-2">
-<h2 id="orgdf6e408">Transform Pairs</h2>
-<div class="outline-text-2" id="text-orgdf6e408">
+<div id="outline-container-org6b4d27a" class="outline-2">
+<h2 id="org6b4d27a">Transform Pairs</h2>
+<div class="outline-text-2" id="text-org6b4d27a">
 \begin{align*}
   \delta(n) &\leftrightarrow 1 \\
   \varepsilon(n) &\leftrightarrow \frac{z}{z-1}, \quad |z| > 1. \\

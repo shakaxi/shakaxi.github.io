@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mathematica</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,55 +190,8 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -258,33 +212,32 @@ for the JavaScript code in this tag.
              }
 });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Mathematica</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfe61f77">Bracketing</a></li>
-<li><a href="#org3b08c2c">Constants</a></li>
-<li><a href="#orgd2adb4f">Data objects</a></li>
-<li><a href="#orge0d80ec">Defining variables, functions, and rules</a></li>
-<li><a href="#org2f060f6">Linear algebra</a></li>
-<li><a href="#org684593b">Algebraic calculation</a></li>
-<li><a href="#org8a2e7a0">Calculus</a></li>
-<li><a href="#orge198cb5">Input and output</a></li>
-<li><a href="#org673f0c7">Expression in different formats</a></li>
-<li><a href="#org8c17af2">Programming</a></li>
+<li><a href="#org14e3673">Bracketing</a></li>
+<li><a href="#org7479ea2">Constants</a></li>
+<li><a href="#orgc4c9627">Data objects</a></li>
+<li><a href="#org2646fe6">Defining variables, functions, and rules</a></li>
+<li><a href="#orgc4bb1f8">Linear algebra</a></li>
+<li><a href="#orga6b845c">Algebraic calculation</a></li>
+<li><a href="#org6efa7ba">Calculus</a></li>
+<li><a href="#org3bf3d34">Input and output</a></li>
+<li><a href="#orgf944218">Expression in different formats</a></li>
+<li><a href="#orgaadf369">Programming</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfe61f77" class="outline-2">
-<h2 id="orgfe61f77">Bracketing</h2>
-<div class="outline-text-2" id="text-orgfe61f77">
+<div id="outline-container-org14e3673" class="outline-2">
+<h2 id="org14e3673">Bracketing</h2>
+<div class="outline-text-2" id="text-org14e3673">
 <dl class="org-dl">
 <dt>Parenthesis ()</dt><dd>change the priorities in computing.</dd>
 <dt>Square bracket []</dt><dd>function parameters, e.g. <code>f[x]</code>.</dd>
@@ -293,9 +246,9 @@ for the JavaScript code in this tag.
 </dl>
 </div>
 </div>
-<div id="outline-container-org3b08c2c" class="outline-2">
-<h2 id="org3b08c2c">Constants</h2>
-<div class="outline-text-2" id="text-org3b08c2c">
+<div id="outline-container-org7479ea2" class="outline-2">
+<h2 id="org7479ea2">Constants</h2>
+<div class="outline-text-2" id="text-org7479ea2">
 <table>
 
 
@@ -334,9 +287,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orgd2adb4f" class="outline-2">
-<h2 id="orgd2adb4f">Data objects</h2>
-<div class="outline-text-2" id="text-orgd2adb4f">
+<div id="outline-container-orgc4c9627" class="outline-2">
+<h2 id="orgc4c9627">Data objects</h2>
+<div class="outline-text-2" id="text-orgc4c9627">
 <table>
 
 
@@ -365,9 +318,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orge0d80ec" class="outline-2">
-<h2 id="orge0d80ec">Defining variables, functions, and rules</h2>
-<div class="outline-text-2" id="text-orge0d80ec">
+<div id="outline-container-org2646fe6" class="outline-2">
+<h2 id="org2646fe6">Defining variables, functions, and rules</h2>
+<div class="outline-text-2" id="text-org2646fe6">
 <table>
 
 
@@ -421,9 +374,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org2f060f6" class="outline-2">
-<h2 id="org2f060f6">Linear algebra</h2>
-<div class="outline-text-2" id="text-org2f060f6">
+<div id="outline-container-orgc4bb1f8" class="outline-2">
+<h2 id="orgc4bb1f8">Linear algebra</h2>
+<div class="outline-text-2" id="text-orgc4bb1f8">
 <table>
 
 
@@ -502,9 +455,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org684593b" class="outline-2">
-<h2 id="org684593b">Algebraic calculation</h2>
-<div class="outline-text-2" id="text-org684593b">
+<div id="outline-container-orga6b845c" class="outline-2">
+<h2 id="orga6b845c">Algebraic calculation</h2>
+<div class="outline-text-2" id="text-orga6b845c">
 <table>
 
 
@@ -543,9 +496,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org8a2e7a0" class="outline-2">
-<h2 id="org8a2e7a0">Calculus</h2>
-<div class="outline-text-2" id="text-org8a2e7a0">
+<div id="outline-container-org6efa7ba" class="outline-2">
+<h2 id="org6efa7ba">Calculus</h2>
+<div class="outline-text-2" id="text-org6efa7ba">
 <table>
 
 
@@ -604,9 +557,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-orge198cb5" class="outline-2">
-<h2 id="orge198cb5">Input and output</h2>
-<div class="outline-text-2" id="text-orge198cb5">
+<div id="outline-container-org3bf3d34" class="outline-2">
+<h2 id="org3bf3d34">Input and output</h2>
+<div class="outline-text-2" id="text-org3bf3d34">
 <table>
 
 
@@ -655,9 +608,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org673f0c7" class="outline-2">
-<h2 id="org673f0c7">Expression in different formats</h2>
-<div class="outline-text-2" id="text-org673f0c7">
+<div id="outline-container-orgf944218" class="outline-2">
+<h2 id="orgf944218">Expression in different formats</h2>
+<div class="outline-text-2" id="text-orgf944218">
 <table>
 
 
@@ -716,9 +669,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org8c17af2" class="outline-2">
-<h2 id="org8c17af2">Programming</h2>
-<div class="outline-text-2" id="text-org8c17af2">
+<div id="outline-container-orgaadf369" class="outline-2">
+<h2 id="orgaadf369">Programming</h2>
+<div class="outline-text-2" id="text-orgaadf369">
 <dl class="org-dl">
 <dt>Table[expression, {i, max}]</dt><dd>make a list of values of <code>expression</code> with <code>i</code> from <code>1</code> to <code>max</code>.</dd>
 <dt>Module[{a, b, c}, expression1; expression2;&#x2026;]</dt><dd>a procedure with local variables <code>a</code>, <code>b</code>, <code>c</code> return value of last expression.</dd>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Thread Pool</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,81 +190,34 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">C++ - Thread Pool</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2bba3b4">Introduction</a></li>
-<li><a href="#org005fe1e">Installation</a></li>
-<li><a href="#orgf386fb1">Usage</a></li>
+<li><a href="#org5670608">Introduction</a></li>
+<li><a href="#orga54cb33">Installation</a></li>
+<li><a href="#orgc6a61fd">Usage</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2bba3b4" class="outline-2">
-<h2 id="org2bba3b4">Introduction</h2>
-<div class="outline-text-2" id="text-org2bba3b4">
+<div id="outline-container-org5670608" class="outline-2">
+<h2 id="org5670608">Introduction</h2>
+<div class="outline-text-2" id="text-org5670608">
 <p>
 <a href="http://www.sourceforge.net/projects/threadpool">Threadpool</a> is a C++ thread pool written by Philipp Henkel based on <a href="http://www.boost.org">boost</a> library. It provides a variety of thread pools with easy usage.
 </p>
 </div>
 </div>
-<div id="outline-container-org005fe1e" class="outline-2">
-<h2 id="org005fe1e">Installation</h2>
-<div class="outline-text-2" id="text-org005fe1e">
+<div id="outline-container-orga54cb33" class="outline-2">
+<h2 id="orga54cb33">Installation</h2>
+<div class="outline-text-2" id="text-orga54cb33">
 <p>
 As a prequisite, boost library should be installed in advance, e.g.,
 </p>
@@ -276,9 +230,9 @@ Threadpool consists only of header files, and therefore the building operation i
 </p>
 </div>
 </div>
-<div id="outline-container-orgf386fb1" class="outline-2">
-<h2 id="orgf386fb1">Usage</h2>
-<div class="outline-text-2" id="text-orgf386fb1">
+<div id="outline-container-orgc6a61fd" class="outline-2">
+<h2 id="orgc6a61fd">Usage</h2>
+<div class="outline-text-2" id="text-orgc6a61fd">
 <p>
 For usage, header file <code>#include &lt;boost/threadpool.hpp&gt;</code> should be included.
 </p>
@@ -287,26 +241,26 @@ For usage, header file <code>#include &lt;boost/threadpool.hpp&gt;</code> should
 An example of first-in first-out (FIFO) thread pool utilization can be provided as follows.
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;memory&gt;</span>
-<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">&lt;boost/threadpool.hpp&gt;</span>
+<pre class="src src-c++">#include &lt;memory&gt;
+#include &lt;boost/threadpool.hpp&gt;
 
-<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">std</span>;
-<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">boost</span>::<span style="color: #e9b2e3;">threadpool</span>;
+using namespace std;
+using namespace boost::threadpool;
 
-<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span> *<span style="color: #fcaf3e;">argv</span>[])
+int main(int argc, char *argv[])
 {
-    <span style="color: #73d216;">/// </span><span style="color: #73d216;">Create a FIFO thread pool with 9 worker threads.</span>
-    <span style="color: #8cc4ff;">unique_ptr</span>&lt;pool&gt; <span style="color: #fcaf3e;">tp</span> = make_unique&lt;pool&gt;(9);
+    /// Create a FIFO thread pool with 9 worker threads.
+    unique_ptr&lt;pool&gt; tp = make_unique&lt;pool&gt;(9);
 
-    <span style="color: #73d216;">/// </span><span style="color: #73d216;">Submit 10000 tasks, function(para1, para2), to the thread pool for excutation.</span>
-    <span style="color: #b4fa70;">for</span> (<span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">para1</span> = 0; para1 &lt; 100; ++para1)
-        <span style="color: #b4fa70;">for</span> (<span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">para2</span> = 0; para2 &lt; 100; ++para2)
+    /// Submit 10000 tasks, function(para1, para2), to the thread pool for excutation.
+    for (size_t para1 = 0; para1 &lt; 100; ++para1)
+        for (size_t para2 = 0; para2 &lt; 100; ++para2)
             tp-&gt;schedule(bind(&amp;function, para1, para2));
 
-    <span style="color: #73d216;">/// </span><span style="color: #73d216;">Synchronization for all the threads.</span>
+    /// Synchronization for all the threads.
     tp-&gt;wait();
 
-    <span style="color: #b4fa70;">return</span> 0;
+    return 0;
 }
 </pre>
 </div>

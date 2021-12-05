@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-08-08 Sun 20:07 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Pytorch</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -39,21 +40,21 @@
   pre.src {
     position: relative;
     overflow: auto;
-    padding-top: 1.2em;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
   pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,60 +190,37 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
-<!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Python - Pytorch</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd79d47d">张量</a>
+<li><a href="#org2b49493">张量</a>
 <ul>
-<li><a href="#orgaa01882">与 numpy.ndarray 相互转换</a></li>
+<li><a href="#org6f75547">与 numpy.ndarray 相互转换</a></li>
 </ul>
 </li>
-<li><a href="#orgee97e64">神经网络</a>
+<li><a href="#org5c1105f">神经网络</a>
 <ul>
-<li><a href="#org6c9644c">典型训练过程</a></li>
-<li><a href="#org393490d">正向传播与反向传播</a></li>
-<li><a href="#org8e8d72f">定义网络</a></li>
+<li><a href="#orgd5c71ef">典型训练过程</a></li>
+<li><a href="#org3f8dad8">正向传播与反向传播</a></li>
+<li><a href="#org5269ea9">定义网络</a></li>
 </ul>
 </li>
-<li><a href="#org973cbad">数据集</a></li>
-<li><a href="#org7845546">数据加载器</a></li>
+<li><a href="#org1a538a2">数据集</a></li>
+<li><a href="#org2bfcd80">数据加载器</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd79d47d" class="outline-2">
-<h2 id="orgd79d47d">张量</h2>
-<div class="outline-text-2" id="text-orgd79d47d">
+<div id="outline-container-org2b49493" class="outline-2">
+<h2 id="org2b49493">张量</h2>
+<div class="outline-text-2" id="text-org2b49493">
 <p>
 在pytorch中，神经网络的输入、输出、以及网络的参数等都采用了“张量”的数据结构。张量与numpy中的多维数组(<code>numpy.ndarray</code>)非常类似，区别在于张量可以在GPU或其他硬件上运行。
 </p>
@@ -261,9 +239,9 @@
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-orgaa01882" class="outline-3">
-<h3 id="orgaa01882">与 numpy.ndarray 相互转换</h3>
-<div class="outline-text-3" id="text-orgaa01882">
+<div id="outline-container-org6f75547" class="outline-3">
+<h3 id="org6f75547">与 numpy.ndarray 相互转换</h3>
+<div class="outline-text-3" id="text-org6f75547">
 <ul class="org-ul">
 <li>张量的成员函数 <code>.numpy()</code> 返回对应的 <code>numpy.ndarray</code> 。但是，该方法仅适用于存储在CPU的张量。</li>
 <li>函数 <code>torch.from_numpy()</code> 可以将一个 <code>numpy.ndarray</code> 转换为张量。</li>
@@ -275,13 +253,13 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgee97e64" class="outline-2">
-<h2 id="orgee97e64">神经网络</h2>
-<div class="outline-text-2" id="text-orgee97e64">
+<div id="outline-container-org5c1105f" class="outline-2">
+<h2 id="org5c1105f">神经网络</h2>
+<div class="outline-text-2" id="text-org5c1105f">
 </div>
-<div id="outline-container-org6c9644c" class="outline-3">
-<h3 id="org6c9644c">典型训练过程</h3>
-<div class="outline-text-3" id="text-org6c9644c">
+<div id="outline-container-orgd5c71ef" class="outline-3">
+<h3 id="orgd5c71ef">典型训练过程</h3>
+<div class="outline-text-3" id="text-orgd5c71ef">
 <ul class="org-ul">
 <li>构建含有一些可学习参数(或权重)的神经网络。</li>
 <li>遍历训练数据集。</li>
@@ -292,9 +270,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org393490d" class="outline-3">
-<h3 id="org393490d">正向传播与反向传播</h3>
-<div class="outline-text-3" id="text-org393490d">
+<div id="outline-container-org3f8dad8" class="outline-3">
+<h3 id="org3f8dad8">正向传播与反向传播</h3>
+<div class="outline-text-3" id="text-org3f8dad8">
 <p>
 神经网络的训练包括两个步骤
 </p>
@@ -312,9 +290,9 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org8e8d72f" class="outline-3">
-<h3 id="org8e8d72f">定义网络</h3>
-<div class="outline-text-3" id="text-org8e8d72f">
+<div id="outline-container-org5269ea9" class="outline-3">
+<h3 id="org5269ea9">定义网络</h3>
+<div class="outline-text-3" id="text-org5269ea9">
 <p>
 可以使用 <code>torch.nn</code> 包来构建神经网络。
 </p>
@@ -372,9 +350,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org973cbad" class="outline-2">
-<h2 id="org973cbad">数据集</h2>
-<div class="outline-text-2" id="text-org973cbad">
+<div id="outline-container-org1a538a2" class="outline-2">
+<h2 id="org1a538a2">数据集</h2>
+<div class="outline-text-2" id="text-org1a538a2">
 <p>
 自定义的数据集可以通过定义以(<code>torch.utils.data.Dataset</code>)为基类的派生类完成。具体地，需要重载如下三个函数：
 </p>
@@ -405,9 +383,9 @@ Pytorch支持多种格式的数据集，下面是一个从HDF5文件中加载数
 </div>
 </div>
 </div>
-<div id="outline-container-org7845546" class="outline-2">
-<h2 id="org7845546">数据加载器</h2>
-<div class="outline-text-2" id="text-org7845546">
+<div id="outline-container-org2bfcd80" class="outline-2">
+<h2 id="org2bfcd80">数据加载器</h2>
+<div class="outline-text-2" id="text-org2bfcd80">
 <p>
 基于自定义的数据集，可以使用类 <code>torch.utils.data.DataLoader</code> 来生成相应的数据加载器。如
 </p>

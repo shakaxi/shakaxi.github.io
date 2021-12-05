@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-07-18 Sun 09:31 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Neural Network</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -39,21 +40,21 @@
   pre.src {
     position: relative;
     overflow: auto;
-    padding-top: 1.2em;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
   pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,31 +190,8 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
-<!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
-</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -234,59 +212,58 @@
              }
 });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Neural Network</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org293d2d4">Introducation</a></li>
-<li><a href="#org4036bd1">McCulloch and Pitts (M-P) model for neurons</a></li>
-<li><a href="#org158e034">Activation function</a>
+<li><a href="#orgf68b592">Introducation</a></li>
+<li><a href="#org0aae767">McCulloch and Pitts (M-P) model for neurons</a></li>
+<li><a href="#orge04021d">Activation function</a>
 <ul>
-<li><a href="#orgbe2295e">Sign</a></li>
-<li><a href="#orgbcc713e">Sigmoid</a></li>
-<li><a href="#orgb288a8c">Tanh</a></li>
-<li><a href="#org878c4a9">ReLU</a></li>
-<li><a href="#org83764e7">Softmax</a></li>
+<li><a href="#org196ebfa">Sign</a></li>
+<li><a href="#orgd8bc54a">Sigmoid</a></li>
+<li><a href="#org9c832c4">Tanh</a></li>
+<li><a href="#org5276af8">ReLU</a></li>
+<li><a href="#org9743854">Softmax</a></li>
 </ul>
 </li>
-<li><a href="#org174b64d">Cost function</a>
+<li><a href="#orgd2d7b48">Cost function</a>
 <ul>
-<li><a href="#org3881692">Cross-entropy</a></li>
+<li><a href="#org2de2e28">Cross-entropy</a></li>
 </ul>
 </li>
-<li><a href="#org3152955">Multi-layer feedforward neural network</a></li>
-<li><a href="#org2521b1d">Convolutional neural network (CNN)</a>
+<li><a href="#orgafaaa09">Multi-layer feedforward neural network</a></li>
+<li><a href="#org4b3990d">Convolutional neural network (CNN)</a>
 <ul>
-<li><a href="#org768ce62">Pooling</a></li>
+<li><a href="#org138e3a1">Pooling</a></li>
 </ul>
 </li>
-<li><a href="#org5f15b7e">Recurrent neural network (RNN)</a>
+<li><a href="#org887fe2e">Recurrent neural network (RNN)</a>
 <ul>
-<li><a href="#org5f086d6">Long short term memory (LSTM)</a></li>
+<li><a href="#org5c8c86d">Long short term memory (LSTM)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org293d2d4" class="outline-2">
-<h2 id="org293d2d4">Introducation</h2>
-<div class="outline-text-2" id="text-org293d2d4">
+<div id="outline-container-orgf68b592" class="outline-2">
+<h2 id="orgf68b592">Introducation</h2>
+<div class="outline-text-2" id="text-orgf68b592">
 <ul class="org-ul">
 <li>The network is composed of an input layer, an output layer, and optionally a series of hidden layers.</li>
 <li>Input layer does not carry out any operation/function, but the hidden and output layers consist of functional neurons, i.e., have activation functions.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4036bd1" class="outline-2">
-<h2 id="org4036bd1">McCulloch and Pitts (M-P) model for neurons</h2>
-<div class="outline-text-2" id="text-org4036bd1">
+<div id="outline-container-org0aae767" class="outline-2">
+<h2 id="org0aae767">McCulloch and Pitts (M-P) model for neurons</h2>
+<div class="outline-text-2" id="text-org0aae767">
 \begin{align*}
   y = f(\mathbf{W} \mathbf{x} - \theta)
 \end{align*}
@@ -295,16 +272,16 @@ where \(f\) is termed <i>activation function</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-org158e034" class="outline-2">
-<h2 id="org158e034">Activation function</h2>
-<div class="outline-text-2" id="text-org158e034">
+<div id="outline-container-orge04021d" class="outline-2">
+<h2 id="orge04021d">Activation function</h2>
+<div class="outline-text-2" id="text-orge04021d">
 <p>
 Activation function aims to introduce the non-linear capability, compensate the shortage of linear models.
 </p>
 </div>
-<div id="outline-container-orgbe2295e" class="outline-3">
-<h3 id="orgbe2295e">Sign</h3>
-<div class="outline-text-3" id="text-orgbe2295e">
+<div id="outline-container-org196ebfa" class="outline-3">
+<h3 id="org196ebfa">Sign</h3>
+<div class="outline-text-3" id="text-org196ebfa">
 \begin{align*}
   \text{sign}(x) = \begin{cases}
     1, & x \ge 0; \\
@@ -313,33 +290,33 @@ Activation function aims to introduce the non-linear capability, compensate the 
 \end{align*}
 </div>
 </div>
-<div id="outline-container-orgbcc713e" class="outline-3">
-<h3 id="orgbcc713e">Sigmoid</h3>
-<div class="outline-text-3" id="text-orgbcc713e">
+<div id="outline-container-orgd8bc54a" class="outline-3">
+<h3 id="orgd8bc54a">Sigmoid</h3>
+<div class="outline-text-3" id="text-orgd8bc54a">
 \begin{align*}
   \text{sigmoid}(x) = \frac{1}{1 + e^{-x}}.
 \end{align*}
 </div>
 </div>
-<div id="outline-container-orgb288a8c" class="outline-3">
-<h3 id="orgb288a8c">Tanh</h3>
-<div class="outline-text-3" id="text-orgb288a8c">
+<div id="outline-container-org9c832c4" class="outline-3">
+<h3 id="org9c832c4">Tanh</h3>
+<div class="outline-text-3" id="text-org9c832c4">
 \begin{align*}
   \text{tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}.
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org878c4a9" class="outline-3">
-<h3 id="org878c4a9">ReLU</h3>
-<div class="outline-text-3" id="text-org878c4a9">
+<div id="outline-container-org5276af8" class="outline-3">
+<h3 id="org5276af8">ReLU</h3>
+<div class="outline-text-3" id="text-org5276af8">
 \begin{align*}
   \text{ReLU}(x) = \max(x, 0)
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org83764e7" class="outline-3">
-<h3 id="org83764e7">Softmax</h3>
-<div class="outline-text-3" id="text-org83764e7">
+<div id="outline-container-org9743854" class="outline-3">
+<h3 id="org9743854">Softmax</h3>
+<div class="outline-text-3" id="text-org9743854">
 <p>
 Softmax function can transform scores/logits into a valid probability distribution.
 </p>
@@ -349,13 +326,13 @@ Softmax function can transform scores/logits into a valid probability distributi
 </div>
 </div>
 </div>
-<div id="outline-container-org174b64d" class="outline-2">
-<h2 id="org174b64d">Cost function</h2>
-<div class="outline-text-2" id="text-org174b64d">
+<div id="outline-container-orgd2d7b48" class="outline-2">
+<h2 id="orgd2d7b48">Cost function</h2>
+<div class="outline-text-2" id="text-orgd2d7b48">
 </div>
-<div id="outline-container-org3881692" class="outline-3">
-<h3 id="org3881692">Cross-entropy</h3>
-<div class="outline-text-3" id="text-org3881692">
+<div id="outline-container-org2de2e28" class="outline-3">
+<h3 id="org2de2e28">Cross-entropy</h3>
+<div class="outline-text-3" id="text-org2de2e28">
 \begin{align*}
   \mathcal{H}_{p}(p^{\prime}) = \sum_{i}p_{i}\log\frac{1}{p^{\prime}_i}
 \end{align*}
@@ -369,18 +346,18 @@ where
 </div>
 </div>
 </div>
-<div id="outline-container-org3152955" class="outline-2">
-<h2 id="org3152955">Multi-layer feedforward neural network</h2>
-<div class="outline-text-2" id="text-org3152955">
+<div id="outline-container-orgafaaa09" class="outline-2">
+<h2 id="orgafaaa09">Multi-layer feedforward neural network</h2>
+<div class="outline-text-2" id="text-orgafaaa09">
 <ul class="org-ul">
 <li>Full connection between neurons of the adjacent ranks.</li>
 <li>No connection between neurons of the identical rank.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2521b1d" class="outline-2">
-<h2 id="org2521b1d">Convolutional neural network (CNN)</h2>
-<div class="outline-text-2" id="text-org2521b1d">
+<div id="outline-container-org4b3990d" class="outline-2">
+<h2 id="org4b3990d">Convolutional neural network (CNN)</h2>
+<div class="outline-text-2" id="text-org4b3990d">
 <ul class="org-ul">
 <li>The operation of a convolutional layer is to apply a filter on the input.
 <ul class="org-ul">
@@ -393,9 +370,9 @@ where
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org768ce62" class="outline-3">
-<h3 id="org768ce62">Pooling</h3>
-<div class="outline-text-3" id="text-org768ce62">
+<div id="outline-container-org138e3a1" class="outline-3">
+<h3 id="org138e3a1">Pooling</h3>
+<div class="outline-text-3" id="text-org138e3a1">
 <ul class="org-ul">
 <li>A convolutional layer is usually followed by a <i>pooling</i> layer to
 <ul class="org-ul">
@@ -411,16 +388,16 @@ where
 </div>
 </div>
 </div>
-<div id="outline-container-org5f15b7e" class="outline-2">
-<h2 id="org5f15b7e">Recurrent neural network (RNN)</h2>
-<div class="outline-text-2" id="text-org5f15b7e">
+<div id="outline-container-org887fe2e" class="outline-2">
+<h2 id="org887fe2e">Recurrent neural network (RNN)</h2>
+<div class="outline-text-2" id="text-org887fe2e">
 <ul class="org-ul">
 <li>A learned/trained function takes both input vector and its state vector as input and yields an output and an updated state vector.</li>
 <li>In the front of large scale sequences, an ordinary/standard RNN suffers gradient disappear and gradient explosion. To solve the problems, some variants have been proposed, e.g. <i>long short term memory (LSTM)</i>.</li>
 </ul>
 </div>
-<div id="outline-container-org5f086d6" class="outline-3">
-<h3 id="org5f086d6">Long short term memory (LSTM)</h3>
+<div id="outline-container-org5c8c86d" class="outline-3">
+<h3 id="org5c8c86d">Long short term memory (LSTM)</h3>
 </div>
 </div>
 </div>

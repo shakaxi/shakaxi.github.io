@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Machine Learning</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,121 +190,74 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Machine Learning</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga8ce081">Introducation</a></li>
-<li><a href="#org96a5045">Application</a>
+<li><a href="#orge3aa85b">Introducation</a></li>
+<li><a href="#orgc547d08">Application</a>
 <ul>
-<li><a href="#orgd507977">Image processing</a></li>
-<li><a href="#org2531c93">Text analysis</a></li>
-<li><a href="#orga88b404">Data mining</a></li>
-<li><a href="#orgd018ac4">Video games &amp; robotics</a></li>
+<li><a href="#org88953fc">Image processing</a></li>
+<li><a href="#orgc6f9f45">Text analysis</a></li>
+<li><a href="#org1b6b8ae">Data mining</a></li>
+<li><a href="#org97db97a">Video games &amp; robotics</a></li>
 </ul>
 </li>
-<li><a href="#org8654d02">Algorithms</a>
+<li><a href="#org2f9afb4">Algorithms</a>
 <ul>
-<li><a href="#orge33821e">Categories</a>
+<li><a href="#orgab9095b">Categories</a>
 <ul>
-<li><a href="#org95e2bff">Supervised learning</a></li>
-<li><a href="#org3e1ee36">Unsupervised learning</a></li>
+<li><a href="#org08ef89d">Supervised learning</a></li>
+<li><a href="#orgf71ad7d">Unsupervised learning</a></li>
 </ul>
 </li>
-<li><a href="#org1723a88">Algorithms</a>
+<li><a href="#org48fb90f">Algorithms</a>
 <ul>
-<li><a href="#orgac0db16">Support vector machines (SVM's)</a></li>
-<li><a href="#org1cde882">Probabilistic models</a></li>
-<li><a href="#orgcf66279">Deep learning</a></li>
+<li><a href="#orgca9114b">Support vector machines (SVM's)</a></li>
+<li><a href="#org324cfdd">Probabilistic models</a></li>
+<li><a href="#org37517b6">Deep learning</a></li>
 </ul>
 </li>
-<li><a href="#org97aeed8">Feature engineering</a>
+<li><a href="#orgf1461af">Feature engineering</a>
 <ul>
-<li><a href="#org62611e4">Feature extraction</a></li>
-<li><a href="#org3f0e358">Feature selection</a></li>
+<li><a href="#orga9ea0fb">Feature extraction</a></li>
+<li><a href="#orgff56934">Feature selection</a></li>
 </ul>
 </li>
-<li><a href="#org29f7458">Performance metric</a></li>
+<li><a href="#orgf6ca169">Performance metric</a></li>
 </ul>
 </li>
-<li><a href="#org381e9b5">Deep learning</a>
+<li><a href="#orgc76cca0">Deep learning</a>
 <ul>
-<li><a href="#org445e568">Recurrent neural network (RNN)</a></li>
-<li><a href="#orgd9ca4d9">Convolutional neural network (CNN)</a></li>
+<li><a href="#org5ce0809">Recurrent neural network (RNN)</a></li>
+<li><a href="#orgfb7255f">Convolutional neural network (CNN)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga8ce081" class="outline-2">
-<h2 id="orga8ce081">Introducation</h2>
-<div class="outline-text-2" id="text-orga8ce081">
+<div id="outline-container-orge3aa85b" class="outline-2">
+<h2 id="orge3aa85b">Introducation</h2>
+<div class="outline-text-2" id="text-orge3aa85b">
 <p>
 Machine learning (ML) is a subfield of artificial intelligence (AI).
 </p>
 </div>
 </div>
-<div id="outline-container-org96a5045" class="outline-2">
-<h2 id="org96a5045">Application</h2>
-<div class="outline-text-2" id="text-org96a5045">
+<div id="outline-container-orgc547d08" class="outline-2">
+<h2 id="orgc547d08">Application</h2>
+<div class="outline-text-2" id="text-orgc547d08">
 </div>
-<div id="outline-container-orgd507977" class="outline-3">
-<h3 id="orgd507977">Image processing</h3>
-<div class="outline-text-3" id="text-orgd507977">
+<div id="outline-container-org88953fc" class="outline-3">
+<h3 id="org88953fc">Image processing</h3>
+<div class="outline-text-3" id="text-org88953fc">
 <ul class="org-ul">
 <li>Image tagging</li>
 <li>Optical character recognition (OCR)</li>
@@ -311,9 +265,9 @@ Machine learning (ML) is a subfield of artificial intelligence (AI).
 </ul>
 </div>
 </div>
-<div id="outline-container-org2531c93" class="outline-3">
-<h3 id="org2531c93">Text analysis</h3>
-<div class="outline-text-3" id="text-org2531c93">
+<div id="outline-container-orgc6f9f45" class="outline-3">
+<h3 id="orgc6f9f45">Text analysis</h3>
+<div class="outline-text-3" id="text-orgc6f9f45">
 <ul class="org-ul">
 <li>Spam filtering</li>
 <li>Sentiment analysis</li>
@@ -321,9 +275,9 @@ Machine learning (ML) is a subfield of artificial intelligence (AI).
 </ul>
 </div>
 </div>
-<div id="outline-container-orga88b404" class="outline-3">
-<h3 id="orga88b404">Data mining</h3>
-<div class="outline-text-3" id="text-orga88b404">
+<div id="outline-container-org1b6b8ae" class="outline-3">
+<h3 id="org1b6b8ae">Data mining</h3>
+<div class="outline-text-3" id="text-org1b6b8ae">
 <p>
 Discover patterns and make predictions from data.
 </p>
@@ -335,63 +289,63 @@ Discover patterns and make predictions from data.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd018ac4" class="outline-3">
-<h3 id="orgd018ac4">Video games &amp; robotics</h3>
+<div id="outline-container-org97db97a" class="outline-3">
+<h3 id="org97db97a">Video games &amp; robotics</h3>
 </div>
 </div>
-<div id="outline-container-org8654d02" class="outline-2">
-<h2 id="org8654d02">Algorithms</h2>
-<div class="outline-text-2" id="text-org8654d02">
+<div id="outline-container-org2f9afb4" class="outline-2">
+<h2 id="org2f9afb4">Algorithms</h2>
+<div class="outline-text-2" id="text-org2f9afb4">
 <ul class="org-ul">
 <li>ML algorithms try to solve the same problem: learn to transform every input to the correct output.</li>
 <li>ML algorithms try to make generalizations, and create the simplest hypothesis (with fewest assumptions) that explains most of the training examples.</li>
 </ul>
 </div>
-<div id="outline-container-orge33821e" class="outline-3">
-<h3 id="orge33821e">Categories</h3>
-<div class="outline-text-3" id="text-orge33821e">
+<div id="outline-container-orgab9095b" class="outline-3">
+<h3 id="orgab9095b">Categories</h3>
+<div class="outline-text-3" id="text-orgab9095b">
 </div>
-<div id="outline-container-org95e2bff" class="outline-4">
-<h4 id="org95e2bff">Supervised learning</h4>
-<div class="outline-text-4" id="text-org95e2bff">
+<div id="outline-container-org08ef89d" class="outline-4">
+<h4 id="org08ef89d">Supervised learning</h4>
+<div class="outline-text-4" id="text-org08ef89d">
 <p>
 For each training example, the correct output must be provided.
 </p>
 </div>
 </div>
-<div id="outline-container-org3e1ee36" class="outline-4">
-<h4 id="org3e1ee36">Unsupervised learning</h4>
-<div class="outline-text-4" id="text-org3e1ee36">
+<div id="outline-container-orgf71ad7d" class="outline-4">
+<h4 id="orgf71ad7d">Unsupervised learning</h4>
+<div class="outline-text-4" id="text-orgf71ad7d">
 <p>
 The training examples but not the desired output are the input.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org1723a88" class="outline-3">
-<h3 id="org1723a88">Algorithms</h3>
-<div class="outline-text-3" id="text-org1723a88">
+<div id="outline-container-org48fb90f" class="outline-3">
+<h3 id="org48fb90f">Algorithms</h3>
+<div class="outline-text-3" id="text-org48fb90f">
 </div>
-<div id="outline-container-orgac0db16" class="outline-4">
-<h4 id="orgac0db16">Support vector machines (SVM's)</h4>
-<div class="outline-text-4" id="text-orgac0db16">
+<div id="outline-container-orgca9114b" class="outline-4">
+<h4 id="orgca9114b">Support vector machines (SVM's)</h4>
+<div class="outline-text-4" id="text-orgca9114b">
 <p>
 The model tries to build a set of hyperplanes in a high dimensional space which tries to separate instances of different classes by getting the largest separation between the nearest instances from different classes.
 </p>
 </div>
 </div>
-<div id="outline-container-org1cde882" class="outline-4">
-<h4 id="org1cde882">Probabilistic models</h4>
-<div class="outline-text-4" id="text-org1cde882">
+<div id="outline-container-org324cfdd" class="outline-4">
+<h4 id="org324cfdd">Probabilistic models</h4>
+<div class="outline-text-4" id="text-org324cfdd">
 <ul class="org-ul">
 <li>The models try to predict the correct response by modeling the problem with a probability distribution, e.g., Naive Bayes classifiers.</li>
 <li>It returns the prediction as well as the corresponding degree of certainty.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcf66279" class="outline-4">
-<h4 id="orgcf66279">Deep learning</h4>
-<div class="outline-text-4" id="text-orgcf66279">
+<div id="outline-container-org37517b6" class="outline-4">
+<h4 id="org37517b6">Deep learning</h4>
+<div class="outline-text-4" id="text-org37517b6">
 <ul class="org-ul">
 <li>It is based on the artificial neural network models. They try to emulate (in a very simplified way) the way the brain works.</li>
 <li>The network consist of a huge set of interconnected neurons, i.e., the basic processing unit, organized in various layers.</li>
@@ -399,21 +353,21 @@ The model tries to build a set of hyperplanes in a high dimensional space which 
 </div>
 </div>
 </div>
-<div id="outline-container-org97aeed8" class="outline-3">
-<h3 id="org97aeed8">Feature engineering</h3>
-<div class="outline-text-3" id="text-org97aeed8">
+<div id="outline-container-orgf1461af" class="outline-3">
+<h3 id="orgf1461af">Feature engineering</h3>
+<div class="outline-text-3" id="text-orgf1461af">
 </div>
-<div id="outline-container-org62611e4" class="outline-4">
-<h4 id="org62611e4">Feature extraction</h4>
-<div class="outline-text-4" id="text-org62611e4">
+<div id="outline-container-orga9ea0fb" class="outline-4">
+<h4 id="orga9ea0fb">Feature extraction</h4>
+<div class="outline-text-4" id="text-orga9ea0fb">
 <p>
 Before fed to the ML algorithms, the raw data should be tranformed into a vector of features.
 </p>
 </div>
 </div>
-<div id="outline-container-org3f0e358" class="outline-4">
-<h4 id="org3f0e358">Feature selection</h4>
-<div class="outline-text-4" id="text-org3f0e358">
+<div id="outline-container-orgff56934" class="outline-4">
+<h4 id="orgff56934">Feature selection</h4>
+<div class="outline-text-4" id="text-orgff56934">
 <ul class="org-ul">
 <li>Score each feature and return only the most valuable ones.</li>
 <li>Do not use huge feature sets.</li>
@@ -421,28 +375,28 @@ Before fed to the ML algorithms, the raw data should be tranformed into a vector
 </div>
 </div>
 </div>
-<div id="outline-container-org29f7458" class="outline-3">
-<h3 id="org29f7458">Performance metric</h3>
-<div class="outline-text-3" id="text-org29f7458">
+<div id="outline-container-orgf6ca169" class="outline-3">
+<h3 id="orgf6ca169">Performance metric</h3>
+<div class="outline-text-3" id="text-orgf6ca169">
 <ul class="org-ul">
 <li>The instances for training and testing must be disjoint.</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org381e9b5" class="outline-2">
-<h2 id="org381e9b5">Deep learning</h2>
-<div class="outline-text-2" id="text-org381e9b5">
+<div id="outline-container-orgc76cca0" class="outline-2">
+<h2 id="orgc76cca0">Deep learning</h2>
+<div class="outline-text-2" id="text-orgc76cca0">
 <p>
 A subfield of machine learning.
 </p>
 </div>
-<div id="outline-container-org445e568" class="outline-3">
-<h3 id="org445e568">Recurrent neural network (RNN)</h3>
+<div id="outline-container-org5ce0809" class="outline-3">
+<h3 id="org5ce0809">Recurrent neural network (RNN)</h3>
 </div>
-<div id="outline-container-orgd9ca4d9" class="outline-3">
-<h3 id="orgd9ca4d9">Convolutional neural network (CNN)</h3>
-<div class="outline-text-3" id="text-orgd9ca4d9">
+<div id="outline-container-orgfb7255f" class="outline-3">
+<h3 id="orgfb7255f">Convolutional neural network (CNN)</h3>
+<div class="outline-text-3" id="text-orgfb7255f">
 <ul class="org-ul">
 <li>Take a 2-D array as input.</li>
 <li>Direct operation on the image rather than feature extraction</li>

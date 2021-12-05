@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - Cell Search</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,55 +190,8 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -258,42 +212,41 @@ for the JavaScript code in this tag.
              }
 });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">NR - Cell Search</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7167610">Synchronization signals</a>
+<li><a href="#org83a54d2">Synchronization signals</a>
 <ul>
-<li><a href="#orgbceb5e4">PSS</a></li>
-<li><a href="#org352ef2c">SSS</a></li>
+<li><a href="#orgba00739">PSS</a></li>
+<li><a href="#org68c1537">SSS</a></li>
 </ul>
 </li>
-<li><a href="#org478eae4">Synchronization raster</a></li>
-<li><a href="#org2404bb3">Synchronization signal burst set</a></li>
-<li><a href="#orgfefcf35">PBCH</a></li>
-<li><a href="#org6a0d301">Remaining minimum system information (RMSI)</a></li>
+<li><a href="#orga08f6db">Synchronization raster</a></li>
+<li><a href="#org742b50f">Synchronization signal burst set</a></li>
+<li><a href="#org8c843b4">PBCH</a></li>
+<li><a href="#orgcb6df0a">Remaining minimum system information (RMSI)</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7167610" class="outline-2">
-<h2 id="org7167610">Synchronization signals</h2>
-<div class="outline-text-2" id="text-org7167610">
+<div id="outline-container-org83a54d2" class="outline-2">
+<h2 id="org83a54d2">Synchronization signals</h2>
+<div class="outline-text-2" id="text-org83a54d2">
 <p>
-In NR, synchronization signals consist of <i>primary synchronization signal (PSS)</i> and <i>secondary synchronization signal (SSS)</i>. Together with <i>physical broadcast channel (PBCH)</i>, PSS and SSS are jointly termed <i>synchronization signal block (SSB<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>)</i>.
+In NR, synchronization signals consist of <i>primary synchronization signal (PSS)</i> and <i>secondary synchronization signal (SSS)</i>. Together with <i>physical broadcast channel (PBCH)</i>, PSS and SSS are jointly termed <i>synchronization signal block (SSB<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>)</i>.
 </p>
 
 <p>
-A SSB spans 4 OFDM symbols in the time domain and 240 subcarriers in the frequency domain. Within a SSB, the PSS and SSS lie in the 1st and 3rd symbol, respectively. The PBCH situates in the 2nd and 4th symbols, as well as the 48 subcarriers on the each side of the SSS (in the 3rd symbol), as shown in the figure below. Therefore, within a SSB, there are totally \(240 + 48 \times 2 + 240 = 576\) RE's for PBCH transmission<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+A SSB spans 4 OFDM symbols in the time domain and 240 subcarriers in the frequency domain. Within a SSB, the PSS and SSS lie in the 1st and 3rd symbol, respectively. The PBCH situates in the 2nd and 4th symbols, as well as the 48 subcarriers on the each side of the SSS (in the 3rd symbol), as shown in the figure below. Therefore, within a SSB, there are totally \(240 + 48 \times 2 + 240 = 576\) RE's for PBCH transmission<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>.
 </p>
 
-<div class="figure">
+<div id="org7a66d92" class="figure">
 <p><img src="nr_ssb.png" alt="nr_ssb.png" width="100px">
 </p>
 <p><span class="figure-number">Figure 1: </span>SSB</p>
@@ -307,11 +260,11 @@ It should be noted that 60kHz numerology cannot be used for SSB transmission.
 The SSB is periodically transmitted and the periodicity can be 5/10/20/40/80/160ms. But a UE always assumes that a SSB is repeated at least once every 20ms no matter whether it is the truth.
 </p>
 </div>
-<div id="outline-container-orgbceb5e4" class="outline-3">
-<h3 id="orgbceb5e4">PSS</h3>
-<div class="outline-text-3" id="text-orgbceb5e4">
+<div id="outline-container-orgba00739" class="outline-3">
+<h3 id="orgba00739">PSS</h3>
+<div class="outline-text-3" id="text-orgba00739">
 <p>
-Similar to LTE, there are 3 PSS sequences, including a basic m-sequence of length 127, and its two cyclically shifted versions<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. The initial values of the basic sequence are {0, 1, 1, 0, 1, 1, 1}. The subsequent values can be derived according to
+Similar to LTE, there are 3 PSS sequences, including a basic m-sequence of length 127, and its two cyclically shifted versions<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>. The initial values of the basic sequence are {0, 1, 1, 0, 1, 1, 1}. The subsequent values can be derived according to
 </p>
 \begin{align*}
 x_0(n) = x_0(n - 7) \oplus x_0(n - 3).
@@ -325,9 +278,9 @@ Then, the cyclically shifted sequences can be obtained by
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org352ef2c" class="outline-3">
-<h3 id="org352ef2c">SSS</h3>
-<div class="outline-text-3" id="text-org352ef2c">
+<div id="outline-container-org68c1537" class="outline-3">
+<h3 id="org68c1537">SSS</h3>
+<div class="outline-text-3" id="text-org68c1537">
 <p>
 There are 336 SSS sequences which are the sums of two m-sequences with different shifts, i.e.,
 </p>
@@ -344,19 +297,19 @@ where the two m-sequences can be obtained according to
 </div>
 </div>
 </div>
-<div id="outline-container-org478eae4" class="outline-2">
-<h2 id="org478eae4">Synchronization raster</h2>
-<div class="outline-text-2" id="text-org478eae4">
+<div id="outline-container-orga08f6db" class="outline-2">
+<h2 id="orga08f6db">Synchronization raster</h2>
+<div class="outline-text-2" id="text-orga08f6db">
 <p>
 Different from the strategy in LTE where the PSS/SSS is always transmitted at the center of a carrier in the frequency domain, SSB in NR is transmitted on a sparser <i>synchronization raster</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-org2404bb3" class="outline-2">
-<h2 id="org2404bb3">Synchronization signal burst set</h2>
-<div class="outline-text-2" id="text-org2404bb3">
+<div id="outline-container-org742b50f" class="outline-2">
+<h2 id="org742b50f">Synchronization signal burst set</h2>
+<div class="outline-text-2" id="text-org742b50f">
 <p>
-Targetting effective coverage, a series of SSB's are transmitted using different analog beams in a TDM way. Accordingly, a set of SSB's within a beam sweeping cycle is referred to as an <i>synchronization signal burst set<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup></i>.
+Targetting effective coverage, a series of SSB's are transmitted using different analog beams in a TDM way. Accordingly, a set of SSB's within a beam sweeping cycle is referred to as an <i>synchronization signal burst set<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup></i>.
 </p>
 
 <p>
@@ -408,9 +361,9 @@ The PSS/SSS only depends on the physical cell identity (PCI), i.e., the PSS/SSS 
 </p>
 </div>
 </div>
-<div id="outline-container-orgfefcf35" class="outline-2">
-<h2 id="orgfefcf35">PBCH</h2>
-<div class="outline-text-2" id="text-orgfefcf35">
+<div id="outline-container-org8c843b4" class="outline-2">
+<h2 id="org8c843b4">PBCH</h2>
+<div class="outline-text-2" id="text-org8c843b4">
 <p>
 The PBCH carries the <i>master information block (MIB)</i>. The information carried by PBCH can be listed in the table below.
 </p>
@@ -430,17 +383,17 @@ The PBCH carries the <i>master information block (MIB)</i>. The information carr
 </thead>
 <tbody>
 <tr>
-<td class="org-left">SSB time index<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></td>
+<td class="org-left">SSB time index<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup></td>
 <td class="org-left">0 for FR1 and 3 for FR2</td>
 </tr>
 
 <tr>
 <td class="org-left">CellBarred flag</td>
-<td class="org-left">2<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup></td>
+<td class="org-left">2<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup></td>
 </tr>
 
 <tr>
-<td class="org-left">1st PDSCH DMRS position<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup></td>
+<td class="org-left">1st PDSCH DMRS position<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></td>
 <td class="org-left">1</td>
 </tr>
 
@@ -450,7 +403,7 @@ The PBCH carries the <i>master information block (MIB)</i>. The information carr
 </tr>
 
 <tr>
-<td class="org-left">SIB1 configuration<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup></td>
+<td class="org-left">SIB1 configuration<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup></td>
 <td class="org-left">8</td>
 </tr>
 
@@ -460,7 +413,7 @@ The PBCH carries the <i>master information block (MIB)</i>. The information carr
 </tr>
 
 <tr>
-<td class="org-left">Half-frame bit<sup><a id="fnr.9" class="footref" href="#fn.9">9</a></sup></td>
+<td class="org-left">Half-frame bit<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup></td>
 <td class="org-left">1</td>
 </tr>
 
@@ -484,9 +437,9 @@ The filed of "CRB grid offset" only indicates the offset between the SSB and the
 </p>
 </div>
 </div>
-<div id="outline-container-org6a0d301" class="outline-2">
-<h2 id="org6a0d301">Remaining minimum system information (RMSI)</h2>
-<div class="outline-text-2" id="text-org6a0d301">
+<div id="outline-container-orgcb6df0a" class="outline-2">
+<h2 id="orgcb6df0a">Remaining minimum system information (RMSI)</h2>
+<div class="outline-text-2" id="text-orgcb6df0a">
 <p>
 In NR, except the quite limited information within MIB, system information is carried by different <i>system information blocks (SIB's)</i>.
 </p>
@@ -500,39 +453,39 @@ SIB1, also referred to as <i>remaining minimum system information (RMSI)</i>, is
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Sometimes, a SSB only includes PSS and SSS.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Including the DMRS RE's for coherent demodulation of PBCH. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 The values for cyclic shift are 43 and 86.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Synchronization signal burst is an intermediate conception in the 3GPP discussion, but the synchronization signal burst set is retained.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Used for half-frame timing. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 The 2 bits indicate the accessibilities of the target cell and other intra-frequency cells, respectively.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Under the assumption of DMRS mapping type A. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Necessary information for SIB1 monitoring, e.g., search space, corresponding CORESET, and other PDCCH-related parameters. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9">9</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9" role="doc-backlink">9</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 It indicates if the SSB is located in the 1st or 2nd 5ms part of a 10ms frame. In this sense, it is used for frame timing.
 </p></div></div>
 

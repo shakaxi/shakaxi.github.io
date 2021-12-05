@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-11-16 Tue 15:07 -->
+<!-- 2021-12-05 Sun 16:54 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Function</title>
@@ -200,54 +200,54 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7e11a0e">参数</a>
+<li><a href="#orgb9e3e24">参数</a>
 <ul>
-<li><a href="#orgb6b0ea7">Parameter</a>
+<li><a href="#orgd756a58">Parameter</a>
 <ul>
-<li><a href="#org2c43a6d">变长参数(variable-length)</a></li>
-<li><a href="#orgac6ed37">默认参数（可选参数）</a></li>
+<li><a href="#org38f212c">变长参数(variable-length)</a></li>
+<li><a href="#org1fb7e8f">默认参数（可选参数）</a></li>
 </ul>
 </li>
-<li><a href="#org7a617c8">Argument</a>
+<li><a href="#org15fb139">Argument</a>
 <ul>
-<li><a href="#orgb64154d">位置参数</a></li>
-<li><a href="#orgea5c94c">关键字参数</a></li>
-<li><a href="#orga584f9a">调用方式的限制</a></li>
+<li><a href="#org52ddfda">位置参数</a></li>
+<li><a href="#org0665a24">关键字参数</a></li>
+<li><a href="#orgd276006">调用方式的限制</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc5ab460">Docstring</a></li>
-<li><a href="#orgb7ebc03">返回值</a></li>
+<li><a href="#org03059b7">Docstring</a></li>
+<li><a href="#org4047f4a">返回值</a></li>
 </ul>
 </div>
 </div>
 <p>
 在Python中，函数通过关键字 <code>def</code> 定义。
 </p>
-<div id="outline-container-org7e11a0e" class="outline-2">
-<h2 id="org7e11a0e">参数</h2>
-<div class="outline-text-2" id="text-org7e11a0e">
+<div id="outline-container-orgb9e3e24" class="outline-2">
+<h2 id="orgb9e3e24">参数</h2>
+<div class="outline-text-2" id="text-orgb9e3e24">
 <p>
 从函数的角度，parameter指函数定义圆括号内的变量列表，而argument指当函数被调用时传递的值。
 </p>
 </div>
-<div id="outline-container-orgb6b0ea7" class="outline-3">
-<h3 id="orgb6b0ea7">Parameter</h3>
-<div class="outline-text-3" id="text-orgb6b0ea7">
+<div id="outline-container-orgd756a58" class="outline-3">
+<h3 id="orgd756a58">Parameter</h3>
+<div class="outline-text-3" id="text-orgd756a58">
 </div>
-<div id="outline-container-org2c43a6d" class="outline-4">
-<h4 id="org2c43a6d">变长参数(variable-length)</h4>
-<div class="outline-text-4" id="text-org2c43a6d">
+<div id="outline-container-org38f212c" class="outline-4">
+<h4 id="org38f212c">变长参数(variable-length)</h4>
+<div class="outline-text-4" id="text-org38f212c">
 <ul class="org-ul">
 <li>参数名前加 <code>*</code> 可以表示该参数可以接受任意数目的位置参数。这种情况下，函数会接受元组参数(a tuple of arguments)。以 <code>*</code> 开头的参数只能以最后一个位置参数的形式出现。</li>
 <li>参数名前加 <code>**</code> 可以表示该参数可以接受任意数目的关键字参数。这种情况下，函数会接受元组参数(a tuple of arguments)。以 <code>**</code> 开头的参数只能以最后一个参数的形式出现。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgac6ed37" class="outline-4">
-<h4 id="orgac6ed37">默认参数（可选参数）</h4>
-<div class="outline-text-4" id="text-orgac6ed37">
+<div id="outline-container-org1fb7e8f" class="outline-4">
+<h4 id="org1fb7e8f">默认参数（可选参数）</h4>
+<div class="outline-text-4" id="text-org1fb7e8f">
 <ul class="org-ul">
 <li>可以在函数定义时，为参数指定默认值。</li>
 <li>值得注意的是，默认值生效是在函数定义的时候，而不是在函数调用的时候。</li>
@@ -258,24 +258,24 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org7a617c8" class="outline-3">
-<h3 id="org7a617c8">Argument</h3>
-<div class="outline-text-3" id="text-org7a617c8">
+<div id="outline-container-org15fb139" class="outline-3">
+<h3 id="org15fb139">Argument</h3>
+<div class="outline-text-3" id="text-org15fb139">
 <p>
 函数调用时的参数可以分为位置参数(positional argument)和关键字参数(keyword argument)。
 </p>
 </div>
-<div id="outline-container-orgb64154d" class="outline-4">
-<h4 id="orgb64154d">位置参数</h4>
-<div class="outline-text-4" id="text-orgb64154d">
+<div id="outline-container-org52ddfda" class="outline-4">
+<h4 id="org52ddfda">位置参数</h4>
+<div class="outline-text-4" id="text-org52ddfda">
 <ul class="org-ul">
 <li>位置参数按照调用顺序为对应的参数赋值。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgea5c94c" class="outline-4">
-<h4 id="orgea5c94c">关键字参数</h4>
-<div class="outline-text-4" id="text-orgea5c94c">
+<div id="outline-container-org0665a24" class="outline-4">
+<h4 id="org0665a24">关键字参数</h4>
+<div class="outline-text-4" id="text-org0665a24">
 <ul class="org-ul">
 <li>关键字参数的调用方式为 <code>kwarg=value</code> 。</li>
 <li>函数调用时，关键字参数的顺序可以是任意的。</li>
@@ -283,9 +283,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orga584f9a" class="outline-4">
-<h4 id="orga584f9a">调用方式的限制</h4>
-<div class="outline-text-4" id="text-orga584f9a">
+<div id="outline-container-orgd276006" class="outline-4">
+<h4 id="orgd276006">调用方式的限制</h4>
+<div class="outline-text-4" id="text-orgd276006">
 <div class="org-src-container">
 <pre class="src src-python">def fn(positional_only1, positional_only2, /, positional_or_keyword1, positional_or_keyword2, *, keyword_only1, keyword_only2):
 </pre>
@@ -299,17 +299,17 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgc5ab460" class="outline-2">
-<h2 id="orgc5ab460">Docstring</h2>
-<div class="outline-text-2" id="text-orgc5ab460">
+<div id="outline-container-org03059b7" class="outline-2">
+<h2 id="org03059b7">Docstring</h2>
+<div class="outline-text-2" id="text-org03059b7">
 <p>
 对函数功能以及参数的描述。
 </p>
 </div>
 </div>
-<div id="outline-container-orgb7ebc03" class="outline-2">
-<h2 id="orgb7ebc03">返回值</h2>
-<div class="outline-text-2" id="text-orgb7ebc03">
+<div id="outline-container-org4047f4a" class="outline-2">
+<h2 id="org4047f4a">返回值</h2>
+<div class="outline-text-2" id="text-org4047f4a">
 <ul class="org-ul">
 <li>有返回值的函数，通过关键字 <code>return</code> 返回。</li>
 <li>没有返回值的函数会默认返回 <code>None</code> 。</li>

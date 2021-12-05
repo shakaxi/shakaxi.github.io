@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Language Server Protocol</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,85 +190,38 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Emacs - Language Server Protocol</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1b40826">Introduction</a></li>
-<li><a href="#org0f03ee4">C++</a>
+<li><a href="#org79d55ee">Introduction</a></li>
+<li><a href="#org16436df">C++</a>
 <ul>
-<li><a href="#org1da5b28">Installation</a>
+<li><a href="#orgd15205c">Installation</a>
 <ul>
-<li><a href="#org77e0545"><code>cquery</code></a>
+<li><a href="#orga9de953"><code>cquery</code></a>
 <ul>
-<li><a href="#org9236441">Prerequisite</a></li>
-<li><a href="#org553eb35">Install binary package</a></li>
-<li><a href="#orgdb17494">Build from source codes</a></li>
+<li><a href="#orgf237731">Prerequisite</a></li>
+<li><a href="#org909d09c">Install binary package</a></li>
+<li><a href="#orga84a257">Build from source codes</a></li>
 </ul>
 </li>
-<li><a href="#orgc2c1f5b"><code>lsp-mode</code></a></li>
-<li><a href="#org712a563"><code>company-lsp</code></a></li>
+<li><a href="#orge3d3c0d"><code>lsp-mode</code></a></li>
+<li><a href="#orgccd10cd"><code>company-lsp</code></a></li>
 </ul>
 </li>
-<li><a href="#org75690a6">Configuration</a></li>
-<li><a href="#org5634d0b">Usage</a>
+<li><a href="#org3b95668">Configuration</a></li>
+<li><a href="#orgfc71cf3">Usage</a>
 <ul>
-<li><a href="#org46361b9"><code>compile_commands.json</code></a></li>
-<li><a href="#org833cbac"><code>.cquery</code></a></li>
-<li><a href="#org69874b5">Provision</a></li>
+<li><a href="#org2cd48ea"><code>compile_commands.json</code></a></li>
+<li><a href="#orga739a24"><code>.cquery</code></a></li>
+<li><a href="#org7aadeb0">Provision</a></li>
 </ul>
 </li>
 </ul>
@@ -276,11 +230,11 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org1b40826" class="outline-2">
-<h2 id="org1b40826">Introduction</h2>
-<div class="outline-text-2" id="text-org1b40826">
+<div id="outline-container-org79d55ee" class="outline-2">
+<h2 id="org79d55ee">Introduction</h2>
+<div class="outline-text-2" id="text-org79d55ee">
 <p>
-Language server protocol (LSP) offers a uniform specification between a client and a server<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+Language server protocol (LSP) offers a uniform specification between a client and a server<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
 </p>
 <blockquote>
 <p>
@@ -288,50 +242,50 @@ The Language Server protocol is used between a tool (the client) and a language 
 </p>
 </blockquote>
 <p>
-With LSP, different clients and development tools, e.g., integrated development environment (IDE), can share a common server. Taking C/C++ for instance, various clients, e.g., Emacs, Vim, Eclipse, etc. can communicate with a common server with their own clients. For Emacs, its client is enbodied as a mode, <code>lsp-mode</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+With LSP, different clients and development tools, e.g., integrated development environment (IDE), can share a common server. Taking C/C++ for instance, various clients, e.g., Emacs, Vim, Eclipse, etc. can communicate with a common server with their own clients. For Emacs, its client is enbodied as a mode, <code>lsp-mode</code><sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>.
 </p>
 
 <p>
-Maskray has provided a good summary of <code>cquery</code> for reference<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. This post just records the installation and configuration of LSP for C/C++.
+Maskray has provided a good summary of <code>cquery</code> for reference<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>. This post just records the installation and configuration of LSP for C/C++.
 </p>
 </div>
 </div>
-<div id="outline-container-org0f03ee4" class="outline-2">
-<h2 id="org0f03ee4">C++</h2>
-<div class="outline-text-2" id="text-org0f03ee4">
+<div id="outline-container-org16436df" class="outline-2">
+<h2 id="org16436df">C++</h2>
+<div class="outline-text-2" id="text-org16436df">
 <p>
 <a href="https://github.com/jacobdufault/cquery">cquery</a> provides an complete LSP for C/C++/Object-C, including a LSP server and a LSP client (which depends on <code>lsp-mode</code>). <code>cquery</code> can be installed and configured following a procedure as below.
 </p>
 </div>
-<div id="outline-container-org1da5b28" class="outline-3">
-<h3 id="org1da5b28">Installation</h3>
-<div class="outline-text-3" id="text-org1da5b28">
+<div id="outline-container-orgd15205c" class="outline-3">
+<h3 id="orgd15205c">Installation</h3>
+<div class="outline-text-3" id="text-orgd15205c">
 </div>
-<div id="outline-container-org77e0545" class="outline-4">
-<h4 id="org77e0545"><code>cquery</code></h4>
-<div class="outline-text-4" id="text-org77e0545">
+<div id="outline-container-orga9de953" class="outline-4">
+<h4 id="orga9de953"><code>cquery</code></h4>
+<div class="outline-text-4" id="text-orga9de953">
 </div>
-<div id="outline-container-org9236441" class="outline-5">
-<h5 id="org9236441">Prerequisite</h5>
-<div class="outline-text-5" id="text-org9236441">
+<div id="outline-container-orgf237731" class="outline-5">
+<h5 id="orgf237731">Prerequisite</h5>
+<div class="outline-text-5" id="text-orgf237731">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S clang llvm
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org553eb35" class="outline-5">
-<h5 id="org553eb35">Install binary package</h5>
-<div class="outline-text-5" id="text-org553eb35">
+<div id="outline-container-org909d09c" class="outline-5">
+<h5 id="org909d09c">Install binary package</h5>
+<div class="outline-text-5" id="text-org909d09c">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S cquery-git
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdb17494" class="outline-5">
-<h5 id="orgdb17494">Build from source codes</h5>
-<div class="outline-text-5" id="text-orgdb17494">
+<div id="outline-container-orga84a257" class="outline-5">
+<h5 id="orga84a257">Build from source codes</h5>
+<div class="outline-text-5" id="text-orga84a257">
 <div class="org-src-container">
 <pre class="src src-sh">git clone https://github.com/jacobdufault/cquery --recursive
 cd cquery
@@ -347,26 +301,26 @@ cp -r third_party /opt/cquery
 </div>
 </div>
 </div>
-<div id="outline-container-orgc2c1f5b" class="outline-4">
-<h4 id="orgc2c1f5b"><code>lsp-mode</code></h4>
-<div class="outline-text-4" id="text-orgc2c1f5b">
+<div id="outline-container-orge3d3c0d" class="outline-4">
+<h4 id="orge3d3c0d"><code>lsp-mode</code></h4>
+<div class="outline-text-4" id="text-orge3d3c0d">
 <p>
 <code>lsp-mode</code> can be easily installed via ELPA.
 </p>
 </div>
 </div>
-<div id="outline-container-org712a563" class="outline-4">
-<h4 id="org712a563"><code>company-lsp</code></h4>
-<div class="outline-text-4" id="text-org712a563">
+<div id="outline-container-orgccd10cd" class="outline-4">
+<h4 id="orgccd10cd"><code>company-lsp</code></h4>
+<div class="outline-text-4" id="text-orgccd10cd">
 <p>
 For LSP, <code>company-lsp</code> is an optional package. It is essentially the company backend for <code>lsp-mode</code>, which can also be installed via ELPA.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org75690a6" class="outline-3">
-<h3 id="org75690a6">Configuration</h3>
-<div class="outline-text-3" id="text-org75690a6">
+<div id="outline-container-org3b95668" class="outline-3">
+<h3 id="org3b95668">Configuration</h3>
+<div class="outline-text-3" id="text-org3b95668">
 <p>
 Add following entries into <code>~/.emacs.d/init.el</code>.
 </p>
@@ -394,15 +348,15 @@ If <code>company-lsp</code> is installed, it can be appended in variable <code>c
 </div>
 </div>
 </div>
-<div id="outline-container-org5634d0b" class="outline-3">
-<h3 id="org5634d0b">Usage</h3>
-<div class="outline-text-3" id="text-org5634d0b">
+<div id="outline-container-orgfc71cf3" class="outline-3">
+<h3 id="orgfc71cf3">Usage</h3>
+<div class="outline-text-3" id="text-orgfc71cf3">
 </div>
-<div id="outline-container-org46361b9" class="outline-4">
-<h4 id="org46361b9"><code>compile_commands.json</code></h4>
-<div class="outline-text-4" id="text-org46361b9">
+<div id="outline-container-org2cd48ea" class="outline-4">
+<h4 id="org2cd48ea"><code>compile_commands.json</code></h4>
+<div class="outline-text-4" id="text-org2cd48ea">
 <p>
-In the normal utilization of LSP, a compilation database is required<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>, i.e., <code>compile_commands.json</code>. It can be generated by a variety of tools, e.g., <a href="https://cmake.org">cmake</a>, <a href="https://github.com/rizsotto/Bear">build ear</a>, <a href="https://ninja-build.org">ninja</a>, <a href="https://waf.io">waf</a>, etc.
+In the normal utilization of LSP, a compilation database is required<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>, i.e., <code>compile_commands.json</code>. It can be generated by a variety of tools, e.g., <a href="https://cmake.org">cmake</a>, <a href="https://github.com/rizsotto/Bear">build ear</a>, <a href="https://ninja-build.org">ninja</a>, <a href="https://waf.io">waf</a>, etc.
 </p>
 
 <p>
@@ -421,9 +375,9 @@ a <code>compile_commands.json</code> can be generated by compiling the target pr
 </div>
 </div>
 </div>
-<div id="outline-container-org833cbac" class="outline-4">
-<h4 id="org833cbac"><code>.cquery</code></h4>
-<div class="outline-text-4" id="text-org833cbac">
+<div id="outline-container-orga739a24" class="outline-4">
+<h4 id="orga739a24"><code>.cquery</code></h4>
+<div class="outline-text-4" id="text-orga739a24">
 <p>
 If <code>compile_commands.json</code> cannot be generated, an alternative solution is to create a file <code>.cquery</code> in the root directory of each project with its content as follows.
 </p>
@@ -441,9 +395,9 @@ If <code>compile_commands.json</code> cannot be generated, an alternative soluti
 </div>
 </div>
 </div>
-<div id="outline-container-org69874b5" class="outline-4">
-<h4 id="org69874b5">Provision</h4>
-<div class="outline-text-4" id="text-org69874b5">
+<div id="outline-container-org7aadeb0" class="outline-4">
+<h4 id="org7aadeb0">Provision</h4>
+<div class="outline-text-4" id="text-org7aadeb0">
 <p>
 By default, the LSP client uses <code>company-capf</code> for completion, which is a company backend. Therefore, function <code>company-complete</code> can list the candidates for completion offered by LSP.
 </p>
@@ -491,19 +445,19 @@ By default, the LSP client uses <code>company-capf</code> for completion, which 
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="http://langserver.org/">http://langserver.org/</a>
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://github.com/emacs-lsp/lsp-mode">https://github.com/emacs-lsp/lsp-mode</a>
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="http://maskray.me/blog/2017-12-03-c++-language-server-cquery">http://maskray.me/blog/2017-12-03-c++-language-server-cquery</a>
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://sarcasm.github.io/notes/dev/compilation-database.html">https://sarcasm.github.io/notes/dev/compilation-database.html</a>
 </p></div></div>
 

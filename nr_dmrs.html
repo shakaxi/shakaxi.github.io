@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-01-21 Tue 23:59 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - Demodulation Reference Signal (DMRS)</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,55 +190,8 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -258,44 +212,43 @@ for the JavaScript code in this tag.
              }
 });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">NR - Demodulation Reference Signal (DMRS)</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbaf1a4d">Conceptions</a>
+<li><a href="#org741f763">Conceptions</a>
 <ul>
-<li><a href="#org117f80e">Frontloaded DMRS</a></li>
-<li><a href="#org18be34d">Additional DMRS</a></li>
+<li><a href="#orgc446c54">Frontloaded DMRS</a></li>
+<li><a href="#org704df13">Additional DMRS</a></li>
 </ul>
 </li>
-<li><a href="#org6f13e54">Sequence Generation</a></li>
-<li><a href="#org789bb3f">Port Number</a></li>
-<li><a href="#orgd81743a">Pattern</a>
+<li><a href="#orgbabd26a">Sequence Generation</a></li>
+<li><a href="#org72954d2">Port Number</a></li>
+<li><a href="#orga199fea">Pattern</a>
 <ul>
-<li><a href="#orgccf95f6">Type-1</a></li>
-<li><a href="#org9424fd7">Type-2</a></li>
+<li><a href="#org400e1b4">Type-1</a></li>
+<li><a href="#org2b00818">Type-2</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbaf1a4d" class="outline-2">
-<h2 id="orgbaf1a4d">Conceptions</h2>
-<div class="outline-text-2" id="text-orgbaf1a4d">
+<div id="outline-container-org741f763" class="outline-2">
+<h2 id="org741f763">Conceptions</h2>
+<div class="outline-text-2" id="text-org741f763">
 <p>
 Just as its name indicates, <i>demodulation reference signal (DMRS)</i> is the reference signal dedicated for demodulation. Different from LTE system, the DMRS in NR system is comprised of a <i>frontloaded DMRS</i> and a few optional <i>additional DMRS</i>.
 </p>
 </div>
-<div id="outline-container-org117f80e" class="outline-3">
-<h3 id="org117f80e">Frontloaded DMRS</h3>
-<div class="outline-text-3" id="text-org117f80e">
+<div id="outline-container-orgc446c54" class="outline-3">
+<h3 id="orgc446c54">Frontloaded DMRS</h3>
+<div class="outline-text-3" id="text-orgc446c54">
 <p>
 Frontloaded DMRS aims to reduce the duration of demodulation and decoding. There are a couple of mapping schemes.
 </p>
@@ -305,9 +258,9 @@ Frontloaded DMRS aims to reduce the duration of demodulation and decoding. There
 </ul>
 </div>
 </div>
-<div id="outline-container-org18be34d" class="outline-3">
-<h3 id="org18be34d">Additional DMRS</h3>
-<div class="outline-text-3" id="text-org18be34d">
+<div id="outline-container-org704df13" class="outline-3">
+<h3 id="org704df13">Additional DMRS</h3>
+<div class="outline-text-3" id="text-org704df13">
 <p>
 Additional DMRS is proposed to support high speed mobility, e.g., 500km/h. Each additional DMRS is a simple repetition of the corresponding frontloaded DMRS, e.g., identical subcarriers and equal OFDM symbol number.
 </p>
@@ -318,9 +271,9 @@ Additional DMRS is proposed to support high speed mobility, e.g., 500km/h. Each 
 </div>
 </div>
 </div>
-<div id="outline-container-org6f13e54" class="outline-2">
-<h2 id="org6f13e54">Sequence Generation</h2>
-<div class="outline-text-2" id="text-org6f13e54">
+<div id="outline-container-orgbabd26a" class="outline-2">
+<h2 id="orgbabd26a">Sequence Generation</h2>
+<div class="outline-text-2" id="text-orgbabd26a">
 <p>
 DMRS symbols are a sequence of QPSK-modulated Gold sequence, which is initialized with
 </p>
@@ -339,9 +292,9 @@ where
 </ul>
 </div>
 </div>
-<div id="outline-container-org789bb3f" class="outline-2">
-<h2 id="org789bb3f">Port Number</h2>
-<div class="outline-text-2" id="text-org789bb3f">
+<div id="outline-container-org72954d2" class="outline-2">
+<h2 id="org72954d2">Port Number</h2>
+<div class="outline-text-2" id="text-org72954d2">
 <p>
 Irrespective of downlink or uplink transmission, the number of layers depend on the number of DMRS ports. In NR system, DMRS ports are multiplexed based on <i>frequency division multiplexing (FDM)</i> and <i>orthogonal cover code (OCC)</i>. A FDM entry corresponds to a <i>code division multiplexing (CDM) group</i>. Within a CDM group, OCC is applied in the frequency domain in single-symbol DMRS case and in both frequency and time domains for double-symbol DMRS.
 </p>
@@ -351,28 +304,28 @@ Irrespective of downlink or uplink transmission, the number of layers depend on 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd81743a" class="outline-2">
-<h2 id="orgd81743a">Pattern</h2>
-<div class="outline-text-2" id="text-orgd81743a">
+<div id="outline-container-orga199fea" class="outline-2">
+<h2 id="orga199fea">Pattern</h2>
+<div class="outline-text-2" id="text-orga199fea">
 <p>
 In NR system, there are two types of DMRS, a.k.a., <i>type-1</i> and <i>type-2</i>, configured by <span style="color: blue">dmrs-Type</span>.
 </p>
 <ul class="org-ul">
-<li>For CP-OFDM, both types are supported<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.</li>
+<li>For CP-OFDM, both types are supported<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.</li>
 <li>For DFT-S-OFDM, only type-1 is supported.</li>
 </ul>
 <p>
 Regardless of DMRS type, a frontloaded DMRS has one or two OFDM symbols, which is configured by <span style="color: blue">maxLength</span> in <span style="color: blue">DMRS-DownlinkConfig</span>/<span style="color: blue">DMRS-UplinkConfig</span> for downlink/uplink transmission, and dynamically indicated by DCI.
 </p>
 </div>
-<div id="outline-container-orgccf95f6" class="outline-3">
-<h3 id="orgccf95f6">Type-1</h3>
-<div class="outline-text-3" id="text-orgccf95f6">
+<div id="outline-container-org400e1b4" class="outline-3">
+<h3 id="org400e1b4">Type-1</h3>
+<div class="outline-text-3" id="text-org400e1b4">
 <p>
-For type-1 DMRS, an example pattern can be illustrated in Figure <a href="#org9e45f97">1</a>, with 2 combs corresponding to 2 CDM groups.
+For type-1 DMRS, an example pattern can be illustrated in Figure <a href="#org511412d">1</a>, with 2 combs corresponding to 2 CDM groups.
 </p>
 
-<div id="org9e45f97" class="figure">
+<div id="org511412d" class="figure">
 <p><img src="nr_dmrs_type1.png" alt="nr_dmrs_type1.png" width="1000px">
 </p>
 <p><span class="figure-number">Figure 1: </span>Type-1 DMRS</p>
@@ -382,25 +335,25 @@ For type-1 DMRS, an example pattern can be illustrated in Figure <a href="#org9e
 <li>In single-symbol case, up to 4 ports are supported
 <ul class="org-ul">
 <li>2x comb</li>
-<li>2x frequency domain OCC<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></li>
+<li>2x frequency domain OCC<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></li>
 </ul></li>
 <li>In double-symbol case, up to 8 ports are supported.
 <ul class="org-ul">
 <li>2x comb</li>
-<li>2x frequency-domain OCC<sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup></li>
+<li>2x frequency-domain OCC<sup><a id="fnr.2.100" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></li>
 <li>2x time-domain OCC</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9424fd7" class="outline-3">
-<h3 id="org9424fd7">Type-2</h3>
-<div class="outline-text-3" id="text-org9424fd7">
+<div id="outline-container-org2b00818" class="outline-3">
+<h3 id="org2b00818">Type-2</h3>
+<div class="outline-text-3" id="text-org2b00818">
 <p>
-Similarly, an example pattern of type-2 DMRS can be shown in Figure <a href="#org3d78b67">2</a> with 3 FDM entries corresponding to 3 CDM groups.
+Similarly, an example pattern of type-2 DMRS can be shown in Figure <a href="#org5aea6d0">2</a> with 3 FDM entries corresponding to 3 CDM groups.
 </p>
 
-<div id="org3d78b67" class="figure">
+<div id="org5aea6d0" class="figure">
 <p><img src="nr_dmrs_type2.png" alt="nr_dmrs_type2.png" width="1000px">
 </p>
 <p><span class="figure-number">Figure 2: </span>Type-2 DMRS</p>
@@ -426,11 +379,11 @@ Similarly, an example pattern of type-2 DMRS can be shown in Figure <a href="#or
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Before configuration, type-1 is applied by default.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 For OCC code \([1, -1]\) with 2x comb, it is essentially a cyclic shift of \(N_{\text{FFT}}/4\), corresponding to a phase rotation of \(\pi/2\).
 </p></div></div>
 

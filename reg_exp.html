@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Regular Expression</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,67 +190,20 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Regular Expression</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf24eb54">字符集(字符组) <code>[]</code></a></li>
-<li><a href="#org4dfbd13">通配符</a></li>
-<li><a href="#org5cdf495">捕获与反向引用</a></li>
-<li><a href="#orgb66a5f8">量词</a></li>
+<li><a href="#orga0d3cba">字符集(字符组) <code>[]</code></a></li>
+<li><a href="#org81aaefe">通配符</a></li>
+<li><a href="#org503ef1d">捕获与反向引用</a></li>
+<li><a href="#orgd15b2c8">量词</a></li>
 </ul>
 </div>
 </div>
@@ -257,9 +211,9 @@ for the JavaScript code in this tag.
 正则表达式是指用于字符串匹配的一种模式,最早出现于20世纪40年代.
 </p>
 
-<div id="outline-container-orgf24eb54" class="outline-2">
-<h2 id="orgf24eb54">字符集(字符组) <code>[]</code></h2>
-<div class="outline-text-2" id="text-orgf24eb54">
+<div id="outline-container-orga0d3cba" class="outline-2">
+<h2 id="orga0d3cba">字符集(字符组) <code>[]</code></h2>
+<div class="outline-text-2" id="text-orga0d3cba">
 <ul class="org-ul">
 <li><code>[0-9]</code> 可以匹配0到9范围内的任意数字.可以简写为 <code>\d</code>.</li>
 <li><code>\D</code> 可以匹配非数字字符.相当于 <code>[^0-9]</code> 或 <code>[^\d]</code>.</li>
@@ -273,29 +227,29 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org4dfbd13" class="outline-2">
-<h2 id="org4dfbd13">通配符</h2>
-<div class="outline-text-2" id="text-org4dfbd13">
+<div id="outline-container-org81aaefe" class="outline-2">
+<h2 id="org81aaefe">通配符</h2>
+<div class="outline-text-2" id="text-org81aaefe">
 <ul class="org-ul">
-<li><code>.</code> 可以匹配任意字符<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.</li>
+<li><code>.</code> 可以匹配任意字符<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.</li>
 <li><code>^</code> 行起始符.</li>
 <li><code>$</code> 行结束符.</li>
-<li><code>\b</code> 单词边界<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</li>
+<li><code>\b</code> 单词边界<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>.</li>
 <li><code>\B</code> 非单词边界.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5cdf495" class="outline-2">
-<h2 id="org5cdf495">捕获与反向引用</h2>
-<div class="outline-text-2" id="text-org5cdf495">
+<div id="outline-container-org503ef1d" class="outline-2">
+<h2 id="org503ef1d">捕获与反向引用</h2>
+<div class="outline-text-2" id="text-org503ef1d">
 <ul class="org-ul">
 <li>可以使用圆括号 <code>()</code> 创建捕获分组,之后可以对其进行反向引用,如 <code>$1</code>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb66a5f8" class="outline-2">
-<h2 id="orgb66a5f8">量词</h2>
-<div class="outline-text-2" id="text-orgb66a5f8">
+<div id="outline-container-orgd15b2c8" class="outline-2">
+<h2 id="orgd15b2c8">量词</h2>
+<div class="outline-text-2" id="text-orgd15b2c8">
 <ul class="org-ul">
 <li><code>{}</code> 中的数字表示确切的匹配次数.</li>
 <li><code>+</code> 表示一次或者多次.</li>
@@ -308,11 +262,11 @@ for the JavaScript code in this tag.
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 某些情况下不能匹配行起始符.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 在旧语法中,指定单词首尾边界分别使用 <code>\&lt;</code> 和 <code>\&gt;</code>.
 </p></div></div>
 

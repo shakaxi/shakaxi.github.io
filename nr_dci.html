@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - DCI</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,91 +190,44 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">NR - DCI</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9e12007">Introduction</a></li>
-<li><a href="#org6782339">Resource hierarchy</a>
+<li><a href="#org238628c">Introduction</a></li>
+<li><a href="#org807a141">Resource hierarchy</a>
 <ul>
-<li><a href="#org93b0262">CORESET</a></li>
-<li><a href="#orgd1077b3">CCE-to-REG mapping</a></li>
-<li><a href="#orgfd0d6f7">Search space</a></li>
+<li><a href="#org9bf7e84">CORESET</a></li>
+<li><a href="#org333eae2">CCE-to-REG mapping</a></li>
+<li><a href="#orgda59489">Search space</a></li>
 </ul>
 </li>
-<li><a href="#orgd05c3e2">DCI formats</a>
+<li><a href="#org9b2a579">DCI formats</a>
 <ul>
-<li><a href="#org491edcd">Downlink scheduling assignments (DCI formats 1-0 and 1-1)</a></li>
-<li><a href="#orgf3cf749">Uplink scheduling grants (DCI formats 0-0 and 0-1)</a></li>
-<li><a href="#org4287975">Slot format indication (DCI format 2-0)</a></li>
-<li><a href="#orgf5d2639">Preemption indication (DCI format 2-1)</a></li>
-<li><a href="#orge3f4adc">Uplink power control commands (DCI format 2-2)</a></li>
-<li><a href="#org4a092c3">SRS control commands (DCI format 2-3)</a></li>
+<li><a href="#org9ae1f6a">Downlink scheduling assignments (DCI formats 1-0 and 1-1)</a></li>
+<li><a href="#org975f0c7">Uplink scheduling grants (DCI formats 0-0 and 0-1)</a></li>
+<li><a href="#orgc510784">Slot format indication (DCI format 2-0)</a></li>
+<li><a href="#org6c477c0">Preemption indication (DCI format 2-1)</a></li>
+<li><a href="#org0b09182">Uplink power control commands (DCI format 2-2)</a></li>
+<li><a href="#org622719e">SRS control commands (DCI format 2-3)</a></li>
 </ul>
 </li>
-<li><a href="#org7fd8ede">Signalling of frequency domain resources</a></li>
-<li><a href="#orgcd995d8">Signalling of time domain resources</a></li>
-<li><a href="#org537a19b">Signalling of TB size</a></li>
+<li><a href="#org5dc4973">Signalling of frequency domain resources</a></li>
+<li><a href="#orgb595b3a">Signalling of time domain resources</a></li>
+<li><a href="#org92ef2e1">Signalling of TB size</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9e12007" class="outline-2">
-<h2 id="org9e12007">Introduction</h2>
-<div class="outline-text-2" id="text-org9e12007">
+<div id="outline-container-org238628c" class="outline-2">
+<h2 id="org238628c">Introduction</h2>
+<div class="outline-text-2" id="text-org238628c">
 <p>
 In NR system, the <i>downlink control information (DCI)</i> is carried by physical downlink control channel (PDCCH), which physically occupied a region in the 2-dimension resource grid, which is essentially comprised of a certain number of resource elements (RE's), a.k.a., <i>control resource set (CORESET)</i>. Different from the counterpart in LTE, i.e., PDCCH region which always covers the whole frequency range, CORESET does not span the whole bandwidth, since the bandwidth in NR system is remarkably large while not all the NR UE's are able to perform reception over the whole bandwidth.
 </p>
@@ -283,20 +237,20 @@ Due to the static feature of CORESET, the indication of its size is not necessar
 </p>
 
 <p>
-In NR, the channel coding scheme for PDCCH is based on <i>polar codes</i>. It can support 512 coded bits (prior to rate matching<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>) and up to 140 information bits. Targetting an enhanced coverage, a beamformed single layer transmission is adopted for PDCCH. In this sense, it is similar to ePDCCH in LTE system.
+In NR, the channel coding scheme for PDCCH is based on <i>polar codes</i>. It can support 512 coded bits (prior to rate matching<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>) and up to 140 information bits. Targetting an enhanced coverage, a beamformed single layer transmission is adopted for PDCCH. In this sense, it is similar to ePDCCH in LTE system.
 </p>
 </div>
 </div>
-<div id="outline-container-org6782339" class="outline-2">
-<h2 id="org6782339">Resource hierarchy</h2>
-<div class="outline-text-2" id="text-org6782339">
+<div id="outline-container-org807a141" class="outline-2">
+<h2 id="org807a141">Resource hierarchy</h2>
+<div class="outline-text-2" id="text-org807a141">
 <p>
-Just as its name indicates, the basic element for PDCCH is <i>control channel element (CCE)</i>, which is comprised of 6 <i>resource element groups (REG's)</i>, and a REG is defined as one resource block (RB) in one OFDM symbol<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. An <i>aggregation level</i> number of CCE's forms one PDCCH. The value of aggregation level can be 1, 2, 4, 8, 16<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.
+Just as its name indicates, the basic element for PDCCH is <i>control channel element (CCE)</i>, which is comprised of 6 <i>resource element groups (REG's)</i>, and a REG is defined as one resource block (RB) in one OFDM symbol<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>. An <i>aggregation level</i> number of CCE's forms one PDCCH. The value of aggregation level can be 1, 2, 4, 8, 16<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.
 </p>
 </div>
-<div id="outline-container-org93b0262" class="outline-3">
-<h3 id="org93b0262">CORESET</h3>
-<div class="outline-text-3" id="text-org93b0262">
+<div id="outline-container-org9bf7e84" class="outline-3">
+<h3 id="org9bf7e84">CORESET</h3>
+<div class="outline-text-3" id="text-org9bf7e84">
 <p>
 A CORESET is essentially a time-frequency resource in which the UE tries to decode candidate control channels using one or more search spaces. For the sake of reuse between bandwidth parts (BWP's), a CORESET is per-cell other than per-BWP configured.
 </p>
@@ -318,9 +272,9 @@ Each CORESET can be configured with a <i>transmission configuration indication (
 </p>
 </div>
 </div>
-<div id="outline-container-orgd1077b3" class="outline-3">
-<h3 id="orgd1077b3">CCE-to-REG mapping</h3>
-<div class="outline-text-3" id="text-orgd1077b3">
+<div id="outline-container-org333eae2" class="outline-3">
+<h3 id="org333eae2">CCE-to-REG mapping</h3>
+<div class="outline-text-3" id="text-org333eae2">
 <p>
 CCE-to-REG mapping is per-CORESET configured. Generally, there are a couple of CCE-to-REG mapping schemes, interleaved and non-interleaved. The former targets frequency diversity, while the latter aims to facilitate interference coordination and opportunistic scheduling.
 </p>
@@ -387,11 +341,11 @@ A set of REG's which share the same precoding are termed one <i>REG bundle</i>. 
 </table>
 </div>
 </div>
-<div id="outline-container-orgfd0d6f7" class="outline-3">
-<h3 id="orgfd0d6f7">Search space</h3>
-<div class="outline-text-3" id="text-orgfd0d6f7">
+<div id="outline-container-orgda59489" class="outline-3">
+<h3 id="orgda59489">Search space</h3>
+<div class="outline-text-3" id="text-orgda59489">
 <p>
-As in LTE system, a NR UE also needs to blindly detect the DCI format<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>. A UE needs to monitor up to 4 different DCI sizes with 3 using C-RNTI and 1 using other RNTI's:
+As in LTE system, a NR UE also needs to blindly detect the DCI format<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>. A UE needs to monitor up to 4 different DCI sizes with 3 using C-RNTI and 1 using other RNTI's:
 </p>
 <ul class="org-ul">
 <li>One size for fallback DCI formats,</li>
@@ -410,13 +364,13 @@ A UE attempts to blindly decode a DCI based on <i>search space</i>, which is def
 </div>
 </div>
 </div>
-<div id="outline-container-orgd05c3e2" class="outline-2">
-<h2 id="orgd05c3e2">DCI formats</h2>
-<div class="outline-text-2" id="text-orgd05c3e2">
+<div id="outline-container-org9b2a579" class="outline-2">
+<h2 id="org9b2a579">DCI formats</h2>
+<div class="outline-text-2" id="text-org9b2a579">
 </div>
-<div id="outline-container-org491edcd" class="outline-3">
-<h3 id="org491edcd">Downlink scheduling assignments (DCI formats 1-0 and 1-1)</h3>
-<div class="outline-text-3" id="text-org491edcd">
+<div id="outline-container-org9ae1f6a" class="outline-3">
+<h3 id="org9ae1f6a">Downlink scheduling assignments (DCI formats 1-0 and 1-1)</h3>
+<div class="outline-text-3" id="text-org9ae1f6a">
 <p>
 In NR, there are a couple of DCI formats for downlink scheduling assignments, the non-fallback format, i.e., DCI format 1-1, and the fallback format, i.e., DCI format 1-0. The former supports all NR features, whose size is variable since some information fields may be absent, which depends on whether the corresponding features are configured or not. The latter supports a limited set of NR functionalities with a fixed size.
 </p>
@@ -452,19 +406,19 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 <td class="org-left">Resource related</td>
 <td class="org-left">CFI</td>
 <td class="org-left">0</td>
-<td class="org-left">0, 3<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></td>
+<td class="org-left">0, 3<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">BWP indicator</td>
 <td class="org-left">0</td>
-<td class="org-left">0-2<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup></td>
+<td class="org-left">0-2<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">Frequency domain allocation<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup></td>
+<td class="org-left">Frequency domain allocation<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></td>
 <td class="org-left">Only type 1 resource allocation is supported.</td>
 <td class="org-left">&#xa0;</td>
 </tr>
@@ -478,7 +432,7 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">VRB-to-PRB mapping<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup></td>
+<td class="org-left">VRB-to-PRB mapping<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup></td>
 <td class="org-left">0, 1</td>
 <td class="org-left">0, 1</td>
 </tr>
@@ -492,7 +446,7 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">Reserved resources<sup><a id="fnr.9" class="footref" href="#fn.9">9</a></sup></td>
+<td class="org-left">Reserved resources<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup></td>
 <td class="org-left">0-2</td>
 <td class="org-left">0-2</td>
 </tr>
@@ -508,7 +462,7 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 <td class="org-left">Transport block (TB) related</td>
 <td class="org-left">MCS</td>
 <td class="org-left">5</td>
-<td class="org-left">5, 10<sup><a id="fnr.10" class="footref" href="#fn.10">10</a></sup></td>
+<td class="org-left">5, 10<sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup></td>
 </tr>
 
 <tr>
@@ -541,7 +495,7 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">HARQ feedback timing<sup><a id="fnr.11" class="footref" href="#fn.11">11</a></sup></td>
+<td class="org-left">HARQ feedback timing<sup><a id="fnr.11" class="footref" href="#fn.11" role="doc-backlink">11</a></sup></td>
 <td class="org-left">3</td>
 <td class="org-left">3</td>
 </tr>
@@ -550,14 +504,14 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 <td class="org-left">&#xa0;</td>
 <td class="org-left">Codeblock group transmission indicator (CBGTI)</td>
 <td class="org-left">0</td>
-<td class="org-left">0, 2, 4, 6, 8<sup><a id="fnr.12" class="footref" href="#fn.12">12</a></sup></td>
+<td class="org-left">0, 2, 4, 6, 8<sup><a id="fnr.12" class="footref" href="#fn.12" role="doc-backlink">12</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">Codeblock group flush information (CBGFI)</td>
 <td class="org-left">0</td>
-<td class="org-left">0-1<sup><a id="fnr.12.100" class="footref" href="#fn.12">12</a></sup></td>
+<td class="org-left">0-1<sup><a id="fnr.12.100" class="footref" href="#fn.12" role="doc-backlink">12</a></sup></td>
 </tr>
 
 <tr>
@@ -571,33 +525,33 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 <td class="org-left">&#xa0;</td>
 <td class="org-left">Transmission configuration indication (TCI)</td>
 <td class="org-left">0</td>
-<td class="org-left">0, 3<sup><a id="fnr.13" class="footref" href="#fn.13">13</a></sup></td>
+<td class="org-left">0, 3<sup><a id="fnr.13" class="footref" href="#fn.13" role="doc-backlink">13</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">SRS request</td>
 <td class="org-left">0</td>
-<td class="org-left">2<sup><a id="fnr.14" class="footref" href="#fn.14">14</a></sup></td>
+<td class="org-left">2<sup><a id="fnr.14" class="footref" href="#fn.14" role="doc-backlink">14</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">DMRS sequence initialization</td>
 <td class="org-left">0</td>
-<td class="org-left">0, 1<sup><a id="fnr.15" class="footref" href="#fn.15">15</a></sup></td>
+<td class="org-left">0, 1<sup><a id="fnr.15" class="footref" href="#fn.15" role="doc-backlink">15</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">PUCCH-related</td>
-<td class="org-left">PUCCH power control<sup><a id="fnr.16" class="footref" href="#fn.16">16</a></sup></td>
+<td class="org-left">PUCCH power control<sup><a id="fnr.16" class="footref" href="#fn.16" role="doc-backlink">16</a></sup></td>
 <td class="org-left">2</td>
 <td class="org-left">2</td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">PUCCH resource indicator (PRI)<sup><a id="fnr.17" class="footref" href="#fn.17">17</a></sup></td>
+<td class="org-left">PUCCH resource indicator (PRI)<sup><a id="fnr.17" class="footref" href="#fn.17" role="doc-backlink">17</a></sup></td>
 <td class="org-left">3</td>
 <td class="org-left">3</td>
 </tr>
@@ -605,9 +559,9 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 </table>
 </div>
 </div>
-<div id="outline-container-orgf3cf749" class="outline-3">
-<h3 id="orgf3cf749">Uplink scheduling grants (DCI formats 0-0 and 0-1)</h3>
-<div class="outline-text-3" id="text-orgf3cf749">
+<div id="outline-container-org975f0c7" class="outline-3">
+<h3 id="org975f0c7">Uplink scheduling grants (DCI formats 0-0 and 0-1)</h3>
+<div class="outline-text-3" id="text-org975f0c7">
 <p>
 Similar to downlink scheduling assignments, uplink scheduling grants also use one of DCI formats, the non-fallback format, i.e., DCI format 0-1, and the fallback format, i.e., DCI format 0-0. Aiming to reduce the number of blind decoding, the non-fallback DCI formats for downlink scheduling assignments (format 1-1) and uplink scheduling grants (format 0-1) are aligned by padding to the smaller one.
 </p>
@@ -643,12 +597,12 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 <td class="org-left">Resource related</td>
 <td class="org-left">CFI</td>
 <td class="org-left">0</td>
-<td class="org-left">0, 3<sup><a id="fnr.5.100" class="footref" href="#fn.5">5</a></sup></td>
+<td class="org-left">0, 3<sup><a id="fnr.5.100" class="footref" href="#fn.5" role="doc-backlink">5</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">UL/SUL<sup><a id="fnr.18" class="footref" href="#fn.18">18</a></sup></td>
+<td class="org-left">UL/SUL<sup><a id="fnr.18" class="footref" href="#fn.18" role="doc-backlink">18</a></sup></td>
 <td class="org-left">0, 1</td>
 <td class="org-left">0, 1</td>
 </tr>
@@ -657,12 +611,12 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 <td class="org-left">&#xa0;</td>
 <td class="org-left">BWP indicator</td>
 <td class="org-left">0</td>
-<td class="org-left">0-2<sup><a id="fnr.6.100" class="footref" href="#fn.6">6</a></sup></td>
+<td class="org-left">0-2<sup><a id="fnr.6.100" class="footref" href="#fn.6" role="doc-backlink">6</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">Frequency domain allocation<sup><a id="fnr.7.100" class="footref" href="#fn.7">7</a></sup></td>
+<td class="org-left">Frequency domain allocation<sup><a id="fnr.7.100" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></td>
 <td class="org-left">Only type 1 resource allocation is supported.</td>
 <td class="org-left">&#xa0;</td>
 </tr>
@@ -676,7 +630,7 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">Frequency hopping<sup><a id="fnr.19" class="footref" href="#fn.19">19</a></sup></td>
+<td class="org-left">Frequency hopping<sup><a id="fnr.19" class="footref" href="#fn.19" role="doc-backlink">19</a></sup></td>
 <td class="org-left">0, 1</td>
 <td class="org-left">0, 1</td>
 </tr>
@@ -711,7 +665,7 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">DAI<sup><a id="fnr.20" class="footref" href="#fn.20">20</a></sup></td>
+<td class="org-left">DAI<sup><a id="fnr.20" class="footref" href="#fn.20" role="doc-backlink">20</a></sup></td>
 <td class="org-left">0</td>
 <td class="org-left">&#xa0;</td>
 </tr>
@@ -720,14 +674,14 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 <td class="org-left">&#xa0;</td>
 <td class="org-left">CBGTI</td>
 <td class="org-left">0</td>
-<td class="org-left">0, 2, 4, 6<sup><a id="fnr.12.100" class="footref" href="#fn.12">12</a></sup></td>
+<td class="org-left">0, 2, 4, 6<sup><a id="fnr.12.100" class="footref" href="#fn.12" role="doc-backlink">12</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">Multi-antenna related</td>
 <td class="org-left">DMRS sequence initialization</td>
 <td class="org-left">0</td>
-<td class="org-left">1<sup><a id="fnr.15.100" class="footref" href="#fn.15">15</a></sup></td>
+<td class="org-left">1<sup><a id="fnr.15.100" class="footref" href="#fn.15" role="doc-backlink">15</a></sup></td>
 </tr>
 
 <tr>
@@ -739,7 +693,7 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">SRS resource indicator (SRI)<sup><a id="fnr.21" class="footref" href="#fn.21">21</a></sup></td>
+<td class="org-left">SRS resource indicator (SRI)<sup><a id="fnr.21" class="footref" href="#fn.21" role="doc-backlink">21</a></sup></td>
 <td class="org-left">0</td>
 <td class="org-left">Depend on the number of SRS groups configured,</td>
 </tr>
@@ -753,30 +707,30 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">Precoding information<sup><a id="fnr.22" class="footref" href="#fn.22">22</a></sup></td>
+<td class="org-left">Precoding information<sup><a id="fnr.22" class="footref" href="#fn.22" role="doc-backlink">22</a></sup></td>
 <td class="org-left">0</td>
-<td class="org-left">0-6<sup><a id="fnr.23" class="footref" href="#fn.23">23</a></sup></td>
+<td class="org-left">0-6<sup><a id="fnr.23" class="footref" href="#fn.23" role="doc-backlink">23</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">PTRS-DMRS association</td>
 <td class="org-left">0</td>
-<td class="org-left">0, 2<sup><a id="fnr.24" class="footref" href="#fn.24">24</a></sup></td>
+<td class="org-left">0, 2<sup><a id="fnr.24" class="footref" href="#fn.24" role="doc-backlink">24</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">SRS request</td>
 <td class="org-left">0</td>
-<td class="org-left">2<sup><a id="fnr.14.100" class="footref" href="#fn.14">14</a></sup></td>
+<td class="org-left">2<sup><a id="fnr.14.100" class="footref" href="#fn.14" role="doc-backlink">14</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">CSI request</td>
 <td class="org-left">0</td>
-<td class="org-left">0-6<sup><a id="fnr.25" class="footref" href="#fn.25">25</a></sup></td>
+<td class="org-left">0-6<sup><a id="fnr.25" class="footref" href="#fn.25" role="doc-backlink">25</a></sup></td>
 </tr>
 
 <tr>
@@ -790,54 +744,54 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 <td class="org-left">&#xa0;</td>
 <td class="org-left">Beta offset</td>
 <td class="org-left">0</td>
-<td class="org-left">0, 2<sup><a id="fnr.26" class="footref" href="#fn.26">26</a></sup></td>
+<td class="org-left">0, 2<sup><a id="fnr.26" class="footref" href="#fn.26" role="doc-backlink">26</a></sup></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-org4287975" class="outline-3">
-<h3 id="org4287975">Slot format indication (DCI format 2-0)</h3>
-<div class="outline-text-3" id="text-org4287975">
+<div id="outline-container-orgc510784" class="outline-3">
+<h3 id="orgc510784">Slot format indication (DCI format 2-0)</h3>
+<div class="outline-text-3" id="text-orgc510784">
 <p>
 DCI format 2-0 is used to signal the SFI which is scrambled by SFI-RNTI and common to a severality of UE's.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf5d2639" class="outline-3">
-<h3 id="orgf5d2639">Preemption indication (DCI format 2-1)</h3>
-<div class="outline-text-3" id="text-orgf5d2639">
+<div id="outline-container-org6c477c0" class="outline-3">
+<h3 id="org6c477c0">Preemption indication (DCI format 2-1)</h3>
+<div class="outline-text-3" id="text-org6c477c0">
 <p>
 DCI format 2-1 is used to signal the preemption indicator to a UE, which is scrambled by INT-RNTI and common to multiple UE's.
 </p>
 </div>
 </div>
-<div id="outline-container-orge3f4adc" class="outline-3">
-<h3 id="orge3f4adc">Uplink power control commands (DCI format 2-2)</h3>
-<div class="outline-text-3" id="text-orge3f4adc">
+<div id="outline-container-org0b09182" class="outline-3">
+<h3 id="org0b09182">Uplink power control commands (DCI format 2-2)</h3>
+<div class="outline-text-3" id="text-org0b09182">
 <p>
 As a complement to the power control commands, DCI format 2-2 aims to support power control for semipersistent scheduling. For the purpose of reducing the number of blind decoding attempts, its size is aligned with the size of the fallback DCI formats, i.e., DCI formats 0-0 and 1-0.
 </p>
 </div>
 </div>
-<div id="outline-container-org4a092c3" class="outline-3">
-<h3 id="org4a092c3">SRS control commands (DCI format 2-3)</h3>
-<div class="outline-text-3" id="text-org4a092c3">
+<div id="outline-container-org622719e" class="outline-3">
+<h3 id="org622719e">SRS control commands (DCI format 2-3)</h3>
+<div class="outline-text-3" id="text-org622719e">
 <p>
 DCI format 2-3 is proposed for power control of SRS, which is decoupled with the power control for PUSCH.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org7fd8ede" class="outline-2">
-<h2 id="org7fd8ede">Signalling of frequency domain resources</h2>
-<div class="outline-text-2" id="text-org7fd8ede">
+<div id="outline-container-org5dc4973" class="outline-2">
+<h2 id="org5dc4973">Signalling of frequency domain resources</h2>
+<div class="outline-text-2" id="text-org5dc4973">
 <p>
 The frequency-domain resource allocation fields indicate the resource blocks in the active BWP. Regarding the indication, there are a couple of methods, termed <i>type-0</i> and <i>type-1</i> respectively. The former is based on a bitmap, and will bring about large signaling overhead. While the latter covers the a starting position in the frequency domain and an amount of resources.
 </p>
 
 <p>
-The resource allocation scheme can be configured as type-0, type-1, and dynamic selection between the both<sup><a id="fnr.27" class="footref" href="#fn.27">27</a></sup>. Note that the allocation is indicated in the term of VRB. For type-0, each VRB is directly mapped to a PRB without interleaving. For type-1, there are two alternatives for the VRB-to-PRB mapping, interleaved and non-interleaved.
+The resource allocation scheme can be configured as type-0, type-1, and dynamic selection between the both<sup><a id="fnr.27" class="footref" href="#fn.27" role="doc-backlink">27</a></sup>. Note that the allocation is indicated in the term of VRB. For type-0, each VRB is directly mapped to a PRB without interleaving. For type-1, there are two alternatives for the VRB-to-PRB mapping, interleaved and non-interleaved.
 </p>
 
 <p>
@@ -845,9 +799,9 @@ Generally, many transmission parameters are per-BWP configured. The information 
 </p>
 </div>
 </div>
-<div id="outline-container-orgcd995d8" class="outline-2">
-<h2 id="orgcd995d8">Signalling of time domain resources</h2>
-<div class="outline-text-2" id="text-orgcd995d8">
+<div id="outline-container-orgb595b3a" class="outline-2">
+<h2 id="orgb595b3a">Signalling of time domain resources</h2>
+<div class="outline-text-2" id="text-orgb595b3a">
 <p>
 The time domain allocation field in DCI is essentially an entry index of the corresponding table. Totally two tables are configured by RRC signalling, for downlink scheduling assignment and uplink scheduling grant respectively. A table has up to 16 entries, with each entry consisting of
 </p>
@@ -863,15 +817,15 @@ The time domain allocation field in DCI is essentially an entry index of the cor
 </p>
 </div>
 </div>
-<div id="outline-container-org537a19b" class="outline-2">
-<h2 id="org537a19b">Signalling of TB size</h2>
-<div class="outline-text-2" id="text-org537a19b">
+<div id="outline-container-org92ef2e1" class="outline-2">
+<h2 id="org92ef2e1">Signalling of TB size</h2>
+<div class="outline-text-2" id="text-org92ef2e1">
 <p>
 Regarding TB size determination, NR adopts a hybrid method. For smaller TB, NR defines a table to lookup. While for larger TB, the TB size can be computed based on a formula.
 </p>
 
 <p>
-Considering the 5-bit MCS field, there are 32 combinations. Depending on whether 256QAM is supported or not, there are 28 or 29 MCS levels and the other 4<sup><a id="fnr.28" class="footref" href="#fn.28">28</a></sup> or 3<sup><a id="fnr.29" class="footref" href="#fn.29">29</a></sup> are reserved for retransmission.
+Considering the 5-bit MCS field, there are 32 combinations. Depending on whether 256QAM is supported or not, there are 28 or 29 MCS levels and the other 4<sup><a id="fnr.28" class="footref" href="#fn.28" role="doc-backlink">28</a></sup> or 3<sup><a id="fnr.29" class="footref" href="#fn.29" role="doc-backlink">29</a></sup> are reserved for retransmission.
 </p>
 
 <p>
@@ -887,119 +841,119 @@ For retransmission, the TB size is equal to that for initial transmission. Based
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Rate matching is used to match the number of coded bits to the resources available for PDCCH transmission, e.g., shortening, puncturing or repetition.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Within a REG, on every 4th subcarrier there is a DMRS RE.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 In LTE, the aggregation level can only be 1, 2, 4, 8. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 In NR, in order to reduce the complexity of blind DCI decoding at UE's, some DCI formats are aligned with identical size.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Present only when cross carrier scheduling is configured. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6">6</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Used to activate one of up to 4 BWP's configured by higher layer signalling. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7">7</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Depend on bandwidth and resource allocation type of the current active BWP, not the target BWP. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8">8</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Present only when resource allocation type 1 is used. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9">9</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9" role="doc-backlink">9</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Indicate whether the reserved resources can be used for PDSCH or not. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10">10</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10" role="doc-backlink">10</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Depend on a second TB's presence.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.11" class="footnum" href="#fnr.11">11</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.11" class="footnum" href="#fnr.11" role="doc-backlink">11</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Indicate when HARQ acknowledgement should be transmitted relative to the reception of the PDSCH.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.12" class="footnum" href="#fnr.12">12</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.12" class="footnum" href="#fnr.12" role="doc-backlink">12</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Only if CBG retransmission is configured. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.13" class="footnum" href="#fnr.13">13</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.13" class="footnum" href="#fnr.13" role="doc-backlink">13</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Indicate the QCL relationship for downlink transmission. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.14" class="footnum" href="#fnr.14">14</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.14" class="footnum" href="#fnr.14" role="doc-backlink">14</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Request a SRS transmission. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.15" class="footnum" href="#fnr.15">15</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.15" class="footnum" href="#fnr.15" role="doc-backlink">15</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Select between two preconfigured initialization values for the DMRS sequence. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.16" class="footnum" href="#fnr.16">16</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.16" class="footnum" href="#fnr.16" role="doc-backlink">16</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Adjust PUCCH transmission power. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.17" class="footnum" href="#fnr.17">17</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.17" class="footnum" href="#fnr.17" role="doc-backlink">17</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Select the PUCCH resource from a set of configured resources. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.18" class="footnum" href="#fnr.18">18</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.18" class="footnum" href="#fnr.18" role="doc-backlink">18</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Present only when a supplementary uplink is configured. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.19" class="footnum" href="#fnr.19">19</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.19" class="footnum" href="#fnr.19" role="doc-backlink">19</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Handle frequency hopping for type 1 resource allocation.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.20" class="footnum" href="#fnr.20">20</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.20" class="footnum" href="#fnr.20" role="doc-backlink">20</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Handling of HARQ codebooks in case of UCI transmitted on PUSCH.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.21" class="footnum" href="#fnr.21">21</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.21" class="footnum" href="#fnr.21" role="doc-backlink">21</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Determine the antenna ports and uplink transmission beam to PUSCH. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.22" class="footnum" href="#fnr.22">22</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.22" class="footnum" href="#fnr.22" role="doc-backlink">22</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Select the precoding matrix and the number of layers for codebook-based precoding. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.23" class="footnum" href="#fnr.23">23</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.23" class="footnum" href="#fnr.23" role="doc-backlink">23</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Depend on the number of antenna ports and the maximum rank supported. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.24" class="footnum" href="#fnr.24">24</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.24" class="footnum" href="#fnr.24" role="doc-backlink">24</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Indicate the association between DMRS and PTRS ports. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.25" class="footnum" href="#fnr.25">25</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.25" class="footnum" href="#fnr.25" role="doc-backlink">25</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Request transmission of a CSI report. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.26" class="footnum" href="#fnr.26">26</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.26" class="footnum" href="#fnr.26" role="doc-backlink">26</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Control the amount of resources for UCI on PUSCH in case dynamic beta offset signalling is configured. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.27" class="footnum" href="#fnr.27">27</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.27" class="footnum" href="#fnr.27" role="doc-backlink">27</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Using 1 bit in DCI.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.28" class="footnum" href="#fnr.28">28</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.28" class="footnum" href="#fnr.28" role="doc-backlink">28</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Corresponding to QPSK, 16QAM, 64QAM, and 256QAM. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.29" class="footnum" href="#fnr.29">29</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.29" class="footnum" href="#fnr.29" role="doc-backlink">29</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Corresponding to QPSK, 16QAM, and 64QAM.
 </p></div></div>
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-05-04 Tue 00:36 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Data Type</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -39,21 +40,21 @@
   pre.src {
     position: relative;
     overflow: auto;
-    padding-top: 1.2em;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
   pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,67 +190,44 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
-<!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Python - Data Type</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8ffcafc">标量</a></li>
-<li><a href="#orga3b7bc9">日期和时间</a></li>
-<li><a href="#org0ca5969">元组</a></li>
-<li><a href="#org46ffde4">列表</a></li>
-<li><a href="#orgc74e6a2">内建序列函数</a></li>
-<li><a href="#orgdf96749">字典</a></li>
-<li><a href="#orgdf51a33">集合</a></li>
-<li><a href="#org4006d5b">列表、字典和集合的推导式</a></li>
+<li><a href="#orgdf10f5a">标量</a></li>
+<li><a href="#org03e5b8c">日期和时间</a></li>
+<li><a href="#org79e3b58">元组</a></li>
+<li><a href="#orgdbf889f">列表</a></li>
+<li><a href="#org40cce31">内建序列函数</a></li>
+<li><a href="#org1b9f118">字典</a></li>
+<li><a href="#org278c2cf">集合</a></li>
+<li><a href="#org5a62ded">列表、字典和集合的推导式</a></li>
 </ul>
 </div>
 </div>
 <p>
 Python中的大部分对象，如列表、字典、 <code>Numpy</code> 数组都是可变对象，大多数用户定义的类型（类）也是可变的。可变对象中包含的对象和值是可以被修改的。但是有一些对象是不可变的，如字符串、元组。
 </p>
-<div id="outline-container-org8ffcafc" class="outline-2">
-<h2 id="org8ffcafc">标量</h2>
-<div class="outline-text-2" id="text-org8ffcafc">
+<div id="outline-container-orgdf10f5a" class="outline-2">
+<h2 id="orgdf10f5a">标量</h2>
+<div class="outline-text-2" id="text-orgdf10f5a">
 <p>
 Python的标准库中有一个小的内建类型集合，用来处理数值、字符串、布尔值以及日期和时间。这类“单值”类型被称为标量。主要的标量类型有
 </p>
 <ul class="org-ul">
-<li><code>int</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+<li><code>int</code><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
 <ul class="org-ul">
 <li>前缀 <code>0x</code> 表示16进制整数。</li>
 <li>整数除法会把结果自动转型为浮点数。</li>
 <li>如果需要C风格的整数除法（去掉小数部分），可以使用整除操作符 <code>//</code> 。</li>
 </ul></li>
-<li><code>float</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></li>
+<li><code>float</code><sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></li>
 <li><code>str</code>
 <ul class="org-ul">
 <li>可以使用单引号 <code>'</code> 或双引号 <code>"</code> 写一个字符串字面值。</li>
@@ -265,7 +243,7 @@ Python的标准库中有一个小的内建类型集合，用来处理数值、�
 <li>布尔值有两个： <code>True</code> 和 <code>False</code> 。</li>
 <li>布尔运算符包括： <code>and</code> ， <code>or</code> ， <code>not</code> 。</li>
 </ul></li>
-<li><code>None</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></li>
+<li><code>None</code><sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup></li>
 <li><code>bytes</code>
 <ul class="org-ul">
 <li>字符串在内存中以Unicode表示，每个字符对应若干个字节。</li>
@@ -289,9 +267,9 @@ Python的标准库中有一个小的内建类型集合，用来处理数值、�
 </ul>
 </div>
 </div>
-<div id="outline-container-orga3b7bc9" class="outline-2">
-<h2 id="orga3b7bc9">日期和时间</h2>
-<div class="outline-text-2" id="text-orga3b7bc9">
+<div id="outline-container-org03e5b8c" class="outline-2">
+<h2 id="org03e5b8c">日期和时间</h2>
+<div class="outline-text-2" id="text-org03e5b8c">
 <p>
 Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， <code>date</code> 和 <code>time</code> 类型。
 </p>
@@ -390,23 +368,23 @@ Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， 
 </table>
 </div>
 </div>
-<div id="outline-container-org0ca5969" class="outline-2">
-<h2 id="org0ca5969">元组</h2>
-<div class="outline-text-2" id="text-org0ca5969">
+<div id="outline-container-org79e3b58" class="outline-2">
+<h2 id="org79e3b58">元组</h2>
+<div class="outline-text-2" id="text-org79e3b58">
 <ul class="org-ul">
 <li>元组是一种固定长度、不可变的Python对象序列。创建元组最简单的方法就是用逗号分隔序列值。</li>
 <li>元组可嵌套，通常需要用括号将值包起来。</li>
 <li>可以使用函数 <code>tuple</code> 将任意序列或迭代器转换为元组。</li>
-<li>元组可以通过中括号 <code>[]</code> 来索引（获取）元组的元素<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>。</li>
+<li>元组可以通过中括号 <code>[]</code> 来索引（获取）元组的元素<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>。</li>
 <li>可以使用 <code>+</code> 连接元组生成更长的元组。</li>
 <li>如果需要将元组表达式赋值给变量，Python会对等号右边的值进行拆包。即使是嵌套元组，也可以拆包。拆包的一个常用场景就是遍历元组或列表的序列。拆包过程中，带有 <code>*</code> 前缀的变量名可以匹配任意长度的位置参数列表。为了方便，可以使用下划线 <code>_</code> 表示不想要的变量。</li>
 <li>方法 <code>count</code> 用于计算某个值在元组中出现的次数。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org46ffde4" class="outline-2">
-<h2 id="org46ffde4">列表</h2>
-<div class="outline-text-2" id="text-org46ffde4">
+<div id="outline-container-orgdbf889f" class="outline-2">
+<h2 id="orgdbf889f">列表</h2>
+<div class="outline-text-2" id="text-orgdbf889f">
 <ul class="org-ul">
 <li>可以使用中括号 <code>[]</code> 或者 函数 <code>list</code> 来定义列表。后者常用于将迭代器或者生成器转化为列表。</li>
 <li>方法 <code>append</code> 用于将元素添加到列表的尾部。</li>
@@ -426,9 +404,9 @@ Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc74e6a2" class="outline-2">
-<h2 id="orgc74e6a2">内建序列函数</h2>
-<div class="outline-text-2" id="text-orgc74e6a2">
+<div id="outline-container-org40cce31" class="outline-2">
+<h2 id="org40cce31">内建序列函数</h2>
+<div class="outline-text-2" id="text-org40cce31">
 <ul class="org-ul">
 <li>函数 <code>enumerate</code> 返回形如 <code>(索引值, 元素值)</code> 的元组的序列。</li>
 <li>函数 <code>sorted</code> 对序列排序并返回新的有序序列。</li>
@@ -437,9 +415,9 @@ Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdf96749" class="outline-2">
-<h2 id="orgdf96749">字典</h2>
-<div class="outline-text-2" id="text-orgdf96749">
+<div id="outline-container-org1b9f118" class="outline-2">
+<h2 id="org1b9f118">字典</h2>
+<div class="outline-text-2" id="text-org1b9f118">
 <ul class="org-ul">
 <li>字典即哈希表或关联数组，是键值对（二元组）的集合。其中，键值都是Python对象，而且键必须是不可变的对象。</li>
 <li>可以使用大括号 <code>{}</code> 创建字典，字典元素用逗号分隔，元素的键和值用冒号 <code>:</code> 分隔。</li>
@@ -468,9 +446,9 @@ else:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf51a33" class="outline-2">
-<h2 id="orgdf51a33">集合</h2>
-<div class="outline-text-2" id="text-orgdf51a33">
+<div id="outline-container-org278c2cf" class="outline-2">
+<h2 id="org278c2cf">集合</h2>
+<div class="outline-text-2" id="text-org278c2cf">
 <ul class="org-ul">
 <li>集合是一种无序且元素唯一的容器。其元素必须是不可变的。</li>
 <li>可以使用大括号 <code>{}</code> 或者方法 <code>set</code> 创建集合。</li>
@@ -479,9 +457,9 @@ else:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4006d5b" class="outline-2">
-<h2 id="org4006d5b">列表、字典和集合的推导式</h2>
-<div class="outline-text-2" id="text-org4006d5b">
+<div id="outline-container-org5a62ded" class="outline-2">
+<h2 id="org5a62ded">列表、字典和集合的推导式</h2>
+<div class="outline-text-2" id="text-org5a62ded">
 <ul class="org-ul">
 <li>列表的推导式如下:</li>
 </ul>
@@ -522,19 +500,19 @@ for VALUE in COLLECTION:
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 可以存储任意大小数字。 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 双精度64位数值。 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Python的 <code>null</code> 值，只存在一个实例。 如果一个函数没有显式的返回值，则它会隐式地返回 <code>None</code> 。它不仅是一个关键字，还是 <code>NoneType</code> 类型的唯一实例。
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 索引从0开始。 
 </p></div></div>
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - CDLaTeX</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,100 +190,53 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Emacs - CDLaTeX</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfab5a86">Introduction</a></li>
-<li><a href="#orgaa0a8e1">Installation</a></li>
-<li><a href="#orgdd4e7ff">Configuration</a>
+<li><a href="#org0beebb5">Introduction</a></li>
+<li><a href="#orgaa4c5d4">Installation</a></li>
+<li><a href="#org5d82a9a">Configuration</a>
 <ul>
-<li><a href="#org0bb2943">Org</a></li>
+<li><a href="#org7ce9758">Org</a></li>
 </ul>
 </li>
-<li><a href="#orgb9c7be2">Usage</a>
+<li><a href="#org89b94db">Usage</a>
 <ul>
-<li><a href="#org8c28679">Keybinding</a></li>
-<li><a href="#org8c35440">Backquote (<code>`</code>) + character</a></li>
-<li><a href="#org4dbc206">Prefix + <code>TAB</code></a></li>
+<li><a href="#org5972c9d">Keybinding</a></li>
+<li><a href="#org53b3b41">Backquote (<code>`</code>) + character</a></li>
+<li><a href="#org63c3685">Prefix + <code>TAB</code></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfab5a86" class="outline-2">
-<h2 id="orgfab5a86">Introduction</h2>
-<div class="outline-text-2" id="text-orgfab5a86">
+<div id="outline-container-org0beebb5" class="outline-2">
+<h2 id="org0beebb5">Introduction</h2>
+<div class="outline-text-2" id="text-org0beebb5">
 <p>
-<code>CDLaTeX</code><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> is a minor mode for fast LaTeX environment and macro insertion<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. In this sense, its functionalities are very similar to <code>AUCTeX</code><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. What's more, some of its convenience provided are also covered by <code>AUCTeX</code>.
+<code>CDLaTeX</code><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> is a minor mode for fast LaTeX environment and macro insertion<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>. In this sense, its functionalities are very similar to <code>AUCTeX</code><sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>. What's more, some of its convenience provided are also covered by <code>AUCTeX</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgaa0a8e1" class="outline-2">
-<h2 id="orgaa0a8e1">Installation</h2>
-<div class="outline-text-2" id="text-orgaa0a8e1">
+<div id="outline-container-orgaa4c5d4" class="outline-2">
+<h2 id="orgaa4c5d4">Installation</h2>
+<div class="outline-text-2" id="text-orgaa4c5d4">
 <p>
 The package of <code>cdlatex</code> is available at <code>melpa</code>, which can be easily installed.
 </p>
 </div>
 </div>
-<div id="outline-container-orgdd4e7ff" class="outline-2">
-<h2 id="orgdd4e7ff">Configuration</h2>
-<div class="outline-text-2" id="text-orgdd4e7ff">
+<div id="outline-container-org5d82a9a" class="outline-2">
+<h2 id="org5d82a9a">Configuration</h2>
+<div class="outline-text-2" id="text-org5d82a9a">
 <p>
 If <code>AUCTeX</code> is installed, <code>CDLaTeX</code> can be activated on top of it via
 </p>
@@ -298,9 +252,9 @@ Otherwise, <code>CDLaTeX</code> can be directly turned on with latex mode, i.e.,
 </pre>
 </div>
 </div>
-<div id="outline-container-org0bb2943" class="outline-3">
-<h3 id="org0bb2943">Org</h3>
-<div class="outline-text-3" id="text-org0bb2943">
+<div id="outline-container-org7ce9758" class="outline-3">
+<h3 id="org7ce9758">Org</h3>
+<div class="outline-text-3" id="text-org7ce9758">
 <p>
 In <code>org</code> mode, instead of <code>CDLaTeX</code> itself, its light version <code>org-cdlatex-mode</code> should be used, which depends on <code>cdlatex.el</code> (in package <code>CDLaTeX</code>) and <code>texmathp</code> (in package <code>AUCTeX</code>). To automatically turn it on in a <code>org</code> file, add the following line in the emacs configuration file, e.g., <code>~/init.el</code>.
 </p>
@@ -311,13 +265,13 @@ In <code>org</code> mode, instead of <code>CDLaTeX</code> itself, its light vers
 </div>
 </div>
 </div>
-<div id="outline-container-orgb9c7be2" class="outline-2">
-<h2 id="orgb9c7be2">Usage</h2>
-<div class="outline-text-2" id="text-orgb9c7be2">
+<div id="outline-container-org89b94db" class="outline-2">
+<h2 id="org89b94db">Usage</h2>
+<div class="outline-text-2" id="text-org89b94db">
 </div>
-<div id="outline-container-org8c28679" class="outline-3">
-<h3 id="org8c28679">Keybinding</h3>
-<div class="outline-text-3" id="text-org8c28679">
+<div id="outline-container-org5972c9d" class="outline-3">
+<h3 id="org5972c9d">Keybinding</h3>
+<div class="outline-text-3" id="text-org5972c9d">
 <table>
 
 
@@ -406,17 +360,17 @@ In <code>org</code> mode, instead of <code>CDLaTeX</code> itself, its light vers
 </table>
 </div>
 </div>
-<div id="outline-container-org8c35440" class="outline-3">
-<h3 id="org8c35440">Backquote (<code>`</code>) + character</h3>
-<div class="outline-text-3" id="text-org8c35440">
+<div id="outline-container-org53b3b41" class="outline-3">
+<h3 id="org53b3b41">Backquote (<code>`</code>) + character</h3>
+<div class="outline-text-3" id="text-org53b3b41">
 <p>
 By <code>CDLaTeX</code>, mathematical symbols can be easily input by a backquote (<code>`</code>) followed by a character. In order to support more mathematical symbols, <code>CDLaTeX</code> defines 3 different <i>levels</i>, which can be entered by a different number of backquotes before a character.
 </p>
 </div>
 </div>
-<div id="outline-container-org4dbc206" class="outline-3">
-<h3 id="org4dbc206">Prefix + <code>TAB</code></h3>
-<div class="outline-text-3" id="text-org4dbc206">
+<div id="outline-container-org63c3685" class="outline-3">
+<h3 id="org63c3685">Prefix + <code>TAB</code></h3>
+<div class="outline-text-3" id="text-org63c3685">
 <p>
 <code>CDLaTeX</code> can automatically expand a variety of <code>prefix + TAB</code> bindings as follows.
 </p>
@@ -688,15 +642,15 @@ By <code>CDLaTeX</code>, mathematical symbols can be easily input by a backquote
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 It is named after its author, Carsten Dominik.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://github.com/cdominik/cdlatex">https://github.com/cdominik/cdlatex</a>
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="http://www.gnu.org/software/auctex">http://www.gnu.org/software/auctex</a>
 </p></div></div>
 

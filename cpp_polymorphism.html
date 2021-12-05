@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-12-05 Sun 16:54 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Polymorphism</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,93 +190,46 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">C++ - Polymorphism</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3d1dcb3">简介</a></li>
-<li><a href="#orgf16b294">虚函数</a>
+<li><a href="#org81127cb">简介</a></li>
+<li><a href="#org66322e1">虚函数</a>
 <ul>
-<li><a href="#orgcd2f3be">纯虚函数</a></li>
-<li><a href="#org897e204">抽象类</a></li>
+<li><a href="#org13c1c1d">纯虚函数</a></li>
+<li><a href="#orgdc54563">抽象类</a></li>
 </ul>
 </li>
-<li><a href="#org901fbad">总结</a></li>
+<li><a href="#org7c55d7d">总结</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3d1dcb3" class="outline-2">
-<h2 id="org3d1dcb3">简介</h2>
-<div class="outline-text-2" id="text-org3d1dcb3">
+<div id="outline-container-org81127cb" class="outline-2">
+<h2 id="org81127cb">简介</h2>
+<div class="outline-text-2" id="text-org81127cb">
 <p>
-<b>多态</b> 是C++语言的一大特色。一个操作随着所传递或捆绑的对象类型的不同能够做出不同的反应，其行为模式称为多态<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。而且，仅仅对于对象的指针和引用的间接访问，才会发生多态。
+<b>多态</b> 是C++语言的一大特色。一个操作随着所传递或捆绑的对象类型的不同能够做出不同的反应，其行为模式称为多态<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>。而且，仅仅对于对象的指针和引用的间接访问，才会发生多态。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf16b294" class="outline-2">
-<h2 id="orgf16b294">虚函数</h2>
-<div class="outline-text-2" id="text-orgf16b294">
+<div id="outline-container-org66322e1" class="outline-2">
+<h2 id="org66322e1">虚函数</h2>
+<div class="outline-text-2" id="text-org66322e1">
 <p>
-在使用类的C++语言中，抽象编程需要使用 <b>虚函数</b> 机制。基类与派生类的同名操作，只要标记上 <b>virtual</b><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> ，则该操作（虚函数）便具有多态性。一旦标记基类的函数为虚函数，便有连锁反应，后面继承的类中一切同名成员函数都变成了虚函数。这样一来，如果实际对象是基类对象，那么调用的就是基类成员函数；如果实际对象是派生类对象，那么调用的就是派生类成员函数。
+在使用类的C++语言中，抽象编程需要使用 <b>虚函数</b> 机制。基类与派生类的同名操作，只要标记上 <b>virtual</b><sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> ，则该操作（虚函数）便具有多态性。一旦标记基类的函数为虚函数，便有连锁反应，后面继承的类中一切同名成员函数都变成了虚函数。这样一来，如果实际对象是基类对象，那么调用的就是基类成员函数；如果实际对象是派生类对象，那么调用的就是派生类成员函数。
 </p>
 
 <p>
-虚函数仅用于继承结构层次中的基类和派生类。除了基类和派生类的函数名必须相同外，连参数类型、个数和顺序都要相同。也就是说，基类和派生类的虚函数不能只是名字重载，而且要一模一样<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>。
+虚函数仅用于继承结构层次中的基类和派生类。除了基类和派生类的函数名必须相同外，连参数类型、个数和顺序都要相同。也就是说，基类和派生类的虚函数不能只是名字重载，而且要一模一样<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>。
 </p>
 <ul class="org-ul">
 <li>只有类的成员函数才能声明为虚函数。</li>
@@ -285,17 +239,17 @@ for the JavaScript code in this tag.
 <li>析构函数可以是且通常声明为虚函数。</li>
 </ul>
 </div>
-<div id="outline-container-orgcd2f3be" class="outline-3">
-<h3 id="orgcd2f3be">纯虚函数</h3>
-<div class="outline-text-3" id="text-orgcd2f3be">
+<div id="outline-container-org13c1c1d" class="outline-3">
+<h3 id="org13c1c1d">纯虚函数</h3>
+<div class="outline-text-3" id="text-org13c1c1d">
 <p>
 纯虚函数是指被标明为不具体实现的虚函数。纯虚函数一旦声明，就不用定义。声明形式是在虚函数声明形式后跟“ = 0”。
 </p>
 </div>
 </div>
-<div id="outline-container-org897e204" class="outline-3">
-<h3 id="org897e204">抽象类</h3>
-<div class="outline-text-3" id="text-org897e204">
+<div id="outline-container-orgdc54563" class="outline-3">
+<h3 id="orgdc54563">抽象类</h3>
+<div class="outline-text-3" id="text-orgdc54563">
 <p>
 抽象类是指在类定义中至少声明一个纯虚函数的类。抽象类是不允许有实例对象的，即不能由抽象类创建实例对象，其用途只是为了继承。
 </p>
@@ -303,9 +257,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org901fbad" class="outline-2">
-<h2 id="org901fbad">总结</h2>
-<div class="outline-text-2" id="text-org901fbad">
+<div id="outline-container-org7c55d7d" class="outline-2">
+<h2 id="org7c55d7d">总结</h2>
+<div class="outline-text-2" id="text-org7c55d7d">
 <p>
 总之, 要想实现多态, 必须用虚函数(在基类中用关键字virtual). 对于派生类, 必须对虚函数进行实现. 对于基类, 有两个选择: 第一, 实现虚函数; 第二, 将虚函数声明为纯虚函数(相应地, 基类也就变成了抽象类).
 </p>
@@ -315,15 +269,15 @@ for the JavaScript code in this tag.
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 钱能，“C++程序设计教程（第二版）”，清华大学出版社，2005年。
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 虚函数在继承层次结构中总是会自动地从基类传播下去。因此，派生类中的虚函数的标识（virtual）可以省略。
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 但是返回值可以不同。
 </p></div></div>
 
