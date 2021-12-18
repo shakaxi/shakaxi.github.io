@@ -59,6 +59,10 @@ Command =git config= can define the default preference or behavior of git. There
 #+begin_src sh
   git config [--global/--system] credential.helper store
 #+end_src
+- Define default editor.
+#+begin_src sh
+  git config [--global/--system] core.editor "emacs -nw"
+#+end_src
 * Usage
 ** Create repositories
 - Create an empty repository (=git init= can also reinitialize an existing repository).
@@ -205,8 +209,14 @@ Taking rebasing the current branch, e.g. =BRANCH_NAME=, onto a target, e.g. =mas
 
 An interactive interface is available if option =-i= is given whereby a variety of operations can be completed, e.g., =pick=, =reword=, =edit=, =squash=, =fixup=, =exec=, =drop=.
 #+begin_src sh
-  git rebase -i TARGET
+  git rebase -i PARENT_OF_EARLIEST_COMMIT_INVOLVED
 #+end_src
+- =pick= :: Add a commit without any modification.
+- =squash= :: Combine multiple commits into a single one with a new commit message.
+- =fixup= :: Combine multiple commits into a single one but keeping the commit message.
+- =edit= :: Add more changes to an existing commit.
+- =reword= :: Change the commit message only.
+- =drop= :: Delete a commit.
 *** Tag operations
 - List all tags.
 #+begin_src sh
