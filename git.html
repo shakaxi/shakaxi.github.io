@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2021-12-18 Sat 20:57 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git</title>
@@ -208,7 +208,7 @@
 </li>
 <li><a href="#org070a628">Installation</a></li>
 <li><a href="#org66afb71">Configuration</a></li>
-<li><a href="#org9593155">Usage</a>
+<li><a href="#orgc3aa739">Usage</a>
 <ul>
 <li><a href="#orgf5f80bf">Create repositories</a></li>
 <li><a href="#orgf6393b8">Basic snapshotting</a>
@@ -228,7 +228,7 @@
 <li><a href="#org01ca09a">Temporary switch</a></li>
 <li><a href="#org874c53d">Submodule</a>
 <ul>
-<li><a href="#orgf91b6a3">Usage</a></li>
+<li><a href="#orgc8f279a">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -342,11 +342,18 @@ git config [--global/--system] user.email "EMAIL@COMPANY.COM"
 <pre class="src src-sh">git config [--global/--system] credential.helper store
 </pre>
 </div>
+<ul class="org-ul">
+<li>Define default editor.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh">git config [--global/--system] core.editor "emacs -nw"
+</pre>
 </div>
 </div>
-<div id="outline-container-org9593155" class="outline-2">
-<h2 id="org9593155">Usage</h2>
-<div class="outline-text-2" id="text-org9593155">
+</div>
+<div id="outline-container-orgc3aa739" class="outline-2">
+<h2 id="orgc3aa739">Usage</h2>
+<div class="outline-text-2" id="text-orgc3aa739">
 </div>
 <div id="outline-container-orgf5f80bf" class="outline-3">
 <h3 id="orgf5f80bf">Create repositories</h3>
@@ -602,9 +609,17 @@ git merge BRANCH_NAME
 An interactive interface is available if option <code>-i</code> is given whereby a variety of operations can be completed, e.g., <code>pick</code>, <code>reword</code>, <code>edit</code>, <code>squash</code>, <code>fixup</code>, <code>exec</code>, <code>drop</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">git rebase -i TARGET
+<pre class="src src-sh">git rebase -i PARENT_OF_EARLIEST_COMMIT_INVOLVED
 </pre>
 </div>
+<dl class="org-dl">
+<dt><code>pick</code></dt><dd>Add a commit without any modification.</dd>
+<dt><code>squash</code></dt><dd>Combine multiple commits into a single one with a new commit message.</dd>
+<dt><code>fixup</code></dt><dd>Combine multiple commits into a single one but keeping the commit message.</dd>
+<dt><code>edit</code></dt><dd>Add more changes to an existing commit.</dd>
+<dt><code>reword</code></dt><dd>Change the commit message only.</dd>
+<dt><code>drop</code></dt><dd>Delete a commit.</dd>
+</dl>
 </div>
 </div>
 <div id="outline-container-org168ed19" class="outline-4">
@@ -916,9 +931,9 @@ As its name implies, a submodule is a relatively independent feature which can b
 Moreover, a submodule can further consist of one or more subsubmodule(s). A recursive operation can be performed by option <code>--recursive</code>.
 </p>
 </div>
-<div id="outline-container-orgf91b6a3" class="outline-4">
-<h4 id="orgf91b6a3">Usage</h4>
-<div class="outline-text-4" id="text-orgf91b6a3">
+<div id="outline-container-orgc8f279a" class="outline-4">
+<h4 id="orgc8f279a">Usage</h4>
+<div class="outline-text-4" id="text-orgc8f279a">
 <ul class="org-ul">
 <li><p>
 Add a submodule to the current repository, with <code>/PATH/TO/SUBMODULE</code> as the relative location for the submodule, and <code>SUBMODULE_NAME</code> as its name.
