@@ -1,0 +1,41 @@
+#+title: Linux - Sed
+
+* 简介
+=Sed= 是著名的流编辑器，它能够对文本进行逐行处理，通常需要配合正则表达式使用。具体地， =Sed= 先把当前行的文本导入 =模式空间(pattern space)= 对其处理，然后输出处理后的文本。
+
+* 命令格式
+#+begin_src sh
+  sed [OPTIONS] 'COMMAND' FILE(S)
+  sed [OPTIONS] -f 'SCRIPT' FILE(S)
+#+end_src
+** 选项
+#+caption: 选项
+#+attr_html: :align center :border 3
+| 选项                  | 含义                   |
+|-----------------------+------------------------|
+| =-h/--help=           | 显示帮助信息。         |
+| =-V/--version=        | 显示版本信息。         |
+| =-n/--quiet/--silent= | 仅显示经过处理的结果。 |
+| =-i=                  | 原地(inplace)替换      |
+** 命令
+#+caption: 命令
+#+attr_html: :align center :border 3
+| 命令 | 含义 |
+|------+------|
+| =s=  | 替换 |
+| =p=  | 打印 |
+* 示例
+** 替换命令 =s=
+#+begin_src sh
+  # 替换每行的第一个匹配。
+  sed 's/FROM/TO/' FILE
+
+  # 通过后缀 =g= 替换每行的所有匹配。
+  sed 's/FROM/TO/g' FILE
+
+  # 通过后缀 =Ng= 对每行的第N处匹配开始替换。
+  sed 's/FROM/TO/g' FILE
+
+  # 通过选项 =-i= 对文件直接原地替换。
+  sed -i 's/FROM/TO/[g]' FILE
+#+end_src

@@ -59,6 +59,7 @@
 - [[file:tool.org][Linux - Command Line Tools]]
 - [[file:console.org][Linux - Customize Console]]
 - [[file:microcode.org][Linux - Microcode]]
+- [[file:sed.org][Linux - Sed]]
 - [[file:zsh.org][Linux - ZSH]]
 - [[file:matlab_fig.org][MATLAB - Figure Data Abstraction]]
 - [[file:matlab_ssh.org][MATLAB over SSH]]

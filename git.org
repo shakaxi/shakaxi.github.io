@@ -211,12 +211,16 @@ An interactive interface is available if option =-i= is given whereby a variety 
 #+begin_src sh
   git rebase -i PARENT_OF_EARLIEST_COMMIT_INVOLVED
 #+end_src
-- =pick= :: Add a commit without any modification.
-- =squash= :: Combine multiple commits into a single one with a new commit message.
-- =fixup= :: Combine multiple commits into a single one but keeping the commit message.
-- =edit= :: Add more changes to an existing commit.
-- =reword= :: Change the commit message only.
-- =drop= :: Delete a commit.
+#+caption: Commands in rebase
+#+attr_html: :align center :border 3
+| Command  | Operation                                                                  |
+|----------+----------------------------------------------------------------------------|
+| =pick=   | Add a commit without any modification.                                     |
+| =squash= | Combine multiple commits into a single one with a new commit message.      |
+| =fixup=  | Combine multiple commits into a single one but keeping the commit message. |
+| =edit=   | Add more changes to an existing commit.                                    |
+| =reword= | Change the commit message only.                                            |
+| =drop=   | Delete a commit.                                                           |
 *** Tag operations
 - List all tags.
 #+begin_src sh

@@ -92,7 +92,7 @@ For the sake of inter-layer interference avoidance, the precoding vectors for mu
 #+caption: Methods of keeping inter-layer orthogonal
 #+attr_html: :align center :border 3
 #+name: tab:method-orth
-| *Rank*                            | *Methods*                                                                         |
+| Rank                              | Methods                                                                           |
 |-----------------------------------+-----------------------------------------------------------------------------------|
 | 2 ($L = 1$)                       | 1 or 2 beam(s) in $\mathcal{F}_{N_1 \times N_2}^{O_1 \times O_2}$ + co-phasing    |
 | 2 ($L = 4$)                       | 2 beams in $\mathcal{F}_{N_1 \times N_2}^{O_1 \times O_2}$ + co-phasing           |
