@@ -1,0 +1,49 @@
+#+title: Multiple Signal Classification (MUSIC)
+
+/Multiple signal classification (MUSIC)/ is a popular algorithm for spectrum estimation. This post is just written as a brief summary.
+
+An observation signal vector can be expressed as
+\begin{align*}
+  \mathbf{x} = \mathbf{A} \mathbf{s} + \mathbf{n},
+\end{align*}
+where
+- $\mathbf{A} = \begin{bmatrix} \mathbf{a}(\omega_1) & \mathbf{a}(\omega_2) & \ldots & \mathbf{a}(\omega_r) \end{bmatrix}$ is a $N \times r$ Vandermonde matrix, $N > r$; Each column is a steering vector, e.g., $\mathbf{a}(\omega) \triangleq \begin{bmatrix} 1 \\ e^{j\omega} \\ e^{j2\omega} \\ \vdots \\ e^{j(N-1)\omega} \end{bmatrix}$.
+- $\mathbf{s} = \begin{bmatrix} s_1 \\ s_2 \\ \vdots \\ s_r \end{bmatrix}$ is a signal vector.
+- $\mathbf{n} \sim \mathcal{CN}(0, \sigma^2\mathbf{I}_N)$ is a complex additive Gaussian noise vector.
+
+Then autocorrelation matrix of observation can be obtained by
+\begin{align*}
+  \mathbf{R}_{\mathbf{x}} &= \mathbf{E}[ \mathbf{x} \mathbf{x}^H] \\
+  &= \mathbf{A} \mathbf{R}_{\mathbf{s}} \mathbf{A}^H + \sigma^2 \mathbf{I}_N,
+\end{align*}
+where $\mathbf{R}_{\mathbf{s}} \triangleq \mathbf{E}[ \mathbf{s} \mathbf{s}^H]$ is the autocorrelation of signal vector $\mathbf{s}$. In practice, the autocorrelation of observation is usually calculated based on a series of observation samples, i.e., $\hat{\mathbf{R}}_{\mathbf{x}} = \dfrac{1}{M} \sum_{i=1}^M \mathbf{x}_i \mathbf{x}_i^H$, where $M$ is the number of observation samples available.
+
+The autocorrelation matrix of observation can be eigen value decomposed (EVD) as
+\begin{align*}
+  \mathbf{R}_{\mathbf{x}} &= \begin{bmatrix} \mathbf{U}_{\mathbf{s}} & \mathbf{U}_{\mathbf{n}} \end{bmatrix}
+ \begin{bmatrix} \mathbf{\Sigma} & \mathbf{0} \\ \mathbf{0} & \sigma^2 \mathbf{I}_{N-r} \end{bmatrix}
+ \begin{bmatrix} \mathbf{U}_{\mathbf{s}}^H \\ \mathbf{U}_{\mathbf{n}}^H \end{bmatrix},
+\end{align*}
+where
+- The eigen vectors in $\mathbf{U}_{\mathbf{s}}$ corresponding to $p$ largest eigen values span the signal subspace.
+- The eigen vectors in $\mathbf{U}_{\mathbf{n}}$ corresponding to the remaining $N - r$ eigen values (equal to $\sigma^2$) span the noise subspace.
+Considering the fact that the signal subspace and noise subspace are orthogonal and complementary to each other, i.e. $\text{span}(\mathbf{U}_{\mathbf{s}}) \perp \text{span}(\mathbf{U}_{\mathbf{n}})$, $\forall \mathbf{v} \in \text{span}(\mathbf{U}_{\mathbf{s}})$, $\mathbf{U}_{\mathbf{n}}^H \mathbf{v} = \mathbf{0}$. In order to depict the orthogonality quantitatively, a squared norm is introduced as follows.
+\begin{align*}
+  d^2(\mathbf{v}) &= \| \mathbf{U}_{\mathbf{n}}^H \mathbf{v}\|^2 \\
+                  &= \mathbf{v}^H \mathbf{U}_{\mathbf{n}} \mathbf{U}_{\mathbf{n}}^H \mathbf{v} \\
+  &= \mathbf{v}^H (\mathbf{I}_N - \mathbf{U}_{\mathbf{s}} \mathbf{U}_{\mathbf{s}}^H) \mathbf{v}
+\end{align*}
+MUSIC uses the reciprocal of the squared norm $d^{-2}$ as the metric, in which case $r$ sharp peaks appear at the signal frequencies. The MUSIC spectrum can be expressed as
+\begin{align*}
+  P_{\text{music}}(\omega) &= \frac{1}{d^2(\mathbf{a}(\omega))} \\
+&= \frac{1}{\mathbf{a}^H(\omega) \mathbf{U}_{\mathbf{n}} \mathbf{U}_{\mathbf{n}}^H \mathbf{a}(\omega)} \\
+& = \frac{1}{\mathbf{a}^H(\omega) (\mathbf{I}_N - \mathbf{U}_{\mathbf{s}} \mathbf{U}_{\mathbf{s}}^H) \mathbf{a}(\omega)},
+\end{align*}
+where $\omega$ is the candidate frequency, and $\mathbf{a}(\omega)$ is the candidate steering vector.
+
+So long as the number of component (e.g., $r$ above) is known in advance (as its drawback), MUSIC can outperforms DFT based schemes, since it can achieve /superresolutional/ estimation for the spectrum, rather than the discrete DFT bins.
+
+
+* References
+1. http://en.wikipedia.org/w/index.php?title=MUSIC_(algorithm)
+2. 张贤达，矩阵分析与应用，清华大学出版社。

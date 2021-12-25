@@ -68,6 +68,7 @@
 - [[file:matched_filter.org][Matched Filter]]
 - [[file:math.org][Mathematica]]
 - [[file:matrix_cookbook.org][Matrix Cookbook]]
+- [[file:music.org][Multiple Signal Classification (MUSIC)]]
 - [[file:mutt.org][Mutt]]
 - [[file:nfs.org][NFS]]
 - [[file:nr_cell_search.org][NR - Cell Search]]
