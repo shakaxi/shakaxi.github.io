@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2022-01-02 Sun 22:25 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tensorflow</title>
+<title>Python - Tensorflow</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -195,53 +195,53 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Tensorflow</h1>
+<h1 class="title">Python - Tensorflow</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgefa4207">Introducation</a></li>
-<li><a href="#org4be677e">Representation</a></li>
-<li><a href="#org6a3f795">Operation</a></li>
-<li><a href="#orga96e39b">Tensor</a></li>
-<li><a href="#orgbf0c13f">Variable</a></li>
-<li><a href="#orgc4643ea">Placeholder</a></li>
-<li><a href="#org6502603">Session</a></li>
-<li><a href="#orgadf4226">Execution</a></li>
-<li><a href="#orgf092f24">Graph</a></li>
-<li><a href="#org5086a16">Tensorboard</a></li>
+<li><a href="#orga923cbb">Introducation</a></li>
+<li><a href="#org4efc950">Representation</a></li>
+<li><a href="#org5a1f015">Operation</a></li>
+<li><a href="#org3d26a6d">Tensor</a></li>
+<li><a href="#org5ea480c">Variable</a></li>
+<li><a href="#orgfbfb35f">Placeholder</a></li>
+<li><a href="#org23a95ce">Session</a></li>
+<li><a href="#org55b3626">Execution</a></li>
+<li><a href="#org48f07af">Graph</a></li>
+<li><a href="#org0724d45">Tensorboard</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgefa4207" class="outline-2">
-<h2 id="orgefa4207">Introducation</h2>
-<div class="outline-text-2" id="text-orgefa4207">
+<div id="outline-container-orga923cbb" class="outline-2">
+<h2 id="orga923cbb">Introducation</h2>
+<div class="outline-text-2" id="text-orga923cbb">
 <p>
 Tensorflow is a deep learning library, which provides two programming interfaces, C++ and Python. Moreover, The Python API integrates very well with <a href="http://www.numpy.org">numpy</a>. In many places, Tensorflow tensors can be interchanged with numpy <code>ndarrays</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org4be677e" class="outline-2">
-<h2 id="org4be677e">Representation</h2>
-<div class="outline-text-2" id="text-org4be677e">
+<div id="outline-container-org4efc950" class="outline-2">
+<h2 id="org4efc950">Representation</h2>
+<div class="outline-text-2" id="text-org4efc950">
 <p>
-In tensorflow, machine learning algorithms are represented as <i>computational graphs</i>, i.e. <a href="#orgf092f24"><code>graph</code></a>, in which a vertex/node and an edge represent an operation (<code>op</code>) and a data flowing, respectively.
+In tensorflow, machine learning algorithms are represented as <i>computational graphs</i>, i.e. <a href="#org48f07af"><code>graph</code></a>, in which a vertex/node and an edge represent an operation (<code>op</code>) and a data flowing, respectively.
 </p>
 </div>
 </div>
-<div id="outline-container-org6a3f795" class="outline-2">
-<h2 id="org6a3f795">Operation</h2>
-<div class="outline-text-2" id="text-org6a3f795">
+<div id="outline-container-org5a1f015" class="outline-2">
+<h2 id="org5a1f015">Operation</h2>
+<div class="outline-text-2" id="text-org5a1f015">
 <ul class="org-ul">
 <li>An operation can have zero or more inputs and produce zero or more outputs.</li>
 <li>An operation may stand for a mathematical equation, a variable, a constant, a control flow directive, a file I/O operation, or even a network communication port.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga96e39b" class="outline-2">
-<h2 id="orga96e39b">Tensor</h2>
-<div class="outline-text-2" id="text-orga96e39b">
+<div id="outline-container-org3d26a6d" class="outline-2">
+<h2 id="org3d26a6d">Tensor</h2>
+<div class="outline-text-2" id="text-org3d26a6d">
 <ul class="org-ul">
 <li>A tensor is a multidimentional array or list, the generalization of scalars, 1-D vector, and 2-D matrices.</li>
 <li>Tensors are the connecting edges, passed between nodes/ops in the flow diagram.</li>
@@ -255,12 +255,12 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbf0c13f" class="outline-2">
-<h2 id="orgbf0c13f">Variable</h2>
-<div class="outline-text-2" id="text-orgbf0c13f">
+<div id="outline-container-org5ea480c" class="outline-2">
+<h2 id="org5ea480c">Variable</h2>
+<div class="outline-text-2" id="text-org5ea480c">
 <ul class="org-ul">
 <li>Variables can be described as persistent, mutable handlers to in-memory buffers storing tensors. They maintain the state of the graph across executions.</li>
-<li>A variable can be identified as a revisable <a href="#orga96e39b">tensor</a>, which can be initialized by
+<li>A variable can be identified as a revisable <a href="#org3d26a6d">tensor</a>, which can be initialized by
 <ul class="org-ul">
 <li><code>tensorflow.zeros</code> with all the elements equal zero.</li>
 <li><code>tensorflow.ones</code> with all the elements equal one.</li>
@@ -281,18 +281,18 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc4643ea" class="outline-2">
-<h2 id="orgc4643ea">Placeholder</h2>
-<div class="outline-text-2" id="text-orgc4643ea">
+<div id="outline-container-orgfbfb35f" class="outline-2">
+<h2 id="orgfbfb35f">Placeholder</h2>
+<div class="outline-text-2" id="text-orgfbfb35f">
 <ul class="org-ul">
 <li>Placeholders are special variables, which must be replaced with concrete tensors on graph execution and supplied in the <code>feed_dict</code> argument to <code>Session.run()</code>.</li>
 <li>For each placeholder, its shape and data type should be specified.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6502603" class="outline-2">
-<h2 id="org6502603">Session</h2>
-<div class="outline-text-2" id="text-org6502603">
+<div id="outline-container-org23a95ce" class="outline-2">
+<h2 id="org23a95ce">Session</h2>
+<div class="outline-text-2" id="text-org23a95ce">
 <ul class="org-ul">
 <li>The execution of operations and evaluation of tensors may only be performed in a special environment referred to as <i>session</i>.</li>
 <li>Its method <code>run</code> takes as input the nodes (including feed nodes) in the graph whose tensors should be computed and returned.
@@ -316,9 +316,9 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 </ul>
 </div>
 </div>
-<div id="outline-container-orgadf4226" class="outline-2">
-<h2 id="orgadf4226">Execution</h2>
-<div class="outline-text-2" id="text-orgadf4226">
+<div id="outline-container-org55b3626" class="outline-2">
+<h2 id="org55b3626">Execution</h2>
+<div class="outline-text-2" id="text-org55b3626">
 <ul class="org-ul">
 <li>A graph can be executed in the context of a <code>Session</code> in a couple of ways.
 <ul class="org-ul">
@@ -331,9 +331,9 @@ In tensorflow, machine learning algorithms are represented as <i>computational g
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf092f24" class="outline-2">
-<h2 id="orgf092f24">Graph</h2>
-<div class="outline-text-2" id="text-orgf092f24">
+<div id="outline-container-org48f07af" class="outline-2">
+<h2 id="org48f07af">Graph</h2>
+<div class="outline-text-2" id="text-org48f07af">
 <p>
 Tensorflow programs are usually structured into a construction phase, that assembles a graph, and an execution phase that uses a session to execute ops in the graph.
 </p>
@@ -351,9 +351,9 @@ In the tensorflow Python library, there is a default graph to which ops construc
 </p>
 </div>
 </div>
-<div id="outline-container-org5086a16" class="outline-2">
-<h2 id="org5086a16">Tensorboard</h2>
-<div class="outline-text-2" id="text-org5086a16">
+<div id="outline-container-org0724d45" class="outline-2">
+<h2 id="org0724d45">Tensorboard</h2>
+<div class="outline-text-2" id="text-org0724d45">
 <p>
 As a built-in module inside tensorflow, <i>tensorboard</i> is a web interface for graph visualization and manipulation. It provides a couple of summary operations (nodes), <i>scalar summary</i> and <i>histogram summary</i>. The former shows the progression of a scalar tensor value, and the latter tracks distributions.
 </p>

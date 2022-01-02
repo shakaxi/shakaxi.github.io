@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zathura</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<!-- 2022-01-02 Sun 22:25 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linux - Zathura</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -189,99 +190,52 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
-<h1 class="title">Zathura</h1>
-<div id="table-of-contents">
+<div id="content" class="content">
+<h1 class="title">Linux - Zathura</h1>
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3ee92e9">Introduction</a></li>
-<li><a href="#orge978b7c">Installation</a></li>
-<li><a href="#org3c89430">Keybindings</a>
+<li><a href="#org1ce2f95">Introduction</a></li>
+<li><a href="#org4b882c3">Installation</a></li>
+<li><a href="#org4ed5df5">Keybindings</a>
 <ul>
-<li><a href="#org8d29e57">General</a></li>
-<li><a href="#org3d391a3">Index mode</a></li>
+<li><a href="#orgd13015a">General</a></li>
+<li><a href="#orgf50b152">Index mode</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3ee92e9" class="outline-2">
-<h2 id="org3ee92e9">Introduction</h2>
-<div class="outline-text-2" id="text-org3ee92e9">
+<div id="outline-container-org1ce2f95" class="outline-2">
+<h2 id="org1ce2f95">Introduction</h2>
+<div class="outline-text-2" id="text-org1ce2f95">
 <p>
 <i>Zathura</i> is a light PDF viewer, with Vi/Vim-like keybindings. It always reloads and refreshes documents automatically. In this sense, it is naturally capable of providing real time preview of a PDF file, e.g., produced by LaTeX. Additionally, it has the option of enabling inverse search based on <i>synctex</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-orge978b7c" class="outline-2">
-<h2 id="orge978b7c">Installation</h2>
-<div class="outline-text-2" id="text-orge978b7c">
+<div id="outline-container-org4b882c3" class="outline-2">
+<h2 id="org4b882c3">Installation</h2>
+<div class="outline-text-2" id="text-org4b882c3">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S zathura zathura-pdf-mupdf
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org3c89430" class="outline-2">
-<h2 id="org3c89430">Keybindings</h2>
-<div class="outline-text-2" id="text-org3c89430">
+<div id="outline-container-org4ed5df5" class="outline-2">
+<h2 id="org4ed5df5">Keybindings</h2>
+<div class="outline-text-2" id="text-org4ed5df5">
 </div>
-<div id="outline-container-org8d29e57" class="outline-3">
-<h3 id="org8d29e57">General</h3>
-<div class="outline-text-3" id="text-org8d29e57">
+<div id="outline-container-orgd13015a" class="outline-3">
+<h3 id="orgd13015a">General</h3>
+<div class="outline-text-3" id="text-orgd13015a">
 <table>
 
 
@@ -415,9 +369,9 @@ for the JavaScript code in this tag.
 </table>
 </div>
 </div>
-<div id="outline-container-org3d391a3" class="outline-3">
-<h3 id="org3d391a3">Index mode</h3>
-<div class="outline-text-3" id="text-org3d391a3">
+<div id="outline-container-orgf50b152" class="outline-3">
+<h3 id="orgf50b152">Index mode</h3>
+<div class="outline-text-3" id="text-orgf50b152">
 <table>
 
 
