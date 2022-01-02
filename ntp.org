@@ -1,6 +1,6 @@
-#+TITLE: NTP
+#+TITLE: Linux - Network time protocol (NTP)
 
-Network time protocol (NTP) is a very convenient service which can provide network time synchronized automatically and periodically. This post briefly describes the installation and configuration of NTP on Linux OS.
+/Network time protocol (NTP)/ is a very convenient service which can provide network time synchronized automatically and periodically. This post briefly describes the installation and configuration of NTP on Linux OS.
 * Installation
 Without loss of generality, we take Arch Linux for instance here.
 #+BEGIN_SRC sh

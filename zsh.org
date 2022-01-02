@@ -1,4 +1,4 @@
-#+TITLE: Linux - ZSH
+#+TITLE: Linux - Zsh
 
 * Introduction
 As is well-known, /shell/ is an interface provided by the Unix/Linux operation systems (OS) to subscribers whereby a user can interact with the kernel of the OS efficiently and conveniently.

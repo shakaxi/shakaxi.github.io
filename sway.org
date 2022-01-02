@@ -1,4 +1,4 @@
-#+TITLE: Sway
+#+TITLE: Linux - Sway
 
 * Introduction
 [[https://swaywm.org][Sway]] is a tiling compositor based on [[https://wayland.freedesktop.org][Wayland]]. It can be identified as a counterpart of [[http://i3wm.org][i3]] in Wayland, and as resource saving and lightweight as i3. Even, sway has a completely compatible configuration to i3.

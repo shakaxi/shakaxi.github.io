@@ -1,4 +1,4 @@
-#+TITLE: Least Square and Its Iterative Approach
+#+TITLE: Least Square and Its Iterative Approach (RLS)
 
 * Introduction
 As is well-known, /least square (LS)/ is the optimal linear unbiased estimator, which plays an extremely important role in the classic estimation theory. This document motivates to illustrate the fundamental of LS algorithm. However, LS algorithm suffers rather high complexity, especially for the operation of matrix inversion, which greatly limits its application in practice. In order to reduce the computational complexity, an iterative approach, a.k.a. /recursive LS (RLS)/, has been proposed.

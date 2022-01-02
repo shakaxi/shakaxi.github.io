@@ -1,4 +1,4 @@
-#+TITLE: Bash
+#+TITLE: Linux - Bash
 
 * Running ways
 - Make the shell script executable :: The script should begin with the shebang (e.g. =#!/bin/bash=).

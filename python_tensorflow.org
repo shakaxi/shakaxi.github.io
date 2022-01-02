@@ -1,4 +1,4 @@
-#+TITLE: Tensorflow
+#+TITLE: Python - Tensorflow
 
 * Introducation
 Tensorflow is a deep learning library, which provides two programming interfaces, C++ and Python. Moreover, The Python API integrates very well with [[http://www.numpy.org][numpy]]. In many places, Tensorflow tensors can be interchanged with numpy =ndarrays=.

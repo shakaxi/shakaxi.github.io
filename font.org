@@ -1,4 +1,4 @@
-#+TITLE: Fonts for Linux
+#+TITLE: Linux - Fonts
 
 On Unix/Linux desktop, there are a rich number of open source projects for font rendering. This post lists some pretty excellent choices. Taking ArchLinux for instance, the installations are presented.
 

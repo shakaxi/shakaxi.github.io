@@ -1,4 +1,4 @@
-#+TITLE: NR - DCI
+#+TITLE: NR - Downlink Control Information (DCI)
 
 * Introduction
 In NR system, the /downlink control information (DCI)/ is carried by physical downlink control channel (PDCCH), which physically occupied a region in the 2-dimension resource grid, which is essentially comprised of a certain number of resource elements (RE's), a.k.a., /control resource set (CORESET)/. Different from the counterpart in LTE, i.e., PDCCH region which always covers the whole frequency range, CORESET does not span the whole bandwidth, since the bandwidth in NR system is remarkably large while not all the NR UE's are able to perform reception over the whole bandwidth.

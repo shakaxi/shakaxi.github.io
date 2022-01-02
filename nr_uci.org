@@ -1,4 +1,4 @@
-#+TITLE: NR - UCI
+#+TITLE: NR - Uplink Control Information (UCI)
 #+PROPERTY: header-args:latex :results raw :headers '("\\usepackage{tikz}") :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
 
 * Introduction

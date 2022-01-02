@@ -1,4 +1,4 @@
-#+TITLE: C++ - Standard Template Library
+#+TITLE: C++ - Standard Template Library (STL)
 
 标准模板库(standard template library, STL)是C++标准库的子集, 其大量使用了模板.
 * 容器

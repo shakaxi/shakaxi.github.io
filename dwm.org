@@ -1,4 +1,4 @@
-#+title: Dynamic Window Manager
+#+title: Linux - Dynamic Window Manager (DWM)
 
 [[https://dwm.suckless.org][Dynamic window manager (DWM)]], as one component of the [[https://suckless.org][suckless]] suite, is a flexible but lightweight window manager for X. This post just summarizes the procedure of installation and customization.
 

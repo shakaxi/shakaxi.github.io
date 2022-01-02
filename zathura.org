@@ -1,4 +1,4 @@
-#+TITLE: Zathura
+#+TITLE: Linux - Zathura
 
 * Introduction
 /Zathura/ is a light PDF viewer, with Vi/Vim-like keybindings. It always reloads and refreshes documents automatically. In this sense, it is naturally capable of providing real time preview of a PDF file, e.g., produced by LaTeX. Additionally, it has the option of enabling inverse search based on /synctex/.
