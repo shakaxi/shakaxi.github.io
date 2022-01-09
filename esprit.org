@@ -1,0 +1,85 @@
+#+title: Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)
+
+/Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)/, as its name indicates, is an algorithm to estimate the frequency of sinusoid waves from a noisy mixture of them. Additionally, it can also be used for direction of arrival (DoA) estimation in a multiantenna system. This post describes its principle.
+
+An observation signal vector can be expressed as
+\begin{align*}
+  \mathbf{x} = \mathbf{A} \mathbf{s} + \mathbf{n},
+\end{align*}
+where
+- $\mathbf{A} = \begin{bmatrix} \mathbf{a}(\omega_1) & \mathbf{a}(\omega_2) & \ldots & \mathbf{a}(\omega_r) \end{bmatrix}$ is a $N \times r$ Vandermonde matrix, $N > r$; Each column is a steering vector, e.g., $\mathbf{a}(\omega) \triangleq \begin{bmatrix} 1 \\ e^{j\omega} \\ e^{j2\omega} \\ \vdots \\ e^{j(N-1)\omega} \end{bmatrix}$.
+- $\mathbf{s} = \begin{bmatrix} s_1 \\ s_2 \\ \vdots \\ s_r \end{bmatrix}$ is a signal vector.
+- $\mathbf{n} \sim \mathcal{CN}(0, \sigma^2\mathbf{I}_N)$ is a complex additive Gaussian noise vector.
+
+Then autocorrelation matrix of observation can be obtained by
+\begin{align*}
+  \mathbf{R}_{\mathbf{x}} &= \mathbf{E}[ \mathbf{x} \mathbf{x}^H] \\
+  &= \mathbf{A} \mathbf{R}_{\mathbf{s}} \mathbf{A}^H + \sigma^2 \mathbf{I}_N,
+\end{align*}
+where $\mathbf{R}_{\mathbf{s}} \triangleq \mathbf{E}[ \mathbf{s} \mathbf{s}^H]$ is the autocorrelation of signal vector $\mathbf{s}$. In practice, the autocorrelation of observation is usually calculated based on a series of observation samples, i.e., $\hat{\mathbf{R}}_{\mathbf{x}} = \dfrac{1}{M} \sum_{i=1}^M \mathbf{x}_i \mathbf{x}_i^H$, where $M$ is the number of observation samples available.
+
+The autocorrelation matrix of observation can be eigen value decomposed (EVD) as
+\begin{align*}
+  \mathbf{R}_{\mathbf{x}} &= \begin{bmatrix} \mathbf{U}_{\mathbf{s}} & \mathbf{U}_{\mathbf{n}} \end{bmatrix}
+ \begin{bmatrix} \mathbf{\Sigma} & \mathbf{0} \\ \mathbf{0} & \sigma^2 \mathbf{I}_{N-r} \end{bmatrix}
+ \begin{bmatrix} \mathbf{U}_{\mathbf{s}}^H \\ \mathbf{U}_{\mathbf{n}}^H \end{bmatrix},
+\end{align*}
+where
+- The eigen vectors in $\mathbf{U}_{\mathbf{s}}$ corresponding to $p$ largest eigen values span the signal subspace.
+- The eigen vectors in $\mathbf{U}_{\mathbf{n}}$ corresponding to the remaining $N - r$ eigen values (equal to $\sigma^2$) span the noise subspace.
+
+Clearly, $\mathbf{A} \in \text{span}(\mathbf{U}_s)$, so we can rewrite $\mathbf{A}$ as
+\begin{align}
+  \mathbf{A} = \mathbf{U}_s \mathbf{C}, \label{eq:a-uc}
+\end{align}
+where the $i$ th column of $\mathbf{C}$ is the corresponding coefficients of projecting the $i$ th column of $\mathbf{A}$, i.e., $\mathbf{a}(\omega_i)$ into basis $\mathbf{U}_s$, $i=1,2, \ldots, r$.
+
+Denote the first $N-1$ rows of $\mathbf{A}$ as $\mathbf{A}_1$, and the last $N-1$ rows of $\mathbf{A}$ as $\mathbf{A}_2$, i.e.,
+\begin{align}
+  \mathbf{A}_1 &= \begin{bmatrix} \mathbf{I}_{N-1} & \mathbf{0} \end{bmatrix} \mathbf{A}, \label{eq:a1} \\
+  \mathbf{A}_2 &= \begin{bmatrix} \mathbf{0} & \mathbf{I}_{N-1} \end{bmatrix} \mathbf{A}; \label{eq:a2}
+\end{align}
+then following equation holds,
+\begin{align}
+  \mathbf{A}_2 = \mathbf{A}_1
+  \begin{bmatrix}
+      e^{j\omega_1} & & & \\
+      & e^{j\omega_2} & & \\
+      & & \ddots & \\
+      & & & e^{j\omega_r}
+  \end{bmatrix}. \label{eq:a12}
+\end{align}
+
+By substituting \eqref{eq:a-uc}, \eqref{eq:a1} and \eqref{eq:a2} into \eqref{eq:a12}, we have
+\begin{align}
+  \mathbf{U}_{s,2} = \mathbf{U}_{s,1} \mathbf{C}
+  \begin{bmatrix}
+      e^{j\omega_1} & & & \\
+      & e^{j\omega_2} & & \\
+      & & \ddots & \\
+      & & & e^{j\omega_r}
+  \end{bmatrix} \mathbf{C}^{-1}, \label{eq:u12}
+\end{align}
+where
+- $\mathbf{U}_{s,1} = \begin{bmatrix} \mathbf{I}_{N-1} & \mathbf{0} \end{bmatrix} \mathbf{U}_s$ is the first $N-1$ rows of $\mathbf{U}_s$,
+- $\mathbf{U}_{s,2} = \begin{bmatrix} \mathbf{0} & \mathbf{I}_{N-1} \end{bmatrix} \mathbf{U}_s$ is the last $N-1$ rows of $\mathbf{U}_s$;
+and
+\begin{align}
+  \begin{bmatrix}
+      e^{j\omega_1} & & & \\
+      & e^{j\omega_2} & & \\
+      & & \ddots & \\
+      & & & e^{j\omega_r}
+  \end{bmatrix} = \mathbf{C}^{-1} \mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2} \mathbf{C}, \label{eq:phi}
+\end{align}
+where $\mathbf{U}_{s,1}^{\dagger} \triangleq \left(\mathbf{U}_{s,1}^H \mathbf{U}_{s,1}\right)^{-1} \mathbf{U}_{s,1}^H$ is the Moore Penrose inverse of $\mathbf{U}_{s,1}$.
+
+We can see that diagonal matrix $\begin{bmatrix}
+      e^{j\omega_1} & & & \\
+      & e^{j\omega_2} & & \\
+      & & \ddots & \\
+      & & & e^{j\omega_r}
+\end{bmatrix}$ and $\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}$ are similar and have the same eigen values. Therefore, we can skip $\mathbf{C}$ and \eqref{eq:a-uc}, but directly perform EVD on $\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}$ instead, and take the eigen values as the estimation of $\omega_i$, $i = 1, 2, \ldots, r$.
+
+* References
+1. http://en.wikipedia.org/wiki/estimation_of_signal_parameters_via_rotational_invariance_techniques

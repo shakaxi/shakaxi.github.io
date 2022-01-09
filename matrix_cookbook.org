@@ -1,8 +1,6 @@
 #+title: Matrix Cookbook
-#+latex_header: \DeclareMathOperator{\vec}{\text{vec}}
 
 As is well-known, [[http://matrixcookbook.com][the matrix cookbook]] is an excellent manual relating to matrices worthy of keeping at hands. In this post, I just pick a partial number of entries out of the complete cookbook, which are usually used by myself.
-
 \begin{align*}
-  \vec(\mathbf{ABC}) = (\mathbf{C}^T \otimes \mathbf{A}) \vec{\mathbf{B}}
+  \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \otimes \mathbf{A}) \text{vec}(\mathbf{B})
 \end{align*}
