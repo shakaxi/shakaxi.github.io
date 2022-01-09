@@ -4,7 +4,7 @@
 <!-- 2022-01-09 Sun 19:53 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Matrix Cookbook</title>
+<title>Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -216,13 +216,142 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Matrix Cookbook</h1>
+<h1 class="title">Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org46f0239">References</a></li>
+</ul>
+</div>
+</div>
 <p>
-As is well-known, <a href="http://matrixcookbook.com">the matrix cookbook</a> is an excellent manual relating to matrices worthy of keeping at hands. In this post, I just pick a partial number of entries out of the complete cookbook, which are usually used by myself.
+<i>Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)</i>, as its name indicates, is an algorithm to estimate the frequency of sinusoid waves from a noisy mixture of them. Additionally, it can also be used for direction of arrival (DoA) estimation in a multiantenna system. This post describes its principle.
+</p>
+
+<p>
+An observation signal vector can be expressed as
 </p>
 \begin{align*}
-  \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \otimes \mathbf{A}) \text{vec}(\mathbf{B})
+  \mathbf{x} = \mathbf{A} \mathbf{s} + \mathbf{n},
 \end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(\mathbf{A} = \begin{bmatrix} \mathbf{a}(\omega_1) & \mathbf{a}(\omega_2) & \ldots & \mathbf{a}(\omega_r) \end{bmatrix}\) is a \(N \times r\) Vandermonde matrix, \(N > r\); Each column is a steering vector, e.g., \(\mathbf{a}(\omega) \triangleq \begin{bmatrix} 1 \\ e^{j\omega} \\ e^{j2\omega} \\ \vdots \\ e^{j(N-1)\omega} \end{bmatrix}\).</li>
+<li>\(\mathbf{s} = \begin{bmatrix} s_1 \\ s_2 \\ \vdots \\ s_r \end{bmatrix}\) is a signal vector.</li>
+<li>\(\mathbf{n} \sim \mathcal{CN}(0, \sigma^2\mathbf{I}_N)\) is a complex additive Gaussian noise vector.</li>
+</ul>
+
+<p>
+Then autocorrelation matrix of observation can be obtained by
+</p>
+\begin{align*}
+  \mathbf{R}_{\mathbf{x}} &= \mathbf{E}[ \mathbf{x} \mathbf{x}^H] \\
+  &= \mathbf{A} \mathbf{R}_{\mathbf{s}} \mathbf{A}^H + \sigma^2 \mathbf{I}_N,
+\end{align*}
+<p>
+where \(\mathbf{R}_{\mathbf{s}} \triangleq \mathbf{E}[ \mathbf{s} \mathbf{s}^H]\) is the autocorrelation of signal vector \(\mathbf{s}\). In practice, the autocorrelation of observation is usually calculated based on a series of observation samples, i.e., \(\hat{\mathbf{R}}_{\mathbf{x}} = \dfrac{1}{M} \sum_{i=1}^M \mathbf{x}_i \mathbf{x}_i^H\), where \(M\) is the number of observation samples available.
+</p>
+
+<p>
+The autocorrelation matrix of observation can be eigen value decomposed (EVD) as
+</p>
+\begin{align*}
+  \mathbf{R}_{\mathbf{x}} &= \begin{bmatrix} \mathbf{U}_{\mathbf{s}} & \mathbf{U}_{\mathbf{n}} \end{bmatrix}
+ \begin{bmatrix} \mathbf{\Sigma} & \mathbf{0} \\ \mathbf{0} & \sigma^2 \mathbf{I}_{N-r} \end{bmatrix}
+ \begin{bmatrix} \mathbf{U}_{\mathbf{s}}^H \\ \mathbf{U}_{\mathbf{n}}^H \end{bmatrix},
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>The eigen vectors in \(\mathbf{U}_{\mathbf{s}}\) corresponding to \(p\) largest eigen values span the signal subspace.</li>
+<li>The eigen vectors in \(\mathbf{U}_{\mathbf{n}}\) corresponding to the remaining \(N - r\) eigen values (equal to \(\sigma^2\)) span the noise subspace.</li>
+</ul>
+
+<p>
+Clearly, \(\mathbf{A} \in \text{span}(\mathbf{U}_s)\), so we can rewrite \(\mathbf{A}\) as
+</p>
+\begin{align}
+  \mathbf{A} = \mathbf{U}_s \mathbf{C}, \label{eq:a-uc}
+\end{align}
+<p>
+where the \(i\) th column of \(\mathbf{C}\) is the corresponding coefficients of projecting the \(i\) th column of \(\mathbf{A}\), i.e., \(\mathbf{a}(\omega_i)\) into basis \(\mathbf{U}_s\), \(i=1,2, \ldots, r\).
+</p>
+
+<p>
+Denote the first \(N-1\) rows of \(\mathbf{A}\) as \(\mathbf{A}_1\), and the last \(N-1\) rows of \(\mathbf{A}\) as \(\mathbf{A}_2\), i.e.,
+</p>
+\begin{align}
+  \mathbf{A}_1 &= \begin{bmatrix} \mathbf{I}_{N-1} & \mathbf{0} \end{bmatrix} \mathbf{A}, \label{eq:a1} \\
+  \mathbf{A}_2 &= \begin{bmatrix} \mathbf{0} & \mathbf{I}_{N-1} \end{bmatrix} \mathbf{A}; \label{eq:a2}
+\end{align}
+<p>
+then following equation holds,
+</p>
+\begin{align}
+  \mathbf{A}_2 = \mathbf{A}_1
+  \begin{bmatrix}
+      e^{j\omega_1} & & & \\
+      & e^{j\omega_2} & & \\
+      & & \ddots & \\
+      & & & e^{j\omega_r}
+  \end{bmatrix}. \label{eq:a12}
+\end{align}
+
+<p>
+By substituting \eqref{eq:a-uc}, \eqref{eq:a1} and \eqref{eq:a2} into \eqref{eq:a12}, we have
+</p>
+\begin{align}
+  \mathbf{U}_{s,2} = \mathbf{U}_{s,1} \mathbf{C}
+  \begin{bmatrix}
+      e^{j\omega_1} & & & \\
+      & e^{j\omega_2} & & \\
+      & & \ddots & \\
+      & & & e^{j\omega_r}
+  \end{bmatrix} \mathbf{C}^{-1}, \label{eq:u12}
+\end{align}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(\mathbf{U}_{s,1} = \begin{bmatrix} \mathbf{I}_{N-1} & \mathbf{0} \end{bmatrix} \mathbf{U}_s\) is the first \(N-1\) rows of \(\mathbf{U}_s\),</li>
+<li>\(\mathbf{U}_{s,2} = \begin{bmatrix} \mathbf{0} & \mathbf{I}_{N-1} \end{bmatrix} \mathbf{U}_s\) is the last \(N-1\) rows of \(\mathbf{U}_s\);</li>
+</ul>
+<p>
+and
+</p>
+\begin{align}
+  \begin{bmatrix}
+      e^{j\omega_1} & & & \\
+      & e^{j\omega_2} & & \\
+      & & \ddots & \\
+      & & & e^{j\omega_r}
+  \end{bmatrix} = \mathbf{C}^{-1} \mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2} \mathbf{C}, \label{eq:phi}
+\end{align}
+<p>
+where \(\mathbf{U}_{s,1}^{\dagger} \triangleq \left(\mathbf{U}_{s,1}^H \mathbf{U}_{s,1}\right)^{-1} \mathbf{U}_{s,1}^H\) is the Moore Penrose inverse of \(\mathbf{U}_{s,1}\).
+</p>
+
+<p>
+We can see that diagonal matrix \(\begin{bmatrix}
+      e^{j\omega_1} & & & \\
+      & e^{j\omega_2} & & \\
+      & & \ddots & \\
+      & & & e^{j\omega_r}
+\end{bmatrix}\) and \(\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}\) are similar and have the same eigen values. Therefore, we can skip \(\mathbf{C}\) and \eqref{eq:a-uc}, but directly perform EVD on \(\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}\) instead, and take the eigen values as the estimation of \(\omega_i\), \(i = 1, 2, \ldots, r\).
+</p>
+
+<div id="outline-container-org46f0239" class="outline-2">
+<h2 id="org46f0239">References</h2>
+<div class="outline-text-2" id="text-org46f0239">
+<ol class="org-ol">
+<li><a href="http://en.wikipedia.org/wiki/estimation_of_signal_parameters_via_rotational_invariance_techniques">http://en.wikipedia.org/wiki/estimation_of_signal_parameters_via_rotational_invariance_techniques</a></li>
+</ol>
+</div>
+</div>
 </div>
 </body>
 </html>
