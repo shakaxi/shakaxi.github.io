@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2022-07-10 Sun 17:51 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Multiple Signal Classification (MUSIC)</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 <script type="text/x-mathjax-config">
@@ -221,6 +221,7 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
+<li><a href="#org2963939">MUSIC</a></li>
 <li><a href="#org1fbc1ad">References</a></li>
 </ul>
 </div>
@@ -228,7 +229,9 @@
 <p>
 <i>Multiple signal classification (MUSIC)</i> is a popular algorithm for spectrum estimation. This post is just written as a brief summary.
 </p>
-
+<div id="outline-container-org2963939" class="outline-2">
+<h2 id="org2963939">MUSIC</h2>
+<div class="outline-text-2" id="text-org2963939">
 <p>
 An observation signal vector can be expressed as
 </p>
@@ -260,7 +263,7 @@ The autocorrelation matrix of observation can be eigen value decomposed (EVD) as
 </p>
 \begin{align*}
   \mathbf{R}_{\mathbf{x}} &= \begin{bmatrix} \mathbf{U}_{\mathbf{s}} & \mathbf{U}_{\mathbf{n}} \end{bmatrix}
- \begin{bmatrix} \mathbf{\Sigma} & \mathbf{0} \\ \mathbf{0} & \sigma^2 \mathbf{I}_{N-r} \end{bmatrix}
+ \begin{bmatrix} \mathbf{\Lambda}_{\mathbf{s}} & \mathbf{0} \\ \mathbf{0} & \sigma^2 \mathbf{I}_{N-r} \end{bmatrix}
  \begin{bmatrix} \mathbf{U}_{\mathbf{s}}^H \\ \mathbf{U}_{\mathbf{n}}^H \end{bmatrix},
 \end{align*}
 <p>
