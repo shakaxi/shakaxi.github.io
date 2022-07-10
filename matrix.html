@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-09 Sun 19:53 -->
+<!-- 2022-02-02 Wed 16:35 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Matrix Cookbook</title>
+<title>Summary of Matrix Relevant Operation</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -216,13 +216,68 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Matrix Cookbook</h1>
+<h1 class="title">Summary of Matrix Relevant Operation</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org824a443">Vectorization</a></li>
+<li><a href="#orgc493e0d">Khatri-Rao product</a></li>
+</ul>
+</div>
+</div>
 <p>
-As is well-known, <a href="http://matrixcookbook.com">the matrix cookbook</a> is an excellent manual relating to matrices worthy of keeping at hands. In this post, I just pick a partial number of entries out of the complete cookbook, which are usually used by myself.
+As the titile indicates, this post is written to summarize the operations relating to matrices.
+</p>
+
+<div id="outline-container-org824a443" class="outline-2">
+<h2 id="org824a443">Vectorization</h2>
+<div class="outline-text-2" id="text-org824a443">
+<p>
+\(\forall \mathbf{A} \in \mathbb{C}^{p \times n}\), \(\mathbf{B} \in \mathbb{C}^{n \times m}\), \(\mathbf{C} \in \mathbb{C}^{m \times q}\),
+</p>
+\begin{align}
+  \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \otimes \mathbf{A}) \text{vec}(\mathbf{B}). \label{eq:vect}
+\end{align}
+<p>
+Particularly,
+</p>
+<ul class="org-ul">
+<li>By setting \(\mathbf{A} = \mathbf{I}_n\) and \(\mathbf{C} = \mathbf{I}_m\) respectively, \eqnref{eq:vect} becomes</li>
+</ul>
+\begin{align*}
+  \text{vec}(\mathbf{BC}) &= (\mathbf{C}^T \otimes \mathbf{I}_n) \text{vec}(\mathbf{B}), \\
+  \text{vec}(\mathbf{AB}) &= (\mathbf{I}_m \otimes \mathbf{A}) \text{vec}(\mathbf{B}).
+\end{align*}
+<ul class="org-ul">
+<li><p>
+If \(\mathbf{B} = \text{diag}(\mathbf{b})\) is a diagonal matrix (\(m = n\)), \(\mathbf{b} \in \mathbb{C}^n\), \eqnref{eq:vect} becomes
 </p>
 \begin{align*}
-  \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \otimes \mathbf{A}) \text{vec}(\mathbf{B})
+  \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \odot \mathbf{A})\mathbf{b},
 \end{align*}
+<p>
+where \(\odot\) is the <a href="#orgc493e0d">Khatri-Rao product</a> operator.
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc493e0d" class="outline-2">
+<h2 id="orgc493e0d">Khatri-Rao product</h2>
+<div class="outline-text-2" id="text-orgc493e0d">
+<p>
+\(\forall \mathbf{A} = \begin{bmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots &\mathbf{a}_k \end{bmatrix} \in \mathbb{C}^{n \times k}\) and \(\mathbf{B} = \begin{bmatrix} \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_k \end{bmatrix} \in \mathbb{C}^{m \times k}\), their Khatri-Rao product can be denoted by
+</p>
+\begin{align*}
+  \mathbf{A} \odot \mathbf{B} = \begin{bmatrix}
+      \mathbf{a}_1 \otimes \mathbf{b}_1 & \mathbf{a}_2 \otimes \mathbf{b}_2 & \cdots & \mathbf{a}_k \otimes \mathbf{b}_k
+\end{bmatrix} \in \mathbb{C}^{mn \times k},
+\end{align*}
+<p>
+where \(\mathbf{a}_i \otimes \mathbf{b}_i = \text{vec}\left(\mathbf{b}_i \mathbf{a}_i^T\right) \in \mathbb{C}^{nm}\), \(\mathbf{a}_i \in \mathbb{C}^n\), \(\mathbf{b}_i \in \mathbb{C}^m\), \(i = 1, 2, \ldots, k\).
+</p>
+</div>
+</div>
 </div>
 </body>
 </html>
