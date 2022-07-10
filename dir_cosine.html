@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-10 Sun 17:51 -->
+<!-- 2022-01-29 Sat 18:01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>Direction Cosine</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -189,126 +189,66 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { }
+  .org-svg { width: 90%; }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Shaka's Blog Site</h1>
+<h1 class="title">Direction Cosine</h1>
+<p>
+In 3-dimension (3-D) space, a non-zero vector can be denoted by
+</p>
+\begin{align*}
+  \mathbf{v} = v_x \mathbf{e}_x + v_y \mathbf{e}_y + v_z \mathbf{e}_z,
+\end{align*}
+<p>
+where
+</p>
 <ul class="org-ul">
-<li><a href="aurora.html">Aurora - A LaTeX Plugin for Microsoft Word</a></li>
-<li><a href="bash.html">Bash</a></li>
-<li><a href="beam_pattern.html">Beam Pattern</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_basic.html">C++ - Basic</a></li>
-<li><a href="cpp_itpp.html">C++ - IT++</a></li>
-<li><a href="cpp_multithread.html">C++ - Multithread</a></li>
-<li><a href="cpp_class_output.html">C++ - Output Object</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_singleton.html">C++ - Singleton</a></li>
-<li><a href="cpp_stl.html">C++ - Standard Template Library</a></li>
-<li><a href="cpp_tp.html">C++ - Thread Pool</a></li>
-<li><a href="cpp_sl.html">C++ - 标准库</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="dir_cosine.html">Direction Cosine</a></li>
-<li><a href="dwm.html">Dynamic Window Manager</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cdlatex.html">Emacs - CDLaTeX</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="emacs_dired.html">Emacs - Dired</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_ebib.html">Emacs - Ebib</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="emacs_gnus.html">Emacs - Gnus</a></li>
-<li><a href="emacs_helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_lsp.html">Emacs - Language Server Protocol</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_mu4e.html">Emacs - Mu4e</a></li>
-<li><a href="notmuch.html">Emacs - Notmuch</a></li>
-<li><a href="emacs_wl.html">Emacs - Wanderlust</a></li>
-<li><a href="emacs_ycmd.html">Emacs - YCMD</a></li>
-<li><a href="esprit.html">Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="fourier.html">Fourier Transform</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="gaussian.html">Gaussian Distribution</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="gitlab.html">GitLab</a></li>
-<li><a href="x1c.html">Installation of ArchLinux on Thinkpad X1 Carbon 2018</a></li>
-<li><a href="lte_d2d.html">LTE - D2D</a></li>
-<li><a href="lte_ds.html">LTE - Discovery Signal</a></li>
-<li><a href="lte_fc_loc.html">LTE - Frequency Domain Location of Carriers</a></li>
-<li><a href="lte_mobility_mgmt.html">LTE - Mobility Management</a></li>
-<li><a href="lte_pcfich.html">LTE - PCFICH</a></li>
-<li><a href="lte_pdcch_epdcch.html">LTE - PDCCH &amp; EPDCCH</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="laplace.html">Laplace Transform</a></li>
-<li><a href="rls.html">Least Square and Its Iterative Approach</a></li>
-<li><a href="arch_cn.html">Linux - A Mirror of Arch Linux</a></li>
-<li><a href="arch_inst.html">Linux - An Installation Guide for Arch Linux</a></li>
-<li><a href="tool.html">Linux - Command Line Tools</a></li>
-<li><a href="console.html">Linux - Customize Console</a></li>
-<li><a href="microcode.html">Linux - Microcode</a></li>
-<li><a href="sed.html">Linux - Sed</a></li>
-<li><a href="zsh.html">Linux - ZSH</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="ml.html">Machine Learning</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="matched_filter.html">Matched Filter</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="music.html">Multiple Signal Classification (MUSIC)</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="nr_cell_search.html">NR - Cell Search</a></li>
-<li><a href="nr_csirs.html">NR - Channel State Information Reference Signal (CSI-RS)</a></li>
-<li><a href="nr_dci.html">NR - DCI</a></li>
-<li><a href="nr_dmrs.html">NR - Demodulation Reference Signal (DMRS)</a></li>
-<li><a href="nr_dl_cb.html">NR - Downlink Codebook</a></li>
-<li><a href="nr_mtrp.html">NR - Multi-TRP Transmission</a></li>
-<li><a href="nr_ptrs.html">NR - Phase Tracking Reference Signal (PTRS)</a></li>
-<li><a href="nr_uci.html">NR - UCI</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="nn.html">Neural Network</a></li>
-<li><a href="org_ioslide.html">Orgmode - Export to HTML5 Slide</a></li>
-<li><a href="org_link.html">Orgmode - Link</a></li>
-<li><a href="org_tab.html">Orgmode - Table</a></li>
-<li><a href="org_tikz.html">Orgmode - Tikz</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="python_basic.html">Python - Basic</a></li>
-<li><a href="python_data_type.html">Python - Data Type</a></li>
-<li><a href="python_fun.html">Python - Function</a></li>
-<li><a href="python_matplotlib.html">Python - Matplotlib</a></li>
-<li><a href="python_pkg_mgmt.html">Python - Package Management</a></li>
-<li><a href="python_pandas.html">Python - Pandas</a></li>
-<li><a href="python_pytorch.html">Python - Pytorch</a></li>
-<li><a href="python_tensorflow.html">Python - Tensorflow</a></li>
-<li><a href="python_virtualenv.html">Python - Virtual Environment</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="capslk2ctrl.html">Remap CapsLock as Ctrl</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="matrix.html">Summary of Matrix Relevant Operation</a></li>
-<li><a href="sway.html">Sway</a></li>
-<li><a href="uni_distr_ring.html">Uniform Distribution in a Ring Area</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="whitening_filter.html">Whitening Filter</a></li>
-<li><a href="wiener_filter.html">Wiener Filter</a></li>
-<li><a href="z.html">Z Transform</a></li>
-<li><a href="zc.html">ZC</a></li>
-<li><a href="zathura.html">Zathura</a></li>
-<li><a href="guiqulaixici.html">归去来兮辞</a></li>
+<li>\(\mathbf{e}_x = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}\), \(\mathbf{e}_y = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}\), and \(\mathbf{e}_z = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\) are the unit vectors of the 3 axes, respectively.</li>
+<li>\(v_x\), \(v_y\), and \(v_z\) are the components of \(\mathbf{v}\) projected to the 3 axes.</li>
+</ul>
+
+<p>
+For vector \(\mathbf{v}\), its <i>direction cosine</i> vector can be expressed as
+</p>
+\begin{align*}
+  \begin{bmatrix}
+      \cos\alpha \\ \cos\beta \\ \cos\gamma
+  \end{bmatrix} &= \begin{bmatrix}
+      \dfrac{v_x}{\| \mathbf{v}\|_2} \\ \dfrac{v_y}{\| \mathbf{v}\|_2} \\ \dfrac{v_z}{\| \mathbf{v}\|_2}
+  \end{bmatrix} \\
+                &= \dfrac{\mathbf{v}}{\| \mathbf{v}\|_2} \\
+                &\triangleq \mathbf{e}_v,
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(\alpha\), \(\beta\), \(\gamma\) are the angles of vector \(\mathbf{v}\) relative to the 3 axes, respectively.</li>
+<li>\(\mathbf{e}_v\) is the unit vector of \(\mathbf{v}\), i.e., \(\| \mathbf{e}_v \|_2 = \sqrt{\cos^2\alpha + \cos^2\beta + \cos^2\gamma} = 1\).</li>
 </ul>
 </div>
 </body>
