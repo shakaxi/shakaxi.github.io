@@ -1,0 +1,23 @@
+#+title: Direction Cosine
+
+In 3-dimension (3-D) space, a non-zero vector can be denoted by
+\begin{align*}
+  \mathbf{v} = v_x \mathbf{e}_x + v_y \mathbf{e}_y + v_z \mathbf{e}_z,
+\end{align*}
+where
+- $\mathbf{e}_x = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$, $\mathbf{e}_y = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$, and $\mathbf{e}_z = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$ are the unit vectors of the 3 axes, respectively.
+- $v_x$, $v_y$, and $v_z$ are the components of $\mathbf{v}$ projected to the 3 axes.
+
+For vector $\mathbf{v}$, its /direction cosine/ vector can be expressed as
+\begin{align*}
+  \begin{bmatrix}
+      \cos\alpha \\ \cos\beta \\ \cos\gamma
+  \end{bmatrix} &= \begin{bmatrix}
+      \dfrac{v_x}{\| \mathbf{v}\|_2} \\ \dfrac{v_y}{\| \mathbf{v}\|_2} \\ \dfrac{v_z}{\| \mathbf{v}\|_2}
+  \end{bmatrix} \\
+                &= \dfrac{\mathbf{v}}{\| \mathbf{v}\|_2} \\
+                &\triangleq \mathbf{e}_v,
+\end{align*}
+where
+- $\alpha$, $\beta$, $\gamma$ are the angles of vector $\mathbf{v}$ relative to the 3 axes, respectively.
+- $\mathbf{e}_v$ is the unit vector of $\mathbf{v}$, i.e., $\| \mathbf{e}_v \|_2 = \sqrt{\cos^2\alpha + \cos^2\beta + \cos^2\gamma} = 1$.
