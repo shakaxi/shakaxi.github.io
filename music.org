@@ -1,7 +1,7 @@
 #+title: Multiple Signal Classification (MUSIC)
 
 /Multiple signal classification (MUSIC)/ is a popular algorithm for spectrum estimation. This post is just written as a brief summary.
-
+* MUSIC
 An observation signal vector can be expressed as
 \begin{align*}
   \mathbf{x} = \mathbf{A} \mathbf{s} + \mathbf{n},
@@ -21,7 +21,7 @@ where $\mathbf{R}_{\mathbf{s}} \triangleq \mathbf{E}[ \mathbf{s} \mathbf{s}^H]$ 
 The autocorrelation matrix of observation can be eigen value decomposed (EVD) as
 \begin{align*}
   \mathbf{R}_{\mathbf{x}} &= \begin{bmatrix} \mathbf{U}_{\mathbf{s}} & \mathbf{U}_{\mathbf{n}} \end{bmatrix}
- \begin{bmatrix} \mathbf{\Sigma} & \mathbf{0} \\ \mathbf{0} & \sigma^2 \mathbf{I}_{N-r} \end{bmatrix}
+ \begin{bmatrix} \mathbf{\Lambda}_{\mathbf{s}} & \mathbf{0} \\ \mathbf{0} & \sigma^2 \mathbf{I}_{N-r} \end{bmatrix}
  \begin{bmatrix} \mathbf{U}_{\mathbf{s}}^H \\ \mathbf{U}_{\mathbf{n}}^H \end{bmatrix},
 \end{align*}
 where

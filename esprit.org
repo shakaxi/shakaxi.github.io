@@ -79,7 +79,7 @@ We can see that diagonal matrix $\begin{bmatrix}
       & e^{j\omega_2} & & \\
       & & \ddots & \\
       & & & e^{j\omega_r}
-\end{bmatrix}$ and $\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}$ are similar and have the same eigen values. Therefore, we can skip $\mathbf{C}$ and \eqref{eq:a-uc}, but directly perform EVD on $\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}$ instead, and take the eigen values as the estimation of $\omega_i$, $i = 1, 2, \ldots, r$.
+\end{bmatrix}$ and $\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}$ are similar and have the same eigen values. Therefore, we can skip $\mathbf{C}$ and \eqref{eq:a-uc}, but directly perform EVD on $\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}$ instead, and obtain the estimation of $\omega_i$; $i = 1, 2, \ldots, r$; from the eigen values.
 
 * References
 1. http://en.wikipedia.org/wiki/estimation_of_signal_parameters_via_rotational_invariance_techniques
