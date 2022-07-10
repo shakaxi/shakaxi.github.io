@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2022-07-10 Sun 17:51 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Matplotlib</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -218,6 +218,12 @@
 </li>
 <li><a href="#orgdcd4b12">Miscellaneous</a>
 <ul>
+<li><a href="#org4020297">Animation</a>
+<ul>
+<li><a href="#org202df0d"><code>FuncAnimation</code></a></li>
+<li><a href="#org3275d22"><code>ArtistAnimation</code></a></li>
+</ul>
+</li>
 <li><a href="#org826a212">Default settings</a></li>
 </ul>
 </li>
@@ -368,6 +374,46 @@ As written in the tutorial, there are a couple of API styles provided by matplot
 <div id="outline-container-orgdcd4b12" class="outline-2">
 <h2 id="orgdcd4b12">Miscellaneous</h2>
 <div class="outline-text-2" id="text-orgdcd4b12">
+</div>
+<div id="outline-container-org4020297" class="outline-3">
+<h3 id="org4020297">Animation</h3>
+<div class="outline-text-3" id="text-org4020297">
+<p>
+In submodule <code>matplotlib.animation</code>, <code>Animation</code> is a base class for animation making. It has a couple of derived classes.
+</p>
+</div>
+<div id="outline-container-org202df0d" class="outline-4">
+<h4 id="org202df0d"><code>FuncAnimation</code></h4>
+<div class="outline-text-4" id="text-org202df0d">
+<p>
+This class generates an animation by repeatedly calling a function.
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class matplotlib.animation.FuncAnimation(fig, func, frames=None, init_func=None, fargs=None, save_count=None, *, cache_frame_data=True, **kwargs)
+</pre>
+</div>
+<p>
+where
+</p>
+<ul class="org-ul">
+<li><code>fig</code> is a <code>matplotlib.figure.Figure</code> object.</li>
+<li><code>func</code> is a function to call at each frame. Its first argument will be the next value in <code>frames</code>, and other positional arguments can be supplied via <code>fargs</code> parameter. Its signature can be <code>def func(frame, *fargs) -&gt; iterable_of_artists</code>.</li>
+<li><code>frames</code> is an iterable object. Particularly, <code>range(frames)</code> can be simplified by assigning an integer.</li>
+</ul>
+
+<p>
+Its member function <code>save</code> can save a <code>FuncAnimation</code> object to <code>gif</code>, <code>mp4</code>, etc.
+</p>
+</div>
+</div>
+<div id="outline-container-org3275d22" class="outline-4">
+<h4 id="org3275d22"><code>ArtistAnimation</code></h4>
+<div class="outline-text-4" id="text-org3275d22">
+<p>
+This class produces an animation using a fixed set of <code>Artist</code> object.
+</p>
+</div>
+</div>
 </div>
 <div id="outline-container-org826a212" class="outline-3">
 <h3 id="org826a212">Default settings</h3>
