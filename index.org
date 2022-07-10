@@ -89,6 +89,7 @@
 - [[file:pbs_maui.org][PBS and Maui]]
 - [[file:python_basic.org][Python - Basic]]
 - [[file:python_data_type.org][Python - Data Type]]
+- [[file:python_einops.org][Python - Einops]]
 - [[file:python_fun.org][Python - Function]]
 - [[file:python_matplotlib.org][Python - Matplotlib]]
 - [[file:python_pkg_mgmt.org][Python - Package Management]]
