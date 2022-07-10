@@ -66,6 +66,21 @@ As written in the tutorial, there are a couple of API styles provided by matplot
 =matplotlib.pyplot= directly provokes its own functions, e.g., =plot=, =xlabel=, =ylabel=, =title=, =legend=, etc.
 
 * Miscellaneous
+** Animation
+In submodule =matplotlib.animation=, =Animation= is a base class for animation making. It has a couple of derived classes.
+*** =FuncAnimation=
+This class generates an animation by repeatedly calling a function.
+#+begin_src python
+  class matplotlib.animation.FuncAnimation(fig, func, frames=None, init_func=None, fargs=None, save_count=None, *, cache_frame_data=True, **kwargs)
+#+end_src
+where
+- =fig= is a =matplotlib.figure.Figure= object.
+- =func= is a function to call at each frame. Its first argument will be the next value in =frames=, and other positional arguments can be supplied via =fargs= parameter. Its signature can be =def func(frame, *fargs) -> iterable_of_artists=.
+- =frames= is an iterable object. Particularly, =range(frames)= can be simplified by assigning an integer.
+
+Its member function =save= can save a =FuncAnimation= object to =gif=, =mp4=, etc.
+*** =ArtistAnimation=
+This class produces an animation using a fixed set of =Artist= object.
 ** Default settings
 #+begin_src python
   import matplotlib.pyplot as plt
