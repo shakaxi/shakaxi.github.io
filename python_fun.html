@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2022-09-24 Sat 15:14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Function</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -219,6 +219,14 @@
 </li>
 <li><a href="#org03059b7">Docstring</a></li>
 <li><a href="#org4047f4a">返回值</a></li>
+<li><a href="#org12c2c2f">Lambda函数</a></li>
+<li><a href="#orgfc31ebf">Map</a>
+<ul>
+<li><a href="#org26651f4">并行计算</a></li>
+</ul>
+</li>
+<li><a href="#org1fe5881">Filter</a></li>
+<li><a href="#orgfc42ce4">Reduce</a></li>
 </ul>
 </div>
 </div>
@@ -314,6 +322,96 @@
 <li>有返回值的函数，通过关键字 <code>return</code> 返回。</li>
 <li>没有返回值的函数会默认返回 <code>None</code> 。</li>
 <li>如果需要返回多个值，可以返回一个元组(tuple<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>)。当调用的函数返回了元组，通常会将结果赋值给多个变量，也即元组解包。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org12c2c2f" class="outline-2">
+<h2 id="org12c2c2f">Lambda函数</h2>
+<div class="outline-text-2" id="text-org12c2c2f">
+<p>
+Lambda函数是匿名函数，没有返回值，不能被其他文件导入，因此不能被外部调用。其格式如下：
+</p>
+<div class="org-src-container">
+<pre class="src src-python">lambda argumuent_list: expression
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>argument_list</code> 为参数列表，与普通函数的参数列表相同。</li>
+<li><code>expression</code> 为单行表达式，其中出现的参数需要在 <code>argument_list</code> 中有定义。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfc31ebf" class="outline-2">
+<h2 id="orgfc31ebf">Map</h2>
+<div class="outline-text-2" id="text-orgfc31ebf">
+<p>
+内置函数 <code>map</code> 能够对输入序列逐元素地应用所提供的函数，返回一个迭代器对象。格式如下：
+</p>
+<div class="org-src-container">
+<pre class="src src-python">map(function, *iterables) -&gt; map object
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>function</code> 为所应用的函数。</li>
+<li><code>iterables</code> 为任何可迭代的序列数据类型，如列表、字典等。</li>
+</ul>
+</div>
+<div id="outline-container-org26651f4" class="outline-3">
+<h3 id="org26651f4">并行计算</h3>
+<div class="outline-text-3" id="text-org26651f4">
+<p>
+Python中的并行计算通常要用到模块 <code>multiprocessing</code> 及其子模块 <code>multiprocessing.dummy</code> ，前者用于进程，后者用于线程。这两个模块均包含了 <code>map</code> 函数。所以，可以通过利用这两个模块中的 <code>map</code> 函数很容易地实现基于线程池的多线程并行计算。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from multiprocessing.dummy import Pool
+
+# Generate a thread pool including 8 workers.
+p = Pool(8)
+
+# Multithreading
+results = p.map(function, iterables)
+
+# Thread pool stops subsequent job submission.
+p.close()
+
+# Thread pool waits for the completions of the working threads.
+p.join()
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1fe5881" class="outline-2">
+<h2 id="org1fe5881">Filter</h2>
+<div class="outline-text-2" id="text-org1fe5881">
+<p>
+内置函数 <code>filter</code> 能够对输入序列根据规则逐元素地过滤，返回过滤后的迭代器对象。格式如下：
+</p>
+<div class="org-src-container">
+<pre class="src src-python">filter(function | None, iterable) -&gt; filter object
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>function</code> 为定义过滤规则的函数，只有返回值为 <code>True</code> 的元素才会被返回。</li>
+<li><code>iterable</code> 为任何可迭代的序列数据类型对象，如列表、字典等。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfc42ce4" class="outline-2">
+<h2 id="orgfc42ce4">Reduce</h2>
+<div class="outline-text-2" id="text-orgfc42ce4">
+<p>
+<code>reduce</code> 函数不是python内置函数，需要通过导入。该函数能够将一个可迭代的序列数据类型合并为单个数值，比如求和，求平均等等。格式如下：
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from functools import reduce
+
+reduce(function, iterable[, initial]) -&gt; value
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>function</code> 为定义合并规则的函数，输入为两个参数。</li>
+<li><code>iterable</code> 为任何可迭代的序列数据类型对象，如列表、字典等。</li>
 </ul>
 </div>
 </div>
