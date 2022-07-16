@@ -34,6 +34,53 @@
 - 有返回值的函数，通过关键字 =return= 返回。
 - 没有返回值的函数会默认返回 =None= 。
 - 如果需要返回多个值，可以返回一个元组(tuple[fn:1])。当调用的函数返回了元组，通常会将结果赋值给多个变量，也即元组解包。
+* Lambda函数
+Lambda函数是匿名函数，没有返回值，不能被其他文件导入，因此不能被外部调用。其格式如下：
+#+begin_src python
+  lambda argumuent_list: expression
+#+end_src
+- =argument_list= 为参数列表，与普通函数的参数列表相同。
+- =expression= 为单行表达式，其中出现的参数需要在 =argument_list= 中有定义。
+* Map
+内置函数 =map= 能够对输入序列逐元素地应用所提供的函数，返回一个迭代器对象。格式如下：
+#+begin_src python
+  map(function, *iterables) -> map object
+#+end_src
+- =function= 为所应用的函数。
+- =iterables= 为任何可迭代的序列数据类型，如列表、字典等。
+** 并行计算
+Python中的并行计算通常要用到模块 =multiprocessing= 及其子模块 =multiprocessing.dummy= ，前者用于进程，后者用于线程。这两个模块均包含了 =map= 函数。所以，可以通过利用这两个模块中的 =map= 函数很容易地实现基于线程池的多线程并行计算。
+#+begin_src python
+  from multiprocessing.dummy import Pool
+
+  # Generate a thread pool including 8 workers.
+  p = Pool(8)
+
+  # Multithreading
+  results = p.map(function, iterables)
+
+  # Thread pool stops subsequent job submission.
+  p.close()
+
+  # Thread pool waits for the completions of the working threads.
+  p.join()
+#+end_src
+* Filter
+内置函数 =filter= 能够对输入序列根据规则逐元素地过滤，返回过滤后的迭代器对象。格式如下：
+#+begin_src python
+  filter(function | None, iterable) -> filter object
+#+end_src
+- =function= 为定义过滤规则的函数，只有返回值为 =True= 的元素才会被返回。
+- =iterable= 为任何可迭代的序列数据类型对象，如列表、字典等。
+* Reduce
+=reduce= 函数不是python内置函数，需要通过导入。该函数能够将一个可迭代的序列数据类型合并为单个数值，比如求和，求平均等等。格式如下：
+#+begin_src python
+  from functools import reduce
+
+  reduce(function, iterable[, initial]) -> value
+#+end_src
+- =function= 为定义合并规则的函数，输入为两个参数。
+- =iterable= 为任何可迭代的序列数据类型对象，如列表、字典等。
 
 * Footnotes
 
