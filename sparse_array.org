@@ -1,0 +1,176 @@
+#+TITLE: Sparse Array
+
+* Concepts
+Given a sparse array, the locations of its component antennas/sensors can be normalized to a minimum inter-antenna distance, denoted by $d$, e.g., typically $d = \lambda / 2$. Accordingly, a sparse array can be simply denoted by an integer set $\mathbb{S}$, and the locations of the antennas are $nd$, $n \in \mathbb{S}$.
+
+Given a sparse array $\mathbb{S}$, its /difference coarray (DCA)/ is defined as
+\begin{align*}
+  \mathbb{D} \triangleq \{n_1 - n_2 \mid n_1, n_2 \in \mathbb{S}\}.
+\end{align*}
+- Each entry in $\mathbb{D}$ is termed a /spatial lag/.
+- The cardinality of DCA, i.e., $|\mathbb{D}|$, is termed /degree of freedom (DoF)/ of the sparse array $\mathbb{S}$.
+- Clearly, DCA is symmetric, i.e., $\forall n \in \mathbb{D}$, $-n \in \mathbb{D}$.
+
+Let $\mathbb{U}$ denote the central ULA segment of $\mathbb{D}$. Its cardinality $|\mathbb{U}|$ is termed /uniform degree of freedom (UDoF)/. Then, the number of uncorrelated sources which can be identified is $\dfrac{|\mathbb{U}| - 1}{2}$.
+* MUSIC over $\mathbb{D}$ (Khatri-Rao MUSIC)
+Without loss of generality, we consider a simple scenario in which $r$ monochromatic sources impinge on a sparse array $\mathbb{S} = \{n_1, n_2, \ldots, n_{|\mathbb{S}|}\}$, the received signal can be expressed as
+\begin{align}
+  \mathbf{x}_{\mathbb{S}} = \mathbf{A}_{\mathbb{S}} \mathbf{s} + \mathbf{n}_{\mathbb{S}}, \label{eq:xs}
+\end{align}
+where
+- $\mathbf{A}_{\mathbb{S}} = \begin{bmatrix}
+  \mathbf{a}_{\mathbb{S}}(\omega_1) & \mathbf{a}_{\mathbb{S}}(\omega_2) & \cdots & \mathbf{a}_{\mathbb{S}}(\omega_r)
+  \end{bmatrix}$ is a $|\mathbb{S}| \times r$ matrix; Each column is a steering vector, e.g., $\mathbf{a}_{\mathbb{S}}(\omega) \triangleq \begin{bmatrix} e^{jn_1\omega} \\ e^{jn_2\omega} \\ \vdots \\ e^{jn_{|\mathbb{S}|}\omega} \end{bmatrix}$.
+- $\mathbf{s} = \begin{bmatrix} s_1 \\ s_2 \\ \vdots \\ s_r \end{bmatrix}$ is a signal vector.
+- $\mathbf{n}_{\mathbb{S}} \sim \mathcal{CN}\left(0, \sigma_0^2 \mathbf{I}_{|\mathbb{S}|} \right)$ is a complex additive Gaussian noise vector.
+
+Then, the covariance matrix of $\mathbf{x}_{\mathbb{S}}$ is defined as
+\begin{align}
+  \mathbf{R}_{\mathbf{x}_{\mathbb{S}}} &\triangleq \mathcal{E} \left( \mathbf{x}_{\mathbb{S}} \mathbf{x}_{\mathbb{S}}^H \right) \label{eq:cov} \\
+                                       &= \mathbf{A}_{\mathbb{S}} \mathbf{R}_{\mathbf{s}} \mathbf{A}_{\mathbb{S}}^H + \sigma_0^2 \mathbf{I}_{|\mathbb{S}|}
+\end{align}
+where $\mathbf{R}_{\mathbf{s}} \triangleq \mathcal{E} \left( \mathbf{s} \mathbf{s}^H \right) = \begin{bmatrix} \sigma_1^2 &&& \\ & \sigma_2^2 && \\ && \ddots & \\ &&& \sigma_r^2\end{bmatrix}$ is the autocorrelation of signal vector $\mathbf{s}$. By vectorizing, we have
+\begin{align}
+\text{vec}\left( \mathbf{R}_{\mathbf{x}_{\mathbb{S}}} \right) = \left( \mathbf{A}_{\mathbb{S}}^{*} \odot \mathbf{A}_{\mathbb{S}} \right) \begin{bmatrix} \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\ \sigma_r^2 \end{bmatrix} + \sigma_0^2 \text{vec} \left(\mathbf{I}_{|\mathbb{S}|}\right), \label{eq:xkrs}
+\end{align}
+where $\odot$ is the /Khatri-Rao product/ operator. Clearly, in the /Khatri-Rao/ subspace, analogous to \eqref{eq:xs}, we can perform [[file:music.org][MUSIC]] algorithm by treating
+- vector $\begin{bmatrix} \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\ \sigma_r^2 \end{bmatrix}$ as the transmitted signal;
+- $\text{vec}\left( \mathbf{R}_{\mathbf{x}_{\mathbb{S}}} \right)$ as the received signal;
+- $\mathbf{A}_{\mathbb{S}}^{*} \odot \mathbf{A}_{\mathbb{S}}$ as the effective channel matrix;
+- $\forall \mathbf{v}_{\mathbf{S}} \in \mathcal{C}^{|\mathbb{S}| \times 1}$, $\mathbf{v}_{\mathbb{S}}^{*} \otimes \mathbf{v}_{\mathbb{S}}$ as a steering vector.
+
+Similar to \eqref{eq:xkrs}, the received signal over $\mathbb{D}$ as
+\begin{align}
+\mathbf{x}_{\mathbb{D}} = \mathbf{A}_{\mathbb{D}} \begin{bmatrix} \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\ \sigma_r^2 \end{bmatrix} + \sigma_0^2 \mathbf{e}. \label{eq:xd}
+\end{align}
+For the covariance matrix of $\mathbf{x}_{\mathbb{D}}$, /spatial smoothing/ (including selecting, combining, and reordering of the entries in $\mathbf{A}_{\mathbb{S}}^{*} \odot \mathbf{A}_{\mathbb{S}}$) is adopted before the /eigen-value decomposition (EVD)/ operation. The smoothed covariance matrix can be shown as
+\begin{align}
+\mathbf{R}_{\mathbf{x}_{\mathbb{D}}} \triangleq \frac{2}{|\mathbb{U}|+1} \sum_{p=0}^{\frac{|\mathbb{U}|-1}{2}} \mathbf{J}_p \mathbf{x}_{\mathbb{D}} \mathbf{x}_{\mathbb{D}}^H \mathbf{J}_p^H, \label{eq:smoothed-cov}
+\end{align}
+where $\mathbf{J}_p \triangleq 
+\begin{bmatrix}
+\mathbf{0}_{\frac{|\mathbb{U}|+1}{2} \times \frac{|\mathbb{U}|-1}{2} - p} & \mathbf{I}_{\frac{|\mathbb{U}|+1}{2} \times \frac{|\mathbb{U}|+1}{2}} & \mathbf{0}_{\frac{|\mathbb{U}|+1}{2} \times p}
+\end{bmatrix} \in \{0, 1\}^{\frac{|\mathbb{U}|+1}{2} \times |\mathbb{U}|}$.
+
+* MUSIC over $\mathbb{U}$
+By parsing the rows of \eqref{eq:xd} corresponding to the entries in $\mathbb{U}$, the received signal on $\mathbb{U}$ can be expressed as
+\begin{align}
+\mathbf{x}_{\mathbb{U}} = \mathbf{A}_{\mathbb{U}} \begin{bmatrix} \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\ \sigma_r^2 \end{bmatrix} + \sigma_0^2 \mathbf{e}^\prime. \label{eq:xu}
+\end{align}
+
+Based on $\mathbf{x}_{\mathbb{U}}$, a Toeplitz matrix can be built
+\begin{align}
+\mathbf{R}_{\mathbb{U}} \triangleq \begin{bmatrix}
+\mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|+1}{2}\right] & \mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|-1}{2}\right] & \cdots & \mathbf{x}_{\mathbb{U}}[1] \\
+\mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|+3}{2}\right] & \mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|+1}{2}\right] & \cdots & \mathbf{x}_{\mathbb{U}}[2] \\
+⋮ & ⋮ & ⋱ & ⋮ \\
+\mathbf{x}_{\mathbb{U}}\left[|\mathbb{U}|\right] & \mathbf{x}_{\mathbb{U}}\left[|\mathbb{U}|-1\right] & \cdots & \mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|+1}{2}\right]
+\end{bmatrix}, \label{eq:ru}
+\end{align}
+where $\mathbf{x}_{\mathbb{U}}[u]$ is $u$ th element in $\mathbf{x}_{\mathbb{U}}$, $u = 1, 2, …, |\mathbb{U}|$. It can be proved that the covariance matrix of $\mathbf{R}_{\mathbb{U}}$ is a linear scaling of the smoothed covariance matrix $\mathbf{R}_{\mathbf{x}_{\mathbb{D}}}$ in \eqref{eq:smoothed-cov}, i.e.,
+\begin{align*}
+\mathbf{R}_{\mathbb{U}} \mathbf{R}_{\mathbb{U}}^H = \frac{|\mathbb{U}|+1}{2} \mathbf{R}_{\mathbf{x}_{\mathbb{D}}}.
+\end{align*}
+Therefore, [[file:music.org][MUSIC]] spectrum estimation can be directly carried out based on $\mathbf{R}_{\mathbb{U}}$, since it has the same eigenspace as $\mathbf{R}_{\mathbf{x}_{\mathbb{D}}}$.
+
+Given a set $\mathbb{U} = \left\{-m, -(m-1), …, -1, 0, 1, …, m-1, m\right\}$, $m=\dfrac{|\mathbb{U}| - 1}{2}$, a steering vector can be constructed as
+\begin{align}
+\mathbf{a}_{\mathbb{U}}(\omega) = \begin{bmatrix}
+1 \\
+e^{j\omega} \\
+⋮ \\
+e^{j(m-1)\omega} \\
+e^{jm\omega}
+\end{bmatrix}. \label{eq:vu}
+\end{align}
+We can perform EVD on $\mathbf{R}_{\mathbb{U}}$ in \eqref{eq:ru} to obain an orthonormal basis of the noise subspace, and project each steering vector in \eqref{eq:vu} into the resultant noise subspace. By traversing the candidate steering vectors, a MUSIC spectrum on $\mathbb{U}$ can be built.
+
+It should be noted that in practice $\mathbf{x}_{\mathbb{S}}$ is measured on a plurality of samples. Its covariance matrix in \eqref{eq:cov} should be averaged over all the measurements, i.e.,
+\begin{align}
+\tilde{\mathbf{R}}_{\mathbf{x}_{\mathbb{S}}} = \frac{1}{N} \sum_{n=1}^N \tilde{\mathbf{x}}_{\mathbb{S}}(n) \tilde{\mathbf{x}}_{\mathbb{S}}^H(n),
+\end{align}
+where $N$ is the number of measurement samples. Moreover, in the computation of $\tilde{\mathbf{x}}_{\mathbb{U}}$ ($\mathbf{x}_{\mathbb{U}}$'s measurement), if a spatial lag has weight larger than 1, the corresponding quantities in $\tilde{\mathbf{R}}_{\mathbf{x}_{\mathbb{S}}}$ should also be averaged.
+
+Finally, what is worth emphasizing, the idea of sparse array is not limited to spatial domain (i.e., layout design of an antenna array), and it can be extended to other domains, e.g., time or frequency domains (pilot pattern design), etc.
+
+* Example realizations
+** Nested patterns & coprime patterns (=sparse.py=)
+#+begin_src python
+  def gen_nested_pat(n: int) -> list:
+      n1 = n // 2
+      n2 = n - n1
+      s1 = list(range(n1))
+      s2 = list(range(n1, (n1 + 1) * n2, n1 + 1))
+      return s1 + s2
+
+  def gen_coprime_pat(p: int, q: int) -> list:
+      assert p < q, "p < q"
+      assert np.gcd(p, q) == 1, "p and q should be a co-primed pair of integers."
+      s = list(range(p, p * q, p)) + list(range(0, 2 * p * q, q))
+      s.sort()
+      return s
+#+end_src
+** Pattern (=pat.py=)
+#+begin_src python
+  import numpy as np
+
+
+  class Pattern:
+      def __init__(self, pat: list[int], unit: float=1) -> None:
+          self.pat = np.array(pat)
+          self.unit = unit
+          self.len = len(pat)
+          self.calc_dca()
+          self.calc_dca_ula()
+      def calc_dca(self) -> None:
+          self.corr = np.zeros((self.len, self.len), dtype=int)
+          for r in range(self.len):
+              for c in range(self.len):
+                  self.corr[r, c] = self.pat[r] - self.pat[c]
+          self.dca, self.weight = np.unique(self.corr, return_counts=True)
+          self.dof = len(self.dca)
+      def calc_dca_ula(self) -> None:
+          self.udof = 1
+          m = 0
+          while len(np.where(self.dca == m + 1)[0]) > 0:
+              self.udof += 2
+              m += 1
+          self.udca = np.linspace(-m, m, self.udof, dtype=int)
+      def smooth_cov(self, cov: np.ndarray) -> np.ndarray:
+          m = self.udof // 2
+          r = np.zeros((m + 1, m + 1), dtype=complex)
+          for u in self.udca:
+              coeff = cov[(self.corr == u).nonzero()].mean()
+              r += np.eye(m + 1, k=-u, dtype=complex) * coeff
+          return r
+      def gen_steering_vector(self, coeff: float) -> np.ndarray:
+          return np.exp(1j * self.pat * self.unit * coeff)
+      def gen_steering_vector_dca_ula(self, coeff: float) -> np.ndarray:
+          return np.exp(1j * self.udca[self.udof // 2:] * self.unit * coeff)
+#+end_src
+** MUSIC (=music.py=)
+#+begin_src python
+  import numpy as np
+  from pat import Pattern
+
+
+  class MUSIC:
+      def __init__(self, cov: np.ndarray, dof: int) -> None:
+          _, u = np.linalg.eigh(cov)
+          self.u_h = u[:, :-dof].conj().T
+      def calc_metric(self, v: np.ndarray) -> float:
+          return np.power(np.linalg.norm(np.dot(self.u_h, v)), -2)
+      def calc_spectrum(self, pat: Pattern, scope: np.ndarray) -> np.ndarray:
+          return np.array([self.calc_metric(pat.gen_steering_vector(x)) for x in scope])
+
+  class MUSIC_DCA(MUSIC):
+      def __init__(self, cov_smoothed: np.ndarray, dof: int) -> None:
+          super().__init__(cov_smoothed, dof)
+      def calc_spectrum(self, pat: Pattern, scope: np.ndarray) -> np.ndarray:
+          return np.array([self.calc_metric(pat.gen_steering_vector_dca_ula(x)) for x in scope])
+#+end_src
+* References
+1. Liu, Chun-Lin and Vaidyanathan, P. P. (2016). "Super Nested Arrays: Linear Sparse Arrays With Reduced Mutual Coupling Part I: Fundamentals". IEEE Transactions on Signal Processing, 64, 3997-4012. 10.1109/TSP.2016.2558159.
+2. Liu, Chun-Lin and Vaidyanathan, P. P. (2016). "Super Nested Arrays: Linear Sparse Arrays With Reduced Mutual Coupling Part II: High-Order Extensions". IEEE Transactions on Signal Processing, 64, 4203-4217. 10.1109/TSP.2016.2558167.
+3. Ma, Wing-Kin and Hsieh, Tsung-Han and Chi, Chong-Yung (2010). "DOA Estimation of Quasi-Stationary Signals With Less Sensors Than Sources and Unknown Spatial Noise Covariance: A Khatri–Rao Subspace Approach". IEEE Transactions on Signal Processing, 58, 2168-2180. 10.1109/TSP.2009.2034935.
+4. Liu, Chun-Lin and Vaidyanathan, P. P. (2015). "Remarks on the Spatial Smoothing Step in Coarray MUSIC". IEEE Signal Processing Letters, 22, 1438-1442. 10.1109/LSP.2015.2409153.

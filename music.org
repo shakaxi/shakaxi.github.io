@@ -43,7 +43,6 @@ where $\omega$ is the candidate frequency, and $\mathbf{a}(\omega)$ is the candi
 
 So long as the number of component (e.g., $r$ above) is known in advance (as its drawback), MUSIC can outperforms DFT based schemes, since it can achieve /superresolutional/ estimation for the spectrum, rather than the discrete DFT bins.
 
-
 * References
 1. http://en.wikipedia.org/w/index.php?title=MUSIC_(algorithm)
 2. 张贤达，矩阵分析与应用，清华大学出版社。
