@@ -1,0 +1,44 @@
+#+TITLE: Wiener-Khinchin Theorem
+
+* Wiener-Khinchin Theorem
+Given a /wide-sense stationary (WSS)/ stochastic process, its autocorrelation function and its power spectral density function are a pair of Fourier transform.
+* Frequency domain correlation
+The frequency domain correlation can be derived as
+\begin{align}
+  \mathcal{E}\left[ H(f_1) H^{*}(f_2) \right] &= \mathcal{E} \left[ \int_{-\infty}^{+\infty}h(\tau_1)e^{-j2\pi f_1\tau_1} d\tau_1 \cdot \int_{-\infty}^{+\infty}h^{*}(\tau_2)e^{j2\pi f_2\tau_2} d\tau_2 \right] \nonumber \\
+                                              &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \mathcal{E}\left[ h(\tau_1)h^{*}(\tau_2)\right]e^{-j2\pi(f_1 \tau_1 - f_2 \tau_2)} d\tau_1 d\tau_2, \label{eq:corr-f}
+\end{align}
+where $h(\tau)$ and $H(f)$ are the /channel impulse response (CIR)/ and /channel frequency response (CFR)/ of the channel, respectively.
+
+If the individual paths of the channel are uncorrelated, i.e., /uncorrelated scatering (US)/, $\mathcal{E}\left[h(\tau_1) h^{*}(\tau_2)\right] = h(\tau_1) h^{*}(\tau_2) \delta(\tau_1 - \tau_2)$, then equation \eqref{eq:corr-f} can be further written as
+\begin{align}
+\mathcal{E}\left[ H(f_1) H^{*}(f_2) \right] &= \int_{-\infty}^{+\infty}|h(\tau)|^2 e^{-j2\pi(f_1-f_2)\tau}d\tau \nonumber \\
+&=\int_{-\infty}^{+\infty}P_{\text{delay}}(\tau) e^{-j2\pi(f_1-f_2)\tau}d\tau, \label{eq:corr-f-us}
+\end{align}
+where $P_{\text{delay}}(\tau) \triangleq |h(\tau)|^2$ is the /power delay profile (PDP)/ of the channel.
+* Time domain correlation
+Without loss of generality, we consider a frequency-flat fading channel for instance, and the channel can be represented as
+\begin{align}
+  h(t) = \int_0^{2\pi} a(\theta)e^{j2\pi f_m t \cos\theta} d\theta, \label{eq:h-t}
+\end{align}
+where $a(\theta)$ is the complex-valued gain of the ray arrived in the direction of $\theta$, and $f_m \triangleq \dfrac{v}{\lambda}$ is termed /maximum Doppler frequency/.
+
+Then, the time domain correlation can be expressed as
+\begin{align}
+  \mathcal{E}\left[h(t_1)h^{*}(t_2)\right] &= \mathcal{E}\left[ \int_0^{2\pi} a(\theta_1)e^{j2\pi f_m t_1 \cos\theta_1} d\theta_1 \cdot \int_0^{2\pi} a^{*}(\theta_2)e^{-j2\pi f_m t_2 \cos\theta_2} d\theta_2\right] \nonumber \\  &=\int_0^{2\pi}\int_0^{2\pi}\mathcal{E}\left[a(\theta_1)a^{*}(\theta_2)\right]e^{j2\pi f_m(t_1\cos\theta_1 - t_2\cos\theta_2)}d\theta_1 d\theta_2\label{eq:corr-t}.
+\end{align}
+For US, similarly, we have $\mathcal{E}\left[a(\theta_1)a^{*}(\theta_2)\right] = a(\theta_1)a^{*}(\theta_2)\delta(\theta_1-\theta_2)$, and equation \eqref{eq:corr-t} becomes
+\begin{align}
+  \mathcal{E}\left[h(t_1)h^{*}(t_2)\right] &= \int_0^{2\pi} |a(\theta)|^2 e^{j2\pi f_m (t_1-t_2)\cos\theta} d\theta \nonumber \\
+  &= \int_0^{2\pi}P_{\text{angle}}(\theta) e^{j2\pi f_m (t_1-t_2)\cos\theta} d\theta \label{eq:corr-t-us-angle} \\
+&= \int_{-f_m}^{f_m} P_{\text{doppler}}(f)e^{j2\pi f(t_1-t_2)} df, \label{eq:corr-t-us-doppler}
+\end{align}
+where $P_{\text{angle}}(\theta) \triangleq |a(\theta)|^2$ is the /power angle spectrum/ of the channel, and $P_{\text{doppler}}(f) \triangleq 2P_{\text{angle}}(\theta) \left|\dfrac{d\theta}{df}\right| = \dfrac{2P_{\text{angle}}(\theta)}{\sqrt{f_m^2 - f^2}}$ is the well-known /Doppler frequency spectrum/ of the channel.
+
+Particularly, if all the arriving rays are uniformly around the receiver, a.k.a. /uniform ring scattering/ in Clarke model, we have
+\begin{align*}
+P_{\text{angle}}(\theta) &= \frac{1}{2\pi}, \quad \theta \in [0,2\pi); \\
+P_{\text{doppler}}(f) &= \frac{1}{\pi \sqrt{f_m^2 - f^2}}, \quad f \in [-f_m, f_m]; \\
+\mathcal{E}\left[h(t_1)h^{*}(t_2)\right] &= J_0 \left[ 2\pi f_m(t_1-t_2) \right];
+\end{align*}
+where $J_0(\cdot)$ is the zero-order Bessel function of the first kind. Accordingly, the Doppler power spectrum becomes U-shaped.
