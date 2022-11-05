@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2022-11-05 Sat 20:52 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mathematica</title>
+<title>Mathematics</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 <script type="text/x-mathjax-config">
@@ -216,476 +216,127 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Mathematica</h1>
+<h1 class="title">Mathematics</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org14e3673">Bracketing</a></li>
-<li><a href="#org7479ea2">Constants</a></li>
-<li><a href="#orgc4c9627">Data objects</a></li>
-<li><a href="#org2646fe6">Defining variables, functions, and rules</a></li>
-<li><a href="#orgc4bb1f8">Linear algebra</a></li>
-<li><a href="#orga6b845c">Algebraic calculation</a></li>
-<li><a href="#org6efa7ba">Calculus</a></li>
-<li><a href="#org3bf3d34">Input and output</a></li>
-<li><a href="#orgf944218">Expression in different formats</a></li>
-<li><a href="#orgaadf369">Programming</a></li>
+<li><a href="#org469cb2b">Special functions</a></li>
+<li><a href="#orga8e8f92">Matrix</a>
+<ul>
+<li><a href="#org1172ae2">Vectorization</a></li>
+<li><a href="#orga49f4c6">Khatri-Rao product</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
+<p>
+As the titile indicates, this post is written to summarize the basic of mathematics.
+</p>
 
-<div id="outline-container-org14e3673" class="outline-2">
-<h2 id="org14e3673">Bracketing</h2>
-<div class="outline-text-2" id="text-org14e3673">
-<dl class="org-dl">
-<dt>Parenthesis ()</dt><dd>change the priorities in computing.</dd>
-<dt>Square bracket []</dt><dd>function parameters, e.g. <code>f[x]</code>.</dd>
-<dt>Curly brace {}</dt><dd>list, e.g. <code>{a, b, c}</code>.</dd>
-<dt>Double bracket [[]]</dt><dd>abbreviation of <code>Part</code>, e.g. <code>v[[i]]</code>.</dd>
-</dl>
+<div id="outline-container-org469cb2b" class="outline-2">
+<h2 id="org469cb2b">Special functions</h2>
+<div class="outline-text-2" id="text-org469cb2b">
+<ul class="org-ul">
+<li><p>
+Gamma function
+</p>
+\begin{align*}
+  \Gamma(x) \triangleq \int_0^{+\infty} e^{-t} t^{x - 1} dt
+\end{align*}
+<p>
+Particularly, \(\forall x \in \mathbb{Z}^+\), \(\Gamma(x) = (x-1)!\).
+</p></li>
+<li>Bessel functions
+<ul class="org-ul">
+<li><p>
+First kind
+</p>
+\begin{align*}
+  J_n(\beta) \triangleq \frac{1}{2\pi}\int_{-\pi}^{\pi} e^{j(\beta\sin\theta-n\theta)}d\theta
+\end{align*}</li>
+<li>Second kind</li>
+</ul></li>
+<li><p>
+Q-function
+</p>
+\begin{align*}
+  Q(x) &\triangleq \frac{1}{\sqrt{2\pi}}\int_x^{+\infty}e^{-\frac{t^2}{2}} dt \\
+  &= 1 - Q(-x)
+\end{align*}</li>
+<li><p>
+Error function and complementary error function
+</p>
+\begin{align*}
+  erf(x) &= \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt \\
+  &= 2Q(\sqrt{2}x) \\
+  erfc(x)&= \frac{2}{\sqrt{\pi}}\int_x^{+\infty} e^{-t^2} dt \\
+  &= 1 - erf(x) \\
+  &= 1 - 2Q(\sqrt{2}x)
+\end{align*}</li>
+<li><p>
+Euler
+</p>
+\begin{align*}
+  e^{j\theta} &= \cos\theta + j\sin\theta \\
+  \cos\theta &= \frac{e^{j\theta} - e^{-j\theta}}{2} \\
+  \sin\theta &= \frac{e^{j\theta} + e^{-j\theta}}{2j}
+\end{align*}</li>
+</ul>
 </div>
 </div>
-<div id="outline-container-org7479ea2" class="outline-2">
-<h2 id="org7479ea2">Constants</h2>
-<div class="outline-text-2" id="text-org7479ea2">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Command</th>
-<th scope="col" class="org-left">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">Pi</td>
-<td class="org-left">\(\pi\)</td>
-</tr>
-
-<tr>
-<td class="org-left">E</td>
-<td class="org-left">\(e\)</td>
-</tr>
-
-<tr>
-<td class="org-left">I</td>
-<td class="org-left">\(i = \sqrt{-1}\)</td>
-</tr>
-
-<tr>
-<td class="org-left">Infinity</td>
-<td class="org-left">\(\infty\)</td>
-</tr>
-</tbody>
-</table>
+<div id="outline-container-orga8e8f92" class="outline-2">
+<h2 id="orga8e8f92">Matrix</h2>
+<div class="outline-text-2" id="text-orga8e8f92">
+</div>
+<div id="outline-container-org1172ae2" class="outline-3">
+<h3 id="org1172ae2">Vectorization</h3>
+<div class="outline-text-3" id="text-org1172ae2">
+<p>
+\(\forall \mathbf{A} \in \mathbb{C}^{p \times n}\), \(\mathbf{B} \in \mathbb{C}^{n \times m}\), \(\mathbf{C} \in \mathbb{C}^{m \times q}\),
+</p>
+\begin{align}
+  \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \otimes \mathbf{A}) \text{vec}(\mathbf{B}). \label{eq:vect}
+\end{align}
+<p>
+Particularly,
+</p>
+<ul class="org-ul">
+<li>By setting \(\mathbf{A} = \mathbf{I}_n\) and \(\mathbf{C} = \mathbf{I}_m\) respectively, \eqnref{eq:vect} becomes</li>
+</ul>
+\begin{align*}
+  \text{vec}(\mathbf{BC}) &= (\mathbf{C}^T \otimes \mathbf{I}_n) \text{vec}(\mathbf{B}), \\
+  \text{vec}(\mathbf{AB}) &= (\mathbf{I}_m \otimes \mathbf{A}) \text{vec}(\mathbf{B}).
+\end{align*}
+<ul class="org-ul">
+<li><p>
+If \(\mathbf{B} = \text{diag}(\mathbf{b})\) is a diagonal matrix (\(m = n\)), \(\mathbf{b} \in \mathbb{C}^n\), \eqnref{eq:vect} becomes
+</p>
+\begin{align*}
+  \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \odot \mathbf{A})\mathbf{b},
+\end{align*}
+<p>
+where \(\odot\) is the <a href="#orga49f4c6">Khatri-Rao product</a> operator.
+</p></li>
+</ul>
 </div>
 </div>
-<div id="outline-container-orgc4c9627" class="outline-2">
-<h2 id="orgc4c9627">Data objects</h2>
-<div class="outline-text-2" id="text-orgc4c9627">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Command</th>
-<th scope="col" class="org-left">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">2 + 8 I</td>
-<td class="org-left">complex</td>
-</tr>
-
-<tr>
-<td class="org-left">"text"</td>
-<td class="org-left">string</td>
-</tr>
-</tbody>
-</table>
+<div id="outline-container-orga49f4c6" class="outline-3">
+<h3 id="orga49f4c6">Khatri-Rao product</h3>
+<div class="outline-text-3" id="text-orga49f4c6">
+<p>
+\(\forall \mathbf{A} = \begin{bmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots &\mathbf{a}_k \end{bmatrix} \in \mathbb{C}^{n \times k}\) and \(\mathbf{B} = \begin{bmatrix} \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_k \end{bmatrix} \in \mathbb{C}^{m \times k}\), their Khatri-Rao product can be denoted by
+</p>
+\begin{align*}
+  \mathbf{A} \odot \mathbf{B} = \begin{bmatrix}
+      \mathbf{a}_1 \otimes \mathbf{b}_1 & \mathbf{a}_2 \otimes \mathbf{b}_2 & \cdots & \mathbf{a}_k \otimes \mathbf{b}_k
+\end{bmatrix} \in \mathbb{C}^{mn \times k},
+\end{align*}
+<p>
+where \(\mathbf{a}_i \otimes \mathbf{b}_i = \text{vec}\left(\mathbf{b}_i \mathbf{a}_i^T\right) \in \mathbb{C}^{nm}\), \(\mathbf{a}_i \in \mathbb{C}^n\), \(\mathbf{b}_i \in \mathbb{C}^m\), \(i = 1, 2, \ldots, k\).
+</p>
 </div>
-</div>
-<div id="outline-container-org2646fe6" class="outline-2">
-<h2 id="org2646fe6">Defining variables, functions, and rules</h2>
-<div class="outline-text-2" id="text-org2646fe6">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Command</th>
-<th scope="col" class="org-left">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">x = value</td>
-<td class="org-left">assignment</td>
-</tr>
-
-<tr>
-<td class="org-left">x := value</td>
-<td class="org-left">delayed assignment</td>
-</tr>
-
-<tr>
-<td class="org-left">x = . or Clear[x]</td>
-<td class="org-left">remove value assigned to <code>x</code></td>
-</tr>
-
-<tr>
-<td class="org-left">f[x_] := expression</td>
-<td class="org-left">define a function <code>f(x)</code></td>
-</tr>
-
-<tr>
-<td class="org-left">expression /. x-&gt;a</td>
-<td class="org-left">replace <code>x</code> by a in expression</td>
-</tr>
-
-<tr>
-<td class="org-left">expression //. x-&gt;a</td>
-<td class="org-left">replace repeatedly</td>
-</tr>
-
-<tr>
-<td class="org-left">lhs :&gt; rhs /; test</td>
-<td class="org-left">apply rule if <code>test</code> is True</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-orgc4bb1f8" class="outline-2">
-<h2 id="orgc4bb1f8">Linear algebra</h2>
-<div class="outline-text-2" id="text-orgc4bb1f8">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Command</th>
-<th scope="col" class="org-left">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">{a, b, c}</td>
-<td class="org-left">vector, list</td>
-</tr>
-
-<tr>
-<td class="org-left">{{a, b}, {c, d}}</td>
-<td class="org-left">2 &times; 2 matrix</td>
-</tr>
-
-<tr>
-<td class="org-left">n.m</td>
-<td class="org-left">matrix multiply</td>
-</tr>
-
-<tr>
-<td class="org-left">Inverse[m]</td>
-<td class="org-left">inverse of matrix</td>
-</tr>
-
-<tr>
-<td class="org-left">Transpose[m]</td>
-<td class="org-left">transpose</td>
-</tr>
-
-<tr>
-<td class="org-left">Det[m]</td>
-<td class="org-left">determinant</td>
-</tr>
-
-<tr>
-<td class="org-left">MatrixPower[m, n]</td>
-<td class="org-left">m^n</td>
-</tr>
-
-<tr>
-<td class="org-left">MatrixExp[m]</td>
-<td class="org-left">e^m</td>
-</tr>
-
-<tr>
-<td class="org-left">LinearSolve[m, b]</td>
-<td class="org-left">solve mx = b</td>
-</tr>
-
-<tr>
-<td class="org-left">Eigenvalues[m]</td>
-<td class="org-left">eigenvalues</td>
-</tr>
-
-<tr>
-<td class="org-left">Eigenvectors[m]</td>
-<td class="org-left">eigenvectors</td>
-</tr>
-
-<tr>
-<td class="org-left">Eigensystem[m]</td>
-<td class="org-left">eigenvalues and eigenvectors</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-orga6b845c" class="outline-2">
-<h2 id="orga6b845c">Algebraic calculation</h2>
-<div class="outline-text-2" id="text-orga6b845c">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Command</th>
-<th scope="col" class="org-left">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">Solve[lhs==rhs, x]</td>
-<td class="org-left">solve algebraic equation for x</td>
-</tr>
-
-<tr>
-<td class="org-left">DSolve[eqn, y[x], x]</td>
-<td class="org-left">solve differential equation</td>
-</tr>
-
-<tr>
-<td class="org-left">Reduce[eqn, x]</td>
-<td class="org-left">reduce equations</td>
-</tr>
-
-<tr>
-<td class="org-left">Eliminate[eqn, x]</td>
-<td class="org-left">eliminate variable x</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org6efa7ba" class="outline-2">
-<h2 id="org6efa7ba">Calculus</h2>
-<div class="outline-text-2" id="text-org6efa7ba">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Command</th>
-<th scope="col" class="org-left">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">D[f, x]</td>
-<td class="org-left">\(\partial f/\partial x\)</td>
-</tr>
-
-<tr>
-<td class="org-left">D[f, {x,n}</td>
-<td class="org-left">\(\partial^n f/\partial x^n\)</td>
-</tr>
-
-<tr>
-<td class="org-left">Dt[f]</td>
-<td class="org-left">\(df\)</td>
-</tr>
-
-<tr>
-<td class="org-left">Integrate[f, x]</td>
-<td class="org-left">\(\int fdx\)</td>
-</tr>
-
-<tr>
-<td class="org-left">Integrate[f, {x, a, b}]</td>
-<td class="org-left">\(\int_a^b f dx\)</td>
-</tr>
-
-<tr>
-<td class="org-left">Sum[f, {i, m, n}]</td>
-<td class="org-left">\(\sum_{i=m}^n f\)</td>
-</tr>
-
-<tr>
-<td class="org-left">Product[f, {i, m, n}]</td>
-<td class="org-left">\(\prod_{i=m}^n f\)</td>
-</tr>
-
-<tr>
-<td class="org-left">Limit[f, x-&gt;a]</td>
-<td class="org-left">\(\lim_{x\to a} f\)</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org3bf3d34" class="outline-2">
-<h2 id="org3bf3d34">Input and output</h2>
-<div class="outline-text-2" id="text-org3bf3d34">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Command</th>
-<th scope="col" class="org-left">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&lt;&lt;file</td>
-<td class="org-left">read expressions from <code>file</code>, return last expression.</td>
-</tr>
-
-<tr>
-<td class="org-left">expression&gt;&gt;file</td>
-<td class="org-left">write <code>expression</code> to <code>file</code>.</td>
-</tr>
-
-<tr>
-<td class="org-left">expression&gt;&gt;&gt;file</td>
-<td class="org-left">append <code>expression</code> to <code>file</code>.</td>
-</tr>
-
-<tr>
-<td class="org-left">!!file</td>
-<td class="org-left">display the content of <code>file</code>.</td>
-</tr>
-
-<tr>
-<td class="org-left">Save["file", x]</td>
-<td class="org-left">save the definition of <code>x</code> to <code>file</code>.</td>
-</tr>
-
-<tr>
-<td class="org-left">!command</td>
-<td class="org-left">issue a UNIX command.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-orgf944218" class="outline-2">
-<h2 id="orgf944218">Expression in different formats</h2>
-<div class="outline-text-2" id="text-orgf944218">
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Command</th>
-<th scope="col" class="org-left">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">FullForm[e]</td>
-<td class="org-left">full form</td>
-</tr>
-
-<tr>
-<td class="org-left">InputForm[e]</td>
-<td class="org-left">input</td>
-</tr>
-
-<tr>
-<td class="org-left">OutputForm[e]</td>
-<td class="org-left">out</td>
-</tr>
-
-<tr>
-<td class="org-left">CForm[e]</td>
-<td class="org-left">C codes</td>
-</tr>
-
-<tr>
-<td class="org-left">FortranForm</td>
-<td class="org-left">fortran</td>
-</tr>
-
-<tr>
-<td class="org-left">MatrixForm[e]</td>
-<td class="org-left">matrix</td>
-</tr>
-
-<tr>
-<td class="org-left">StandardForm[e]</td>
-<td class="org-left">math</td>
-</tr>
-
-<tr>
-<td class="org-left">TeXForm[e]</td>
-<td class="org-left">TEX</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-orgaadf369" class="outline-2">
-<h2 id="orgaadf369">Programming</h2>
-<div class="outline-text-2" id="text-orgaadf369">
-<dl class="org-dl">
-<dt>Table[expression, {i, max}]</dt><dd>make a list of values of <code>expression</code> with <code>i</code> from <code>1</code> to <code>max</code>.</dd>
-<dt>Module[{a, b, c}, expression1; expression2;&#x2026;]</dt><dd>a procedure with local variables <code>a</code>, <code>b</code>, <code>c</code> return value of last expression.</dd>
-<dt>Do[expression, {i, min, max, di}]</dt><dd>evaluate <code>expression</code> with <code>i</code> run from <code>min</code> to <code>max</code> in steps of <code>di</code>.</dd>
-<dt>While[test, body]</dt><dd>evaluate <code>body</code> repeatedly, so long as <code>test</code> is <code>True</code>.</dd>
-<dt>For[star,test,inc,body]</dt><dd>evaluate <code>start</code>, then repeatedly evaluate <code>body</code> and <code>inc</code>, until <code>test</code> fails.</dd>
-<dt>If[test, then, else]</dt><dd>evaluate <code>then</code> if <code>test</code> is <code>True</code>, and <code>else</code> if it is <code>False</code>.</dd>
-<dt>Which[test1,value1,test2,value2,&#x2026;]</dt><dd>give the value associated with the first <code>test</code> that is <code>True</code>.</dd>
-<dt>Switch[expression, form1, value1, form2, value2, &#x2026;]</dt><dd>give the value associated with first <code>form</code> matching <code>expression</code>.</dd>
-<dt>Function[x, body]</dt><dd>specify a pure function.</dd>
-<dt>Nest[f, x, n]</dt><dd>apply the function <code>f</code> nested <code>n</code> times to <code>x</code>.</dd>
-<dt>Apply[f, {a, b, c}]</dt><dd><code>f(a, b, c)</code>.</dd>
-<dt>Map[f, {a, b, c}]</dt><dd>apply <code>f</code> to each elements, <code>{f(a), f(b), f(c)}</code>.</dd>
-</dl>
 </div>
 </div>
 </div>
