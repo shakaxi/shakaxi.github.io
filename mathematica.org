@@ -1,0 +1,96 @@
+#+TITLE: Mathematica
+#+OPTIONS: ^:nil
+
+* Bracketing
+- Parenthesis () :: change the priorities in computing.
+- Square bracket [] :: function parameters, e.g. =f[x]=.
+- Curly brace {} :: list, e.g. ={a, b, c}=.
+- Double bracket [[]] :: abbreviation of =Part=, e.g. =v[[i]]=.
+* Constants
+| Command  | Value           |
+|----------+-----------------|
+| Pi       | $\pi$           |
+| E        | $e$             |
+| I        | $i = \sqrt{-1}$ |
+| Infinity | $\infty$        |
+* Data objects
+| Command | Meaning |
+|---------+---------|
+| 2 + 8 I | complex |
+| "text"  | string  |
+* Defining variables, functions, and rules
+| Command   | Meaning                        |
+|---------------------+--------------------------------|
+| x = value           | assignment                     |
+| x := value          | delayed assignment             |
+| x = . or Clear[x]   | remove value assigned to =x=   |
+| f[x_] := expression  | define a function =f(x)=       |
+| expression /. x->a  | replace =x= by a in expression |
+| expression //. x->a | replace repeatedly             |
+| lhs :> rhs /; test  | apply rule if =test= is True   |
+* Linear algebra
+| Command           | Meaning             |
+|-------------------+---------------------|
+| {a, b, c}         | vector, list        |
+| {{a, b}, {c, d}}  | 2 \times 2 matrix   |
+| n.m               | matrix multiply     |
+| Inverse[m]        | inverse of matrix   |
+| Transpose[m]      | transpose           |
+| Det[m]            | determinant         |
+| MatrixPower[m, n] | m^n                 |
+| MatrixExp[m]      | e^m                 |
+| LinearSolve[m, b] | solve mx = b        |
+| Eigenvalues[m]    | eigenvalues         |
+| Eigenvectors[m]   | eigenvectors        |
+| Eigensystem[m]    | eigenvalues and eigenvectors |
+* Algebraic calculation
+| Command              | Meaning                          |
+|----------------------+----------------------------------|
+| Solve[lhs==rhs, x]   | solve algebraic equation for x   |
+| DSolve[eqn, y[x], x] | solve differential equation      |
+| Reduce[eqn, x]       | reduce equations                 |
+| Eliminate[eqn, x]    | eliminate variable x             |
+* Calculus
+| Command                 | Meaning                   |
+|-------------------------+---------------------------|
+| D[f, x]                 | $\partial f/\partial x$   |
+| D[f, {x,n}              | $\partial^n f/\partial x^n$ |
+| Dt[f]                   | $df$                      |
+| Integrate[f, x]         | $\int fdx$                |
+| Integrate[f, {x, a, b}] | $\int_a^b f dx$           |
+| Sum[f, {i, m, n}]       | $\sum_{i=m}^n f$          |
+| Product[f, {i, m, n}]   | $\prod_{i=m}^n f$         |
+| Limit[f, x->a]          | $\lim_{x\to a} f$         |
+* Input and output
+| Command           | Meaning                                               |
+|-------------------+-------------------------------------------------------|
+| <<file            | read expressions from =file=, return last expression. |
+| expression>>file  | write =expression= to =file=.                         |
+| expression>>>file | append =expression= to =file=.                        |
+| !!file            | display the content of =file=.                        |
+| Save["file", x]   | save the definition of =x= to =file=.                 |
+| !command          | issue a UNIX command.                                 |
+* Expression in different formats
+| Command         | Meaning   |
+|-----------------+-----------|
+| FullForm[e]     | full form |
+| InputForm[e]    | input     |
+| OutputForm[e]   | out       |
+| CForm[e]        | C codes   |
+| FortranForm     | fortran   |
+| MatrixForm[e]   | matrix    |
+| StandardForm[e] | math      |
+| TeXForm[e]      | TEX       |
+* Programming
+- Table[expression, {i, max}] :: make a list of values of =expression= with =i= from =1= to =max=.
+- Module[{a, b, c}, expression1; expression2;...] :: a procedure with local variables =a=, =b=, =c= return value of last expression.
+- Do[expression, {i, min, max, di}] :: evaluate =expression= with =i= run from =min= to =max= in steps of =di=.
+- While[test, body] :: evaluate =body= repeatedly, so long as =test= is =True=.
+- For[star,test,inc,body] :: evaluate =start=, then repeatedly evaluate =body= and =inc=, until =test= fails.
+- If[test, then, else] :: evaluate =then= if =test= is =True=, and =else= if it is =False=.
+- Which[test1,value1,test2,value2,...] :: give the value associated with the first =test= that is =True=.
+- Switch[expression, form1, value1, form2, value2, ...] :: give the value associated with first =form= matching =expression=.
+- Function[x, body] :: specify a pure function.
+- Nest[f, x, n] :: apply the function =f= nested =n= times to =x=.
+- Apply[f, {a, b, c}] :: =f(a, b, c)=.
+- Map[f, {a, b, c}] :: apply =f= to each elements, ={f(a), f(b), f(c)}=.

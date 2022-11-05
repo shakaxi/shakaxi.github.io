@@ -17,7 +17,7 @@ X_a \left( k\frac{2\pi}{T} \right)  &= \int_{-\frac{T}{2}}^{\frac{T}{2}} \tilde{
   \tilde{x}(n+m) &\leftrightarrow \tilde{X}(k)e^{j\frac{2\pi}{N}km} \\
   \tilde{x}^{*}(n) &\leftrightarrow \tilde{X}^{*}(-k) \\
   \tilde{x}(-n) &\leftrightarrow \tilde{X}(-k) \\
-  \sum_{m=0}^\tilde{N-1} \tilde{x}_1(m) \tilde{x}_2(n-m) &\leftrightarrow \tilde{X}_1(k) \tilde{X}_2(k) \\
+  \sum_{m=0}^{N-1} \tilde{x}_1(m) \tilde{x}_2(n-m) &\leftrightarrow \tilde{X}_1(k) \tilde{X}_2(k) \\
   \tilde{x}_1(n) \tilde{x}_2(n) &\leftrightarrow \frac{1}{N} \sum_{\ell=0}^{N-1} \tilde{X}_1(\ell) \tilde{X}_2(k-\ell) \\
   \tilde{x}_e(n) &\leftrightarrow \tilde{X}_r(k) \\
   \tilde{x}_o(n) &\leftrightarrow j\tilde{X}_i(k) \\
