@@ -32,8 +32,8 @@ where subscript $r$, $i$, $e$, and $o$ mean the real, imagnary, even, and odd pa
   \tilde{x}_o(n) &= \frac{\tilde{x}(n) - \tilde{x}(-n)}{2} \\
   \tilde{X}(k) &= \tilde{X}_e(k) + \tilde{X}_o(k) \\
        &= \tilde{X}_r(k) + j \tilde{X}_i(k) \\
-  \tilde{X}_e(k) &= \frac{\tilde{X}(k) + \tilde{X}(k)}{2} \\
-  \tilde{X}_o(k) &= \frac{\tilde{X}(k) - \tilde{X}(k)}{2}.
+  \tilde{X}_e(k) &= \frac{\tilde{X}(k) + \tilde{X}(-k)}{2} \\
+  \tilde{X}_o(k) &= \frac{\tilde{X}(k) - \tilde{X}(-k)}{2}.
 \end{align*}
 ** Wide Sense Fourier Series
 *** Continuous
