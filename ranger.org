@@ -1,0 +1,108 @@
+#+TITLE: Ranger
+
+[[https://github.com/ranger/ranger][Ranger]] is a popular and powerful file manager in console.
+
+* Installation
+In archlinux, ranger can be directly installed using =pacman=.
+#+begin_src shell
+  pacman -S ranger
+#+end_src
+* Configuration
+Ranger can be customized by 4 configuration files below.
+- =rc.conf= organizes various options and keybindings.
+- =commands.py= defines commands, which can be provoked via =:=.
+- =rifle.conf= defines the default programs to open each type of files.
+- =scope.sh= is a shell script to preview each type of files.
+
+In fact, there are both global and local versions for each configuration above. The local versions are stored in =~/.config/ranger=. Optionally, the global version of the configuration files can be copied as follows to =~/.config/ranger= as a starting point before further customization, i.e.,
+#+begin_src shell
+  ranger --copy-config=rc/rifle/commands/scope/all
+#+end_src
+
+For =rc.conf= and =commands=, ranger subsequently loads the global version first and then the local version. By default, only the options different from the default values in the global version need to be overridden in the local counterpart. The loading of global version can be skipped by setting environment variable =RANGER_LOAD_DEFAULT_RC= to =FALSE=.
+
+For =scope.sh= and =rifle.conf=, what is different, ranger loads either the local or the global version.
+
+* Usage
+** Macro
+Following macros are defined to facilitate the commands in range console.
+| *Macro* | *Description*                                |
+|---------+----------------------------------------------|
+| =%f=    | The highlighted file                         |
+| =%d=    | Path of current directory                    |
+| =%p=    | Full paths of the selected files             |
+| =%s=    | Selected files in the current directory      |
+| =%t=    | Tagged files in the current directory        |
+| =%c=    | Full paths of the currently copied/cut files |
+** Tag
+A tag is a single character[fn:2] displayed to the left of a filename.
+| *Keybinding*   | *Description*                          |
+|----------------+----------------------------------------|
+| =t=            | Tag/untag on current file.             |
+| =ut=           | Remove tags from the selected files.   |
+| ="<character>= | Set =<character>= as a tag for a file. |
+** Filter
+Command =:filter <regexp>= can be used to filter files matching regular expression =<regexp>=. Particularly, =:filter= can clear and reset the filter.
+
+=:filter_stack= is used to combine a series of filters. The default combinator is =AND=, and combinator =OR= can be achieved by =.|=.
+| *Keybinding* | *Description*                        |
+|--------------+--------------------------------------|
+| =.=          | Add filter to =:filter_stack=.       |
+| =.c=         | Clear =filter_statck=.               |
+** Flatten
+Command =:flat <n>= can flatten a nested directory tree within =n= levels. Particularly,
+- n=-1 means infinite levels, i.e., no limit.
+- n=0 disables the flat view.
+** TODO Rename
+** Keybinding
+Ranger comes up with vim-like keybindings, e.g.,
+| *Keybinding*             | *Description*                                         |
+|--------------------------+-------------------------------------------------------|
+| =q=                      | Close the current tabaz[fn:1].                        |
+| =j/k=                    | Move down/up.                                         |
+| =h=                      | Enter parent directory.                               |
+| =l=                      | Enter the selected directory.                         |
+| =i=                      | Preview the selected file.                            |
+| =g=                      | Go to                                                 |
+| =r=                      | =:open_with=                                          |
+| =y=                      | Yank/copy                                             |
+| =yy=                     | Copy file(s).                                         |
+| =yd=                     | Copy directory as text.                               |
+| =yn=                     | Copy file name as text.                               |
+| =yp=                     | Copy file path (with name) as text.                   |
+| =ya=                     | Copy and append file(s) to the clipboard buffer.      |
+| =d=                      | Cut/delete                                            |
+| =dd=                     | Cut file(s).                                          |
+| =da=                     | Cut and append file(s) to the clipboard.              |
+| =p=                      | Paste                                                 |
+| =o=                      | Sort/order                                            |
+| =u=                      | Undo                                                  |
+| =m<key>=                 | Bookmark the current folder with =key=.               |
+| ='<key>=                 | Access the folder bookmarked by =key=.                |
+| =''=                     | Move back.                                            |
+| =Alt-<n>=                | Create or switch to tab =n=.                          |
+| =space=                  | Mark the current file.                                |
+| =v=                      | Invert the selection.                                 |
+| =V=                      | Enter a visual mode to mark a range of files.         |
+| =:mark/unmark <regexp>=  | Mark/unmark files matching =regexp=.                  |
+| =:mark/unmark_tag <tag>= | Mark/unmark files by =tag=.                           |
+| =tab/shift-tab=          | Switch to next/previous tab.                          |
+| =M=                      | Linemode                                              |
+| =+/-/==                  | Set access right to files                             |
+| =z=                      | Change the settings of ranger in the current session. |
+| =zh=                     | Show/hide hidden files.                               |
+| =zi=                     | Toggle image preview.                                 |
+** Get help
+| *Keybinding* | *Description*                     |
+|--------------+-----------------------------------|
+| =?=          | Get help.                         |
+| =?m=         | Man page for ranger.              |
+| =?k=         | List of keybindings.              |
+| =?c=         | List of commands.                 |
+| =?s=         | List of options and their values. |
+
+* Footnotes
+
+[fn:1] Or even quit the ranger (if it is the last tab).
+
+[fn:2] The default tag is an asterisk (=*=).
