@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-11-06 Sun 15:20 -->
+<!-- 2022-11-13 Sun 22:11 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Fourier Transform</title>
@@ -226,7 +226,7 @@
 <li><a href="#org554f799">Continuous Fourier Series</a></li>
 <li><a href="#orgc1b1451">Discrete Fourier Series</a>
 <ul>
-<li><a href="#orgcf02db5">Properties</a></li>
+<li><a href="#org10bc62a">Properties</a></li>
 </ul>
 </li>
 <li><a href="#orge873a74">Wide Sense Fourier Series</a>
@@ -239,10 +239,10 @@
 </li>
 <li><a href="#orgefbbe4b">Continuous Fourier Transform</a>
 <ul>
-<li><a href="#orge0a2bb8">Definition</a></li>
-<li><a href="#orgbbf3a82">Properties</a>
+<li><a href="#org1ba04e1">Definition</a></li>
+<li><a href="#orgbd708bb">Properties</a>
 <ul>
-<li><a href="#org7caac43">Parseval Theorem</a></li>
+<li><a href="#org24ed8e8">Parseval Theorem</a></li>
 </ul>
 </li>
 <li><a href="#org1151554">Fourier Transform Pairs</a></li>
@@ -250,18 +250,18 @@
 </li>
 <li><a href="#orgfc8fc02">Discrete Time Fourier Transform</a>
 <ul>
-<li><a href="#org32ec9e7">Definition</a></li>
-<li><a href="#org2f31681">Properties</a>
+<li><a href="#org3a1405e">Definition</a></li>
+<li><a href="#org0900c4c">Properties</a>
 <ul>
-<li><a href="#org24ed8e8">Parseval Theorem</a></li>
+<li><a href="#orgc17b611">Parseval Theorem</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#orgb643b6e">Discrete Fourier Transform</a>
 <ul>
-<li><a href="#org1ba04e1">Definition</a></li>
-<li><a href="#org10bc62a">Properties</a></li>
+<li><a href="#orgbe407d8">Definition</a></li>
+<li><a href="#org66bc6d7">Properties</a></li>
 </ul>
 </li>
 <li><a href="#org7ad9a20">Summary</a></li>
@@ -290,9 +290,9 @@ X_a \left( k\frac{2\pi}{T} \right)  &= \int_{-\frac{T}{2}}^{\frac{T}{2}} \tilde{
   \tilde{X}(k) &= \sum_{n=0}^{N-1} \tilde{x}(n) e^{-j\frac{2\pi}{N}nk}
 \end{align*}
 </div>
-<div id="outline-container-orgcf02db5" class="outline-4">
-<h4 id="orgcf02db5">Properties</h4>
-<div class="outline-text-4" id="text-orgcf02db5">
+<div id="outline-container-org10bc62a" class="outline-4">
+<h4 id="org10bc62a">Properties</h4>
+<div class="outline-text-4" id="text-org10bc62a">
 \begin{align*}
   \tilde{x}(n+m) &\leftrightarrow \tilde{X}(k)e^{j\frac{2\pi}{N}km} \\
   \tilde{x}^{*}(n) &\leftrightarrow \tilde{X}^{*}(-k) \\
@@ -364,9 +364,9 @@ where
 <h2 id="orgefbbe4b">Continuous Fourier Transform</h2>
 <div class="outline-text-2" id="text-orgefbbe4b">
 </div>
-<div id="outline-container-orge0a2bb8" class="outline-3">
-<h3 id="orge0a2bb8">Definition</h3>
-<div class="outline-text-3" id="text-orge0a2bb8">
+<div id="outline-container-org1ba04e1" class="outline-3">
+<h3 id="org1ba04e1">Definition</h3>
+<div class="outline-text-3" id="text-org1ba04e1">
 \begin{align*}
   F(j\omega) &= \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt \\
              &= |F(j\omega)|e^{j\phi(\omega)} \\
@@ -375,9 +375,9 @@ where
 \end{align*}
 </div>
 </div>
-<div id="outline-container-orgbbf3a82" class="outline-3">
-<h3 id="orgbbf3a82">Properties</h3>
-<div class="outline-text-3" id="text-orgbbf3a82">
+<div id="outline-container-orgbd708bb" class="outline-3">
+<h3 id="orgbd708bb">Properties</h3>
+<div class="outline-text-3" id="text-orgbd708bb">
 \begin{align*}
   a_1 f_1(t) + a_2 f_2(t) &\leftrightarrow a_1 F_1(j\omega) + a_2 F_2(j\omega) \\
   f_1(t) * f_2(t) &\leftrightarrow F_1(j\omega) F_2(j\omega) \\
@@ -395,9 +395,9 @@ where
   \frac{1}{\omega_0} \sum_{n=-\infty}^{\infty} f \left( t - n \frac{2\pi}{\omega_0} \right) &\leftrightarrow F(j\omega) \sum_{n=-\infty}^{\infty} \delta(\omega-n \omega_0)
 \end{align*}
 </div>
-<div id="outline-container-org7caac43" class="outline-4">
-<h4 id="org7caac43">Parseval Theorem</h4>
-<div class="outline-text-4" id="text-org7caac43">
+<div id="outline-container-org24ed8e8" class="outline-4">
+<h4 id="org24ed8e8">Parseval Theorem</h4>
+<div class="outline-text-4" id="text-org24ed8e8">
 \begin{align*}
   \int_{-\infty}^{\infty} |f(t)|^2 dt = \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(j\omega)|^2 d\omega
 \end{align*}
@@ -438,18 +438,18 @@ where
 <h2 id="orgfc8fc02">Discrete Time Fourier Transform</h2>
 <div class="outline-text-2" id="text-orgfc8fc02">
 </div>
-<div id="outline-container-org32ec9e7" class="outline-3">
-<h3 id="org32ec9e7">Definition</h3>
-<div class="outline-text-3" id="text-org32ec9e7">
+<div id="outline-container-org3a1405e" class="outline-3">
+<h3 id="org3a1405e">Definition</h3>
+<div class="outline-text-3" id="text-org3a1405e">
 \begin{align*}
   X(e^{j\omega}) &= \sum_{n=-\infty}^{\infty} x(n) e^{-j\omega n} \\
   x(n) &= \frac{1}{2\pi} \int_{-\pi}^{\pi} X(e^{j\omega})e^{j\omega} d\omega
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org2f31681" class="outline-3">
-<h3 id="org2f31681">Properties</h3>
-<div class="outline-text-3" id="text-org2f31681">
+<div id="outline-container-org0900c4c" class="outline-3">
+<h3 id="org0900c4c">Properties</h3>
+<div class="outline-text-3" id="text-org0900c4c">
 \begin{align*}
   x_1(n) * x_2(n) &\leftrightarrow X_1(e^{j\omega}) X_2(e^{j\omega}) \\
   x^{*}(n) &\leftrightarrow X^{*}(e^{-j\omega}) \\
@@ -473,9 +473,9 @@ where subscript \(r\), \(i\), \(e\), and \(o\) mean the real, imagnary, even, an
   X_o(e^{j\omega}) &= \frac{X(e^{j\omega}) - X^{*}(e^{-j\omega})}{2}.
 \end{align*}
 </div>
-<div id="outline-container-org24ed8e8" class="outline-4">
-<h4 id="org24ed8e8">Parseval Theorem</h4>
-<div class="outline-text-4" id="text-org24ed8e8">
+<div id="outline-container-orgc17b611" class="outline-4">
+<h4 id="orgc17b611">Parseval Theorem</h4>
+<div class="outline-text-4" id="text-orgc17b611">
 \begin{align*}
   \sum_{n=-\infty}^{\infty}|x(n)|^2 = \frac{1}{2\pi} \int_{-\infty}^{\infty} |X(e^{$j\omega})|^2 d\omega
 \end{align*}
@@ -487,18 +487,18 @@ where subscript \(r\), \(i\), \(e\), and \(o\) mean the real, imagnary, even, an
 <h2 id="orgb643b6e">Discrete Fourier Transform</h2>
 <div class="outline-text-2" id="text-orgb643b6e">
 </div>
-<div id="outline-container-org1ba04e1" class="outline-3">
-<h3 id="org1ba04e1">Definition</h3>
-<div class="outline-text-3" id="text-org1ba04e1">
+<div id="outline-container-orgbe407d8" class="outline-3">
+<h3 id="orgbe407d8">Definition</h3>
+<div class="outline-text-3" id="text-orgbe407d8">
 \begin{align*}
   X(k) &= \sum_{n=0}^{N-1} x(n) e^{-j\frac{2\pi}{N}nk} \\
   x(n) &= \frac{1}{N} \sum_{k=0}^{N-1} e^{j\frac{2\pi}{N}kn}
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org10bc62a" class="outline-3">
-<h3 id="org10bc62a">Properties</h3>
-<div class="outline-text-3" id="text-org10bc62a">
+<div id="outline-container-org66bc6d7" class="outline-3">
+<h3 id="org66bc6d7">Properties</h3>
+<div class="outline-text-3" id="text-org66bc6d7">
 \begin{align*}
   x^{*}(n) &\leftrightarrow X^{*}(N-k) \\
   x^{*}(N-n) &\leftrightarrow X^{*}(k) \\
