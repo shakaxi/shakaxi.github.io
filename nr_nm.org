@@ -1,0 +1,63 @@
+#+TITLE: NR - Numerology
+
+Since release 15, /new radio (NR)/ system has explicitly proposed the concept of /numerology/, which is used to represent the scaling of subcarrier bandwidth, FFT size, etc.
+
+Above all, a /reference numerology/ is defined based on
+\begin{align*}
+\Delta_{\mathrm{subc, ref}} &= 15 \text{ kHz}, \\
+N_{\mathrm{FFT, ref}} &= 2048.
+\end{align*}
+Accordingly, the sampling rate the sample duration can be written as
+\begin{align*}
+f_{\mathrm{s, ref}} &= \Delta_{\mathrm{subc, ref}} N_{\mathrm{FFT, ref}}, \\
+T_{\mathrm{s, ref}} &= \frac{1}{f_{\mathrm{s, ref}}} = \frac{1}{\Delta_{\mathrm{subc, ref}} N_{\mathrm{FFT, ref}}}.
+\end{align*}
+
+Additionally, an extreme numerology is also defined based on
+\begin{align*}
+\Delta_{\mathrm{subc, max}} &= 480 \text{ kHz}, \\
+N_{\mathrm{FFT, max}} &= 4096,
+\end{align*}
+Similarly, the sampling rate and sample duration can be expressed as
+\begin{align*}
+f_{\mathrm{s, max}} &= \Delta_{\mathrm{subc, max}} N_{\mathrm{FFT, max}}, \\
+T_{\mathrm{s, max}} &= \frac{1}{f_{\mathrm{s, max}}} = \frac{1}{\Delta_{\mathrm{subc, max}} N_{\mathrm{FFT, max}}}.
+\end{align*}
+The ratio of the two sample durations above is denoted by
+\begin{align*}
+\kappa \triangleq \frac{T_{\mathrm{s, max}}}{T_{\mathrm{s, ref}}} \equiv 64.
+\end{align*}
+
+Then, other configurations can be accordingly scaled relative to the reference numerology. Supported numerologies can be listed in Table [[tab:nm-list]]. For convenient reference, a numerology indicator is defined based on the subcarrier bandwidth, i.e.,
+\begin{align*}
+  \mu \triangleq \log_{2} \frac{\Delta_{\mathrm{subc}}}{\Delta_{\mathrm{subc, ref}}}.
+\end{align*}
+#+CAPTION: Supported numerologies
+#+ATTR_HTML: :align center :width 300px :border 3
+#+NAME: tab:nm-list
+| <c> |          <c>           |   <c>   |
+| $\mu$ | $\Delta_{\mathrm{subc}}$ (kHz) | CP type |
+|-----+------------------------+---------|
+|  0  |           15           |   NCP   |
+|  1  |           30           |   NCP   |
+|  2  |           60           | NCP/ECP |
+|  3  |          120           |   NCP   |
+|  4  |          240           |   NCP   |
+
+Regarding frame structure, following hierarchy is adopted.
+- A frame is comprised of 10 subframes.
+- A subframe is comprised of $N_{\mathrm{slot}}^{\mathrm{subframe},\mu} = 2^{\mu}$ slots, where $\mu$ is a numerology indicator.
+- A slot is comprised of $N_{\mathrm{symbol}}^{\mathrm{slot}}$ symbols.
+\begin{align*}
+  N_{\mathrm{symbol}}^{\mathrm{slot}} = 
+  \begin{cases}
+    14, & \text{NCP}; \\
+    12, & \text{ECP}.
+  \end{cases}
+\end{align*}
+- An OFDM symbol without /cyclic prefix (CP)/, comprised of $N_{\mathrm{FFT}}$ samples, has duration $T_{\mathrm{sym}} = N_{\mathrm{FFT}}t_{s} = \dfrac{1}{\Delta_{\mathrm{subc}}}$, where
+  + $t_{s} = \dfrac{1}{f_{s}}$ is the duration of each sample;
+  + $f_{s} = \Delta_{\mathrm{subc}} N_{\mathrm{FFT}}$ is the sampling rate.
+- There are a couple types of CP.
+  + /Normal CP (NCP)/ consists of $N_{\mathrm{CP} }= 144 \dfrac{N_{\mathrm{FFT}}}{N_{\mathrm{FFT, ref}}}$ samples. Particularly, there are additional $16 \dfrac{N_{\mathrm{FFT}}}{N_{\mathrm{FFT, ref}}} \dfrac{\Delta_{\mathrm{subc}}}{\Delta_{\mathrm{subc, ref}}}$ samples for 1st symbol in each slot.
+  + /Extended CP (ECP)/ consists of $N_{\mathrm{CP}} = 512 \dfrac{N_{\mathrm{FFT}}}{N_{\mathrm{FFT, ref}}}$ samples.

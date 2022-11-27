@@ -44,10 +44,10 @@ A tag is a single character[fn:2] displayed to the left of a filename.
 ** Filter
 Command =:filter <regexp>= can be used to filter files matching regular expression =<regexp>=. Particularly, =:filter= can clear and reset the filter.
 
-=:filter_stack= is used to combine a series of filters. The default combinator is =AND=, and combinator =OR= can be achieved by =.|=.
+=:filter_stack= is used to combine a series of filters with desired combinator, e.g., =.&= for =AND= combinator and =.|= for =OR= combinator.
 | *Keybinding* | *Description*                        |
 |--------------+--------------------------------------|
-| =.=          | Add filter to =:filter_stack=.       |
+| =.=          | Prefix for filter related operations |
 | =.c=         | Clear =filter_statck=.               |
 ** Flatten
 Command =:flat <n>= can flatten a nested directory tree within =n= levels. Particularly,
