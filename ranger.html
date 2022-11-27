@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-11-13 Sun 22:10 -->
+<!-- 2022-11-15 Tue 22:52 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ranger</title>
@@ -368,7 +368,7 @@ Command <code>:filter &lt;regexp&gt;</code> can be used to filter files matching
 </p>
 
 <p>
-<code>:filter_stack</code> is used to combine a series of filters. The default combinator is <code>AND</code>, and combinator <code>OR</code> can be achieved by <code>.|</code>.
+<code>:filter_stack</code> is used to combine a series of filters with desired combinator, e.g., <code>.&amp;</code> for <code>AND</code> combinator and <code>.|</code> for <code>OR</code> combinator.
 </p>
 <table>
 
@@ -387,7 +387,7 @@ Command <code>:filter &lt;regexp&gt;</code> can be used to filter files matching
 <tbody>
 <tr>
 <td class="org-left"><code>.</code></td>
-<td class="org-left">Add filter to <code>:filter_stack</code>.</td>
+<td class="org-left">Prefix for filter related operations</td>
 </tr>
 
 <tr>

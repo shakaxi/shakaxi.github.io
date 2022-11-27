@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-11-27 Sun 23:03 -->
+<!-- 2022-11-27 Sun 23:02 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shaka's Blog Site</title>
+<title>NR - Numerology</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -192,127 +192,153 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Shaka's Blog Site</h1>
+<h1 class="title">NR - Numerology</h1>
+<p>
+Since release 15, <i>new radio (NR)</i> system has explicitly proposed the concept of <i>numerology</i>, which is used to represent the scaling of subcarrier bandwidth, FFT size, etc.
+</p>
+
+<p>
+Above all, a <i>reference numerology</i> is defined based on
+</p>
+\begin{align*}
+\Delta_{\mathrm{subc, ref}} &= 15 \text{ kHz}, \\
+N_{\mathrm{FFT, ref}} &= 2048.
+\end{align*}
+<p>
+Accordingly, the sampling rate the sample duration can be written as
+</p>
+\begin{align*}
+f_{\mathrm{s, ref}} &= \Delta_{\mathrm{subc, ref}} N_{\mathrm{FFT, ref}}, \\
+T_{\mathrm{s, ref}} &= \frac{1}{f_{\mathrm{s, ref}}} = \frac{1}{\Delta_{\mathrm{subc, ref}} N_{\mathrm{FFT, ref}}}.
+\end{align*}
+
+<p>
+Additionally, an extreme numerology is also defined based on
+</p>
+\begin{align*}
+\Delta_{\mathrm{subc, max}} &= 480 \text{ kHz}, \\
+N_{\mathrm{FFT, max}} &= 4096,
+\end{align*}
+<p>
+Similarly, the sampling rate and sample duration can be expressed as
+</p>
+\begin{align*}
+f_{\mathrm{s, max}} &= \Delta_{\mathrm{subc, max}} N_{\mathrm{FFT, max}}, \\
+T_{\mathrm{s, max}} &= \frac{1}{f_{\mathrm{s, max}}} = \frac{1}{\Delta_{\mathrm{subc, max}} N_{\mathrm{FFT, max}}}.
+\end{align*}
+<p>
+The ratio of the two sample durations above is denoted by
+</p>
+\begin{align*}
+\kappa \triangleq \frac{T_{\mathrm{s, max}}}{T_{\mathrm{s, ref}}} \equiv 64.
+\end{align*}
+
+<p>
+Then, other configurations can be accordingly scaled relative to the reference numerology. Supported numerologies can be listed in Table <a href="#org78dec4e">1</a>. For convenient reference, a numerology indicator is defined based on the subcarrier bandwidth, i.e.,
+</p>
+\begin{align*}
+  \mu \triangleq \log_{2} \frac{\Delta_{\mathrm{subc}}}{\Delta_{\mathrm{subc, ref}}}.
+\end{align*}
+<table id="org78dec4e" align="center" width="300px" border="3">
+<caption class="t-above"><span class="table-number">Table 1:</span> Supported numerologies</caption>
+
+<colgroup>
+<col  class="org-center">
+
+<col  class="org-center">
+
+<col  class="org-center">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">\(\mu\)</th>
+<th scope="col" class="org-center">\(\Delta_{\mathrm{subc}}\) (kHz)</th>
+<th scope="col" class="org-center">CP type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">0</td>
+<td class="org-center">15</td>
+<td class="org-center">NCP</td>
+</tr>
+
+<tr>
+<td class="org-center">1</td>
+<td class="org-center">30</td>
+<td class="org-center">NCP</td>
+</tr>
+
+<tr>
+<td class="org-center">2</td>
+<td class="org-center">60</td>
+<td class="org-center">NCP/ECP</td>
+</tr>
+
+<tr>
+<td class="org-center">3</td>
+<td class="org-center">120</td>
+<td class="org-center">NCP</td>
+</tr>
+
+<tr>
+<td class="org-center">4</td>
+<td class="org-center">240</td>
+<td class="org-center">NCP</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Regarding frame structure, following hierarchy is adopted.
+</p>
 <ul class="org-ul">
-<li><a href="aurora.html">Aurora - A LaTeX Plugin for Microsoft Word</a></li>
-<li><a href="bash.html">Bash</a></li>
-<li><a href="beam_pattern.html">Beam Pattern</a></li>
-<li><a href="blog.html">Blog on GitHub</a></li>
-<li><a href="cpp_basic.html">C++ - Basic</a></li>
-<li><a href="cpp_itpp.html">C++ - IT++</a></li>
-<li><a href="cpp_multithread.html">C++ - Multithread</a></li>
-<li><a href="cpp_class_output.html">C++ - Output Object</a></li>
-<li><a href="cpp_polymorphism.html">C++ - Polymorphism</a></li>
-<li><a href="cpp_singleton.html">C++ - Singleton</a></li>
-<li><a href="cpp_stl.html">C++ - Standard Template Library</a></li>
-<li><a href="cpp_tp.html">C++ - Thread Pool</a></li>
-<li><a href="cpp_sl.html">C++ - 标准库</a></li>
-<li><a href="cpp_switch.html">C/C++ - switch</a></li>
-<li><a href="cvx_opt.html">Convex Optimization</a></li>
-<li><a href="dot.html">DOT</a></li>
-<li><a href="dir_cosine.html">Direction Cosine</a></li>
-<li><a href="dwm.html">Dynamic Window Manager</a></li>
-<li><a href="emacs_config.html">Emacs - Basic Configuration</a></li>
-<li><a href="emacs_cpp.html">Emacs - C/C++ Programming</a></li>
-<li><a href="emacs_cdlatex.html">Emacs - CDLaTeX</a></li>
-<li><a href="emacs_cedet.html">Emacs - CEDET</a></li>
-<li><a href="emacs_company.html">Emacs - Company</a></li>
-<li><a href="emacs_dired.html">Emacs - Dired</a></li>
-<li><a href="doxygen.html">Emacs - Doxygen</a></li>
-<li><a href="emacs_ebib.html">Emacs - Ebib</a></li>
-<li><a href="emacs_flycheck.html">Emacs - Flycheck</a></li>
-<li><a href="emacs_gnus.html">Emacs - Gnus</a></li>
-<li><a href="emacs_helm.html">Emacs - Helm</a></li>
-<li><a href="emacs_lsp.html">Emacs - Language Server Protocol</a></li>
-<li><a href="emacs_movement.html">Emacs - Movement</a></li>
-<li><a href="emacs_mu4e.html">Emacs - Mu4e</a></li>
-<li><a href="notmuch.html">Emacs - Notmuch</a></li>
-<li><a href="emacs_wl.html">Emacs - Wanderlust</a></li>
-<li><a href="emacs_ycmd.html">Emacs - YCMD</a></li>
-<li><a href="esprit.html">Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)</a></li>
-<li><a href="font.html">Fonts for Linux</a></li>
-<li><a href="fourier.html">Fourier Transform</a></li>
-<li><a href="gdb.html">GDB</a></li>
-<li><a href="grub.html">GRUB</a></li>
-<li><a href="gaussian.html">Gaussian Distribution</a></li>
-<li><a href="git.html">Git</a></li>
-<li><a href="gitlab.html">GitLab</a></li>
-<li><a href="x1c.html">Installation of ArchLinux on Thinkpad X1 Carbon 2018</a></li>
-<li><a href="lte_d2d.html">LTE - D2D</a></li>
-<li><a href="lte_ds.html">LTE - Discovery Signal</a></li>
-<li><a href="lte_fc_loc.html">LTE - Frequency Domain Location of Carriers</a></li>
-<li><a href="lte_mobility_mgmt.html">LTE - Mobility Management</a></li>
-<li><a href="lte_pcfich.html">LTE - PCFICH</a></li>
-<li><a href="lte_pdcch_epdcch.html">LTE - PDCCH &amp; EPDCCH</a></li>
-<li><a href="emacs_beamer.html">LaTeX - Beamer</a></li>
-<li><a href="latex_gantt.html">LaTeX - Gantt Chart</a></li>
-<li><a href="latex_pgf_tikz.html">LaTeX - Pgf/Tikz</a></li>
-<li><a href="latex_pgfplots.html">LaTeX - Pgfplots</a></li>
-<li><a href="laplace.html">Laplace Transform</a></li>
-<li><a href="rls.html">Least Square and Its Iterative Approach</a></li>
-<li><a href="arch_cn.html">Linux - A Mirror of Arch Linux</a></li>
-<li><a href="arch_inst.html">Linux - An Installation Guide for Arch Linux</a></li>
-<li><a href="tool.html">Linux - Command Line Tools</a></li>
-<li><a href="console.html">Linux - Customize Console</a></li>
-<li><a href="microcode.html">Linux - Microcode</a></li>
-<li><a href="sed.html">Linux - Sed</a></li>
-<li><a href="zsh.html">Linux - ZSH</a></li>
-<li><a href="matlab_fig.html">MATLAB - Figure Data Abstraction</a></li>
-<li><a href="matlab_ssh.html">MATLAB over SSH</a></li>
-<li><a href="ml.html">Machine Learning</a></li>
-<li><a href="makefile.html">Makefile</a></li>
-<li><a href="matched_filter.html">Matched Filter</a></li>
-<li><a href="mathematica.html">Mathematica</a></li>
-<li><a href="math.html">Mathematica</a></li>
-<li><a href="music.html">Multiple Signal Classification (MUSIC)</a></li>
-<li><a href="mutt.html">Mutt</a></li>
-<li><a href="nfs.html">NFS</a></li>
-<li><a href="nr_cell_search.html">NR - Cell Search</a></li>
-<li><a href="nr_csirs.html">NR - Channel State Information Reference Signal (CSI-RS)</a></li>
-<li><a href="nr_dci.html">NR - DCI</a></li>
-<li><a href="nr_dmrs.html">NR - Demodulation Reference Signal (DMRS)</a></li>
-<li><a href="nr_dl_cb.html">NR - Downlink Codebook</a></li>
-<li><a href="nr_mtrp.html">NR - Multi-TRP Transmission</a></li>
-<li><a href="nr_nm.html">NR - Numerology</a></li>
-<li><a href="nr_ptrs.html">NR - Phase Tracking Reference Signal (PTRS)</a></li>
-<li><a href="nr_uci.html">NR - UCI</a></li>
-<li><a href="ntp.html">NTP</a></li>
-<li><a href="nn.html">Neural Network</a></li>
-<li><a href="org_ioslide.html">Orgmode - Export to HTML5 Slide</a></li>
-<li><a href="org_link.html">Orgmode - Link</a></li>
-<li><a href="org_tab.html">Orgmode - Table</a></li>
-<li><a href="org_tikz.html">Orgmode - Tikz</a></li>
-<li><a href="pbs_maui.html">PBS and Maui</a></li>
-<li><a href="python_basic.html">Python - Basic</a></li>
-<li><a href="python_data_type.html">Python - Data Type</a></li>
-<li><a href="python_einops.html">Python - Einops</a></li>
-<li><a href="python_fun.html">Python - Function</a></li>
-<li><a href="python_matplotlib.html">Python - Matplotlib</a></li>
-<li><a href="python_pkg_mgmt.html">Python - Package Management</a></li>
-<li><a href="python_pandas.html">Python - Pandas</a></li>
-<li><a href="python_pytorch.html">Python - Pytorch</a></li>
-<li><a href="python_tensorflow.html">Python - Tensorflow</a></li>
-<li><a href="python_virtualenv.html">Python - Virtual Environment</a></li>
-<li><a href="rcs.html">RCS</a></li>
-<li><a href="ranger.html">Ranger</a></li>
-<li><a href="reg_exp.html">Regular Expression</a></li>
-<li><a href="capslk2ctrl.html">Remap CapsLock as Ctrl</a></li>
-<li><a href="slnr_bf.html">SLNR-based Beamforming</a></li>
-<li><a href="ssh.html">SSH</a></li>
-<li><a href="sim_large_scale_model.html">Simulation - Large Scale Modelling</a></li>
-<li><a href="sway.html">Sway</a></li>
-<li><a href="uni_distr_ring.html">Uniform Distribution in a Ring Area</a></li>
-<li><a href="switch_virtual_console.html">Virtual Console Switch</a></li>
-<li><a href="whitening_filter.html">Whitening Filter</a></li>
-<li><a href="wiener_filter.html">Wiener Filter</a></li>
-<li><a href="wiener_khinchin.html">Wiener-Khinchin Theorem</a></li>
-<li><a href="z.html">Z Transform</a></li>
-<li><a href="zc.html">ZC</a></li>
-<li><a href="zathura.html">Zathura</a></li>
-<li><a href="guiqulaixici.html">归去来兮辞</a></li>
+<li>A frame is comprised of 10 subframes.</li>
+<li>A subframe is comprised of \(N_{\mathrm{slot}}^{\mathrm{subframe},\mu} = 2^{\mu}\) slots, where \(\mu\) is a numerology indicator.</li>
+<li>A slot is comprised of \(N_{\mathrm{symbol}}^{\mathrm{slot}}\) symbols.</li>
+</ul>
+\begin{align*}
+  N_{\mathrm{symbol}}^{\mathrm{slot}} = 
+  \begin{cases}
+    14, & \text{NCP}; \\
+    12, & \text{ECP}.
+  \end{cases}
+\end{align*}
+<ul class="org-ul">
+<li>An OFDM symbol without <i>cyclic prefix (CP)</i>, comprised of \(N_{\mathrm{FFT}}\) samples, has duration \(T_{\mathrm{sym}} = N_{\mathrm{FFT}}t_{s} = \dfrac{1}{\Delta_{\mathrm{subc}}}\), where
+<ul class="org-ul">
+<li>\(t_{s} = \dfrac{1}{f_{s}}\) is the duration of each sample;</li>
+<li>\(f_{s} = \Delta_{\mathrm{subc}} N_{\mathrm{FFT}}\) is the sampling rate.</li>
+</ul></li>
+<li>There are a couple types of CP.
+<ul class="org-ul">
+<li><i>Normal CP (NCP)</i> consists of \(N_{\mathrm{CP} }= 144 \dfrac{N_{\mathrm{FFT}}}{N_{\mathrm{FFT, ref}}}\) samples. Particularly, there are additional \(16 \dfrac{N_{\mathrm{FFT}}}{N_{\mathrm{FFT, ref}}} \dfrac{\Delta_{\mathrm{subc}}}{\Delta_{\mathrm{subc, ref}}}\) samples for 1st symbol in each slot.</li>
+<li><i>Extended CP (ECP)</i> consists of \(N_{\mathrm{CP}} = 512 \dfrac{N_{\mathrm{FFT}}}{N_{\mathrm{FFT, ref}}}\) samples.</li>
+</ul></li>
 </ul>
 </div>
 </body>
