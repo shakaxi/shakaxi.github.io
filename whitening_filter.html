@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2022-12-19 Mon 21:14 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Whitening Filter</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -237,6 +248,24 @@ x_rcv [label = "x(t)\nSx(f)", shape = plaintext];
 }
 </pre>
 </div>
+
+<p>
+对于给定的多维随机向量\(\mathbf{x}\), 其自相关函数为
+</p>
+\begin{align*}
+\mathrm{Var}[\mathbf{x}] = \mathrm{E} \left[ \mathbf{x} \mathbf{x}^H\right].
+\end{align*}
+<p>
+假设其白化滤波器记为\(\mathbf{H}\), 那么该白化滤波器的输出 \(\mathbf{y} = \mathbf{Hx}\)的自相关函数应该为单位阵, 也即
+</p>
+\begin{align*}
+\mathrm{Var}[\mathbf{y}] &= \mathrm{E} \left[ \mathbf{y} \mathbf{y}^H\right] \\
+&= \mathrm{E} \left[ \mathbf{Hx} \mathbf{x}^H \mathbf{H}^H \right] \\
+&= \mathbf{I}.
+\end{align*}
+<p>
+显然, \(\mathbf{H} = \mathbf{L}^{-1}\) 时上述公式成立. 其中, \(\mathbf{L}\mathbf{L}^H = \mathrm{Var}[\mathbf{x}]\).
+</p>
 </div>
 </body>
 </html>
