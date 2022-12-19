@@ -21,3 +21,15 @@ x_rcv [label = "x(t)\nSx(f)", shape = plaintext];
 #+ATTR_HTML: :width 800px
 #+RESULTS:
 [[file:whitening_filter.png]]
+
+对于给定的多维随机向量\(\mathbf{x}\), 其自相关函数为
+\begin{align*}
+\mathrm{Var}[\mathbf{x}] = \mathrm{E} \left[ \mathbf{x} \mathbf{x}^H\right].
+\end{align*}
+假设其白化滤波器记为\(\mathbf{H}\), 那么该白化滤波器的输出 \(\mathbf{y} = \mathbf{Hx}\)的自相关函数应该为单位阵, 也即
+\begin{align*}
+\mathrm{Var}[\mathbf{y}] &= \mathrm{E} \left[ \mathbf{y} \mathbf{y}^H\right] \\
+&= \mathrm{E} \left[ \mathbf{Hx} \mathbf{x}^H \mathbf{H}^H \right] \\
+&= \mathbf{I}.
+\end{align*}
+显然, \(\mathbf{H} = \mathbf{L}^{-1}\) 时上述公式成立. 其中, \(\mathbf{L}\mathbf{L}^H = \mathrm{Var}[\mathbf{x}]\).
