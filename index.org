@@ -1,5 +1,6 @@
 #+TITLE: Shaka's Blog Site
 
+- [[file:ai_mlp_mixer.org][AI - MLP-Mixer]]
 - [[file:aurora.org][Aurora - A LaTeX Plugin for Microsoft Word]]
 - [[file:bash.org][Bash]]
 - [[file:beam_pattern.org][Beam Pattern]]
