@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Uniform Distribution in a Ring Area</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -222,10 +233,10 @@ This post aims to provide an efficient method of generating uniformly distribute
 </p>
 
 <p>
-Without loss of generality, the ring area is illustrated in Figure <a href="#org0b15942">1</a>. The inner and outer radii are \(R_1\) and \(R_2\), respectively, \(R_1 < R_2\). The corresponding angular scope starts from \(\Theta_1\) and ends at \(\Theta_2\), \(\Theta_1 < \Theta_2\).
+Without loss of generality, the ring area is illustrated in Figure <a href="#org6360971">1</a>. The inner and outer radii are \(R_1\) and \(R_2\), respectively, \(R_1 < R_2\). The corresponding angular scope starts from \(\Theta_1\) and ends at \(\Theta_2\), \(\Theta_1 < \Theta_2\).
 </p>
 
-<div id="org0b15942" class="figure">
+<div id="org6360971" class="figure">
 <p><img src="ring.png" alt="ring.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 1: </span>A ring area</p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-29 Sat 18:01 -->
+<!-- 2023-01-28 Sat 01:50 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,7 +232,7 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org46f0239">References</a></li>
+<li><a href="#org2ac62a9">References</a></li>
 </ul>
 </div>
 </div>
@@ -344,9 +355,9 @@ We can see that diagonal matrix \(\begin{bmatrix}
 \end{bmatrix}\) and \(\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}\) are similar and have the same eigen values. Therefore, we can skip \(\mathbf{C}\) and \eqref{eq:a-uc}, but directly perform EVD on \(\mathbf{U}_{s,1}^{\dagger} \mathbf{U}_{s,2}\) instead, and obtain the estimation of \(\omega_i\); \(i = 1, 2, \ldots, r\); from the eigen values.
 </p>
 
-<div id="outline-container-org46f0239" class="outline-2">
-<h2 id="org46f0239">References</h2>
-<div class="outline-text-2" id="text-org46f0239">
+<div id="outline-container-org2ac62a9" class="outline-2">
+<h2 id="org2ac62a9">References</h2>
+<div class="outline-text-2" id="text-org2ac62a9">
 <ol class="org-ol">
 <li><a href="http://en.wikipedia.org/wiki/estimation_of_signal_parameters_via_rotational_invariance_techniques">http://en.wikipedia.org/wiki/estimation_of_signal_parameters_via_rotational_invariance_techniques</a></li>
 </ol>

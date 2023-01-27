@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blog on GitHub</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,20 +200,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org34848e7">Preparation</a>
+<li><a href="#orgb514d0b">Preparation</a>
 <ul>
-<li><a href="#org0348877">Softwares</a></li>
-<li><a href="#orgd9ecb8b">Account on GitHub</a></li>
+<li><a href="#org43f911d">Softwares</a></li>
+<li><a href="#org426567e">Account on GitHub</a></li>
 </ul>
 </li>
-<li><a href="#org76edbe2">Configuration</a>
+<li><a href="#org809d8fa">Configuration</a>
 <ul>
-<li><a href="#org5e77c44">Emacs and Orgmode</a></li>
-<li><a href="#org3b3fba5">GitHub</a></li>
-<li><a href="#org985cec4">Initialization</a></li>
+<li><a href="#org37fe1b2">Emacs and Orgmode</a></li>
+<li><a href="#org4eb9105">GitHub</a></li>
+<li><a href="#org0aa27b4">Initialization</a></li>
 </ul>
 </li>
-<li><a href="#orgea7fba2">Publish a new post</a></li>
+<li><a href="#orgc71a938">Publish a new post</a></li>
 </ul>
 </div>
 </div>
@@ -221,13 +221,13 @@
 It has been quite a long time for me not to write and publish blog since Google blogspot and WordPress were blocked. Recently, I have built a new blog site on <a href="https://github.com">GitHub</a>. This post is just written to summarize the procedure.
 </p>
 
-<div id="outline-container-org34848e7" class="outline-2">
-<h2 id="org34848e7">Preparation</h2>
-<div class="outline-text-2" id="text-org34848e7">
+<div id="outline-container-orgb514d0b" class="outline-2">
+<h2 id="orgb514d0b">Preparation</h2>
+<div class="outline-text-2" id="text-orgb514d0b">
 </div>
-<div id="outline-container-org0348877" class="outline-3">
-<h3 id="org0348877">Softwares</h3>
-<div class="outline-text-3" id="text-org0348877">
+<div id="outline-container-org43f911d" class="outline-3">
+<h3 id="org43f911d">Softwares</h3>
+<div class="outline-text-3" id="text-org43f911d">
 <p>
 Above all, you should have <a href="http://www.gnu.org/software/emacs/">Emacs</a> and <a href="http://orgmode.org/">Orgmode</a> installed. Taking ArchLinux for instance, Emacs can be installed as follows
 </p>
@@ -248,22 +248,22 @@ In order to freely exchange data with GitHub, <code>git</code> is needed. Also t
 </div>
 </div>
 </div>
-<div id="outline-container-orgd9ecb8b" class="outline-3">
-<h3 id="orgd9ecb8b">Account on GitHub</h3>
-<div class="outline-text-3" id="text-orgd9ecb8b">
+<div id="outline-container-org426567e" class="outline-3">
+<h3 id="org426567e">Account on GitHub</h3>
+<div class="outline-text-3" id="text-org426567e">
 <p>
 Of course, an account on GitHub is also indispensable. If you do not have an account, you have to sign up on <a href="http://github.com">http://github.com</a>. According to the description of <a href="https://pages.github.com/">GitHub Pages</a>, if your account is <code>USERNAME</code>, your blog site can be accessed via <a href="http://username.github.io">http://username.github.io</a>.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org76edbe2" class="outline-2">
-<h2 id="org76edbe2">Configuration</h2>
-<div class="outline-text-2" id="text-org76edbe2">
+<div id="outline-container-org809d8fa" class="outline-2">
+<h2 id="org809d8fa">Configuration</h2>
+<div class="outline-text-2" id="text-org809d8fa">
 </div>
-<div id="outline-container-org5e77c44" class="outline-3">
-<h3 id="org5e77c44">Emacs and Orgmode</h3>
-<div class="outline-text-3" id="text-org5e77c44">
+<div id="outline-container-org37fe1b2" class="outline-3">
+<h3 id="org37fe1b2">Emacs and Orgmode</h3>
+<div class="outline-text-3" id="text-org37fe1b2">
 <p>
 First, you should create a fold to store your data of your blog site, e.g. <code>~/blog</code>.
 </p>
@@ -307,9 +307,9 @@ In order to publish your webpages, i.e. html files, you should configure your Em
 </div>
 </div>
 </div>
-<div id="outline-container-org3b3fba5" class="outline-3">
-<h3 id="org3b3fba5">GitHub</h3>
-<div class="outline-text-3" id="text-org3b3fba5">
+<div id="outline-container-org4eb9105" class="outline-3">
+<h3 id="org4eb9105">GitHub</h3>
+<div class="outline-text-3" id="text-org4eb9105">
 <p>
 Sign in GitHub with your account, and create a repository. What deserves notice, the repository used to store your posts <i>must</i> be named <code>USERNAME.github.io</code>. Otherwise, your blog site cannot be accessed via <code>http://USERNAME.github.io</code>.
 </p>
@@ -330,9 +330,9 @@ In fact, you can only push the published html webpages to GitHub. Pushing the or
 </p>
 </div>
 </div>
-<div id="outline-container-org985cec4" class="outline-3">
-<h3 id="org985cec4">Initialization</h3>
-<div class="outline-text-3" id="text-org985cec4">
+<div id="outline-container-org0aa27b4" class="outline-3">
+<h3 id="org0aa27b4">Initialization</h3>
+<div class="outline-text-3" id="text-org0aa27b4">
 <p>
 Enter the local directory, e.g. <code>~/blog</code> and clone the both branches.
 </p>
@@ -348,9 +348,9 @@ For sake of publishing beautiful webpages, you can customize your css and drop i
 </div>
 </div>
 </div>
-<div id="outline-container-orgea7fba2" class="outline-2">
-<h2 id="orgea7fba2">Publish a new post</h2>
-<div class="outline-text-2" id="text-orgea7fba2">
+<div id="outline-container-orgc71a938" class="outline-2">
+<h2 id="orgc71a938">Publish a new post</h2>
+<div class="outline-text-2" id="text-orgc71a938">
 <ul class="org-ul">
 <li>Create and edit an org file, e.g. <code>~/blog/org/newpost.org</code>.</li>
 <li>Generate the corresponding webpage to html folder<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, e.g. <code>~/blog/html/newpost.html</code>.</li>

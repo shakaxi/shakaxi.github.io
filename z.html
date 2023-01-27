@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Z Transform</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,14 +232,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge9296c8">Definition</a></li>
-<li><a href="#org92d75a1">Properties</a>
+<li><a href="#org32fd380">Definition</a></li>
+<li><a href="#org0ee2f7a">Properties</a>
 <ul>
-<li><a href="#org5f15e8f">Initial Value Theorem</a></li>
-<li><a href="#orgf0c2a5c">Final Value Theorem</a></li>
+<li><a href="#org9960429">Initial Value Theorem</a></li>
+<li><a href="#orgf8d55b6">Final Value Theorem</a></li>
 </ul>
 </li>
-<li><a href="#org6b4d27a">Transform Pairs</a></li>
+<li><a href="#org6fa0f1d">Transform Pairs</a></li>
 </ul>
 </div>
 </div>
@@ -236,9 +247,9 @@
 Given a time domain discrete signal, i.e., a sequence, it can be represented in the <i>complex frequency domain</i> by <i>Z transform</i>. It is essentially an extension of <i>discrete time Fourier transform (DTFT)</i>.
 </p>
 
-<div id="outline-container-orge9296c8" class="outline-2">
-<h2 id="orge9296c8">Definition</h2>
-<div class="outline-text-2" id="text-orge9296c8">
+<div id="outline-container-org32fd380" class="outline-2">
+<h2 id="org32fd380">Definition</h2>
+<div class="outline-text-2" id="text-org32fd380">
 <ul class="org-ul">
 <li><p>
 Bilateral transform
@@ -263,9 +274,9 @@ Inverse transform
 </ul>
 </div>
 </div>
-<div id="outline-container-org92d75a1" class="outline-2">
-<h2 id="org92d75a1">Properties</h2>
-<div class="outline-text-2" id="text-org92d75a1">
+<div id="outline-container-org0ee2f7a" class="outline-2">
+<h2 id="org0ee2f7a">Properties</h2>
+<div class="outline-text-2" id="text-org0ee2f7a">
 <p>
 Denote the ROC as \(\alpha < |z| < \beta\), \(0 \le\alpha < \beta\).
 </p>
@@ -298,26 +309,26 @@ Dedicated to unilateral transform
 \end{align*}</li>
 </ul>
 </div>
-<div id="outline-container-org5f15e8f" class="outline-3">
-<h3 id="org5f15e8f">Initial Value Theorem</h3>
-<div class="outline-text-3" id="text-org5f15e8f">
+<div id="outline-container-org9960429" class="outline-3">
+<h3 id="org9960429">Initial Value Theorem</h3>
+<div class="outline-text-3" id="text-org9960429">
 \begin{align*}
   x(0) = \lim_{z\to\infty}X(z)
 \end{align*}
 </div>
 </div>
-<div id="outline-container-orgf0c2a5c" class="outline-3">
-<h3 id="orgf0c2a5c">Final Value Theorem</h3>
-<div class="outline-text-3" id="text-orgf0c2a5c">
+<div id="outline-container-orgf8d55b6" class="outline-3">
+<h3 id="orgf8d55b6">Final Value Theorem</h3>
+<div class="outline-text-3" id="text-orgf8d55b6">
 \begin{align*}
   \lim_{n\to\infty}x(n) = \lim_{z\to 1}(z-1)X(z)
 \end{align*}
 </div>
 </div>
 </div>
-<div id="outline-container-org6b4d27a" class="outline-2">
-<h2 id="org6b4d27a">Transform Pairs</h2>
-<div class="outline-text-2" id="text-org6b4d27a">
+<div id="outline-container-org6fa0f1d" class="outline-2">
+<h2 id="org6fa0f1d">Transform Pairs</h2>
+<div class="outline-text-2" id="text-org6fa0f1d">
 \begin{align*}
   \delta(n) &\leftrightarrow 1 \\
   \varepsilon(n) &\leftrightarrow \frac{z}{z-1}, \quad |z| > 1. \\

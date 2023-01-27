@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:50 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ZC</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,16 +232,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge1821db">Introduction</a></li>
-<li><a href="#org5381a55">Properties</a></li>
-<li><a href="#orgc42b5aa">Applications</a></li>
+<li><a href="#orgcbacc56">Introduction</a></li>
+<li><a href="#org425a21e">Properties</a></li>
+<li><a href="#orga16ac2f">Applications</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge1821db" class="outline-2">
-<h2 id="orge1821db">Introduction</h2>
-<div class="outline-text-2" id="text-orge1821db">
+<div id="outline-container-orgcbacc56" class="outline-2">
+<h2 id="orgcbacc56">Introduction</h2>
+<div class="outline-text-2" id="text-orgcbacc56">
 <p>
 The <i>Zadoff-Chu (ZC)</i> sequence<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> is named after Solomon A. Zadoff and D. C. Chu, which is a constant amplitude zero auto-correlation (CAZAC) sequence<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> with its cylically shifted versions are zero correlated, i.e. orthogonal to each other. A ZC sequence without cyclic shift is termed a <i>root sequence</i>, which can be expressed as
 </p>
@@ -242,9 +253,9 @@ where \(u\) is the index of the root sequence, \(L\) is the length and \(q \in \
 </p>
 </div>
 </div>
-<div id="outline-container-org5381a55" class="outline-2">
-<h2 id="org5381a55">Properties</h2>
-<div class="outline-text-2" id="text-org5381a55">
+<div id="outline-container-org425a21e" class="outline-2">
+<h2 id="org425a21e">Properties</h2>
+<div class="outline-text-2" id="text-org425a21e">
 <ul class="org-ul">
 <li>The auto-correlation of a ZC sequence is <i>delta function</i>, i.e. zero correlated.</li>
 <li>ZC sequences with odd length are periodic, i.e. \(x_u(n + L) = x_u(n)\).</li>
@@ -253,9 +264,9 @@ where \(u\) is the index of the root sequence, \(L\) is the length and \(q \in \
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc42b5aa" class="outline-2">
-<h2 id="orgc42b5aa">Applications</h2>
-<div class="outline-text-2" id="text-orgc42b5aa">
+<div id="outline-container-orga16ac2f" class="outline-2">
+<h2 id="orga16ac2f">Applications</h2>
+<div class="outline-text-2" id="text-orga16ac2f">
 <p>
 ZC sequences are widely used in 3GPP LTE/LTE-Advanced system<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>
 </p>

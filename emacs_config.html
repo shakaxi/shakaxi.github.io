@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2023-01-28 Sat 01:48 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Basic Configuration</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -188,73 +189,26 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Emacs - Basic Configuration</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfbb2935">Set values for predefined variables</a></li>
-<li><a href="#org225f096">Bind shortcut keys</a>
+<li><a href="#org97518d5">Set values for predefined variables</a></li>
+<li><a href="#org94247c2">Bind shortcut keys</a>
 <ul>
-<li><a href="#org129aa8f">Set global shortcut key</a></li>
-<li><a href="#orgbda7f6f">Set shortcut key for specific modes</a></li>
+<li><a href="#orga6c2f7b">Set global shortcut key</a></li>
+<li><a href="#org801b81f">Set shortcut key for specific modes</a></li>
 </ul>
 </li>
-<li><a href="#orgdef90a9">Mode &amp; hook</a></li>
-<li><a href="#org32e1403">Third party extension</a></li>
+<li><a href="#orgeb1e130">Mode &amp; hook</a></li>
+<li><a href="#orge611a35">Third party extension</a></li>
 </ul>
 </div>
 </div>
@@ -262,34 +216,34 @@ for the JavaScript code in this tag.
 As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a powerful editor. Due to its infinite customizability and extensibility, in some sense, it is an operation system (OS) rather than an editor. This page briefly introduces how to customize it.
 </p>
 
-<div id="outline-container-orgfbb2935" class="outline-2">
-<h2 id="orgfbb2935">Set values for predefined variables</h2>
-<div class="outline-text-2" id="text-orgfbb2935">
+<div id="outline-container-org97518d5" class="outline-2">
+<h2 id="org97518d5">Set values for predefined variables</h2>
+<div class="outline-text-2" id="text-org97518d5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(setq variable value)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org225f096" class="outline-2">
-<h2 id="org225f096">Bind shortcut keys</h2>
-<div class="outline-text-2" id="text-org225f096">
+<div id="outline-container-org94247c2" class="outline-2">
+<h2 id="org94247c2">Bind shortcut keys</h2>
+<div class="outline-text-2" id="text-org94247c2">
 </div>
-<div id="outline-container-org129aa8f" class="outline-3">
-<h3 id="org129aa8f">Set global shortcut key</h3>
-<div class="outline-text-3" id="text-org129aa8f">
+<div id="outline-container-orga6c2f7b" class="outline-3">
+<h3 id="orga6c2f7b">Set global shortcut key</h3>
+<div class="outline-text-3" id="text-orga6c2f7b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(global-set-key key command)
 </pre>
 </div>
 <p>
-where <code>key</code> is shortcut<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, e.g. <code>M-SPC</code>, <code>&lt;f7&gt;</code>, and <code>command</code> is the command name with a prefix of single quotation mark.
+where <code>key</code> is shortcut<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, e.g. <code>M-SPC</code>, <code>&lt;f7&gt;</code>, and <code>command</code> is the command name with a prefix of single quotation mark.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbda7f6f" class="outline-3">
-<h3 id="orgbda7f6f">Set shortcut key for specific modes</h3>
-<div class="outline-text-3" id="text-orgbda7f6f">
+<div id="outline-container-org801b81f" class="outline-3">
+<h3 id="org801b81f">Set shortcut key for specific modes</h3>
+<div class="outline-text-3" id="text-org801b81f">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(define-key keymap key command)
 </pre>
@@ -300,17 +254,17 @@ where <code>keymap</code> is associated to some mode, e.g. <code>c-mode-map</cod
 </div>
 </div>
 </div>
-<div id="outline-container-orgdef90a9" class="outline-2">
-<h2 id="orgdef90a9">Mode &amp; hook</h2>
-<div class="outline-text-2" id="text-orgdef90a9">
+<div id="outline-container-orgeb1e130" class="outline-2">
+<h2 id="orgeb1e130">Mode &amp; hook</h2>
+<div class="outline-text-2" id="text-orgeb1e130">
 <p>
-Emacs uses different modes to provide different editing environment. Generally, each file type has its own <i>major-mode</i> <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> and one or more <i>minor-mode</i> <sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. Usually, each major-mode provides <i>hook</i>, mode name appended with <code>-hook</code>. When entering some major-mode, the functions in the corresponding hook will be provoked.
+Emacs uses different modes to provide different editing environment. Generally, each file type has its own <i>major-mode</i> <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> and one or more <i>minor-mode</i> <sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>. Usually, each major-mode provides <i>hook</i>, mode name appended with <code>-hook</code>. When entering some major-mode, the functions in the corresponding hook will be provoked.
 </p>
 </div>
 </div>
-<div id="outline-container-org32e1403" class="outline-2">
-<h2 id="org32e1403">Third party extension</h2>
-<div class="outline-text-2" id="text-org32e1403">
+<div id="outline-container-orge611a35" class="outline-2">
+<h2 id="orge611a35">Third party extension</h2>
+<div class="outline-text-2" id="text-orge611a35">
 <p>
 After the installation, the configuration includes two steps
 </p>
@@ -325,15 +279,15 @@ After the installation, the configuration includes two steps
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 The expressions of the shortcut key can be obtained by <code>C-h k</code> first and then treated as the input parameter of <code>kbd</code>, e.g. <code>(kbd "M-SPC")</code>.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 For the file type, define syntax highlight, indent, comment, etc.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 It can be aded to <code>major-mode</code>. It defines the enhancement or decoration.
 </p></div></div>
 

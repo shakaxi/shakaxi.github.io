@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Convex Optimization</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,9 +232,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org202e12c">Least squares (LS)</a></li>
-<li><a href="#org87c3c13">Linear programming (LP)</a></li>
-<li><a href="#org741949a">Convex optimization</a></li>
+<li><a href="#org8722bdc">Least squares (LS)</a></li>
+<li><a href="#org51e118e">Linear programming (LP)</a></li>
+<li><a href="#org1e8e732">Convex optimization</a></li>
 </ul>
 </div>
 </div>
@@ -259,9 +270,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 <li><i>Convex optimization</i></li>
 </ul>
 
-<div id="outline-container-org202e12c" class="outline-2">
-<h2 id="org202e12c">Least squares (LS)</h2>
-<div class="outline-text-2" id="text-org202e12c">
+<div id="outline-container-org8722bdc" class="outline-2">
+<h2 id="org8722bdc">Least squares (LS)</h2>
+<div class="outline-text-2" id="text-org8722bdc">
 \begin{align*}
 \min \|Ax - b\|_2^2
 \end{align*}
@@ -273,9 +284,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 </ul>
 </div>
 </div>
-<div id="outline-container-org87c3c13" class="outline-2">
-<h2 id="org87c3c13">Linear programming (LP)</h2>
-<div class="outline-text-2" id="text-org87c3c13">
+<div id="outline-container-org51e118e" class="outline-2">
+<h2 id="org51e118e">Linear programming (LP)</h2>
+<div class="outline-text-2" id="text-org51e118e">
 \begin{align*}
 \min & c^Tx \\
 \text{subject to} & a_i^Tx \le b_i,\quad i=1, \ldots, m
@@ -288,9 +299,9 @@ Fortunately, following three problems can be efficiently and reliably solved.
 </ul>
 </div>
 </div>
-<div id="outline-container-org741949a" class="outline-2">
-<h2 id="org741949a">Convex optimization</h2>
-<div class="outline-text-2" id="text-org741949a">
+<div id="outline-container-org1e8e732" class="outline-2">
+<h2 id="org1e8e732">Convex optimization</h2>
+<div class="outline-text-2" id="text-org1e8e732">
 \begin{align*}
 \min & f_0(x) \\
 \text{subject to} & f_i(x) \le b_i, \quad i=1, \ldots, m

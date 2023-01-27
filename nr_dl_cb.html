@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - Downlink Codebook</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,28 +232,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5c625f8">Type I Single-Panel Codebook</a>
+<li><a href="#org61bee48">Type I Single-Panel Codebook</a>
 <ul>
-<li><a href="#org2ca1442">\(\mathbf{W}_1\)</a></li>
-<li><a href="#org7e0dbf1">\(\mathbf{W}_2\)</a></li>
-<li><a href="#orgc16fc82">Restrictions</a></li>
+<li><a href="#org2b0aa1b">\(\mathbf{W}_1\)</a></li>
+<li><a href="#orgce13f29">\(\mathbf{W}_2\)</a></li>
+<li><a href="#org50a3e4f">Restrictions</a></li>
 </ul>
 </li>
-<li><a href="#org187e61e">Type II Codebook</a>
+<li><a href="#org22fe808">Type II Codebook</a>
 <ul>
-<li><a href="#orgc5173ac">Principle</a></li>
-<li><a href="#org8ede273">Granularity and Payload for Feedback</a></li>
-<li><a href="#orgb8bbb39">Restrictions</a></li>
-<li><a href="#orgf2f5600">Procedure</a></li>
+<li><a href="#org0a131ac">Principle</a></li>
+<li><a href="#org01c08ef">Granularity and Payload for Feedback</a></li>
+<li><a href="#org7af484a">Restrictions</a></li>
+<li><a href="#org922d35a">Procedure</a></li>
 </ul>
 </li>
-<li><a href="#orgf94a10f">Type II Port Selection Codebook</a></li>
-<li><a href="#org26dc125">Enhanced Type II and Type II Port Selection Codebooks</a>
+<li><a href="#orgadb322d">Type II Port Selection Codebook</a></li>
+<li><a href="#org9e43500">Enhanced Type II and Type II Port Selection Codebooks</a>
 <ul>
-<li><a href="#org7de5ecf">Principle</a></li>
-<li><a href="#orgf1bae51">Granularity and Payload for Feedback</a></li>
-<li><a href="#org98390c4">Restrictions</a></li>
-<li><a href="#orgbe7a9c6">Procedure</a></li>
+<li><a href="#orgf20c57c">Principle</a></li>
+<li><a href="#org4764923">Granularity and Payload for Feedback</a></li>
+<li><a href="#org0d07f7e">Restrictions</a></li>
+<li><a href="#orga1a0bce">Procedure</a></li>
 </ul>
 </li>
 </ul>
@@ -253,10 +264,10 @@ In NR release 15, there are roughly two types of codebooks for spatial-domain CS
 </p>
 
 <p>
-Without loss of generality, Figure <a href="#orgec07028">1</a> shows an oversampled 2D-DFT beams, with \(N_1 = 4\), \(N_2 = 2\), \(O_1 = O_2 = 4\). Different oversampling factors are distinguished by colors and shapes in the two dimensions respectively.
+Without loss of generality, Figure <a href="#org75bf443">1</a> shows an oversampled 2D-DFT beams, with \(N_1 = 4\), \(N_2 = 2\), \(O_1 = O_2 = 4\). Different oversampling factors are distinguished by colors and shapes in the two dimensions respectively.
 </p>
 
-<div id="orgec07028" class="figure">
+<div id="org75bf443" class="figure">
 <p><img src="nr_dl_cb_2d_dft_beams.png" alt="nr_dl_cb_2d_dft_beams.png" width="1000px">
 </p>
 <p><span class="figure-number">Figure 1: </span>An example oversampled 2D-DFT beams</p>
@@ -287,9 +298,9 @@ Following symbols are defined.
 <li>\(P_{\text{CSI-RS}} = 2N_1N_2\) is the number of CSI-RS port.</li>
 </ul>
 
-<div id="outline-container-org5c625f8" class="outline-2">
-<h2 id="org5c625f8">Type I Single-Panel Codebook</h2>
-<div class="outline-text-2" id="text-org5c625f8">
+<div id="outline-container-org61bee48" class="outline-2">
+<h2 id="org61bee48">Type I Single-Panel Codebook</h2>
+<div class="outline-text-2" id="text-org61bee48">
 <p>
 Generally, a precoder can be written as
 </p>
@@ -298,9 +309,9 @@ Generally, a precoder can be written as
 \end{align}
 </div>
 
-<div id="outline-container-org2ca1442" class="outline-3">
-<h3 id="org2ca1442">\(\mathbf{W}_1\)</h3>
-<div class="outline-text-3" id="text-org2ca1442">
+<div id="outline-container-org2b0aa1b" class="outline-3">
+<h3 id="org2b0aa1b">\(\mathbf{W}_1\)</h3>
+<div class="outline-text-3" id="text-org2b0aa1b">
 <p>
 The \(\mathbf{W}_1\) in \eqref{eq:w} can be further expressed as
 </p>
@@ -326,11 +337,11 @@ where \(\mathbf{B} \triangleq \begin{bmatrix} \mathbf{b}_1 & \mathbf{b}_2 & \cdo
 </div>
 </div>
 
-<div id="outline-container-org7e0dbf1" class="outline-3">
-<h3 id="org7e0dbf1">\(\mathbf{W}_2\)</h3>
-<div class="outline-text-3" id="text-org7e0dbf1">
+<div id="outline-container-orgce13f29" class="outline-3">
+<h3 id="orgce13f29">\(\mathbf{W}_2\)</h3>
+<div class="outline-text-3" id="text-orgce13f29">
 <p>
-For the sake of inter-layer interference avoidance, the precoding vectors for multi-rank transmission should be orthogonal. To this end, following 3 methods have been utilized, and the methods for each rank value can be summarized in Table <a href="#org7249c08">1</a>.
+For the sake of inter-layer interference avoidance, the precoding vectors for multi-rank transmission should be orthogonal. To this end, following 3 methods have been utilized, and the methods for each rank value can be summarized in Table <a href="#org3fad0d3">1</a>.
 </p>
 <ol class="org-ol">
 <li>Orthogonal vectors, e.g., DFT beams.</li>
@@ -338,7 +349,7 @@ For the sake of inter-layer interference avoidance, the precoding vectors for mu
 <li>Use shorter DFT vectors instead and apply a length-2 <i>orthogonal cover code (OCC)</i> on them. For a vector as in \eqref{eq:occ}, \(\forall \theta, |\theta|=1, \mathbf{b}_i(\theta) \perp \mathbf{b}_i(-\theta)\), \(i = 1, \ldots, L\).</li>
 </ol>
 
-<table id="org7249c08" align="center" border="3">
+<table id="org3fad0d3" align="center" border="3">
 <caption class="t-above"><span class="table-number">Table 1:</span> Methods of keeping inter-layer orthogonal</caption>
 
 <colgroup>
@@ -387,9 +398,9 @@ For the sake of inter-layer interference avoidance, the precoding vectors for mu
 </div>
 </div>
 
-<div id="outline-container-orgc16fc82" class="outline-3">
-<h3 id="orgc16fc82">Restrictions</h3>
-<div class="outline-text-3" id="text-orgc16fc82">
+<div id="outline-container-org50a3e4f" class="outline-3">
+<h3 id="org50a3e4f">Restrictions</h3>
+<div class="outline-text-3" id="text-org50a3e4f">
 <p>
 In the CSI feedback, PMI selection can be limited within a subset of the entire codebook, a.k.a. <i>codebook subset restriction</i>.
 </p>
@@ -409,13 +420,13 @@ Besides codebook subset restriction, rank adaptation is also restricted, indicat
 </div>
 </div>
 
-<div id="outline-container-org187e61e" class="outline-2">
-<h2 id="org187e61e">Type II Codebook</h2>
-<div class="outline-text-2" id="text-org187e61e">
+<div id="outline-container-org22fe808" class="outline-2">
+<h2 id="org22fe808">Type II Codebook</h2>
+<div class="outline-text-2" id="text-org22fe808">
 </div>
-<div id="outline-container-orgc5173ac" class="outline-3">
-<h3 id="orgc5173ac">Principle</h3>
-<div class="outline-text-3" id="text-orgc5173ac">
+<div id="outline-container-org0a131ac" class="outline-3">
+<h3 id="org0a131ac">Principle</h3>
+<div class="outline-text-3" id="text-org0a131ac">
 <p>
 Different from type I codebook, in type II codebook based PMI selection, each precoding vector, corresponding to a layer, is explicitly expressed as a weighted sum of an incomplete orthogonal basis vectors. E.g., the precoding vector for \(l\) th layer on \(s\) th subband can be written as
 </p>
@@ -456,13 +467,13 @@ Particularly, for the strongest weight/coefficient, its amplitudes, irrespective
 </div>
 </div>
 
-<div id="outline-container-org8ede273" class="outline-3">
-<h3 id="org8ede273">Granularity and Payload for Feedback</h3>
-<div class="outline-text-3" id="text-org8ede273">
+<div id="outline-container-org01c08ef" class="outline-3">
+<h3 id="org01c08ef">Granularity and Payload for Feedback</h3>
+<div class="outline-text-3" id="text-org01c08ef">
 <p>
-The granularities of the information discussed above can be listed in Table <a href="#orgc36dbbf">2</a>.
+The granularities of the information discussed above can be listed in Table <a href="#orgb156176">2</a>.
 </p>
-<table id="orgc36dbbf" align="center" border="3">
+<table id="orgb156176" align="center" border="3">
 <caption class="t-above"><span class="table-number">Table 2:</span> The granularity of the payload feedback</caption>
 
 <colgroup>
@@ -520,18 +531,18 @@ where \(l = 1, \ldots, v\).
 </div>
 </div>
 
-<div id="outline-container-orgb8bbb39" class="outline-3">
-<h3 id="orgb8bbb39">Restrictions</h3>
-<div class="outline-text-3" id="text-orgb8bbb39">
+<div id="outline-container-org7af484a" class="outline-3">
+<h3 id="org7af484a">Restrictions</h3>
+<div class="outline-text-3" id="text-org7af484a">
 <p>
 For type II codebook, the codebook subset restriction and rank restriction are configured by <span style="color: blue">n1-n2-codebookSubsetRestriction</span> and <span style="color: blue">typeII-RI-Restriction</span>, respectively.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf2f5600" class="outline-3">
-<h3 id="orgf2f5600">Procedure</h3>
-<div class="outline-text-3" id="text-orgf2f5600">
+<div id="outline-container-org922d35a" class="outline-3">
+<h3 id="org922d35a">Procedure</h3>
+<div class="outline-text-3" id="text-org922d35a">
 <p>
 For type II codebook based PMI selection, the detailed procedure can be summarized as following steps.
 </p>
@@ -610,9 +621,9 @@ and the per-subband per-polarization phase is
 </div>
 </div>
 
-<div id="outline-container-orgf94a10f" class="outline-2">
-<h2 id="orgf94a10f">Type II Port Selection Codebook</h2>
-<div class="outline-text-2" id="text-orgf94a10f">
+<div id="outline-container-orgadb322d" class="outline-2">
+<h2 id="orgadb322d">Type II Port Selection Codebook</h2>
+<div class="outline-text-2" id="text-orgadb322d">
 <p>
 Essentially speaking, type II port selection codebook is very similar to type II codebook. The only difference lies in the selection of the incomplete orthogonal basis, whose linear weighted sum can approximate the target vectors. In type II codebook, the basis is a subset of a complete DFT basis vectors; While in type II port selection codebook, the basis is a set or subset of a complete identity matrix, indicated by \(i_{1,1}\).
 </p>
@@ -623,13 +634,13 @@ Additionally, the CSI-RS is not precoded in type II codebook based PMI feedback;
 </div>
 </div>
 
-<div id="outline-container-org26dc125" class="outline-2">
-<h2 id="org26dc125">Enhanced Type II and Type II Port Selection Codebooks</h2>
-<div class="outline-text-2" id="text-org26dc125">
+<div id="outline-container-org9e43500" class="outline-2">
+<h2 id="org9e43500">Enhanced Type II and Type II Port Selection Codebooks</h2>
+<div class="outline-text-2" id="text-org9e43500">
 </div>
-<div id="outline-container-org7de5ecf" class="outline-3">
-<h3 id="org7de5ecf">Principle</h3>
-<div class="outline-text-3" id="text-org7de5ecf">
+<div id="outline-container-orgf20c57c" class="outline-3">
+<h3 id="orgf20c57c">Principle</h3>
+<div class="outline-text-3" id="text-orgf20c57c">
 <p>
 In release 16, type II codebook and type II port selection codebook are further enhanced. In order to reduce the overhead for subband-wise PMI feedback, for each layer, the target vectors throughout all the subbands are transformed into the time domain by an IDFT operation. Then, a fraction of stronger taps/vectors are kept and each of them is factorized as a weighted sum of the orthogonal basis vectors. Eventually, the weights are quantized and reported to the network. With the introduction of the frequency-domain compression, the overhead is remarkably reduced. Even for rank-3 and rank-4 feedback, the overheads are not intolerable any more. Therefore, rank-3 and rank-4 reporting are also supported.
 </p>
@@ -682,13 +693,13 @@ where
 </div>
 </div>
 
-<div id="outline-container-orgf1bae51" class="outline-3">
-<h3 id="orgf1bae51">Granularity and Payload for Feedback</h3>
-<div class="outline-text-3" id="text-orgf1bae51">
+<div id="outline-container-org4764923" class="outline-3">
+<h3 id="org4764923">Granularity and Payload for Feedback</h3>
+<div class="outline-text-3" id="text-org4764923">
 <p>
-The granularities of the information discussed above can be listed in Table <a href="#orgf5e9749">3</a>.
+The granularities of the information discussed above can be listed in Table <a href="#orga31f66d">3</a>.
 </p>
-<table id="orgf5e9749" align="center" border="3">
+<table id="orga31f66d" align="center" border="3">
 <caption class="t-above"><span class="table-number">Table 3:</span> The granularity of the payload feedback</caption>
 
 <colgroup>
@@ -757,18 +768,18 @@ where \(l = 1, \ldots, v\).
 </div>
 </div>
 
-<div id="outline-container-org98390c4" class="outline-3">
-<h3 id="org98390c4">Restrictions</h3>
-<div class="outline-text-3" id="text-org98390c4">
+<div id="outline-container-org0d07f7e" class="outline-3">
+<h3 id="org0d07f7e">Restrictions</h3>
+<div class="outline-text-3" id="text-org0d07f7e">
 <p>
 Similarly, for enhanced type II codebook, codebook subset restriction and rank restriction are configured by <span style="color: blue">n1-n2-codebookSubsetRestriction-r16</span> and <span style="color: blue">TypeII-ri-Restriction-r16</span>, respectively; For enhanced type II port selection codebook, the rank restriction is indicated by <span style="color: blue">TypeII-PortSelection-ri-Restriction-r16</span>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgbe7a9c6" class="outline-3">
-<h3 id="orgbe7a9c6">Procedure</h3>
-<div class="outline-text-3" id="text-orgbe7a9c6">
+<div id="outline-container-orga1a0bce" class="outline-3">
+<h3 id="orga1a0bce">Procedure</h3>
+<div class="outline-text-3" id="text-orga1a0bce">
 <p>
 For enhanced type II codebook, the procedure for PMI feedback is similar to that of type II codebook, which can be listed as follows.
 </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Ebib</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,68 +232,68 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5c6741d">Installation</a></li>
-<li><a href="#org1dea629">View</a>
+<li><a href="#org7b97d6e">Installation</a></li>
+<li><a href="#org092e566">View</a>
 <ul>
-<li><a href="#orge7ac39e">Index buffer</a></li>
-<li><a href="#org5aac403">Entry buffer</a></li>
+<li><a href="#org353898e">Index buffer</a></li>
+<li><a href="#orgaa31e40">Entry buffer</a></li>
 </ul>
 </li>
-<li><a href="#org3805fe3">Configuration</a>
+<li><a href="#orgea2e90c">Configuration</a>
 <ul>
-<li><a href="#org842a5fb">Start</a></li>
-<li><a href="#org7aa9668">Columns in index buffer</a></li>
-<li><a href="#orgfb54eaf">Sort columns displayed in index buffer</a></li>
-<li><a href="#orgbfac97f">Sort entries in a bib file</a></li>
-<li><a href="#org4272c3a">Dialect</a></li>
-<li><a href="#orgb177702">Generate key</a></li>
-<li><a href="#org65e5b1e">Enable multiple citations</a></li>
-<li><a href="#orge2c60f2">File search directories</a></li>
-<li><a href="#orga2a4001">File association</a></li>
-<li><a href="#org5ecd7c1">Notes</a></li>
-<li><a href="#orgbc91a14">Reading list</a></li>
-<li><a href="#orge0e60e6">Keyword</a></li>
-<li><a href="#org2d25c4f">Layout</a></li>
-<li><a href="#org9637082">Example</a></li>
+<li><a href="#org329f70e">Start</a></li>
+<li><a href="#org4e9ebb9">Columns in index buffer</a></li>
+<li><a href="#org5daa4a6">Sort columns displayed in index buffer</a></li>
+<li><a href="#orga5afb21">Sort entries in a bib file</a></li>
+<li><a href="#orgf219ace">Dialect</a></li>
+<li><a href="#orgb737f8a">Generate key</a></li>
+<li><a href="#orgda9bb7e">Enable multiple citations</a></li>
+<li><a href="#orgb1a8279">File search directories</a></li>
+<li><a href="#org9900195">File association</a></li>
+<li><a href="#org048b96f">Notes</a></li>
+<li><a href="#org1afbeab">Reading list</a></li>
+<li><a href="#orged1c4a9">Keyword</a></li>
+<li><a href="#org28f43ca">Layout</a></li>
+<li><a href="#org55c1183">Example</a></li>
 </ul>
 </li>
-<li><a href="#org17b7f0b">Usage</a>
+<li><a href="#orgf16672c">Usage</a>
 <ul>
-<li><a href="#org39b8e8e">In index buffer</a>
+<li><a href="#orge1d259b">In index buffer</a>
 <ul>
-<li><a href="#orgb099117">Database</a>
+<li><a href="#orgb520a67">Database</a>
 <ul>
-<li><a href="#org0d7218f">Import entries</a>
+<li><a href="#orgae54ff7">Import entries</a>
 <ul>
-<li><a href="#orge998691">From a buffer</a></li>
-<li><a href="#orgeebf281">With biblio package</a></li>
+<li><a href="#orgf127cce">From a buffer</a></li>
+<li><a href="#org4d29231">With biblio package</a></li>
 </ul>
 </li>
-<li><a href="#orgdca3e78">Print</a>
+<li><a href="#org8b6f5b2">Print</a>
 <ul>
-<li><a href="#orgf531d46">As a bibliography</a></li>
-<li><a href="#org509c34c">As index cards</a></li>
+<li><a href="#org7195439">As a bibliography</a></li>
+<li><a href="#orgb368912">As index cards</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb90f227">Navigate entries</a></li>
-<li><a href="#org0a484c0">View entries</a></li>
-<li><a href="#orgee6a231">Sort entries</a></li>
-<li><a href="#org6fb78f4">Search/filter entries</a></li>
-<li><a href="#org928ede6">Edit entries</a></li>
-<li><a href="#orgbd26383">Reading list</a></li>
+<li><a href="#orgc5efa42">Navigate entries</a></li>
+<li><a href="#orgfcadb27">View entries</a></li>
+<li><a href="#org13b4fa8">Sort entries</a></li>
+<li><a href="#orgd3a4a3b">Search/filter entries</a></li>
+<li><a href="#org8d9b78a">Edit entries</a></li>
+<li><a href="#org7084d78">Reading list</a></li>
 </ul>
 </li>
-<li><a href="#org96c769e">In entry buffer</a>
+<li><a href="#orgde14250">In entry buffer</a>
 <ul>
-<li><a href="#org7607dd4">Navigate fields</a></li>
-<li><a href="#org163d950">Edit fields</a></li>
+<li><a href="#org37f64c3">Navigate fields</a></li>
+<li><a href="#org0b243e1">Edit fields</a></li>
 </ul>
 </li>
-<li><a href="#orgb4a4f7e">In string buffer</a></li>
-<li><a href="#org6d4acd6">Insert citations into a text buffer</a></li>
-<li><a href="#org3c5161c">Link to external resources</a></li>
+<li><a href="#orgeccaee6">In string buffer</a></li>
+<li><a href="#org5cb7410">Insert citations into a text buffer</a></li>
+<li><a href="#org84f80f8">Link to external resources</a></li>
 </ul>
 </li>
 </ul>
@@ -292,36 +303,36 @@
 <a href="https://github.com/joostkremers/ebib">Ebib</a> is a tool inside Emacs for bibliography management, supporting <i>BibTeX</i> and <i>biblatex</i> files. This post is just a brief summary of the online <a href="https://joostkremers.github.io/ebib/ebib-manual.html">manual</a>.
 </p>
 
-<div id="outline-container-org5c6741d" class="outline-2">
-<h2 id="org5c6741d">Installation</h2>
-<div class="outline-text-2" id="text-org5c6741d">
+<div id="outline-container-org7b97d6e" class="outline-2">
+<h2 id="org7b97d6e">Installation</h2>
+<div class="outline-text-2" id="text-org7b97d6e">
 <p>
 Ebib can be easily installed via <a href="http://melpa.org">Melpa</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-org1dea629" class="outline-2">
-<h2 id="org1dea629">View</h2>
-<div class="outline-text-2" id="text-org1dea629">
+<div id="outline-container-org092e566" class="outline-2">
+<h2 id="org092e566">View</h2>
+<div class="outline-text-2" id="text-org092e566">
 <p>
 When ebib is started, the Emacs frame is divided into 2 windows, <i>index buffer</i> at the top and <i>entry buffer</i> at the bottom.
 </p>
 </div>
-<div id="outline-container-orge7ac39e" class="outline-3">
-<h3 id="orge7ac39e">Index buffer</h3>
-<div class="outline-text-3" id="text-orge7ac39e">
+<div id="outline-container-org353898e" class="outline-3">
+<h3 id="org353898e">Index buffer</h3>
+<div class="outline-text-3" id="text-org353898e">
 <p>
 All the entries are listed in this buffer.
 </p>
 <ul class="org-ul">
-<li>The fields or columns displayed in the buffer can be <a href="#org7aa9668">customized</a>.</li>
-<li>The entries are by default sorted in ascending order on the first column defined in <code>ebib-index-columns</code>, but the sorting rule can be specified by option <a href="#orgfb54eaf">ebib-index-default-sort</a>.</li>
+<li>The fields or columns displayed in the buffer can be <a href="#org4e9ebb9">customized</a>.</li>
+<li>The entries are by default sorted in ascending order on the first column defined in <code>ebib-index-columns</code>, but the sorting rule can be specified by option <a href="#org5daa4a6">ebib-index-default-sort</a>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5aac403" class="outline-3">
-<h3 id="org5aac403">Entry buffer</h3>
-<div class="outline-text-3" id="text-org5aac403">
+<div id="outline-container-orgaa31e40" class="outline-3">
+<h3 id="orgaa31e40">Entry buffer</h3>
+<div class="outline-text-3" id="text-orgaa31e40">
 <p>
 All the fields of the selected entry are shown in this buffer. The first field is <code>type</code> field, as the name indicates, it indicates the type of the entry, e.g., <code>article</code>, <code>book</code>. Besides, the remaining fields can be classified into 4 groups below. <code>Required fields</code> and <code>optional fields</code> are <code>type</code>-specific; while <code>extra fields</code> and <code>undefined fields</code> are not, but defined globally.
 </p>
@@ -334,13 +345,13 @@ All the fields of the selected entry are shown in this buffer. The first field i
 </div>
 </div>
 </div>
-<div id="outline-container-org3805fe3" class="outline-2">
-<h2 id="org3805fe3">Configuration</h2>
-<div class="outline-text-2" id="text-org3805fe3">
+<div id="outline-container-orgea2e90c" class="outline-2">
+<h2 id="orgea2e90c">Configuration</h2>
+<div class="outline-text-2" id="text-orgea2e90c">
 </div>
-<div id="outline-container-org842a5fb" class="outline-3">
-<h3 id="org842a5fb">Start</h3>
-<div class="outline-text-3" id="text-org842a5fb">
+<div id="outline-container-org329f70e" class="outline-3">
+<h3 id="org329f70e">Start</h3>
+<div class="outline-text-3" id="text-org329f70e">
 <p>
 Ebib can be started by running command <code>M-x ebib</code> inside Emacs. Optionally, it can be bound to a keyboard shortcut, e.g., adding the new line below to <code>~/.config/emacs/init.el</code>.
 </p>
@@ -350,9 +361,9 @@ Ebib can be started by running command <code>M-x ebib</code> inside Emacs. Optio
 </div>
 </div>
 </div>
-<div id="outline-container-org7aa9668" class="outline-3">
-<h3 id="org7aa9668">Columns in index buffer</h3>
-<div class="outline-text-3" id="text-org7aa9668">
+<div id="outline-container-org4e9ebb9" class="outline-3">
+<h3 id="org4e9ebb9">Columns in index buffer</h3>
+<div class="outline-text-3" id="text-org4e9ebb9">
 <div class="org-src-container">
 <pre class="src src-elisp">(setq ebib-index-columns '(("Year" 6 t)
                            ("Author/Editor" 40 t)
@@ -361,27 +372,27 @@ Ebib can be started by running command <code>M-x ebib</code> inside Emacs. Optio
 </div>
 </div>
 </div>
-<div id="outline-container-orgfb54eaf" class="outline-3">
-<h3 id="orgfb54eaf">Sort columns displayed in index buffer</h3>
-<div class="outline-text-3" id="text-orgfb54eaf">
+<div id="outline-container-org5daa4a6" class="outline-3">
+<h3 id="org5daa4a6">Sort columns displayed in index buffer</h3>
+<div class="outline-text-3" id="text-org5daa4a6">
 <div class="org-src-container">
 <pre class="src src-elisp">(setq ebib-index-default-sort '("Year" . descend))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbfac97f" class="outline-3">
-<h3 id="orgbfac97f">Sort entries in a bib file<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
-<div class="outline-text-3" id="text-orgbfac97f">
+<div id="outline-container-orga5afb21" class="outline-3">
+<h3 id="orga5afb21">Sort entries in a bib file<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
+<div class="outline-text-3" id="text-orga5afb21">
 <div class="org-src-container">
 <pre class="src src-elisp">(setq ebib-sort-order '(year author))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4272c3a" class="outline-3">
-<h3 id="org4272c3a">Dialect</h3>
-<div class="outline-text-3" id="text-org4272c3a">
+<div id="outline-container-orgf219ace" class="outline-3">
+<h3 id="orgf219ace">Dialect</h3>
+<div class="outline-text-3" id="text-orgf219ace">
 <p>
 Ebib supports two dialects, BibTeX and biblatex. The default dialect is BibTeX, but can be changed to biblatex, i.e.,
 </p>
@@ -391,27 +402,27 @@ Ebib supports two dialects, BibTeX and biblatex. The default dialect is BibTeX, 
 </div>
 </div>
 </div>
-<div id="outline-container-orgb177702" class="outline-3">
-<h3 id="orgb177702">Generate key</h3>
-<div class="outline-text-3" id="text-orgb177702">
+<div id="outline-container-orgb737f8a" class="outline-3">
+<h3 id="orgb737f8a">Generate key</h3>
+<div class="outline-text-3" id="text-orgb737f8a">
 <ul class="org-ul">
 <li>If <code>ebib-autogenerate-keys</code> is set to <code>t</code>, function <code>bibtex-generate-autokey</code> will automatically generate the key for the entry.</li>
 <li>If <code>ebib-autogenerate-keys</code> is set to <code>nil</code>, the key can be manually specified.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org65e5b1e" class="outline-3">
-<h3 id="org65e5b1e">Enable multiple citations</h3>
-<div class="outline-text-3" id="text-org65e5b1e">
+<div id="outline-container-orgda9bb7e" class="outline-3">
+<h3 id="orgda9bb7e">Enable multiple citations</h3>
+<div class="outline-text-3" id="text-orgda9bb7e">
 <div class="org-src-container">
 <pre class="src src-elisp">(setq ebib-citations-insert-multiple t)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge2c60f2" class="outline-3">
-<h3 id="orge2c60f2">File search directories</h3>
-<div class="outline-text-3" id="text-orge2c60f2">
+<div id="outline-container-orgb1a8279" class="outline-3">
+<h3 id="orgb1a8279">File search directories</h3>
+<div class="outline-text-3" id="text-orgb1a8279">
 <p>
 For an entry with field <code>file</code>, ebib searches and opens it in a series of directories, i.e., <code>File Search Dirs</code>.
 </p>
@@ -421,9 +432,9 @@ For an entry with field <code>file</code>, ebib searches and opens it in a serie
 </div>
 </div>
 </div>
-<div id="outline-container-orga2a4001" class="outline-3">
-<h3 id="orga2a4001">File association</h3>
-<div class="outline-text-3" id="text-orga2a4001">
+<div id="outline-container-org9900195" class="outline-3">
+<h3 id="org9900195">File association</h3>
+<div class="outline-text-3" id="text-org9900195">
 <p>
 Ebib opens different types of files, i.e., extensions of files, using different external programs.
 </p>
@@ -433,9 +444,9 @@ Ebib opens different types of files, i.e., extensions of files, using different 
 </div>
 </div>
 </div>
-<div id="outline-container-org5ecd7c1" class="outline-3">
-<h3 id="org5ecd7c1">Notes</h3>
-<div class="outline-text-3" id="text-org5ecd7c1">
+<div id="outline-container-org048b96f" class="outline-3">
+<h3 id="org048b96f">Notes</h3>
+<div class="outline-text-3" id="text-org048b96f">
 <dl class="org-dl">
 <dt>One file per note (default)</dt><dd><p>
 The default note file name is the entry key appended with a <code>.org</code> extension. But the naming rule can be customized by option <code>ebib-notes-name-transform-function</code>. Otherwise, <code>ebib-name-transform-function</code> will be used.
@@ -456,9 +467,9 @@ Optionally, a default note file can be designated for new notes by option <code>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgbc91a14" class="outline-3">
-<h3 id="orgbc91a14">Reading list</h3>
-<div class="outline-text-3" id="text-orgbc91a14">
+<div id="outline-container-org1afbeab" class="outline-3">
+<h3 id="org1afbeab">Reading list</h3>
+<div class="outline-text-3" id="text-org1afbeab">
 <p>
 <code>Reading list</code> is an Org file, which records the state of an entry, e.g.,
 </p>
@@ -472,9 +483,9 @@ Optionally, a default note file can be designated for new notes by option <code>
 </div>
 </div>
 </div>
-<div id="outline-container-orge0e60e6" class="outline-3">
-<h3 id="orge0e60e6">Keyword</h3>
-<div class="outline-text-3" id="text-orge0e60e6">
+<div id="outline-container-orged1c4a9" class="outline-3">
+<h3 id="orged1c4a9">Keyword</h3>
+<div class="outline-text-3" id="text-orged1c4a9">
 <p>
 Ebib supports keywords by entry field <code>keywords</code>. Optionally, a canonical keywords list can be defined, e.g.,
 </p>
@@ -484,9 +495,9 @@ Ebib supports keywords by entry field <code>keywords</code>. Optionally, a canon
 </div>
 </div>
 </div>
-<div id="outline-container-org2d25c4f" class="outline-3">
-<h3 id="org2d25c4f">Layout</h3>
-<div class="outline-text-3" id="text-org2d25c4f">
+<div id="outline-container-org28f43ca" class="outline-3">
+<h3 id="org28f43ca">Layout</h3>
+<div class="outline-text-3" id="text-org28f43ca">
 <p>
 Ebib has 4 layout options.
 </p>
@@ -506,9 +517,9 @@ Ebib has 4 layout options.
 </ul>
 </div>
 </div>
-<div id="outline-container-org9637082" class="outline-3">
-<h3 id="org9637082">Example</h3>
-<div class="outline-text-3" id="text-org9637082">
+<div id="outline-container-org55c1183" class="outline-3">
+<h3 id="org55c1183">Example</h3>
+<div class="outline-text-3" id="text-org55c1183">
 <div class="org-src-container">
 <pre class="src src-elisp">(use-package ebib
   :custom
@@ -540,17 +551,17 @@ Ebib has 4 layout options.
 </div>
 </div>
 </div>
-<div id="outline-container-org17b7f0b" class="outline-2">
-<h2 id="org17b7f0b">Usage</h2>
-<div class="outline-text-2" id="text-org17b7f0b">
+<div id="outline-container-orgf16672c" class="outline-2">
+<h2 id="orgf16672c">Usage</h2>
+<div class="outline-text-2" id="text-orgf16672c">
 </div>
-<div id="outline-container-org39b8e8e" class="outline-3">
-<h3 id="org39b8e8e">In index buffer</h3>
-<div class="outline-text-3" id="text-org39b8e8e">
+<div id="outline-container-orge1d259b" class="outline-3">
+<h3 id="orge1d259b">In index buffer</h3>
+<div class="outline-text-3" id="text-orge1d259b">
 </div>
-<div id="outline-container-orgb099117" class="outline-4">
-<h4 id="orgb099117">Database</h4>
-<div class="outline-text-4" id="text-orgb099117">
+<div id="outline-container-orgb520a67" class="outline-4">
+<h4 id="orgb520a67">Database</h4>
+<div class="outline-text-4" id="text-orgb520a67">
 <table>
 
 
@@ -633,13 +644,13 @@ Ebib has 4 layout options.
 </tbody>
 </table>
 </div>
-<div id="outline-container-org0d7218f" class="outline-5">
-<h5 id="org0d7218f">Import entries</h5>
-<div class="outline-text-5" id="text-org0d7218f">
+<div id="outline-container-orgae54ff7" class="outline-5">
+<h5 id="orgae54ff7">Import entries</h5>
+<div class="outline-text-5" id="text-orgae54ff7">
 </div>
-<div id="outline-container-orge998691" class="outline-6">
-<h6 id="orge998691">From a buffer</h6>
-<div class="outline-text-6" id="text-orge998691">
+<div id="outline-container-orgf127cce" class="outline-6">
+<h6 id="orgf127cce">From a buffer</h6>
+<div class="outline-text-6" id="text-orgf127cce">
 <table>
 
 
@@ -663,9 +674,9 @@ Ebib has 4 layout options.
 </table>
 </div>
 </div>
-<div id="outline-container-orgeebf281" class="outline-6">
-<h6 id="orgeebf281">With <a href="https://github.com/cpitclaudel/biblio.el">biblio</a> package</h6>
-<div class="outline-text-6" id="text-orgeebf281">
+<div id="outline-container-org4d29231" class="outline-6">
+<h6 id="org4d29231">With <a href="https://github.com/cpitclaudel/biblio.el">biblio</a> package</h6>
+<div class="outline-text-6" id="text-org4d29231">
 <div class="org-src-container">
 <pre class="src src-elisp">(use-package ebib-biblio
   :ensure biblio
@@ -706,13 +717,13 @@ Ebib has 4 layout options.
 </div>
 </div>
 </div>
-<div id="outline-container-orgdca3e78" class="outline-5">
-<h5 id="orgdca3e78">Print</h5>
-<div class="outline-text-5" id="text-orgdca3e78">
+<div id="outline-container-org8b6f5b2" class="outline-5">
+<h5 id="org8b6f5b2">Print</h5>
+<div class="outline-text-5" id="text-org8b6f5b2">
 </div>
-<div id="outline-container-orgf531d46" class="outline-6">
-<h6 id="orgf531d46">As a bibliography</h6>
-<div class="outline-text-6" id="text-orgf531d46">
+<div id="outline-container-org7195439" class="outline-6">
+<h6 id="org7195439">As a bibliography</h6>
+<div class="outline-text-6" id="text-org7195439">
 <p>
 Ebib creates a simple LaTeX document essentially consisting of 3 commands below.
 </p>
@@ -723,9 +734,9 @@ Ebib creates a simple LaTeX document essentially consisting of 3 commands below.
 </ul>
 </div>
 </div>
-<div id="outline-container-org509c34c" class="outline-6">
-<h6 id="org509c34c">As index cards</h6>
-<div class="outline-text-6" id="text-org509c34c">
+<div id="outline-container-orgb368912" class="outline-6">
+<h6 id="orgb368912">As index cards</h6>
+<div class="outline-text-6" id="text-orgb368912">
 <p>
 Ebib creates a LaTeX file in which a <code>tabular</code> environment is created for each entry including all the fields.
 </p>
@@ -733,9 +744,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </div>
 </div>
 </div>
-<div id="outline-container-orgb90f227" class="outline-4">
-<h4 id="orgb90f227">Navigate entries</h4>
-<div class="outline-text-4" id="text-orgb90f227">
+<div id="outline-container-orgc5efa42" class="outline-4">
+<h4 id="orgc5efa42">Navigate entries</h4>
+<div class="outline-text-4" id="text-orgc5efa42">
 <table>
 
 
@@ -799,9 +810,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </table>
 </div>
 </div>
-<div id="outline-container-org0a484c0" class="outline-4">
-<h4 id="org0a484c0">View entries</h4>
-<div class="outline-text-4" id="text-org0a484c0">
+<div id="outline-container-orgfcadb27" class="outline-4">
+<h4 id="orgfcadb27">View entries</h4>
+<div class="outline-text-4" id="text-orgfcadb27">
 <table>
 
 
@@ -840,9 +851,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </table>
 </div>
 </div>
-<div id="outline-container-orgee6a231" class="outline-4">
-<h4 id="orgee6a231">Sort entries</h4>
-<div class="outline-text-4" id="text-orgee6a231">
+<div id="outline-container-org13b4fa8" class="outline-4">
+<h4 id="org13b4fa8">Sort entries</h4>
+<div class="outline-text-4" id="text-org13b4fa8">
 <table>
 
 
@@ -876,9 +887,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </table>
 </div>
 </div>
-<div id="outline-container-org6fb78f4" class="outline-4">
-<h4 id="org6fb78f4">Search/filter entries</h4>
-<div class="outline-text-4" id="text-org6fb78f4">
+<div id="outline-container-orgd3a4a3b" class="outline-4">
+<h4 id="orgd3a4a3b">Search/filter entries</h4>
+<div class="outline-text-4" id="text-orgd3a4a3b">
 <table>
 
 
@@ -932,9 +943,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </table>
 </div>
 </div>
-<div id="outline-container-org928ede6" class="outline-4">
-<h4 id="org928ede6">Edit entries</h4>
-<div class="outline-text-4" id="text-org928ede6">
+<div id="outline-container-org8d9b78a" class="outline-4">
+<h4 id="org8d9b78a">Edit entries</h4>
+<div class="outline-text-4" id="text-org8d9b78a">
 <table>
 
 
@@ -1028,9 +1039,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </table>
 </div>
 </div>
-<div id="outline-container-orgbd26383" class="outline-4">
-<h4 id="orgbd26383">Reading list</h4>
-<div class="outline-text-4" id="text-orgbd26383">
+<div id="outline-container-org7084d78" class="outline-4">
+<h4 id="org7084d78">Reading list</h4>
+<div class="outline-text-4" id="text-org7084d78">
 <table>
 
 
@@ -1065,13 +1076,13 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </div>
 </div>
 </div>
-<div id="outline-container-org96c769e" class="outline-3">
-<h3 id="org96c769e">In entry buffer</h3>
-<div class="outline-text-3" id="text-org96c769e">
+<div id="outline-container-orgde14250" class="outline-3">
+<h3 id="orgde14250">In entry buffer</h3>
+<div class="outline-text-3" id="text-orgde14250">
 </div>
-<div id="outline-container-org7607dd4" class="outline-4">
-<h4 id="org7607dd4">Navigate fields</h4>
-<div class="outline-text-4" id="text-org7607dd4">
+<div id="outline-container-org37f64c3" class="outline-4">
+<h4 id="org37f64c3">Navigate fields</h4>
+<div class="outline-text-4" id="text-org37f64c3">
 <table>
 
 
@@ -1125,9 +1136,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </table>
 </div>
 </div>
-<div id="outline-container-org163d950" class="outline-4">
-<h4 id="org163d950">Edit fields</h4>
-<div class="outline-text-4" id="text-org163d950">
+<div id="outline-container-org0b243e1" class="outline-4">
+<h4 id="org0b243e1">Edit fields</h4>
+<div class="outline-text-4" id="text-org0b243e1">
 <table>
 
 
@@ -1197,9 +1208,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </div>
 </div>
 </div>
-<div id="outline-container-orgb4a4f7e" class="outline-3">
-<h3 id="orgb4a4f7e">In string buffer</h3>
-<div class="outline-text-3" id="text-orgb4a4f7e">
+<div id="outline-container-orgeccaee6" class="outline-3">
+<h3 id="orgeccaee6">In string buffer</h3>
+<div class="outline-text-3" id="text-orgeccaee6">
 <table>
 
 
@@ -1273,9 +1284,9 @@ Ebib creates a LaTeX file in which a <code>tabular</code> environment is created
 </table>
 </div>
 </div>
-<div id="outline-container-org6d4acd6" class="outline-3">
-<h3 id="org6d4acd6">Insert citations into a text buffer</h3>
-<div class="outline-text-3" id="text-org6d4acd6">
+<div id="outline-container-org5cb7410" class="outline-3">
+<h3 id="org5cb7410">Insert citations into a text buffer</h3>
+<div class="outline-text-3" id="text-org5cb7410">
 <p>
 To accommodate different modes or types of files, different citation commands are defined and can be redefined by customizing option <code>ebib-citation-commands</code>, e.g.,
 </p>
@@ -1315,9 +1326,9 @@ In practice, citations can be inserted into a text buffer in two ways below.
 </table>
 </div>
 </div>
-<div id="outline-container-org3c5161c" class="outline-3">
-<h3 id="org3c5161c">Link to external resources</h3>
-<div class="outline-text-3" id="text-org3c5161c">
+<div id="outline-container-org84f80f8" class="outline-3">
+<h3 id="org84f80f8">Link to external resources</h3>
+<div class="outline-text-3" id="text-org84f80f8">
 <ul class="org-ul">
 <li>Field <code>file</code> specifies the file(s) associated to the entry. If multiple files are associated to one entry, the content of field <code>file</code> is comprised of multiple paths separated by semicolon-space (; ). Each path can be a relative path to one of the directories specfied in <code>ebib-file-search-dirs</code>.</li>
 <li>Shortcut <code>f</code> can make ebib search the file (indicated by field <code>file</code>) in the directories specfied in <code>ebib-file-search-dirs</code>.</li>

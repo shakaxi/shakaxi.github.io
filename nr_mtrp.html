@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - Multi-TRP Transmission</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,28 +232,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc120595">Introduction</a></li>
-<li><a href="#orgee61aa6">System model</a></li>
-<li><a href="#orgb7e37b5">Capacity</a>
+<li><a href="#orgeb7b977">Introduction</a></li>
+<li><a href="#org6e66dc0">System model</a></li>
+<li><a href="#orga1ba05a">Capacity</a>
 <ul>
-<li><a href="#org085e71a">Eigen beamforming</a></li>
+<li><a href="#orgfd1bfa2">Eigen beamforming</a></li>
 <li><a href="#mpue">Multi-panel UE</a></li>
 </ul>
 </li>
-<li><a href="#org172d9e0">CSI acquisition</a>
+<li><a href="#org55861cc">CSI acquisition</a>
 <ul>
-<li><a href="#orgb6c2b1e">CSI in CoMP</a></li>
-<li><a href="#orge96b5fa">SINR prediction</a></li>
-<li><a href="#org2e1dd70">CSI for NCJT</a></li>
+<li><a href="#orge2c29cc">CSI in CoMP</a></li>
+<li><a href="#org3e0a143">SINR prediction</a></li>
+<li><a href="#org34e398c">CSI for NCJT</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc120595" class="outline-2">
-<h2 id="orgc120595">Introduction</h2>
-<div class="outline-text-2" id="text-orgc120595">
+<div id="outline-container-orgeb7b977" class="outline-2">
+<h2 id="orgeb7b977">Introduction</h2>
+<div class="outline-text-2" id="text-orgeb7b977">
 <p>
 Recently, multi-TRP transmission is one of the most remarkable features of NR and consequently the focus of discussion in the standardization of 3GPP, since it is able to efficiently improve the reliability or the efficiency of the transmission.
 </p>
@@ -256,14 +267,14 @@ For clear description, following denotation conventions have been adopted throug
 </p>
 </div>
 </div>
-<div id="outline-container-orgee61aa6" class="outline-2">
-<h2 id="orgee61aa6">System model</h2>
-<div class="outline-text-2" id="text-orgee61aa6">
+<div id="outline-container-org6e66dc0" class="outline-2">
+<h2 id="org6e66dc0">System model</h2>
+<div class="outline-text-2" id="text-org6e66dc0">
 <p>
 Without loss of generality, we consider such a simple 2-TRP non-coherent joint transmission (NCJT) scenario that a UE receives two PDSCH's from TRP-1 and TRP-2 simutaneously, as shown in the figure below. Each TRP is equipped with \(n_t\) antennas, while the UE has \(n_r\) antennas. For clear description, the downlink channel, precoding matrix, and the transmitted signal from TRP-\(i\), are denoted by \(\mathbf{H}_i \in \mathbb{C}^{n_r \times n_t}\), \(\mathbf{W}_i \in \mathbb{C}^{n_t \times r_i}\), and \(\mathbf{x}_i \in \mathbb{C}^{r_i \times 1}\) respectively, where \(r_i\) is the number of layers of the PDSCH transmitted from TRP-\(i\), \(i = 1, 2\).
 </p>
 
-<div id="org3da838d" class="figure">
+<div id="org14df2a1" class="figure">
 <p><img src="mtrp-sys-mod.png" alt="mtrp-sys-mod.png" width="800px">
 </p>
 <p><span class="figure-number">Figure 1: </span>System model</p>
@@ -282,9 +293,9 @@ where \(\mathbf{n} \in \mathbb{C}^{n_r \times 1}\) is zero mean cyclic symmetric
 </div>
 </div>
 
-<div id="outline-container-orgb7e37b5" class="outline-2">
-<h2 id="orgb7e37b5">Capacity</h2>
-<div class="outline-text-2" id="text-orgb7e37b5">
+<div id="outline-container-orga1ba05a" class="outline-2">
+<h2 id="orga1ba05a">Capacity</h2>
+<div class="outline-text-2" id="text-orga1ba05a">
 <p>
 For simplicity sake, taking equal power allocation (EPA) for each TRP for instance, i.e., \(\mathcal{E}(\mathbf{x}_i \mathbf{x}_i^H) = \dfrac{P}{r_i} \mathbf{I}\), \(i = 1, 2\), where \(P\) is the total transmit power for each TRP. Then, the Shannon capacity can be expressed as
 </p>
@@ -293,9 +304,9 @@ For simplicity sake, taking equal power allocation (EPA) for each TRP for instan
 \end{align}
 </div>
 
-<div id="outline-container-org085e71a" class="outline-3">
-<h3 id="org085e71a">Eigen beamforming</h3>
-<div class="outline-text-3" id="text-org085e71a">
+<div id="outline-container-orgfd1bfa2" class="outline-3">
+<h3 id="orgfd1bfa2">Eigen beamforming</h3>
+<div class="outline-text-3" id="text-orgfd1bfa2">
 <p>
 Suppose \(\mathbf{H}_i\) can be singular value decomposed (SVD) as
 </p>
@@ -376,9 +387,9 @@ In this case, EBF, i.e., \(\mathbf{W}_i = \mathbf{V}_i, i = 1, 2\), is the optim
 </div>
 </div>
 
-<div id="outline-container-org172d9e0" class="outline-2">
-<h2 id="org172d9e0">CSI acquisition</h2>
-<div class="outline-text-2" id="text-org172d9e0">
+<div id="outline-container-org55861cc" class="outline-2">
+<h2 id="org55861cc">CSI acquisition</h2>
+<div class="outline-text-2" id="text-org55861cc">
 <p>
 In light of information theory, CSI plays an extremely important role in an end-to-end transmission. CSI at the receiver side, which can be obtained based on the DMRS-based channel estimation, enables coherent detection which remarkably outperforms non-coherent equalization. From a capacity maximization perspective, that is not enough and CSI at the transmitter side is also essential. To this end, a UE is expected to report CSI to the transmitter to facilitate it to better match the channel. Usually, a CSI covers both spatial-domain information and channel quality related indication, targetting antenna gain maximization and efficient link adaptation, respectively.
 </p>
@@ -387,9 +398,9 @@ In light of information theory, CSI plays an extremely important role in an end-
 On one hand, the spatial information can be a PMI out of a predefined codebook, or a reciprocity-based CDI, etc. The spatial information, however, is always obtained via the channel estimation based on NZP CSI-RS. On the other hand, channel quality can be depicted by a CQI, which depends on the intensity of the signal and the strength of the interference plus noise.
 </p>
 </div>
-<div id="outline-container-orgb6c2b1e" class="outline-3">
-<h3 id="orgb6c2b1e">CSI in CoMP</h3>
-<div class="outline-text-3" id="text-orgb6c2b1e">
+<div id="outline-container-orge2c29cc" class="outline-3">
+<h3 id="orge2c29cc">CSI in CoMP</h3>
+<div class="outline-text-3" id="text-orge2c29cc">
 <p>
 In CoMP, the spatial information can be categorized as two types, per-cell and cross-cell information. The former is exactly the same as that for the single-cell transmission; while the latter is introduced only for coherent joint transmission.
 </p>
@@ -431,9 +442,9 @@ Then, the power of the interference can be obtained by
 </div>
 </div>
 
-<div id="outline-container-orge96b5fa" class="outline-3">
-<h3 id="orge96b5fa">SINR prediction</h3>
-<div class="outline-text-3" id="text-orge96b5fa">
+<div id="outline-container-org3e0a143" class="outline-3">
+<h3 id="org3e0a143">SINR prediction</h3>
+<div class="outline-text-3" id="text-org3e0a143">
 <p>
 At the stage of scheduling, a gNB has to predict the achievable SINR based on the reported CSI for two reasons. On one hand, a UE is completely unaware of the potential paired UE for MU-MIMO transmission in the future, but has to calculate CSI based on SU-MIMO. On the other hand, the precoded inter-cell interference (ICI) in the actual transmission is remarkably different from that on the occasion of CSI reporting.
 </p>
@@ -452,9 +463,9 @@ Again, taking the scenario in the figure above for example, the UE reports CSI f
 </div>
 </div>
 
-<div id="outline-container-org2e1dd70" class="outline-3">
-<h3 id="org2e1dd70">CSI for NCJT</h3>
-<div class="outline-text-3" id="text-org2e1dd70">
+<div id="outline-container-org34e398c" class="outline-3">
+<h3 id="org34e398c">CSI for NCJT</h3>
+<div class="outline-text-3" id="text-org34e398c">
 <p>
 According to the analysis of MPUE in section <a href="#mpue">Multi-panel UE</a>, a MPUE can be identified as a potential NCJT UE, if following prerequisites can be met.
 </p>

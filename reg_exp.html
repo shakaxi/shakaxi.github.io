@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:50 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Regular Expression</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,10 +200,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga0d3cba">字符集(字符组) <code>[]</code></a></li>
-<li><a href="#org81aaefe">通配符</a></li>
-<li><a href="#org503ef1d">捕获与反向引用</a></li>
-<li><a href="#orgd15b2c8">量词</a></li>
+<li><a href="#org022ab4b">字符集(字符组) <code>[]</code></a></li>
+<li><a href="#org3aeb2fa">通配符</a></li>
+<li><a href="#org6b447a1">捕获与反向引用</a></li>
+<li><a href="#orgfb1b296">量词</a></li>
 </ul>
 </div>
 </div>
@@ -211,9 +211,9 @@
 正则表达式是指用于字符串匹配的一种模式,最早出现于20世纪40年代.
 </p>
 
-<div id="outline-container-orga0d3cba" class="outline-2">
-<h2 id="orga0d3cba">字符集(字符组) <code>[]</code></h2>
-<div class="outline-text-2" id="text-orga0d3cba">
+<div id="outline-container-org022ab4b" class="outline-2">
+<h2 id="org022ab4b">字符集(字符组) <code>[]</code></h2>
+<div class="outline-text-2" id="text-org022ab4b">
 <ul class="org-ul">
 <li><code>[0-9]</code> 可以匹配0到9范围内的任意数字.可以简写为 <code>\d</code>.</li>
 <li><code>\D</code> 可以匹配非数字字符.相当于 <code>[^0-9]</code> 或 <code>[^\d]</code>.</li>
@@ -227,9 +227,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org81aaefe" class="outline-2">
-<h2 id="org81aaefe">通配符</h2>
-<div class="outline-text-2" id="text-org81aaefe">
+<div id="outline-container-org3aeb2fa" class="outline-2">
+<h2 id="org3aeb2fa">通配符</h2>
+<div class="outline-text-2" id="text-org3aeb2fa">
 <ul class="org-ul">
 <li><code>.</code> 可以匹配任意字符<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.</li>
 <li><code>^</code> 行起始符.</li>
@@ -239,17 +239,17 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org503ef1d" class="outline-2">
-<h2 id="org503ef1d">捕获与反向引用</h2>
-<div class="outline-text-2" id="text-org503ef1d">
+<div id="outline-container-org6b447a1" class="outline-2">
+<h2 id="org6b447a1">捕获与反向引用</h2>
+<div class="outline-text-2" id="text-org6b447a1">
 <ul class="org-ul">
 <li>可以使用圆括号 <code>()</code> 创建捕获分组,之后可以对其进行反向引用,如 <code>$1</code>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd15b2c8" class="outline-2">
-<h2 id="orgd15b2c8">量词</h2>
-<div class="outline-text-2" id="text-orgd15b2c8">
+<div id="outline-container-orgfb1b296" class="outline-2">
+<h2 id="orgfb1b296">量词</h2>
+<div class="outline-text-2" id="text-orgfb1b296">
 <ul class="org-ul">
 <li><code>{}</code> 中的数字表示确切的匹配次数.</li>
 <li><code>+</code> 表示一次或者多次.</li>

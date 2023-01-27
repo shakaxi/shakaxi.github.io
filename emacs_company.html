@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:50 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Company</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,23 +200,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1ebcc5f">Introduction</a></li>
-<li><a href="#org4ae46bf">Installation and configuration</a>
+<li><a href="#org115908a">Introduction</a></li>
+<li><a href="#orgfa4735d">Installation and configuration</a>
 <ul>
-<li><a href="#orgb040b77">Company</a></li>
-<li><a href="#org5181bdd">Clang support</a></li>
-<li><a href="#orgd4f1f52">C headers support</a></li>
-<li><a href="#orgd824bf6">LaTeX support</a></li>
-<li><a href="#org6381296">Python support</a></li>
+<li><a href="#orga300923">Company</a></li>
+<li><a href="#org129504c">Clang support</a></li>
+<li><a href="#org9722ba1">C headers support</a></li>
+<li><a href="#org5cca079">LaTeX support</a></li>
+<li><a href="#org0c29fe7">Python support</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1ebcc5f" class="outline-2">
-<h2 id="org1ebcc5f">Introduction</h2>
-<div class="outline-text-2" id="text-org1ebcc5f">
+<div id="outline-container-org115908a" class="outline-2">
+<h2 id="org115908a">Introduction</h2>
+<div class="outline-text-2" id="text-org115908a">
 <p>
 <i>Auto-completion</i> is an important functionality in Emacs. It can greatly speed up our editing and programming. Generally speaking, the auto-completion can be divided into two parts, <i>frontend</i> and <i>backend</i>. As their names indicate, the former presents interface, while the latter provides contents. In a nutshell, the backend generates completion contents and feeds them to the frontend; then the frontend presents completion candidates to us for selection.
 </p>
@@ -234,13 +234,13 @@ For myself, I have been using company since I began to use Emacs. Therefore, I j
 </p>
 </div>
 </div>
-<div id="outline-container-org4ae46bf" class="outline-2">
-<h2 id="org4ae46bf">Installation and configuration</h2>
-<div class="outline-text-2" id="text-org4ae46bf">
+<div id="outline-container-orgfa4735d" class="outline-2">
+<h2 id="orgfa4735d">Installation and configuration</h2>
+<div class="outline-text-2" id="text-orgfa4735d">
 </div>
-<div id="outline-container-orgb040b77" class="outline-3">
-<h3 id="orgb040b77">Company</h3>
-<div class="outline-text-3" id="text-orgb040b77">
+<div id="outline-container-orga300923" class="outline-3">
+<h3 id="orga300923">Company</h3>
+<div class="outline-text-3" id="text-orga300923">
 <p>
 Company can be directly installed via <i>ELPA</i>.
 </p>
@@ -269,9 +269,9 @@ After the installation, following configurations should be added in <code>~/.ema
 </div>
 </div>
 </div>
-<div id="outline-container-org5181bdd" class="outline-3">
-<h3 id="org5181bdd">Clang support</h3>
-<div class="outline-text-3" id="text-org5181bdd">
+<div id="outline-container-org129504c" class="outline-3">
+<h3 id="org129504c">Clang support</h3>
+<div class="outline-text-3" id="text-org129504c">
 <p>
 Clang support is out-of-the-box. Additional package installation is not necessary. However, company-semantic is also built-in and precedes company-clang. Therefore, it is necessary to remove company-semantic. To this end, following configurations are needed.
 </p>
@@ -285,9 +285,9 @@ Clang support is out-of-the-box. Additional package installation is not necessar
 </div>
 </div>
 </div>
-<div id="outline-container-orgd4f1f52" class="outline-3">
-<h3 id="orgd4f1f52">C headers support</h3>
-<div class="outline-text-3" id="text-orgd4f1f52">
+<div id="outline-container-org9722ba1" class="outline-3">
+<h3 id="org9722ba1">C headers support</h3>
+<div class="outline-text-3" id="text-org9722ba1">
 <p>
 For the sake of completing C/C++ header files while input, package <code>company-c-headers</code> can be installed by
 </p>
@@ -306,9 +306,9 @@ and configured by
 </div>
 </div>
 </div>
-<div id="outline-container-orgd824bf6" class="outline-3">
-<h3 id="orgd824bf6">LaTeX support</h3>
-<div class="outline-text-3" id="text-orgd824bf6">
+<div id="outline-container-org5cca079" class="outline-3">
+<h3 id="org5cca079">LaTeX support</h3>
+<div class="outline-text-3" id="text-org5cca079">
 <p>
 In order to enjoy the completion in LaTeX composition, package <code>company-auctex</code> can be installed<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.
 </p>
@@ -327,9 +327,9 @@ Accordingly, append the following line to the configuration of company in <code>
 </div>
 </div>
 </div>
-<div id="outline-container-org6381296" class="outline-3">
-<h3 id="org6381296">Python support</h3>
-<div class="outline-text-3" id="text-org6381296">
+<div id="outline-container-org0c29fe7" class="outline-3">
+<h3 id="org0c29fe7">Python support</h3>
+<div class="outline-text-3" id="text-org0c29fe7">
 <p>
 Targetting for Python support, package <code>company-jedi</code> needs to be installed.
 </p>

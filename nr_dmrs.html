@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:48 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - Demodulation Reference Signal (DMRS)</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,34 +232,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org741f763">Conceptions</a>
+<li><a href="#org5cebdd5">Conceptions</a>
 <ul>
-<li><a href="#orgc446c54">Frontloaded DMRS</a></li>
-<li><a href="#org704df13">Additional DMRS</a></li>
+<li><a href="#orgbf225a3">Frontloaded DMRS</a></li>
+<li><a href="#org25eeb12">Additional DMRS</a></li>
 </ul>
 </li>
-<li><a href="#orgbabd26a">Sequence Generation</a></li>
-<li><a href="#org72954d2">Port Number</a></li>
-<li><a href="#orga199fea">Pattern</a>
+<li><a href="#orgd9d9e01">Sequence Generation</a></li>
+<li><a href="#orgcb8b933">Port Number</a></li>
+<li><a href="#org22aa661">Pattern</a>
 <ul>
-<li><a href="#org400e1b4">Type-1</a></li>
-<li><a href="#org2b00818">Type-2</a></li>
+<li><a href="#org9209432">Type-1</a></li>
+<li><a href="#org4319f94">Type-2</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org741f763" class="outline-2">
-<h2 id="org741f763">Conceptions</h2>
-<div class="outline-text-2" id="text-org741f763">
+<div id="outline-container-org5cebdd5" class="outline-2">
+<h2 id="org5cebdd5">Conceptions</h2>
+<div class="outline-text-2" id="text-org5cebdd5">
 <p>
 Just as its name indicates, <i>demodulation reference signal (DMRS)</i> is the reference signal dedicated for demodulation. Different from LTE system, the DMRS in NR system is comprised of a <i>frontloaded DMRS</i> and a few optional <i>additional DMRS</i>.
 </p>
 </div>
-<div id="outline-container-orgc446c54" class="outline-3">
-<h3 id="orgc446c54">Frontloaded DMRS</h3>
-<div class="outline-text-3" id="text-orgc446c54">
+<div id="outline-container-orgbf225a3" class="outline-3">
+<h3 id="orgbf225a3">Frontloaded DMRS</h3>
+<div class="outline-text-3" id="text-orgbf225a3">
 <p>
 Frontloaded DMRS aims to reduce the duration of demodulation and decoding. There are a couple of mapping schemes.
 </p>
@@ -258,9 +269,9 @@ Frontloaded DMRS aims to reduce the duration of demodulation and decoding. There
 </ul>
 </div>
 </div>
-<div id="outline-container-org704df13" class="outline-3">
-<h3 id="org704df13">Additional DMRS</h3>
-<div class="outline-text-3" id="text-org704df13">
+<div id="outline-container-org25eeb12" class="outline-3">
+<h3 id="org25eeb12">Additional DMRS</h3>
+<div class="outline-text-3" id="text-org25eeb12">
 <p>
 Additional DMRS is proposed to support high speed mobility, e.g., 500km/h. Each additional DMRS is a simple repetition of the corresponding frontloaded DMRS, e.g., identical subcarriers and equal OFDM symbol number.
 </p>
@@ -271,9 +282,9 @@ Additional DMRS is proposed to support high speed mobility, e.g., 500km/h. Each 
 </div>
 </div>
 </div>
-<div id="outline-container-orgbabd26a" class="outline-2">
-<h2 id="orgbabd26a">Sequence Generation</h2>
-<div class="outline-text-2" id="text-orgbabd26a">
+<div id="outline-container-orgd9d9e01" class="outline-2">
+<h2 id="orgd9d9e01">Sequence Generation</h2>
+<div class="outline-text-2" id="text-orgd9d9e01">
 <p>
 DMRS symbols are a sequence of QPSK-modulated Gold sequence, which is initialized with
 </p>
@@ -292,9 +303,9 @@ where
 </ul>
 </div>
 </div>
-<div id="outline-container-org72954d2" class="outline-2">
-<h2 id="org72954d2">Port Number</h2>
-<div class="outline-text-2" id="text-org72954d2">
+<div id="outline-container-orgcb8b933" class="outline-2">
+<h2 id="orgcb8b933">Port Number</h2>
+<div class="outline-text-2" id="text-orgcb8b933">
 <p>
 Irrespective of downlink or uplink transmission, the number of layers depend on the number of DMRS ports. In NR system, DMRS ports are multiplexed based on <i>frequency division multiplexing (FDM)</i> and <i>orthogonal cover code (OCC)</i>. A FDM entry corresponds to a <i>code division multiplexing (CDM) group</i>. Within a CDM group, OCC is applied in the frequency domain in single-symbol DMRS case and in both frequency and time domains for double-symbol DMRS.
 </p>
@@ -304,9 +315,9 @@ Irrespective of downlink or uplink transmission, the number of layers depend on 
 </ul>
 </div>
 </div>
-<div id="outline-container-orga199fea" class="outline-2">
-<h2 id="orga199fea">Pattern</h2>
-<div class="outline-text-2" id="text-orga199fea">
+<div id="outline-container-org22aa661" class="outline-2">
+<h2 id="org22aa661">Pattern</h2>
+<div class="outline-text-2" id="text-org22aa661">
 <p>
 In NR system, there are two types of DMRS, a.k.a., <i>type-1</i> and <i>type-2</i>, configured by <span style="color: blue">dmrs-Type</span>.
 </p>
@@ -318,14 +329,14 @@ In NR system, there are two types of DMRS, a.k.a., <i>type-1</i> and <i>type-2</
 Regardless of DMRS type, a frontloaded DMRS has one or two OFDM symbols, which is configured by <span style="color: blue">maxLength</span> in <span style="color: blue">DMRS-DownlinkConfig</span>/<span style="color: blue">DMRS-UplinkConfig</span> for downlink/uplink transmission, and dynamically indicated by DCI.
 </p>
 </div>
-<div id="outline-container-org400e1b4" class="outline-3">
-<h3 id="org400e1b4">Type-1</h3>
-<div class="outline-text-3" id="text-org400e1b4">
+<div id="outline-container-org9209432" class="outline-3">
+<h3 id="org9209432">Type-1</h3>
+<div class="outline-text-3" id="text-org9209432">
 <p>
-For type-1 DMRS, an example pattern can be illustrated in Figure <a href="#org511412d">1</a>, with 2 combs corresponding to 2 CDM groups.
+For type-1 DMRS, an example pattern can be illustrated in Figure <a href="#orgf0122f9">1</a>, with 2 combs corresponding to 2 CDM groups.
 </p>
 
-<div id="org511412d" class="figure">
+<div id="orgf0122f9" class="figure">
 <p><img src="nr_dmrs_type1.png" alt="nr_dmrs_type1.png" width="1000px">
 </p>
 <p><span class="figure-number">Figure 1: </span>Type-1 DMRS</p>
@@ -346,14 +357,14 @@ For type-1 DMRS, an example pattern can be illustrated in Figure <a href="#org51
 </ul>
 </div>
 </div>
-<div id="outline-container-org2b00818" class="outline-3">
-<h3 id="org2b00818">Type-2</h3>
-<div class="outline-text-3" id="text-org2b00818">
+<div id="outline-container-org4319f94" class="outline-3">
+<h3 id="org4319f94">Type-2</h3>
+<div class="outline-text-3" id="text-org4319f94">
 <p>
-Similarly, an example pattern of type-2 DMRS can be shown in Figure <a href="#org5aea6d0">2</a> with 3 FDM entries corresponding to 3 CDM groups.
+Similarly, an example pattern of type-2 DMRS can be shown in Figure <a href="#org6901ef3">2</a> with 3 FDM entries corresponding to 3 CDM groups.
 </p>
 
-<div id="org5aea6d0" class="figure">
+<div id="org6901ef3" class="figure">
 <p><img src="nr_dmrs_type2.png" alt="nr_dmrs_type2.png" width="1000px">
 </p>
 <p><span class="figure-number">Figure 2: </span>Type-2 DMRS</p>

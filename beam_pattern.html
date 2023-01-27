@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:50 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Beam Pattern</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,36 +232,36 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1dcf64d">Beamforming</a></li>
-<li><a href="#org4853ca9">Beam pattern</a>
+<li><a href="#orgf3517a1">Beamforming</a></li>
+<li><a href="#orgc45d958">Beam pattern</a>
 <ul>
-<li><a href="#org16de3e7">DFT beam</a></li>
-<li><a href="#orgdc00516">Wide beam</a></li>
-<li><a href="#orge30f352">PAS</a></li>
+<li><a href="#orgbab98c7">DFT beam</a></li>
+<li><a href="#org7409407">Wide beam</a></li>
+<li><a href="#org3905173">PAS</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1dcf64d" class="outline-2">
-<h2 id="org1dcf64d">Beamforming</h2>
-<div class="outline-text-2" id="text-org1dcf64d">
+<div id="outline-container-orgf3517a1" class="outline-2">
+<h2 id="orgf3517a1">Beamforming</h2>
+<div class="outline-text-2" id="text-orgf3517a1">
 <p>
 Around the decades, <i>multi-input multi-output (MIMO)</i>, a.k.a. multiantenna transmission, has been the focus of the research relating to wireless communications, and attracted the interests and attentions from both academic circle and industrial area. By deliberately designing the complex-valued coefficients of each antenna elements, the transmitted power or its majority can be limited to a specified direction or area. The operation is termed <i>beamforming</i>, and accordingly the weights of all the antenna elements involved are termed a <i>beamforming vector</i> or a <i>beamformer</i>. In this case, the SINR and the power of the received signal at the receiver can be remarkably enhanced.
 </p>
 </div>
 </div>
-<div id="outline-container-org4853ca9" class="outline-2">
-<h2 id="org4853ca9">Beam pattern</h2>
-<div class="outline-text-2" id="text-org4853ca9">
+<div id="outline-container-orgc45d958" class="outline-2">
+<h2 id="orgc45d958">Beam pattern</h2>
+<div class="outline-text-2" id="text-orgc45d958">
 <p>
 Clearly, what matters most for beamforming is the beamformer design. Consequently, a variety of beamforming schemes have been proposed.
 </p>
 </div>
-<div id="outline-container-org16de3e7" class="outline-3">
-<h3 id="org16de3e7">DFT beam</h3>
-<div class="outline-text-3" id="text-org16de3e7">
+<div id="outline-container-orgbab98c7" class="outline-3">
+<h3 id="orgbab98c7">DFT beam</h3>
+<div class="outline-text-3" id="text-orgbab98c7">
 <p>
 For a DFT beam, the beamformer is essentially a linear phase ramp, and the formed beam points to a specified direction, i.e.,
 </p>
@@ -283,9 +294,9 @@ def gen_dft_beam(n: int, d: float, theta: float) -&gt; np.ndarray:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc00516" class="outline-3">
-<h3 id="orgdc00516">Wide beam</h3>
-<div class="outline-text-3" id="text-orgdc00516">
+<div id="outline-container-org7409407" class="outline-3">
+<h3 id="org7409407">Wide beam</h3>
+<div class="outline-text-3" id="text-org7409407">
 <p>
 For DFT beams, the beamwidth depends on the aperture size of an antenna array. Given an antenna array, however, wide beam is sometimes expected for wider coverage. An example beamformer can be generated by following script.
 </p>
@@ -318,9 +329,9 @@ def gen_wide_beam(n: int, theta: float, x: int) -&gt; np.ndarray:
 </div>
 </div>
 
-<div id="outline-container-orge30f352" class="outline-3">
-<h3 id="orge30f352">PAS</h3>
-<div class="outline-text-3" id="text-orge30f352">
+<div id="outline-container-org3905173" class="outline-3">
+<h3 id="org3905173">PAS</h3>
+<div class="outline-text-3" id="text-org3905173">
 <p>
 <i>Power angle spectrum (PAS)</i> is usually used to depict the beam pattern. It is essentially a relationship between angles and beamforming gains. Following scripts can plot PAS curves for various beam patterns.
 </p>

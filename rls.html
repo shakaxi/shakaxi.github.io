@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Least Square and Its Iterative Approach (RLS)</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,22 +232,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0c6b2b7">Introduction</a></li>
+<li><a href="#orgdc1af79">Introduction</a></li>
 <li><a href="#sec:ls">Least Square (LS)</a></li>
 <li><a href="#sec:rls">Recursive Least Square (RLS)</a>
 <ul>
-<li><a href="#org91e2360">Iteration of Auto/Cross-Correlation</a></li>
-<li><a href="#org4c2edc5">Iteration of LS Filter</a></li>
-<li><a href="#org3b1687c">Procedure</a></li>
+<li><a href="#org8ac09a9">Iteration of Auto/Cross-Correlation</a></li>
+<li><a href="#orgf727bc4">Iteration of LS Filter</a></li>
+<li><a href="#orgc1db719">Procedure</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0c6b2b7" class="outline-2">
-<h2 id="org0c6b2b7">Introduction</h2>
-<div class="outline-text-2" id="text-org0c6b2b7">
+<div id="outline-container-orgdc1af79" class="outline-2">
+<h2 id="orgdc1af79">Introduction</h2>
+<div class="outline-text-2" id="text-orgdc1af79">
 <p>
 As is well-known, <i>least square (LS)</i> is the optimal linear unbiased estimator, which plays an extremely important role in the classic estimation theory. This document motivates to illustrate the fundamental of LS algorithm. However, LS algorithm suffers rather high complexity, especially for the operation of matrix inversion, which greatly limits its application in practice. In order to reduce the computational complexity, an iterative approach, a.k.a. <i>recursive LS (RLS)</i>, has been proposed.
 </p>
@@ -322,9 +333,9 @@ Then, by substituting \eqref{eq:cov} and \eqref{eq:corr} into \eqref{eq:ls}, the
 In this section, RLS algorithm is derived in detail.
 </p>
 </div>
-<div id="outline-container-org91e2360" class="outline-3">
-<h3 id="org91e2360">Iteration of Auto/Cross-Correlation</h3>
-<div class="outline-text-3" id="text-org91e2360">
+<div id="outline-container-org8ac09a9" class="outline-3">
+<h3 id="org8ac09a9">Iteration of Auto/Cross-Correlation</h3>
+<div class="outline-text-3" id="text-org8ac09a9">
 <p>
 According to \eqref{eq:cov}, we have
 </p>
@@ -370,9 +381,9 @@ Simlarly, according to \eqref{eq:corr}, the iteration of the weighted cross-corr
 </div>
 </div>
 
-<div id="outline-container-org4c2edc5" class="outline-3">
-<h3 id="org4c2edc5">Iteration of LS Filter</h3>
-<div class="outline-text-3" id="text-org4c2edc5">
+<div id="outline-container-orgf727bc4" class="outline-3">
+<h3 id="orgf727bc4">Iteration of LS Filter</h3>
+<div class="outline-text-3" id="text-orgf727bc4">
 <p>
 Substituting \eqref{eq:iter-p}, \eqref{eq:k-p} and \eqref{eq:iter-r} into \eqref{eq:ls-brief} produces the iteration between \(\mathbf{w}(n)\) and \(\mathbf{w}(n-1)\), i.e.,
 </p>
@@ -397,9 +408,9 @@ is termed <i>a priori estimation error</i>.
 </div>
 </div>
 
-<div id="outline-container-org3b1687c" class="outline-3">
-<h3 id="org3b1687c">Procedure</h3>
-<div class="outline-text-3" id="text-org3b1687c">
+<div id="outline-container-orgc1db719" class="outline-3">
+<h3 id="orgc1db719">Procedure</h3>
+<div class="outline-text-3" id="text-orgc1db719">
 <p>
 By collecting the operations scattered above, the detailed procedure of RLS algorithm can be summarized as follows, where the values of the two parameters should be offered in advance. \(\lambda \in (0, 1]\) is the forgetting factor, while \(\delta\) is a small positive number used for \(\mathbf{P}(0)\) initialization.
 </p>

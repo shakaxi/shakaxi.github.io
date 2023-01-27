@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2023-01-28 Sat 01:48 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux - Dynamic Window Manager (DWM)</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,19 +200,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org203f163">DWM</a>
+<li><a href="#org5ffd405">DWM</a>
 <ul>
-<li><a href="#org4a1149c">Download the source codes</a></li>
-<li><a href="#org4c03c25">Customization</a></li>
-<li><a href="#org5bff8b3">Build and install</a></li>
+<li><a href="#org4a0b969">Download the source codes</a></li>
+<li><a href="#orgcbc069d">Customization</a></li>
+<li><a href="#orgc4bd553">Build and install</a></li>
 </ul>
 </li>
-<li><a href="#orgaf76d42">Status bar</a>
+<li><a href="#org19d221c">Status bar</a>
 <ul>
-<li><a href="#orgdc5364b">dwm-bar</a></li>
+<li><a href="#org8684ac9">dwm-bar</a></li>
 </ul>
 </li>
-<li><a href="#org2167395">Autostart</a></li>
+<li><a href="#org90c9319">Autostart</a></li>
 </ul>
 </div>
 </div>
@@ -220,22 +220,22 @@
 <a href="https://dwm.suckless.org">Dynamic window manager (DWM)</a>, as one component of the <a href="https://suckless.org">suckless</a> suite, is a flexible but lightweight window manager for X. This post just summarizes the procedure of installation and customization.
 </p>
 
-<div id="outline-container-org203f163" class="outline-2">
-<h2 id="org203f163">DWM</h2>
-<div class="outline-text-2" id="text-org203f163">
+<div id="outline-container-org5ffd405" class="outline-2">
+<h2 id="org5ffd405">DWM</h2>
+<div class="outline-text-2" id="text-org5ffd405">
 </div>
-<div id="outline-container-org4a1149c" class="outline-3">
-<h3 id="org4a1149c">Download the source codes</h3>
-<div class="outline-text-3" id="text-org4a1149c">
+<div id="outline-container-org4a0b969" class="outline-3">
+<h3 id="org4a0b969">Download the source codes</h3>
+<div class="outline-text-3" id="text-org4a0b969">
 <div class="org-src-container">
 <pre class="src src-sh">git clone --depth=1 https://git.suckless.org/dwm
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4c03c25" class="outline-3">
-<h3 id="org4c03c25">Customization</h3>
-<div class="outline-text-3" id="text-org4c03c25">
+<div id="outline-container-orgcbc069d" class="outline-3">
+<h3 id="orgcbc069d">Customization</h3>
+<div class="outline-text-3" id="text-orgcbc069d">
 <ul class="org-ul">
 <li>Patch
 <ul class="org-ul">
@@ -397,9 +397,9 @@ static Button buttons[] = {
 </ul>
 </div>
 </div>
-<div id="outline-container-org5bff8b3" class="outline-3">
-<h3 id="org5bff8b3">Build and install</h3>
-<div class="outline-text-3" id="text-org5bff8b3">
+<div id="outline-container-orgc4bd553" class="outline-3">
+<h3 id="orgc4bd553">Build and install</h3>
+<div class="outline-text-3" id="text-orgc4bd553">
 <ul class="org-ul">
 <li>Remove <code>config.h</code> if it exists.</li>
 <li><p>
@@ -427,16 +427,16 @@ Clean the temporary object files.
 </div>
 </div>
 </div>
-<div id="outline-container-orgaf76d42" class="outline-2">
-<h2 id="orgaf76d42">Status bar</h2>
-<div class="outline-text-2" id="text-orgaf76d42">
+<div id="outline-container-org19d221c" class="outline-2">
+<h2 id="org19d221c">Status bar</h2>
+<div class="outline-text-2" id="text-org19d221c">
 <p>
 On the <a href="https://dwm.suckless.org/status_monitor">web page</a>, there are many choices for status bar.
 </p>
 </div>
-<div id="outline-container-orgdc5364b" class="outline-3">
-<h3 id="orgdc5364b">dwm-bar</h3>
-<div class="outline-text-3" id="text-orgdc5364b">
+<div id="outline-container-org8684ac9" class="outline-3">
+<h3 id="org8684ac9">dwm-bar</h3>
+<div class="outline-text-3" id="text-org8684ac9">
 <p>
 <a href="https://github.com/joestandring/dwm-bar">Dwm-bar</a> is a good choice, which consists of a rich number of modules, written by shell scripts. Its codes can be easily obtained
 </p>
@@ -548,9 +548,9 @@ done
 </div>
 </div>
 </div>
-<div id="outline-container-org2167395" class="outline-2">
-<h2 id="org2167395">Autostart</h2>
-<div class="outline-text-2" id="text-org2167395">
+<div id="outline-container-org90c9319" class="outline-2">
+<h2 id="org90c9319">Autostart</h2>
+<div class="outline-text-2" id="text-org90c9319">
 <p>
 Some programs and scripts, e.g., relating to wallpaper setting, input method, dwm-bar, should be autostarted. For starting dwm with <code>startx</code>, <code>.xinitrc</code> can be customized as follows.
 </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LTE - Frequency Domain Location of Carriers</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,7 +232,7 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org185ce57">References</a></li>
+<li><a href="#org3568995">References</a></li>
 </ul>
 </div>
 </div>
@@ -237,9 +248,9 @@ Within each supported frequency band, LTE carriers always exist on a 100 kHz car
 In the case of carrier aggregation (CA), a multiplicity of carriers can be transmitted to or from the same device. For the sake of transmission/reception within a single FFT, the spacing between two adjacent component carriers ought to be a multiple of 15 kHz. Hence, in CA case, the spacing between two adjacent component carriers should be a multiple of 300 kHz, the least common multiple of 100 kHz and 15 kHz.
 </p>
 
-<div id="outline-container-org185ce57" class="outline-2">
-<h2 id="org185ce57">References</h2>
-<div class="outline-text-2" id="text-org185ce57">
+<div id="outline-container-org3568995" class="outline-2">
+<h2 id="org3568995">References</h2>
+<div class="outline-text-2" id="text-org3568995">
 <p>
 [1] Erik Dahlman, Stefan Parkvall, Johan Skold. 4G, LTE-Advanced Pro and The Road to 5G.
 </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Laplace Transform</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,14 +232,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org29b1e5c">Definition</a></li>
-<li><a href="#org96f6dd3">Properties (Unilateral Transform)</a>
+<li><a href="#orgddee5c6">Definition</a></li>
+<li><a href="#org58a4845">Properties (Unilateral Transform)</a>
 <ul>
-<li><a href="#orgaf64059">Initial Value Theorem</a></li>
-<li><a href="#orgf43b2fa">Final Value Theorem</a></li>
+<li><a href="#orgbc38b5e">Initial Value Theorem</a></li>
+<li><a href="#org6770d65">Final Value Theorem</a></li>
 </ul>
 </li>
-<li><a href="#orgd7f5992">Transform Pairs (Unilateral Transform)</a></li>
+<li><a href="#org5e6eb21">Transform Pairs (Unilateral Transform)</a></li>
 </ul>
 </div>
 </div>
@@ -236,9 +247,9 @@
 Given a time domain continuous signal, it can be represented in the <i>complex frequency domain</i> by <i>Laplace transform</i>. It is essentially an extension of <i>Continuous Fourier transform</i>.
 </p>
 
-<div id="outline-container-org29b1e5c" class="outline-2">
-<h2 id="org29b1e5c">Definition</h2>
-<div class="outline-text-2" id="text-org29b1e5c">
+<div id="outline-container-orgddee5c6" class="outline-2">
+<h2 id="orgddee5c6">Definition</h2>
+<div class="outline-text-2" id="text-orgddee5c6">
 <ul class="org-ul">
 <li><p>
 Bilateral transform
@@ -262,9 +273,9 @@ Inverse transform
 </ul>
 </div>
 </div>
-<div id="outline-container-org96f6dd3" class="outline-2">
-<h2 id="org96f6dd3">Properties (Unilateral Transform)</h2>
-<div class="outline-text-2" id="text-org96f6dd3">
+<div id="outline-container-org58a4845" class="outline-2">
+<h2 id="org58a4845">Properties (Unilateral Transform)</h2>
+<div class="outline-text-2" id="text-org58a4845">
 \begin{align*}
   x(t), t \ge 0_{-} &\leftrightarrow X(s) \\
   x(at), a > 0 &\leftrightarrow \frac{1}{a}X \left( \frac{s}{a} \right) \\
@@ -277,26 +288,26 @@ Inverse transform
   \frac{x(t)}{t} &\leftrightarrow \int_s^{\infty}X(\eta)d\eta
 \end{align*}
 </div>
-<div id="outline-container-orgaf64059" class="outline-3">
-<h3 id="orgaf64059">Initial Value Theorem</h3>
-<div class="outline-text-3" id="text-orgaf64059">
+<div id="outline-container-orgbc38b5e" class="outline-3">
+<h3 id="orgbc38b5e">Initial Value Theorem</h3>
+<div class="outline-text-3" id="text-orgbc38b5e">
 \begin{align*}
   x(0_{+}) = \lim_{s\to \infty}sX(s)
 \end{align*}
 </div>
 </div>
-<div id="outline-container-orgf43b2fa" class="outline-3">
-<h3 id="orgf43b2fa">Final Value Theorem</h3>
-<div class="outline-text-3" id="text-orgf43b2fa">
+<div id="outline-container-org6770d65" class="outline-3">
+<h3 id="org6770d65">Final Value Theorem</h3>
+<div class="outline-text-3" id="text-org6770d65">
 \begin{align*}
   x(\infty) = \lim_{s\to 0} sX(s)
 \end{align*}
 </div>
 </div>
 </div>
-<div id="outline-container-orgd7f5992" class="outline-2">
-<h2 id="orgd7f5992">Transform Pairs (Unilateral Transform)</h2>
-<div class="outline-text-2" id="text-orgd7f5992">
+<div id="outline-container-org5e6eb21" class="outline-2">
+<h2 id="org5e6eb21">Transform Pairs (Unilateral Transform)</h2>
+<div class="outline-text-2" id="text-org5e6eb21">
 \begin{align*}
   x(t), t \ge 0_{-} &\leftrightarrow X(s) \\
   \delta(t) &\leftrightarrow 1 \\

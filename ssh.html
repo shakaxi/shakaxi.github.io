@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-07 Sat 17:44 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2023-01-28 Sat 01:48 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SSH</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="shaka">
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -29,8 +29,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,22 +39,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -188,77 +189,30 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">SSH</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0723ea0">Installation</a></li>
-<li><a href="#org2443a4e">Transmission over asymmetrical encryption</a></li>
-<li><a href="#org1e21862">Enable <code>X11 forwarding</code> to run GUI programs over SSH</a>
+<li><a href="#org03ac356">Installation</a></li>
+<li><a href="#org5b51be4">Transmission over asymmetrical encryption</a></li>
+<li><a href="#org1ab8824">Enable <code>X11 forwarding</code> to run GUI programs over SSH</a>
 <ul>
-<li><a href="#org8d956f4">On server</a></li>
-<li><a href="#org591e3d8">On client</a></li>
+<li><a href="#orgc7890ab">On server</a></li>
+<li><a href="#orge22fab5">On client</a></li>
 </ul>
 </li>
-<li><a href="#org000ad55">SSH-based proxy</a></li>
-<li><a href="#org4afb623">SSH-based tunnels</a>
+<li><a href="#orgcdb9fcf">SSH-based proxy</a></li>
+<li><a href="#org3d4420c">SSH-based tunnels</a>
 <ul>
-<li><a href="#org193c1f9">Local SSH port forwarding</a></li>
-<li><a href="#org4796b39">Remote SSH port forwarding</a></li>
+<li><a href="#orgb290a6b">Local SSH port forwarding</a></li>
+<li><a href="#org357d8ca">Remote SSH port forwarding</a></li>
 </ul>
 </li>
 </ul>
@@ -267,9 +221,9 @@ for the JavaScript code in this tag.
 <p>
 Secure shell (SSH) is the most popular and efficient method for remote access. This post introduces SSH relevant issues, from installation to configuration.
 </p>
-<div id="outline-container-org0723ea0" class="outline-2">
-<h2 id="org0723ea0">Installation</h2>
-<div class="outline-text-2" id="text-org0723ea0">
+<div id="outline-container-org03ac356" class="outline-2">
+<h2 id="org03ac356">Installation</h2>
+<div class="outline-text-2" id="text-org03ac356">
 <p>
 Take Archlinux for instance here.
 </p>
@@ -279,9 +233,9 @@ Take Archlinux for instance here.
 </div>
 </div>
 </div>
-<div id="outline-container-org2443a4e" class="outline-2">
-<h2 id="org2443a4e">Transmission over asymmetrical encryption</h2>
-<div class="outline-text-2" id="text-org2443a4e">
+<div id="outline-container-org5b51be4" class="outline-2">
+<h2 id="org5b51be4">Transmission over asymmetrical encryption</h2>
+<div class="outline-text-2" id="text-org5b51be4">
 <ul class="org-ul">
 <li>Generate key pair on the client</li>
 </ul>
@@ -300,13 +254,13 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub USERNAME@SERVER
 </div>
 </div>
 </div>
-<div id="outline-container-org1e21862" class="outline-2">
-<h2 id="org1e21862">Enable <code>X11 forwarding</code> to run GUI programs over SSH</h2>
-<div class="outline-text-2" id="text-org1e21862">
+<div id="outline-container-org1ab8824" class="outline-2">
+<h2 id="org1ab8824">Enable <code>X11 forwarding</code> to run GUI programs over SSH</h2>
+<div class="outline-text-2" id="text-org1ab8824">
 </div>
-<div id="outline-container-org8d956f4" class="outline-3">
-<h3 id="org8d956f4">On server</h3>
-<div class="outline-text-3" id="text-org8d956f4">
+<div id="outline-container-orgc7890ab" class="outline-3">
+<h3 id="orgc7890ab">On server</h3>
+<div class="outline-text-3" id="text-orgc7890ab">
 <ul class="org-ul">
 <li>Installation</li>
 </ul>
@@ -326,9 +280,9 @@ Add following line in <code>/etc/ssh/sshd_config</code>
 </div>
 </div>
 </div>
-<div id="outline-container-org591e3d8" class="outline-3">
-<h3 id="org591e3d8">On client</h3>
-<div class="outline-text-3" id="text-org591e3d8">
+<div id="outline-container-orge22fab5" class="outline-3">
+<h3 id="orge22fab5">On client</h3>
+<div class="outline-text-3" id="text-orge22fab5">
 <p>
 Add following lines in <code>/etc/ssh/ssh_config</code>
 </p>
@@ -341,9 +295,9 @@ ForwardX11Trusted yes
 </div>
 </div>
 </div>
-<div id="outline-container-org000ad55" class="outline-2">
-<h2 id="org000ad55">SSH-based proxy</h2>
-<div class="outline-text-2" id="text-org000ad55">
+<div id="outline-container-orgcdb9fcf" class="outline-2">
+<h2 id="orgcdb9fcf">SSH-based proxy</h2>
+<div class="outline-text-2" id="text-orgcdb9fcf">
 <p>
 For clear description, we consider such a simple scenario. Suppose you intend to access host <code>A</code>, but the direct access is not permitted. Instead, you can access host <code>B</code>, which is granted to access host <code>A</code>. In this case, you can access host <code>A</code> via host <code>B</code>, i.e., which plays a proxy role. Following command can make host <code>B</code> a SOCK proxy.
 </p>
@@ -364,13 +318,13 @@ Then, a SOCK proxy is ready whereby you can access host <code>A</code> as freely
 </p>
 </div>
 </div>
-<div id="outline-container-org4afb623" class="outline-2">
-<h2 id="org4afb623">SSH-based tunnels<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h2>
-<div class="outline-text-2" id="text-org4afb623">
+<div id="outline-container-org3d4420c" class="outline-2">
+<h2 id="org3d4420c">SSH-based tunnels<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h2>
+<div class="outline-text-2" id="text-org3d4420c">
 </div>
-<div id="outline-container-org193c1f9" class="outline-3">
-<h3 id="org193c1f9">Local SSH port forwarding</h3>
-<div class="outline-text-3" id="text-org193c1f9">
+<div id="outline-container-orgb290a6b" class="outline-3">
+<h3 id="orgb290a6b">Local SSH port forwarding</h3>
+<div class="outline-text-3" id="text-orgb290a6b">
 <p>
 Suppose there are 3 hosts, denoted by <code>A</code>, <code>B</code>, and <code>C</code>, respectively. Host <code>C</code> is providing some service on port <code>RPORT</code>, e.g., HTTP on port 80, and host <code>A</code> intends to access it. However, due to some network restriction, host <code>A</code> cannot directly access the service provided by host <code>C</code>, but host <code>B</code> can.
 </p>
@@ -387,9 +341,9 @@ In this case, host <code>A</code> can enjoy the desired service on host <code>C<
 </p>
 </div>
 </div>
-<div id="outline-container-org4796b39" class="outline-3">
-<h3 id="org4796b39">Remote SSH port forwarding</h3>
-<div class="outline-text-3" id="text-org4796b39">
+<div id="outline-container-org357d8ca" class="outline-3">
+<h3 id="org357d8ca">Remote SSH port forwarding</h3>
+<div class="outline-text-3" id="text-org357d8ca">
 <p>
 Consider a similar scenario that there are 3 hosts, <code>A</code> and <code>B</code>. Host <code>A</code> is providing some service on <code>LPORT</code>. For some reason, host <code>A</code> cannot be accessible, but host <code>B</code> is available.
 </p>
@@ -411,7 +365,7 @@ In this case, visiting port <code>RPORT</code> on host <code>B</code> is exactly
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://www.tunnelsup.com/how-to-create-ssh-tunnels/">https://www.tunnelsup.com/how-to-create-ssh-tunnels/</a>
 </p></div></div>
 

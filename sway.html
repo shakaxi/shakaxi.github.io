@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux - Sway</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,30 +200,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2219c9b">Introduction</a></li>
-<li><a href="#orgca0bb44">Installation</a></li>
-<li><a href="#orgce5ee5f">Configuration</a>
+<li><a href="#orgced37db">Introduction</a></li>
+<li><a href="#orgd28119e">Installation</a></li>
+<li><a href="#orgbfe507f">Configuration</a>
 <ul>
-<li><a href="#org3184004"><code>~/.config/sway/config</code></a></li>
-<li><a href="#orgeb61e5d"><code>~/.config/sway/termite.conf</code></a></li>
-<li><a href="#orgcd8980b"><code>~/.config/sway/waybar.config</code></a></li>
-<li><a href="#org582baa1"><code>~/.config/sway/waybar.style.css</code></a></li>
+<li><a href="#org404362d"><code>~/.config/sway/config</code></a></li>
+<li><a href="#org22a7330"><code>~/.config/sway/termite.conf</code></a></li>
+<li><a href="#org10c7ffc"><code>~/.config/sway/waybar.config</code></a></li>
+<li><a href="#org8b3926a"><code>~/.config/sway/waybar.style.css</code></a></li>
 </ul>
 </li>
-<li><a href="#orgf08e176">Startup</a></li>
-<li><a href="#orgfe364e3">KDE Applications</a>
+<li><a href="#org97921c6">Startup</a></li>
+<li><a href="#orgd511e92">KDE Applications</a>
 <ul>
-<li><a href="#orge883d3f">Installation</a></li>
-<li><a href="#orgfbd531b">Configuration</a></li>
+<li><a href="#org308358c">Installation</a></li>
+<li><a href="#org1347aba">Configuration</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2219c9b" class="outline-2">
-<h2 id="org2219c9b">Introduction</h2>
-<div class="outline-text-2" id="text-org2219c9b">
+<div id="outline-container-orgced37db" class="outline-2">
+<h2 id="orgced37db">Introduction</h2>
+<div class="outline-text-2" id="text-orgced37db">
 <p>
 <a href="https://swaywm.org">Sway</a> is a tiling compositor based on <a href="https://wayland.freedesktop.org">Wayland</a>. It can be identified as a counterpart of <a href="http://i3wm.org">i3</a> in Wayland, and as resource saving and lightweight as i3. Even, sway has a completely compatible configuration to i3.
 </p>
@@ -245,25 +245,25 @@ Sway's core components and necessary applications can be simply installed and co
 </ul>
 </div>
 </div>
-<div id="outline-container-orgca0bb44" class="outline-2">
-<h2 id="orgca0bb44">Installation</h2>
-<div class="outline-text-2" id="text-orgca0bb44">
+<div id="outline-container-orgd28119e" class="outline-2">
+<h2 id="orgd28119e">Installation</h2>
+<div class="outline-text-2" id="text-orgd28119e">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S sway swaylock swayidle termite rofi waybar light mako grim slurp
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgce5ee5f" class="outline-2">
-<h2 id="orgce5ee5f">Configuration</h2>
-<div class="outline-text-2" id="text-orgce5ee5f">
+<div id="outline-container-orgbfe507f" class="outline-2">
+<h2 id="orgbfe507f">Configuration</h2>
+<div class="outline-text-2" id="text-orgbfe507f">
 <p>
 For centralized management, the configuration files can be gathered in directory <code>~/.config/sway</code>.
 </p>
 </div>
-<div id="outline-container-org3184004" class="outline-3">
-<h3 id="org3184004"><code>~/.config/sway/config</code></h3>
-<div class="outline-text-3" id="text-org3184004">
+<div id="outline-container-org404362d" class="outline-3">
+<h3 id="org404362d"><code>~/.config/sway/config</code></h3>
+<div class="outline-text-3" id="text-org404362d">
 <div class="org-src-container">
 <pre class="src src-sh"># Default config for sway
 #
@@ -480,9 +480,9 @@ xwayland enable
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb61e5d" class="outline-3">
-<h3 id="orgeb61e5d"><code>~/.config/sway/termite.conf</code></h3>
-<div class="outline-text-3" id="text-orgeb61e5d">
+<div id="outline-container-org22a7330" class="outline-3">
+<h3 id="org22a7330"><code>~/.config/sway/termite.conf</code></h3>
+<div class="outline-text-3" id="text-org22a7330">
 <div class="org-src-container">
 <pre class="src src-sh">[options]
 font = Source Code Pro 16
@@ -515,9 +515,9 @@ color15 = #ffffff
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd8980b" class="outline-3">
-<h3 id="orgcd8980b"><code>~/.config/sway/waybar.config</code></h3>
-<div class="outline-text-3" id="text-orgcd8980b">
+<div id="outline-container-org10c7ffc" class="outline-3">
+<h3 id="org10c7ffc"><code>~/.config/sway/waybar.config</code></h3>
+<div class="outline-text-3" id="text-org10c7ffc">
 <div class="org-src-container">
 <pre class="src src-sh">{
     "layer": "top",
@@ -597,9 +597,9 @@ color15 = #ffffff
 </div>
 </div>
 </div>
-<div id="outline-container-org582baa1" class="outline-3">
-<h3 id="org582baa1"><code>~/.config/sway/waybar.style.css</code></h3>
-<div class="outline-text-3" id="text-org582baa1">
+<div id="outline-container-org8b3926a" class="outline-3">
+<h3 id="org8b3926a"><code>~/.config/sway/waybar.style.css</code></h3>
+<div class="outline-text-3" id="text-org8b3926a">
 <div class="org-src-container">
 <pre class="src src-sh">* {
     border: none;
@@ -806,33 +806,33 @@ label:focus {
 </div>
 </div>
 </div>
-<div id="outline-container-orgf08e176" class="outline-2">
-<h2 id="orgf08e176">Startup</h2>
-<div class="outline-text-2" id="text-orgf08e176">
+<div id="outline-container-org97921c6" class="outline-2">
+<h2 id="org97921c6">Startup</h2>
+<div class="outline-text-2" id="text-org97921c6">
 <p>
 After the installation and configuration, sway can be started by running command <code>sway</code> from a TTY after login.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfe364e3" class="outline-2">
-<h2 id="orgfe364e3">KDE Applications</h2>
-<div class="outline-text-2" id="text-orgfe364e3">
+<div id="outline-container-orgd511e92" class="outline-2">
+<h2 id="orgd511e92">KDE Applications</h2>
+<div class="outline-text-2" id="text-orgd511e92">
 <p>
 There are a rich number of applications dedicated for KDE, e.g., file manager <code>dolphin</code> and PDF reader <code>okular</code>. On <code>sway</code>, they can be installed and configured as follows.
 </p>
 </div>
-<div id="outline-container-orge883d3f" class="outline-3">
-<h3 id="orge883d3f">Installation</h3>
-<div class="outline-text-3" id="text-orge883d3f">
+<div id="outline-container-org308358c" class="outline-3">
+<h3 id="org308358c">Installation</h3>
+<div class="outline-text-3" id="text-org308358c">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S dolphin okular
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfbd531b" class="outline-3">
-<h3 id="orgfbd531b">Configuration</h3>
-<div class="outline-text-3" id="text-orgfbd531b">
+<div id="outline-container-org1347aba" class="outline-3">
+<h3 id="org1347aba">Configuration</h3>
+<div class="outline-text-3" id="text-org1347aba">
 <ul class="org-ul">
 <li><p>
 Install icons of <code>breeze</code> theme.

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Data Type</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,23 +200,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdf10f5a">标量</a></li>
-<li><a href="#org03e5b8c">日期和时间</a></li>
-<li><a href="#org79e3b58">元组</a></li>
-<li><a href="#orgdbf889f">列表</a></li>
-<li><a href="#org40cce31">内建序列函数</a></li>
-<li><a href="#org1b9f118">字典</a></li>
-<li><a href="#org278c2cf">集合</a></li>
-<li><a href="#org5a62ded">列表、字典和集合的推导式</a></li>
+<li><a href="#org06c3e08">标量</a></li>
+<li><a href="#orgccbc59d">日期和时间</a></li>
+<li><a href="#org66012b3">元组</a></li>
+<li><a href="#orgd1219bc">列表</a></li>
+<li><a href="#org447061e">内建序列函数</a></li>
+<li><a href="#org55b0aae">字典</a></li>
+<li><a href="#org0fa16a6">集合</a></li>
+<li><a href="#org2b650ae">列表、字典和集合的推导式</a></li>
 </ul>
 </div>
 </div>
 <p>
 Python中的大部分对象，如列表、字典、 <code>Numpy</code> 数组都是可变对象，大多数用户定义的类型（类）也是可变的。可变对象中包含的对象和值是可以被修改的。但是有一些对象是不可变的，如字符串、元组。
 </p>
-<div id="outline-container-orgdf10f5a" class="outline-2">
-<h2 id="orgdf10f5a">标量</h2>
-<div class="outline-text-2" id="text-orgdf10f5a">
+<div id="outline-container-org06c3e08" class="outline-2">
+<h2 id="org06c3e08">标量</h2>
+<div class="outline-text-2" id="text-org06c3e08">
 <p>
 Python的标准库中有一个小的内建类型集合，用来处理数值、字符串、布尔值以及日期和时间。这类“单值”类型被称为标量。主要的标量类型有
 </p>
@@ -267,9 +267,9 @@ Python的标准库中有一个小的内建类型集合，用来处理数值、�
 </ul>
 </div>
 </div>
-<div id="outline-container-org03e5b8c" class="outline-2">
-<h2 id="org03e5b8c">日期和时间</h2>
-<div class="outline-text-2" id="text-org03e5b8c">
+<div id="outline-container-orgccbc59d" class="outline-2">
+<h2 id="orgccbc59d">日期和时间</h2>
+<div class="outline-text-2" id="text-orgccbc59d">
 <p>
 Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， <code>date</code> 和 <code>time</code> 类型。
 </p>
@@ -368,9 +368,9 @@ Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， 
 </table>
 </div>
 </div>
-<div id="outline-container-org79e3b58" class="outline-2">
-<h2 id="org79e3b58">元组</h2>
-<div class="outline-text-2" id="text-org79e3b58">
+<div id="outline-container-org66012b3" class="outline-2">
+<h2 id="org66012b3">元组</h2>
+<div class="outline-text-2" id="text-org66012b3">
 <ul class="org-ul">
 <li>元组是一种固定长度、不可变的Python对象序列。创建元组最简单的方法就是用逗号分隔序列值。</li>
 <li>元组可嵌套，通常需要用括号将值包起来。</li>
@@ -382,9 +382,9 @@ Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdbf889f" class="outline-2">
-<h2 id="orgdbf889f">列表</h2>
-<div class="outline-text-2" id="text-orgdbf889f">
+<div id="outline-container-orgd1219bc" class="outline-2">
+<h2 id="orgd1219bc">列表</h2>
+<div class="outline-text-2" id="text-orgd1219bc">
 <ul class="org-ul">
 <li>可以使用中括号 <code>[]</code> 或者 函数 <code>list</code> 来定义列表。后者常用于将迭代器或者生成器转化为列表。</li>
 <li>方法 <code>append</code> 用于将元素添加到列表的尾部。</li>
@@ -404,9 +404,9 @@ Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， 
 </ul>
 </div>
 </div>
-<div id="outline-container-org40cce31" class="outline-2">
-<h2 id="org40cce31">内建序列函数</h2>
-<div class="outline-text-2" id="text-org40cce31">
+<div id="outline-container-org447061e" class="outline-2">
+<h2 id="org447061e">内建序列函数</h2>
+<div class="outline-text-2" id="text-org447061e">
 <ul class="org-ul">
 <li>函数 <code>enumerate</code> 返回形如 <code>(索引值, 元素值)</code> 的元组的序列。</li>
 <li>函数 <code>sorted</code> 对序列排序并返回新的有序序列。</li>
@@ -415,9 +415,9 @@ Python内建的 <code>datetime</code> 模块提供了 <code>datetime</code> ， 
 </ul>
 </div>
 </div>
-<div id="outline-container-org1b9f118" class="outline-2">
-<h2 id="org1b9f118">字典</h2>
-<div class="outline-text-2" id="text-org1b9f118">
+<div id="outline-container-org55b0aae" class="outline-2">
+<h2 id="org55b0aae">字典</h2>
+<div class="outline-text-2" id="text-org55b0aae">
 <ul class="org-ul">
 <li>字典即哈希表或关联数组，是键值对（二元组）的集合。其中，键值都是Python对象，而且键必须是不可变的对象。</li>
 <li>可以使用大括号 <code>{}</code> 创建字典，字典元素用逗号分隔，元素的键和值用冒号 <code>:</code> 分隔。</li>
@@ -446,9 +446,9 @@ else:
 </div>
 </div>
 </div>
-<div id="outline-container-org278c2cf" class="outline-2">
-<h2 id="org278c2cf">集合</h2>
-<div class="outline-text-2" id="text-org278c2cf">
+<div id="outline-container-org0fa16a6" class="outline-2">
+<h2 id="org0fa16a6">集合</h2>
+<div class="outline-text-2" id="text-org0fa16a6">
 <ul class="org-ul">
 <li>集合是一种无序且元素唯一的容器。其元素必须是不可变的。</li>
 <li>可以使用大括号 <code>{}</code> 或者方法 <code>set</code> 创建集合。</li>
@@ -457,9 +457,9 @@ else:
 </ul>
 </div>
 </div>
-<div id="outline-container-org5a62ded" class="outline-2">
-<h2 id="org5a62ded">列表、字典和集合的推导式</h2>
-<div class="outline-text-2" id="text-org5a62ded">
+<div id="outline-container-org2b650ae" class="outline-2">
+<h2 id="org2b650ae">列表、字典和集合的推导式</h2>
+<div class="outline-text-2" id="text-org2b650ae">
 <ul class="org-ul">
 <li>列表的推导式如下:</li>
 </ul>

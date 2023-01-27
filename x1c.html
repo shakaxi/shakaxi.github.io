@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2023-01-28 Sat 01:48 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux - Installation of ArchLinux on Thinkpad X1 Carbon 2018</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,33 +200,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org277942f">Preparition</a></li>
-<li><a href="#orgea7fc85">Installation</a>
+<li><a href="#org3d41825">Preparition</a></li>
+<li><a href="#org3300f6d">Installation</a>
 <ul>
-<li><a href="#org66d581b">Boot</a></li>
-<li><a href="#org470334b">Partition</a></li>
-<li><a href="#org25339b2">Format the partitions</a></li>
-<li><a href="#org1115736">Mount the partitions</a></li>
-<li><a href="#org1770e78">Connect to the Internet</a></li>
-<li><a href="#orgb48ac07">Select the nearest mirror</a></li>
-<li><a href="#org13f71d2">Install the base system</a></li>
-<li><a href="#org45f8ad4">Generate file system table</a></li>
-<li><a href="#org108f70f">Chroot into the newly installed system</a></li>
-<li><a href="#orge802aca">Host name</a></li>
-<li><a href="#org5cc85ae">Time zone</a></li>
-<li><a href="#orgbbf2c7f">Locale</a></li>
-<li><a href="#org76c0e64">CPU frequency scaling</a></li>
-<li><a href="#org6c0350a">WiFi</a></li>
-<li><a href="#org1c25285">Bootloader</a>
+<li><a href="#org5a73acf">Boot</a></li>
+<li><a href="#org6e23889">Partition</a></li>
+<li><a href="#orgff85f6f">Format the partitions</a></li>
+<li><a href="#orgbe5e07b">Mount the partitions</a></li>
+<li><a href="#orgae1b773">Connect to the Internet</a></li>
+<li><a href="#orgf79360b">Select the nearest mirror</a></li>
+<li><a href="#org8df06ab">Install the base system</a></li>
+<li><a href="#orgc5fedf7">Generate file system table</a></li>
+<li><a href="#org9b6e832">Chroot into the newly installed system</a></li>
+<li><a href="#org8eb4db6">Host name</a></li>
+<li><a href="#orgb5b5302">Time zone</a></li>
+<li><a href="#orgf2856bd">Locale</a></li>
+<li><a href="#org42c028e">CPU frequency scaling</a></li>
+<li><a href="#org26b0329">WiFi</a></li>
+<li><a href="#org30c062d">Bootloader</a>
 <ul>
-<li><a href="#org9834a63">Mount ESP</a></li>
-<li><a href="#org3c5cf61">Microcode</a></li>
-<li><a href="#orgd9b9e1c">Init ram disk</a></li>
-<li><a href="#org8535de9">Boot manager</a></li>
+<li><a href="#org2961ee8">Mount ESP</a></li>
+<li><a href="#orgf91dd58">Microcode</a></li>
+<li><a href="#org847b64a">Init ram disk</a></li>
+<li><a href="#org6dad04e">Boot manager</a></li>
 </ul>
 </li>
-<li><a href="#org2a62bd4">Password for root</a></li>
-<li><a href="#orgdf91987">Unmount and reboot</a></li>
+<li><a href="#org8f2a3ae">Password for root</a></li>
+<li><a href="#org8a326c5">Unmount and reboot</a></li>
 </ul>
 </li>
 </ul>
@@ -236,9 +236,9 @@
 This post aims to record the procedure that I installed ArchLinux on my new notebook, Thinkpad X1 Carbon (x1c) 2018.
 </p>
 
-<div id="outline-container-org277942f" class="outline-2">
-<h2 id="org277942f">Preparition</h2>
-<div class="outline-text-2" id="text-org277942f">
+<div id="outline-container-org3d41825" class="outline-2">
+<h2 id="org3d41825">Preparition</h2>
+<div class="outline-text-2" id="text-org3d41825">
 <ul class="org-ul">
 <li>Download the installation image from the nearest mirror, e.g., <a href="http://mirrors.163.com/archlinux/iso/latest">http://mirrors.163.com/archlinux/iso/latest</a></li>
 <li>Burn the image into a USB stick.</li>
@@ -252,13 +252,13 @@ This post aims to record the procedure that I installed ArchLinux on my new note
 </ul>
 </div>
 </div>
-<div id="outline-container-orgea7fc85" class="outline-2">
-<h2 id="orgea7fc85">Installation</h2>
-<div class="outline-text-2" id="text-orgea7fc85">
+<div id="outline-container-org3300f6d" class="outline-2">
+<h2 id="org3300f6d">Installation</h2>
+<div class="outline-text-2" id="text-org3300f6d">
 </div>
-<div id="outline-container-org66d581b" class="outline-3">
-<h3 id="org66d581b">Boot</h3>
-<div class="outline-text-3" id="text-org66d581b">
+<div id="outline-container-org5a73acf" class="outline-3">
+<h3 id="org5a73acf">Boot</h3>
+<div class="outline-text-3" id="text-org5a73acf">
 <ul class="org-ul">
 <li>Power on the notebook.</li>
 <li>Press <code>Enter</code> and <code>F1</code> to enter the BIOS configuration.</li>
@@ -269,9 +269,9 @@ This post aims to record the procedure that I installed ArchLinux on my new note
 </ul>
 </div>
 </div>
-<div id="outline-container-org470334b" class="outline-3">
-<h3 id="org470334b">Partition</h3>
-<div class="outline-text-3" id="text-org470334b">
+<div id="outline-container-org6e23889" class="outline-3">
+<h3 id="org6e23889">Partition</h3>
+<div class="outline-text-3" id="text-org6e23889">
 <p>
 For UEFI booting, a dedicated EFI system partition (ESP) is mandatory. EFI bootloaders, applications and drivers can be stored in an ESP and lauched by the UEFI firmware at the boot stage. It is completely independent of OS.
 </p>
@@ -351,9 +351,9 @@ In addition, I created two <code>ext4</code> partitions for <code>/</code> and <
 </div>
 </div>
 </div>
-<div id="outline-container-org25339b2" class="outline-3">
-<h3 id="org25339b2">Format the partitions</h3>
-<div class="outline-text-3" id="text-org25339b2">
+<div id="outline-container-orgff85f6f" class="outline-3">
+<h3 id="orgff85f6f">Format the partitions</h3>
+<div class="outline-text-3" id="text-orgff85f6f">
 <div class="org-src-container">
 <pre class="src src-sh">mkfs.ext4 /dev/nvme0n1p5
 mkfs.ext4 /dev/nvme0n1p7
@@ -362,9 +362,9 @@ mkswap /dev/nvme0n1p6
 </div>
 </div>
 </div>
-<div id="outline-container-org1115736" class="outline-3">
-<h3 id="org1115736">Mount the partitions</h3>
-<div class="outline-text-3" id="text-org1115736">
+<div id="outline-container-orgbe5e07b" class="outline-3">
+<h3 id="orgbe5e07b">Mount the partitions</h3>
+<div class="outline-text-3" id="text-orgbe5e07b">
 <div class="org-src-container">
 <pre class="src src-sh">mount -t ext4 /dev/nvme0n1p5 /mnt
 mkdir /mnt/home
@@ -374,18 +374,18 @@ swapon /dev/nvme0n1p6
 </div>
 </div>
 </div>
-<div id="outline-container-org1770e78" class="outline-3">
-<h3 id="org1770e78">Connect to the Internet</h3>
-<div class="outline-text-3" id="text-org1770e78">
+<div id="outline-container-orgae1b773" class="outline-3">
+<h3 id="orgae1b773">Connect to the Internet</h3>
+<div class="outline-text-3" id="text-orgae1b773">
 <div class="org-src-container">
 <pre class="src src-sh">wifi-menu
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb48ac07" class="outline-3">
-<h3 id="orgb48ac07">Select the nearest mirror</h3>
-<div class="outline-text-3" id="text-orgb48ac07">
+<div id="outline-container-orgf79360b" class="outline-3">
+<h3 id="orgf79360b">Select the nearest mirror</h3>
+<div class="outline-text-3" id="text-orgf79360b">
 <p>
 Edit <code>/etc/pacman.d/mirrorlist</code> as
 </p>
@@ -395,36 +395,36 @@ Edit <code>/etc/pacman.d/mirrorlist</code> as
 </div>
 </div>
 </div>
-<div id="outline-container-org13f71d2" class="outline-3">
-<h3 id="org13f71d2">Install the base system</h3>
-<div class="outline-text-3" id="text-org13f71d2">
+<div id="outline-container-org8df06ab" class="outline-3">
+<h3 id="org8df06ab">Install the base system</h3>
+<div class="outline-text-3" id="text-org8df06ab">
 <div class="org-src-container">
 <pre class="src src-sh">pacstrap /mnt base
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org45f8ad4" class="outline-3">
-<h3 id="org45f8ad4">Generate file system table</h3>
-<div class="outline-text-3" id="text-org45f8ad4">
+<div id="outline-container-orgc5fedf7" class="outline-3">
+<h3 id="orgc5fedf7">Generate file system table</h3>
+<div class="outline-text-3" id="text-orgc5fedf7">
 <div class="org-src-container">
 <pre class="src src-sh">genfstab /mnt &gt;&gt; /mnt/etc/fstab
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org108f70f" class="outline-3">
-<h3 id="org108f70f">Chroot into the newly installed system</h3>
-<div class="outline-text-3" id="text-org108f70f">
+<div id="outline-container-org9b6e832" class="outline-3">
+<h3 id="org9b6e832">Chroot into the newly installed system</h3>
+<div class="outline-text-3" id="text-org9b6e832">
 <div class="org-src-container">
 <pre class="src src-sh">arch-chroot /mnt
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge802aca" class="outline-3">
-<h3 id="orge802aca">Host name</h3>
-<div class="outline-text-3" id="text-orge802aca">
+<div id="outline-container-org8eb4db6" class="outline-3">
+<h3 id="org8eb4db6">Host name</h3>
+<div class="outline-text-3" id="text-org8eb4db6">
 <p>
 Create file <code>/etc/hostname</code>.
 </p>
@@ -445,18 +445,18 @@ Revise file <code>/etc/hosts</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-org5cc85ae" class="outline-3">
-<h3 id="org5cc85ae">Time zone</h3>
-<div class="outline-text-3" id="text-org5cc85ae">
+<div id="outline-container-orgb5b5302" class="outline-3">
+<h3 id="orgb5b5302">Time zone</h3>
+<div class="outline-text-3" id="text-orgb5b5302">
 <div class="org-src-container">
 <pre class="src src-sh">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbbf2c7f" class="outline-3">
-<h3 id="orgbbf2c7f">Locale</h3>
-<div class="outline-text-3" id="text-orgbbf2c7f">
+<div id="outline-container-orgf2856bd" class="outline-3">
+<h3 id="orgf2856bd">Locale</h3>
+<div class="outline-text-3" id="text-orgf2856bd">
 <p>
 Edit <code>/etc/locale.gen</code> and uncomment the following lines.
 </p>
@@ -482,9 +482,9 @@ echo LANG=en_US.UTF-8 &gt; /etc/locale.conf
 </div>
 </div>
 </div>
-<div id="outline-container-org76c0e64" class="outline-3">
-<h3 id="org76c0e64">CPU frequency scaling</h3>
-<div class="outline-text-3" id="text-org76c0e64">
+<div id="outline-container-org42c028e" class="outline-3">
+<h3 id="org42c028e">CPU frequency scaling</h3>
+<div class="outline-text-3" id="text-org42c028e">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S cpupower
 systemctl enable cpupower
@@ -492,9 +492,9 @@ systemctl enable cpupower
 </div>
 </div>
 </div>
-<div id="outline-container-org6c0350a" class="outline-3">
-<h3 id="org6c0350a">WiFi</h3>
-<div class="outline-text-3" id="text-org6c0350a">
+<div id="outline-container-org26b0329" class="outline-3">
+<h3 id="org26b0329">WiFi</h3>
+<div class="outline-text-3" id="text-org26b0329">
 <p>
 Install following two packages. Otherwise, the utility <code>wifi-menu</code> does not work.
 </p>
@@ -504,16 +504,16 @@ Install following two packages. Otherwise, the utility <code>wifi-menu</code> do
 </div>
 </div>
 </div>
-<div id="outline-container-org1c25285" class="outline-3">
-<h3 id="org1c25285">Bootloader</h3>
-<div class="outline-text-3" id="text-org1c25285">
+<div id="outline-container-org30c062d" class="outline-3">
+<h3 id="org30c062d">Bootloader</h3>
+<div class="outline-text-3" id="text-org30c062d">
 <p>
 From version 3.3 on, the Linux kernel can be directly loaded by EFI firmware as an EFI executable, a.k.a., EFISTUB (EFI BOOT STUB). In other words, <code>grub</code>-like intermediate bootloaders are not necessary.
 </p>
 </div>
-<div id="outline-container-org9834a63" class="outline-4">
-<h4 id="org9834a63">Mount ESP</h4>
-<div class="outline-text-4" id="text-org9834a63">
+<div id="outline-container-org2961ee8" class="outline-4">
+<h4 id="org2961ee8">Mount ESP</h4>
+<div class="outline-text-4" id="text-org2961ee8">
 <p>
 Create <code>/esp</code> and mount the ESP to it.
 </p>
@@ -540,9 +540,9 @@ Append following entries to <code>/etc/fstab</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-org3c5cf61" class="outline-4">
-<h4 id="org3c5cf61">Microcode</h4>
-<div class="outline-text-4" id="text-org3c5cf61">
+<div id="outline-container-orgf91dd58" class="outline-4">
+<h4 id="orgf91dd58">Microcode</h4>
+<div class="outline-text-4" id="text-orgf91dd58">
 <p>
 For Intel CPU, package <a href="./microcode.html"><code>microcode</code></a> needs to be installed.
 </p>
@@ -552,18 +552,18 @@ For Intel CPU, package <a href="./microcode.html"><code>microcode</code></a> nee
 </div>
 </div>
 </div>
-<div id="outline-container-orgd9b9e1c" class="outline-4">
-<h4 id="orgd9b9e1c">Init ram disk</h4>
-<div class="outline-text-4" id="text-orgd9b9e1c">
+<div id="outline-container-org847b64a" class="outline-4">
+<h4 id="org847b64a">Init ram disk</h4>
+<div class="outline-text-4" id="text-org847b64a">
 <div class="org-src-container">
 <pre class="src src-sh">mkinitcpio -P
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org8535de9" class="outline-4">
-<h4 id="org8535de9">Boot manager</h4>
-<div class="outline-text-4" id="text-org8535de9">
+<div id="outline-container-org6dad04e" class="outline-4">
+<h4 id="org6dad04e">Boot manager</h4>
+<div class="outline-text-4" id="text-org6dad04e">
 <p>
 Install the boot manager.
 </p>
@@ -595,18 +595,18 @@ Verify the configuration.
 </div>
 </div>
 </div>
-<div id="outline-container-org2a62bd4" class="outline-3">
-<h3 id="org2a62bd4">Password for root</h3>
-<div class="outline-text-3" id="text-org2a62bd4">
+<div id="outline-container-org8f2a3ae" class="outline-3">
+<h3 id="org8f2a3ae">Password for root</h3>
+<div class="outline-text-3" id="text-org8f2a3ae">
 <div class="org-src-container">
 <pre class="src src-sh">passwd
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf91987" class="outline-3">
-<h3 id="orgdf91987">Unmount and reboot</h3>
-<div class="outline-text-3" id="text-orgdf91987">
+<div id="outline-container-org8a326c5" class="outline-3">
+<h3 id="org8a326c5">Unmount and reboot</h3>
+<div class="outline-text-3" id="text-org8a326c5">
 <div class="org-src-container">
 <pre class="src src-sh">exit
 umount -R /mnt

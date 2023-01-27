@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Virtual Environment</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,10 +200,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgad9af90">创建独立的环境</a></li>
-<li><a href="#orgaf3fcf3">进入环境</a></li>
-<li><a href="#orgcde994b">退出环境</a></li>
-<li><a href="#orga3749f9">删除环境</a></li>
+<li><a href="#org289b1bf">创建独立的环境</a></li>
+<li><a href="#orgf902f74">进入环境</a></li>
+<li><a href="#orgb19713a">退出环境</a></li>
+<li><a href="#orgdde373a">删除环境</a></li>
 </ul>
 </div>
 </div>
@@ -211,36 +211,36 @@
 Python的虚拟环境（virtual environment）是一个独立的Python运行环境。在一个独立的环境中，可以正常安装所需要的数据包（如使用pip等）。既不受系统环境的影响，也不会对系统环境产生影响。具体地，创建虚拟环境就是把系统Python环境复制到所创建的独立环境中。当进入一个虚拟环境时，virtualenv会修改相关的环境变量，让python和pip指向当前的独立环境。
 </p>
 
-<div id="outline-container-orgad9af90" class="outline-2">
-<h2 id="orgad9af90">创建独立的环境</h2>
-<div class="outline-text-2" id="text-orgad9af90">
+<div id="outline-container-org289b1bf" class="outline-2">
+<h2 id="org289b1bf">创建独立的环境</h2>
+<div class="outline-text-2" id="text-org289b1bf">
 <div class="org-src-container">
 <pre class="src src-python">python -m venv ENV_NAME
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgaf3fcf3" class="outline-2">
-<h2 id="orgaf3fcf3">进入环境</h2>
-<div class="outline-text-2" id="text-orgaf3fcf3">
+<div id="outline-container-orgf902f74" class="outline-2">
+<h2 id="orgf902f74">进入环境</h2>
+<div class="outline-text-2" id="text-orgf902f74">
 <div class="org-src-container">
 <pre class="src src-python">source ENV_NAME/bin/activate
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcde994b" class="outline-2">
-<h2 id="orgcde994b">退出环境</h2>
-<div class="outline-text-2" id="text-orgcde994b">
+<div id="outline-container-orgb19713a" class="outline-2">
+<h2 id="orgb19713a">退出环境</h2>
+<div class="outline-text-2" id="text-orgb19713a">
 <div class="org-src-container">
 <pre class="src src-python">deactivate
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orga3749f9" class="outline-2">
-<h2 id="orga3749f9">删除环境</h2>
-<div class="outline-text-2" id="text-orga3749f9">
+<div id="outline-container-orgdde373a" class="outline-2">
+<h2 id="orgdde373a">删除环境</h2>
+<div class="outline-text-2" id="text-orgdde373a">
 <div class="org-src-container">
 <pre class="src src-python">rm -fr ENV_NAME
 </pre>

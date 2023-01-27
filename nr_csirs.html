@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-19 Sun 20:16 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - Channel State Information Reference Signal (CSI-RS)</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,45 +232,45 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org996b29c">Introduction</a></li>
-<li><a href="#org88a2b86">Sequence Generation</a></li>
-<li><a href="#org2d16613">Resource Mapping</a>
+<li><a href="#org4f3120c">Introduction</a></li>
+<li><a href="#orgbdbf0ac">Sequence Generation</a></li>
+<li><a href="#orge7a19ef">Resource Mapping</a>
 <ul>
-<li><a href="#org02a393f">Parameters</a></li>
-<li><a href="#org93a3179">Patterns</a>
+<li><a href="#org11635ac">Parameters</a></li>
+<li><a href="#orge69e5dd">Patterns</a>
 <ul>
-<li><a href="#org77dcd4b">1-port CSI-RS</a></li>
-<li><a href="#orgbf8ca52">2-port CSI-RS</a></li>
-<li><a href="#org79271bb">4-port CSI-RS</a></li>
-<li><a href="#orgb8ac8d6">8-port CSI-RS</a></li>
-<li><a href="#orgfae23c3">12-port CSI-RS</a></li>
-<li><a href="#orge48fe23">16-port CSI-RS</a></li>
-<li><a href="#org44c9152">24-port CSI-RS</a></li>
-<li><a href="#org8268fd5">32-port CSI-RS</a></li>
+<li><a href="#org6c6004a">1-port CSI-RS</a></li>
+<li><a href="#orgfc26992">2-port CSI-RS</a></li>
+<li><a href="#org3f4d286">4-port CSI-RS</a></li>
+<li><a href="#orgeac9c02">8-port CSI-RS</a></li>
+<li><a href="#org97c25dd">12-port CSI-RS</a></li>
+<li><a href="#orgc6915fa">16-port CSI-RS</a></li>
+<li><a href="#org7a8bff2">24-port CSI-RS</a></li>
+<li><a href="#org4a7e9c8">32-port CSI-RS</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7483a14">Functionality</a>
+<li><a href="#org20148f5">Functionality</a>
 <ul>
-<li><a href="#org60799f5">CSI-RS for CSI Measurement</a>
+<li><a href="#orgd8b7f63">CSI-RS for CSI Measurement</a>
 <ul>
-<li><a href="#org5bc14b6">Framework</a></li>
-<li><a href="#org9704970">NZP CSI-RS</a></li>
-<li><a href="#org333d152">CSI-IM</a></li>
+<li><a href="#org6318ea8">Framework</a></li>
+<li><a href="#orgcf95496">NZP CSI-RS</a></li>
+<li><a href="#org6d3b8f3">CSI-IM</a></li>
 </ul>
 </li>
-<li><a href="#orga32bccf">CSI-RS for Tracking</a></li>
-<li><a href="#org3be284c">CSI-RS for Rate Match</a></li>
+<li><a href="#org79ad2d4">CSI-RS for Tracking</a></li>
+<li><a href="#org46a910f">CSI-RS for Rate Match</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org996b29c" class="outline-2">
-<h2 id="org996b29c">Introduction</h2>
-<div class="outline-text-2" id="text-org996b29c">
+<div id="outline-container-org4f3120c" class="outline-2">
+<h2 id="org4f3120c">Introduction</h2>
+<div class="outline-text-2" id="text-org4f3120c">
 <p>
 In NR system, <i>channel state information reference signal (CSI-RS)</i> plays a variety of roles, including
 </p>
@@ -276,9 +287,9 @@ Generally, there are two types of CSI-RS, termed <i>non-zero-power (NZP)</i> CSI
 </p>
 </div>
 </div>
-<div id="outline-container-org88a2b86" class="outline-2">
-<h2 id="org88a2b86">Sequence Generation</h2>
-<div class="outline-text-2" id="text-org88a2b86">
+<div id="outline-container-orgbdbf0ac" class="outline-2">
+<h2 id="orgbdbf0ac">Sequence Generation</h2>
+<div class="outline-text-2" id="text-orgbdbf0ac">
 <p>
 CSI-RS symbols are a sequence of QPSK-modulated Gold sequence, which is initialized with
 </p>
@@ -296,13 +307,13 @@ where
 </ul>
 </div>
 </div>
-<div id="outline-container-org2d16613" class="outline-2">
-<h2 id="org2d16613">Resource Mapping</h2>
-<div class="outline-text-2" id="text-org2d16613">
+<div id="outline-container-orge7a19ef" class="outline-2">
+<h2 id="orge7a19ef">Resource Mapping</h2>
+<div class="outline-text-2" id="text-orge7a19ef">
 </div>
-<div id="outline-container-org02a393f" class="outline-3">
-<h3 id="org02a393f">Parameters</h3>
-<div class="outline-text-3" id="text-org02a393f">
+<div id="outline-container-org11635ac" class="outline-3">
+<h3 id="org11635ac">Parameters</h3>
+<div class="outline-text-3" id="text-org11635ac">
 <p>
 Regarding the resource mapping of CSI-RS, following parameters are involved.
 </p>
@@ -328,9 +339,9 @@ Regarding the resource mapping of CSI-RS, following parameters are involved.
 </ul>
 </div>
 </div>
-<div id="outline-container-org93a3179" class="outline-3">
-<h3 id="org93a3179">Patterns</h3>
-<div class="outline-text-3" id="text-org93a3179">
+<div id="outline-container-orge69e5dd" class="outline-3">
+<h3 id="orge69e5dd">Patterns</h3>
+<div class="outline-text-3" id="text-orge69e5dd">
 <p>
 In NR systems, 1/2/4/8/12/16/24/32-port CSI-RS are defined. The multi-port CSI-RS are constructed based on 2/4-port CSI-RS using frequency domain (FD) and time domain (TD) <i>orthogonal cover code (OCC)</i>. The coordinate of a CSI-RS resource in the resource grid is indicated by a bitmap.
 </p>
@@ -340,112 +351,112 @@ In NR systems, 1/2/4/8/12/16/24/32-port CSI-RS are defined. The multi-port CSI-R
 <li>A 4-port CSI-RS resource occupies 4 x 1 or 2 x 2 RE's.</li>
 </ul>
 </div>
-<div id="outline-container-org77dcd4b" class="outline-4">
-<h4 id="org77dcd4b">1-port CSI-RS</h4>
-<div class="outline-text-4" id="text-org77dcd4b">
+<div id="outline-container-org6c6004a" class="outline-4">
+<h4 id="org6c6004a">1-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org6c6004a">
 <p>
-In case of \(\rho = 3\), there are 4 candidates available, as shown in Figure <a href="#org80cb74b">1</a>; Otherwise, i.e., \(\rho = 1\) or \(0.5\), there are \(C_{12}^1\) candidates for the subcarrier index.
+In case of \(\rho = 3\), there are 4 candidates available, as shown in Figure <a href="#org10af0cc">1</a>; Otherwise, i.e., \(\rho = 1\) or \(0.5\), there are \(C_{12}^1\) candidates for the subcarrier index.
 </p>
 
-<div id="org80cb74b" class="figure">
+<div id="org10af0cc" class="figure">
 <p><img src="nr_csirs_1port.png" alt="nr_csirs_1port.png" width="50px">
 </p>
 <p><span class="figure-number">Figure 1: </span>1-port CSI-RS (\(\rho = 3\))</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbf8ca52" class="outline-4">
-<h4 id="orgbf8ca52">2-port CSI-RS</h4>
-<div class="outline-text-4" id="text-orgbf8ca52">
+<div id="outline-container-orgfc26992" class="outline-4">
+<h4 id="orgfc26992">2-port CSI-RS</h4>
+<div class="outline-text-4" id="text-orgfc26992">
 <p>
-For 2-port CSI-RS, as shown in Figure <a href="#org000a922">2</a>, there are \(C_6^1\) candidates.
+For 2-port CSI-RS, as shown in Figure <a href="#org25e4af9">2</a>, there are \(C_6^1\) candidates.
 </p>
 
-<div id="org000a922" class="figure">
+<div id="org25e4af9" class="figure">
 <p><img src="nr_csirs_2port.png" alt="nr_csirs_2port.png" width="100px">
 </p>
 <p><span class="figure-number">Figure 2: </span>2-port CSI-RS</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org79271bb" class="outline-4">
-<h4 id="org79271bb">4-port CSI-RS</h4>
-<div class="outline-text-4" id="text-org79271bb">
+<div id="outline-container-org3f4d286" class="outline-4">
+<h4 id="org3f4d286">4-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org3f4d286">
 <p>
-As shown in Figure <a href="#org9bd68c6">3</a>, there are \(C_3^1\) and \(C_6^1\) candidates for single-symbol and double-symbol 4-port CSI-RS, respectively.
+As shown in Figure <a href="#org8ae5a2a">3</a>, there are \(C_3^1\) and \(C_6^1\) candidates for single-symbol and double-symbol 4-port CSI-RS, respectively.
 </p>
 
-<div id="org9bd68c6" class="figure">
+<div id="org8ae5a2a" class="figure">
 <p><img src="nr_csirs_4port.png" alt="nr_csirs_4port.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 3: </span>4-port CSI-RS</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb8ac8d6" class="outline-4">
-<h4 id="orgb8ac8d6">8-port CSI-RS</h4>
-<div class="outline-text-4" id="text-orgb8ac8d6">
+<div id="outline-container-orgeac9c02" class="outline-4">
+<h4 id="orgeac9c02">8-port CSI-RS</h4>
+<div class="outline-text-4" id="text-orgeac9c02">
 <p>
-As shown in Figure <a href="#orgfe19443">4</a>, there are \(C_6^4\) and \(C_6^2\) candidates for single-symbol and double-symbol 8-port CSI-RS, respectively.
+As shown in Figure <a href="#org97b6f5e">4</a>, there are \(C_6^4\) and \(C_6^2\) candidates for single-symbol and double-symbol 8-port CSI-RS, respectively.
 </p>
 
-<div id="orgfe19443" class="figure">
+<div id="org97b6f5e" class="figure">
 <p><img src="nr_csirs_8port.png" alt="nr_csirs_8port.png" width="500px">
 </p>
 <p><span class="figure-number">Figure 4: </span>8-port CSI-RS</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfae23c3" class="outline-4">
-<h4 id="orgfae23c3">12-port CSI-RS</h4>
-<div class="outline-text-4" id="text-orgfae23c3">
+<div id="outline-container-org97c25dd" class="outline-4">
+<h4 id="org97c25dd">12-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org97c25dd">
 <p>
-As shown in Figure <a href="#orgd62829c">5</a>, for single-symbol case, there is only one candidate; while for double-symbol case, there are \(C_6^3\) candidates.
+As shown in Figure <a href="#org86549f9">5</a>, for single-symbol case, there is only one candidate; while for double-symbol case, there are \(C_6^3\) candidates.
 </p>
 
-<div id="orgd62829c" class="figure">
+<div id="org86549f9" class="figure">
 <p><img src="nr_csirs_12port.png" alt="nr_csirs_12port.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 5: </span>12-port CSI-RS</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orge48fe23" class="outline-4">
-<h4 id="orge48fe23">16-port CSI-RS</h4>
-<div class="outline-text-4" id="text-orge48fe23">
+<div id="outline-container-orgc6915fa" class="outline-4">
+<h4 id="orgc6915fa">16-port CSI-RS</h4>
+<div class="outline-text-4" id="text-orgc6915fa">
 <p>
-The pattern of 16-port CSI-RS can be shown in Figure <a href="#org0eedd5d">6</a>. There are \(C_6^4\) candidates.
+The pattern of 16-port CSI-RS can be shown in Figure <a href="#org4f2235b">6</a>. There are \(C_6^4\) candidates.
 </p>
 
-<div id="org0eedd5d" class="figure">
+<div id="org4f2235b" class="figure">
 <p><img src="nr_csirs_16port.png" alt="nr_csirs_16port.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 6: </span>16-port CSI-RS</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org44c9152" class="outline-4">
-<h4 id="org44c9152">24-port CSI-RS</h4>
-<div class="outline-text-4" id="text-org44c9152">
+<div id="outline-container-org7a8bff2" class="outline-4">
+<h4 id="org7a8bff2">24-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org7a8bff2">
 <p>
-For 24-port CSI-RS, there are \(C_6^3\) candidates, as shown in Figure <a href="#orgee9cd98">7</a>.
+For 24-port CSI-RS, there are \(C_6^3\) candidates, as shown in Figure <a href="#org20b690f">7</a>.
 </p>
 
-<div id="orgee9cd98" class="figure">
+<div id="org20b690f" class="figure">
 <p><img src="nr_csirs_24port.png" alt="nr_csirs_24port.png" width="900px">
 </p>
 <p><span class="figure-number">Figure 7: </span>24-port CSI-RS</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org8268fd5" class="outline-4">
-<h4 id="org8268fd5">32-port CSI-RS</h4>
-<div class="outline-text-4" id="text-org8268fd5">
+<div id="outline-container-org4a7e9c8" class="outline-4">
+<h4 id="org4a7e9c8">32-port CSI-RS</h4>
+<div class="outline-text-4" id="text-org4a7e9c8">
 <p>
-For 32-port CSI-RS, there are \(C_6^4\) candidates, as shown in Figure <a href="#orge152d98">8</a>.
+For 32-port CSI-RS, there are \(C_6^4\) candidates, as shown in Figure <a href="#orgc48930e">8</a>.
 </p>
 
-<div id="orge152d98" class="figure">
+<div id="orgc48930e" class="figure">
 <p><img src="nr_csirs_32port.png" alt="nr_csirs_32port.png" width="900px">
 </p>
 <p><span class="figure-number">Figure 8: </span>32-port CSI-RS</p>
@@ -454,17 +465,17 @@ For 32-port CSI-RS, there are \(C_6^4\) candidates, as shown in Figure <a href="
 </div>
 </div>
 </div>
-<div id="outline-container-org7483a14" class="outline-2">
-<h2 id="org7483a14">Functionality</h2>
-<div class="outline-text-2" id="text-org7483a14">
+<div id="outline-container-org20148f5" class="outline-2">
+<h2 id="org20148f5">Functionality</h2>
+<div class="outline-text-2" id="text-org20148f5">
 </div>
-<div id="outline-container-org60799f5" class="outline-3">
-<h3 id="org60799f5">CSI-RS for CSI Measurement</h3>
-<div class="outline-text-3" id="text-org60799f5">
+<div id="outline-container-orgd8b7f63" class="outline-3">
+<h3 id="orgd8b7f63">CSI-RS for CSI Measurement</h3>
+<div class="outline-text-3" id="text-orgd8b7f63">
 </div>
-<div id="outline-container-org5bc14b6" class="outline-4">
-<h4 id="org5bc14b6">Framework</h4>
-<div class="outline-text-4" id="text-org5bc14b6">
+<div id="outline-container-org6318ea8" class="outline-4">
+<h4 id="org6318ea8">Framework</h4>
+<div class="outline-text-4" id="text-org6318ea8">
 <p>
 Just as its name indicates, CSI-RS can be used to measure CSI, e.g., CQI, PMI, CRI, SS/PBCH block resource indicator (SSBRI), layer indicator (LI), RI, L1-RSRP.
 </p>
@@ -491,9 +502,9 @@ A UE can be configured with
 </ul>
 </div>
 </div>
-<div id="outline-container-org9704970" class="outline-4">
-<h4 id="org9704970">NZP CSI-RS</h4>
-<div class="outline-text-4" id="text-org9704970">
+<div id="outline-container-orgcf95496" class="outline-4">
+<h4 id="orgcf95496">NZP CSI-RS</h4>
+<div class="outline-text-4" id="text-orgcf95496">
 <p>
 For each <span style="color: blue">CSI-ResourceConfig</span>, a UE can be configured with one or more NZP CSI-RS resource set(s) by <span style="color: blue">NZP-CSI-RS-ResourceSet</span>, with each consisting of \(K \ge 1\) NZP CSI-RS resource(s).
 </p>
@@ -503,9 +514,9 @@ For each <span style="color: blue">CSI-ResourceConfig</span>, a UE can be config
 </ul>
 </div>
 </div>
-<div id="outline-container-org333d152" class="outline-4">
-<h4 id="org333d152">CSI-IM</h4>
-<div class="outline-text-4" id="text-org333d152">
+<div id="outline-container-org6d3b8f3" class="outline-4">
+<h4 id="org6d3b8f3">CSI-IM</h4>
+<div class="outline-text-4" id="text-org6d3b8f3">
 <p>
 A UE can be configured with one or more CSI-IM resource set(s) by <span style="color: blue">CSI-IM-ResourceSet</span>, with each consisting of \(K \ge 1\) <span style="color: blue">CSI-IM-Resource</span>, in which
 </p>
@@ -516,9 +527,9 @@ A UE can be configured with one or more CSI-IM resource set(s) by <span style="c
 </div>
 </div>
 
-<div id="outline-container-orga32bccf" class="outline-3">
-<h3 id="orga32bccf">CSI-RS for Tracking</h3>
-<div class="outline-text-3" id="text-orga32bccf">
+<div id="outline-container-org79ad2d4" class="outline-3">
+<h3 id="org79ad2d4">CSI-RS for Tracking</h3>
+<div class="outline-text-3" id="text-org79ad2d4">
 <p>
 In NR system, a single-port CSI-RS is used as <i>tracking reference signal (TRS)</i>, targetting for time/frequency tracking.
 </p>
@@ -529,9 +540,9 @@ In NR system, a single-port CSI-RS is used as <i>tracking reference signal (TRS)
 </ul>
 </div>
 </div>
-<div id="outline-container-org3be284c" class="outline-3">
-<h3 id="org3be284c">CSI-RS for Rate Match</h3>
-<div class="outline-text-3" id="text-org3be284c">
+<div id="outline-container-org46a910f" class="outline-3">
+<h3 id="org46a910f">CSI-RS for Rate Match</h3>
+<div class="outline-text-3" id="text-org46a910f">
 <p>
 In NR system, zero-power (ZP) CSI-RS can be used for rate match, which is exclusive for PDSCH transmission. There are 3 types of ZP-CSI-RS, periodic, semi-persistent, and aperiodic.
 </p>

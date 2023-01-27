@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Pytorch</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,27 +200,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2b49493">张量</a>
+<li><a href="#orgd317546">张量</a>
 <ul>
-<li><a href="#org6f75547">与 numpy.ndarray 相互转换</a></li>
+<li><a href="#org25fbc65">与 numpy.ndarray 相互转换</a></li>
 </ul>
 </li>
-<li><a href="#org5c1105f">神经网络</a>
+<li><a href="#org94f7f77">神经网络</a>
 <ul>
-<li><a href="#orgd5c71ef">典型训练过程</a></li>
-<li><a href="#org3f8dad8">正向传播与反向传播</a></li>
-<li><a href="#org5269ea9">定义网络</a></li>
+<li><a href="#orgff53be9">典型训练过程</a></li>
+<li><a href="#org22588dd">正向传播与反向传播</a></li>
+<li><a href="#org98d52f8">定义网络</a></li>
 </ul>
 </li>
-<li><a href="#org1a538a2">数据集</a></li>
-<li><a href="#org2bfcd80">数据加载器</a></li>
+<li><a href="#orge9471e2">数据集</a></li>
+<li><a href="#org355272f">数据加载器</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2b49493" class="outline-2">
-<h2 id="org2b49493">张量</h2>
-<div class="outline-text-2" id="text-org2b49493">
+<div id="outline-container-orgd317546" class="outline-2">
+<h2 id="orgd317546">张量</h2>
+<div class="outline-text-2" id="text-orgd317546">
 <p>
 在pytorch中，神经网络的输入、输出、以及网络的参数等都采用了“张量”的数据结构。张量与numpy中的多维数组(<code>numpy.ndarray</code>)非常类似，区别在于张量可以在GPU或其他硬件上运行。
 </p>
@@ -239,9 +239,9 @@
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-org6f75547" class="outline-3">
-<h3 id="org6f75547">与 numpy.ndarray 相互转换</h3>
-<div class="outline-text-3" id="text-org6f75547">
+<div id="outline-container-org25fbc65" class="outline-3">
+<h3 id="org25fbc65">与 numpy.ndarray 相互转换</h3>
+<div class="outline-text-3" id="text-org25fbc65">
 <ul class="org-ul">
 <li>张量的成员函数 <code>.numpy()</code> 返回对应的 <code>numpy.ndarray</code> 。但是，该方法仅适用于存储在CPU的张量。</li>
 <li>函数 <code>torch.from_numpy()</code> 可以将一个 <code>numpy.ndarray</code> 转换为张量。</li>
@@ -253,13 +253,13 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org5c1105f" class="outline-2">
-<h2 id="org5c1105f">神经网络</h2>
-<div class="outline-text-2" id="text-org5c1105f">
+<div id="outline-container-org94f7f77" class="outline-2">
+<h2 id="org94f7f77">神经网络</h2>
+<div class="outline-text-2" id="text-org94f7f77">
 </div>
-<div id="outline-container-orgd5c71ef" class="outline-3">
-<h3 id="orgd5c71ef">典型训练过程</h3>
-<div class="outline-text-3" id="text-orgd5c71ef">
+<div id="outline-container-orgff53be9" class="outline-3">
+<h3 id="orgff53be9">典型训练过程</h3>
+<div class="outline-text-3" id="text-orgff53be9">
 <ul class="org-ul">
 <li>构建含有一些可学习参数(或权重)的神经网络。</li>
 <li>遍历训练数据集。</li>
@@ -270,9 +270,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org3f8dad8" class="outline-3">
-<h3 id="org3f8dad8">正向传播与反向传播</h3>
-<div class="outline-text-3" id="text-org3f8dad8">
+<div id="outline-container-org22588dd" class="outline-3">
+<h3 id="org22588dd">正向传播与反向传播</h3>
+<div class="outline-text-3" id="text-org22588dd">
 <p>
 神经网络的训练包括两个步骤
 </p>
@@ -290,9 +290,9 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org5269ea9" class="outline-3">
-<h3 id="org5269ea9">定义网络</h3>
-<div class="outline-text-3" id="text-org5269ea9">
+<div id="outline-container-org98d52f8" class="outline-3">
+<h3 id="org98d52f8">定义网络</h3>
+<div class="outline-text-3" id="text-org98d52f8">
 <p>
 可以使用 <code>torch.nn</code> 包来构建神经网络。
 </p>
@@ -350,9 +350,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org1a538a2" class="outline-2">
-<h2 id="org1a538a2">数据集</h2>
-<div class="outline-text-2" id="text-org1a538a2">
+<div id="outline-container-orge9471e2" class="outline-2">
+<h2 id="orge9471e2">数据集</h2>
+<div class="outline-text-2" id="text-orge9471e2">
 <p>
 自定义的数据集可以通过定义以(<code>torch.utils.data.Dataset</code>)为基类的派生类完成。具体地，需要重载如下三个函数：
 </p>
@@ -383,9 +383,9 @@ Pytorch支持多种格式的数据集，下面是一个从HDF5文件中加载数
 </div>
 </div>
 </div>
-<div id="outline-container-org2bfcd80" class="outline-2">
-<h2 id="org2bfcd80">数据加载器</h2>
-<div class="outline-text-2" id="text-org2bfcd80">
+<div id="outline-container-org355272f" class="outline-2">
+<h2 id="org355272f">数据加载器</h2>
+<div class="outline-text-2" id="text-org355272f">
 <p>
 基于自定义的数据集，可以使用类 <code>torch.utils.data.DataLoader</code> 来生成相应的数据加载器。如
 </p>

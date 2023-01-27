@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-01-02 Sun 22:25 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux - Sed</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,43 +200,43 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1e003a3">简介</a></li>
-<li><a href="#org167fab8">命令格式</a>
+<li><a href="#org925aae4">简介</a></li>
+<li><a href="#org1809e81">命令格式</a>
 <ul>
-<li><a href="#org4fa6e8d">选项</a></li>
-<li><a href="#org6af7abf">命令</a></li>
+<li><a href="#orge5be5da">选项</a></li>
+<li><a href="#org8ce3d7d">命令</a></li>
 </ul>
 </li>
-<li><a href="#orgb03221d">示例</a>
+<li><a href="#org03941a4">示例</a>
 <ul>
-<li><a href="#org6b747a0">替换命令 <code>s</code></a></li>
+<li><a href="#org0ed1c74">替换命令 <code>s</code></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1e003a3" class="outline-2">
-<h2 id="org1e003a3">简介</h2>
-<div class="outline-text-2" id="text-org1e003a3">
+<div id="outline-container-org925aae4" class="outline-2">
+<h2 id="org925aae4">简介</h2>
+<div class="outline-text-2" id="text-org925aae4">
 <p>
 <code>Sed</code> 是著名的流编辑器，它能够对文本进行逐行处理，通常需要配合正则表达式使用。具体地， <code>Sed</code> 先把当前行的文本导入 <code>模式空间(pattern space)</code> 对其处理，然后输出处理后的文本。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org167fab8" class="outline-2">
-<h2 id="org167fab8">命令格式</h2>
-<div class="outline-text-2" id="text-org167fab8">
+<div id="outline-container-org1809e81" class="outline-2">
+<h2 id="org1809e81">命令格式</h2>
+<div class="outline-text-2" id="text-org1809e81">
 <div class="org-src-container">
 <pre class="src src-sh">sed [OPTIONS] 'COMMAND' FILE(S)
 sed [OPTIONS] -f 'SCRIPT' FILE(S)
 </pre>
 </div>
 </div>
-<div id="outline-container-org4fa6e8d" class="outline-3">
-<h3 id="org4fa6e8d">选项</h3>
-<div class="outline-text-3" id="text-org4fa6e8d">
+<div id="outline-container-orge5be5da" class="outline-3">
+<h3 id="orge5be5da">选项</h3>
+<div class="outline-text-3" id="text-orge5be5da">
 <table align="center" border="3">
 <caption class="t-above"><span class="table-number">Table 1:</span> 选项</caption>
 
@@ -275,9 +275,9 @@ sed [OPTIONS] -f 'SCRIPT' FILE(S)
 </table>
 </div>
 </div>
-<div id="outline-container-org6af7abf" class="outline-3">
-<h3 id="org6af7abf">命令</h3>
-<div class="outline-text-3" id="text-org6af7abf">
+<div id="outline-container-org8ce3d7d" class="outline-3">
+<h3 id="org8ce3d7d">命令</h3>
+<div class="outline-text-3" id="text-org8ce3d7d">
 <table align="center" border="3">
 <caption class="t-above"><span class="table-number">Table 2:</span> 命令</caption>
 
@@ -307,13 +307,13 @@ sed [OPTIONS] -f 'SCRIPT' FILE(S)
 </div>
 </div>
 </div>
-<div id="outline-container-orgb03221d" class="outline-2">
-<h2 id="orgb03221d">示例</h2>
-<div class="outline-text-2" id="text-orgb03221d">
+<div id="outline-container-org03941a4" class="outline-2">
+<h2 id="org03941a4">示例</h2>
+<div class="outline-text-2" id="text-org03941a4">
 </div>
-<div id="outline-container-org6b747a0" class="outline-3">
-<h3 id="org6b747a0">替换命令 <code>s</code></h3>
-<div class="outline-text-3" id="text-org6b747a0">
+<div id="outline-container-org0ed1c74" class="outline-3">
+<h3 id="org0ed1c74">替换命令 <code>s</code></h3>
+<div class="outline-text-3" id="text-org0ed1c74">
 <div class="org-src-container">
 <pre class="src src-sh"># 替换每行的第一个匹配。
 sed 's/FROM/TO/' FILE

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PBS and Maui</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,58 +200,58 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org041e4ab">Introduction</a></li>
-<li><a href="#orgc0bea0d">Installation</a></li>
-<li><a href="#org80b67ff">Configuration</a>
+<li><a href="#org1c627e4">Introduction</a></li>
+<li><a href="#org3990cfc">Installation</a></li>
+<li><a href="#org1a9c55a">Configuration</a>
 <ul>
-<li><a href="#org63a4f3f">Server (head node)</a>
+<li><a href="#orgca6bb73">Server (head node)</a>
 <ul>
-<li><a href="#orgb1ad585"><code>/var/spoo/torque/server_priv/nodes</code></a></li>
-<li><a href="#orgf42103e">PBS/Torque server</a></li>
-<li><a href="#org04d4032">Maui</a></li>
+<li><a href="#org2647b01"><code>/var/spoo/torque/server_priv/nodes</code></a></li>
+<li><a href="#orgbe0ca42">PBS/Torque server</a></li>
+<li><a href="#org10f13e1">Maui</a></li>
 </ul>
 </li>
-<li><a href="#org87dce30">Client (computing node)</a>
+<li><a href="#org100c9bf">Client (computing node)</a>
 <ul>
-<li><a href="#org3aa0832"><code>/var/spool/torque/server_name</code></a></li>
-<li><a href="#orgb0375d1"><code>/var/spool/torque/mom_priv/config</code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org192e91f">Configure the service</a>
-<ul>
-<li><a href="#orgdaab752">Server (head node)</a>
-<ul>
-<li><a href="#orge41a275">Resource manager (PBS/Torque server)</a></li>
-<li><a href="#orge690598">Scheduler</a>
-<ul>
-<li><a href="#org83bafe9">Maui</a></li>
-<li><a href="#org967e2e4">PBS scheduler</a></li>
+<li><a href="#org7ae7bb1"><code>/var/spool/torque/server_name</code></a></li>
+<li><a href="#orga2f7271"><code>/var/spool/torque/mom_priv/config</code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7265d10">Client (computing node)</a>
+<li><a href="#orga0c937d">Configure the service</a>
 <ul>
-<li><a href="#org06bd188">PBS client</a></li>
+<li><a href="#org6629614">Server (head node)</a>
+<ul>
+<li><a href="#org03b9b46">Resource manager (PBS/Torque server)</a></li>
+<li><a href="#orga2a9aab">Scheduler</a>
+<ul>
+<li><a href="#org72b922e">Maui</a></li>
+<li><a href="#org3322888">PBS scheduler</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org222a279">Start and enable the service</a>
+<li><a href="#org52cc7a2">Client (computing node)</a>
 <ul>
-<li><a href="#org4684af9">Server (head node)</a></li>
-<li><a href="#org19f16c3">Client (computing node)</a></li>
+<li><a href="#orgd9d26a8">PBS client</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org471c6b8">Start and enable the service</a>
+<ul>
+<li><a href="#org43b6160">Server (head node)</a></li>
+<li><a href="#org3d8dd9e">Client (computing node)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org041e4ab" class="outline-2">
-<h2 id="org041e4ab">Introduction</h2>
-<div class="outline-text-2" id="text-org041e4ab">
+<div id="outline-container-org1c627e4" class="outline-2">
+<h2 id="org1c627e4">Introduction</h2>
+<div class="outline-text-2" id="text-org1c627e4">
 <p>
 Portable batch system (PBS) was originally developed by NASA, which is comprised of a <i>resource manager</i>, a <i>scheduler</i> and a <i>client</i>. What is different, a resource manager and a scheduler are usually running on server side, while clients running on computing nodes. For the softwares, both commercial <i>PBS Pro</i> and open-source <i>Torque</i> are available. But herein, we consider the open-source Torque only.
 </p>
@@ -265,9 +265,9 @@ The built-in scheduler is a simple FIFO scheduler. However, other schedulers can
 </p>
 </div>
 </div>
-<div id="outline-container-orgc0bea0d" class="outline-2">
-<h2 id="orgc0bea0d">Installation</h2>
-<div class="outline-text-2" id="text-orgc0bea0d">
+<div id="outline-container-org3990cfc" class="outline-2">
+<h2 id="org3990cfc">Installation</h2>
+<div class="outline-text-2" id="text-org3990cfc">
 <p>
 For <a href="https://wiki.archlinux.org">ArchLinux</a>, Torque and Maui can be easily installed from <i>AUR</i>.
 </p>
@@ -280,17 +280,17 @@ yaourt maui
 </div>
 </div>
 </div>
-<div id="outline-container-org80b67ff" class="outline-2">
-<h2 id="org80b67ff">Configuration</h2>
-<div class="outline-text-2" id="text-org80b67ff">
+<div id="outline-container-org1a9c55a" class="outline-2">
+<h2 id="org1a9c55a">Configuration</h2>
+<div class="outline-text-2" id="text-org1a9c55a">
 </div>
-<div id="outline-container-org63a4f3f" class="outline-3">
-<h3 id="org63a4f3f">Server (head node)</h3>
-<div class="outline-text-3" id="text-org63a4f3f">
+<div id="outline-container-orgca6bb73" class="outline-3">
+<h3 id="orgca6bb73">Server (head node)</h3>
+<div class="outline-text-3" id="text-orgca6bb73">
 </div>
-<div id="outline-container-orgb1ad585" class="outline-4">
-<h4 id="orgb1ad585"><code>/var/spoo/torque/server_priv/nodes</code></h4>
-<div class="outline-text-4" id="text-orgb1ad585">
+<div id="outline-container-org2647b01" class="outline-4">
+<h4 id="org2647b01"><code>/var/spoo/torque/server_priv/nodes</code></h4>
+<div class="outline-text-4" id="text-org2647b01">
 <div class="org-src-container">
 <pre class="src src-sh">node1 np=2
 node2 np=4
@@ -299,9 +299,9 @@ node2 np=4
 </div>
 </div>
 </div>
-<div id="outline-container-orgf42103e" class="outline-4">
-<h4 id="orgf42103e">PBS/Torque server</h4>
-<div class="outline-text-4" id="text-orgf42103e">
+<div id="outline-container-orgbe0ca42" class="outline-4">
+<h4 id="orgbe0ca42">PBS/Torque server</h4>
+<div class="outline-text-4" id="text-orgbe0ca42">
 <div class="org-src-container">
 <pre class="src src-sh">qmgr -c 'p s'
 #
@@ -349,9 +349,9 @@ set server nppcu = 1
 </div>
 </div>
 </div>
-<div id="outline-container-org04d4032" class="outline-4">
-<h4 id="org04d4032">Maui</h4>
-<div class="outline-text-4" id="text-org04d4032">
+<div id="outline-container-org10f13e1" class="outline-4">
+<h4 id="org10f13e1">Maui</h4>
+<div class="outline-text-4" id="text-org10f13e1">
 <p>
 Append following lines to <code>maui.cfg</code>.
 </p>
@@ -365,22 +365,22 @@ CLASSLIST   [COMMON VIP]
 </div>
 </div>
 </div>
-<div id="outline-container-org87dce30" class="outline-3">
-<h3 id="org87dce30">Client (computing node)</h3>
-<div class="outline-text-3" id="text-org87dce30">
+<div id="outline-container-org100c9bf" class="outline-3">
+<h3 id="org100c9bf">Client (computing node)</h3>
+<div class="outline-text-3" id="text-org100c9bf">
 </div>
-<div id="outline-container-org3aa0832" class="outline-4">
-<h4 id="org3aa0832"><code>/var/spool/torque/server_name</code></h4>
-<div class="outline-text-4" id="text-org3aa0832">
+<div id="outline-container-org7ae7bb1" class="outline-4">
+<h4 id="org7ae7bb1"><code>/var/spool/torque/server_name</code></h4>
+<div class="outline-text-4" id="text-org7ae7bb1">
 <div class="org-src-container">
 <pre class="src src-sh">head
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb0375d1" class="outline-4">
-<h4 id="orgb0375d1"><code>/var/spool/torque/mom_priv/config</code></h4>
-<div class="outline-text-4" id="text-orgb0375d1">
+<div id="outline-container-orga2f7271" class="outline-4">
+<h4 id="orga2f7271"><code>/var/spool/torque/mom_priv/config</code></h4>
+<div class="outline-text-4" id="text-orga2f7271">
 <div class="org-src-container">
 <pre class="src src-sh">$pbssever head
 $logevent 255
@@ -390,17 +390,17 @@ $logevent 255
 </div>
 </div>
 </div>
-<div id="outline-container-org192e91f" class="outline-2">
-<h2 id="org192e91f">Configure the service</h2>
-<div class="outline-text-2" id="text-org192e91f">
+<div id="outline-container-orga0c937d" class="outline-2">
+<h2 id="orga0c937d">Configure the service</h2>
+<div class="outline-text-2" id="text-orga0c937d">
 </div>
-<div id="outline-container-orgdaab752" class="outline-3">
-<h3 id="orgdaab752">Server (head node)</h3>
-<div class="outline-text-3" id="text-orgdaab752">
+<div id="outline-container-org6629614" class="outline-3">
+<h3 id="org6629614">Server (head node)</h3>
+<div class="outline-text-3" id="text-org6629614">
 </div>
-<div id="outline-container-orge41a275" class="outline-4">
-<h4 id="orge41a275">Resource manager (PBS/Torque server)</h4>
-<div class="outline-text-4" id="text-orge41a275">
+<div id="outline-container-org03b9b46" class="outline-4">
+<h4 id="org03b9b46">Resource manager (PBS/Torque server)</h4>
+<div class="outline-text-4" id="text-org03b9b46">
 <p>
 Create <code>/etc/systemd/system/torque-server.service</code>
 </p>
@@ -421,13 +421,13 @@ WantedBy=multi-user.target
 </div>
 </div>
 </div>
-<div id="outline-container-orge690598" class="outline-4">
-<h4 id="orge690598">Scheduler<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h4>
-<div class="outline-text-4" id="text-orge690598">
+<div id="outline-container-orga2a9aab" class="outline-4">
+<h4 id="orga2a9aab">Scheduler<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h4>
+<div class="outline-text-4" id="text-orga2a9aab">
 </div>
-<div id="outline-container-org83bafe9" class="outline-5">
-<h5 id="org83bafe9">Maui</h5>
-<div class="outline-text-5" id="text-org83bafe9">
+<div id="outline-container-org72b922e" class="outline-5">
+<h5 id="org72b922e">Maui</h5>
+<div class="outline-text-5" id="text-org72b922e">
 <p>
 Create <code>/etc/systemd/system/torque-maui.service</code>
 </p>
@@ -448,9 +448,9 @@ WantedBy=multi-user.target
 </div>
 </div>
 </div>
-<div id="outline-container-org967e2e4" class="outline-5">
-<h5 id="org967e2e4">PBS scheduler</h5>
-<div class="outline-text-5" id="text-org967e2e4">
+<div id="outline-container-org3322888" class="outline-5">
+<h5 id="org3322888">PBS scheduler</h5>
+<div class="outline-text-5" id="text-org3322888">
 <p>
 Create <code>/etc/systemd/system/torque-scheduler.service</code>
 </p>
@@ -473,13 +473,13 @@ WantedBy=multi-user.target
 </div>
 </div>
 </div>
-<div id="outline-container-org7265d10" class="outline-3">
-<h3 id="org7265d10">Client (computing node)</h3>
-<div class="outline-text-3" id="text-org7265d10">
+<div id="outline-container-org52cc7a2" class="outline-3">
+<h3 id="org52cc7a2">Client (computing node)</h3>
+<div class="outline-text-3" id="text-org52cc7a2">
 </div>
-<div id="outline-container-org06bd188" class="outline-4">
-<h4 id="org06bd188">PBS client</h4>
-<div class="outline-text-4" id="text-org06bd188">
+<div id="outline-container-orgd9d26a8" class="outline-4">
+<h4 id="orgd9d26a8">PBS client</h4>
+<div class="outline-text-4" id="text-orgd9d26a8">
 <p>
 Create <code>/etc/systemd/system/torque-node.service</code>
 </p>
@@ -502,13 +502,13 @@ WantedBy=multi-user.target
 </div>
 </div>
 </div>
-<div id="outline-container-org222a279" class="outline-2">
-<h2 id="org222a279">Start and enable the service</h2>
-<div class="outline-text-2" id="text-org222a279">
+<div id="outline-container-org471c6b8" class="outline-2">
+<h2 id="org471c6b8">Start and enable the service</h2>
+<div class="outline-text-2" id="text-org471c6b8">
 </div>
-<div id="outline-container-org4684af9" class="outline-3">
-<h3 id="org4684af9">Server (head node)</h3>
-<div class="outline-text-3" id="text-org4684af9">
+<div id="outline-container-org43b6160" class="outline-3">
+<h3 id="org43b6160">Server (head node)</h3>
+<div class="outline-text-3" id="text-org43b6160">
 <div class="org-src-container">
 <pre class="src src-sh">systemctl enable torque-server.service
 systemctl start torque-server.service
@@ -518,9 +518,9 @@ systemctl start torque-maui.service
 </div>
 </div>
 </div>
-<div id="outline-container-org19f16c3" class="outline-3">
-<h3 id="org19f16c3">Client (computing node)</h3>
-<div class="outline-text-3" id="text-org19f16c3">
+<div id="outline-container-org3d8dd9e" class="outline-3">
+<h3 id="org3d8dd9e">Client (computing node)</h3>
+<div class="outline-text-3" id="text-org3d8dd9e">
 <div class="org-src-container">
 <pre class="src src-sh">systemctl enable torque-node.service
 systemctl start torque-node.service

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LaTeX - Gantt Chart</title>
@@ -189,30 +189,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -221,23 +232,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org27eb729">Introduction</a></li>
-<li><a href="#org09440e4">Usage</a></li>
+<li><a href="#org12e900e">Introduction</a></li>
+<li><a href="#orge61d8a2">Usage</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org27eb729" class="outline-2">
-<h2 id="org27eb729">Introduction</h2>
-<div class="outline-text-2" id="text-org27eb729">
+<div id="outline-container-org12e900e" class="outline-2">
+<h2 id="org12e900e">Introduction</h2>
+<div class="outline-text-2" id="text-org12e900e">
 <p>
 Today, I found an interesting \(\LaTeX\) package, <i>pgfgantt</i>. This package provides a <code>ganttchart</code> environment and, as its name indicates, can produce <i>Gantt</i> charts.
 </p>
 </div>
 </div>
-<div id="outline-container-org09440e4" class="outline-2">
-<h2 id="org09440e4">Usage</h2>
-<div class="outline-text-2" id="text-org09440e4">
+<div id="outline-container-orge61d8a2" class="outline-2">
+<h2 id="orge61d8a2">Usage</h2>
+<div class="outline-text-2" id="text-orge61d8a2">
 <p>
 The framework of using the package can be illustrated as
 </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-12-05 Sun 16:54 -->
+<!-- 2023-01-28 Sat 01:49 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - YCMD</title>
@@ -189,7 +189,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
 </head>
@@ -200,51 +200,51 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org40fce81">Introduction</a></li>
-<li><a href="#org4d48f90">Installation</a>
+<li><a href="#orgd3af573">Introduction</a></li>
+<li><a href="#org773b52c">Installation</a>
 <ul>
-<li><a href="#orgce7cf2e">Emacs packages</a></li>
-<li><a href="#orgbf03d72">Dependency</a></li>
-<li><a href="#orgdf04820">YCMD</a></li>
-<li><a href="#orga2e59e6">Configurations</a></li>
+<li><a href="#org5f65557">Emacs packages</a></li>
+<li><a href="#org4065c46">Dependency</a></li>
+<li><a href="#org8769521">YCMD</a></li>
+<li><a href="#org34e7a21">Configurations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org40fce81" class="outline-2">
-<h2 id="org40fce81">Introduction</h2>
-<div class="outline-text-2" id="text-org40fce81">
+<div id="outline-container-orgd3af573" class="outline-2">
+<h2 id="orgd3af573">Introduction</h2>
+<div class="outline-text-2" id="text-orgd3af573">
 <p>
 YouCompleteMe (YCM) is originally a completion framework for VIM<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, and afterwards splitted into a general server and a client. The general server, namely YCM daemon (YCMD)<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>, is able to provide interface to a variety of clients beyond VIM, e.g. Emacs. Moreover, both <code>company</code> and <code>auto-complete</code> can directly utilize what the server/daemon provides.
 </p>
 </div>
 </div>
-<div id="outline-container-org4d48f90" class="outline-2">
-<h2 id="org4d48f90">Installation</h2>
-<div class="outline-text-2" id="text-org4d48f90">
+<div id="outline-container-org773b52c" class="outline-2">
+<h2 id="org773b52c">Installation</h2>
+<div class="outline-text-2" id="text-org773b52c">
 </div>
-<div id="outline-container-orgce7cf2e" class="outline-3">
-<h3 id="orgce7cf2e">Emacs packages</h3>
-<div class="outline-text-3" id="text-orgce7cf2e">
+<div id="outline-container-org5f65557" class="outline-3">
+<h3 id="org5f65557">Emacs packages</h3>
+<div class="outline-text-3" id="text-org5f65557">
 <p>
 Install the Emacs packages via ELPA, <code>ycmd</code>, <code>company-ycmd</code>, <code>company</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbf03d72" class="outline-3">
-<h3 id="orgbf03d72">Dependency</h3>
-<div class="outline-text-3" id="text-orgbf03d72">
+<div id="outline-container-org4065c46" class="outline-3">
+<h3 id="org4065c46">Dependency</h3>
+<div class="outline-text-3" id="text-org4065c46">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S boost
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf04820" class="outline-3">
-<h3 id="orgdf04820">YCMD</h3>
-<div class="outline-text-3" id="text-orgdf04820">
+<div id="outline-container-org8769521" class="outline-3">
+<h3 id="org8769521">YCMD</h3>
+<div class="outline-text-3" id="text-org8769521">
 <p>
 Install the <code>YCMD</code> to <code>~/.emacs.d/ycmd</code>.
 </p>
@@ -258,9 +258,9 @@ git submodule update --init --recursive
 </div>
 </div>
 </div>
-<div id="outline-container-orga2e59e6" class="outline-3">
-<h3 id="orga2e59e6">Configurations</h3>
-<div class="outline-text-3" id="text-orga2e59e6">
+<div id="outline-container-org34e7a21" class="outline-3">
+<h3 id="org34e7a21">Configurations</h3>
+<div class="outline-text-3" id="text-org34e7a21">
 <ul class="org-ul">
 <li><code>~/.emacs.d/ycmd/global_config.py</code></li>
 </ul>
