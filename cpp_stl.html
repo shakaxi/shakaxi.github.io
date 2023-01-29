@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-28 Sat 01:48 -->
+<!-- 2023-01-29 Sun 17:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Standard Template Library (STL)</title>
@@ -232,88 +232,88 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb16de17">容器</a>
+<li><a href="#org76f5c74">容器</a>
 <ul>
-<li><a href="#org87d8d03">顺序容器(sequential container)</a>
+<li><a href="#org964a050">顺序容器(sequential container)</a>
 <ul>
-<li><a href="#org80b4199"><code>vector</code></a></li>
-<li><a href="#orgfe0a1f2"><code>list</code> (双向链表)</a></li>
-<li><a href="#org9c90e4b"><code>forward_list</code> (单向链表)</a></li>
-<li><a href="#org2fa7495"><code>deque</code> (双头队列)</a></li>
-<li><a href="#org84ef1c0"><code>array</code></a></li>
+<li><a href="#org7346b73"><code>vector</code></a></li>
+<li><a href="#org46ec1eb"><code>list</code> (双向链表)</a></li>
+<li><a href="#orgb407d5e"><code>forward_list</code> (单向链表)</a></li>
+<li><a href="#orgc8b0635"><code>deque</code> (双头队列)</a></li>
+<li><a href="#org3d8e38e"><code>array</code></a></li>
 </ul>
 </li>
-<li><a href="#orgd574ae4">容器适配器(adaptor)</a>
+<li><a href="#org50eacce">容器适配器(adaptor)</a>
 <ul>
-<li><a href="#org4530041"><code>queue</code></a></li>
-<li><a href="#orgcd71d51"><code>priority_queue</code></a></li>
-<li><a href="#orge167089"><code>stack</code></a></li>
+<li><a href="#org793993d"><code>queue</code></a></li>
+<li><a href="#orgc71034d"><code>priority_queue</code></a></li>
+<li><a href="#org5785671"><code>stack</code></a></li>
 </ul>
 </li>
-<li><a href="#org1b87fa1">关联容器</a>
+<li><a href="#orge1e98b0">关联容器</a>
 <ul>
-<li><a href="#orgf885aa3"><code>pair</code> 工具类</a></li>
-<li><a href="#org00de5ae">排序关联容器或有序关联容器</a>
+<li><a href="#org7119263"><code>pair</code> 工具类</a></li>
+<li><a href="#org36b4f18">排序关联容器或有序关联容器</a>
 <ul>
-<li><a href="#org792fa4d"><code>map</code> 和 <code>multimap</code></a></li>
-<li><a href="#orgb8e1bc0"><code>set</code> 和 <code>multiset</code></a></li>
+<li><a href="#org09c39d9"><code>map</code> 和 <code>multimap</code></a></li>
+<li><a href="#org750a028"><code>set</code> 和 <code>multiset</code></a></li>
 </ul>
 </li>
-<li><a href="#org57a974a">无序关联容器或哈希表(hash table)</a></li>
+<li><a href="#org8b73098">无序关联容器或哈希表(hash table)</a></li>
 </ul>
 </li>
-<li><a href="#org9367ee6">其他容器</a></li>
+<li><a href="#orgc81fd4b">其他容器</a></li>
 </ul>
 </li>
-<li><a href="#org9d6b2c0">算法</a>
+<li><a href="#org4ea3514">算法</a>
 <ul>
-<li><a href="#org039f2ed">绑定器(binder)</a></li>
-<li><a href="#org8c2a9f0">取反器(negator)</a></li>
-<li><a href="#org905b247">调用成员函数</a></li>
-<li><a href="#orgc1edfd7">非修改序列算法</a>
+<li><a href="#org5ed65b7">绑定器(binder)</a></li>
+<li><a href="#org8575a48">取反器(negator)</a></li>
+<li><a href="#org7595692">调用成员函数</a></li>
+<li><a href="#orgbfc4588">非修改序列算法</a>
 <ul>
-<li><a href="#orga68294f">搜索算法</a>
+<li><a href="#org5341b2c">搜索算法</a>
 <ul>
-<li><a href="#org07aeeb8"><code>find</code> 和 <code>find_if</code></a></li>
+<li><a href="#org9cafde6"><code>find</code> 和 <code>find_if</code></a></li>
 </ul>
 </li>
-<li><a href="#orgd9ea034">比较算法</a></li>
-<li><a href="#org56bddd7">工具算法</a></li>
+<li><a href="#orga5dbf3b">比较算法</a></li>
+<li><a href="#orga7fae8c">工具算法</a></li>
 </ul>
 </li>
-<li><a href="#orgcf76368">修改序列算法</a>
+<li><a href="#orga561507">修改序列算法</a>
 <ul>
-<li><a href="#orgf34ebe2">转换</a></li>
-<li><a href="#org4a1a0fa">复制</a></li>
-<li><a href="#org073477e">移动</a></li>
-<li><a href="#org512d22f">替换</a></li>
-<li><a href="#org43f601b">删除</a></li>
-<li><a href="#org27d366f">唯一化</a></li>
-<li><a href="#org9de8b03">反转</a></li>
-<li><a href="#orgb73404c">乱序</a></li>
+<li><a href="#org3d86c8d">转换</a></li>
+<li><a href="#orgaf71cb4">复制</a></li>
+<li><a href="#org48e584f">移动</a></li>
+<li><a href="#org1a06901">替换</a></li>
+<li><a href="#org5464f57">删除</a></li>
+<li><a href="#org2740275">唯一化</a></li>
+<li><a href="#org4408caf">反转</a></li>
+<li><a href="#org0f247ce">乱序</a></li>
 </ul>
 </li>
-<li><a href="#org0e005bf">分区算法</a></li>
-<li><a href="#org1e06ae2">排序算法</a></li>
-<li><a href="#org42822fa">集合算法</a></li>
-<li><a href="#orgf01c21b">最大/最小算法</a></li>
-<li><a href="#org131f2bb">数值处理算法</a></li>
-<li><a href="#orgf457ffb"><code>accumulate</code></a></li>
-<li><a href="#orgdb71a8d"><code>std::function</code></a></li>
-<li><a href="#orge0e260b"><code>generate</code></a></li>
+<li><a href="#org92fc2ad">分区算法</a></li>
+<li><a href="#org70ad1ee">排序算法</a></li>
+<li><a href="#org99ef825">集合算法</a></li>
+<li><a href="#org079b4fd">最大/最小算法</a></li>
+<li><a href="#org019d022">数值处理算法</a></li>
+<li><a href="#orge5ffaed"><code>accumulate</code></a></li>
+<li><a href="#orge889554"><code>std::function</code></a></li>
+<li><a href="#org509c6f9"><code>generate</code></a></li>
 </ul>
 </li>
-<li><a href="#org0a03bca">迭代器</a></li>
-<li><a href="#org234f976">不足</a></li>
+<li><a href="#orgede332d">迭代器</a></li>
+<li><a href="#org6dae2c4">不足</a></li>
 </ul>
 </div>
 </div>
 <p>
 标准模板库(standard template library, STL)是C++标准库的子集, 其大量使用了模板.
 </p>
-<div id="outline-container-orgb16de17" class="outline-2">
-<h2 id="orgb16de17">容器</h2>
-<div class="outline-text-2" id="text-orgb16de17">
+<div id="outline-container-org76f5c74" class="outline-2">
+<h2 id="org76f5c74">容器</h2>
+<div class="outline-text-2" id="text-org76f5c74">
 <ul class="org-ul">
 <li>STL中的所有容器都是模板, 是泛型结构, 因此可以通过这些容器保存任意类型的数据. 除 <code>array</code> 和 <code>bitset</code> 外, 大部分STL容器的大小灵活多变, 都能自动增长或收缩, 以容纳更多或者更少的元素.</li>
 <li>STL容器是同构的, 每个容器实例只允许一种类型的元素.</li>
@@ -324,16 +324,16 @@
 <li>C++11在大部分STL容器中添加了对 <code>emplace</code> 操作的支持. <code>emplace</code> 的意思是放置到位, 就地构件对象.</li>
 </ul>
 </div>
-<div id="outline-container-org87d8d03" class="outline-3">
-<h3 id="org87d8d03">顺序容器(sequential container)</h3>
-<div class="outline-text-3" id="text-org87d8d03">
+<div id="outline-container-org964a050" class="outline-3">
+<h3 id="org964a050">顺序容器(sequential container)</h3>
+<div class="outline-text-3" id="text-org964a050">
 <p>
 顺序容器是元素的序列。
 </p>
 </div>
-<div id="outline-container-org80b4199" class="outline-4">
-<h4 id="org80b4199"><code>vector</code></h4>
-<div class="outline-text-4" id="text-org80b4199">
+<div id="outline-container-org7346b73" class="outline-4">
+<h4 id="org7346b73"><code>vector</code></h4>
+<div class="outline-text-4" id="text-org7346b73">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;vector&gt;</code> 中.</li>
 <li>提供对元素的随机访问.</li>
@@ -359,9 +359,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfe0a1f2" class="outline-4">
-<h4 id="orgfe0a1f2"><code>list</code> (双向链表)</h4>
-<div class="outline-text-4" id="text-orgfe0a1f2">
+<div id="outline-container-org46ec1eb" class="outline-4">
+<h4 id="org46ec1eb"><code>list</code> (双向链表)</h4>
+<div class="outline-text-4" id="text-org46ec1eb">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;list&gt;</code> 中.</li>
 <li>元素查找和访问很慢.</li>
@@ -372,9 +372,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org9c90e4b" class="outline-4">
-<h4 id="org9c90e4b"><code>forward_list</code> (单向链表)</h4>
-<div class="outline-text-4" id="text-org9c90e4b">
+<div id="outline-container-orgb407d5e" class="outline-4">
+<h4 id="orgb407d5e"><code>forward_list</code> (单向链表)</h4>
+<div class="outline-text-4" id="text-orgb407d5e">
 <ul class="org-ul">
 <li>只支持前向迭代.</li>
 <li>没有提供快速的随机访问.</li>
@@ -382,9 +382,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org2fa7495" class="outline-4">
-<h4 id="org2fa7495"><code>deque</code> (双头队列)</h4>
-<div class="outline-text-4" id="text-org2fa7495">
+<div id="outline-container-orgc8b0635" class="outline-4">
+<h4 id="orgc8b0635"><code>deque</code> (双头队列)</h4>
+<div class="outline-text-4" id="text-orgc8b0635">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;deque&gt;</code> 中.</li>
 <li>不要求元素保存在连续内存中.</li>
@@ -395,9 +395,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org84ef1c0" class="outline-4">
-<h4 id="org84ef1c0"><code>array</code></h4>
-<div class="outline-text-4" id="text-org84ef1c0">
+<div id="outline-container-org3d8e38e" class="outline-4">
+<h4 id="org3d8e38e"><code>array</code></h4>
+<div class="outline-text-4" id="text-org3d8e38e">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;array&gt;</code> 中.</li>
 <li>标准C风格数组的替代品, 实际上是对C风格数组的简单包装.</li>
@@ -409,16 +409,16 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgd574ae4" class="outline-3">
-<h3 id="orgd574ae4">容器适配器(adaptor)</h3>
-<div class="outline-text-3" id="text-orgd574ae4">
+<div id="outline-container-org50eacce" class="outline-3">
+<h3 id="org50eacce">容器适配器(adaptor)</h3>
+<div class="outline-text-3" id="text-org50eacce">
 <p>
 容器适配器只是构建在某种标准顺序容器上的简单接口。
 </p>
 </div>
-<div id="outline-container-org4530041" class="outline-4">
-<h4 id="org4530041"><code>queue</code></h4>
-<div class="outline-text-4" id="text-org4530041">
+<div id="outline-container-org793993d" class="outline-4">
+<h4 id="org793993d"><code>queue</code></h4>
+<div class="outline-text-4" id="text-org793993d">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;queue&gt;</code> 中.</li>
 <li>提供了标准的先入先出(FIFO)语义.</li>
@@ -430,9 +430,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcd71d51" class="outline-4">
-<h4 id="orgcd71d51"><code>priority_queue</code></h4>
-<div class="outline-text-4" id="text-orgcd71d51">
+<div id="outline-container-orgc71034d" class="outline-4">
+<h4 id="orgc71034d"><code>priority_queue</code></h4>
+<div class="outline-text-4" id="text-orgc71034d">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;queue&gt;</code> 中.</li>
 <li>插入删除比 <code>queue</code> 要慢.</li>
@@ -444,9 +444,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orge167089" class="outline-4">
-<h4 id="orge167089"><code>stack</code></h4>
-<div class="outline-text-4" id="text-orge167089">
+<div id="outline-container-org5785671" class="outline-4">
+<h4 id="org5785671"><code>stack</code></h4>
+<div class="outline-text-4" id="text-org5785671">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;stack&gt;</code> 中.</li>
 <li>提供了标准的先入后出(FILO)语义，也称为后入先出语义.</li>
@@ -460,16 +460,16 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org1b87fa1" class="outline-3">
-<h3 id="org1b87fa1">关联容器</h3>
-<div class="outline-text-3" id="text-org1b87fa1">
+<div id="outline-container-orge1e98b0" class="outline-3">
+<h3 id="orge1e98b0">关联容器</h3>
+<div class="outline-text-3" id="text-orge1e98b0">
 <p>
 关联容器是关联了键和值的容器。
 </p>
 </div>
-<div id="outline-container-orgf885aa3" class="outline-4">
-<h4 id="orgf885aa3"><code>pair</code> 工具类</h4>
-<div class="outline-text-4" id="text-orgf885aa3">
+<div id="outline-container-org7119263" class="outline-4">
+<h4 id="org7119263"><code>pair</code> 工具类</h4>
+<div class="outline-text-4" id="text-org7119263">
 <ul class="org-ul">
 <li><code>pair</code> 是一个类模板， 将两个可能属于不同类型的值组合起来。</li>
 <li>通过 <code>first</code> 和 <code>second</code> 公共数据成员访问这两个值。</li>
@@ -479,13 +479,13 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org00de5ae" class="outline-4">
-<h4 id="org00de5ae">排序关联容器或有序关联容器</h4>
-<div class="outline-text-4" id="text-org00de5ae">
+<div id="outline-container-org36b4f18" class="outline-4">
+<h4 id="org36b4f18">排序关联容器或有序关联容器</h4>
+<div class="outline-text-4" id="text-org36b4f18">
 </div>
-<div id="outline-container-org792fa4d" class="outline-5">
-<h5 id="org792fa4d"><code>map</code> 和 <code>multimap</code></h5>
-<div class="outline-text-5" id="text-org792fa4d">
+<div id="outline-container-org09c39d9" class="outline-5">
+<h5 id="org09c39d9"><code>map</code> 和 <code>multimap</code></h5>
+<div class="outline-text-5" id="text-org09c39d9">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;map&gt;</code> 中，保存的是键/值对。</li>
 <li><code>map</code>
@@ -502,9 +502,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb8e1bc0" class="outline-5">
-<h5 id="orgb8e1bc0"><code>set</code> 和 <code>multiset</code></h5>
-<div class="outline-text-5" id="text-orgb8e1bc0">
+<div id="outline-container-org750a028" class="outline-5">
+<h5 id="org750a028"><code>set</code> 和 <code>multiset</code></h5>
+<div class="outline-text-5" id="text-org750a028">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;set&gt;</code> 中。</li>
 <li><code>multiset</code> 和 <code>set</code> 的关系等同于 <code>multimap</code> 和 <code>map</code> 的关系. <code>multiset</code> 支持 <code>set</code> 的所有操作, 但允许容器中同时保存多个相等的元素.</li>
@@ -512,9 +512,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org57a974a" class="outline-4">
-<h4 id="org57a974a">无序关联容器或哈希表(hash table)</h4>
-<div class="outline-text-4" id="text-org57a974a">
+<div id="outline-container-org8b73098" class="outline-4">
+<h4 id="org8b73098">无序关联容器或哈希表(hash table)</h4>
+<div class="outline-text-4" id="text-org8b73098">
 <ul class="org-ul">
 <li><code>unordered_map</code> 和 <code>unordered_multimap</code> 定义在头文件 <code>&lt;unordered_map&gt;</code> 中, 都是类模板. <code>unordered_multimap</code> 是允许多个元素带有同一个键值的 <code>unordered_map</code>.</li>
 <li><code>unordered_set</code> 和 <code>unordered_multiset</code> 定义在头文件 <code>&lt;unordered_set&gt;</code> 中. 二者分别类似于 <code>set</code> 和 <code>multiset</code>.</li>
@@ -526,9 +526,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org9367ee6" class="outline-3">
-<h3 id="org9367ee6">其他容器</h3>
-<div class="outline-text-3" id="text-org9367ee6">
+<div id="outline-container-orgc81fd4b" class="outline-3">
+<h3 id="orgc81fd4b">其他容器</h3>
+<div class="outline-text-3" id="text-orgc81fd4b">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;bitset&gt;</code> 中的 <code>bitset</code> 并不是一个真正的STL容器: 固定大小(声明时指定大小), 不支持迭代器.</li>
 <li><code>string</code> 也可看做字符的顺序容器.</li>
@@ -537,9 +537,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org9d6b2c0" class="outline-2">
-<h2 id="org9d6b2c0">算法</h2>
-<div class="outline-text-2" id="text-org9d6b2c0">
+<div id="outline-container-org4ea3514" class="outline-2">
+<h2 id="org4ea3514">算法</h2>
+<div class="outline-text-2" id="text-org4ea3514">
 <p>
 算法之美在于算法不仅独立于底层元素的类型, 而且还独立于操作的容器的类型. 算法仅使用迭代器作为接口来操作容器, 而不是直接操作容器本身. 而对大部分容器来说, 迭代器范围都是半开半闭区间(包含第一个元素却不包含最后一个元素), 尾迭代器实际上是跨越最后一个元素(past-the-end)的标记. 大部分算法都接受回调(callback), 回调可以是一个函数指针, 也可以是行为上类似于函数指针的对象(例如重载了运算符 <code>operator()</code> 的对象, 或者内嵌lambda表达式). 为了方便起见, STL还提供了一组类, 用于创建算法使用的回调对象. 这些回调对象称为函数对象, 或仿函数(<code>functor</code>).
 </p>
@@ -554,9 +554,9 @@
 函数适配器(function adaptor)对函数组合(function composition)提供了支持, 能够将函数组合在一起, 以精确提供所需的行为.
 </p>
 </div>
-<div id="outline-container-org039f2ed" class="outline-3">
-<h3 id="org039f2ed">绑定器(binder)</h3>
-<div class="outline-text-3" id="text-org039f2ed">
+<div id="outline-container-org5ed65b7" class="outline-3">
+<h3 id="org5ed65b7">绑定器(binder)</h3>
+<div class="outline-text-3" id="text-org5ed65b7">
 <p>
 绑定器可用于将函数的参数绑定至特定的值. 为此要使用头文件 <code>&lt;functional&gt;</code> 中定义的 <code>std::bind()</code>. 它允许采用灵活的方式绑定函数的参数. 既可以将函数的参数绑定至固定值, 甚至还能够重新安排函数参数的顺序. <code>bind()</code> 函数的返回类型比较复杂, 但是可以使用 <code>auto</code> 关键字, 无须指定准确的返回类型. 没有绑定至指定值的参数应该标记为 <code>_1</code>, <code>_2</code>, 和 <code>_3</code> 等. 这些都定义在 <code>std::placeholders</code> 名称空间中.
 </p>
@@ -566,17 +566,17 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org8c2a9f0" class="outline-3">
-<h3 id="org8c2a9f0">取反器(negator)</h3>
-<div class="outline-text-3" id="text-org8c2a9f0">
+<div id="outline-container-org8575a48" class="outline-3">
+<h3 id="org8575a48">取反器(negator)</h3>
+<div class="outline-text-3" id="text-org8575a48">
 <p>
 取反器是类似于绑定器的函数, 但是取反器计算谓词结果的反结果. 如果操作函数是一元函数, 需要使用 <code>not1()</code>; 如果操作函数是二元函数, 那么必须改用 <code>not2()</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org905b247" class="outline-3">
-<h3 id="org905b247">调用成员函数</h3>
-<div class="outline-text-3" id="text-org905b247">
+<div id="outline-container-org7595692" class="outline-3">
+<h3 id="org7595692">调用成员函数</h3>
+<div class="outline-text-3" id="text-org7595692">
 <p>
 对于一个对象容器, 有时需要传递一个指向类方法的指针作为算法的回调. 但是算法无法知道接受的是指向方法的指针, 而不是普通函数指针或仿函数. 调用方法指针的代码和调用普通函数指针的代码是不一样的, 因为前者必须在对象的上下文内调用. C++提供了 <code>mem_fn()</code> 转换函数, 在传递给算法之前可以对函数指针调用这个函数.
 </p>
@@ -586,17 +586,17 @@
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1edfd7" class="outline-3">
-<h3 id="orgc1edfd7">非修改序列算法</h3>
-<div class="outline-text-3" id="text-orgc1edfd7">
+<div id="outline-container-orgbfc4588" class="outline-3">
+<h3 id="orgbfc4588">非修改序列算法</h3>
+<div class="outline-text-3" id="text-orgbfc4588">
 </div>
-<div id="outline-container-orga68294f" class="outline-4">
-<h4 id="orga68294f">搜索算法</h4>
-<div class="outline-text-4" id="text-orga68294f">
+<div id="outline-container-org5341b2c" class="outline-4">
+<h4 id="org5341b2c">搜索算法</h4>
+<div class="outline-text-4" id="text-org5341b2c">
 </div>
-<div id="outline-container-org07aeeb8" class="outline-5">
-<h5 id="org07aeeb8"><code>find</code> 和 <code>find_if</code></h5>
-<div class="outline-text-5" id="text-org07aeeb8">
+<div id="outline-container-org9cafde6" class="outline-5">
+<h5 id="org9cafde6"><code>find</code> 和 <code>find_if</code></h5>
+<div class="outline-text-5" id="text-org9cafde6">
 <ul class="org-ul">
 <li><code>find</code> 在一个迭代器范围内查找特定元素. 可将其用于任意容器类型的元素. 这个算法返回所找到元素的迭代器引用. 如果没有找到元素, 则返回迭代器范围的尾迭代器.</li>
 <li>如果容器提供的方法具有与泛型算法同样的功能, 那么应该使用相应的方法, 那样速度更快.</li>
@@ -605,9 +605,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgd9ea034" class="outline-4">
-<h4 id="orgd9ea034">比较算法</h4>
-<div class="outline-text-4" id="text-orgd9ea034">
+<div id="outline-container-orga5dbf3b" class="outline-4">
+<h4 id="orga5dbf3b">比较算法</h4>
+<div class="outline-text-4" id="text-orga5dbf3b">
 <p>
 下列算法主要用于比较不同容器内的范围<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
 </p>
@@ -618,9 +618,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org56bddd7" class="outline-4">
-<h4 id="org56bddd7">工具算法</h4>
-<div class="outline-text-4" id="text-org56bddd7">
+<div id="outline-container-orga7fae8c" class="outline-4">
+<h4 id="orga7fae8c">工具算法</h4>
+<div class="outline-text-4" id="text-orga7fae8c">
 <ul class="org-ul">
 <li><code>all_of()</code></li>
 <li><code>any_of()</code></li>
@@ -631,25 +631,25 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgcf76368" class="outline-3">
-<h3 id="orgcf76368">修改序列算法</h3>
-<div class="outline-text-3" id="text-orgcf76368">
+<div id="outline-container-orga561507" class="outline-3">
+<h3 id="orga561507">修改序列算法</h3>
+<div class="outline-text-3" id="text-orga561507">
 <p>
 修改算法通常返回一个引用目标范围最后一个值后一个位置(past-the-end)的迭代器.
 </p>
 </div>
-<div id="outline-container-orgf34ebe2" class="outline-4">
-<h4 id="orgf34ebe2">转换</h4>
-<div class="outline-text-4" id="text-orgf34ebe2">
+<div id="outline-container-org3d86c8d" class="outline-4">
+<h4 id="org3d86c8d">转换</h4>
+<div class="outline-text-4" id="text-org3d86c8d">
 <ul class="org-ul">
 <li><code>transform()</code> 算法对一个范围内的每个元素应用回调, 期望回调生成一个新元素, 并保存在指定的目标范围内. 如果希望 <code>transform()</code> 将范围内的每个元素替换为调用回调产生的结果, 那么源范围和目标范围可以是同一范围. 其参数是源序列的首尾迭代器, 目标序列的首迭代器和回调.</li>
 <li><code>transform()</code> 的另一种形式对范围内的元素对调用二元回调, 它需要第一个范围内的首尾迭代器, 第二个范围的首迭代器和模板范围的首迭代器作为参数.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4a1a0fa" class="outline-4">
-<h4 id="org4a1a0fa">复制</h4>
-<div class="outline-text-4" id="text-org4a1a0fa">
+<div id="outline-container-orgaf71cb4" class="outline-4">
+<h4 id="orgaf71cb4">复制</h4>
+<div class="outline-text-4" id="text-orgaf71cb4">
 <ul class="org-ul">
 <li><code>copy()</code> 算法可将一个范围内的元素复制到另一个范围中, 从范围中的第一个元素开始一直到最后一个元素. 源范围和目标范围必须不同, 但可以重叠.</li>
 <li><code>copy()</code> 不会向目标范围插入元素, 只是改写已有的元素. 因此, 不能通过 <code>copy()</code> 直接向容器插入元素, 只能改写容器中已有的元素.</li>
@@ -659,27 +659,27 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org073477e" class="outline-4">
-<h4 id="org073477e">移动</h4>
-<div class="outline-text-4" id="text-org073477e">
+<div id="outline-container-org48e584f" class="outline-4">
+<h4 id="org48e584f">移动</h4>
+<div class="outline-text-4" id="text-org48e584f">
 <ul class="org-ul">
 <li>有两个和移动相关的算法: <code>move()</code> 和 <code>move_backward()</code>. 它们都使用了移动语义. 如果要在自定义类型元素的容器中使用这些算法, 那么需要在元素类中提供移动赋值运算符.</li>
 <li><code>move_backward()</code> 使用了和 <code>move()</code> 同样的移动机制, 但是按照从最后一个元素向第一个元素的顺序移动.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org512d22f" class="outline-4">
-<h4 id="org512d22f">替换</h4>
-<div class="outline-text-4" id="text-org512d22f">
+<div id="outline-container-org1a06901" class="outline-4">
+<h4 id="org1a06901">替换</h4>
+<div class="outline-text-4" id="text-org1a06901">
 <ul class="org-ul">
 <li><code>replace()</code> 和 <code>replace_if()</code> 将一个范围中匹配某个值或满足某个谓词的元素替换为新的值. 比如 <code>replace_if()</code> 算法的前两个参数指定了容器中元素的范围. 第三个参数是一个返回true或false的函数或lambda表达式. 如果这个函数返回true, 那么容器中的对应值被替换为第四个参数指定的值; 如果返回false, 则保留原始值.</li>
 <li><code>replace()</code> 也有称为 <code>replace_copy()</code> 和 <code>replace_copy_if()</code> 的变体, 这些变体将结果复制到不同的目标范围中. 它们类似于 <code>copy()</code>, 要求目标范围必须足够大, 以容纳新元素.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org43f601b" class="outline-4">
-<h4 id="org43f601b">删除</h4>
-<div class="outline-text-4" id="text-org43f601b">
+<div id="outline-container-org5464f57" class="outline-4">
+<h4 id="org5464f57">删除</h4>
+<div class="outline-text-4" id="text-org5464f57">
 <ul class="org-ul">
 <li>算法只能访问迭代器抽象, 不能访问容器. 因此删除算法不能真正地从底层容器中删除元素, 而是把匹配给定值或谓词的元素替换为下一个不匹配给定值或谓词的元素. 结果是将集合分为两个集合: 一个用于保存要保留的元素, 另一个保存要删除的元素.</li>
 <li>如果真的需要从容器中删除这些元素, 正确的解决方案为: 先使用 <code>remove()</code> 算法, 然后调用容器的 <code>erase()</code> 方法, 将从返回的迭代器到范围尾部的所有元素删除. 这就是 <b>删除-擦除法</b> (<b>remove-erase-idiom</b>).</li>
@@ -687,9 +687,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org27d366f" class="outline-4">
-<h4 id="org27d366f">唯一化</h4>
-<div class="outline-text-4" id="text-org27d366f">
+<div id="outline-container-org2740275" class="outline-4">
+<h4 id="org2740275">唯一化</h4>
+<div class="outline-text-4" id="text-org2740275">
 <ul class="org-ul">
 <li><code>unique()</code> 算法是特殊的 <code>remove()</code>, 将所有重复的连续元素删除. list容器提供了自己的具有同样语义的 <code>unique()</code> 方法.</li>
 <li>通常情况下, 应该对有序序列使用 <code>unique()</code>, 但是 <code>unique()</code> 也能用于无序序列.</li>
@@ -697,9 +697,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org9de8b03" class="outline-4">
-<h4 id="org9de8b03">反转</h4>
-<div class="outline-text-4" id="text-org9de8b03">
+<div id="outline-container-org4408caf" class="outline-4">
+<h4 id="org4408caf">反转</h4>
+<div class="outline-text-4" id="text-org4408caf">
 <ul class="org-ul">
 <li><code>reverse()</code> 算法反转一个范围内元素的顺序. 范围内的第一个元素和最后一个元素交换, 第二个和倒数第二个交换, 依次类推.</li>
 <li><code>reverse()</code> 最基本的形式就地运行, 要求两个参数: 范围的起始迭代器和终止迭代器.</li>
@@ -707,9 +707,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb73404c" class="outline-4">
-<h4 id="orgb73404c">乱序</h4>
-<div class="outline-text-4" id="text-orgb73404c">
+<div id="outline-container-org0f247ce" class="outline-4">
+<h4 id="org0f247ce">乱序</h4>
+<div class="outline-text-4" id="text-org0f247ce">
 <ul class="org-ul">
 <li><code>shuffle()</code> 以随机顺序重新安排范围内的元素, 其复杂度为线性时间. 它可以用于实现洗牌等任务.</li>
 <li><code>shuffle()</code> 的参数为要乱序的范围的首尾迭代器, 和一个统一的随机数生成器对象, 它指定如何生成随机数.</li>
@@ -717,18 +717,18 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org0e005bf" class="outline-3">
-<h3 id="org0e005bf">分区算法</h3>
-<div class="outline-text-3" id="text-org0e005bf">
+<div id="outline-container-org92fc2ad" class="outline-3">
+<h3 id="org92fc2ad">分区算法</h3>
+<div class="outline-text-3" id="text-org92fc2ad">
 <ul class="org-ul">
 <li><code>partition()</code> 算法给序列排序, 使谓词返回true的所有元素放在前面, 谓词返回false的所有元素放在后面, 在每个分区中不保留元素最初的顺序.</li>
 <li><code>partition_copy()</code> 算法将一个来源的元素复制到两个不同的目标. 选择每个元素特定目标的依据是谓词的结果: true或false. 其返回值是一对迭代器: 一个迭代器引用第一个目标范围最后一个复制的元素的后一个位置(one-past-the-last-copied element), 另一个迭代器引用第二个目标范围最后一个复制的元素的后一个位置. 将这些返回的迭代器与 <code>erase()</code> 结合使用, 可以删除两个目标范围中多余的元素(与 <code>copy_if()</code> 类似).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1e06ae2" class="outline-3">
-<h3 id="org1e06ae2">排序算法</h3>
-<div class="outline-text-3" id="text-org1e06ae2">
+<div id="outline-container-org70ad1ee" class="outline-3">
+<h3 id="org70ad1ee">排序算法</h3>
+<div class="outline-text-3" id="text-org70ad1ee">
 <ul class="org-ul">
 <li>排序算法只能应用于顺序容器. 排序和关联容器无关, 因为关联容器已经维护了元素的顺序.</li>
 <li>在一般情况下, 函数 <code>sort()</code> 在 $O(N\logN)$时间内将一个范围内的元素排序. 根据运算符 <code>operator&lt;</code>, 这个范围内的元素以非递减顺序排列(最小到最大). 如果不需要使用这个顺序, 可以指定一个不同的比较回调.</li>
@@ -736,9 +736,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org42822fa" class="outline-3">
-<h3 id="org42822fa">集合算法</h3>
-<div class="outline-text-3" id="text-org42822fa">
+<div id="outline-container-org99ef825" class="outline-3">
+<h3 id="org99ef825">集合算法</h3>
+<div class="outline-text-3" id="text-org99ef825">
 <ul class="org-ul">
 <li>集合算法可以用于任意有序的迭代器范围.</li>
 <li><code>include()</code> 函数实现了标准的子集判断功能, 检查一个有序范围的所有元素是否包含在另一个有序范围中, 顺序任意.</li>
@@ -759,18 +759,18 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf01c21b" class="outline-3">
-<h3 id="orgf01c21b">最大/最小算法</h3>
-<div class="outline-text-3" id="text-orgf01c21b">
+<div id="outline-container-org079b4fd" class="outline-3">
+<h3 id="org079b4fd">最大/最小算法</h3>
+<div class="outline-text-3" id="text-org079b4fd">
 <ul class="org-ul">
 <li><code>min()</code> 和 <code>max()</code> 算法通过运算符 <code>operator&lt;</code> 或用户提供的二元谓词比较两个任意类型的元素, 分别返回一个引用较小或较大元素的const引用.</li>
 <li><code>minmax()</code> 算法返回一个包含两个或更多元素中最小值和最大值的pair.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org131f2bb" class="outline-3">
-<h3 id="org131f2bb">数值处理算法</h3>
-<div class="outline-text-3" id="text-org131f2bb">
+<div id="outline-container-org019d022" class="outline-3">
+<h3 id="org019d022">数值处理算法</h3>
+<div class="outline-text-3" id="text-org019d022">
 <ul class="org-ul">
 <li>头文件 <code>&lt;numeric&gt;</code> 中定义的 <code>inner_product()</code> 计算两个序列的内积.</li>
 <li>头文件 <code>&lt;numeric&gt;</code> 中定义的 <code>iota()</code> 生成一个指定范围内的序列值, 从给定的值开始, 并应用 <code>operator++</code> 生成每个后续值.</li>
@@ -784,9 +784,9 @@ iota(begin(v), end(v), 7); // v中元素的值依次为7, 8, 9.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf457ffb" class="outline-3">
-<h3 id="orgf457ffb"><code>accumulate</code></h3>
-<div class="outline-text-3" id="text-orgf457ffb">
+<div id="outline-container-orge5ffaed" class="outline-3">
+<h3 id="orge5ffaed"><code>accumulate</code></h3>
+<div class="outline-text-3" id="text-orge5ffaed">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;numeric&gt;</code> 中.</li>
 <li>最基本形式是计算指定范围中元素的总和.</li>
@@ -801,9 +801,9 @@ iota(begin(v), end(v), 7); // v中元素的值依次为7, 8, 9.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdb71a8d" class="outline-3">
-<h3 id="orgdb71a8d"><code>std::function</code></h3>
-<div class="outline-text-3" id="text-orgdb71a8d">
+<div id="outline-container-orge889554" class="outline-3">
+<h3 id="orge889554"><code>std::function</code></h3>
+<div class="outline-text-3" id="text-orge889554">
 <ul class="org-ul">
 <li>定义在头文件 <code>&lt;functional&gt;</code> 中. 可以用来创建指向函数, 函数对象或lambda表达式的类型.</li>
 <li>语法为 <code>std::function&lt;R(ArgTypes...)&gt;</code>, 其中 <code>R</code> 是函数返回值的类型, <code>ArgTypes</code> 是一个逗号分隔的函数参数类型的列表.</li>
@@ -812,18 +812,18 @@ iota(begin(v), end(v), 7); // v中元素的值依次为7, 8, 9.
 </ul>
 </div>
 </div>
-<div id="outline-container-orge0e260b" class="outline-3">
-<h3 id="orge0e260b"><code>generate</code></h3>
-<div class="outline-text-3" id="text-orge0e260b">
+<div id="outline-container-org509c6f9" class="outline-3">
+<h3 id="org509c6f9"><code>generate</code></h3>
+<div class="outline-text-3" id="text-org509c6f9">
 <p>
 该算法需要一个迭代器范围, 它把该范围的值替换为从函数(第三个参数)返回的值.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0a03bca" class="outline-2">
-<h2 id="org0a03bca">迭代器</h2>
-<div class="outline-text-2" id="text-org0a03bca">
+<div id="outline-container-orgede332d" class="outline-2">
+<h2 id="orgede332d">迭代器</h2>
+<div class="outline-text-2" id="text-orgede332d">
 <ul class="org-ul">
 <li>STL通过迭代器模式提供了访问容器元素的泛型抽象. 每个容器都提供了容器特定的迭代器, 迭代器实际上是增强版的智能指针, 这种指针知道如何遍历特定容器的元素, 所有不同容器的迭代器都遵循C++标准中定义的特定接口.</li>
 <li>迭代器的实现类似于智能指针类，因为它们都重载了特定的运算符。基本的迭代器操作类似于普通指针(dumb pointer)支持的操作, 因此普通指针可以合法用作特定容器的迭代器. 可以将迭代器想象为指向容器中某个元素的指针. 与指向数组元素的指针一样, 迭代器可以通过 <code>operator++</code> 移动到下一个元素. 还可以在迭代器上使用 <code>operator*</code> 和 <code>operator-&gt;</code> 来访问实际元素或元素中的字段. 有些迭代器支持通过 <code>operator==</code> 和 <code>operator!=</code> 进行比较, 还支持通过 <code>operator--</code> 转移到前一个元素.</li>
@@ -836,9 +836,9 @@ iota(begin(v), end(v), 7); // v中元素的值依次为7, 8, 9.
 </ul>
 </div>
 </div>
-<div id="outline-container-org234f976" class="outline-2">
-<h2 id="org234f976">不足</h2>
-<div class="outline-text-2" id="text-org234f976">
+<div id="outline-container-org6dae2c4" class="outline-2">
+<h2 id="org6dae2c4">不足</h2>
+<div class="outline-text-2" id="text-org6dae2c4">
 <ul class="org-ul">
 <li>在通过多线程同时访问容器时, STL不能保证任何线程安全.</li>
 <li>STL没有提供任何泛型的树结构或图结构.</li>

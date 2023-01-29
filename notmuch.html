@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-28 Sat 01:48 -->
+<!-- 2023-01-29 Sun 17:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Notmuch</title>
@@ -200,25 +200,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org200fb54">Introduction</a></li>
-<li><a href="#orgbd470b6">Installation</a></li>
-<li><a href="#org88d7f9b">Configuration</a>
+<li><a href="#org4e1d605">Introduction</a></li>
+<li><a href="#org83274f2">Installation</a></li>
+<li><a href="#org070767c">Configuration</a>
 <ul>
-<li><a href="#orgdb3a69c"><code>~/.notmuch-config</code></a></li>
-<li><a href="#orge27e971"><code>~/.emacs.d/init.el</code></a></li>
-<li><a href="#org5c13813">Hooks</a></li>
-<li><a href="#orga4da969">Automatics</a></li>
-<li><a href="#orgeb45cdd">CJK Support</a></li>
+<li><a href="#orgdbbdef8"><code>~/.notmuch-config</code></a></li>
+<li><a href="#org1c29c52"><code>~/.emacs.d/init.el</code></a></li>
+<li><a href="#org42dd306">Hooks</a></li>
+<li><a href="#orgaab2329">Automatics</a></li>
+<li><a href="#org52f79ea">CJK Support</a></li>
 </ul>
 </li>
-<li><a href="#org871620f">Key binding</a></li>
+<li><a href="#orgcc9026a">Key binding</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org200fb54" class="outline-2">
-<h2 id="org200fb54">Introduction</h2>
-<div class="outline-text-2" id="text-org200fb54">
+<div id="outline-container-org4e1d605" class="outline-2">
+<h2 id="org4e1d605">Introduction</h2>
+<div class="outline-text-2" id="text-org4e1d605">
 <p>
 <code>Notmuch</code> is a mail system<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>. It can efficiently manage a fairly large number of emails. Particularly, it supports fast email searching and filtering based on tags, which is extremely similar to Gmail's tags whereby various virtual folders can be flexibly realized.
 </p>
@@ -228,22 +228,22 @@ This post is composed just to summarize the basic installation and configuration
 </p>
 </div>
 </div>
-<div id="outline-container-orgbd470b6" class="outline-2">
-<h2 id="orgbd470b6">Installation</h2>
-<div class="outline-text-2" id="text-orgbd470b6">
+<div id="outline-container-org83274f2" class="outline-2">
+<h2 id="org83274f2">Installation</h2>
+<div class="outline-text-2" id="text-org83274f2">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S notmuch
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org88d7f9b" class="outline-2">
-<h2 id="org88d7f9b">Configuration</h2>
-<div class="outline-text-2" id="text-org88d7f9b">
+<div id="outline-container-org070767c" class="outline-2">
+<h2 id="org070767c">Configuration</h2>
+<div class="outline-text-2" id="text-org070767c">
 </div>
-<div id="outline-container-orgdb3a69c" class="outline-3">
-<h3 id="orgdb3a69c"><code>~/.notmuch-config</code></h3>
-<div class="outline-text-3" id="text-orgdb3a69c">
+<div id="outline-container-orgdbbdef8" class="outline-3">
+<h3 id="orgdbbdef8"><code>~/.notmuch-config</code></h3>
+<div class="outline-text-3" id="text-orgdbbdef8">
 <p>
 The basic configuration can be performed by either
 </p>
@@ -282,9 +282,9 @@ gpg_path=gpg
 </div>
 </div>
 </div>
-<div id="outline-container-orge27e971" class="outline-3">
-<h3 id="orge27e971"><code>~/.emacs.d/init.el</code></h3>
-<div class="outline-text-3" id="text-orge27e971">
+<div id="outline-container-org1c29c52" class="outline-3">
+<h3 id="org1c29c52"><code>~/.emacs.d/init.el</code></h3>
+<div class="outline-text-3" id="text-org1c29c52">
 <p>
 Add following content to the configuration of Emacs.
 </p>
@@ -323,9 +323,9 @@ Add following content to the configuration of Emacs.
 </div>
 </div>
 </div>
-<div id="outline-container-org5c13813" class="outline-3">
-<h3 id="org5c13813">Hooks</h3>
-<div class="outline-text-3" id="text-org5c13813">
+<div id="outline-container-org42dd306" class="outline-3">
+<h3 id="org42dd306">Hooks</h3>
+<div class="outline-text-3" id="text-org42dd306">
 <p>
 Additionally, notmuch supports hooks which are essentially scripts in <code>/MAIL/REPO/.notmuch/hooks</code> whereby users can specify and customize the behaviors of notmuch. Currently, following scripts and hooks are available.
 </p>
@@ -366,9 +366,9 @@ notmuch tag -inbox -unread +sent -- from:MYEMAILADDRESS
 </div>
 </div>
 </div>
-<div id="outline-container-orga4da969" class="outline-3">
-<h3 id="orga4da969">Automatics</h3>
-<div class="outline-text-3" id="text-orga4da969">
+<div id="outline-container-orgaab2329" class="outline-3">
+<h3 id="orgaab2329">Automatics</h3>
+<div class="outline-text-3" id="text-orgaab2329">
 <ul class="org-ul">
 <li>Add new intended task by <code>crontab -e</code> with following content</li>
 </ul>
@@ -389,9 +389,9 @@ systemctl start cronie.service
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb45cdd" class="outline-3">
-<h3 id="orgeb45cdd">CJK Support</h3>
-<div class="outline-text-3" id="text-orgeb45cdd">
+<div id="outline-container-org52f79ea" class="outline-3">
+<h3 id="org52f79ea">CJK Support</h3>
+<div class="outline-text-3" id="text-org52f79ea">
 <p>
 By default, notmuch cannot separate Chinese correctly, Japanese, or Korean words due to the non-space separator. A workaround is to <a href="https://notmuchmail.org/howto/#index10h2">set a environment variable</a> as follows.
 </p>
@@ -402,9 +402,9 @@ By default, notmuch cannot separate Chinese correctly, Japanese, or Korean words
 </div>
 </div>
 </div>
-<div id="outline-container-org871620f" class="outline-2">
-<h2 id="org871620f">Key binding</h2>
-<div class="outline-text-2" id="text-org871620f">
+<div id="outline-container-orgcc9026a" class="outline-2">
+<h2 id="orgcc9026a">Key binding</h2>
+<div class="outline-text-2" id="text-orgcc9026a">
 <table>
 
 

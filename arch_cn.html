@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-28 Sat 01:49 -->
+<!-- 2023-01-29 Sun 17:05 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Linux - A Mirror of Arch Linux</title>
+<title>Archlinux - A Non-Official Repository from Chinese Community</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -195,44 +195,69 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Linux - A Mirror of Arch Linux</h1>
+<h1 class="title">Archlinux - A Non-Official Repository from Chinese Community</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7ce0d18">Introducation</a></li>
-<li><a href="#org8d62c18">Configuration</a></li>
+<li><a href="#org82be9c9">Introducation</a></li>
+<li><a href="#org586bba1">Configuration</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7ce0d18" class="outline-2">
-<h2 id="org7ce0d18">Introducation</h2>
-<div class="outline-text-2" id="text-org7ce0d18">
+<div id="outline-container-org82be9c9" class="outline-2">
+<h2 id="org82be9c9">Introducation</h2>
+<div class="outline-text-2" id="text-org82be9c9">
 <p>
-Chinese community of ArchLinux provides a non-official source for ArchLinux.
+<a href="https://archlinux.org">Archlinux</a> is an excellent Linux distribution, which follows the principle of <i>keep it simple and stupid (KISS)</i> closely. Besides the official repositories, its Chinese community provides a non-official repository, a.k.a. ArchlinuxCN.
 </p>
 </div>
 </div>
-<div id="outline-container-org8d62c18" class="outline-2">
-<h2 id="org8d62c18">Configuration</h2>
-<div class="outline-text-2" id="text-org8d62c18">
-<ul class="org-ul">
-<li>Append following lines to <code>/etc/pacman.conf</code>.</li>
-</ul>
+<div id="outline-container-org586bba1" class="outline-2">
+<h2 id="org586bba1">Configuration</h2>
+<div class="outline-text-2" id="text-org586bba1">
+<p>
+Using the ArchlinuxCN can be completed by two steps.
+</p>
+<ol class="org-ol">
+<li><p>
+Append following lines to <code>/etc/pacman.conf</code>.
+</p>
 <div class="org-src-container">
-<pre class="src src-sh">[archlinuxcn]
-SigLevel = Optional TrustedOnly
-Server = http://mirrors.163.com/archlinux-cn/$arch
+<pre class="src src-shell">[archlinuxcn]
+Server = https://repo.archlinuxcn.org/$arch
 </pre>
 </div>
+<p>
+Optionally, there are many mirrors, which can be found at <a href="https://github.com/archlinuxcn/mirrorlist-repo">https://github.com/archlinuxcn/mirrorlist-repo</a>, e.g.,
+</p>
 <ul class="org-ul">
-<li>Import the corresponding PGP keys by installing package <code>archlinuxcn-keyring</code>.</li>
-</ul>
+<li><p>
+Aliyun
+</p>
 <div class="org-src-container">
-<pre class="src src-sh">pacman -S archlinuxcn-keyring
+<pre class="src src-shell">[archlinuxcn]
+Server = https://mirrors.aliyun.com/archlinuxcn/$arch
 </pre>
-</div>
+</div></li>
+<li><p>
+Netease
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">[archlinuxcn]
+Server = https://mirrors.163.com/archlinux-cn/$arch
+</pre>
+</div></li>
+</ul></li>
+<li><p>
+Import the corresponding PGP keys by installing package <code>archlinuxcn-keyring</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S archlinuxcn-keyring
+</pre>
+</div></li>
+</ol>
 </div>
 </div>
 </div>

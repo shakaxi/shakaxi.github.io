@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-28 Sat 01:49 -->
+<!-- 2023-01-29 Sun 17:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Matplotlib</title>
@@ -200,58 +200,58 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9105289">Background</a></li>
-<li><a href="#orgfce1fb2">Installation</a></li>
-<li><a href="#orgcc08c9b">Submodules</a></li>
-<li><a href="#orge47c34e">General Concepts</a>
+<li><a href="#orga4cc01c">Background</a></li>
+<li><a href="#org8559c28">Installation</a></li>
+<li><a href="#orgcf40c5d">Submodules</a></li>
+<li><a href="#orgc9f47d9">General Concepts</a>
 <ul>
-<li><a href="#orgd01f369"><code>Figure</code></a></li>
-<li><a href="#org326930d"><code>Axes</code></a></li>
-<li><a href="#org37476f3"><code>Axis</code></a></li>
+<li><a href="#org6fcf225"><code>Figure</code></a></li>
+<li><a href="#org05a829f"><code>Axes</code></a></li>
+<li><a href="#orgb5c6387"><code>Axis</code></a></li>
 </ul>
 </li>
-<li><a href="#orgb83b5f2">Interfaces</a>
+<li><a href="#org0fdfda1">Interfaces</a>
 <ul>
-<li><a href="#orga9408fa">Object-oriented (OO) style</a></li>
-<li><a href="#org5af4691">Pyplot style</a></li>
+<li><a href="#orgb259464">Object-oriented (OO) style</a></li>
+<li><a href="#org290c774">Pyplot style</a></li>
 </ul>
 </li>
-<li><a href="#org9bf47ab">Miscellaneous</a>
+<li><a href="#orgd74fab0">Miscellaneous</a>
 <ul>
-<li><a href="#orgfcdacd8">Animation</a>
+<li><a href="#org1ff79c6">Animation</a>
 <ul>
-<li><a href="#org49994d3"><code>FuncAnimation</code></a></li>
-<li><a href="#orgeacb0aa"><code>ArtistAnimation</code></a></li>
+<li><a href="#orgadc4a1a"><code>FuncAnimation</code></a></li>
+<li><a href="#org2137e0a"><code>ArtistAnimation</code></a></li>
 </ul>
 </li>
-<li><a href="#org9f5daa1">Default settings</a></li>
+<li><a href="#orgad9753d">Default settings</a></li>
 </ul>
 </li>
-<li><a href="#org9b8f07d">References</a></li>
+<li><a href="#org3f37ea4">References</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9105289" class="outline-2">
-<h2 id="org9105289">Background</h2>
-<div class="outline-text-2" id="text-org9105289">
+<div id="outline-container-orga4cc01c" class="outline-2">
+<h2 id="orga4cc01c">Background</h2>
+<div class="outline-text-2" id="text-orga4cc01c">
 <p>
 <a href="https://matplotlib.org">Matplotlib</a> is a popular python package for figure plot and data visualization.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfce1fb2" class="outline-2">
-<h2 id="orgfce1fb2">Installation</h2>
-<div class="outline-text-2" id="text-orgfce1fb2">
+<div id="outline-container-org8559c28" class="outline-2">
+<h2 id="org8559c28">Installation</h2>
+<div class="outline-text-2" id="text-org8559c28">
 <div class="org-src-container">
 <pre class="src src-python">pip install matplotlib
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc08c9b" class="outline-2">
-<h2 id="orgcc08c9b">Submodules</h2>
-<div class="outline-text-2" id="text-orgcc08c9b">
+<div id="outline-container-orgcf40c5d" class="outline-2">
+<h2 id="orgcf40c5d">Submodules</h2>
+<div class="outline-text-2" id="text-orgcf40c5d">
 <p>
 Matplotlib comes with a series of submodules, e.g.,
 </p>
@@ -261,28 +261,28 @@ Matplotlib comes with a series of submodules, e.g.,
 </ul>
 </div>
 </div>
-<div id="outline-container-orge47c34e" class="outline-2">
-<h2 id="orge47c34e">General Concepts</h2>
-<div class="outline-text-2" id="text-orge47c34e">
+<div id="outline-container-orgc9f47d9" class="outline-2">
+<h2 id="orgc9f47d9">General Concepts</h2>
+<div class="outline-text-2" id="text-orgc9f47d9">
 <p>
-In Matplotlib, there are some important concepts which can be illustrated in <a href="#orgf11c4a5">Figure 1</a>. A typical matplotlib <code>Figure</code> is comprised of a variety of components, as show in <a href="#orgbec9667">Figure 2</a>.
+In Matplotlib, there are some important concepts which can be illustrated in <a href="#org4967dfc">Figure 1</a>. A typical matplotlib <code>Figure</code> is comprised of a variety of components, as show in <a href="#orgf599cc5">Figure 2</a>.
 </p>
 
-<div id="orgf11c4a5" class="figure">
+<div id="org4967dfc" class="figure">
 <p><img src="matplotlib_concept.png" alt="matplotlib_concept.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 1: </span>Basic concepts in Matplotlib (from <a href="https://matplotlib.org/1.5.1/faq/usage_faq.html">https://matplotlib.org/1.5.1/faq/usage_faq.html</a>)</p>
 </div>
 
-<div id="orgbec9667" class="figure">
+<div id="orgf599cc5" class="figure">
 <p><img src="matplotlib_fig_component.png" alt="matplotlib_fig_component.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 2: </span>Components of a figure in Matplotlib (from <a href="https://matplotlib.org/stable/tutorials/introductory/usage.html">https://matplotlib.org/stable/tutorials/introductory/usage.html</a>)</p>
 </div>
 </div>
-<div id="outline-container-orgd01f369" class="outline-3">
-<h3 id="orgd01f369"><code>Figure</code></h3>
-<div class="outline-text-3" id="text-orgd01f369">
+<div id="outline-container-org6fcf225" class="outline-3">
+<h3 id="org6fcf225"><code>Figure</code></h3>
+<div class="outline-text-3" id="text-org6fcf225">
 <ul class="org-ul">
 <li><p>
 A <code>Figure</code> object is essentially a canvas on which plot operations are performed. Clearly, it consists of one or more <code>Axes</code> objects.
@@ -305,9 +305,9 @@ fig, ax = plt.subplots(2, 3)
 </ul>
 </div>
 </div>
-<div id="outline-container-org326930d" class="outline-3">
-<h3 id="org326930d"><code>Axes</code></h3>
-<div class="outline-text-3" id="text-org326930d">
+<div id="outline-container-org05a829f" class="outline-3">
+<h3 id="org05a829f"><code>Axes</code></h3>
+<div class="outline-text-3" id="text-org05a829f">
 <ul class="org-ul">
 <li>Create <code>Axes</code> objects.
 <ul class="org-ul">
@@ -337,33 +337,33 @@ fig, ax = plt.subplots(2, 3)
 </ul>
 </div>
 </div>
-<div id="outline-container-org37476f3" class="outline-3">
-<h3 id="org37476f3"><code>Axis</code></h3>
-<div class="outline-text-3" id="text-org37476f3">
+<div id="outline-container-orgb5c6387" class="outline-3">
+<h3 id="orgb5c6387"><code>Axis</code></h3>
+<div class="outline-text-3" id="text-orgb5c6387">
 <p>
 Just as its name indicates, a <code>Axis</code> object defines the properties and attributes of a axis, e.g., limits, ticks, and ticklabels.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb83b5f2" class="outline-2">
-<h2 id="orgb83b5f2">Interfaces</h2>
-<div class="outline-text-2" id="text-orgb83b5f2">
+<div id="outline-container-org0fdfda1" class="outline-2">
+<h2 id="org0fdfda1">Interfaces</h2>
+<div class="outline-text-2" id="text-org0fdfda1">
 <p>
 As written in the tutorial, there are a couple of API styles provided by matplotlib.
 </p>
 </div>
-<div id="outline-container-orga9408fa" class="outline-3">
-<h3 id="orga9408fa">Object-oriented (OO) style</h3>
-<div class="outline-text-3" id="text-orga9408fa">
+<div id="outline-container-orgb259464" class="outline-3">
+<h3 id="orgb259464">Object-oriented (OO) style</h3>
+<div class="outline-text-3" id="text-orgb259464">
 <p>
 <code>Figures</code> and <code>Axes</code> objects are created and their member functions are provoked explicitly.
 </p>
 </div>
 </div>
-<div id="outline-container-org5af4691" class="outline-3">
-<h3 id="org5af4691">Pyplot style</h3>
-<div class="outline-text-3" id="text-org5af4691">
+<div id="outline-container-org290c774" class="outline-3">
+<h3 id="org290c774">Pyplot style</h3>
+<div class="outline-text-3" id="text-org290c774">
 <p>
 <code>matplotlib.pyplot</code> directly provokes its own functions, e.g., <code>plot</code>, <code>xlabel</code>, <code>ylabel</code>, <code>title</code>, <code>legend</code>, etc.
 </p>
@@ -371,20 +371,20 @@ As written in the tutorial, there are a couple of API styles provided by matplot
 </div>
 </div>
 
-<div id="outline-container-org9bf47ab" class="outline-2">
-<h2 id="org9bf47ab">Miscellaneous</h2>
-<div class="outline-text-2" id="text-org9bf47ab">
+<div id="outline-container-orgd74fab0" class="outline-2">
+<h2 id="orgd74fab0">Miscellaneous</h2>
+<div class="outline-text-2" id="text-orgd74fab0">
 </div>
-<div id="outline-container-orgfcdacd8" class="outline-3">
-<h3 id="orgfcdacd8">Animation</h3>
-<div class="outline-text-3" id="text-orgfcdacd8">
+<div id="outline-container-org1ff79c6" class="outline-3">
+<h3 id="org1ff79c6">Animation</h3>
+<div class="outline-text-3" id="text-org1ff79c6">
 <p>
 In submodule <code>matplotlib.animation</code>, <code>Animation</code> is a base class for animation making. It has a couple of derived classes.
 </p>
 </div>
-<div id="outline-container-org49994d3" class="outline-4">
-<h4 id="org49994d3"><code>FuncAnimation</code></h4>
-<div class="outline-text-4" id="text-org49994d3">
+<div id="outline-container-orgadc4a1a" class="outline-4">
+<h4 id="orgadc4a1a"><code>FuncAnimation</code></h4>
+<div class="outline-text-4" id="text-orgadc4a1a">
 <p>
 This class generates an animation by repeatedly calling a function.
 </p>
@@ -406,18 +406,18 @@ Its member function <code>save</code> can save a <code>FuncAnimation</code> obje
 </p>
 </div>
 </div>
-<div id="outline-container-orgeacb0aa" class="outline-4">
-<h4 id="orgeacb0aa"><code>ArtistAnimation</code></h4>
-<div class="outline-text-4" id="text-orgeacb0aa">
+<div id="outline-container-org2137e0a" class="outline-4">
+<h4 id="org2137e0a"><code>ArtistAnimation</code></h4>
+<div class="outline-text-4" id="text-org2137e0a">
 <p>
 This class produces an animation using a fixed set of <code>Artist</code> object.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org9f5daa1" class="outline-3">
-<h3 id="org9f5daa1">Default settings</h3>
-<div class="outline-text-3" id="text-org9f5daa1">
+<div id="outline-container-orgad9753d" class="outline-3">
+<h3 id="orgad9753d">Default settings</h3>
+<div class="outline-text-3" id="text-orgad9753d">
 <div class="org-src-container">
 <pre class="src src-python">import matplotlib.pyplot as plt
 
@@ -430,9 +430,9 @@ plt.rcParams['text.usetex'] = True
 </div>
 </div>
 </div>
-<div id="outline-container-org9b8f07d" class="outline-2">
-<h2 id="org9b8f07d">References</h2>
-<div class="outline-text-2" id="text-org9b8f07d">
+<div id="outline-container-org3f37ea4" class="outline-2">
+<h2 id="org3f37ea4">References</h2>
+<div class="outline-text-2" id="text-org3f37ea4">
 <ul class="org-ul">
 <li><a href="https://matplotlib.org">https://matplotlib.org</a></li>
 </ul>

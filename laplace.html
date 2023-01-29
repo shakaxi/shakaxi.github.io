@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-28 Sat 01:49 -->
+<!-- 2023-01-29 Sun 17:01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Laplace Transform</title>
@@ -232,14 +232,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgddee5c6">Definition</a></li>
-<li><a href="#org58a4845">Properties (Unilateral Transform)</a>
+<li><a href="#org8b699f7">Definition</a></li>
+<li><a href="#org757c4ab">Properties (Unilateral Transform)</a>
 <ul>
-<li><a href="#orgbc38b5e">Initial Value Theorem</a></li>
-<li><a href="#org6770d65">Final Value Theorem</a></li>
+<li><a href="#orgacb631a">Initial Value Theorem</a></li>
+<li><a href="#orgb3dd6f0">Final Value Theorem</a></li>
 </ul>
 </li>
-<li><a href="#org5e6eb21">Transform Pairs (Unilateral Transform)</a></li>
+<li><a href="#orgabc5d4f">Transform Pairs (Unilateral Transform)</a></li>
 </ul>
 </div>
 </div>
@@ -247,9 +247,9 @@
 Given a time domain continuous signal, it can be represented in the <i>complex frequency domain</i> by <i>Laplace transform</i>. It is essentially an extension of <i>Continuous Fourier transform</i>.
 </p>
 
-<div id="outline-container-orgddee5c6" class="outline-2">
-<h2 id="orgddee5c6">Definition</h2>
-<div class="outline-text-2" id="text-orgddee5c6">
+<div id="outline-container-org8b699f7" class="outline-2">
+<h2 id="org8b699f7">Definition</h2>
+<div class="outline-text-2" id="text-org8b699f7">
 <ul class="org-ul">
 <li><p>
 Bilateral transform
@@ -273,9 +273,9 @@ Inverse transform
 </ul>
 </div>
 </div>
-<div id="outline-container-org58a4845" class="outline-2">
-<h2 id="org58a4845">Properties (Unilateral Transform)</h2>
-<div class="outline-text-2" id="text-org58a4845">
+<div id="outline-container-org757c4ab" class="outline-2">
+<h2 id="org757c4ab">Properties (Unilateral Transform)</h2>
+<div class="outline-text-2" id="text-org757c4ab">
 \begin{align*}
   x(t), t \ge 0_{-} &\leftrightarrow X(s) \\
   x(at), a > 0 &\leftrightarrow \frac{1}{a}X \left( \frac{s}{a} \right) \\
@@ -288,26 +288,26 @@ Inverse transform
   \frac{x(t)}{t} &\leftrightarrow \int_s^{\infty}X(\eta)d\eta
 \end{align*}
 </div>
-<div id="outline-container-orgbc38b5e" class="outline-3">
-<h3 id="orgbc38b5e">Initial Value Theorem</h3>
-<div class="outline-text-3" id="text-orgbc38b5e">
+<div id="outline-container-orgacb631a" class="outline-3">
+<h3 id="orgacb631a">Initial Value Theorem</h3>
+<div class="outline-text-3" id="text-orgacb631a">
 \begin{align*}
   x(0_{+}) = \lim_{s\to \infty}sX(s)
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org6770d65" class="outline-3">
-<h3 id="org6770d65">Final Value Theorem</h3>
-<div class="outline-text-3" id="text-org6770d65">
+<div id="outline-container-orgb3dd6f0" class="outline-3">
+<h3 id="orgb3dd6f0">Final Value Theorem</h3>
+<div class="outline-text-3" id="text-orgb3dd6f0">
 \begin{align*}
   x(\infty) = \lim_{s\to 0} sX(s)
 \end{align*}
 </div>
 </div>
 </div>
-<div id="outline-container-org5e6eb21" class="outline-2">
-<h2 id="org5e6eb21">Transform Pairs (Unilateral Transform)</h2>
-<div class="outline-text-2" id="text-org5e6eb21">
+<div id="outline-container-orgabc5d4f" class="outline-2">
+<h2 id="orgabc5d4f">Transform Pairs (Unilateral Transform)</h2>
+<div class="outline-text-2" id="text-orgabc5d4f">
 \begin{align*}
   x(t), t \ge 0_{-} &\leftrightarrow X(s) \\
   \delta(t) &\leftrightarrow 1 \\

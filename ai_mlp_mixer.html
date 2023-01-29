@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-28 Sat 01:49 -->
+<!-- 2023-01-29 Sun 17:01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AI - MLP-Mixer</title>
@@ -232,7 +232,7 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org92a2b2b">References</a></li>
+<li><a href="#org7d17249">References</a></li>
 </ul>
 </div>
 </div>
@@ -241,21 +241,21 @@
 </p>
 
 
-<div id="orge51fb3c" class="figure">
+<div id="orgbd64c09" class="figure">
 <p><img src="./fig/mlp_mixer.png" alt="mlp_mixer.png">
 </p>
 <p><span class="figure-number">Figure 1: </span>A MLP-Mixer layer</p>
 </div>
 
 <p>
-The structure of MLP-Mixer can be shown in Figure <a href="#orge51fb3c">1</a>.
+The structure of MLP-Mixer can be shown in Figure <a href="#orgbd64c09">1</a>.
 </p>
 <ul class="org-ul">
 <li>The input and output tensors have the same size, denoted by \(B\times C\times P\), where \(B\) is the batch size, \(C\) is the number of channels, \(P\) is the size of each patch. Usually, the patch size is a product of patch size in each dimension. E.g., a 2-D image of size \(H\times W\) can be partitioned into a multiplicity of patches, with each of size \(P = P_h \times P_w\). Then different patches correspond to different channels, i.e., \(C = \dfrac{H}{P_{h}} \cdot \dfrac{W}{P_{w}}\). Without loss of generality, we stretch each patch into 1-D irrespecitve of its dimensions.</li>
 <li>Just as its name indicates, each MLP-Mixer layer has two MLP modules, targeting for intra-patch feature extraction, a.k.a. <i>token mixing</i>, and inter-patch feature processing, a.k.a. <i>channel mixing</i>, respectively. Of course, token mixing and channel mixing operates along the dimension of patch (of size \(P\)) and channel (of size \(C\)), respectively.
 <ul class="org-ul">
 <li><p>
-Generally, a MLP module is an artificial neural network comprising an input layer, a plurality of hidden layers, and an output layer. A typical MLP module can be shown in Figure <a href="#orgdb24956">2</a>, which is comprised of 2 full-connection (FC) layers seperated by a non-linear activate function, e.g., <i>Gaussian error linear unit, (GeLU)</i>, which has been widely used in <i>natural language processing (NLP)</i>.
+Generally, a MLP module is an artificial neural network comprising an input layer, a plurality of hidden layers, and an output layer. A typical MLP module can be shown in Figure <a href="#org3e0e225">2</a>, which is comprised of 2 full-connection (FC) layers seperated by a non-linear activate function, e.g., <i>Gaussian error linear unit, (GeLU)</i>, which has been widely used in <i>natural language processing (NLP)</i>.
 </p>
 \begin{align*}
   \mathrm{GeLU}(x) = x \cdot p(X < x),
@@ -268,15 +268,15 @@ where \(p(X < x)\) is the probability of a Gaussian distributed stochastic varia
 </ul>
 
 
-<div id="orgdb24956" class="figure">
+<div id="org3e0e225" class="figure">
 <p><img src="./fig/mlp.png" alt="mlp.png">
 </p>
 <p><span class="figure-number">Figure 2: </span>An example of MLP</p>
 </div>
 
-<div id="outline-container-org92a2b2b" class="outline-2">
-<h2 id="org92a2b2b">References</h2>
-<div class="outline-text-2" id="text-org92a2b2b">
+<div id="outline-container-org7d17249" class="outline-2">
+<h2 id="org7d17249">References</h2>
+<div class="outline-text-2" id="text-org7d17249">
 <ul class="org-ul">
 <li>Ilya Tolstikhin and Neil Houlsby and Alexander Kolesnikov and Lucas Beyer and Xiaohua Zhai and Thomas Unterthiner and Jessica Yung and Andreas Steiner and Daniel Keysers and Jakob Uszkoreit and Mario Lucic and Alexey Dosovitskiy (2021). "MLP-Mixer: An all-MLP Architecture for Vision".</li>
 <li><a href="https://towardsdatascience.com/mlp-mixer-is-all-you-need-20dbc7587fe4">https://towardsdatascience.com/mlp-mixer-is-all-you-need-20dbc7587fe4</a></li>

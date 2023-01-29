@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-28 Sat 01:48 -->
+<!-- 2023-01-29 Sun 17:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SSH</title>
@@ -200,19 +200,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org03ac356">Installation</a></li>
-<li><a href="#org5b51be4">Transmission over asymmetrical encryption</a></li>
-<li><a href="#org1ab8824">Enable <code>X11 forwarding</code> to run GUI programs over SSH</a>
+<li><a href="#org8232dfa">Installation</a></li>
+<li><a href="#org3f159a8">Transmission over asymmetrical encryption</a></li>
+<li><a href="#org66709a5">Enable <code>X11 forwarding</code> to run GUI programs over SSH</a>
 <ul>
-<li><a href="#orgc7890ab">On server</a></li>
-<li><a href="#orge22fab5">On client</a></li>
+<li><a href="#org2cd4275">On server</a></li>
+<li><a href="#orgc5af0a3">On client</a></li>
 </ul>
 </li>
-<li><a href="#orgcdb9fcf">SSH-based proxy</a></li>
-<li><a href="#org3d4420c">SSH-based tunnels</a>
+<li><a href="#org1f73811">SSH-based proxy</a></li>
+<li><a href="#org284fb09">SSH-based tunnels</a>
 <ul>
-<li><a href="#orgb290a6b">Local SSH port forwarding</a></li>
-<li><a href="#org357d8ca">Remote SSH port forwarding</a></li>
+<li><a href="#org1e940c9">Local SSH port forwarding</a></li>
+<li><a href="#org0fc1064">Remote SSH port forwarding</a></li>
 </ul>
 </li>
 </ul>
@@ -221,9 +221,9 @@
 <p>
 Secure shell (SSH) is the most popular and efficient method for remote access. This post introduces SSH relevant issues, from installation to configuration.
 </p>
-<div id="outline-container-org03ac356" class="outline-2">
-<h2 id="org03ac356">Installation</h2>
-<div class="outline-text-2" id="text-org03ac356">
+<div id="outline-container-org8232dfa" class="outline-2">
+<h2 id="org8232dfa">Installation</h2>
+<div class="outline-text-2" id="text-org8232dfa">
 <p>
 Take Archlinux for instance here.
 </p>
@@ -233,9 +233,9 @@ Take Archlinux for instance here.
 </div>
 </div>
 </div>
-<div id="outline-container-org5b51be4" class="outline-2">
-<h2 id="org5b51be4">Transmission over asymmetrical encryption</h2>
-<div class="outline-text-2" id="text-org5b51be4">
+<div id="outline-container-org3f159a8" class="outline-2">
+<h2 id="org3f159a8">Transmission over asymmetrical encryption</h2>
+<div class="outline-text-2" id="text-org3f159a8">
 <ul class="org-ul">
 <li>Generate key pair on the client</li>
 </ul>
@@ -254,13 +254,13 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub USERNAME@SERVER
 </div>
 </div>
 </div>
-<div id="outline-container-org1ab8824" class="outline-2">
-<h2 id="org1ab8824">Enable <code>X11 forwarding</code> to run GUI programs over SSH</h2>
-<div class="outline-text-2" id="text-org1ab8824">
+<div id="outline-container-org66709a5" class="outline-2">
+<h2 id="org66709a5">Enable <code>X11 forwarding</code> to run GUI programs over SSH</h2>
+<div class="outline-text-2" id="text-org66709a5">
 </div>
-<div id="outline-container-orgc7890ab" class="outline-3">
-<h3 id="orgc7890ab">On server</h3>
-<div class="outline-text-3" id="text-orgc7890ab">
+<div id="outline-container-org2cd4275" class="outline-3">
+<h3 id="org2cd4275">On server</h3>
+<div class="outline-text-3" id="text-org2cd4275">
 <ul class="org-ul">
 <li>Installation</li>
 </ul>
@@ -280,9 +280,9 @@ Add following line in <code>/etc/ssh/sshd_config</code>
 </div>
 </div>
 </div>
-<div id="outline-container-orge22fab5" class="outline-3">
-<h3 id="orge22fab5">On client</h3>
-<div class="outline-text-3" id="text-orge22fab5">
+<div id="outline-container-orgc5af0a3" class="outline-3">
+<h3 id="orgc5af0a3">On client</h3>
+<div class="outline-text-3" id="text-orgc5af0a3">
 <p>
 Add following lines in <code>/etc/ssh/ssh_config</code>
 </p>
@@ -295,9 +295,9 @@ ForwardX11Trusted yes
 </div>
 </div>
 </div>
-<div id="outline-container-orgcdb9fcf" class="outline-2">
-<h2 id="orgcdb9fcf">SSH-based proxy</h2>
-<div class="outline-text-2" id="text-orgcdb9fcf">
+<div id="outline-container-org1f73811" class="outline-2">
+<h2 id="org1f73811">SSH-based proxy</h2>
+<div class="outline-text-2" id="text-org1f73811">
 <p>
 For clear description, we consider such a simple scenario. Suppose you intend to access host <code>A</code>, but the direct access is not permitted. Instead, you can access host <code>B</code>, which is granted to access host <code>A</code>. In this case, you can access host <code>A</code> via host <code>B</code>, i.e., which plays a proxy role. Following command can make host <code>B</code> a SOCK proxy.
 </p>
@@ -318,13 +318,13 @@ Then, a SOCK proxy is ready whereby you can access host <code>A</code> as freely
 </p>
 </div>
 </div>
-<div id="outline-container-org3d4420c" class="outline-2">
-<h2 id="org3d4420c">SSH-based tunnels<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h2>
-<div class="outline-text-2" id="text-org3d4420c">
+<div id="outline-container-org284fb09" class="outline-2">
+<h2 id="org284fb09">SSH-based tunnels<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h2>
+<div class="outline-text-2" id="text-org284fb09">
 </div>
-<div id="outline-container-orgb290a6b" class="outline-3">
-<h3 id="orgb290a6b">Local SSH port forwarding</h3>
-<div class="outline-text-3" id="text-orgb290a6b">
+<div id="outline-container-org1e940c9" class="outline-3">
+<h3 id="org1e940c9">Local SSH port forwarding</h3>
+<div class="outline-text-3" id="text-org1e940c9">
 <p>
 Suppose there are 3 hosts, denoted by <code>A</code>, <code>B</code>, and <code>C</code>, respectively. Host <code>C</code> is providing some service on port <code>RPORT</code>, e.g., HTTP on port 80, and host <code>A</code> intends to access it. However, due to some network restriction, host <code>A</code> cannot directly access the service provided by host <code>C</code>, but host <code>B</code> can.
 </p>
@@ -341,9 +341,9 @@ In this case, host <code>A</code> can enjoy the desired service on host <code>C<
 </p>
 </div>
 </div>
-<div id="outline-container-org357d8ca" class="outline-3">
-<h3 id="org357d8ca">Remote SSH port forwarding</h3>
-<div class="outline-text-3" id="text-org357d8ca">
+<div id="outline-container-org0fc1064" class="outline-3">
+<h3 id="org0fc1064">Remote SSH port forwarding</h3>
+<div class="outline-text-3" id="text-org0fc1064">
 <p>
 Consider a similar scenario that there are 3 hosts, <code>A</code> and <code>B</code>. Host <code>A</code> is providing some service on <code>LPORT</code>. For some reason, host <code>A</code> cannot be accessible, but host <code>B</code> is available.
 </p>

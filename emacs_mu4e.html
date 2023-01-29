@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-28 Sat 01:49 -->
+<!-- 2023-01-29 Sun 17:01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Mu4e</title>
@@ -200,25 +200,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0c354aa">Introduction</a></li>
-<li><a href="#org9762218">Installation</a>
+<li><a href="#org8581d91">Introduction</a></li>
+<li><a href="#org0ca6518">Installation</a>
 <ul>
-<li><a href="#org5eaeeec">Dependencies</a></li>
-<li><a href="#org0da623f"><code>mu</code></a></li>
-<li><a href="#org9512e12"><code>getmail</code> and <code>procmail</code></a></li>
+<li><a href="#orgd5d4615">Dependencies</a></li>
+<li><a href="#org761b1e3"><code>mu</code></a></li>
+<li><a href="#org24ee481"><code>getmail</code> and <code>procmail</code></a></li>
 </ul>
 </li>
-<li><a href="#org71355a9">Configuration</a>
+<li><a href="#org5acc14a">Configuration</a>
 <ul>
-<li><a href="#org6c0a1a1"><code>getmailrc</code></a></li>
-<li><a href="#org29ea967"><code>~/.procmailrc</code></a></li>
-<li><a href="#org9f8a248"><code>~/.emacs.d/init.el</code></a></li>
-<li><a href="#org001ee2c"><code>~/.authinfo</code></a></li>
-<li><a href="#org7ee3a1c">Others</a>
+<li><a href="#org05a2691"><code>getmailrc</code></a></li>
+<li><a href="#org5add0a2"><code>~/.procmailrc</code></a></li>
+<li><a href="#orgecd530b"><code>~/.emacs.d/init.el</code></a></li>
+<li><a href="#org3771b60"><code>~/.authinfo</code></a></li>
+<li><a href="#orga3397f5">Others</a>
 <ul>
-<li><a href="#org599074a">Create a maildir</a></li>
-<li><a href="#org2fab371">Get the mails</a></li>
-<li><a href="#orgf391cc5">Index the mails</a></li>
+<li><a href="#org4e1d5ea">Create a maildir</a></li>
+<li><a href="#orgd23c4bc">Get the mails</a></li>
+<li><a href="#org2352e36">Index the mails</a></li>
 </ul>
 </li>
 </ul>
@@ -227,21 +227,21 @@
 </div>
 </div>
 
-<div id="outline-container-org0c354aa" class="outline-2">
-<h2 id="org0c354aa">Introduction</h2>
-<div class="outline-text-2" id="text-org0c354aa">
+<div id="outline-container-org8581d91" class="outline-2">
+<h2 id="org8581d91">Introduction</h2>
+<div class="outline-text-2" id="text-org8581d91">
 <p>
 <a href="http://www.djcbsoftware.nl/code/mu/mu4e/index.html">mu4e</a> is an excellent mail client for Emacs whereby sending/getting mails can be carried out in Emacs. For an Emacs user, the deep integration gives rise to great convenience and efficiency. This post provides a brief summary for the utilization of mu4e.
 </p>
 </div>
 </div>
-<div id="outline-container-org9762218" class="outline-2">
-<h2 id="org9762218">Installation</h2>
-<div class="outline-text-2" id="text-org9762218">
+<div id="outline-container-org0ca6518" class="outline-2">
+<h2 id="org0ca6518">Installation</h2>
+<div class="outline-text-2" id="text-org0ca6518">
 </div>
-<div id="outline-container-org5eaeeec" class="outline-3">
-<h3 id="org5eaeeec">Dependencies</h3>
-<div class="outline-text-3" id="text-org5eaeeec">
+<div id="outline-container-orgd5d4615" class="outline-3">
+<h3 id="orgd5d4615">Dependencies</h3>
+<div class="outline-text-3" id="text-orgd5d4615">
 <p>
 <code>mu</code> depends on <a href="http://xapian.org">xapian</a> and <a href="http://spruce.sourceforge.net/gmime">gmime</a>, which should be installed in advance.
 </p>
@@ -251,9 +251,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org0da623f" class="outline-3">
-<h3 id="org0da623f"><code>mu</code><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
-<div class="outline-text-3" id="text-org0da623f">
+<div id="outline-container-org761b1e3" class="outline-3">
+<h3 id="org761b1e3"><code>mu</code><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
+<div class="outline-text-3" id="text-org761b1e3">
 <div class="org-src-container">
 <pre class="src src-sh">git clone --depth=1 git://github.com/djcb/mu.git
 cd mu
@@ -266,9 +266,9 @@ ln -s /opt/mu/bin/mu /usr/local/bin
 </div>
 </div>
 </div>
-<div id="outline-container-org9512e12" class="outline-3">
-<h3 id="org9512e12"><code>getmail</code> and <code>procmail</code></h3>
-<div class="outline-text-3" id="text-org9512e12">
+<div id="outline-container-org24ee481" class="outline-3">
+<h3 id="org24ee481"><code>getmail</code> and <code>procmail</code></h3>
+<div class="outline-text-3" id="text-org24ee481">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S getmail procmail
 </pre>
@@ -276,13 +276,13 @@ ln -s /opt/mu/bin/mu /usr/local/bin
 </div>
 </div>
 </div>
-<div id="outline-container-org71355a9" class="outline-2">
-<h2 id="org71355a9">Configuration</h2>
-<div class="outline-text-2" id="text-org71355a9">
+<div id="outline-container-org5acc14a" class="outline-2">
+<h2 id="org5acc14a">Configuration</h2>
+<div class="outline-text-2" id="text-org5acc14a">
 </div>
-<div id="outline-container-org6c0a1a1" class="outline-3">
-<h3 id="org6c0a1a1"><code>getmailrc</code></h3>
-<div class="outline-text-3" id="text-org6c0a1a1">
+<div id="outline-container-org05a2691" class="outline-3">
+<h3 id="org05a2691"><code>getmailrc</code></h3>
+<div class="outline-text-3" id="text-org05a2691">
 <div class="org-src-container">
 <pre class="src src-sh">[retriever]
 type = SimplePOP3SSLRetriever
@@ -304,9 +304,9 @@ message_log = $HOME/.Mail/getmail.log
 </div>
 </div>
 </div>
-<div id="outline-container-org29ea967" class="outline-3">
-<h3 id="org29ea967"><code>~/.procmailrc</code></h3>
-<div class="outline-text-3" id="text-org29ea967">
+<div id="outline-container-org5add0a2" class="outline-3">
+<h3 id="org5add0a2"><code>~/.procmailrc</code></h3>
+<div class="outline-text-3" id="text-org5add0a2">
 <div class="org-src-container">
 <pre class="src src-sh">MAILDIR=$HOME/.Mail
 DEFAULT=$MAILDIR/inbox/
@@ -328,9 +328,9 @@ rp/
 </div>
 </div>
 </div>
-<div id="outline-container-org9f8a248" class="outline-3">
-<h3 id="org9f8a248"><code>~/.emacs.d/init.el</code></h3>
-<div class="outline-text-3" id="text-org9f8a248">
+<div id="outline-container-orgecd530b" class="outline-3">
+<h3 id="orgecd530b"><code>~/.emacs.d/init.el</code></h3>
+<div class="outline-text-3" id="text-orgecd530b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'load-path "/opt/mu/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
@@ -376,40 +376,40 @@ rp/
 </div>
 </div>
 </div>
-<div id="outline-container-org001ee2c" class="outline-3">
-<h3 id="org001ee2c"><code>~/.authinfo</code></h3>
-<div class="outline-text-3" id="text-org001ee2c">
+<div id="outline-container-org3771b60" class="outline-3">
+<h3 id="org3771b60"><code>~/.authinfo</code></h3>
+<div class="outline-text-3" id="text-org3771b60">
 <div class="org-src-container">
 <pre class="src src-sh">machine SMTP_SERVER login USER password PASSWORD port PORT_NUM
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org7ee3a1c" class="outline-3">
-<h3 id="org7ee3a1c">Others</h3>
-<div class="outline-text-3" id="text-org7ee3a1c">
+<div id="outline-container-orga3397f5" class="outline-3">
+<h3 id="orga3397f5">Others</h3>
+<div class="outline-text-3" id="text-orga3397f5">
 </div>
-<div id="outline-container-org599074a" class="outline-4">
-<h4 id="org599074a">Create a maildir</h4>
-<div class="outline-text-4" id="text-org599074a">
+<div id="outline-container-org4e1d5ea" class="outline-4">
+<h4 id="org4e1d5ea">Create a maildir</h4>
+<div class="outline-text-4" id="text-org4e1d5ea">
 <div class="org-src-container">
 <pre class="src src-sh">mkdir .Mail
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org2fab371" class="outline-4">
-<h4 id="org2fab371">Get the mails</h4>
-<div class="outline-text-4" id="text-org2fab371">
+<div id="outline-container-orgd23c4bc" class="outline-4">
+<h4 id="orgd23c4bc">Get the mails</h4>
+<div class="outline-text-4" id="text-orgd23c4bc">
 <div class="org-src-container">
 <pre class="src src-sh">getmail --getmaildir=GETMAIL_CONFIG_DIR -r getmailrc
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf391cc5" class="outline-4">
-<h4 id="orgf391cc5">Index the mails</h4>
-<div class="outline-text-4" id="text-orgf391cc5">
+<div id="outline-container-org2352e36" class="outline-4">
+<h4 id="org2352e36">Index the mails</h4>
+<div class="outline-text-4" id="text-org2352e36">
 <div class="org-src-container">
 <pre class="src src-sh">mu index --maildir=~/.Mail
 </pre>
