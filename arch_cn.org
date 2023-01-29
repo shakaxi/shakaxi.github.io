@@ -1,15 +1,26 @@
-#+TITLE: Linux - A Mirror of Arch Linux
+#+TITLE: Archlinux - A Non-Official Repository from Chinese Community
 
 * Introducation
-Chinese community of ArchLinux provides a non-official source for ArchLinux.
+[[https://archlinux.org][Archlinux]] is an excellent Linux distribution, which follows the principle of /keep it simple and stupid (KISS)/ closely. Besides the official repositories, its Chinese community provides a non-official repository, a.k.a. ArchlinuxCN.
 * Configuration
-- Append following lines to =/etc/pacman.conf=.
-#+BEGIN_SRC sh
-[archlinuxcn]
-SigLevel = Optional TrustedOnly
-Server = http://mirrors.163.com/archlinux-cn/$arch
-#+END_SRC
-- Import the corresponding PGP keys by installing package =archlinuxcn-keyring=.
-#+BEGIN_SRC sh
-pacman -S archlinuxcn-keyring
-#+END_SRC
+Using the ArchlinuxCN can be completed by two steps.
+1. Append following lines to =/etc/pacman.conf=.
+   #+begin_src shell
+     [archlinuxcn]
+     Server = https://repo.archlinuxcn.org/$arch
+   #+end_src
+   Optionally, there are many mirrors, which can be found at https://github.com/archlinuxcn/mirrorlist-repo, e.g.,
+   - Aliyun
+     #+begin_src shell
+       [archlinuxcn]
+       Server = https://mirrors.aliyun.com/archlinuxcn/$arch
+     #+end_src
+   - Netease
+     #+begin_src shell
+       [archlinuxcn]
+       Server = https://mirrors.163.com/archlinux-cn/$arch
+     #+end_src
+2. Import the corresponding PGP keys by installing package =archlinuxcn-keyring=.
+   #+begin_src shell
+     pacman -S archlinuxcn-keyring
+   #+end_src
