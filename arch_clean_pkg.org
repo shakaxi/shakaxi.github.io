@@ -1,0 +1,11 @@
+#+TITLE: Archlinux - Clean Packages
+
+[[https://archlinux.org][Archlinux]] is an excellent Linux distribution, featured by light weight, flexibility, keep it simple and stupid (KISS), as well as well-documented [[https://wiki.archlinux.org][wiki]]. Therefore, I have been using it for so many years. Unavoidably, there are some packages accumulated and remained after numerous package related operations, e.g., installing, removing, updating, etc. This post aims to clean the packages.
+- For each installed package, following command can keep the latest version and remove all the historical versions.
+  #+begin_src shell
+    sudo pacman -Scc
+  #+end_src
+- For each isolated (not in use) package, following [[https://manateelazycat.github.io/linux/arch/2021/02/25/clean-unused-arch-package.html][command]] can remove them automatically.
+  #+begin_src shell
+    pacman -Qqdt | sudo pacman -Rs -
+  #+end_src
