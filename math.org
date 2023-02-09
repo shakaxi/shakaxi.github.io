@@ -40,12 +40,12 @@ $\forall \mathbf{A} \in \mathbb{C}^{p \times n}$, $\mathbf{B} \in \mathbb{C}^{n 
   \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \otimes \mathbf{A}) \text{vec}(\mathbf{B}). \label{eq:vect}
 \end{align}
 Particularly,
-- By setting $\mathbf{A} = \mathbf{I}_n$ and $\mathbf{C} = \mathbf{I}_m$ respectively, \eqnref{eq:vect} becomes
+- By setting $\mathbf{A} = \mathbf{I}_n$ and $\mathbf{C} = \mathbf{I}_m$ respectively, \eqref{eq:vect} becomes
 \begin{align*}
   \text{vec}(\mathbf{BC}) &= (\mathbf{C}^T \otimes \mathbf{I}_n) \text{vec}(\mathbf{B}), \\
   \text{vec}(\mathbf{AB}) &= (\mathbf{I}_m \otimes \mathbf{A}) \text{vec}(\mathbf{B}).
 \end{align*}
-- If $\mathbf{B} = \text{diag}(\mathbf{b})$ is a diagonal matrix ($m = n$), $\mathbf{b} \in \mathbb{C}^n$, \eqnref{eq:vect} becomes
+- If $\mathbf{B} = \text{diag}(\mathbf{b})$ is a diagonal matrix ($m = n$), $\mathbf{b} \in \mathbb{C}^n$, \eqref{eq:vect} becomes
   \begin{align*}
     \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \odot \mathbf{A})\mathbf{b},
   \end{align*}
