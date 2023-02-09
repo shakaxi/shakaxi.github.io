@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2023-02-09 Thu 15:41 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Data Type</title>
@@ -207,7 +207,13 @@
 <li><a href="#orgc536fc1">内建序列函数</a></li>
 <li><a href="#orgd507b0f">字典</a></li>
 <li><a href="#orgf2f7db5">集合</a></li>
-<li><a href="#org15ba42b">列表、字典和集合的推导式</a></li>
+<li><a href="#orgae36ddd">推导式</a></li>
+<li><a href="#org4ca7114">对象</a>
+<ul>
+<li><a href="#org6583caf">迭代器(iterator)</a></li>
+<li><a href="#orgd12d7d1">生成器(generator)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -457,12 +463,13 @@ else:
 </ul>
 </div>
 </div>
-<div id="outline-container-org15ba42b" class="outline-2">
-<h2 id="org15ba42b">列表、字典和集合的推导式</h2>
-<div class="outline-text-2" id="text-org15ba42b">
+<div id="outline-container-orgae36ddd" class="outline-2">
+<h2 id="orgae36ddd">推导式</h2>
+<div class="outline-text-2" id="text-orgae36ddd">
 <ul class="org-ul">
-<li>列表的推导式如下:</li>
-</ul>
+<li><p>
+列表的推导式
+</p>
 <div class="org-src-container">
 <pre class="src src-python">LIST = [EXPRESSION for VALUE in COLLECTION if CONDITION]
 </pre>
@@ -479,20 +486,52 @@ for VALUE in COLLECTION:
 </div>
 <p>
 其中， <code>CONDITION</code> 可以省略。
+</p></li>
+<li><p>
+字典的推导式
 </p>
-<ul class="org-ul">
-<li>字典的推导式如下:</li>
-</ul>
 <div class="org-src-container">
 <pre class="src src-python">DICTIONARY = {KEY: VALUE for VALUE in COLLECTION if CONDITION}
 </pre>
-</div>
-<ul class="org-ul">
-<li>集合的推导式如下:</li>
-</ul>
+</div></li>
+<li><p>
+集合的推导式
+</p>
 <div class="org-src-container">
 <pre class="src src-python">SET = {EXPRESSION for VALUE in COLLECTION if CONDITION}
 </pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4ca7114" class="outline-2">
+<h2 id="org4ca7114">对象</h2>
+<div class="outline-text-2" id="text-org4ca7114">
+<p>
+Python中的类由关键字 <code>class</code> 定义，对象是类的实例化。
+</p>
+</div>
+<div id="outline-container-org6583caf" class="outline-3">
+<h3 id="org6583caf">迭代器(iterator)</h3>
+<div class="outline-text-3" id="text-org6583caf">
+<ul class="org-ul">
+<li>对于Python中的对象，只要定义了成员函数 <code>__iter__</code> 和 <code>__getitem__</code> ，那么该对象就是可迭代的(iterable)。可迭代的对象能够通过迭代器遍历。</li>
+<li>迭代器指定义了成员函数 <code>__next__</code> 的Python对象。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd12d7d1" class="outline-3">
+<h3 id="orgd12d7d1">生成器(generator)</h3>
+<div class="outline-text-3" id="text-orgd12d7d1">
+<ul class="org-ul">
+<li>生成器是一种特殊的迭代器，只能迭代一次。</li>
+<li>生成器不会把可迭代的对象全部放在内存中<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup>，而是边迭代边生成。</li>
+<li>创建生成器
+<ul class="org-ul">
+<li>推导式，如 <code>g = f(x) for x in range(10)</code> 。</li>
+<li>在自定义函数中添加 <code>yield</code> 关键字。</li>
+</ul></li>
+</ul>
 </div>
 </div>
 </div>
@@ -514,6 +553,10 @@ Python的 <code>null</code> 值，只存在一个实例。 如果一个函数没
 
 <div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 索引从0开始。 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+可以节约内存占用。
 </p></div></div>
 
 
