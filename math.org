@@ -11,7 +11,7 @@ As the titile indicates, this post is written to summarize the basic of mathemat
 - Bessel functions
   + First kind
     \begin{align*}
-      J_n(\beta) \triangleq \frac{1}{2\pi}\int_{-\pi}^{\pi} e^{j(\beta\sin\theta-n\theta)}d\theta
+      J_n(x) \triangleq \frac{1}{2\pi}\int_{-\pi}^{\pi} e^{j(x\sin\theta-n\theta)}d\theta
     \end{align*}
   + Second kind
 - Q-function
@@ -30,9 +30,9 @@ As the titile indicates, this post is written to summarize the basic of mathemat
 - Euler
   \begin{align*}
     e^{j\theta} &= \cos\theta + j\sin\theta \\
-    \cos\theta &= \frac{e^{j\theta} - e^{-j\theta}}{2} \\
-    \sin\theta &= \frac{e^{j\theta} + e^{-j\theta}}{2j}
-  \end{align*}  
+    \cos\theta &= \frac{e^{j\theta} + e^{-j\theta}}{2} \\
+    \sin\theta &= \frac{e^{j\theta} - e^{-j\theta}}{2j}
+  \end{align*}
 * Matrix
 ** Vectorization
 $\forall \mathbf{A} \in \mathbb{C}^{p \times n}$, $\mathbf{B} \in \mathbb{C}^{n \times m}$, $\mathbf{C} \in \mathbb{C}^{m \times q}$,
