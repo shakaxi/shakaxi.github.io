@@ -109,32 +109,43 @@ Python内建的 =datetime= 模块提供了 =datetime= ， =date= 和 =time= 类�
 - 可以使用大括号 ={}= 或者方法 =set= 创建集合。
 - 方法 =union= 或二元操作符 =|= 可以获得集合的并集。
 - 方法 =intersection= 或二元操作符 =&= 可以获得集合的交集。
-* 列表、字典和集合的推导式
-- 列表的推导式如下:
-#+begin_src python
-  LIST = [EXPRESSION for VALUE in COLLECTION if CONDITION]
-#+end_src
-其等价于
-#+begin_src python
-  LIST = []
-  for VALUE in COLLECTION:
-      if CONDITION:
-          LIST.append(EXPRESSION)
-#+end_src
-其中， =CONDITION= 可以省略。
-- 字典的推导式如下:
-#+begin_src python
-  DICTIONARY = {KEY: VALUE for VALUE in COLLECTION if CONDITION}
-#+end_src
-- 集合的推导式如下:
-#+begin_src python
-  SET = {EXPRESSION for VALUE in COLLECTION if CONDITION}
-#+end_src
+* 推导式
+- 列表的推导式
+  #+begin_src python
+    LIST = [EXPRESSION for VALUE in COLLECTION if CONDITION]
+  #+end_src
+  其等价于
+  #+begin_src python
+      LIST = []
+      for VALUE in COLLECTION:
+          if CONDITION:
+              LIST.append(EXPRESSION)
+  #+end_src
+  其中， =CONDITION= 可以省略。
+- 字典的推导式
+  #+begin_src python
+    DICTIONARY = {KEY: VALUE for VALUE in COLLECTION if CONDITION}
+  #+end_src
+- 集合的推导式
+  #+begin_src python
+    SET = {EXPRESSION for VALUE in COLLECTION if CONDITION}
+  #+end_src
+* 对象
+Python中的类由关键字 =class= 定义，对象是类的实例化。
+** 迭代器(iterator)
+- 对于Python中的对象，只要定义了成员函数 =__iter__= 和 =__getitem__= ，那么该对象就是可迭代的(iterable)。可迭代的对象能够通过迭代器遍历。
+- 迭代器指定义了成员函数 =__next__= 的Python对象。
+** 生成器(generator)
+- 生成器是一种特殊的迭代器，只能迭代一次。
+- 生成器不会把可迭代的对象全部放在内存中[fn:5]，而是边迭代边生成。
+- 创建生成器
+  + 推导式，如 =g = f(x) for x in range(10)= 。
+  + 在自定义函数中添加 =yield= 关键字。
+
 * Footnotes
+
+[fn:5]可以节约内存占用。
 [fn:4]索引从0开始。 
-
 [fn:3]可以存储任意大小数字。 
-
 [fn:2]双精度64位数值。 
-
 [fn:1]Python的 =null= 值，只存在一个实例。 如果一个函数没有显式的返回值，则它会隐式地返回 =None= 。它不仅是一个关键字，还是 =NoneType= 类型的唯一实例。
