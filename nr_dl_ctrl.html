@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2023-02-14 Tue 19:06 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NR - Downlink Control Information (DCI)</title>
+<title>NR - Downlink Control</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -195,39 +195,39 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">NR - Downlink Control Information (DCI)</h1>
+<h1 class="title">NR - Downlink Control</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0bc605c">Introduction</a></li>
-<li><a href="#org6aea2a4">Resource hierarchy</a>
+<li><a href="#org9ac0d53">Introduction</a></li>
+<li><a href="#org7f28e9b">Resource hierarchy</a>
 <ul>
-<li><a href="#orge1b7204">CORESET</a></li>
-<li><a href="#org6486e2b">CCE-to-REG mapping</a></li>
-<li><a href="#org0ff9b9d">Search space</a></li>
+<li><a href="#org4e6f5f8">CORESET</a></li>
+<li><a href="#org58e87f0">CCE-to-REG mapping</a></li>
+<li><a href="#orgfe2e47d">Search space</a></li>
 </ul>
 </li>
-<li><a href="#org7653502">DCI formats</a>
+<li><a href="#org6f5dcc6">DCI formats</a>
 <ul>
-<li><a href="#org1c6f041">Downlink scheduling assignments (DCI formats 1-0 and 1-1)</a></li>
-<li><a href="#orgcfd5ec6">Uplink scheduling grants (DCI formats 0-0 and 0-1)</a></li>
-<li><a href="#org016f280">Slot format indication (DCI format 2-0)</a></li>
-<li><a href="#orgbf1d494">Preemption indication (DCI format 2-1)</a></li>
-<li><a href="#orgef7660a">Uplink power control commands (DCI format 2-2)</a></li>
-<li><a href="#org1509e76">SRS control commands (DCI format 2-3)</a></li>
+<li><a href="#orgda3915a">Downlink scheduling assignments (DCI formats 1-0 and 1-1)</a></li>
+<li><a href="#org2d8c52d">Uplink scheduling grants (DCI formats 0-0 and 0-1)</a></li>
+<li><a href="#orgb73fe80">Slot format indication (DCI format 2-0)</a></li>
+<li><a href="#orgb3aa1b4">Preemption indication (DCI format 2-1)</a></li>
+<li><a href="#org5dfc741">Uplink power control commands (DCI format 2-2)</a></li>
+<li><a href="#orgd983d69">SRS control commands (DCI format 2-3)</a></li>
 </ul>
 </li>
-<li><a href="#orgddeebdd">Signalling of frequency domain resources</a></li>
-<li><a href="#org6b71344">Signalling of time domain resources</a></li>
-<li><a href="#org251f079">Signalling of TB size</a></li>
+<li><a href="#org94b1672">Signalling of frequency domain resources</a></li>
+<li><a href="#org96bac83">Signalling of time domain resources</a></li>
+<li><a href="#org11d81df">Signalling of TB size</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0bc605c" class="outline-2">
-<h2 id="org0bc605c">Introduction</h2>
-<div class="outline-text-2" id="text-org0bc605c">
+<div id="outline-container-org9ac0d53" class="outline-2">
+<h2 id="org9ac0d53">Introduction</h2>
+<div class="outline-text-2" id="text-org9ac0d53">
 <p>
 In NR system, the <i>downlink control information (DCI)</i> is carried by physical downlink control channel (PDCCH), which physically occupied a region in the 2-dimension resource grid, which is essentially comprised of a certain number of resource elements (RE's), a.k.a., <i>control resource set (CORESET)</i>. Different from the counterpart in LTE, i.e., PDCCH region which always covers the whole frequency range, CORESET does not span the whole bandwidth, since the bandwidth in NR system is remarkably large while not all the NR UE's are able to perform reception over the whole bandwidth.
 </p>
@@ -241,16 +241,16 @@ In NR, the channel coding scheme for PDCCH is based on <i>polar codes</i>. It ca
 </p>
 </div>
 </div>
-<div id="outline-container-org6aea2a4" class="outline-2">
-<h2 id="org6aea2a4">Resource hierarchy</h2>
-<div class="outline-text-2" id="text-org6aea2a4">
+<div id="outline-container-org7f28e9b" class="outline-2">
+<h2 id="org7f28e9b">Resource hierarchy</h2>
+<div class="outline-text-2" id="text-org7f28e9b">
 <p>
 Just as its name indicates, the basic element for PDCCH is <i>control channel element (CCE)</i>, which is comprised of 6 <i>resource element groups (REG's)</i>, and a REG is defined as one resource block (RB) in one OFDM symbol<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>. An <i>aggregation level</i> number of CCE's forms one PDCCH. The value of aggregation level can be 1, 2, 4, 8, 16<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.
 </p>
 </div>
-<div id="outline-container-orge1b7204" class="outline-3">
-<h3 id="orge1b7204">CORESET</h3>
-<div class="outline-text-3" id="text-orge1b7204">
+<div id="outline-container-org4e6f5f8" class="outline-3">
+<h3 id="org4e6f5f8">CORESET</h3>
+<div class="outline-text-3" id="text-org4e6f5f8">
 <p>
 A CORESET is essentially a time-frequency resource in which the UE tries to decode candidate control channels using one or more search spaces. For the sake of reuse between bandwidth parts (BWP's), a CORESET is per-cell other than per-BWP configured.
 </p>
@@ -272,9 +272,9 @@ Each CORESET can be configured with a <i>transmission configuration indication (
 </p>
 </div>
 </div>
-<div id="outline-container-org6486e2b" class="outline-3">
-<h3 id="org6486e2b">CCE-to-REG mapping</h3>
-<div class="outline-text-3" id="text-org6486e2b">
+<div id="outline-container-org58e87f0" class="outline-3">
+<h3 id="org58e87f0">CCE-to-REG mapping</h3>
+<div class="outline-text-3" id="text-org58e87f0">
 <p>
 CCE-to-REG mapping is per-CORESET configured. Generally, there are a couple of CCE-to-REG mapping schemes, interleaved and non-interleaved. The former targets frequency diversity, while the latter aims to facilitate interference coordination and opportunistic scheduling.
 </p>
@@ -341,9 +341,9 @@ A set of REG's which share the same precoding are termed one <i>REG bundle</i>. 
 </table>
 </div>
 </div>
-<div id="outline-container-org0ff9b9d" class="outline-3">
-<h3 id="org0ff9b9d">Search space</h3>
-<div class="outline-text-3" id="text-org0ff9b9d">
+<div id="outline-container-orgfe2e47d" class="outline-3">
+<h3 id="orgfe2e47d">Search space</h3>
+<div class="outline-text-3" id="text-orgfe2e47d">
 <p>
 As in LTE system, a NR UE also needs to blindly detect the DCI format<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>. A UE needs to monitor up to 4 different DCI sizes with 3 using C-RNTI and 1 using other RNTI's:
 </p>
@@ -364,13 +364,13 @@ A UE attempts to blindly decode a DCI based on <i>search space</i>, which is def
 </div>
 </div>
 </div>
-<div id="outline-container-org7653502" class="outline-2">
-<h2 id="org7653502">DCI formats</h2>
-<div class="outline-text-2" id="text-org7653502">
+<div id="outline-container-org6f5dcc6" class="outline-2">
+<h2 id="org6f5dcc6">DCI formats</h2>
+<div class="outline-text-2" id="text-org6f5dcc6">
 </div>
-<div id="outline-container-org1c6f041" class="outline-3">
-<h3 id="org1c6f041">Downlink scheduling assignments (DCI formats 1-0 and 1-1)</h3>
-<div class="outline-text-3" id="text-org1c6f041">
+<div id="outline-container-orgda3915a" class="outline-3">
+<h3 id="orgda3915a">Downlink scheduling assignments (DCI formats 1-0 and 1-1)</h3>
+<div class="outline-text-3" id="text-orgda3915a">
 <p>
 In NR, there are a couple of DCI formats for downlink scheduling assignments, the non-fallback format, i.e., DCI format 1-1, and the fallback format, i.e., DCI format 1-0. The former supports all NR features, whose size is variable since some information fields may be absent, which depends on whether the corresponding features are configured or not. The latter supports a limited set of NR functionalities with a fixed size.
 </p>
@@ -559,9 +559,9 @@ In NR, there are a couple of DCI formats for downlink scheduling assignments, th
 </table>
 </div>
 </div>
-<div id="outline-container-orgcfd5ec6" class="outline-3">
-<h3 id="orgcfd5ec6">Uplink scheduling grants (DCI formats 0-0 and 0-1)</h3>
-<div class="outline-text-3" id="text-orgcfd5ec6">
+<div id="outline-container-org2d8c52d" class="outline-3">
+<h3 id="org2d8c52d">Uplink scheduling grants (DCI formats 0-0 and 0-1)</h3>
+<div class="outline-text-3" id="text-org2d8c52d">
 <p>
 Similar to downlink scheduling assignments, uplink scheduling grants also use one of DCI formats, the non-fallback format, i.e., DCI format 0-1, and the fallback format, i.e., DCI format 0-0. Aiming to reduce the number of blind decoding, the non-fallback DCI formats for downlink scheduling assignments (format 1-1) and uplink scheduling grants (format 0-1) are aligned by padding to the smaller one.
 </p>
@@ -750,42 +750,42 @@ Similar to downlink scheduling assignments, uplink scheduling grants also use on
 </table>
 </div>
 </div>
-<div id="outline-container-org016f280" class="outline-3">
-<h3 id="org016f280">Slot format indication (DCI format 2-0)</h3>
-<div class="outline-text-3" id="text-org016f280">
+<div id="outline-container-orgb73fe80" class="outline-3">
+<h3 id="orgb73fe80">Slot format indication (DCI format 2-0)</h3>
+<div class="outline-text-3" id="text-orgb73fe80">
 <p>
 DCI format 2-0 is used to signal the SFI which is scrambled by SFI-RNTI and common to a severality of UE's.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbf1d494" class="outline-3">
-<h3 id="orgbf1d494">Preemption indication (DCI format 2-1)</h3>
-<div class="outline-text-3" id="text-orgbf1d494">
+<div id="outline-container-orgb3aa1b4" class="outline-3">
+<h3 id="orgb3aa1b4">Preemption indication (DCI format 2-1)</h3>
+<div class="outline-text-3" id="text-orgb3aa1b4">
 <p>
 DCI format 2-1 is used to signal the preemption indicator to a UE, which is scrambled by INT-RNTI and common to multiple UE's.
 </p>
 </div>
 </div>
-<div id="outline-container-orgef7660a" class="outline-3">
-<h3 id="orgef7660a">Uplink power control commands (DCI format 2-2)</h3>
-<div class="outline-text-3" id="text-orgef7660a">
+<div id="outline-container-org5dfc741" class="outline-3">
+<h3 id="org5dfc741">Uplink power control commands (DCI format 2-2)</h3>
+<div class="outline-text-3" id="text-org5dfc741">
 <p>
 As a complement to the power control commands, DCI format 2-2 aims to support power control for semipersistent scheduling. For the purpose of reducing the number of blind decoding attempts, its size is aligned with the size of the fallback DCI formats, i.e., DCI formats 0-0 and 1-0.
 </p>
 </div>
 </div>
-<div id="outline-container-org1509e76" class="outline-3">
-<h3 id="org1509e76">SRS control commands (DCI format 2-3)</h3>
-<div class="outline-text-3" id="text-org1509e76">
+<div id="outline-container-orgd983d69" class="outline-3">
+<h3 id="orgd983d69">SRS control commands (DCI format 2-3)</h3>
+<div class="outline-text-3" id="text-orgd983d69">
 <p>
 DCI format 2-3 is proposed for power control of SRS, which is decoupled with the power control for PUSCH.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgddeebdd" class="outline-2">
-<h2 id="orgddeebdd">Signalling of frequency domain resources</h2>
-<div class="outline-text-2" id="text-orgddeebdd">
+<div id="outline-container-org94b1672" class="outline-2">
+<h2 id="org94b1672">Signalling of frequency domain resources</h2>
+<div class="outline-text-2" id="text-org94b1672">
 <p>
 The frequency-domain resource allocation fields indicate the resource blocks in the active BWP. Regarding the indication, there are a couple of methods, termed <i>type-0</i> and <i>type-1</i> respectively. The former is based on a bitmap, and will bring about large signaling overhead. While the latter covers the a starting position in the frequency domain and an amount of resources.
 </p>
@@ -799,9 +799,9 @@ Generally, many transmission parameters are per-BWP configured. The information 
 </p>
 </div>
 </div>
-<div id="outline-container-org6b71344" class="outline-2">
-<h2 id="org6b71344">Signalling of time domain resources</h2>
-<div class="outline-text-2" id="text-org6b71344">
+<div id="outline-container-org96bac83" class="outline-2">
+<h2 id="org96bac83">Signalling of time domain resources</h2>
+<div class="outline-text-2" id="text-org96bac83">
 <p>
 The time domain allocation field in DCI is essentially an entry index of the corresponding table. Totally two tables are configured by RRC signalling, for downlink scheduling assignment and uplink scheduling grant respectively. A table has up to 16 entries, with each entry consisting of
 </p>
@@ -817,9 +817,9 @@ The time domain allocation field in DCI is essentially an entry index of the cor
 </p>
 </div>
 </div>
-<div id="outline-container-org251f079" class="outline-2">
-<h2 id="org251f079">Signalling of TB size</h2>
-<div class="outline-text-2" id="text-org251f079">
+<div id="outline-container-org11d81df" class="outline-2">
+<h2 id="org11d81df">Signalling of TB size</h2>
+<div class="outline-text-2" id="text-org11d81df">
 <p>
 Regarding TB size determination, NR adopts a hybrid method. For smaller TB, NR defines a table to lookup. While for larger TB, the TB size can be computed based on a formula.
 </p>
