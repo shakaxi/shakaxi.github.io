@@ -83,7 +83,7 @@
 - [[file:nr_csirs.org][NR - Channel State Information Reference Signal (CSI-RS)]]
 - [[file:nr_dmrs.org][NR - Demodulation Reference Signal (DMRS)]]
 - [[file:nr_dl_cb.org][NR - Downlink Codebook]]
-- [[file:nr_dci.org][NR - Downlink Control Information (DCI)]]
+- [[file:nr_dl_ctrl.org][NR - Downlink Control]]
 - [[file:nr_mtrp.org][NR - Multi-TRP Transmission]]
 - [[file:nr_nm.org][NR - Numerology]]
 - [[file:nr_ptrs.org][NR - Phase Tracking Reference Signal (PTRS)]]
