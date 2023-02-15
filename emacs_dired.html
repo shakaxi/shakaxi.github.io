@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2023-02-15 Wed 10:17 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Dired</title>
@@ -202,7 +202,7 @@
 <ul>
 <li><a href="#orgf122252">Introduction</a></li>
 <li><a href="#orgab0ad0f">Enter dired buffer</a></li>
-<li><a href="#org76693d5">Navigation</a></li>
+<li><a href="#org1f1ddac">View and navigation</a></li>
 <li><a href="#org904a0ac">Marking &amp; unmarking</a></li>
 <li><a href="#org3bcbaca">Operations</a></li>
 <li><a href="#org314604c">Working across directories</a></li>
@@ -234,9 +234,9 @@ Dired can be entered in following ways:
 </ul>
 </div>
 </div>
-<div id="outline-container-org76693d5" class="outline-2">
-<h2 id="org76693d5">Navigation</h2>
-<div class="outline-text-2" id="text-org76693d5">
+<div id="outline-container-org1f1ddac" class="outline-2">
+<h2 id="org1f1ddac">View and navigation</h2>
+<div class="outline-text-2" id="text-org1f1ddac">
 <table>
 
 
@@ -253,23 +253,28 @@ Dired can be entered in following ways:
 </thead>
 <tbody>
 <tr>
+<td class="org-left"><code>(</code></td>
+<td class="org-left">Toggle detail information (<code>dired-hide-details-mode</code>).</td>
+</tr>
+
+<tr>
 <td class="org-left"><code>^</code></td>
-<td class="org-left">Go up one directory</td>
+<td class="org-left">Go up one directory (<code>dired-up-directory</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>n/C-n</code></td>
-<td class="org-left">Move the point down an entry</td>
+<td class="org-left">Move the point down an entry (<code>dired-next-line</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>p/C-p</code></td>
-<td class="org-left">Move the point up an entry</td>
+<td class="org-left">Move the point up an entry (<code>dired-previous-line</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>q</code></td>
-<td class="org-left">Quit dired</td>
+<td class="org-left">Quit dired (<code>quit-window</code>).</td>
 </tr>
 </tbody>
 </table>
@@ -298,42 +303,42 @@ Marking and unmarking enable operations on multiple files or directories.
 <tbody>
 <tr>
 <td class="org-left"><code>m</code></td>
-<td class="org-left">Mark the active entry or the selected region</td>
+<td class="org-left">Mark the active entry or the selected region (<code>dired-mark</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>u</code></td>
-<td class="org-left">Unmark the active entry or the selected region</td>
+<td class="org-left">Unmark the active entry or the selected region (<code>dired-unmark</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>U</code></td>
-<td class="org-left">Unmark everything</td>
+<td class="org-left">Unmark everything (<code>dired-unmark-all-marks</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>d</code></td>
-<td class="org-left">Flag for deletion</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>t</code></td>
-<td class="org-left">Toggle existing marking</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>* %</code></td>
-<td class="org-left">Mark files and directories by regexp</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>* c</code></td>
-<td class="org-left">Change marks</td>
+<td class="org-left">Flag for deletion (<code>dired-flag-file-deletion</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>~</code></td>
-<td class="org-left">Mark backup files</td>
+<td class="org-left">Mark backup files (<code>dired-flag-backup-files</code>).</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>* %</code></td>
+<td class="org-left">Mark files and directories by regexp (<code>dired-mark-files-regexp</code>).</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>* c</code></td>
+<td class="org-left">Change marks (<code>dired-change-marks</code>).</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>t</code></td>
+<td class="org-left">Toggle existing marking (<code>dired-toggle-marks</code>).</td>
 </tr>
 </tbody>
 </table>
@@ -359,57 +364,57 @@ Marking and unmarking enable operations on multiple files or directories.
 <tbody>
 <tr>
 <td class="org-left"><code>f/RET</code></td>
-<td class="org-left">Visit the file/directory</td>
+<td class="org-left">Visit the file/directory (<code>dired-find-file</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>v</code></td>
-<td class="org-left">View the file/directory in read-only mode</td>
+<td class="org-left">View the file/directory in read-only mode (<code>dired-view-file</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>g</code></td>
-<td class="org-left">Refresh dired buffer</td>
+<td class="org-left">Refresh dired buffer (<code>revert-buffer</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>+</code></td>
-<td class="org-left">Create a directory</td>
+<td class="org-left">Create a directory (<code>dired-create-directory</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>C</code></td>
-<td class="org-left">Copy marked files/directories</td>
+<td class="org-left">Copy marked files/directories (<code>dired-do-copy</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>R</code></td>
-<td class="org-left">Rename/move marked files/directories</td>
+<td class="org-left">Rename/move marked files/directories (<code>dired-do-rename</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>O</code></td>
-<td class="org-left">Perform <code>chown</code> on marked files/directories</td>
+<td class="org-left">Perform <code>chown</code> on marked files/directories (<code>dired-do-chown</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>G</code></td>
-<td class="org-left">Perform <code>chgrp</code> on marked files/directories</td>
+<td class="org-left">Perform <code>chgrp</code> on marked files/directories (<code>dired-do-chgrp</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>M</code></td>
-<td class="org-left">Perform <code>chmod</code> on marked files/directories</td>
+<td class="org-left">Perform <code>chmod</code> on marked files/directories (<code>dired-do-chmod</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>D</code></td>
-<td class="org-left">Delete marked files/directories</td>
+<td class="org-left">Delete marked files/directories (<code>dired-do-delete</code>).</td>
 </tr>
 
 <tr>
 <td class="org-left"><code>x</code></td>
-<td class="org-left">Delete <i>flagged</i> (marked by <code>d</code>) files/directories</td>
+<td class="org-left">Delete <i>flagged</i> (marked by <code>d</code>) files/directories (<code>dired-do-flagged-delete</code>).</td>
 </tr>
 </tbody>
 </table>
