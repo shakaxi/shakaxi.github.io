@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2023-02-24 Fri 01:08 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>C++ - Armadillo</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">C++ - Armadillo</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org99c4fc7">Introduction</a></li>
+<li><a href="#org89e2d71">Installation</a></li>
+<li><a href="#orgffb383f">Usage</a>
+<ul>
+<li><a href="#org459f400">Typedef for basic elements</a></li>
+<li><a href="#orgcb58472">Fill form</a></li>
+<li><a href="#org2fe505b">Classes</a>
+<ul>
+<li><a href="#orgf62c507">Matrix</a>
+<ul>
+<li><a href="#org17484f2">Typedef</a></li>
+<li><a href="#org954e2ed">Constructor</a></li>
+<li><a href="#org100f968">Submatrix view</a>
+<ul>
+<li><a href="#orga62991c">Continuous</a></li>
+<li><a href="#org317c8ff">Non-continuous</a></li>
+</ul>
+</li>
+<li><a href="#org5fb83ad">Member functions</a></li>
+</ul>
+</li>
+<li><a href="#orgecbd894">Vector</a>
+<ul>
+<li><a href="#org8060c42">Typedef</a>
+<ul>
+<li><a href="#orgf587f9a">Column vector</a></li>
+<li><a href="#orga518eb6">Row vector</a></li>
+</ul>
+</li>
+<li><a href="#org044669a">Constructor</a></li>
+<li><a href="#orgaf36b90">Subvector view</a>
+<ul>
+<li><a href="#orgfa79f2a">Continuous</a></li>
+<li><a href="#org4f4f115">Non-continuous</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org764a3bd">Cube</a>
+<ul>
+<li><a href="#orgdb0ada5">Typedef</a></li>
+<li><a href="#orgadd395b">Constructor</a></li>
+<li><a href="#org71ac4a7">Subcube view</a>
+<ul>
+<li><a href="#org5eeddfc">Contiguous</a></li>
+<li><a href="#org63acfa0">Non-contiguous</a></li>
+</ul>
+</li>
+<li><a href="#org477ef75">Member functions</a></li>
+</ul>
+</li>
+<li><a href="#org0a16ea7">Field</a>
+<ul>
+<li><a href="#org04d45f3">Constructor</a></li>
+<li><a href="#org10374f6">Subfield view</a>
+<ul>
+<li><a href="#org8caef7f">For a 2D field</a></li>
+<li><a href="#org06fe114">For a 3D field</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf11c982">Length and size</a></li>
+<li><a href="#org3fd839e">Common member functions</a></li>
+<li><a href="#orgb6b7ca6">Overloaded operators</a></li>
+<li><a href="#orgcdd042e">Element access</a>
+<ul>
+<li><a href="#org32e2209">Iterators</a>
+<ul>
+<li><a href="#orgeb43b6b">Member functions</a></li>
+<li><a href="#org4df0453">Iterator types</a>
+<ul>
+<li><a href="#orge679364">For read/write access</a></li>
+<li><a href="#orgbcdb09a">For read-only access</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd3a4d86">Container-compatible functions</a></li>
+</ul>
+</li>
+<li><a href="#org52ce5bf">Generation</a>
+<ul>
+<li><a href="#org33e417d">Matrix</a></li>
+<li><a href="#org2d176c6">Vector</a></li>
+<li><a href="#org872b215">Cube</a></li>
+</ul>
+</li>
+<li><a href="#org8a6871a">Functions</a>
+<ul>
+<li><a href="#orgb779166">Matrix</a></li>
+<li><a href="#org7462d4c">Vector</a></li>
+<li><a href="#org39491bc">Cube</a></li>
+</ul>
+</li>
+<li><a href="#org6b12521">Miscellaneous</a>
+<ul>
+<li><a href="#orgf1c5857">Constant</a></li>
+<li><a href="#org94c9909">Timer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org99c4fc7" class="outline-2">
+<h2 id="org99c4fc7">Introduction</h2>
+<div class="outline-text-2" id="text-org99c4fc7">
+<p>
+<i>Armadillo</i><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> is an excellent C++ library, which provides efficient linear algebra related operations, based on a series of classes, e.g., for vectors, matrices, etc. Thanks to its friendly interfaces, similar to <i>MATLAB</i>, the library is very easy to use.
+</p>
+
+<p>
+Armadillo is developped by Conrad Sanderson and Ryan Curtin, and released under <a href="https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)">Apache 2.0 license</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org89e2d71" class="outline-2">
+<h2 id="org89e2d71">Installation</h2>
+<div class="outline-text-2" id="text-org89e2d71">
+<p>
+Matrix decomposition related operations are developped based on the existing third-party libraries, e.g., the open source <a href="https://github.com/xianyi/OpenBLAS.git">OpenBLAS</a> or <a href="http://www.netlib.org/lapack">LAPACK</a>, or even the commercial <a href="http://software.intel.com/en-us/intel-mkl">MKL</a>. In my opinion, openBLAS is the best choice, and can be installed in ArchLinux.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S openblas
+</pre>
+</div>
+
+<p>
+The latest codes resides in a git repository<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>. Based on the source codes can be compiled and installed as usual.
+</p>
+
+<p>
+Besides, the library can be easily installed as system package. Taking ArchLinux for instance, armadillo can be installed by
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S armadillo
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgffb383f" class="outline-2">
+<h2 id="orgffb383f">Usage</h2>
+<div class="outline-text-2" id="text-orgffb383f">
+<p>
+Note that the detailed usage of the libraries can be found in its <a href="https://arma.sourceforge.net/docs.html">online manual</a>, and this post just provides a brief and incomplete summary as a quick lookup reference after my walking through the manual.
+</p>
+</div>
+<div id="outline-container-org459f400" class="outline-3">
+<h3 id="org459f400">Typedef for basic elements</h3>
+<div class="outline-text-3" id="text-org459f400">
+<ul class="org-ul">
+<li><code>uword</code> is a typedef for <code>unsigned int</code>.</li>
+<li><code>sword</code> is a typedef for <code>(signed) int</code>.</li>
+<li><code>cx_float</code> is a typedef for <code>std::complex&lt;float&gt;</code>.</li>
+<li><code>cx_double</code> is a typedef for <code>std::complex&lt;double&gt;</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcb58472" class="outline-3">
+<h3 id="orgcb58472">Fill form</h3>
+<div class="outline-text-3" id="text-orgcb58472">
+<p>
+The library defines a series of <code>fill_form</code>, which significantly facilitates the initialization of the data type classes.
+</p>
+<ul class="org-ul">
+<li><code>fill::zeros</code> sets all elements to 0.</li>
+<li><code>fill::ones</code> sets all elements to 1.</li>
+<li><code>fill::eye</code> initializes a matrix as an identity matrix.</li>
+<li><code>fill::randu</code> sets all elements to uniform distributed random values, i.e., \(\mathbb{U}(0, 1)\).</li>
+<li><code>fill::randn</code> sets all elements to standard Gaussian distributed random values, i.e., \(\mathbb{N}(0, 1)\).</li>
+<li><code>fill::value(scalar)</code> sets all elements to a specified scalar.</li>
+<li><code>fill::none</code> does not initialize the elements.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2fe505b" class="outline-3">
+<h3 id="org2fe505b">Classes</h3>
+<div class="outline-text-3" id="text-org2fe505b">
+</div>
+<div id="outline-container-orgf62c507" class="outline-4">
+<h4 id="orgf62c507">Matrix</h4>
+<div class="outline-text-4" id="text-orgf62c507">
+<p>
+Considering the type of component elements, matrix is defined as a template <code>Mat&lt;type&gt;</code>, where <code>type</code> can be signed or unsigned, real or complex, int or float or even double. A matrix is column-wise stored in the memory.
+</p>
+</div>
+<div id="outline-container-org17484f2" class="outline-5">
+<h5 id="org17484f2">Typedef</h5>
+<div class="outline-text-5" id="text-org17484f2">
+<p>
+Moreover, following types have been defined for convenience.
+</p>
+<ul class="org-ul">
+<li><code>imat</code> is a typedef for <code>Mat&lt;sword&gt;</code>.</li>
+<li><code>umat</code> is a typedef for <code>Mat&lt;uword&gt;</code>.</li>
+<li><code>fmat</code> is a typedef for <code>Mat&lt;float&gt;</code>.</li>
+<li><code>mat</code> or <code>dmat</code> are both typedefs for <code>Mat&lt;double&gt;</code>.</li>
+<li><code>cx_fmat</code> is a typedef for <code>Mat&lt;cx_float&gt;</code>.</li>
+<li><code>cx_mat</code> and <code>cx_dmat</code> are both typedefs for <code>Mat&lt;cx_double&gt;</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org954e2ed" class="outline-5">
+<h5 id="org954e2ed">Constructor</h5>
+<div class="outline-text-5" id="text-org954e2ed">
+<p>
+A rich number of constructors have been defined, e.g., taking <code>mat</code> for instance,
+</p>
+<ul class="org-ul">
+<li><code>mat()</code></li>
+<li><code>mat(n_rows, n_cols)</code></li>
+<li><code>mat(n_rows, n_cols, fill_form)</code></li>
+<li><code>mat::fixed&lt;n_rows, n_cols&gt;</code> creates a matrix with fixed size.</li>
+<li><code>mat::fixed&lt;n_rows, n_cols&gt;(fill_form)</code></li>
+<li><code>mat(size(X))</code></li>
+<li><code>mat(size(X), fill_form)</code></li>
+<li><code>mat(mat)</code></li>
+<li><code>mat(vec)</code></li>
+<li><code>mat(rowvec)</code></li>
+<li><code>mat(initializer_list)</code></li>
+<li><code>mat(string)</code></li>
+<li><code>mat(std::vector)</code> creates a column vector, as a single-column matrix.</li>
+<li><code>mat(sp_mat)</code> creates a dense matrix based on a sparse matrix.</li>
+<li><code>cx_mat(mat, mat)</code> constructs a complex matrix based on a pair of real matrices, as real and imaginary parts respectively.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org100f968" class="outline-5">
+<h5 id="org100f968">Submatrix view</h5>
+<div class="outline-text-5" id="text-org100f968">
+</div>
+<div id="outline-container-orga62991c" class="outline-6">
+<h6 id="orga62991c">Continuous</h6>
+<div class="outline-text-6" id="text-orga62991c">
+<ul class="org-ul">
+<li><code>X.col(idx)</code> / <code>X.row(idx)</code></li>
+<li><code>X.cols(idx1, idx2)</code> / <code>X.rows(idx1, idx2)</code></li>
+<li><code>X.submat(row1, col1, row2, col2)</code></li>
+<li><code>X(span(row1, row2), span(col1, col2))</code></li>
+<li><code>X(row, col, size(n_rows, n_cols))</code> / <code>X(row, col, size(Y))</code></li>
+<li><code>X(span(row1, row2), col)</code></li>
+<li><code>X(row, span(col1, col2))</code></li>
+<li><code>X.head_cols(n_cols)</code> / <code>X.head_rows(n_rows)</code></li>
+<li><code>X.tail_cols(n_cols)</code> / <code>X.tail_rows(n_rows)</code></li>
+</ul>
+
+<p>
+<code>span</code> defines a continuous range, e.g.,
+</p>
+<ul class="org-ul">
+<li><code>span(a, b)</code> describes a contiguous range from \(a\) to \(b\), \(a < b\).</li>
+<li><code>span(a)</code> indicates a particular row/column/slice.</li>
+<li><code>span()</code> or <code>span::all</code> indicates the entire range.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org317c8ff" class="outline-6">
+<h6 id="org317c8ff">Non-continuous</h6>
+<div class="outline-text-6" id="text-org317c8ff">
+<ul class="org-ul">
+<li><code>X.cols(idx_vec)</code> / <code>X.rows(idx_vec)</code></li>
+<li><code>X.submat(row_vec, col_vec)</code></li>
+<li><code>X(row_vec, col_vec)</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org5fb83ad" class="outline-5">
+<h5 id="org5fb83ad">Member functions</h5>
+<div class="outline-text-5" id="text-org5fb83ad">
+<ul class="org-ul">
+<li><code>.eye()</code> : Set the matrix to an identity matrix.</li>
+<li><code>.diag(k = 0)</code> : Return a column vector of a matrix.</li>
+<li><code>.as_col()</code> / <code>.as_row()</code> : Return a column/row vector by concatenating all the columns/rows of the matrix.</li>
+<li><code>.each_col(idx_vec)</code> / <code>.each_row(idx_vec)</code> / <code>.each_col(lambda)</code> / <code>.each_row(lambda)</code> : Apply a vector operation to each column/row of a matrix. The argument <code>idx_vec</code> is optional, and by default all columns/rows are used. If the lambda function <code>lambda</code> is specified, then the function must accept a reference to a <code>Col&lt;type&gt;</code> or <code>Row&lt;type&gt;</code> object with the same element type as the underlying matrix. Following operations have been supported.
+<ul class="org-ul">
+<li><code>+/-//</code> : Addition/subtraction/division</li>
+<li><code>%</code> : Element-wise multiplication</li>
+<li><code>=</code> : Assignment (copy)</li>
+<li><code>+=/-=//=</code> : In-place addition/subtraction/division</li>
+<li><code>%=</code> : In-place element-wise multiplication</li>
+</ul></li>
+<li><code>.st()</code> : Return a transposed copy (only applicable for a complex matrix)</li>
+<li><code>.t()</code> : Return a Hermitian transposed copy<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.</li>
+<li><code>.i()</code> : Return the inverse for a square matrix.</li>
+<li><code>.is_square()</code></li>
+<li><code>.is_vec()</code> : Return <code>true</code> if the matrix is a column or row vector.</li>
+<li><code>.is_colvec</code> / <code>.is_rowvec</code></li>
+<li><code>.is_trimatu()</code> / <code>.is_trimatl()</code></li>
+<li><code>.is_diagmat()</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgecbd894" class="outline-4">
+<h4 id="orgecbd894">Vector</h4>
+<div class="outline-text-4" id="text-orgecbd894">
+<p>
+In the library, column vectors and row vectors are different, represented by <code>Col&lt;type&gt;</code> and <code>Row&lt;type&gt;</code> respectively.
+</p>
+</div>
+<div id="outline-container-org8060c42" class="outline-5">
+<h5 id="org8060c42">Typedef</h5>
+<div class="outline-text-5" id="text-org8060c42">
+</div>
+<div id="outline-container-orgf587f9a" class="outline-6">
+<h6 id="orgf587f9a">Column vector</h6>
+<div class="outline-text-6" id="text-orgf587f9a">
+<ul class="org-ul">
+<li><code>icolvec</code> and <code>ivec</code> are both typedefs for <code>Col&lt;sword&gt;</code>.</li>
+<li><code>ucolvec</code> and <code>uvec</code> are both typedefs for <code>Col&lt;uword&gt;</code>.</li>
+<li><code>fcolvec</code> and <code>fvec</code> are both typedefs for <code>Col&lt;float&gt;</code>.</li>
+<li><code>dcolvec</code>, <code>dvec</code>, <code>colvec</code> and <code>vec</code> are all typedefs for <code>Col&lt;double&gt;</code>.</li>
+<li><code>cx_fcolvec</code> and <code>cx_fvec</code> are both typedefs for <code>Col&lt;cx_float&gt;</code>.</li>
+<li><code>cx_dcolvec</code>, <code>cx_dvec</code>, <code>cx_colvec</code> and <code>cx_vec</code> are all typedefs for <code>Col&lt;cx_double&gt;</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga518eb6" class="outline-6">
+<h6 id="orga518eb6">Row vector</h6>
+<div class="outline-text-6" id="text-orga518eb6">
+<ul class="org-ul">
+<li><code>irowvec</code> is a typedef for <code>Row&lt;sword&gt;</code>.</li>
+<li><code>urowvec</code> is a typedef for <code>Row&lt;uword&gt;</code>.</li>
+<li><code>frowvec</code> is a typedef for <code>Row&lt;float&gt;</code>.</li>
+<li><code>drowvec</code> and <code>rowvec</code> are both typedefs for <code>Row&lt;double&gt;</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org044669a" class="outline-5">
+<h5 id="org044669a">Constructor</h5>
+<div class="outline-text-5" id="text-org044669a">
+<p>
+Taking <code>vec/rowvec</code> for instance, following constructs have been defined.
+</p>
+<ul class="org-ul">
+<li><code>vec/rowvec()</code></li>
+<li><code>vec/rowvec(n_elem)</code></li>
+<li><code>vec/rowvec(n_elem, fill_form)</code></li>
+<li><code>vec/rowvec::fixed&lt;n_elem&gt;</code> creates a column/row vector with fixed size.</li>
+<li><code>vec/rowvec::fixed&lt;n_elem&gt;(fill_form)</code></li>
+<li><code>vec/rowvec(size(X))</code></li>
+<li><code>vec/rowvec(size(X), fill_form)</code></li>
+<li><code>vec/rowvec(vec/rowvec)</code></li>
+<li><code>vec/rowvec(mat)</code> creates a column/row vector based on a single-column/row matrix.</li>
+<li><code>vec/rowvec(initializer_list)</code></li>
+<li><code>vec/rowvec(string)</code> creates a column/row vector based on a string with space as delimitor.</li>
+<li><code>vec/rowvec(std::vector)</code> creates a column/row vector based on a vector container in STL.</li>
+<li><code>cx_vec/rowvec(vec/rowvec, vec/rowvec)</code> constructs a complex column/row vector based on a pair of real column/row vectors, as real and imaginary parts respectively.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaf36b90" class="outline-5">
+<h5 id="orgaf36b90">Subvector view</h5>
+<div class="outline-text-5" id="text-orgaf36b90">
+</div>
+<div id="outline-container-orgfa79f2a" class="outline-6">
+<h6 id="orgfa79f2a">Continuous</h6>
+<div class="outline-text-6" id="text-orgfa79f2a">
+<ul class="org-ul">
+<li><code>V(span(idx1, idx2))</code></li>
+<li><code>V.subvec(idx1, idx2)</code> / <code>V.subvec(idx, size(U))</code></li>
+<li><code>V.head(n_elem)</code> / <code>V.tail(n_elem)</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4f4f115" class="outline-6">
+<h6 id="org4f4f115">Non-continuous</h6>
+<div class="outline-text-6" id="text-org4f4f115">
+<ul class="org-ul">
+<li><code>X.elem(idx_vec)</code> / <code>X(idx_vec)</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org764a3bd" class="outline-4">
+<h4 id="org764a3bd">Cube</h4>
+<div class="outline-text-4" id="text-org764a3bd">
+<p>
+A cube is essentially a 3-dimension (3D) matrix, which is compriesd of a series of 2D matrices, a.k.a. <i>slices</i>. Cube class is also a template, i.e., <code>Cube&lt;type&gt;</code>.
+</p>
+</div>
+<div id="outline-container-orgdb0ada5" class="outline-5">
+<h5 id="orgdb0ada5">Typedef</h5>
+<div class="outline-text-5" id="text-orgdb0ada5">
+<ul class="org-ul">
+<li><code>icube</code> is a typedef for <code>Cube&lt;sword&gt;</code>.</li>
+<li><code>ucube</code> is a typedef for <code>Cube&lt;uword&gt;</code>.</li>
+<li><code>fcube</code> is a typedef for <code>Cube&lt;float&gt;</code>.</li>
+<li><code>dcube</code> and <code>cube</code> are both typedefs for <code>Cube&lt;double&gt;</code>.</li>
+<li><code>cx_fcube</code> is a typedef for <code>Cube&lt;cx_float&gt;</code>.</li>
+<li><code>cx_dcube</code> and <code>cx_cube</code> are both typedefs for <code>Cube&lt;cx_double&gt;</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgadd395b" class="outline-5">
+<h5 id="orgadd395b">Constructor</h5>
+<div class="outline-text-5" id="text-orgadd395b">
+<ul class="org-ul">
+<li><code>cube()</code></li>
+<li><code>cube(n_rows, n_cols, n_slices)</code></li>
+<li><code>cube(n_rows, n_cols, n_slices, fill_form)</code></li>
+<li><code>cube::fixed&lt;n_rows, n_cols, n_slices&gt;</code> creates a cube with fixed size.</li>
+<li><code>cube(size(X))</code></li>
+<li><code>cube(size(X), fill_form)</code></li>
+<li><code>cube(cube)</code></li>
+<li><code>cx_cube(cube, cube)</code> constructs a complex cube based on a pair of real cubes, as real and imaginary parts respectively.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org71ac4a7" class="outline-5">
+<h5 id="org71ac4a7">Subcube view</h5>
+<div class="outline-text-5" id="text-org71ac4a7">
+</div>
+<div id="outline-container-org5eeddfc" class="outline-6">
+<h6 id="org5eeddfc">Contiguous</h6>
+<div class="outline-text-6" id="text-org5eeddfc">
+<ul class="org-ul">
+<li><code>Q.slice(idx)</code> / <code>Q.slices(idx1, idx2)</code></li>
+<li><code>Q.col_as_mat(idx)</code> / <code>Q.row_as_mat(idx)</code> returns a flattened matrix.</li>
+<li><code>Q.row(idx)</code> / <code>Q.col(idx)</code></li>
+<li><code>Q.rows(idx1, idx2)</code> / <code>Q.cols(idx1, idx2)</code></li>
+<li><code>Q.subcube(row1, col1, slice1, row2, col2, slice2)</code></li>
+<li><code>Q(span(row1, row2), span(col1, col2), span(slice1, slice2))</code></li>
+<li><code>Q(row1, col1, slice1, size(n_rows, n_cols, n_slices))</code> / <code>Q(row, col, slice, size(R))</code></li>
+<li><code>Q.head_slices(n_slices)</code> / <code>Q.tail_slices(n_slices)</code></li>
+<li><code>Q.tube(row, col)</code><sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup> / <code>Q.tube(row1, col1, row2, col2)</code> / <code>Q.tube(span(row1, row2), span(col1, col2))</code> / <code>Q.tube(row, col, size(n_rows, n_cols))</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org63acfa0" class="outline-6">
+<h6 id="org63acfa0">Non-contiguous</h6>
+<div class="outline-text-6" id="text-org63acfa0">
+<ul class="org-ul">
+<li><code>Q.elem(idx_vec)</code></li>
+<li><code>Q(idx_vec)</code></li>
+<li><code>Q.slices(idx_vec)</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org477ef75" class="outline-5">
+<h5 id="org477ef75">Member functions</h5>
+<div class="outline-text-5" id="text-org477ef75">
+<ul class="org-ul">
+<li><code>.each_slice(idx_vec)</code> / <code>.each_slice(lambda)</code> / <code>.each_slice(lambda, use_mp = false)</code>: Apply a matrix operation to each slice/matrix of a cube. The argument <code>idx_vec</code> is optional, and by default all slices are used. If the lambda function <code>lambda</code> is specified, then the function must accept a reference to a <code>Mat&lt;type&gt;</code> object with the same element type as the underlying cube. <code>use_mp</code> is a boolean indicator of <i>OpenMP</i> for multithreading. If it is set to <code>true</code>, then the <code>lambda</code> must be thread-safe, i.e., cannot write to variables outside of its scope.</li>
+<li><code>.insert_slices(idx, X)</code> : Insert <code>X</code> at <code>idx</code> th slice.</li>
+<li><code>.insert_slices(idx, slice_num)</code> : Insert <code>slice_num</code> slices at <code>idx</code> th slice, and the <code>slice_num</code> slices inserted are all set to 0.</li>
+<li><code>.shed_slice(idx)</code> : Remove <code>idx</code> th slice from the underlying cube.</li>
+<li><code>.shed_slices(first, last)</code> : Remove the slices between <code>first</code> th and <code>last</code> th slices.</li>
+<li><code>.shed_slices(idx_vec)</code> : Remove the slices with indices in <code>idx_vec</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0a16ea7" class="outline-4">
+<h4 id="org0a16ea7">Field</h4>
+<div class="outline-text-4" id="text-org0a16ea7">
+<p>
+According to the online manual, a field is a class to store <b>arbitrary objects</b> in <b>matrix-like</b> or <b>cube-like</b> layouts. Given a vector or a matrix or a cube, all the elements (e.g., scalars in a vector, vectors in a matrix, matrices in a cube) must have the identical type and equal size. But in a field, the elements just have the identical type, but their lengths or sizes can be different from one element to another.
+</p>
+</div>
+<div id="outline-container-org04d45f3" class="outline-5">
+<h5 id="org04d45f3">Constructor</h5>
+<div class="outline-text-5" id="text-org04d45f3">
+<p>
+A field object can be created by any one of the constructors below, where <code>object_type</code> is the element type, which can be vector or matrix or cube.
+</p>
+<ul class="org-ul">
+<li><code>field&lt;object_type&gt;()</code></li>
+<li><code>field&lt;object_type&gt;(n_elem)</code></li>
+<li><code>field&lt;object_type&gt;(n_rows, n_cols)</code></li>
+<li><code>field&lt;object_type&gt;(n_rows, n_cols, n_slices)</code></li>
+<li><code>field&lt;object_type&gt;(size(X))</code></li>
+<li><code>field&lt;object_type&gt;(field&lt;object_type&gt;)</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org10374f6" class="outline-5">
+<h5 id="org10374f6">Subfield view</h5>
+<div class="outline-text-5" id="text-org10374f6">
+</div>
+<div id="outline-container-org8caef7f" class="outline-6">
+<h6 id="org8caef7f">For a 2D field</h6>
+<div class="outline-text-6" id="text-org8caef7f">
+<ul class="org-ul">
+<li><code>F.row(idx)</code></li>
+<li><code>F.col(idx)</code></li>
+<li><code>F.rows(row1, row2)</code></li>
+<li><code>F.cols(col1, col2)</code></li>
+<li><code>F.subfield(row1, col1, row2, col2)</code></li>
+<li><code>F(span(row1, row2), span(col1, col2))</code></li>
+<li><code>F(row, col, size(G))</code></li>
+<li><code>F(row, col, size(n_rows, n_cols))</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org06fe114" class="outline-6">
+<h6 id="org06fe114">For a 3D field</h6>
+<div class="outline-text-6" id="text-org06fe114">
+<ul class="org-ul">
+<li><code>F.slice(idx)</code></li>
+<li><code>F.slices(slice1, slice2)</code></li>
+<li><code>F.subfield(row1, col1, slice1, row2, col2, slice2)</code></li>
+<li><code>F(span(row1, row2), span(col1, col2), span(slice1, slice2))</code></li>
+<li><code>F(row, col, slice, size(G))</code></li>
+<li><code>F(row, col, slice, size(n_rows, n_cols, n_slices))</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf11c982" class="outline-3">
+<h3 id="orgf11c982">Length and size</h3>
+<div class="outline-text-3" id="text-orgf11c982">
+<p>
+Length and size related attributes of type <code>uword</code>, can be listed as below.
+</p>
+<ul class="org-ul">
+<li><code>.n_elem</code> : Total number of elements in a vector/matrix/cube/field</li>
+<li><code>.n_cols</code> : Number of columns in a vector/matrix/cube/field</li>
+<li><code>.n_rows</code> : Number of rows in a vector/matrix/cube/field</li>
+<li><code>.n_slices</code> : Number of slices in a cube/field</li>
+<li><code>.n_nonzeros</code> : Number of non-zero elements in a sparse matrix</li>
+</ul>
+
+<p>
+The dimensions above are all read-only, but can be changed by
+</p>
+<ul class="org-ul">
+<li><code>.set_size(n_elem)</code> for a vector/field</li>
+<li><code>.set_size(n_rows, n_cols)</code> for a matrix/field</li>
+<li><code>.set_size(n_rows, n_cols, n_slices)</code> for a cube/field</li>
+<li><code>.set_size(size(X))</code> for a vector/matrix/cube/field</li>
+<li><code>.copy_size(X)</code> set the size equal to that of object X.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3fd839e" class="outline-3">
+<h3 id="org3fd839e">Common member functions</h3>
+<div class="outline-text-3" id="text-org3fd839e">
+<ul class="org-ul">
+<li><code>.zeros()</code> : Set all elements to 0.</li>
+<li><code>.ones()</code> : Set all elements to 1.</li>
+<li><code>.randu()</code> : Set all elements to uniform distributed random values, i.e., \(\mathbb{U}(0, 1)\).</li>
+<li><code>.randn()</code> : Set all elements to standard Gaussian distributed random values, i.e., \(\mathbb{N}(0, 1)\).</li>
+<li><code>.fill(value)</code> : Set all the elements to <code>value</code>.</li>
+<li><code>.replace(old_value, new_value)</code> : For all elements equal to <code>old_value</code>, set them to <code>new_value</code>.</li>
+<li><code>.clean(threshold)</code> : Replace each element with absolute value no larger than <code>threshold</code> by zero. For each complex element, its real and imaginary parts are individually replaced, irrespective of its absolute value and amplitude.</li>
+<li><code>.reset()</code> : Reset the size to zero, i.e., empty the object.</li>
+<li><code>.set_size(n_elem)</code> / <code>.set_size(n_rows, n_cols)</code> / <code>.set_size(n_rows, n_cols, n_slices)</code> / <code>.set_size(size(X))</code> : Change the size of the object without preserving data.</li>
+<li><code>.copy_size(X)</code> : Set the size of the object equal to that of object X without preserving data.</li>
+<li><code>.resize(n_elem)</code> / <code>.resize(n_rows, n_cols)</code> / <code>.resize(n_rows, n_cols, n_slices)</code> / <code>.resize(size(X))</code> : Grow/shrink the object while preserving the elements and their layout.</li>
+<li><code>.reshape(n_rows, n_cols)</code> / <code>.reshape(n_rows, n_cols, n_slices)</code> / <code>.reshape(size(X))</code> : Recreate the object according to the given size using the elements in the previous version. The recreating is performed column by column.</li>
+<li><code>.imbue(functor/lambda)</code> : Fill/set with values yielded by a functor/lambda expression.</li>
+<li><code>.transform(functor/lambda)</code> : Transform each element using a functor/lambda expression.</li>
+<li><code>.for_each(functor/lambda)</code> : Process the object by passing each element to a functor/lambda expression.</li>
+<li><code>.set_real(X)</code> / <code>.set_imag(X)</code> : Set the real/imaginary part of an object. <code>X</code> must have the same size as the underlying object.</li>
+<li><code>.insert_rows(idx, X)</code> : Insert <code>X</code> at <code>idx</code> th row for a column-vector/matrix/cube.</li>
+<li><code>.insert_rows(idx, row_num)</code> : Insert <code>row_num</code> rows at <code>idx</code> th row for a column-vector/matrix/cube, and the <code>row_num</code> rows inserted are all set to 0.</li>
+<li><code>.insert_cols(idx, X)</code> : Insert <code>X</code> at <code>idx</code> th column for a row-vector/matrix/cube.</li>
+<li><code>.insert_cols(idx, col_num)</code> : Insert <code>col_num</code> columns at <code>idx</code> th column for a column-vector/matrix/cube, and the <code>col_num</code> columns inserted are all set to 0.</li>
+<li><code>.shed_row(idx)</code> : Remove <code>idx</code> th row from the underlying column-vector/matrix/cube.</li>
+<li><code>.shed_rows(first, last)</code> : Remove the rows between <code>first</code> th and <code>last</code> th rows from the underlying column-vector/matrix/cube.</li>
+<li><code>.shed_col(idx)</code> : Remove <code>idx</code> th column from the underlying row-vector/matrix/cube.</li>
+<li><code>.shed_cols(first, last)</code> : Remove the columns between <code>first</code> th and <code>last</code> th columns from the underlying row-vector/matrix/cube.</li>
+<li><code>.swap_rows(idx1, idx2)</code> : Swap 2 rows of the underlying column-vector/matrix.</li>
+<li><code>.swap_cols(idx1, idx2)</code> : Swap 2 columns of the underlying row-vector/matrix.</li>
+<li><code>.min()</code> / <code>.max()</code> : Return the extreme<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup> value of a matrix or a cube.</li>
+<li><code>.index_min()</code> / <code>.index_max()</code> : Return the linear index of the extreme<sup><a id="fnr.5.100" class="footref" href="#fn.5" role="doc-backlink">5</a></sup> value of a matrix or a cube.</li>
+<li><code>.in_range</code> : Check the validity of a given location, e.g., return <code>false</code> for an empty object, out-of-bounds.</li>
+<li><code>.is_empty()</code> : Check the object whether it is empty.</li>
+<li><code>.is_sorted(sort_direction = "ascend", dim = 0)</code> : Check a vector or a matrix.</li>
+<li><code>.print()</code> / <code>.print(header)</code> / <code>.print(stream)</code> / <code>.print(stream, header)</code> : Print the content of the object.</li>
+<li><code>.save</code> / <code>.load</code></li>
+</ul>
+
+<p>
+<b>Notes</b>: Functions <code>.zeros</code>, <code>.ones</code>, <code>.randu</code>, <code>.randn</code>, <code>.eye</code> above can also take dimensions as arguments to set the length and size of the object. In this case, it combines the operations of argument-free provoking and <code>.set_size</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb6b7ca6" class="outline-3">
+<h3 id="orgb6b7ca6">Overloaded operators</h3>
+<div class="outline-text-3" id="text-orgb6b7ca6">
+<p>
+A rich number of operators have been overloaded for column/row vector, matrix and cube classes, e.g.,
+</p>
+<ul class="org-ul">
+<li><code>*</code> : Matrix multiplication of two objects, but not applicable to cube, unless multiplying by a scalar.</li>
+<li><code>%</code> : Element-wise multiplication, a.k.a. Schur product.</li>
+<li><code>/</code> : Element-wise division of an object by another object or a scalar.</li>
+<li><code>==</code> / <code>!=</code> : Element-wise equality/non-equality evaluation</li>
+<li><code>&gt;</code> / <code>&lt;</code> / <code>&gt;=</code> / <code>&lt;=</code> : Element-wise comparsion</li>
+<li><code>&amp;&amp;</code> / <code>||</code> : Element-wise logical AND/OR evaluation</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcdd042e" class="outline-3">
+<h3 id="orgcdd042e">Element access</h3>
+<div class="outline-text-3" id="text-orgcdd042e">
+<ul class="org-ul">
+<li><code>(n)</code> : Access the \(n\) th element of a vector/matrix/cube or \(n\) th object of a field.</li>
+<li><code>.at(n)</code> / <code>[n]</code> : Similar to <code>(n)</code>, but without a bound check<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>.</li>
+<li><code>(i, j)</code> : Access the element in \(i\) th row and \(j\) th column of a matrix, or the object in \(i\) th row and \(j\) th column of a 2D field.</li>
+<li><code>.at(i, j)</code> : Similar to <code>(i, j)</code>, but without a bound check.</li>
+<li><code>(i, j, k)</code> : Access the element in \(i\) th row, \(j\) th column, and \(k\) th slice; or the object in \(i\) th row, \(j\) th column, and \(k\) th slice for a 3D field.</li>
+<li><code>.at(i, j, k)</code> : Similar to <code>(i, j, k)</code>, but without bound check.</li>
+</ul>
+
+<p>
+Note that, 2D index using rectangle bracket (e.g., \([i, j]\), \([i, j, k]\)) does not work correctly. We should use \((i, j)\), \((i, j, k)\) instead.
+</p>
+</div>
+<div id="outline-container-org32e2209" class="outline-4">
+<h4 id="org32e2209">Iterators</h4>
+<div class="outline-text-4" id="text-org32e2209">
+<p>
+In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <a href="./cpp_stl.html">C++ STL</a>, and consequently can be accessed via iterators.
+</p>
+</div>
+<div id="outline-container-orgeb43b6b" class="outline-5">
+<h5 id="orgeb43b6b">Member functions</h5>
+<div class="outline-text-5" id="text-orgeb43b6b">
+<ul class="org-ul">
+<li><code>.begin()</code> : Iterator referring to the first element.</li>
+<li><code>.end()</code> : Iterator referring to the <i>past-the-end</i> element.</li>
+<li><code>.begin_col(idx)</code> / <code>.begin_row(idx)</code> : Iterator referring to <code>idx</code> th column/row of a row/column vector or a matrix.</li>
+<li><code>.end_col(idx)</code> / <code>.end_row(idx)</code> : Iterator referring to the past-the-end of <code>idx</code> th column/row of a row/column vector or a matrix.</li>
+<li><code>.begin_slice(idx)</code> : Iterator referring to <code>idx</code> th slice of a cube.</li>
+<li><code>.end_slice(idx)</code> : Iterator referring to the past-the-end of <code>idx</code> th slice of a cube.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4df0453" class="outline-5">
+<h5 id="org4df0453">Iterator types</h5>
+<div class="outline-text-5" id="text-org4df0453">
+</div>
+<div id="outline-container-orge679364" class="outline-6">
+<h6 id="orge679364">For read/write access</h6>
+<div class="outline-text-6" id="text-orge679364">
+<ul class="org-ul">
+<li><code>mat::iterator</code> / <code>vec::iterator</code> / <code>rowvec::iterator</code> / <code>cube::iterator</code></li>
+<li><code>mat::col_iterator</code> / <code>vec::col_iterator</code> / <code>rowvec::col_iterator</code></li>
+<li><code>mat::row_iterator</code> / <code>vec::row_iterator</code> / <code>rowvec::row_iterator</code></li>
+<li><code>cube::slice_iterator</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbcdb09a" class="outline-6">
+<h6 id="orgbcdb09a">For read-only access</h6>
+<div class="outline-text-6" id="text-orgbcdb09a">
+<ul class="org-ul">
+<li><code>mat::const_iterator</code> / <code>vec::const_iterator</code> / <code>rowvec::const_iterator</code> / <code>cube::const_iterator</code></li>
+<li><code>mat::const_col_iterator</code> / <code>vec::const_col_iterator</code> / <code>rowvec::const_col_iterator</code></li>
+<li><code>mat::const_row_iterator</code> / <code>vec::const_row_iterator</code> / <code>rowvec::const_row_iterator</code></li>
+<li><code>cube::const_slice_iterator</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd3a4d86" class="outline-4">
+<h4 id="orgd3a4d86">Container-compatible functions</h4>
+<div class="outline-text-4" id="text-orgd3a4d86">
+<ul class="org-ul">
+<li><code>.front()</code> / <code>.back()</code> : Access the first/last element in a vector.</li>
+<li><code>.clear()</code> : Empty the object.</li>
+<li><code>.empty()</code> : Return <code>true/false</code> for an empty/non-empty object.</li>
+<li><code>.size()</code> : Total number of elements in the object, i.e., <code>.n_elem</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52ce5bf" class="outline-3">
+<h3 id="org52ce5bf">Generation</h3>
+<div class="outline-text-3" id="text-org52ce5bf">
+<ul class="org-ul">
+<li><code>ones(size(X))</code> / <code>zeros(size(X))</code></li>
+<li><code>randu</code> / <code>randi</code> / <code>randn</code> / <code>randg</code></li>
+</ul>
+</div>
+<div id="outline-container-org33e417d" class="outline-4">
+<h4 id="org33e417d">Matrix</h4>
+<div class="outline-text-4" id="text-org33e417d">
+<ul class="org-ul">
+<li><code>eye(n_rows, n_cols)</code> / <code>eye(size(X))</code></li>
+<li><code>ones(n_rows, n_cols)</code> / <code>zeros(n_rows, n_cols)</code></li>
+<li><code>toeplitz</code> / <code>circ_toeplitz</code></li>
+<li><code>diagmat(X, k=0)</code></li>
+<li><code>trimatu(X, k)</code> / <code>trimatl(X, k)</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2d176c6" class="outline-4">
+<h4 id="org2d176c6">Vector</h4>
+<div class="outline-text-4" id="text-org2d176c6">
+<ul class="org-ul">
+<li><code>ones(n_elem)</code> / <code>zeros(n_elem)</code></li>
+<li><code>linspace(start, end, N=100)</code></li>
+<li><code>logspace(a, b, N=50)</code>: Generate a logarithmically spaced vector from \(10^a\) to \(10^b\) (included).</li>
+<li><code>regspace(start, end)</code> / <code>regspace(start, step, end)</code></li>
+<li><code>randperm(N)</code> / <code>randperm(N, M)</code> : Generate a vector with random permutation of integers from <code>0</code> to <code>N-1</code>.</li>
+<li><code>diagvec(X, k=0)</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org872b215" class="outline-4">
+<h4 id="org872b215">Cube</h4>
+<div class="outline-text-4" id="text-org872b215">
+<ul class="org-ul">
+<li><code>ones(n_rows, n_cols, n_slices)</code> / <code>zeros(n_rows, n_cols, n_slices)</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org8a6871a" class="outline-3">
+<h3 id="org8a6871a">Functions</h3>
+<div class="outline-text-3" id="text-org8a6871a">
+<ul class="org-ul">
+<li><code>abs(X)</code> / <code>arg(X)</code> : Per-element absolute values or phase angles (in radians)</li>
+<li><code>conj(X)</code> : Per-element complex conjugate</li>
+<li><code>accu(X)</code> : Sum all elements.</li>
+<li><code>sum(X, dim=0)</code></li>
+<li><code>all(V)</code> / <code>all(X, dim)</code> : Check whether all the elements (in dimension <code>dim</code>) are non-zero.</li>
+<li><code>any(V)</code> / <code>any(X, dim)</code> : Check whether there is any non-zero element (dimension <code>dim</code>) exist.</li>
+<li><code>conv_to&lt;type&gt;::from(X)</code> : Type convertion/cast</li>
+<li><code>diff(V, k=0)</code> / <code>diff(X, k, dim=0)</code></li>
+<li><code>real(X)</code> / <code>imag(X)</code></li>
+<li><code>min</code> / <code>max</code></li>
+<li><code>norm(X, p=2)</code></li>
+<li><code>pow</code></li>
+<li><code>shuffle(X, dim=0)</code></li>
+<li><code>sort</code> / <code>sort_index</code></li>
+<li><code>unique(X)</code></li>
+<li><code>vectorise(X, dim=0)</code> : Concatenate all the columns (dim=0) or rows (dim=1).</li>
+<li><code>fft</code> / <code>ifft</code></li>
+<li><code>cor</code> / <code>cov</code> : Correlation/covariance</li>
+<li>Statistics: <code>mean</code>, <code>median</code>, <code>stddev</code>, <code>var</code>, <code>range</code>, <code>hist</code> / <code>histc</code>, <code>quantile</code>.</li>
+</ul>
+</div>
+<div id="outline-container-orgb779166" class="outline-4">
+<h4 id="orgb779166">Matrix</h4>
+<div class="outline-text-4" id="text-orgb779166">
+<ul class="org-ul">
+<li><code>as_scalar(expression)</code> : Convert the <code>expression</code> (resulting a 1x1 matrix) to a scalar.</li>
+<li><code>cond(X)</code> / <code>rcond(X)</code> : Calculate the (reciprocal) condition number of a matrix.</li>
+<li><code>det(X)</code> / <code>log_det(X)</code> / <code>log_det_sympd(X)</code></li>
+<li><code>trace(X)</code></li>
+<li><code>expmat(X)</code> / <code>expmat_sym(X)</code> : Matrix exponential of a square (symmetric/Hermitian) matrix.</li>
+<li><code>trans(X)</code> / <code>strans(X)</code></li>
+<li><code>fliplr(X)</code> / <code>flipud(X)</code></li>
+<li><code>inv</code> / <code>inv_sympd</code> / <code>pinv</code></li>
+<li><code>intersect(A, B)</code></li>
+<li><code>join_rows(A, B, ...)</code> / <code>join_horiz(A, B, ...)</code></li>
+<li><code>join_cols(A, B, ...)</code> / <code>join_vert(A, B, ...)</code></li>
+<li><code>kron(A, B)</code></li>
+<li><code>fft2</code> / <code>ifft2</code></li>
+<li><code>normalise(X, p=2, dim=0)</code> : Return the normalized version with unit <code>p</code> norm along the dimension <code>dim</code>.</li>
+<li><code>powmat(X, n)</code> / <code>sqrtmat(X)</code> / <code>sqrtmat_sympd(X)</code></li>
+<li><code>rank(X)</code></li>
+<li><code>trimatu_ind(size(X), k)</code> / <code>trimatl_ind(size(X), k)</code> : Return a column vector containing the indices of elements that form the upper/lower triangle part of matrix.</li>
+<li><code>orth(X)</code> : Find the orthonormal basis of the range space of the matrix.</li>
+<li><code>conv2(a, b)</code> : 2D convolution</li>
+<li>Decomposition: <code>chol</code>, <code>eig_sym</code> / <code>eig_gen</code>, <code>lu</code>, <code>qr</code>, <code>svd</code>, <code>svd_econ</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7462d4c" class="outline-4">
+<h4 id="org7462d4c">Vector</h4>
+<div class="outline-text-4" id="text-org7462d4c">
+<ul class="org-ul">
+<li><code>dot(a, b)</code> : \(a \cdot b\)</li>
+<li><code>cdot(a, b)</code> : \(a^{*} \cdot b\)</li>
+<li><code>norm_dot(a, b)</code> : \(\dfrac{a \cdot b}{\|a\|\|b\|}\)</li>
+<li><code>normalise(V, p=2)</code> : Return the normalized version with unit <code>p</code> norm.</li>
+<li><code>roots(P)</code> : Calculate the complex roots of a polynormial function (represented by <code>P</code>).</li>
+<li><code>conv(a, b)</code> : 1D convolution</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org39491bc" class="outline-4">
+<h4 id="org39491bc">Cube</h4>
+<div class="outline-text-4" id="text-org39491bc">
+<ul class="org-ul">
+<li><code>join_slices(A, B)</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6b12521" class="outline-3">
+<h3 id="org6b12521">Miscellaneous</h3>
+<div class="outline-text-3" id="text-org6b12521">
+</div>
+<div id="outline-container-orgf1c5857" class="outline-4">
+<h4 id="orgf1c5857">Constant</h4>
+<div class="outline-text-4" id="text-orgf1c5857">
+<p>
+The constants are stored in <code>Datum&lt;type&gt;</code> class, where <code>type</code> can be float or double.
+</p>
+<ul class="org-ul">
+<li><code>datum</code> is a typedef for <code>Datum&lt;double&gt;</code>.</li>
+<li><code>fdatum</code> is a typedef for <code>Datum&lt;float&gt;</code>.</li>
+</ul>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left"><b>Expression</b></th>
+<th scope="col" class="org-left"><b>Constant</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>datum::pi</code></td>
+<td class="org-left">\(\pi\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::tau</code></td>
+<td class="org-left">\(2\pi\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::inf</code></td>
+<td class="org-left">\(\infty\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::nan</code></td>
+<td class="org-left">NaN<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::eps</code></td>
+<td class="org-left">\(\epsilon\)<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::e</code></td>
+<td class="org-left">\(e\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::sqrt2</code></td>
+<td class="org-left">\(\sqrt{2}\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::log_min=/=datum::log_max</code></td>
+<td class="org-left">Log of minimum/maximum value (type and machine dependent)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::gratio</code></td>
+<td class="org-left">Golden ratio</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::F</code></td>
+<td class="org-left">Faraday constant (in coulombs)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::h=/=datum::h_bar</code></td>
+<td class="org-left">Planck constant (\(h\)) / reduced Planck constant (\(\frac{h}{2\pi}\))</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>datum::c_0</code></td>
+<td class="org-left">Speed of light in vacuum (m/s)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org94c9909" class="outline-4">
+<h4 id="org94c9909">Timer</h4>
+<div class="outline-text-4" id="text-org94c9909">
+<p>
+Class <code>wall_clock</code> is simple timer to measure the elapsed seconds. It has 2 member functions.
+</p>
+<ul class="org-ul">
+<li><code>.tic()</code> starts the timer.</li>
+<li><code>.toc()</code> returns the number of seconds since the last call to <code>.tic()</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://arma.sourceforge.net">https://arma.sourceforge.net</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://gitlab.com/conradsnicta/armadillo-code.git">https://gitlab.com/conradsnicta/armadillo-code.git</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Reduce to transposition for real matrices. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<i>Tube</i> is a subcube across all the slices. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+For a complex matrix/cube, absolute values are compared.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+For this reason, it is not recommended. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Not a number (NaN) does not equal anything, even itself.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Machine epsilon, i.e., difference between 1 and the next representable value. 
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>
