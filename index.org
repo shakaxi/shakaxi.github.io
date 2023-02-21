@@ -119,4 +119,5 @@
 - [[file:wiener_khinchin.org][Wiener-Khinchin Theorem]]
 - [[file:z.org][Z Transform]]
 - [[file:zc.org][ZC]]
+- [[file:suhuashuo.org][俗话说]]
 - [[file:guiqulaixici.org][归去来兮辞]]
