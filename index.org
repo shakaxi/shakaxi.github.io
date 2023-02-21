@@ -8,6 +8,7 @@
 - [[file:aurora.org][Aurora - A LaTeX Plugin for Microsoft Word]]
 - [[file:beam_pattern.org][Beam Pattern]]
 - [[file:blog.org][Blog on GitHub]]
+- [[file:cpp_armadillo.org][C++ - Armadillo]]
 - [[file:cpp_basic.org][C++ - Basic]]
 - [[file:cpp_itpp.org][C++ - IT++]]
 - [[file:cpp_multithread.org][C++ - Multithread]]
