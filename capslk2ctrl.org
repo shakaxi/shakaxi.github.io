@@ -17,7 +17,7 @@ For Gnome, it is extremely easy to turn =CapsLock= into an additional =Ctrl=. In
 #+begin_src sh
   pacman -S gnome-tweak-tool
 #+end_src
-and configure it in the installed =Tweak Tool=. Enter =Typing= -> =Caps Lock key behavior= and tick the radio =Caps Lock is also a Ctrl=.
+and configure it in the installed =Tweak Tool=. Enter =Keyboard & Mouse= -> =Keyboard= -> =Additional Layout Options= -> =Caps Lock behavior= and tick the radio =Make Caps Lock an additional Ctrl=.
 ** Xmodmap
 =xmodmap= is a utility for remapping keys in =Xorg=. To turn =CapsLock= into another =Ctrl=, install package =xorg-xmodmap=, e.g.
 #+begin_src sh
