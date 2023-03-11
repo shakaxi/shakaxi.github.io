@@ -7,16 +7,17 @@ Sway's core components and necessary applications can be simply installed and co
 - =sway=: core components
 - =swaylock=: a screen locker
 - =swayidle=: an idle management daemon
-- =termite=: a native terminal in wayland
+- =foot=: a native terminal in wayland
 - =rofi=: an application launcher and window switcher
 - =waybar=: a bar utility in wayland
 - =light=: a backlight controller
 - =mako=: a notification daemon
 - =grim=: a screenshot utility
 - =slurp=: a region selection utility in wayland
+- =swaybg=: a background setting utility
 * Installation
 #+BEGIN_SRC sh
-  pacman -S sway swaylock swayidle termite rofi waybar light mako grim slurp
+  pacman -S sway swaylock swayidle foot rofi waybar light mako grim slurp swaybg
 #+END_SRC
 * Configuration
 For centralized management, the configuration files can be gathered in directory =~/.config/sway=.
@@ -30,20 +31,22 @@ For centralized management, the configuration files can be gathered in directory
 
   ### Variables
   set $mod Mod4
-  set $term termite -c ~/.config/sway/termite.conf
-  set $menu "/usr/bin/rofi -combi-modi window,drun,ssh -show combi -show-icons -lines 9 -width 100 -location 7 -font 'Source Code Pro 12'"
-  # set $menu /usr/bin/bemenu-run --fn 'Source Code Pro 12' --list 9 -b -i -p '' | xargs swaymsg exec --
-  set $wallpaper ~/Pictures/wallpaper.jpg
+  set $term /usr/bin/foot --font=monospace:size=12
+  set $menu /usr/bin/wofi -c ~/.config/sway/wofi.conf
+  set $wallpaper /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
   set $locker swaylock -f -i $wallpaper
 
-  ### Font
-  font pango: Source Sans Pro 12
+  ### Appearance and behavior
+  font pango: Source Code Pro 18
+  workspace_layout default
+  default_border none
+  default_floating_border pixel
+  popup_during_fullscreen smart
+  focus_follows_mouse no
 
   ### Output
-  output * {
-         background $wallpaper fill
-         resolution 1920x1080
-  }
+  output eDP-1 bg $wallpaper fill
+  output DP-1 bg $wallpaper fill scale 2
 
   ### Idle configuration
   exec swayidle -w \
@@ -79,6 +82,7 @@ For centralized management, the configuration files can be gathered in directory
   # Moving around:
   #
       # Move your focus around
+      bindsym $mod+o focus next
       bindsym $mod+Left focus left
       bindsym $mod+Down focus down
       bindsym $mod+Up focus up
@@ -94,7 +98,6 @@ For centralized management, the configuration files can be gathered in directory
   # Workspaces:
   #
       # define names for workspaces
-      set $ws0 "0"
       set $ws1 "1"
       set $ws2 "2"
       set $ws3 "3"
@@ -106,7 +109,6 @@ For centralized management, the configuration files can be gathered in directory
       set $ws9 "9"
 
       # switch to workspace
-      bindsym $mod+0 workspace $ws0
       bindsym $mod+1 workspace $ws1
       bindsym $mod+2 workspace $ws2
       bindsym $mod+3 workspace $ws3
@@ -118,7 +120,6 @@ For centralized management, the configuration files can be gathered in directory
       bindsym $mod+9 workspace $ws9
     
       # move focused container to workspace
-      bindsym $mod+Shift+0 move container to workspace $ws0
       bindsym $mod+Shift+1 move container to workspace $ws1
       bindsym $mod+Shift+2 move container to workspace $ws2
       bindsym $mod+Shift+3 move container to workspace $ws3
@@ -132,9 +133,6 @@ For centralized management, the configuration files can be gathered in directory
   #
   # Layout stuff:
   #
-      # You can "split" the current object of your focus with
-      # $mod+b or $mod+v, for horizontal and vertical splits
-      # respectively.
       # Split
       bindsym $mod+h splith
       bindsym $mod+v splitv
@@ -145,7 +143,7 @@ For centralized management, the configuration files can be gathered in directory
       bindsym $mod+e layout toggle split
 
       # Make the current focus fullscreen
-      bindsym $mod+f fullscreen
+      bindsym $mod+f fullscreen toggle
 
       # Toggle the current focus between tiling and floating mode
       bindsym $mod+Shift+space floating toggle
@@ -154,20 +152,7 @@ For centralized management, the configuration files can be gathered in directory
       bindsym $mod+space focus mode_toggle
 
       # Move focus to the parent container
-      bindsym $mod+a focus parent
-
-  ### Resize mode
-  mode "resize" {
-      bindsym Left resize shrink width 10px
-      bindsym Up resize grow height 10px
-      bindsym Down resize shrink height 10px
-      bindsym Right resize grow width 10px
-
-      # return to default mode
-      bindsym Return mode "default"
-      bindsym Escape mode "default"
-  }
-  bindsym $mod+r mode "resize"
+      bindsym $mod+u focus parent
 
   ### System mode
   mode "system" {
@@ -180,21 +165,27 @@ For centralized management, the configuration files can be gathered in directory
   }
   bindsym $mod+Shift+e mode "system"
 
+  ### Display mode
+  set $mode_display (D)ouble, (M)irror, (I)nternal, (E)xternal
+  mode "$mode_display" {
+          bindsym d exec swaymsg output eDP1 enable DP1 enable, mode "default"
+          bindsym i exec swaymsg output eDP1 enable DP1 disable, mode "default"
+          bindsym e exec swaymsg output eDP1 disable DP1 enable, mode "default"
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+  }
+  bindsym $mod+Shift+x mode "$mode_display"
+
   ### Status Bar:
   # Read `man 5 sway-bar` for more information about this section.
   bar {
-      swaybar_command "waybar -c ~/.config/sway/waybar.config -s ~/.config/sway/waybar.style.css"
+      swaybar_command "waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css"
   }
 
-  ### Appearance and behavior 
-  workspace_layout default
-  default_border none
-  default_floating_border pixel
-  popup_during_fullscreen smart
-
   ### Startup
-  exec mako --anchor bottom-right --default-timeout 6000
-  exec LANG="zh_CN.UTF-8" fcitx &
+  exec mako --anchor top-right --default-timeout 6000
+  exec wl-paste -t text --watch clipman store --no-persist
+  exec fcitx5 -r &
 
   ### Screenshot
   bindsym --release {
@@ -209,13 +200,13 @@ For centralized management, the configuration files can be gathered in directory
 
   ### Touchpad of laptop
   input type:touchpad {
-        dwt enabled
+        dwt enable
   }
 
   ### Lid related event for laptop
   bindswitch {
-        lid:on output * disable
-        lid:off output * enable
+        lid:on output eDP-1 disable
+        lid:off output eDP-1 enable
   }
 
   ### Special keys for laptop
@@ -227,119 +218,28 @@ For centralized management, the configuration files can be gathered in directory
           XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
           # Brightness
-          XF86MonBrightnessUp exec light -A 5
-          XF86MonBrightnessDown exec light -U 5
+          XF86MonBrightnessUp exec sudo light -A 5
+          XF86MonBrightnessDown exec sudo light -U 5
   }
 
   include /etc/sway/config.d/*
   xwayland enable
 #+END_SRC
-** =~/.config/sway/termite.conf=
+** =~/.config/sway/wofi.conf=
 #+BEGIN_SRC sh
-  [options]
-  font = Source Code Pro 16
-  scrollback_lines = 10000
-  cursor_blink = off
-
-  [colors]
-  foreground = #ffffff
-  background = rgba(63, 63, 63, 0.8)
-  highlight = #2f2f2f
-  color0 = #3f3f3f
-  color1 = #705050
-  color2 = #60b48a
-  color3 = #dfaf8f
-  color4 = #506070
-  color5 = #dc8cc3
-  color6 = #8cd0d3
-  color7 = #dcdccc
-  color8 = #709080
-  color9 = #dca3a3
-  color10 = #c3bf9f
-  color11 = #f0dfaf
-  color12 = #94bff3
-  color13 = #ec93d3
-  color14 = #93e0e3
-  color15 = #ffffff
-
-  [hints]
-#+END_SRC
-** =~/.config/sway/waybar.config=
-#+BEGIN_SRC sh
-  {
-      "layer": "top",
-      "modules-left": ["sway/workspaces"],
-      "modules-center": [],
-      "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "clock", "tray"],
-      // Modules configuration
-      "sway/workspaces": {
-          "disable-scroll": true,
-          "all-outputs": true
-      },
-      "tray": {
-          "spacing": 10
-      },
-      "clock": {
-          "format": "{: %Y-%m-%d %a %H:%M}",
-          "tooltip": false
-      },
-      "cpu": {
-          "format": "{usage}% ",
-          "tooltip": false
-      },
-      "memory": {
-          "format": "{}% ",
-          "tooltip": true
-      },
-      "temperature": {
-          "critical-threshold": 80,
-          "format": "{temperatureC}°C {icon}",
-          "format-icons": ["", "", ""]
-      },
-      "backlight": {
-          "format": "{percent}% {icon}",
-          "format-icons": ["", ""]
-      },
-      "battery": {
-          "states": {
-              // "good": 95,
-              "warning": 30,
-              "critical": 15
-          },
-          "format": "{capacity}% {icon}",
-          "format-charging": "{capacity}% ",
-          "format-plugged": "{capacity}% ",
-          "format-alt": "{time} {icon}",
-          "tooltip": false,
-          "format-icons": ["", "", "", "", ""]
-      },
-      "network": {
-          "format-wifi": "{essid} ({signalStrength}%) ",
-          "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-          "format-linked": "{ifname} (No IP) ",
-          "format-disconnected": "Disconnected ⚠",
-          "format-alt": "{ifname}: {ipaddr}/{cidr}",
-          "tooltip": false
-      },
-      "pulseaudio": {
-          "scroll-step": 10, // %, can be a float
-          "format": "{volume}% {icon} {format_source}",
-          "format-bluetooth": "{volume}% {icon} {format_source}",
-          "format-muted": "{volume}%  {format_source}",
-          "format-source": "{volume}% ",
-          "format-source-muted": "{volume}% ",
-          "format-icons": {
-              "headphones": "",
-              "handsfree": "",
-              "headset": "",
-              "phone": "",
-              "portable": "",
-              "car": "",
-              "default": ["", "", ""]
-          },
-          "on-click": "pavucontrol"
-      }
-  }
+  mode=drun
+  allow_images=true
+  allow_markup=true
+  location=center
+  lines=9
+  filter_rate=1
+  term=termite
+  key_up=Control_L-p
+  key_down=Control_L-n
+  key_exit=Control_L-g
+  no_actions=true
+  width=300
+  image_size=32
 #+END_SRC
 ** =~/.config/sway/waybar.style.css=
 #+BEGIN_SRC sh
