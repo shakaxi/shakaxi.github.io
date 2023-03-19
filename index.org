@@ -53,7 +53,7 @@
 - [[file:lte_pdcch_epdcch.org][LTE - PDCCH & EPDCCH]]
 - [[file:emacs_beamer.org][LaTeX - Beamer]]
 - [[file:latex_gantt.org][LaTeX - Gantt Chart]]
-- [[file:latex_pgf_tikz.org][LaTeX - Pgf/Tikz]]
+- [[file:latex_tikz.org][LaTeX - Pgf/Tikz]]
 - [[file:latex_pgfplots.org][LaTeX - Pgfplots]]
 - [[file:laplace.org][Laplace Transform]]
 - [[file:rls.org][Least Square and Its Iterative Approach (RLS)]]

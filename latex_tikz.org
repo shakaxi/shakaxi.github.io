@@ -4,7 +4,7 @@
 /Pgf/tikz/ is an excellent /LaTeX/ package to plot high quality graphs. This post just summaries its basic usages.
 * Installation
 Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as texlive is ready, pgf/tikz is out-of-the-box.
-* Usage
+* Basic usage
 ** Setting
 #+BEGIN_SRC latex :exports code
 \usepackage{tikz}
@@ -114,3 +114,84 @@ Pgf/Tikz is a built-in package in the [[http://tug.org][texlive]]. As long as te
 #+BEGIN_SRC latex :exports code
 \tikz [baseline] ...
 #+END_SRC
+* Libraries
+Besides the basic tikz package, there are some libraries for dedicated purpose.
+** =tikzcd= for commutative diagrams
+- Load the package
+  #+begin_src latex :exports code
+    % Method-1
+    \usepackage{tikz}
+    \usetikzlibrary{cd}
+
+    % Method-2
+    \usepackage{tikz-cd}
+  #+end_src
+- Usage
+  + Environment for a commutative diagram
+    #+begin_src latex :exports code
+      \begin{tikzcd}[OPTIONS]
+          CONTENTS
+      \end{tikzcd}
+    #+end_src
+    - The =CONTENTS= are structured in a matrix style, e.g., with =&= and =\\= to separate columns and rows respectively.
+    - Everything inside ={tikz}= is typeset in math mode.
+  + Arrow
+    In fact, an arrow object can follow either its starting or ending node (matrix element). But in my opinion, it is intuitionally natural to create an arrow object following its starting node.
+    #+begin_src latex :exports code
+      \arrow[OPTIONS]
+      \ar[OPTIONS]
+    #+end_src
+    where =OPTIONS= is a comma-separated list of options to specify an arrow, e.g.,
+    - /direction/, consisting of a string of characters.
+      + =u= for up
+      + =d= for down
+      + =l= for left
+      + =r= for right
+    - /label/, quoted string on an arrow.
+      + An arrow can have an arbitrary number of labels, with common separated.
+      + If a label string consists of commas, then the label string should be enclosed in a pair of curly braces.
+      + Optionally label-specific options can follow a target label (without comma separated), e.g.,
+        - A color option, e.g., =red=.
+        - A location option, e.g., =near start=, =near end=.
+        - An apostrophe (='=) flips the label to the opposite side of the arrow.
+        - A multiplicity of options should be separated with commas and enclosed in a pair of curly braces.
+    - /color/
+    - /line type/, e.g., =dashed=, =dotted=, etc.
+    - /arrow type/, e.g., =leftarrow=, =rightarrow=, =leftrightarrow=, =Leftarrow=, =Rightarrow=, =Leftrightarrow=, etc.
+    - /Fine tuning/, e.g., =shift left=1ex=, =shift right=1ex=.
+    - =crossing over= for 3-dimensional diagrams.
+    - =marking= places a preceding label over the arrow.
+    - =description= places a preceding label over the arrow with background filled.
+  + Global option
+    #+begin_src latex :exports code
+      \tikzcdset{OPTIONS}
+    #+end_src
+    The options in =OPTIONS= are usually defined in =every diagram=, =every cell=, =every arrow=, =every label=, etc. and reinitialized when the command above is called.
+    - =every diagram=
+      #+begin_src latex :exports code
+        row sep=normal,
+        column sep=normal,
+        /tikz/baseline=0pt
+      #+end_src
+    - =every matrix=
+      #+begin_src latex :exports code
+        /tikz/inner sep=0pt
+      #+end_src
+    - =every cell=
+      #+begin_src latex :exports code
+        /tikz/shape=asymmetrical rectangle,
+        /tikz/inner xsep=1ex,
+        /tikz/inner ysep=0.85ex
+      #+end_src
+    - =every arrow=
+      #+begin_src latex :exports code
+        /tikz/draw,
+        /tikz/line width=rule_thickness,
+        rightarrow
+      #+end_src
+    - =every label=
+      #+begin_src latex :exports code
+        /tikz/auto,
+        /tikz/font=something,
+        /tikz/inner sep=0.5ex
+      #+end_src
