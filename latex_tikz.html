@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2023-03-22 Wed 23:37 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LaTeX - Pgf/Tikz</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LaTeX - Pgf/Tikz</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd75dac4">Introduction</a></li>
+<li><a href="#org398adc9">Installation</a></li>
+<li><a href="#orgf1633ca">Basic usage</a>
+<ul>
+<li><a href="#org7d4410c">Setting</a></li>
+<li><a href="#org52440cc">Style</a></li>
+<li><a href="#org128f1c0">Coordinate</a></li>
+<li><a href="#org03970d0">List</a></li>
+<li><a href="#org15716e6">Arrow</a></li>
+<li><a href="#org1c13185">Draw</a>
+<ul>
+<li><a href="#org3bbd682">Line</a></li>
+<li><a href="#org9555ded">Curve</a></li>
+<li><a href="#orgb085a18">Grid</a></li>
+<li><a href="#orgf392600">Arc</a></li>
+<li><a href="#org6b6b7ab">Rectangle</a></li>
+<li><a href="#org1219dc6">Circle</a></li>
+<li><a href="#org0394894">Ellipse</a></li>
+<li><a href="#orgd88a2fa">Node</a>
+<ul>
+<li><a href="#orgb737d5a">Connecting nodes with</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7a96147">Refer to nodes outside current picture</a></li>
+<li><a href="#org6ccc9ef">Mix tikz command with LaTeX</a></li>
+</ul>
+</li>
+<li><a href="#orgb5d4478">Libraries</a>
+<ul>
+<li><a href="#org90321a5"><code>tikzcd</code> for commutative diagrams</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd75dac4" class="outline-2">
+<h2 id="orgd75dac4">Introduction</h2>
+<div class="outline-text-2" id="text-orgd75dac4">
+<p>
+<i>Pgf/tikz</i> is an excellent <i>LaTeX</i> package to plot high quality graphs. This post just summaries its basic usages.
+</p>
+</div>
+</div>
+<div id="outline-container-org398adc9" class="outline-2">
+<h2 id="org398adc9">Installation</h2>
+<div class="outline-text-2" id="text-org398adc9">
+<p>
+Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As long as texlive is ready, pgf/tikz is out-of-the-box.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf1633ca" class="outline-2">
+<h2 id="orgf1633ca">Basic usage</h2>
+<div class="outline-text-2" id="text-orgf1633ca">
+</div>
+<div id="outline-container-org7d4410c" class="outline-3">
+<h3 id="org7d4410c">Setting</h3>
+<div class="outline-text-3" id="text-org7d4410c">
+<div class="org-src-container">
+<pre class="src src-latex">\usepackage{tikz}
+...
+\tikz ...
+\begin{tikzpicture}
+...
+\end{tikzpicture}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org52440cc" class="outline-3">
+<h3 id="org52440cc">Style</h3>
+<div class="outline-text-3" id="text-org52440cc">
+<div class="org-src-container">
+<pre class="src src-latex">\tikzstyle newstylename=[option1=value1, option2=value2, ...]
+\tikzstyle existingstylename+=[option1=value1, option2=value2, ...]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org128f1c0" class="outline-3">
+<h3 id="org128f1c0">Coordinate</h3>
+<div class="outline-text-3" id="text-org128f1c0">
+<ul class="org-ul">
+<li><code>(x, y)</code></li>
+<li><code>(angle: radius)</code></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org03970d0" class="outline-3">
+<h3 id="org03970d0">List</h3>
+<div class="outline-text-3" id="text-org03970d0">
+<div class="org-src-container">
+<pre class="src src-latex">% step length = 1
+{a, ..., b}
+...
+% step length = d
+{a, a + d, ..., b}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org15716e6" class="outline-3">
+<h3 id="org15716e6">Arrow</h3>
+<div class="outline-text-3" id="text-org15716e6">
+<ul class="org-ul">
+<li>-</li>
+<li>-&gt;</li>
+<li>&lt;-</li>
+<li>&lt;-&gt;</li>
+<li>-&gt;&gt;</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1c13185" class="outline-3">
+<h3 id="org1c13185">Draw</h3>
+<div class="outline-text-3" id="text-org1c13185">
+</div>
+<div id="outline-container-org3bbd682" class="outline-4">
+<h4 id="org3bbd682">Line</h4>
+<div class="outline-text-4" id="text-org3bbd682">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9555ded" class="outline-4">
+<h4 id="org9555ded">Curve</h4>
+<div class="outline-text-4" id="text-org9555ded">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
+\draw (x1, y1) .. controls (x2, y2) .. (x3, y3);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb085a18" class="outline-4">
+<h4 id="orgb085a18">Grid</h4>
+<div class="outline-text-4" id="text-orgb085a18">
+<div class="org-src-container">
+<pre class="src src-latex">\draw [step=s] (x1, y1) grid (x2, y2);
+\draw [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf392600" class="outline-4">
+<h4 id="orgf392600">Arc</h4>
+<div class="outline-text-4" id="text-orgf392600">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) arc (start_angle: end_angle: radius);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6b6b7ab" class="outline-4">
+<h4 id="org6b6b7ab">Rectangle</h4>
+<div class="outline-text-4" id="text-org6b6b7ab">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) rectangle (x2, y2);
+\fill [color] (x1, y1) rectangle (x2, y2);
+\filldraw [fill=color1, draw=color2] (x1, y1) rectangle (x2, y2);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) rectangle (x2, y2);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) rectangle (x2, y2);
+\clip (x1, y1) rectangle (x2, y2);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1219dc6" class="outline-4">
+<h4 id="org1219dc6">Circle</h4>
+<div class="outline-text-4" id="text-org1219dc6">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) circle (radius);
+\fill [color] (x1, y1) circle (radius);
+\filldraw [fill=color1, draw=color2] (x1, y1) circle (radius);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) circle (radius);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) circle (radius);
+\clip (x1, y1) circle (radius);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0394894" class="outline-4">
+<h4 id="org0394894">Ellipse</h4>
+<div class="outline-text-4" id="text-org0394894">
+<div class="org-src-container">
+<pre class="src src-latex">\draw (x1, y1) ellipse (x_radius and y_radius);
+\fill [color] (x1, y1) ellipse (x_radius and y_radius);
+\filldraw [fill=color1, draw=color2] (x1, y1) ellipse (x_radius and y_radius);
+\shade [inner/top/left color=color1, outer/bottom/right color=color2] (x1, y1) ellipse (x_radius and y_radius);
+\shadedraw [inner/top/left color=color1, outer/bottom/right color=color2, draw=color3] (x1, y1) ellipse (x_radius and y_radius);
+\clip (x1, y1) ellipse (x_radius and y_radius);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd88a2fa" class="outline-4">
+<h4 id="orgd88a2fa">Node</h4>
+<div class="outline-text-4" id="text-orgd88a2fa">
+<div class="org-src-container">
+<pre class="src src-latex">(x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
+...
+\node at (x0, y0) (node_name) {node_label};
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb737d5a" class="outline-5">
+<h5 id="orgb737d5a">Connecting nodes with</h5>
+<div class="outline-text-5" id="text-orgb737d5a">
+<ul class="org-ul">
+<li>Lines</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-latex">\draw [arrow] (node_name_A) to (node_name_B);
+\draw (node_name_A) edge [arrow, color] (node_name_B);
+</pre>
+</div>
+<ul class="org-ul">
+<li>Curves</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-latex">\draw [arrow] (node_name_A) to [bend left/right=30] (node_name_B);
+\draw [arrow] (node_name_A) to [in=30, out=60] (node_name_B);
+\draw (node_name_A) edge [arrow, color, in=30, out=60] (node_name_B);
+\draw (node_name_A) edge [arrow, color, bend left/right=30] (node_name_B);
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7a96147" class="outline-3">
+<h3 id="org7a96147">Refer to nodes outside current picture</h3>
+<div class="outline-text-3" id="text-org7a96147">
+<div class="org-src-container">
+<pre class="src src-latex">\tikzstyle{every picture}+=[remember picture]
+...
+\tikz[overlay]
+\begin{tikzpicture}[overlay]
+...
+\end{tikzpicture}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6ccc9ef" class="outline-3">
+<h3 id="org6ccc9ef">Mix tikz command with LaTeX</h3>
+<div class="outline-text-3" id="text-org6ccc9ef">
+<div class="org-src-container">
+<pre class="src src-latex">\tikz [baseline] ...
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb5d4478" class="outline-2">
+<h2 id="orgb5d4478">Libraries</h2>
+<div class="outline-text-2" id="text-orgb5d4478">
+<p>
+Besides the basic tikz package, there are some libraries for dedicated purpose.
+</p>
+</div>
+<div id="outline-container-org90321a5" class="outline-3">
+<h3 id="org90321a5"><code>tikzcd</code> for commutative diagrams</h3>
+<div class="outline-text-3" id="text-org90321a5">
+<ul class="org-ul">
+<li><p>
+Load the package
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">% Method-1
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+% Method-2
+\usepackage{tikz-cd}
+</pre>
+</div></li>
+<li>Usage
+<ul class="org-ul">
+<li><p>
+Environment for a commutative diagram
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">\begin{tikzcd}[OPTIONS]
+    CONTENTS
+\end{tikzcd}
+</pre>
+</div>
+<ul class="org-ul">
+<li>The <code>CONTENTS</code> are structured in a matrix style, e.g., with <code>&amp;</code> and <code>\\</code> to separate columns and rows respectively.</li>
+<li>Everything inside <code>{tikz}</code> is typeset in math mode.</li>
+</ul></li>
+<li><p>
+Arrow
+In fact, an arrow object can follow either its starting or ending node (matrix element). But in my opinion, it is intuitionally natural to create an arrow object following its starting node.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">\arrow[OPTIONS]
+\ar[OPTIONS]
+</pre>
+</div>
+<p>
+where <code>OPTIONS</code> is a comma-separated list of options to specify an arrow, e.g.,
+</p>
+<ul class="org-ul">
+<li><i>direction</i>, consisting of a string of characters.
+<ul class="org-ul">
+<li><code>u</code> for up</li>
+<li><code>d</code> for down</li>
+<li><code>l</code> for left</li>
+<li><code>r</code> for right</li>
+</ul></li>
+<li><i>label</i>, quoted string on an arrow.
+<ul class="org-ul">
+<li>An arrow can have an arbitrary number of labels, with common separated.</li>
+<li>If a label string consists of commas, then the label string should be enclosed in a pair of curly braces.</li>
+<li>Optionally label-specific options can follow a target label (without comma separated), e.g.,
+<ul class="org-ul">
+<li>A color option, e.g., <code>red</code>.</li>
+<li>A location option, e.g., <code>near start</code>, <code>near end</code>.</li>
+<li>An apostrophe (<code>'</code>) flips the label to the opposite side of the arrow.</li>
+<li>A multiplicity of options should be separated with commas and enclosed in a pair of curly braces.</li>
+</ul></li>
+</ul></li>
+<li><i>color</i></li>
+<li><i>line type</i>, e.g., <code>dashed</code>, <code>dotted</code>, etc.</li>
+<li><i>arrow type</i>, e.g., <code>leftarrow</code>, <code>rightarrow</code>, <code>leftrightarrow</code>, <code>Leftarrow</code>, <code>Rightarrow</code>, <code>Leftrightarrow</code>, etc.</li>
+<li><i>Fine tuning</i>, e.g., <code>shift left=1ex</code>, <code>shift right=1ex</code>.</li>
+<li><code>crossing over</code> for 3-dimensional diagrams.</li>
+<li><code>marking</code> places a preceding label over the arrow.</li>
+<li><code>description</code> places a preceding label over the arrow with background filled.</li>
+</ul></li>
+<li><p>
+Global option
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">\tikzcdset{OPTIONS}
+</pre>
+</div>
+<p>
+The options in <code>OPTIONS</code> are usually defined in <code>every diagram</code>, <code>every cell</code>, <code>every arrow</code>, <code>every label</code>, etc. and reinitialized when the command above is called.
+</p>
+<ul class="org-ul">
+<li><p>
+<code>every diagram</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">row sep=normal,
+column sep=normal,
+/tikz/baseline=0pt
+</pre>
+</div></li>
+<li><p>
+<code>every matrix</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">/tikz/inner sep=0pt
+</pre>
+</div></li>
+<li><p>
+<code>every cell</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">/tikz/shape=asymmetrical rectangle,
+/tikz/inner xsep=1ex,
+/tikz/inner ysep=0.85ex
+</pre>
+</div></li>
+<li><p>
+<code>every arrow</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">/tikz/draw,
+/tikz/line width=rule_thickness,
+rightarrow
+</pre>
+</div></li>
+<li><p>
+<code>every label</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">/tikz/auto,
+/tikz/font=something,
+/tikz/inner sep=0.5ex
+</pre>
+</div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
