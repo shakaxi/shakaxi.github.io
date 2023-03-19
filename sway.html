@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2023-03-19 Sun 14:32 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux - Sway</title>
@@ -201,20 +201,19 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org60bbe7d">Introduction</a></li>
-<li><a href="#org38fc07f">Installation</a></li>
-<li><a href="#org97f8787">Configuration</a>
+<li><a href="#orgb553820">Installation</a></li>
+<li><a href="#orgf2d2d10">Configuration</a>
 <ul>
 <li><a href="#org611788b"><code>~/.config/sway/config</code></a></li>
-<li><a href="#org564aad3"><code>~/.config/sway/termite.conf</code></a></li>
-<li><a href="#orge146e18"><code>~/.config/sway/waybar.config</code></a></li>
+<li><a href="#org829a76f"><code>~/.config/sway/wofi.conf</code></a></li>
 <li><a href="#orgd02dc88"><code>~/.config/sway/waybar.style.css</code></a></li>
 </ul>
 </li>
 <li><a href="#org5330a1a">Startup</a></li>
 <li><a href="#orgb6ffbaf">KDE Applications</a>
 <ul>
-<li><a href="#orgb553820">Installation</a></li>
-<li><a href="#orgf2d2d10">Configuration</a></li>
+<li><a href="#org07b4a88">Installation</a></li>
+<li><a href="#org7d701c5">Configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -235,28 +234,29 @@ Sway's core components and necessary applications can be simply installed and co
 <li><code>sway</code>: core components</li>
 <li><code>swaylock</code>: a screen locker</li>
 <li><code>swayidle</code>: an idle management daemon</li>
-<li><code>termite</code>: a native terminal in wayland</li>
+<li><code>foot</code>: a native terminal in wayland</li>
 <li><code>rofi</code>: an application launcher and window switcher</li>
 <li><code>waybar</code>: a bar utility in wayland</li>
 <li><code>light</code>: a backlight controller</li>
 <li><code>mako</code>: a notification daemon</li>
 <li><code>grim</code>: a screenshot utility</li>
 <li><code>slurp</code>: a region selection utility in wayland</li>
+<li><code>swaybg</code>: a background setting utility</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org38fc07f" class="outline-2">
-<h2 id="org38fc07f">Installation</h2>
-<div class="outline-text-2" id="text-org38fc07f">
+<div id="outline-container-orgb553820" class="outline-2">
+<h2 id="orgb553820">Installation</h2>
+<div class="outline-text-2" id="text-orgb553820">
 <div class="org-src-container">
-<pre class="src src-sh">pacman -S sway swaylock swayidle termite rofi waybar light mako grim slurp
+<pre class="src src-sh">pacman -S sway swaylock swayidle foot rofi waybar light mako grim slurp swaybg
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org97f8787" class="outline-2">
-<h2 id="org97f8787">Configuration</h2>
-<div class="outline-text-2" id="text-org97f8787">
+<div id="outline-container-orgf2d2d10" class="outline-2">
+<h2 id="orgf2d2d10">Configuration</h2>
+<div class="outline-text-2" id="text-orgf2d2d10">
 <p>
 For centralized management, the configuration files can be gathered in directory <code>~/.config/sway</code>.
 </p>
@@ -273,20 +273,22 @@ For centralized management, the configuration files can be gathered in directory
 
 ### Variables
 set $mod Mod4
-set $term termite -c ~/.config/sway/termite.conf
-set $menu "/usr/bin/rofi -combi-modi window,drun,ssh -show combi -show-icons -lines 9 -width 100 -location 7 -font 'Source Code Pro 12'"
-# set $menu /usr/bin/bemenu-run --fn 'Source Code Pro 12' --list 9 -b -i -p '' | xargs swaymsg exec --
-set $wallpaper ~/Pictures/wallpaper.jpg
+set $term /usr/bin/foot --font=monospace:size=12
+set $menu /usr/bin/wofi -c ~/.config/sway/wofi.conf
+set $wallpaper /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
 set $locker swaylock -f -i $wallpaper
 
-### Font
-font pango: Source Sans Pro 12
+### Appearance and behavior
+font pango: Source Code Pro 18
+workspace_layout default
+default_border none
+default_floating_border pixel
+popup_during_fullscreen smart
+focus_follows_mouse no
 
 ### Output
-output * {
-       background $wallpaper fill
-       resolution 1920x1080
-}
+output eDP-1 bg $wallpaper fill
+output DP-1 bg $wallpaper fill scale 2
 
 ### Idle configuration
 exec swayidle -w \
@@ -322,6 +324,7 @@ exec swayidle -w \
 # Moving around:
 #
     # Move your focus around
+    bindsym $mod+o focus next
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
@@ -337,7 +340,6 @@ exec swayidle -w \
 # Workspaces:
 #
     # define names for workspaces
-    set $ws0 "0"
     set $ws1 "1"
     set $ws2 "2"
     set $ws3 "3"
@@ -349,7 +351,6 @@ exec swayidle -w \
     set $ws9 "9"
 
     # switch to workspace
-    bindsym $mod+0 workspace $ws0
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
     bindsym $mod+3 workspace $ws3
@@ -361,7 +362,6 @@ exec swayidle -w \
     bindsym $mod+9 workspace $ws9
 
     # move focused container to workspace
-    bindsym $mod+Shift+0 move container to workspace $ws0
     bindsym $mod+Shift+1 move container to workspace $ws1
     bindsym $mod+Shift+2 move container to workspace $ws2
     bindsym $mod+Shift+3 move container to workspace $ws3
@@ -375,9 +375,6 @@ exec swayidle -w \
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
     # Split
     bindsym $mod+h splith
     bindsym $mod+v splitv
@@ -388,7 +385,7 @@ exec swayidle -w \
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+f fullscreen toggle
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -397,20 +394,7 @@ exec swayidle -w \
     bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
-
-### Resize mode
-mode "resize" {
-    bindsym Left resize shrink width 10px
-    bindsym Up resize grow height 10px
-    bindsym Down resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
+    bindsym $mod+u focus parent
 
 ### System mode
 mode "system" {
@@ -423,21 +407,27 @@ mode "system" {
 }
 bindsym $mod+Shift+e mode "system"
 
+### Display mode
+set $mode_display (D)ouble, (M)irror, (I)nternal, (E)xternal
+mode "$mode_display" {
+        bindsym d exec swaymsg output eDP1 enable DP1 enable, mode "default"
+        bindsym i exec swaymsg output eDP1 enable DP1 disable, mode "default"
+        bindsym e exec swaymsg output eDP1 disable DP1 enable, mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Shift+x mode "$mode_display"
+
 ### Status Bar:
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    swaybar_command "waybar -c ~/.config/sway/waybar.config -s ~/.config/sway/waybar.style.css"
+    swaybar_command "waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css"
 }
 
-### Appearance and behavior 
-workspace_layout default
-default_border none
-default_floating_border pixel
-popup_during_fullscreen smart
-
 ### Startup
-exec mako --anchor bottom-right --default-timeout 6000
-exec LANG="zh_CN.UTF-8" fcitx &amp;
+exec mako --anchor top-right --default-timeout 6000
+exec wl-paste -t text --watch clipman store --no-persist
+exec fcitx5 -r &amp;
 
 ### Screenshot
 bindsym --release {
@@ -452,13 +442,13 @@ input type:keyboard {
 
 ### Touchpad of laptop
 input type:touchpad {
-      dwt enabled
+      dwt enable
 }
 
 ### Lid related event for laptop
 bindswitch {
-      lid:on output * disable
-      lid:off output * enable
+      lid:on output eDP-1 disable
+      lid:off output eDP-1 enable
 }
 
 ### Special keys for laptop
@@ -470,8 +460,8 @@ bindsym {
         XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
         # Brightness
-        XF86MonBrightnessUp exec light -A 5
-        XF86MonBrightnessDown exec light -U 5
+        XF86MonBrightnessUp exec sudo light -A 5
+        XF86MonBrightnessDown exec sudo light -U 5
 }
 
 include /etc/sway/config.d/*
@@ -480,119 +470,23 @@ xwayland enable
 </div>
 </div>
 </div>
-<div id="outline-container-org564aad3" class="outline-3">
-<h3 id="org564aad3"><code>~/.config/sway/termite.conf</code></h3>
-<div class="outline-text-3" id="text-org564aad3">
+<div id="outline-container-org829a76f" class="outline-3">
+<h3 id="org829a76f"><code>~/.config/sway/wofi.conf</code></h3>
+<div class="outline-text-3" id="text-org829a76f">
 <div class="org-src-container">
-<pre class="src src-sh">[options]
-font = Source Code Pro 16
-scrollback_lines = 10000
-cursor_blink = off
-
-[colors]
-foreground = #ffffff
-background = rgba(63, 63, 63, 0.8)
-highlight = #2f2f2f
-color0 = #3f3f3f
-color1 = #705050
-color2 = #60b48a
-color3 = #dfaf8f
-color4 = #506070
-color5 = #dc8cc3
-color6 = #8cd0d3
-color7 = #dcdccc
-color8 = #709080
-color9 = #dca3a3
-color10 = #c3bf9f
-color11 = #f0dfaf
-color12 = #94bff3
-color13 = #ec93d3
-color14 = #93e0e3
-color15 = #ffffff
-
-[hints]
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orge146e18" class="outline-3">
-<h3 id="orge146e18"><code>~/.config/sway/waybar.config</code></h3>
-<div class="outline-text-3" id="text-orge146e18">
-<div class="org-src-container">
-<pre class="src src-sh">{
-    "layer": "top",
-    "modules-left": ["sway/workspaces"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "clock", "tray"],
-    // Modules configuration
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true
-    },
-    "tray": {
-        "spacing": 10
-    },
-    "clock": {
-        "format": "{: %Y-%m-%d %a %H:%M}",
-        "tooltip": false
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% ",
-        "tooltip": true
-    },
-    "temperature": {
-        "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        "tooltip": false,
-        "format-icons": ["", "", "", "", ""]
-    },
-    "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip": false
-    },
-    "pulseaudio": {
-        "scroll-step": 10, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-muted": "{volume}%  {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "{volume}% ",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    }
-}
+<pre class="src src-sh">mode=drun
+allow_images=true
+allow_markup=true
+location=center
+lines=9
+filter_rate=1
+term=termite
+key_up=Control_L-p
+key_down=Control_L-n
+key_exit=Control_L-g
+no_actions=true
+width=300
+image_size=32
 </pre>
 </div>
 </div>
@@ -821,18 +715,18 @@ After the installation and configuration, sway can be started by running command
 There are a rich number of applications dedicated for KDE, e.g., file manager <code>dolphin</code> and PDF reader <code>okular</code>. On <code>sway</code>, they can be installed and configured as follows.
 </p>
 </div>
-<div id="outline-container-orgb553820" class="outline-3">
-<h3 id="orgb553820">Installation</h3>
-<div class="outline-text-3" id="text-orgb553820">
+<div id="outline-container-org07b4a88" class="outline-3">
+<h3 id="org07b4a88">Installation</h3>
+<div class="outline-text-3" id="text-org07b4a88">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S dolphin okular
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf2d2d10" class="outline-3">
-<h3 id="orgf2d2d10">Configuration</h3>
-<div class="outline-text-3" id="text-orgf2d2d10">
+<div id="outline-container-org7d701c5" class="outline-3">
+<h3 id="org7d701c5">Configuration</h3>
+<div class="outline-text-3" id="text-org7d701c5">
 <ul class="org-ul">
 <li><p>
 Install icons of <code>breeze</code> theme.
