@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2023-01-29 Sun 17:01 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sparse Array</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Sparse Array</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org49e5b09">Concepts</a></li>
+<li><a href="#orga3d15fd">MUSIC over \(\mathbb{D}\) (Khatri-Rao MUSIC)</a></li>
+<li><a href="#orgc049765">MUSIC over \(\mathbb{U}\)</a></li>
+<li><a href="#orgce1ff34">Example realizations</a>
+<ul>
+<li><a href="#org4579c83">Nested patterns &amp; coprime patterns (<code>sparse.py</code>)</a></li>
+<li><a href="#orgdd78382">Pattern (<code>pat.py</code>)</a></li>
+<li><a href="#org1077d58">MUSIC (<code>music.py</code>)</a></li>
+</ul>
+</li>
+<li><a href="#org3ba0c50">References</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org49e5b09" class="outline-2">
+<h2 id="org49e5b09">Concepts</h2>
+<div class="outline-text-2" id="text-org49e5b09">
+<p>
+Given a sparse array, the locations of its component antennas/sensors can be normalized to a minimum inter-antenna distance, denoted by \(d\), e.g., typically \(d = \lambda / 2\). Accordingly, a sparse array can be simply denoted by an integer set \(\mathbb{S}\), and the locations of the antennas are \(nd\), \(n \in \mathbb{S}\).
+</p>
+
+<p>
+Given a sparse array \(\mathbb{S}\), its <i>difference coarray (DCA)</i> is defined as
+</p>
+\begin{align*}
+  \mathbb{D} \triangleq \{n_1 - n_2 \mid n_1, n_2 \in \mathbb{S}\}.
+\end{align*}
+<ul class="org-ul">
+<li>Each entry in \(\mathbb{D}\) is termed a <i>spatial lag</i>.</li>
+<li>The cardinality of DCA, i.e., \(|\mathbb{D}|\), is termed <i>degree of freedom (DoF)</i> of the sparse array \(\mathbb{S}\).</li>
+<li>Clearly, DCA is symmetric, i.e., \(\forall n \in \mathbb{D}\), \(-n \in \mathbb{D}\).</li>
+</ul>
+
+<p>
+Let \(\mathbb{U}\) denote the central ULA segment of \(\mathbb{D}\). Its cardinality \(|\mathbb{U}|\) is termed <i>uniform degree of freedom (UDoF)</i>. Then, the number of uncorrelated sources which can be identified is \(\dfrac{|\mathbb{U}| - 1}{2}\).
+</p>
+</div>
+</div>
+<div id="outline-container-orga3d15fd" class="outline-2">
+<h2 id="orga3d15fd">MUSIC over \(\mathbb{D}\) (Khatri-Rao MUSIC)</h2>
+<div class="outline-text-2" id="text-orga3d15fd">
+<p>
+Without loss of generality, we consider a simple scenario in which \(r\) monochromatic sources impinge on a sparse array \(\mathbb{S} = \{n_1, n_2, \ldots, n_{|\mathbb{S}|}\}\), the received signal can be expressed as
+</p>
+\begin{align}
+  \mathbf{x}_{\mathbb{S}} = \mathbf{A}_{\mathbb{S}} \mathbf{s} + \mathbf{n}_{\mathbb{S}}, \label{eq:xs}
+\end{align}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(\mathbf{A}_{\mathbb{S}} = \begin{bmatrix}
+  \mathbf{a}_{\mathbb{S}}(\omega_1) & \mathbf{a}_{\mathbb{S}}(\omega_2) & \cdots & \mathbf{a}_{\mathbb{S}}(\omega_r)
+  \end{bmatrix}\) is a \(|\mathbb{S}| \times r\) matrix; Each column is a steering vector, e.g., \(\mathbf{a}_{\mathbb{S}}(\omega) \triangleq \begin{bmatrix} e^{jn_1\omega} \\ e^{jn_2\omega} \\ \vdots \\ e^{jn_{|\mathbb{S}|}\omega} \end{bmatrix}\).</li>
+<li>\(\mathbf{s} = \begin{bmatrix} s_1 \\ s_2 \\ \vdots \\ s_r \end{bmatrix}\) is a signal vector.</li>
+<li>\(\mathbf{n}_{\mathbb{S}} \sim \mathcal{CN}\left(0, \sigma_0^2 \mathbf{I}_{|\mathbb{S}|} \right)\) is a complex additive Gaussian noise vector.</li>
+</ul>
+
+<p>
+Then, the covariance matrix of \(\mathbf{x}_{\mathbb{S}}\) is defined as
+</p>
+\begin{align}
+  \mathbf{R}_{\mathbf{x}_{\mathbb{S}}} &\triangleq \mathcal{E} \left( \mathbf{x}_{\mathbb{S}} \mathbf{x}_{\mathbb{S}}^H \right) \label{eq:cov} \\
+                                       &= \mathbf{A}_{\mathbb{S}} \mathbf{R}_{\mathbf{s}} \mathbf{A}_{\mathbb{S}}^H + \sigma_0^2 \mathbf{I}_{|\mathbb{S}|}
+\end{align}
+<p>
+where \(\mathbf{R}_{\mathbf{s}} \triangleq \mathcal{E} \left( \mathbf{s} \mathbf{s}^H \right) = \begin{bmatrix} \sigma_1^2 &&& \\ & \sigma_2^2 && \\ && \ddots & \\ &&& \sigma_r^2\end{bmatrix}\) is the autocorrelation of signal vector \(\mathbf{s}\). By vectorizing, we have
+</p>
+\begin{align}
+\text{vec}\left( \mathbf{R}_{\mathbf{x}_{\mathbb{S}}} \right) = \left( \mathbf{A}_{\mathbb{S}}^{*} \odot \mathbf{A}_{\mathbb{S}} \right) \begin{bmatrix} \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\ \sigma_r^2 \end{bmatrix} + \sigma_0^2 \text{vec} \left(\mathbf{I}_{|\mathbb{S}|}\right), \label{eq:xkrs}
+\end{align}
+<p>
+where \(\odot\) is the <i>Khatri-Rao product</i> operator. Clearly, in the <i>Khatri-Rao</i> subspace, analogous to \eqref{eq:xs}, we can perform <a href="music.html">MUSIC</a> algorithm by treating
+</p>
+<ul class="org-ul">
+<li>vector \(\begin{bmatrix} \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\ \sigma_r^2 \end{bmatrix}\) as the transmitted signal;</li>
+<li>\(\text{vec}\left( \mathbf{R}_{\mathbf{x}_{\mathbb{S}}} \right)\) as the received signal;</li>
+<li>\(\mathbf{A}_{\mathbb{S}}^{*} \odot \mathbf{A}_{\mathbb{S}}\) as the effective channel matrix;</li>
+<li>\(\forall \mathbf{v}_{\mathbf{S}} \in \mathcal{C}^{|\mathbb{S}| \times 1}\), \(\mathbf{v}_{\mathbb{S}}^{*} \otimes \mathbf{v}_{\mathbb{S}}\) as a steering vector.</li>
+</ul>
+
+<p>
+Similar to \eqref{eq:xkrs}, the received signal over \(\mathbb{D}\) as
+</p>
+\begin{align}
+\mathbf{x}_{\mathbb{D}} = \mathbf{A}_{\mathbb{D}} \begin{bmatrix} \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\ \sigma_r^2 \end{bmatrix} + \sigma_0^2 \mathbf{e}. \label{eq:xd}
+\end{align}
+<p>
+For the covariance matrix of \(\mathbf{x}_{\mathbb{D}}\), <i>spatial smoothing</i> (including selecting, combining, and reordering of the entries in \(\mathbf{A}_{\mathbb{S}}^{*} \odot \mathbf{A}_{\mathbb{S}}\)) is adopted before the <i>eigen-value decomposition (EVD)</i> operation. The smoothed covariance matrix can be shown as
+</p>
+\begin{align}
+\mathbf{R}_{\mathbf{x}_{\mathbb{D}}} \triangleq \frac{2}{|\mathbb{U}|+1} \sum_{p=0}^{\frac{|\mathbb{U}|-1}{2}} \mathbf{J}_p \mathbf{x}_{\mathbb{D}} \mathbf{x}_{\mathbb{D}}^H \mathbf{J}_p^H, \label{eq:smoothed-cov}
+\end{align}
+<p>
+where \(\mathbf{J}_p \triangleq 
+\begin{bmatrix}
+\mathbf{0}_{\frac{|\mathbb{U}|+1}{2} \times \frac{|\mathbb{U}|-1}{2} - p} & \mathbf{I}_{\frac{|\mathbb{U}|+1}{2} \times \frac{|\mathbb{U}|+1}{2}} & \mathbf{0}_{\frac{|\mathbb{U}|+1}{2} \times p}
+\end{bmatrix} \in \{0, 1\}^{\frac{|\mathbb{U}|+1}{2} \times |\mathbb{U}|}\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc049765" class="outline-2">
+<h2 id="orgc049765">MUSIC over \(\mathbb{U}\)</h2>
+<div class="outline-text-2" id="text-orgc049765">
+<p>
+By parsing the rows of \eqref{eq:xd} corresponding to the entries in \(\mathbb{U}\), the received signal on \(\mathbb{U}\) can be expressed as
+</p>
+\begin{align}
+\mathbf{x}_{\mathbb{U}} = \mathbf{A}_{\mathbb{U}} \begin{bmatrix} \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\ \sigma_r^2 \end{bmatrix} + \sigma_0^2 \mathbf{e}^\prime. \label{eq:xu}
+\end{align}
+
+<p>
+Based on \(\mathbf{x}_{\mathbb{U}}\), a Toeplitz matrix can be built
+</p>
+\begin{align}
+\mathbf{R}_{\mathbb{U}} \triangleq \begin{bmatrix}
+\mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|+1}{2}\right] & \mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|-1}{2}\right] & \cdots & \mathbf{x}_{\mathbb{U}}[1] \\
+\mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|+3}{2}\right] & \mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|+1}{2}\right] & \cdots & \mathbf{x}_{\mathbb{U}}[2] \\
+⋮ & ⋮ & ⋱ & ⋮ \\
+\mathbf{x}_{\mathbb{U}}\left[|\mathbb{U}|\right] & \mathbf{x}_{\mathbb{U}}\left[|\mathbb{U}|-1\right] & \cdots & \mathbf{x}_{\mathbb{U}}\left[\frac{|\mathbb{U}|+1}{2}\right]
+\end{bmatrix}, \label{eq:ru}
+\end{align}
+<p>
+where \(\mathbf{x}_{\mathbb{U}}[u]\) is \(u\) th element in \(\mathbf{x}_{\mathbb{U}}\), \(u = 1, 2, …, |\mathbb{U}|\). It can be proved that the covariance matrix of \(\mathbf{R}_{\mathbb{U}}\) is a linear scaling of the smoothed covariance matrix \(\mathbf{R}_{\mathbf{x}_{\mathbb{D}}}\) in \eqref{eq:smoothed-cov}, i.e.,
+</p>
+\begin{align*}
+\mathbf{R}_{\mathbb{U}} \mathbf{R}_{\mathbb{U}}^H = \frac{|\mathbb{U}|+1}{2} \mathbf{R}_{\mathbf{x}_{\mathbb{D}}}.
+\end{align*}
+<p>
+Therefore, <a href="music.html">MUSIC</a> spectrum estimation can be directly carried out based on \(\mathbf{R}_{\mathbb{U}}\), since it has the same eigenspace as \(\mathbf{R}_{\mathbf{x}_{\mathbb{D}}}\).
+</p>
+
+<p>
+Given a set \(\mathbb{U} = \left\{-m, -(m-1), …, -1, 0, 1, …, m-1, m\right\}\), \(m=\dfrac{|\mathbb{U}| - 1}{2}\), a steering vector can be constructed as
+</p>
+\begin{align}
+\mathbf{a}_{\mathbb{U}}(\omega) = \begin{bmatrix}
+1 \\
+e^{j\omega} \\
+⋮ \\
+e^{j(m-1)\omega} \\
+e^{jm\omega}
+\end{bmatrix}. \label{eq:vu}
+\end{align}
+<p>
+We can perform EVD on \(\mathbf{R}_{\mathbb{U}}\) in \eqref{eq:ru} to obain an orthonormal basis of the noise subspace, and project each steering vector in \eqref{eq:vu} into the resultant noise subspace. By traversing the candidate steering vectors, a MUSIC spectrum on \(\mathbb{U}\) can be built.
+</p>
+
+<p>
+It should be noted that in practice \(\mathbf{x}_{\mathbb{S}}\) is measured on a plurality of samples. Its covariance matrix in \eqref{eq:cov} should be averaged over all the measurements, i.e.,
+</p>
+\begin{align}
+\tilde{\mathbf{R}}_{\mathbf{x}_{\mathbb{S}}} = \frac{1}{N} \sum_{n=1}^N \tilde{\mathbf{x}}_{\mathbb{S}}(n) \tilde{\mathbf{x}}_{\mathbb{S}}^H(n),
+\end{align}
+<p>
+where \(N\) is the number of measurement samples. Moreover, in the computation of \(\tilde{\mathbf{x}}_{\mathbb{U}}\) (\(\mathbf{x}_{\mathbb{U}}\)'s measurement), if a spatial lag has weight larger than 1, the corresponding quantities in \(\tilde{\mathbf{R}}_{\mathbf{x}_{\mathbb{S}}}\) should also be averaged.
+</p>
+
+<p>
+Finally, what is worth emphasizing, the idea of sparse array is not limited to spatial domain (i.e., layout design of an antenna array), and it can be extended to other domains, e.g., time or frequency domains (pilot pattern design), etc.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgce1ff34" class="outline-2">
+<h2 id="orgce1ff34">Example realizations</h2>
+<div class="outline-text-2" id="text-orgce1ff34">
+</div>
+<div id="outline-container-org4579c83" class="outline-3">
+<h3 id="org4579c83">Nested patterns &amp; coprime patterns (<code>sparse.py</code>)</h3>
+<div class="outline-text-3" id="text-org4579c83">
+<div class="org-src-container">
+<pre class="src src-python">def gen_nested_pat(n: int) -&gt; list:
+    n1 = n // 2
+    n2 = n - n1
+    s1 = list(range(n1))
+    s2 = list(range(n1, (n1 + 1) * n2, n1 + 1))
+    return s1 + s2
+
+def gen_coprime_pat(p: int, q: int) -&gt; list:
+    assert p &lt; q, "p &lt; q"
+    assert np.gcd(p, q) == 1, "p and q should be a co-primed pair of integers."
+    s = list(range(p, p * q, p)) + list(range(0, 2 * p * q, q))
+    s.sort()
+    return s
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd78382" class="outline-3">
+<h3 id="orgdd78382">Pattern (<code>pat.py</code>)</h3>
+<div class="outline-text-3" id="text-orgdd78382">
+<div class="org-src-container">
+<pre class="src src-python">import numpy as np
+
+
+class Pattern:
+    def __init__(self, pat: list[int], unit: float=1) -&gt; None:
+        self.pat = np.array(pat)
+        self.unit = unit
+        self.len = len(pat)
+        self.calc_dca()
+        self.calc_dca_ula()
+    def calc_dca(self) -&gt; None:
+        self.corr = np.zeros((self.len, self.len), dtype=int)
+        for r in range(self.len):
+            for c in range(self.len):
+                self.corr[r, c] = self.pat[r] - self.pat[c]
+        self.dca, self.weight = np.unique(self.corr, return_counts=True)
+        self.dof = len(self.dca)
+    def calc_dca_ula(self) -&gt; None:
+        self.udof = 1
+        m = 0
+        while len(np.where(self.dca == m + 1)[0]) &gt; 0:
+            self.udof += 2
+            m += 1
+        self.udca = np.linspace(-m, m, self.udof, dtype=int)
+    def smooth_cov(self, cov: np.ndarray) -&gt; np.ndarray:
+        m = self.udof // 2
+        r = np.zeros((m + 1, m + 1), dtype=complex)
+        for u in self.udca:
+            coeff = cov[(self.corr == u).nonzero()].mean()
+            r += np.eye(m + 1, k=-u, dtype=complex) * coeff
+        return r
+    def gen_steering_vector(self, coeff: float) -&gt; np.ndarray:
+        return np.exp(1j * self.pat * self.unit * coeff)
+    def gen_steering_vector_dca_ula(self, coeff: float) -&gt; np.ndarray:
+        return np.exp(1j * self.udca[self.udof // 2:] * self.unit * coeff)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1077d58" class="outline-3">
+<h3 id="org1077d58">MUSIC (<code>music.py</code>)</h3>
+<div class="outline-text-3" id="text-org1077d58">
+<div class="org-src-container">
+<pre class="src src-python">import numpy as np
+from pat import Pattern
+
+
+class MUSIC:
+    def __init__(self, cov: np.ndarray, dof: int) -&gt; None:
+        _, u = np.linalg.eigh(cov)
+        self.u_h = u[:, :-dof].conj().T
+    def calc_metric(self, v: np.ndarray) -&gt; float:
+        return np.power(np.linalg.norm(np.dot(self.u_h, v)), -2)
+    def calc_spectrum(self, pat: Pattern, scope: np.ndarray) -&gt; np.ndarray:
+        return np.array([self.calc_metric(pat.gen_steering_vector(x)) for x in scope])
+
+class MUSIC_DCA(MUSIC):
+    def __init__(self, cov_smoothed: np.ndarray, dof: int) -&gt; None:
+        super().__init__(cov_smoothed, dof)
+    def calc_spectrum(self, pat: Pattern, scope: np.ndarray) -&gt; np.ndarray:
+        return np.array([self.calc_metric(pat.gen_steering_vector_dca_ula(x)) for x in scope])
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ba0c50" class="outline-2">
+<h2 id="org3ba0c50">References</h2>
+<div class="outline-text-2" id="text-org3ba0c50">
+<ol class="org-ol">
+<li>Liu, Chun-Lin and Vaidyanathan, P. P. (2016). "Super Nested Arrays: Linear Sparse Arrays With Reduced Mutual Coupling Part I: Fundamentals". IEEE Transactions on Signal Processing, 64, 3997-4012. 10.1109/TSP.2016.2558159.</li>
+<li>Liu, Chun-Lin and Vaidyanathan, P. P. (2016). "Super Nested Arrays: Linear Sparse Arrays With Reduced Mutual Coupling Part II: High-Order Extensions". IEEE Transactions on Signal Processing, 64, 4203-4217. 10.1109/TSP.2016.2558167.</li>
+<li>Ma, Wing-Kin and Hsieh, Tsung-Han and Chi, Chong-Yung (2010). "DOA Estimation of Quasi-Stationary Signals With Less Sensors Than Sources and Unknown Spatial Noise Covariance: A Khatri–Rao Subspace Approach". IEEE Transactions on Signal Processing, 58, 2168-2180. 10.1109/TSP.2009.2034935.</li>
+<li>Liu, Chun-Lin and Vaidyanathan, P. P. (2015). "Remarks on the Spatial Smoothing Step in Coarray MUSIC". IEEE Signal Processing Letters, 22, 1438-1442. 10.1109/LSP.2015.2409153.</li>
+</ol>
+</div>
+</div>
+</div>
+</body>
+</html>
