@@ -10,26 +10,11 @@ In git, there are 3 types of objects defined, /blob/, /tree/, and /commit/. In o
 
 A branch or a tag is nothing but a pointer pointing at the SHA-1 hash of a commit. Moreover, =HEAD= is also a pointer, which always points the active branch at the time.
 ** Areas
-In the utilization of git, there are four important areas for storage, /workspace/, /index/ (or /stage/), /repository/ and /remote/. Their relationship can be illustrated by the figure below.
-#+begin_src dot :file git.png
-  digraph G
-  {
-  rankdir = LR;
-  workspace -> index [label = "add"];
-  index -> repository [label = "commit"];
-  repository -> remote [label = "push"];
-  remote -> repository [label = "fetch/clone"];
-  repository -> workspace [label = "checkout"];
-  remote -> workspace [label = "pull"];
-  workspace [style = filled, color = yellow];
-  index [label = "index/stage", style = filled, color = lightblue];
-  repository [style = filled, color = green];
-  remote [style = filled, color = red];
-  }
-#+end_src
+In the utilization of git, there are four important areas for storage, /workspace/, /index/ (or /stage/), /repository/ and /remote/. Their relationship can be illustrated by Figure [[git_flow]].
 
-#+RESULTS:
-[[file:git.png]]
+#+CAPTION: Work flow of git
+#+NAME: git_flow
+[[./fig/git.png]]
 * Installation
 On Unix/Linux operation systems, git can be easily installed. Taking /ArchLinux/ for instance, git can be installed via following command.
 #+begin_src sh
