@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2023-05-07 Sun 23:46 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Whitening Filter</title>
@@ -229,34 +229,22 @@
 <div id="content" class="content">
 <h1 class="title">Whitening Filter</h1>
 <p>
-有时需要将有用信号和某个有色噪声的混合信号进行滤波处理, 使得输出信号中原来的有色噪声成分成为白噪声.
+Usually, we need to filter a mixture of desired signal and colored noise, in order to make the spectrum of the noise become white.
 </p>
 
 <p>
-设\(x(t)\)是一个宽平稳过程, 将其输入冲激响应为\(h(t)\)的线性时不变(linear time invariant, LTI)系统\(L\), 若输出过程是功率谱密度为1的白噪声过程\(n(t)\), 则称系统\(L\)为随机过程\(x(t)\)的白化滤波器, 称\(n(t)\)为\(x(t)\)的新息过程. 将\(n(t)\)输入\(L\)的逆系统\(L^{-1}\), 则得到原来的过程\(x(t)\), 此时称\(L^{-1}\)为新息滤波器. 如下图所示.
+Without loss of generality, \(x(t)\) is a wide-sense stationary stochastic process. If it is taken as input by a <i>linear time invariant (LTI)</i> system \(W\) and the output process \(n(t)\) has white power spectrum, i.e., <i>power spectrum density (PSD)</i> equal to 1; then the system \(W\) is termed the <i>whitening filter</i> of process \(x(t)\), and \(n(t)\) is termed the <i>innovation process</i> of \(x(t)\). If \(n(t)\) is input into the inverse system of \(W\), denoted by \(W^{-1}\), then the output is the original process \(x(t)\) and system \(W^{-1}\) is the corresponding <i>innovation fitler</i>, as shown in Figure <a href="#org40ce3f1">1</a>.
 </p>
-<div class="org-src-container">
-<pre class="src src-dot">digraph G
-{
-rankdir = LR;
-x -&gt; wf -&gt; n -&gt; inv_wf -&gt; x_rcv;
-x [label = "x(t)\nSx(f)", shape = plaintext];
-wf [label = "白化滤波器", shape = box];
-n [label = "n(t)\nSn(f) = 1", shape = plaintext];
-inv_wf [label = "新息滤波器", shape = box];
-x_rcv [label = "x(t)\nSx(f)", shape = plaintext];
-}
-</pre>
+
+
+<div id="org40ce3f1" class="figure">
+<p><img src="./fig/whitening_filter.png" alt="whitening_filter.png" width="800px">
+</p>
+<p><span class="figure-number">Figure 1: </span>Whitening filter and innovation filter</p>
 </div>
 
 <p>
-对于给定的多维随机向量\(\mathbf{x}\), 其自相关函数为
-</p>
-\begin{align*}
-\mathrm{Var}[\mathbf{x}] = \mathrm{E} \left[ \mathbf{x} \mathbf{x}^H\right].
-\end{align*}
-<p>
-假设其白化滤波器记为\(\mathbf{H}\), 那么该白化滤波器的输出 \(\mathbf{y} = \mathbf{Hx}\)的自相关函数应该为单位阵, 也即
+Providing a multidimensional stochastic vector \(\mathbf{x}\) with covariance \(\mathrm{Var}[\mathbf{x}] = \mathrm{E} \left[ \mathbf{x} \mathbf{x}^H\right]\), if its whitening filter is denoted by \(\mathbf{H}\), then its output \(\mathbf{y} = \mathbf{Hx}\) should have unit covariance, i.e.,
 </p>
 \begin{align*}
 \mathrm{Var}[\mathbf{y}] &= \mathrm{E} \left[ \mathbf{y} \mathbf{y}^H\right] \\
@@ -264,7 +252,7 @@ x_rcv [label = "x(t)\nSx(f)", shape = plaintext];
 &= \mathbf{I}.
 \end{align*}
 <p>
-显然, \(\mathbf{H} = \mathbf{L}^{-1}\) 时上述公式成立. 其中, \(\mathbf{L}\mathbf{L}^H = \mathrm{Var}[\mathbf{x}]\).
+Clearly, the equation above holds if and only if \(\mathbf{H} = \mathbf{L}^{-1}\), where \(\mathbf{L}\mathbf{L}^H = \mathrm{Var}[\mathbf{x}]\).
 </p>
 </div>
 </body>
