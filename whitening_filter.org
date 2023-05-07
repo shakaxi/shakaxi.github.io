@@ -9,14 +9,10 @@ Without loss of generality, $x(t)$ is a wide-sense stationary stochastic process
 #+NAME: whitening_innovation
 [[./fig/whitening_filter.png]]
 
-Provided a multidimensional stochastic vector $\mathbf{x}$, with covariance
-\begin{align}
-  \mathrm{Var}[\mathbf{x}] = \mathrm{E} \left[ \mathbf{x} \mathbf{x}^H\right], \label{eq:var-x}
-\end{align}
-if its whitening filter is $\mathbf{H}$, then its output $\mathbf{y} = \mathbf{Hx}$ should have unit covariance, i.e.,
-\begin{align}
-\mathrm{Var}[\mathbf{y}] &= \mathrm{E} \left[ \mathbf{y} \mathbf{y}^H\right] \nonumber \\
-&= \mathrm{E} \left[ \mathbf{Hx} \mathbf{x}^H \mathbf{H}^H \right] \nonumber \\
-&= \mathbf{I}. \label{eq:var-y}
-\end{align}
-Clearly, equation \eqref{eq:var-y} holds if and only if $\mathbf{H} = \mathbf{L}^{-1}$, where $\mathbf{L}\mathbf{L}^H = \mathrm{Var}[\mathbf{x}]$.
+Providing a multidimensional stochastic vector $\mathbf{x}$ with covariance $\mathrm{Var}[\mathbf{x}] = \mathrm{E} \left[ \mathbf{x} \mathbf{x}^H\right]$, if its whitening filter is denoted by $\mathbf{H}$, then its output $\mathbf{y} = \mathbf{Hx}$ should have unit covariance, i.e.,
+\begin{align*}
+\mathrm{Var}[\mathbf{y}] &= \mathrm{E} \left[ \mathbf{y} \mathbf{y}^H\right] \\
+&= \mathrm{E} \left[ \mathbf{Hx} \mathbf{x}^H \mathbf{H}^H \right] \\
+&= \mathbf{I}.
+\end{align*}
+Clearly, the equation above holds if and only if $\mathbf{H} = \mathbf{L}^{-1}$, where $\mathbf{L}\mathbf{L}^H = \mathrm{Var}[\mathbf{x}]$.

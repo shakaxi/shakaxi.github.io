@@ -5,14 +5,14 @@
 \usetikzlibrary{shapes}
 \begin{document}
 \begin{tikzcd}[column sep=huge]
-    |[fill=red!30]| \textrm{Workspace}
+    |[fill=red!30, draw]| \textrm{Workspace}
     \ar[r, "\textrm{add}"]
-    &|[fill=blue!30]| \textrm{Index/stage}
+    &|[fill=blue!30, draw]| \textrm{Index/stage}
     \ar[r, "\textrm{commit}"]
-    &|[fill=gray!30]| \textrm{Local repository}
+    &|[fill=gray!30, draw]| \textrm{Local repository}
     \ar[rr, shift left, "\textrm{push}"]
     \ar[ll, bend right, "\textrm{checkout}"']
-    && |[fill=green!30, shape=cloud, aspect=3, inner sep=0]| \textrm{remote repository}
+    && |[fill=green!30, shape=cloud, aspect=3, inner sep=0, draw]| \textrm{remote repository}
     \ar[ll, shift left, "\textrm{fetch/clone}"]
     \ar[llll, bend left, "\textrm{pull}"']
 \end{tikzcd}

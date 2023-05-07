@@ -7,26 +7,9 @@ Just as its name indicates, SLNR aims to maximize the ratio of desired signal po
 
 This page is just written to summarize this SLNR-based beamforming scheme.
 * System model
-#+BEGIN_SRC dot :file slnr.png
-digraph A
-{
-rankdir = TB;
-nodesep = 1;
-node[shape=rectangle];
-BS -> UE0:n[fontcolor=blue, color=blue, label="desired\nsignal\n"];
-BS -> UE1:n[style=dashed, label="leakage"];
-BS -> sep[color=white];
-BS -> UEn:n[style=dashed, label="leakage"];
-BS[style=filled, fillcolor=grey];
-UE0[style=bold,color=blue,fontcolor=blue,label="UE0"];
-UE1[label="UE1"];
-sep[shape=plaintext, label="..."];
-UEn[label="UEn"];
-}
-#+END_SRC
-
-#+RESULTS:
-[[file:slnr.png]]
+#+CAPTION: System model
+#+ATTR_HTML: :width 800px
+[[./fig/slnr.png]]
 
 Without loss of generality, we consider a simple scenario as shown in the figure above. Taking =UE0= for instance, the BS intends to send data to it, i.e. the received signals at other UE's, e.g. =UE1=, ..., =UEn= are all /leakage/. The SLNR can be expressed as
 \begin{align}

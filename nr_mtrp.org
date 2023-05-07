@@ -1,10 +1,5 @@
 #+TITLE: NR - Multi-TRP Transmission
 #+OPTIONS: \usepackage{hyperref}
-#+OPTIONS: \usepackage{amsmath}
-#+OPTIONS: \usepackage{amssymb}
-#+OPTIONS: \usepackage{amsfonts}
-#+OPTIONS: \usepackage{marvosym}
-#+PROPERTY: header-args:latex :results raw :headers '("\\usepackage{tikz}") :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
 
 * Introduction
 Recently, multi-TRP transmission is one of the most remarkable features of NR and consequently the focus of discussion in the standardization of 3GPP, since it is able to efficiently improve the reliability or the efficiency of the transmission.
@@ -14,21 +9,10 @@ This document tries to provide an in-depth analysis and reveal the rationale beh
 For clear description, following denotation conventions have been adopted throughout the document. Scalars, vectors, and matrices are respectively denoted by plain, lower-case boldfaced, and upper-case boldfaced letters. For a complex scalar, $(\cdot)^{*}$ means its conjugate, and $|\cdot|$ gets its absolute value. Given a matrix $\mathbf{A}$, $\mathbf{A}^H$ is its conjugate transposition, and $|\mathbf{A}|$ returns its determinant. Particularly, $\mathbf{I}$ stands for the entity matrix. $\mathbb{C}^{m \times n}$ represents the complex space of dimension $m \times n$. $\mathcal{E}(\cdot)$ is the expectation operator.
 * System model
 Without loss of generality, we consider such a simple 2-TRP non-coherent joint transmission (NCJT) scenario that a UE receives two PDSCH's from TRP-1 and TRP-2 simutaneously, as shown in the figure below. Each TRP is equipped with $n_t$ antennas, while the UE has $n_r$ antennas. For clear description, the downlink channel, precoding matrix, and the transmitted signal from TRP-$i$, are denoted by $\mathbf{H}_i \in \mathbb{C}^{n_r \times n_t}$, $\mathbf{W}_i \in \mathbb{C}^{n_t \times r_i}$, and $\mathbf{x}_i \in \mathbb{C}^{r_i \times 1}$ respectively, where $r_i$ is the number of layers of the PDSCH transmitted from TRP-$i$, $i = 1, 2$.
-#+begin_src latex :file mtrp-sys-mod.png
-  \begin{tikzpicture}
-    \shade[inner color = red, outer color = red!10](-3, 0)ellipse(3 and 1);
-    \shade[inner color = blue, outer color = blue!10](3, 0)ellipse(3 and 1);
-    \draw [very thick](-3, 0) -> (-3, 3) node[label=90:TRP-1](trp1){};
-    \draw [very thick](3, 0) -> (3, 3) node[label=90:TRP-2](trp2){};
-    \node at (0, 0)[label=100:$\mathbf{x}_1$, label=80:$\mathbf{x}_2$](ue){\huge\Mobilefone};
-    \draw (trp1) edge[->]node[label=45:$\mathbf{H}_1$, label=-135:$\mathbf{W}_1$]{} (ue);
-    \draw (trp2) edge[->]node[label=135:$\mathbf{H}_2$, label=-45:$\mathbf{W}_2$]{} (ue);
-  \end{tikzpicture}
-#+end_src
+
 #+CAPTION:System model
 #+ATTR_HTML: :width 800px
-#+RESULTS:
-[[file:mtrp-sys-mod.png]]
+[[./fig/mtrp_sys_mod.png]]
 
 Then, the received signal can be written as
 \begin{align*}
