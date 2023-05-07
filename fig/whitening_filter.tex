@@ -1,0 +1,18 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\begin{document}
+\begin{tikzcd}
+    |[label={270:{S_x(f)}}]|x(t)
+    \ar[r]
+    & |[fill=red!30, draw]| \textrm{Whitening filter}
+    \ar[r]
+    & |[label={270:{S_n(f) = 1}}]|n(t)
+    \ar[r]
+    & |[fill=blue!30, draw]| \textrm{Innovation filter}
+    \ar[r]
+    & |[label={270:{S_x(f)}}]| x(t)
+\end{tikzcd}
+
+\end{document}

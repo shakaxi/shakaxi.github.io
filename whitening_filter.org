@@ -1,35 +1,22 @@
 #+TITLE: Whitening Filter
-#+OPTIONS: \usepackage{amsmath, amssymb, amsfonts}
 
-有时需要将有用信号和某个有色噪声的混合信号进行滤波处理, 使得输出信号中原来的有色噪声成分成为白噪声.
+Usually, we need to filter a mixture of desired signal and colored noise, in order to make the spectrum of the noise become white.
 
-设\(x(t)\)是一个宽平稳过程, 将其输入冲激响应为\(h(t)\)的线性时不变(linear time invariant, LTI)系统\(L\), 若输出过程是功率谱密度为1的白噪声过程\(n(t)\), 则称系统\(L\)为随机过程\(x(t)\)的白化滤波器, 称\(n(t)\)为\(x(t)\)的新息过程. 将\(n(t)\)输入\(L\)的逆系统\(L^{-1}\), 则得到原来的过程\(x(t)\), 此时称\(L^{-1}\)为新息滤波器. 如下图所示.
-#+BEGIN_SRC dot :file whitening_filter.png
-digraph G
-{
-rankdir = LR;
-x -> wf -> n -> inv_wf -> x_rcv;
-x [label = "x(t)\nSx(f)", shape = plaintext];
-wf [label = "白化滤波器", shape = box];
-n [label = "n(t)\nSn(f) = 1", shape = plaintext];
-inv_wf [label = "新息滤波器", shape = box];
-x_rcv [label = "x(t)\nSx(f)", shape = plaintext];
-}
-#+END_SRC
+Without loss of generality, $x(t)$ is a wide-sense stationary stochastic process. If it is taken as input by a /linear time invariant (LTI)/ system $W$ and the output process $n(t)$ has white power spectrum, i.e., /power spectrum density (PSD)/ equal to 1; then the system $W$ is termed the /whitening filter/ of process $x(t)$, and $n(t)$ is termed the /innovation process/ of $x(t)$. If $n(t)$ is input into the inverse system of $W$, denoted by $W^{-1}$, then the output is the original process $x(t)$ and system $W^{-1}$ is the corresponding /innovation fitler/, as shown in Figure [[whitening_innovation]].
 
-#+CAPTION: 白化滤波器和新息滤波器
+#+CAPTION: Whitening filter and innovation filter
 #+ATTR_HTML: :width 800px
-#+RESULTS:
-[[file:whitening_filter.png]]
+#+NAME: whitening_innovation
+[[./fig/whitening_filter.png]]
 
-对于给定的多维随机向量\(\mathbf{x}\), 其自相关函数为
-\begin{align*}
-\mathrm{Var}[\mathbf{x}] = \mathrm{E} \left[ \mathbf{x} \mathbf{x}^H\right].
-\end{align*}
-假设其白化滤波器记为\(\mathbf{H}\), 那么该白化滤波器的输出 \(\mathbf{y} = \mathbf{Hx}\)的自相关函数应该为单位阵, 也即
-\begin{align*}
-\mathrm{Var}[\mathbf{y}] &= \mathrm{E} \left[ \mathbf{y} \mathbf{y}^H\right] \\
-&= \mathrm{E} \left[ \mathbf{Hx} \mathbf{x}^H \mathbf{H}^H \right] \\
-&= \mathbf{I}.
-\end{align*}
-显然, \(\mathbf{H} = \mathbf{L}^{-1}\) 时上述公式成立. 其中, \(\mathbf{L}\mathbf{L}^H = \mathrm{Var}[\mathbf{x}]\).
+Provided a multidimensional stochastic vector $\mathbf{x}$, with covariance
+\begin{align}
+  \mathrm{Var}[\mathbf{x}] = \mathrm{E} \left[ \mathbf{x} \mathbf{x}^H\right], \label{eq:var-x}
+\end{align}
+if its whitening filter is $\mathbf{H}$, then its output $\mathbf{y} = \mathbf{Hx}$ should have unit covariance, i.e.,
+\begin{align}
+\mathrm{Var}[\mathbf{y}] &= \mathrm{E} \left[ \mathbf{y} \mathbf{y}^H\right] \nonumber \\
+&= \mathrm{E} \left[ \mathbf{Hx} \mathbf{x}^H \mathbf{H}^H \right] \nonumber \\
+&= \mathbf{I}. \label{eq:var-y}
+\end{align}
+Clearly, equation \eqref{eq:var-y} holds if and only if $\mathbf{H} = \mathbf{L}^{-1}$, where $\mathbf{L}\mathbf{L}^H = \mathrm{Var}[\mathbf{x}]$.
