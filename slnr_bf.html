@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2023-05-09 Tue 00:07 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SLNR-based Beamforming</title>
@@ -258,23 +258,11 @@ This page is just written to summarize this SLNR-based beamforming scheme.
 <div id="outline-container-org61ba228" class="outline-2">
 <h2 id="org61ba228">System model</h2>
 <div class="outline-text-2" id="text-org61ba228">
-<div class="org-src-container">
-<pre class="src src-dot">digraph A
-{
-rankdir = TB;
-nodesep = 1;
-node[shape=rectangle];
-BS -&gt; UE0:n[fontcolor=blue, color=blue, label="desired\nsignal\n"];
-BS -&gt; UE1:n[style=dashed, label="leakage"];
-BS -&gt; sep[color=white];
-BS -&gt; UEn:n[style=dashed, label="leakage"];
-BS[style=filled, fillcolor=grey];
-UE0[style=bold,color=blue,fontcolor=blue,label="UE0"];
-UE1[label="UE1"];
-sep[shape=plaintext, label="..."];
-UEn[label="UEn"];
-}
-</pre>
+
+<div id="orgb8e8afe" class="figure">
+<p><img src="./fig/slnr.png" alt="slnr.png" width="800px">
+</p>
+<p><span class="figure-number">Figure 1: </span>System model</p>
 </div>
 
 <p>
