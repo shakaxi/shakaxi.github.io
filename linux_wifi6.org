@@ -1,0 +1,11 @@
+#+TITLE: Linux - WiFi6
+
+Today, I found the wireless network card (Intel Corporation Wi-Fi 6 AX201) is suffering random disconnection. Maybe there is something wrong with the driver in Linux.
+
+After several rounds of searching and trying, the problem can be solved by disabling the 11n and 11ac modes, as well as power saving.
+
+For ArchLinux, following two lines can be inserted in file =/etc/modprobe.d/iwlwifi.conf=.
+#+begin_src sh
+  options iwlwifi power_save=0
+  options iwlwifi 11n_disable=1 11ac_disable=1
+#+end_src

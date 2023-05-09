@@ -70,6 +70,7 @@
 - [[file:ranger.org][Linux - Ranger]]
 - [[file:sed.org][Linux - Sed]]
 - [[file:sway.org][Linux - Sway]]
+- [[file:linux_wifi6.org][Linux - WiFi6]]
 - [[file:zathura.org][Linux - Zathura]]
 - [[file:zsh.org][Linux - Zsh]]
 - [[file:matlab_fig.org][MATLAB - Figure Data Abstraction]]
