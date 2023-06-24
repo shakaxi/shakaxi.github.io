@@ -63,6 +63,7 @@
 - [[file:dwm.org][Linux - Dynamic Window Manager (DWM)]]
 - [[file:font.org][Linux - Fonts]]
 - [[file:gdb.org][Linux - GNU Debugger (GDB)]]
+- [[file:hyprland.org][Linux - Hyprland]]
 - [[file:makefile.org][Linux - Makefile]]
 - [[file:microcode.org][Linux - Microcode]]
 - [[file:nfs.org][Linux - Network File System (NFS)]]
