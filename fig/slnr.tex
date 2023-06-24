@@ -1,18 +1,18 @@
-\documentclass{standalone}
+\documentclass[convert]{standalone}
 
 \usepackage{tikz-cd}
 \usepackage{marvosym}
 
 \begin{document}
 \begin{tikzcd}[row sep=huge]
-    & |[draw, fill=red!30]| \textrm{BS}
+    & BS
     \ar[ld, bend right, "\textrm{desired signal}"', red]
     \ar[d, "\textrm{leakage}", dashed]
     \ar[rrd, bend left, "\textrm{leakage}", dashed]
     && \\
-    |[red, label={-90:\textcolor{red}{\textrm{UE}}}]|\textrm{\Huge\Mobilefone} &
-    |[label={-90:{\textrm{UE}}}]|\textrm{\Huge\Mobilefone} & \cdots &
-    |[label={-90:{\textrm{UE}}}]|\textrm{\Huge\Mobilefone}
+    |[red, label={-90:\textcolor{red}{\textrm{UE0}}}]|\textrm{\Huge\Mobilefone} &
+    |[label={-90:{\textrm{UE1}}}]|\textrm{\Huge\Mobilefone} & \cdots &
+    |[label={-90:{\textrm{UEn}}}]|\textrm{\Huge\Mobilefone}
 \end{tikzcd}
 \end{document}
 

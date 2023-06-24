@@ -4,14 +4,9 @@ AUX := $(subst .tex,.aux, $(TEX))
 LOG := $(subst .tex,.log, $(TEX))
 PNG := $(subst .pdf,.png, $(PDF))
 
-TEX2PDF := /usr/bin/pdflatex
-PDF2PNG := /usr/bin/convert
-PDF2PNGOPT := -density 100
+TEX2PDF := /usr/bin/pdflatex --shell-escape
 
-%.png: %.pdf
-	@$(PDF2PNG) $(PDF2PNGOPT) $< $@
-
-%.pdf: %.tex
+%.png: %.tex
 	@$(TEX2PDF) $<
 
 .phony: default clean clear
