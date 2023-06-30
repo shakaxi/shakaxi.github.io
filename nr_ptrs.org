@@ -40,35 +40,9 @@ where $\otimes$ is the operator of circular convolution; $\widetilde{X}(k)$, $X(
 
 According to (\ref{eq:pn-freq}), the influence of phase noise can be divided into two aspects, a multiplicative $\Phi(0)$ and an additive $\sum_{i=1, i\neq k}^NX(i) \cdot \Phi(k - i)$, termed /common phase error (CPE)/ and /inter-carrier interference (ICI)/ respectively, whose imapct can be illustrated in Figure [[fig:pn-impact]].
 
-#+BEGIN_SRC latex :file nr_ptrs_pn_impact.png :imagemagick yes :headers '("\\usepackage{tikz}") :fit yes :iminoptions -density 800
-  \begin{tikzpicture}[scale=2]
-      \foreach \p in {1, ..., 4}
-      {
-        \foreach \x in {0, 0.1, ..., 0.3}
-        \foreach \y in {0, 0.1, ..., 0.3}
-        {
-          \fill (30 + \p * 90:1)+(\x, \y) circle (0.03);
-        }
-      }
-  \end{tikzpicture}\hspace{3cm}
-  \begin{tikzpicture}[scale=2]
-      \foreach \p in {1, ..., 4}
-      {
-        \foreach \x in {0, 0.1, ..., 0.3}
-        \foreach \y in {0, 0.1, ..., 0.3}
-        {
-          \fill (35 + \p * 90:1)+(\x, \y) circle (0.03);
-          \fill (45 + \p * 90:1)+(\x, \y) circle (0.03);            
-          \fill (55 + \p * 90:1)+(\x, \y) circle (0.03);
-        }
-      }
-  \end{tikzpicture}
-#+END_SRC
-
 #+CAPTION: A QPSK constellation contaminated by phase noise
 #+NAME: fig:pn-impact
-#+ATTR_HTML: :width 800px
-[[file:nr_ptrs_pn_impact.png]]
+[[./fig/nr_ptrs_pn_impact.png]]
 
 From system performance perspective, CPE is more harmful than ICI, and is prioritized to be complemented. Its frequency-flat property gives rise to its dense distribution in the time domain and sparse scattering in the frequency domain.
 * Presence and Density

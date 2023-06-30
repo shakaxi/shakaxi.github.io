@@ -1,0 +1,31 @@
+\documentclass[convert]{standalone}
+\usepackage{tikz}
+\begin{document}
+
+\begin{tikzpicture}
+    \foreach \p in {1, ..., 4}
+    {
+      \foreach \x in {0, 0.1, ..., 0.3}
+      \foreach \y in {0, 0.1, ..., 0.3}
+      {
+        \fill (30 + \p * 90:1)+(\x, \y) circle (0.03);
+      }
+    }
+\end{tikzpicture}\hspace{3cm}
+\begin{tikzpicture}
+    \foreach \p in {1, ..., 4}
+    {
+      \foreach \x in {0, 0.1, ..., 0.3}
+      \foreach \y in {0, 0.1, ..., 0.3}
+      {
+        \fill (35 + \p * 90:1)+(\x, \y) circle (0.03);
+        \fill (45 + \p * 90:1)+(\x, \y) circle (0.03);            
+        \fill (55 + \p * 90:1)+(\x, \y) circle (0.03);
+      }
+    }
+\end{tikzpicture}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
