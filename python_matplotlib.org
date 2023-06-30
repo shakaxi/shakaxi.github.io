@@ -11,15 +11,15 @@ Matplotlib comes with a series of submodules, e.g.,
 - =matplotlib.pyplot= is the counterpart of Matlab in matplotlib, which is essentially a collection of functions similar to Matlab.
 - =matplotlib.pylab= is a convenience module which imports =matplotlib.pyplot= (for plotting) and =numpy= (for array related operations) in a single name space.
 * General Concepts
-In Matplotlib, there are some important concepts which can be illustrated in [[fig:matplotlib-concept][Figure 1]]. A typical matplotlib =Figure= is comprised of a variety of components, as show in [[fig:matplotlib-fig-component][Figure 2]].
-#+name: fig:matplotlib-concept
-#+caption: Basic concepts in Matplotlib (from https://matplotlib.org/1.5.1/faq/usage_faq.html)
+In Matplotlib, there are some important concepts which can be illustrated in Figure [[fig:matplotlib-fig-concept]]. A typical matplotlib =Figure= is comprised of a variety of components, as show in [[fig:matplotlib-fig-component]].
+#+name: fig:matplotlib-fig-concept
+#+caption: Concepts in a figure in Matplotlib (from https://matplotlib.org/1.5.1/faq/usage_faq.html)
 #+attr_html: :width 300px
-[[file:matplotlib_concept.png]]
+[[./fig/matplotlib_fig_concept.png]]
 #+name: fig:matplotlib-fig-component
 #+caption: Components of a figure in Matplotlib (from https://matplotlib.org/stable/tutorials/introductory/usage.html)
 #+attr_html: :width 300px
-[[file:matplotlib_fig_component.png]]
+[[./fig/matplotlib_fig_component.png]]
 ** =Figure=
 - A =Figure= object is essentially a canvas on which plot operations are performed. Clearly, it consists of one or more =Axes= objects.
   #+begin_src python
