@@ -1,0 +1,16 @@
+\documentclass[convert]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\begin{document}
+\begin{tikzcd}
+    \textrm{2 bits} \ar[r] &
+    |[draw]| \textrm{block coding} \ar[rr, "\textrm{32 bits}"] &&
+    |[draw]| \textrm{scrambling} \ar[r] &
+    |[draw]| \textrm{QPSK modulation} \ar[r] &
+    \textrm{16 symbols}
+\end{tikzcd}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

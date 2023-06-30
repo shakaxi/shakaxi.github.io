@@ -1,28 +1,12 @@
 #+TITLE: LTE - PCFICH
 
-As its name implies, physical control format indicator channel (PCFICH) indicates the size of the control region, or equivalently the position where data region starts, of the instant subframe in terms of the number of OFDM symbols.
+As its name implies, /physical control format indicator channel (PCFICH)/ indicates the size of the control region, or equivalently the position where data region starts, of the instant subframe in terms of the number of OFDM symbols.
 
-There are totally 2 bits for PCFICH corresponding to the three candidate control region size. The 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the inter-cell interference (ICI). After that, the codeword is modulated into 16 QPSK symbols and mapped to 4 /resource element groups (REG's)/[fn:1] in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 bandwidth.
+There are totally 2 bits for PCFICH corresponding to the three candidate control region sizes. As illustrated in Figure [[fig:lte-pcfich]], the 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the /inter-cell interference (ICI)/. After that, the codeword is modulated as 16 QPSK symbols and mapped to 4 /resource element groups (REG's)/[fn:1] in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 of the bandwidth.
 
-#+BEGIN_SRC dot :file pcfich.png
-  digraph A
-  {
-	  rankdir=LR;
-	  node [shape=box];
-	  start [shape=plaintext, label="2 bits"];
-          end [shape=plaintext, label = "16 symbols"];
-          block_code [label="block coding"];
-          mod [label="QPSK\nmodulation"]
-	  start -> block_code:w;
-	  block_code:e -> scrambling:w [label="32 bits"];
-	  scrambling:e -> mod:w;
-	  mod:e -> end;
-  }
-#+END_SRC
-
-#+RESULTS:
-[[file:pcfich.png]]
+#+CAPTION: Processing flow of PCFICH
+#+NAME: fig:lte-pcfich
+[[./fig/lte_pcfich.png]]
 
 * Footnotes
-
 [fn:1] One REG means 4 resource elements (RE's) in frequency domain.
