@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2023-07-01 Sat 01:15 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LTE - PCFICH</title>
@@ -197,28 +197,18 @@
 <div id="content" class="content">
 <h1 class="title">LTE - PCFICH</h1>
 <p>
-As its name implies, physical control format indicator channel (PCFICH) indicates the size of the control region, or equivalently the position where data region starts, of the instant subframe in terms of the number of OFDM symbols.
+As its name implies, <i>physical control format indicator channel (PCFICH)</i> indicates the size of the control region, or equivalently the position where data region starts, of the instant subframe in terms of the number of OFDM symbols.
 </p>
 
 <p>
-There are totally 2 bits for PCFICH corresponding to the three candidate control region size. The 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the inter-cell interference (ICI). After that, the codeword is modulated into 16 QPSK symbols and mapped to 4 <i>resource element groups (REG's)</i><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 bandwidth.
+There are totally 2 bits for PCFICH corresponding to the three candidate control region sizes. As illustrated in Figure <a href="#org70c0394">1</a>, the 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the <i>inter-cell interference (ICI)</i>. After that, the codeword is modulated as 16 QPSK symbols and mapped to 4 <i>resource element groups (REG's)</i><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 of the bandwidth.
 </p>
 
-<div class="org-src-container">
-<pre class="src src-dot">digraph A
-{
-    rankdir=LR;
-    node [shape=box];
-    start [shape=plaintext, label="2 bits"];
-        end [shape=plaintext, label = "16 symbols"];
-        block_code [label="block coding"];
-        mod [label="QPSK\nmodulation"]
-    start -&gt; block_code:w;
-    block_code:e -&gt; scrambling:w [label="32 bits"];
-    scrambling:e -&gt; mod:w;
-    mod:e -&gt; end;
-}
-</pre>
+
+<div id="org70c0394" class="figure">
+<p><img src="./fig/lte_pcfich.png" alt="lte_pcfich.png">
+</p>
+<p><span class="figure-number">Figure 1: </span>Processing flow of PCFICH</p>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>

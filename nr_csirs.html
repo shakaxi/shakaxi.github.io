@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2023-07-02 Sun 00:31 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - Channel State Information Reference Signal (CSI-RS)</title>
@@ -359,7 +359,7 @@ In case of \(\rho = 3\), there are 4 candidates available, as shown in Figure <a
 </p>
 
 <div id="orgd0b46e2" class="figure">
-<p><img src="nr_csirs_1port.png" alt="nr_csirs_1port.png" width="50px">
+<p><img src="./fig/nr_csirs_1port.png" alt="nr_csirs_1port.png" width="50px">
 </p>
 <p><span class="figure-number">Figure 1: </span>1-port CSI-RS (\(\rho = 3\))</p>
 </div>
@@ -373,7 +373,7 @@ For 2-port CSI-RS, as shown in Figure <a href="#orgb6cb1b0">2</a>, there are \(C
 </p>
 
 <div id="orgb6cb1b0" class="figure">
-<p><img src="nr_csirs_2port.png" alt="nr_csirs_2port.png" width="100px">
+<p><img src="./fig/nr_csirs_2port.png" alt="nr_csirs_2port.png" width="100px">
 </p>
 <p><span class="figure-number">Figure 2: </span>2-port CSI-RS</p>
 </div>
@@ -387,7 +387,7 @@ As shown in Figure <a href="#org7e9e3bb">3</a>, there are \(C_3^1\) and \(C_6^1\
 </p>
 
 <div id="org7e9e3bb" class="figure">
-<p><img src="nr_csirs_4port.png" alt="nr_csirs_4port.png" width="300px">
+<p><img src="./fig/nr_csirs_4port.png" alt="nr_csirs_4port.png" width="300px">
 </p>
 <p><span class="figure-number">Figure 3: </span>4-port CSI-RS</p>
 </div>
@@ -401,7 +401,7 @@ As shown in Figure <a href="#org0d1dd85">4</a>, there are \(C_6^4\) and \(C_6^2\
 </p>
 
 <div id="org0d1dd85" class="figure">
-<p><img src="nr_csirs_8port.png" alt="nr_csirs_8port.png" width="500px">
+<p><img src="./fig/nr_csirs_8port.png" alt="nr_csirs_8port.png" width="500px">
 </p>
 <p><span class="figure-number">Figure 4: </span>8-port CSI-RS</p>
 </div>
@@ -415,7 +415,7 @@ As shown in Figure <a href="#org14f6624">5</a>, for single-symbol case, there is
 </p>
 
 <div id="org14f6624" class="figure">
-<p><img src="nr_csirs_12port.png" alt="nr_csirs_12port.png" width="300px">
+<p><img src="./fig/nr_csirs_12port.png" alt="nr_csirs_12port.png" width="500px">
 </p>
 <p><span class="figure-number">Figure 5: </span>12-port CSI-RS</p>
 </div>
@@ -429,7 +429,7 @@ The pattern of 16-port CSI-RS can be shown in Figure <a href="#orgc10b78b">6</a>
 </p>
 
 <div id="orgc10b78b" class="figure">
-<p><img src="nr_csirs_16port.png" alt="nr_csirs_16port.png" width="300px">
+<p><img src="./fig/nr_csirs_16port.png" alt="nr_csirs_16port.png" width="500px">
 </p>
 <p><span class="figure-number">Figure 6: </span>16-port CSI-RS</p>
 </div>
@@ -443,7 +443,7 @@ For 24-port CSI-RS, there are \(C_6^3\) candidates, as shown in Figure <a href="
 </p>
 
 <div id="orgc9b4842" class="figure">
-<p><img src="nr_csirs_24port.png" alt="nr_csirs_24port.png" width="900px">
+<p><img src="./fig/nr_csirs_24port.png" alt="nr_csirs_24port.png" width="500px">
 </p>
 <p><span class="figure-number">Figure 7: </span>24-port CSI-RS</p>
 </div>
@@ -457,7 +457,7 @@ For 32-port CSI-RS, there are \(C_6^4\) candidates, as shown in Figure <a href="
 </p>
 
 <div id="org2cff46b" class="figure">
-<p><img src="nr_csirs_32port.png" alt="nr_csirs_32port.png" width="900px">
+<p><img src="./fig/nr_csirs_32port.png" alt="nr_csirs_32port.png" width="500px">
 </p>
 <p><span class="figure-number">Figure 8: </span>32-port CSI-RS</p>
 </div>
@@ -518,22 +518,17 @@ For each <span style="color: blue">CSI-ResourceConfig</span>, a UE can be config
 <h4 id="orgd1068ff">CSI-IM</h4>
 <div class="outline-text-4" id="text-orgd1068ff">
 <p>
-A UE can be configured with one or more CSI-IM resource set(s) by <span style="color: blue">CSI-IM-ResourceSet</span>, with each consisting of \(K \ge 1\) <span style="color: blue">CSI-IM-Resource</span>, in which
+A UE can be configured with one or more CSI-IM resource set(s) by <span style="color: blue">CSI-IM-ResourceSet</span>, with each consisting of \(K \ge 1\) <span style="color: blue">CSI-IM-Resource</span>.
 </p>
-<ul class="org-ul">
-<li></li>
-</ul>
 </div>
 </div>
 </div>
-
 <div id="outline-container-org2323abc" class="outline-3">
 <h3 id="org2323abc">CSI-RS for Tracking</h3>
 <div class="outline-text-3" id="text-org2323abc">
 <p>
 In NR system, a single-port CSI-RS is used as <i>tracking reference signal (TRS)</i>, targetting for time/frequency tracking.
 </p>
-
 <ul class="org-ul">
 <li><i>Periodic TRS</i> is essentially a periodic CSI-RS resource set, which is configured by high layer signalling.</li>
 <li><i>Aperiodic TRS</i> has the same structure as periodic TRS. The difference lies that it is triggered by <i>downlink control information (DCI)</i>.</li>
