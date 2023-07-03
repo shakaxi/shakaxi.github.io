@@ -1,27 +1,13 @@
 #+TITLE: NR - Cell Search
 #+OPTIONS: \usepackage{amsmath, amssymb, amsfonts}
-#+PROPERTY: header-args:latex :results raw :headers '("\\usepackage{tikz}") :fit yes :imagemagick yes :iminoptions -density 300 :imoutoptions -flatten :eval never-export
 
 * Synchronization signals
 In NR, synchronization signals consist of /primary synchronization signal (PSS)/ and /secondary synchronization signal (SSS)/. Together with /physical broadcast channel (PBCH)/, PSS and SSS are jointly termed /synchronization signal block (SSB[fn:1])/.
 
 A SSB spans 4 OFDM symbols in the time domain and 240 subcarriers in the frequency domain. Within a SSB, the PSS and SSS lie in the 1st and 3rd symbol, respectively. The PBCH situates in the 2nd and 4th symbols, as well as the 48 subcarriers on the each side of the SSS (in the 3rd symbol), as shown in the figure below. Therefore, within a SSB, there are totally $240 + 48 \times 2 + 240 = 576$ RE's for PBCH transmission[fn:2].
-#+begin_src latex :file nr_ssb.png
-  \begin{tikzpicture}[thick]
-    \filldraw[fill=red!30, draw=red] (0, 5.6) rectangle +(1, 12.7);
-    \fill[fill=green!30, draw=green] (2, 5.6) rectangle +(1, 12.7);
-    \fill[fill=blue!30, draw=blue] (1, 0) rectangle +(1, 24);
-    \fill[fill=blue!30, draw=blue] (2, 0) rectangle +(1, 4.8);
-    \fill[fill=blue!30, draw=blue] (2, 24) rectangle +(1, -4.8);
-    \fill[fill=blue!30, draw=blue] (3, 0) rectangle +(1, 24);
-    \draw[<->] (-1, 2) node[anchor=east]{\Large{f}} -- (-1, -1) -- (2, -1) node[anchor=north]{\Large{t}};
-  \end{tikzpicture}
-#+end_src
-
 #+CAPTION: SSB
 #+ATTR_HTML: :width 100px
-#+RESULTS:
-[[file:nr_ssb.png]]
+[[./fig/nr_ssb.png]]
 
 It should be noted that 60kHz numerology cannot be used for SSB transmission.
 
