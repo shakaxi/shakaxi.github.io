@@ -218,30 +218,9 @@ throw是C++的关键字，这是抛出异常的唯一方法。导致抛出异常
 
 异常处理是这样一种方法：“尝试”执行一段代码，并且用另一块代码响应可能发生的任何错误。如果try块结束时没有抛出异常，catch块将被忽略。可以将try/catch块当作if语句。如果在try块中抛出异常，就会执行catch块，否则就忽略catch块。
 
-可以抛出任何类型的异常，但通常应该将对象作为异常抛出。因为对象的类名称可以传递信息，而且对象可以存储信息，包括描述异常的字符串。C++标准库包含了许多预定义的异常类，也可以编写自己的异常类。C++标准异常层次结构如下
-#+BEGIN_SRC plantuml :file stdexcept.png
-exception <|-- bad_alloc
-exception <|-- bad_cast
-exception <|-- logic_error
-exception <|-- bad_function_call
-exception <|-- bad_typeid
-exception <|-- runtime_error
-exception <|-- bad_weak_ptr
-exception <|-- bad_exception
-
-bad_alloc <|-- bad_array_new_length
-logic_error <|-- domain_error
-logic_error <|-- length_error
-logic_error <|-- future_error
-logic_error <|-- out_of_range
-logic_error <|-- invalid_argument
-runtime_error <|-- system_error
-runtime_error <|-- range_error
-runtime_error <|-- underflow_error
-runtime_error <|-- overflow_error
-
-system_error <|-- ios_base::failure
-#+END_SRC
+可以抛出任何类型的异常，但通常应该将对象作为异常抛出。因为对象的类名称可以传递信息，而且对象可以存储信息，包括描述异常的字符串。C++标准库包含了许多预定义的异常类，也可以编写自己的异常类。
+#+CAPTION: C++标准异常层次结构
+[[./fig/cpp_stdexcept.png]]
 
 当某段代码抛出一个异常时，会在堆栈中寻找catch处理程序。catch处理程序可以是在堆栈执行的0个或者多个函数调用。当发现一个catch时，堆栈会释放所有中间堆栈帧，直接跳到定义catch处理程序的堆栈层。
 
