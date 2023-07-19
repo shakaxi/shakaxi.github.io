@@ -12,6 +12,7 @@ Hyprland's core components and necessary applications can be simply installed an
 - =grim=: a screenshot utility
 - =slurp=: a region selection utility in wayland
 - =swaybg=: a background setting utility
+- =swaylock=: a utility to lock screen
 - =wdisplays=: an arandr counterpart in wayland
 - =waybar=: a bar utility in wayland
 - =ttf-font-awesome=: a font to display icons in waybar
@@ -19,7 +20,7 @@ Hyprland's core components and necessary applications can be simply installed an
 - =qt5-wayland/qt6-wayland=: Wayland support for QT
 * Installation
 #+BEGIN_SRC sh
-  pacman -S hyprland-git waybar-hyprland-git foot fuzzel swaybg light mako grim slurp ttf-font-awesome qt5-wayland qt6-wayland blueman network-manager-applet pipewire wireplumber xdg-desktop-portal-hyprland-git
+  pacman -S hyprland-git waybar-hyprland-git foot fuzzel swaybg swaylock light mako grim slurp ttf-font-awesome qt5-wayland qt6-wayland blueman network-manager-applet pipewire wireplumber xdg-desktop-portal-hyprland-git
 #+END_SRC
 * Configuration
 By default, all the configuration files are stored in directory =~/.config/hypr=.
@@ -45,7 +46,7 @@ By default, all the configuration files are stored in directory =~/.config/hypr=
 
     # Execute your favorite apps at launch
     exec-once = waybar --config ~/.config/hypr/waybar/config --style ~/.config/hypr/waybar/style.css
-    exec-once = swaybg -i ~/Pictures/wallpaper.png
+    exec-once = swaybg -i /usr/share/backgrounds/archlinux/small.png
     exec-once = mako --config ~/.config/hypr/mako.conf
     exec-once = fcitx5 -D
     exec-once = nm-applet
@@ -142,6 +143,7 @@ By default, all the configuration files are stored in directory =~/.config/hypr=
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
     bind = $mainMod, Q, killactive
     bind = $mainMod SHIFT, SPACE, togglefloating
+    bind = $mainMod SHIFT, L, exec, swaylock -i /usr/share/backgrounds/archlinux/small.png
     bind = $mainMod, E, togglesplit # dwindle
     bind = $mainMod, F, fullscreen
 
@@ -226,7 +228,7 @@ By default, all the configuration files are stored in directory =~/.config/hypr=
 - =~/.config/hypr/foot.ini=
   #+begin_src shell
     [main]
-    font=JetBrains Mono:size=12
+    font=JetBrains Mono:size=18
   #+end_src
 - =~/.config/hypr/fuzzel.ini=
   #+begin_src shell
