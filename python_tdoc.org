@@ -1,0 +1,140 @@
+#+TITLE: Python - TDoc
+
+* Introduction
+In order to facilitate the tdoc. related processing, I wrote a simple module using Python, termed =tdoc=, based on
+- Builtin modules, =os=, =functools=, =multiprocessing=, =argparse=; and
+- 3rd party libraries, =pandas=, =pybtex=, =urllib=.
+* Features
+- It takes a tdoc. list file, usually has a =xlsx= extension name, as input.
+- It optionally filters the target tdocs. with agenda item, title, and/or author (e.g., company).
+- It can download tdocs. interested from [[https://www.3gpp.org/ftp][3GPP]] using multithreading (with configurable thread number) to a specified directory.
+- It can build a database based on the tdocs. after necessary filtering, and export it to a =bib= file.
+* Syntax
+Its syntax can be listed as follows by run =python tdoc.py --help=.
+#+begin_src sh
+  usage: tdoc.py [-h] [--remote_dir REMOTE_DIR]
+                 [--output_dir OUTPUT_DIR] [--agenda_item AGENDA]
+                 [--title TITLE] [--author AUTHOR]
+                 [--bibtex-file BIBTEX_FILE]
+                 [--thread_num THREAD_NUM]
+                 tdoc_list
+
+  positional arguments:
+    tdoc_list
+
+  options:
+    -h, --help show this help message and exit
+    --remote_dir REMOTE_DIR
+    --output_dir OUTPUT_DIR
+    --agenda_item AGENDA
+    --title TITLE
+    --author AUTHOR
+    --bibtex-file BIBTEX_FILE
+    --thread_num THREAD_NUM
+#+end_src
+* Source code
+#+begin_src python
+  import os
+  import pandas as pd
+  from pybtex.database import BibliographyData, Entry
+  from urllib.request import urlretrieve
+  from functools import partial
+  from multiprocessing import Pool
+  from argparse import ArgumentParser, Namespace
+
+  class Temporary_Document:
+      def __init__(self, fn: str, remote_dir: str) -> None:
+          """! Constructor
+          @param fn File name of the tdoc list, i.e., an MS excel file.
+          @param remote_dir Remote storage for tdoc(s)
+          """
+          self.df = pd.read_excel(fn, usecols=[0, 1, 2, 10, 13], skiprows=1, names=['id', 'title', 'author', 'agenda', 'status'], index_col=0, dtype=str)
+          self.df['author'].replace({'.*Qualcomm.*':'QC', \
+                                     '.*Nokia.*':'Nokia', \
+                                     '.*DOCOMO.*':'DOCOMO', \
+                                     '.*Huawei.*':'Huawei', \
+                                     '.*ZTE.*':'ZTE', \
+                                     '.*InterDigital.*':'InterDigital', \
+                                     '.*MediaTek.*':'MTK'}, regex=True, inplace=True)
+          self.df = self.df[self.df['status'] == 'available']
+          self.remote_dir = remote_dir
+      def filter_agenda(self, ai: str) -> None:
+          """! Filter the entries using agenda item
+          @param ai Agenda item
+          """
+          self.df = self.df[self.df['agenda'] == ai]
+      def filter_title(self, title: str) -> None:
+          """! Filter the entries using title
+          @param title A substring to match
+          """
+          self.df = self.df[self.df['title'].str.contains(title, case=False)]
+      def filter_author(self, author: str) -> None:
+          """! Filter the entries using author (company name)
+          @param author Author (company name)
+          """
+          self.df = self.df[self.df['author'] == author]
+      def gen_db(self) -> None:
+          """! Build the database based on the entries."""
+          self.db = BibliographyData()
+          for tdoc in self.df.itertuples():
+              print(tdoc.Index)
+              self.db.add_entry(tdoc.Index, Entry('article', {'author': tdoc.author, 'title': tdoc.title, 'agenda': tdoc.agenda}))
+      def gen_bib(self, fn: str) -> None:
+          """! Generate bibtex file for further reference.
+          @param fn The name of bibtex file
+          """
+          self.db.to_file(fn, bib_format='bibtex')
+      def download_parallel(self, output_dir: str, thread_num: int) -> None:
+          """! Download the entries to a specified directory in a parallel way.
+          @param output_dir Directory to store the tdocs
+          @param thread_num Thread number
+          """
+          pfunc = partial(download_tdoc, self.remote_dir, output_dir)
+          p = Pool(thread_num)
+          p.map(pfunc, self.df.index.tolist())
+          p.close()
+          p.join()
+
+  def download_tdoc(remote_dir: str, local_dir: str, id: str) -> None:
+      """! Download a tdoc.
+      @param remote_dir Remote directory of the tdoc.
+      @param local_dir Local directory for the tdoc.
+      @param id Tdoc. number
+      """
+      fn_remote = os.path.join(remote_dir, f'{id}.zip')
+      fn_local = os.path.join(local_dir, f'{id}.zip')
+      if os.path.exists(fn_local):
+          print(f'{id} exists already, skipping ...')
+      else:
+          urlretrieve(fn_remote, fn_local)
+          print(f'{id} downloaded.')
+
+  def main(args: Namespace) -> None:
+      """! Main loop
+      @args Arguments
+      """
+      t = Temporary_Document(args.tdoc_list, args.remote_dir)
+      if args.agenda is not None:
+          t.filter_agenda(args.agenda)
+      if args.title is not None:
+          t.filter_title(args.title)
+      if args.author is not None:
+          t.filter_author(args.author)
+      t.gen_db()
+      if not os.path.exists(args.output_dir):
+          os.mkdir(args.output_dir)
+      t.gen_bib(os.path.join(args.output_dir, args.bibtex_file))
+      t.download_parallel(args.output_dir, args.thread_num)
+
+  if __name__ == "__main__":
+      p = ArgumentParser()
+      p.add_argument('tdoc_list', type=str)
+      p.add_argument('--remote_dir', type=str, dest='remote_dir', default=None)
+      p.add_argument('--output_dir', type=str, dest='output_dir', default='.')
+      p.add_argument('--agenda_item', type=str, dest='agenda', default=None)
+      p.add_argument('--title', type=str, dest='title', default=None)
+      p.add_argument('--author', type=str, dest='author', default=None)
+      p.add_argument('--bibtex-file', type=str, dest='bibtex_file', default='tdoc.bib')
+      p.add_argument('--thread_num', type=int, dest='thread_num', default=1)
+      main(p.parse_args())
+#+end_src
