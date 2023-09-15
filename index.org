@@ -106,6 +106,7 @@
 - [[file:python_pandas.org][Python - Pandas]]
 - [[file:python_pytorch.org][Python - Pytorch]]
 - [[file:python_pytorch_lightning.org][Python - Pytorch Lightning]]
+- [[file:python_tdoc.org][Python - TDoc]]
 - [[file:python_tensorflow.org][Python - Tensorflow]]
 - [[file:python_virtualenv.org][Python - Virtual Environment]]
 - [[file:rcs.org][RCS]]
