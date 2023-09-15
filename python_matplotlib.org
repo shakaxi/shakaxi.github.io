@@ -88,6 +88,7 @@ This class produces an animation using a fixed set of =Artist= object.
   plt.rcParams['font.family'] = "Consolas"
   plt.rcParams['font.size'] = 12
   plt.rcParams['savefig.dpi'] = 300
+  plt.rcParams['savefig.bbox'] = "tight"
   plt.rcParams['text.usetex'] = True
 #+end_src
 * References
