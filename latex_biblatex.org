@@ -1,0 +1,23 @@
+#+TITLE: LaTeX - Biblatex
+#+OPTIONS: ^:{}
+
+=Biblatex= is a new LaTeX package for bibliography management taking =biber= as backend, and more powerful than =bibtex=. For TeXLive users, =biblatex= is out-of-box.
+
+* LaTeX
+#+begin_verse
+...
+\usepackage[backend=biber, style=numeric]{biblatex}
+\addbibresource{PATH/TO/REF.bib}
+...
+\printbibliography
+...
+#+end_verse
+* Org
+In orgmode, command =org-cite-insert=, binded to =C-c C-x @= by default, is used to insert citation entries.
+#+begin_verse
+...
+#+BIBLIOGRAPHY: PATH/TO/REF.bib
+#+CITE_EXPORT: biblatex
+...
+#+PRINT_BIBLIOGRAPHY:
+#+end_verse

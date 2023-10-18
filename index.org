@@ -52,6 +52,7 @@
 - [[file:lte_pcfich.org][LTE - PCFICH]]
 - [[file:lte_pdcch_epdcch.org][LTE - PDCCH & EPDCCH]]
 - [[file:emacs_beamer.org][LaTeX - Beamer]]
+- [[file:latex_biblatex.org][LaTeX - Biblatex]]
 - [[file:latex_gantt.org][LaTeX - Gantt Chart]]
 - [[file:latex_tikz.org][LaTeX - Pgf/Tikz]]
 - [[file:latex_pgfplots.org][LaTeX - Pgfplots]]
