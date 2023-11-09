@@ -58,3 +58,52 @@ $\forall \mathbf{A} = \begin{bmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots &\mat
 \end{bmatrix} \in \mathbb{C}^{mn \times k},
 \end{align*}
 where $\mathbf{a}_i \otimes \mathbf{b}_i = \text{vec}\left(\mathbf{b}_i \mathbf{a}_i^T\right) \in \mathbb{C}^{nm}$, $\mathbf{a}_i \in \mathbb{C}^n$, $\mathbf{b}_i \in \mathbb{C}^m$, $i = 1, 2, \ldots, k$.
+* Calculus
+** Differentiation
+** Integration
+- Newton-Leibniz
+  \begin{align*}
+    \int_a^b f(x) dx = F \mid_a^b = F(b) - F(a)
+  \end{align*}
+- Symmetry
+  \begin{align*}
+    \int_a^b f(x) dx &= \int_a^{\cfrac{a+b}{2}} \left[f(a+b-x) + f(x)\right] dx \\
+                  &= \int_{\cfrac{a+b}{2}}^b \left[f(a+b-x) + f(x)\right] dx
+  \end{align*}
+  Particularly when $a = -b$, we have
+  \begin{align*}
+    \int_{-b}^b f(x) dx &= \int_0^b \left[ f(x) + f(-x) \right] dx \\
+                     &= \begin{cases}
+                       0, & f(x) = -f(-x); \\
+                       2\int_0^b f(x) dx, & f(x) = f(-x).
+                     \end{cases}
+  \end{align*}
+- Transformation
+  + Given $\begin{cases} x = x(u, v) \\ y = y(u, v) \end{cases}$, if $x(u,v)$ and $y(u,v)$ are contiguous and differentiable, and Jacobi determinant $J = \left| \cfrac{D(x,y)}{D(u,v)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix} \neq 0$, then we have
+    \begin{align*}
+      \iint_{D_{xy}} f(x,y)dxdy = \iint_{D_{uv}} f \left( x(u,v), y(u,v) \right) |J| dudv,
+    \end{align*}
+    where $D_{uv}$ is an one-to-one mapping of $D_{xy}$.
+
+    Particularly, for the transformation from Cartesian to polar coordinate systems, $\begin{cases} x = r\cos\theta \\ y = r\sin\theta \end{cases}$, we have $J = r$ and
+    \begin{align*}
+      \iint_{D_{xy}} f(x,y)dxdy = \iint_{D_{r\theta}} f(r\cos\theta, r\sin\theta) rdrd\theta.
+    \end{align*}
+  + Given $\begin{cases} x = x(u, v, w) \\ y = y(u, v, w) \\ z = z(u, v, w) \end{cases}$, if $x(u,v,w)$, $y(u,v,w)$, and $z(u,v,w)$ are contiguous and differentiable, and Jacobi determinant $J = \left| \cfrac{D(x,y,z)}{D(u,v,w)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w}\end{vmatrix} \neq 0$, then we have
+    \begin{align*}
+      \iiint_{V_{xyz}} f(x,y,z)dxdydz = \iiint_{V_{uvw}} f \left( x(u,v,w), y(u,v,w), z(u,v,w) \right) |J| dudvdw,
+    \end{align*}
+    where $V_{uvw}$ is an one-to-one mapping of $V_{xyz}$.
+
+    Particularly, for the transformation from Cartesian to cylindrical coordinate systems, $\begin{cases} x = r\cos\theta \\ y = r\sin\theta \end{cases}$, we have $J = r$ and
+    \begin{align*}
+      \iiint_{V_{xyz}} f(x,y,z)dxdydz = \iiint_{V_{r\theta z}} f(r\cos\theta, r\sin\theta, z) rdrd\theta dz.
+    \end{align*}
+
+    Particularly, for the transformation from Cartesian to spherical coordinate systems, $\begin{cases} x = r\sin\theta\cos\phi \\ y = r\sin\theta\sin\phi \\ z = r\cos\theta\end{cases}$, we have $J = r^2 \sin\theta$ and
+    \begin{align*}
+      \iiint_{V_{xyz}} f(x,y,z)dxdydz = \iiint_{V_{r\theta\phi}} f(r\sin\theta\cos\phi, r\sin\theta\sin\phi, r\cos\theta) r^2\sin\theta drd\theta d\phi.
+    \end{align*}
+* Transform
+** Fourier
+** Laplace
