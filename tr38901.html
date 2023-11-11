@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2023-11-11 Sat 21:25 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Simulation - Large Scale Modelling</title>
+<title>TR38.901</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -192,20 +192,114 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="default.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Simulation - Large Scale Modelling</h1>
+<h1 class="title">TR38.901</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb97951b">Coordinate systems</a></li>
+<li><a href="#orgd3e27ca">Large-scale fading</a></li>
+<li><a href="#org914d596">Small-scale fading</a></li>
+<li><a href="#org08b6073">Spatial consistency</a></li>
+</ul>
+</div>
+</div>
 <p>
-In the system-level simulation (SLS), large scale attenuation needs to be modelled. <i>Coupling loss</i> is defined as the combination of distance-dependent path loss, shadow fading, antenna gain at the transmitter and receiver, outdoor-to-indoor (O2I) penetration loss<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
+3GPP TR38.901 offers the guidance and methodology of channel modelling, including both system-level simulation (SLS) and link-level simulation (LLS).
+</p>
+
+<div id="outline-container-orgb97951b" class="outline-2">
+<h2 id="orgb97951b">Coordinate systems</h2>
+<div class="outline-text-2" id="text-orgb97951b">
+<p>
+<i>Global coordinate system (GCS)</i> and <i>local coordinate system (LCS)</i> are linked by a rotational matrix \(\mathbf{R}\), which can be decomposed as 3 successive primary rotations around Z/Y/X axes respectively. Accordingly, the composite rotational matrix \(\mathbf{R}\) can be expressed as the product of 3 Givens rotation matrices.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd3e27ca" class="outline-2">
+<h2 id="orgd3e27ca">Large-scale fading</h2>
+<div class="outline-text-2" id="text-orgd3e27ca">
+<p>
+In SLS, large scale attenuation needs to be modelled. <i>Coupling loss</i> is defined as the combination of distance-dependent path loss, shadow fading, antenna gain at the transmitter and receiver, <i>outdoor-to-indoor (O2I)</i> penetration loss<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
 </p>
 <ul class="org-ul">
-<li>Path loss is usually dependent on propagation types, i.e. line-of-sight (LOS) or non-line-of-sight (NLOS).</li>
+<li>Path loss is usually dependent on propagation types, i.e. <i>line-of-sight (LOS)</i> or <i>non-line-of-sight (NLOS)</i>.</li>
 <li>Propagation type, LOS/NLOS, is per site<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>.</li>
 <li>Location type, i.e. indoor or outdoor, is per user<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.</li>
 <li>Shadow fading is per site<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>.</li>
 <li>O2I penetration loss is per user<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup>.</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org914d596" class="outline-2">
+<h2 id="org914d596">Small-scale fading</h2>
+<div class="outline-text-2" id="text-org914d596">
+<p>
+In TR38.901, small-scale fading is generated as follows.
+</p>
+<ol class="org-ol">
+<li>Network topology deployment, including BS and UE.</li>
+<li>Determine propagation condition, i.e., LOS/NLOS, and indoor/outdoor.</li>
+<li>Calculate pathloss.</li>
+<li>Generate correlated LSP, i.e., DS, ASA/ASD/ZSA/ZSD, K, SF.</li>
+<li>Generate exponentially distributed per-cluster delays.</li>
+<li>Generate per-cluster power.</li>
+<li>Generate per-ray angles, AoA/AoD/ZoA/ZoD.</li>
+<li>Random coupling</li>
+<li>Generate per-ray XPR.</li>
+<li>Generate per-ray initial phase.</li>
+<li>Generate per Tx-Rx pair CIR.</li>
+<li>Apply pathloss and shadowing.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org08b6073" class="outline-2">
+<h2 id="org08b6073">Spatial consistency</h2>
+<div class="outline-text-2" id="text-org08b6073">
+<p>
+The procedure can be modelled as a 2D random process involving
+</p>
+<ul class="org-ul">
+<li>Cluster-specific parameters in steps 5-7, and</li>
+<li>Ray-specific parameters in steps 8-10.</li>
+</ul>
+</div>
+</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
