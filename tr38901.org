@@ -1,0 +1,41 @@
+#+TITLE: TR38.901
+
+3GPP TR38.901 offers the guidance and methodology of channel modelling, including both system-level simulation (SLS) and link-level simulation (LLS).
+
+* Coordinate systems
+/Global coordinate system (GCS)/ and /local coordinate system (LCS)/ are linked by a rotational matrix $\mathbf{R}$, which can be decomposed as 3 successive primary rotations around Z/Y/X axes respectively. Accordingly, the composite rotational matrix $\mathbf{R}$ can be expressed as the product of 3 Givens rotation matrices.
+* Large-scale fading
+In SLS, large scale attenuation needs to be modelled. /Coupling loss/ is defined as the combination of distance-dependent path loss, shadow fading, antenna gain at the transmitter and receiver, /outdoor-to-indoor (O2I)/ penetration loss[fn:5].
+- Path loss is usually dependent on propagation types, i.e. /line-of-sight (LOS)/ or /non-line-of-sight (NLOS)/.
+- Propagation type, LOS/NLOS, is per site[fn:1].
+- Location type, i.e. indoor or outdoor, is per user[fn:2].
+- Shadow fading is per site[fn:3].
+- O2I penetration loss is per user[fn:4].
+* Small-scale fading
+In TR38.901, small-scale fading is generated as follows.
+1. Network topology deployment, including BS and UE.
+2. Determine propagation condition, i.e., LOS/NLOS, and indoor/outdoor.
+3. Calculate pathloss.
+4. Generate correlated LSP, i.e., DS, ASA/ASD/ZSA/ZSD, K, SF.
+5. Generate exponentially distributed per-cluster delays.
+6. Generate per-cluster power.
+7. Generate per-ray angles, AoA/AoD/ZoA/ZoD.
+8. Random coupling
+9. Generate per-ray XPR.
+10. Generate per-ray initial phase.
+11. Generate per Tx-Rx pair CIR.
+12. Apply pathloss and shadowing.
+* Spatial consistency
+The procedure can be modelled as a 2D random process involving
+- Cluster-specific parameters in steps 5-7, and
+- Ray-specific parameters in steps 8-10.
+
+[fn:5] O2I penetration loss is usually considered for indoor users in the case that base stations are placed outdoor.
+
+[fn:4] O2I penetration loss is an inherent property of a user, shared by all the channels to a user.
+
+[fn:3] The shadow fading is shared by all the sectors/cells of one site.
+
+[fn:2] Location type is an inherent property of a user.
+
+[fn:1] All the sectors/cells of one site share the same propagation type.
