@@ -15,7 +15,7 @@ Its syntax can be listed as follows by run =python tdoc.py --help=.
   usage: tdoc.py [-h] [--remote_dir REMOTE_DIR]
                  [--output_dir OUTPUT_DIR] [--agenda_item AGENDA]
                  [--title TITLE] [--author AUTHOR]
-                 [--bibtex-file BIBTEX_FILE]
+                 [--bibtex_file BIBTEX_FILE]
                  [--thread_num THREAD_NUM]
                  tdoc_list
 
@@ -29,7 +29,7 @@ Its syntax can be listed as follows by run =python tdoc.py --help=.
     --agenda_item AGENDA
     --title TITLE
     --author AUTHOR
-    --bibtex-file BIBTEX_FILE
+    --bibtex_file BIBTEX_FILE
     --thread_num THREAD_NUM
 #+end_src
 * Source code
@@ -134,7 +134,7 @@ Its syntax can be listed as follows by run =python tdoc.py --help=.
       p.add_argument('--agenda_item', type=str, dest='agenda', default=None)
       p.add_argument('--title', type=str, dest='title', default=None)
       p.add_argument('--author', type=str, dest='author', default=None)
-      p.add_argument('--bibtex-file', type=str, dest='bibtex_file', default='tdoc.bib')
+      p.add_argument('--bibtex_file', type=str, dest='bibtex_file', default='tdoc.bib')
       p.add_argument('--thread_num', type=int, dest='thread_num', default=1)
       main(p.parse_args())
 #+end_src
