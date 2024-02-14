@@ -1,0 +1,34 @@
+#+TITLE: Emacs - RefTeX
+
+/RefTeX/ is a Emacs package dedicated for label, reference, citation, and index related operations in \LaTeX. What is exciting, RefTeX has been integrated into Emacs since version 20.2.
+
+RefTeX is easy to use by providing 4 macros, =\label=, =\ref=, =\cite=, and =\index=. It can be configured as follows.
+- Loading the package
+  #+begin_src elisp
+    (require 'reftex)
+  #+end_src
+- Turning on the mode
+  #+begin_src elisp
+    (add-hook 'LaTeX-mode-hook 'turn-on-reftex); with AUCTeX LaTeX mode
+    (add-hook 'latex-mode-hook 'turn-on-reftex); with Emacs latex mode
+  #+end_src
+- Integrating with =AUCTeX=
+  #+begin_src elisp
+    (setq reftex-plug-into-AUCTeX t)
+  #+end_src
+Targeting for quick operations, following keybindings are binded by default.
+#+ATTR_HTML: :align center
+| Keybinding | Functionality                                                                                   |
+|-----------+-----------------------------------------------------------------------------------------------|
+| =C-c ==    | Display a table of contents, i.e. =reftex-toc=.                                                         |
+| =C-c (=     | Create a label, i.e., =reftex-label=.                                                                  |
+| =C-c [=     | Create a citation, i.e., =reftex-citation=.                                                              |
+| =C-c )=     | Make a reference, i.e., =reftex-reference=.                                                           |
+| =C-c &=    | View cross-references of the macro at point, i.e., =reftex-view-crossref=.                                  |
+| =C-c /=     | Create an index entry based on the current selection or the word at point, i.e., =reftex-index-selection-or-word=. |
+| =C-c <=    | Create an index entry with more complex types, i.e., =reftex-index=.                                      |
+| =C-c \=     | Add the current selection or the word at point to a special =index phrase file=[fn:1].                        |
+| =C-c >=    | Display and edit the indices, i.e., =reftex-display-index=.                                                |
+
+* Footnotes
+[fn:1] RefTeX can search the document for occurrences of these phrases for delayed indexing. 

@@ -1,7 +1,7 @@
 #+TITLE: Shaka's Blog Site
 
 - [[file:ai_mlp_mixer.org][AI - MLP-Mixer]]
-- [[file:arch_cn.org][Archlinux - A Non-official Repository from Chinese Community]]
+- [[file:arch_cn.org][Archlinux - A Non-Official Repository from Chinese Community]]
 - [[file:arch_clean_pkg.org][Archlinux - Clean Packages]]
 - [[file:arch_inst.org][Archlinux - Installation]]
 - [[file:arch_x1c.org][Archlinux - Installation on Thinkpad X1 Carbon 2018]]
@@ -37,6 +37,7 @@
 - [[file:emacs_movement.org][Emacs - Movement]]
 - [[file:emacs_mu4e.org][Emacs - Mu4e]]
 - [[file:notmuch.org][Emacs - Notmuch]]
+- [[file:emacs_reftex.org][Emacs - RefTeX]]
 - [[file:emacs_wl.org][Emacs - Wanderlust]]
 - [[file:emacs_ycmd.org][Emacs - YCMD]]
 - [[file:esprit.org][Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)]]
