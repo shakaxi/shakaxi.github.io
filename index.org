@@ -20,6 +20,7 @@
 - [[file:cpp_sl.org][C++ - 标准库]]
 - [[file:cpp_switch.org][C/C++ - switch]]
 - [[file:cvx_opt.org][Convex Optimization]]
+- [[file:crb.org][Cramer-Rao Bound]]
 - [[file:dot.org][DOT]]
 - [[file:dir_cosine.org][Direction Cosine]]
 - [[file:emacs_config.org][Emacs - Basic Configuration]]

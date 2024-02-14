@@ -1,0 +1,35 @@
+#+TITLE: Cramer-Rao Bound
+#+LATEX_HEADER: \usepackage{amsmath, amssym, amsfont}
+
+In parameter estimation, the performance of an estimator is usually evaluated in the respects of /unbiasedness/, /efficiency/, and /consistency/.
+
+Take the estimation of parameter $\alpha$ for instance,
+- For an estimator $\hat{\alpha}$, if $\mathrm{E}[\hat{\alpha}] = \alpha$, then the estimator $\hat{\alpha}$ is unbiased.
+  + If $\lim\limits_{n\to\infty}\mathrm{E}[\hat{\alpha}] = \alpha$, then the estimator $\hat{\alpha}$ is progressively unbiased.
+- For two estimators $\hat{\alpha}_1$ and $\hat{\alpha}_2$, if $\mathrm{Var}[\hat{\alpha}_1] < \mathrm{Var}[\hat{\alpha}_2]$, then $\hat{\alpha}_1$ is more efficient than $\hat{\alpha}_2$.
+- For an estimator $\hat{\alpha}$, if $\forall \epsilon > 0$, $\exists N \in \mathbb{Z}^+$, when $n > N$, $\mathrm{Prob}[\|\hat{\alpha} - \alpha\| < \epsilon] = 1$; or equivalently $\lim\limits_{n\to\infty}\mathrm{Prob}[\|\hat{\alpha} - \alpha\| < \epsilon] = 1$ holds, then the estimator $\hat{\alpha}$ is consistent.
+
+An unbiased estimator with minimal variance is termed /minimal variance unbiased (MVU)/ estimator.
+
+Given a random vector $\mathbf{x}$, its /probability density function (pdf)/ is denoted by $p(\mathbf{x}; \mathbf{\theta})$, where $\mathbf{\theta} = \begin{bmatrix} \theta_1 \\ \theta_2 \\ \vdots \end{bmatrix}$ is a deterministic parameter vector. Then, we have
+- /Likelihood function/: $L(\theta) \triangleq \ln p(\mathbf{x}; \mathbf{\theta})$
+- /Score function/: $\mathbf{S}(\mathbf{\theta}) \triangleq \nabla_{\mathbf{\theta}}L(\mathbf{\theta}) = \dfrac{\nabla_{\mathbf{\theta}}p(\mathbf{x}; \mathbf{\theta})}{p(\mathbf{x}; \mathbf{\theta})}$, where $\nabla_{\mathbf{\theta}} \triangleq \begin{bmatrix}\dfrac{\partial}{\partial \theta_1} \\ \dfrac{\partial}{\partial \theta_2} \\ \vdots \end{bmatrix}$ is the gradient operator.
+  + /Regularity condition/: $\forall \mathbf{\theta}$, $\mathrm{E}[\mathbf{S}(\mathbf{\theta})] = \mathbf{0}$.
+    \begin{align*}
+      \mathrm{E}[\mathbf{S}(\mathbf{\theta})] &= \int \mathbf{S}(\mathbf{\theta}) p(\mathbf{x}; \mathbf{\theta}) d \mathbf{x} \\
+      &= \int \nabla_{\mathbf{\theta}} p(\mathbf{x}; \mathbf{\theta}) d \mathbf{x} \\
+      &= \nabla_{\mathbf{\theta}} \int p(\mathbf{x}; \mathbf{\theta}) d \mathbf{x} \\
+      &=\nabla_{\mathbf{\theta}} 1 \\
+      &= \mathbf{0}
+    \end{align*}
+- /Fisher information matrix (FIM)/
+  \begin{align*}
+    \mathbf{I}(\mathbf{\theta}) &= \mathrm{Var}[\mathbf{S}(\mathbf{\theta})] \\
+    &= \mathrm{E}\left[\mathbf{S}(\mathbf{\theta})\mathbf{S}^H(\mathbf{\theta})\right] \\
+    &= -\mathrm{E}\left[\nabla_{\mathbf{\theta}} L(\mathbf{\theta}) \nabla_{\mathbf{\theta}}^T\right] \\
+    &= -\mathrm{E}\left[\nabla_{\mathbf{\theta}\mathbf{\theta}}^2 L(\mathbf{\theta})\right],
+  \end{align*}
+  where $\nabla_{\mathbf{\theta}\mathbf{\theta}}^2 \triangleq \begin{bmatrix}\dfrac{\partial^2}{\partial \theta_1^2} & \dfrac{\partial^2}{\partial\theta_1\partial\theta_2} & \cdots \\ \dfrac{\partial^2}{\partial\theta_2\partial\theta_1} &\dfrac{\partial^2}{\partial \theta_2^2} & \cdots \\ \vdots & \vdots & \ddots \end{bmatrix}$ is the operator for Hessian matrix.
+- /Cramer-Rao bound (CRB)/
+  + Given an arbitrary unbiased estimator of $\mathbf{\theta}$, denoted by $\hat{\mathbf{\theta}}$, $\mathrm{E}[\hat{\mathbf{\theta}}] = \mathrm{E}[\mathbf{\theta}]$, its variance is lower-bounded by the inverse of FIM, a.k.a. CRB, i.e., $\mathrm{Var}[\hat{\mathbf{\theta}}] - \mathbf{I}^{-1}(\mathbf{\theta}) \succeq \mathbf{0}$. Clearly, $\left[\mathrm{Var}[\hat{\mathbf{\theta}}] - \mathbf{I}^{-1}(\mathbf{\theta})\right]_{ii} \geq 0$, i.e., $\mathrm{Var}[\hat{\mathbf{\theta}}_i] = \left[\mathrm{Var}[\hat{\mathbf{\theta}}]\right]_{ii} \geq \left[\mathbf{I}^{-1}(\mathbf{\theta})\right]_{ii}$, $i = 1, 2, \ldots$.
+  + If the score function can be written in the form of $\mathbf{S}(\mathbf{\theta}) = \mathbf{I}(\mathbf{\theta})[\mathbf{g}(\mathbf{x}) - \mathbf{\theta}]$, then $\hat{\mathbf{\theta}} = \mathbf{g}(\mathbf{x})$ is the MVU estimator, and its variance achieves minimum, i.e., $\mathrm{Var}[\mathbf{g}(\mathbf{x})] = \mathbf{I}^{-1}(\mathbf{\theta})$.
