@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2024-02-14 Wed 22:23 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cramer-Rao Bound</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Cramer-Rao Bound</h1>
+<p>
+In parameter estimation, the performance of an estimator is usually evaluated in the respects of <i>unbiasedness</i>, <i>efficiency</i>, and <i>consistency</i>.
+</p>
+
+<p>
+Take the estimation of parameter \(\alpha\) for instance,
+</p>
+<ul class="org-ul">
+<li>For an estimator \(\hat{\alpha}\), if \(\mathrm{E}[\hat{\alpha}] = \alpha\), then the estimator \(\hat{\alpha}\) is unbiased.
+<ul class="org-ul">
+<li>If \(\lim\limits_{n\to\infty}\mathrm{E}[\hat{\alpha}] = \alpha\), then the estimator \(\hat{\alpha}\) is progressively unbiased.</li>
+</ul></li>
+<li>For two estimators \(\hat{\alpha}_1\) and \(\hat{\alpha}_2\), if \(\mathrm{Var}[\hat{\alpha}_1] < \mathrm{Var}[\hat{\alpha}_2]\), then \(\hat{\alpha}_1\) is more efficient than \(\hat{\alpha}_2\).</li>
+<li>For an estimator \(\hat{\alpha}\), if \(\forall \epsilon > 0\), \(\exists N \in \mathbb{Z}^+\), when \(n > N\), \(\mathrm{Prob}[\|\hat{\alpha} - \alpha\| < \epsilon] = 1\); or equivalently \(\lim\limits_{n\to\infty}\mathrm{Prob}[\|\hat{\alpha} - \alpha\| < \epsilon] = 1\) holds, then the estimator \(\hat{\alpha}\) is consistent.</li>
+</ul>
+
+<p>
+An unbiased estimator with minimal variance is termed <i>minimal variance unbiased (MVU)</i> estimator.
+</p>
+
+<p>
+Given a random vector \(\mathbf{x}\), its <i>probability density function (pdf)</i> is denoted by \(p(\mathbf{x}; \mathbf{\theta})\), where \(\mathbf{\theta} = \begin{bmatrix} \theta_1 \\ \theta_2 \\ \vdots \end{bmatrix}\) is a deterministic parameter vector. Then, we have
+</p>
+<ul class="org-ul">
+<li><i>Likelihood function</i>: \(L(\theta) \triangleq \ln p(\mathbf{x}; \mathbf{\theta})\)</li>
+<li><i>Score function</i>: \(\mathbf{S}(\mathbf{\theta}) \triangleq \nabla_{\mathbf{\theta}}L(\mathbf{\theta}) = \dfrac{\nabla_{\mathbf{\theta}}p(\mathbf{x}; \mathbf{\theta})}{p(\mathbf{x}; \mathbf{\theta})}\), where \(\nabla_{\mathbf{\theta}} \triangleq \begin{bmatrix}\dfrac{\partial}{\partial \theta_1} \\ \dfrac{\partial}{\partial \theta_2} \\ \vdots \end{bmatrix}\) is the gradient operator.
+<ul class="org-ul">
+<li><p>
+<i>Regularity condition</i>: \(\forall \mathbf{\theta}\), \(\mathrm{E}[\mathbf{S}(\mathbf{\theta})] = \mathbf{0}\).
+</p>
+\begin{align*}
+  \mathrm{E}[\mathbf{S}(\mathbf{\theta})] &= \int \mathbf{S}(\mathbf{\theta}) p(\mathbf{x}; \mathbf{\theta}) d \mathbf{x} \\
+  &= \int \nabla_{\mathbf{\theta}} p(\mathbf{x}; \mathbf{\theta}) d \mathbf{x} \\
+  &= \nabla_{\mathbf{\theta}} \int p(\mathbf{x}; \mathbf{\theta}) d \mathbf{x} \\
+  &=\nabla_{\mathbf{\theta}} 1 \\
+  &= \mathbf{0}
+\end{align*}</li>
+</ul></li>
+<li><p>
+<i>Fisher information matrix (FIM)</i>
+</p>
+\begin{align*}
+  \mathbf{I}(\mathbf{\theta}) &= \mathrm{Var}[\mathbf{S}(\mathbf{\theta})] \\
+  &= \mathrm{E}\left[\mathbf{S}(\mathbf{\theta})\mathbf{S}^H(\mathbf{\theta})\right] \\
+  &= -\mathrm{E}\left[\nabla_{\mathbf{\theta}} L(\mathbf{\theta}) \nabla_{\mathbf{\theta}}^T\right] \\
+  &= -\mathrm{E}\left[\nabla_{\mathbf{\theta}\mathbf{\theta}}^2 L(\mathbf{\theta})\right],
+\end{align*}
+<p>
+where \(\nabla_{\mathbf{\theta}\mathbf{\theta}}^2 \triangleq \begin{bmatrix}\dfrac{\partial^2}{\partial \theta_1^2} & \dfrac{\partial^2}{\partial\theta_1\partial\theta_2} & \cdots \\ \dfrac{\partial^2}{\partial\theta_2\partial\theta_1} &\dfrac{\partial^2}{\partial \theta_2^2} & \cdots \\ \vdots & \vdots & \ddots \end{bmatrix}\) is the operator for Hessian matrix.
+</p></li>
+<li><i>Cramer-Rao bound (CRB)</i>
+<ul class="org-ul">
+<li>Given an arbitrary unbiased estimator of \(\mathbf{\theta}\), denoted by \(\hat{\mathbf{\theta}}\), \(\mathrm{E}[\hat{\mathbf{\theta}}] = \mathrm{E}[\mathbf{\theta}]\), its variance is lower-bounded by the inverse of FIM, a.k.a. CRB, i.e., \(\mathrm{Var}[\hat{\mathbf{\theta}}] - \mathbf{I}^{-1}(\mathbf{\theta}) \succeq \mathbf{0}\). Clearly, \(\left[\mathrm{Var}[\hat{\mathbf{\theta}}] - \mathbf{I}^{-1}(\mathbf{\theta})\right]_{ii} \geq 0\), i.e., \(\mathrm{Var}[\hat{\mathbf{\theta}}_i] = \left[\mathrm{Var}[\hat{\mathbf{\theta}}]\right]_{ii} \geq \left[\mathbf{I}^{-1}(\mathbf{\theta})\right]_{ii}\), \(i = 1, 2, \ldots\).</li>
+<li>If the score function can be written in the form of \(\mathbf{S}(\mathbf{\theta}) = \mathbf{I}(\mathbf{\theta})[\mathbf{g}(\mathbf{x}) - \mathbf{\theta}]\), then \(\hat{\mathbf{\theta}} = \mathbf{g}(\mathbf{x})\) is the MVU estimator, and its variance achieves minimum, i.e., \(\mathrm{Var}[\mathbf{g}(\mathbf{x})] = \mathbf{I}^{-1}(\mathbf{\theta})\).</li>
+</ul></li>
+</ul>
+</div>
+</body>
+</html>
