@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-22 Wed 23:37 -->
+<!-- 2024-02-25 Sun 22:06 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LaTeX - Pgf/Tikz</title>
@@ -200,67 +200,72 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd75dac4">Introduction</a></li>
-<li><a href="#org398adc9">Installation</a></li>
-<li><a href="#orgf1633ca">Basic usage</a>
+<li><a href="#org58935c3">Introduction</a></li>
+<li><a href="#org7e7b664">Installation</a></li>
+<li><a href="#orgb733b99">Basic usage</a>
 <ul>
-<li><a href="#org7d4410c">Setting</a></li>
-<li><a href="#org52440cc">Style</a></li>
-<li><a href="#org128f1c0">Coordinate</a></li>
-<li><a href="#org03970d0">List</a></li>
-<li><a href="#org15716e6">Arrow</a></li>
-<li><a href="#org1c13185">Draw</a>
+<li><a href="#org928d3cc">Setting</a></li>
+<li><a href="#org8fdb092">Style</a>
 <ul>
-<li><a href="#org3bbd682">Line</a></li>
-<li><a href="#org9555ded">Curve</a></li>
-<li><a href="#orgb085a18">Grid</a></li>
-<li><a href="#orgf392600">Arc</a></li>
-<li><a href="#org6b6b7ab">Rectangle</a></li>
-<li><a href="#org1219dc6">Circle</a></li>
-<li><a href="#org0394894">Ellipse</a></li>
-<li><a href="#orgd88a2fa">Node</a>
+<li><a href="#org817c9da">Create a new style</a></li>
+<li><a href="#org196c2d4">Modify an existing style</a></li>
+</ul>
+</li>
+<li><a href="#orgebe116a">Coordinate</a></li>
+<li><a href="#org4378e93">List</a></li>
+<li><a href="#orgdbb6ed1">Arrow</a></li>
+<li><a href="#orgec05312">Draw</a>
 <ul>
-<li><a href="#orgb737d5a">Connecting nodes with</a></li>
+<li><a href="#org8790032">Line</a></li>
+<li><a href="#org822c0a3">Curve</a></li>
+<li><a href="#org1b7db0a">Grid</a></li>
+<li><a href="#orgc099ef8">Arc</a></li>
+<li><a href="#orgff22f65">Rectangle</a></li>
+<li><a href="#orgf88aedd">Circle</a></li>
+<li><a href="#org5bfdb2d">Ellipse</a></li>
+<li><a href="#org253343c">Node</a>
+<ul>
+<li><a href="#org78b2559">Connecting nodes with</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7a96147">Refer to nodes outside current picture</a></li>
-<li><a href="#org6ccc9ef">Mix tikz command with LaTeX</a></li>
+<li><a href="#org2ff56cb">Refer to nodes outside current picture</a></li>
+<li><a href="#org10c1c39">Mix tikz command with LaTeX</a></li>
 </ul>
 </li>
-<li><a href="#orgb5d4478">Libraries</a>
+<li><a href="#orge377366">Libraries</a>
 <ul>
-<li><a href="#org90321a5"><code>tikzcd</code> for commutative diagrams</a></li>
+<li><a href="#orga8fa365"><code>tikzcd</code> for commutative diagrams</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd75dac4" class="outline-2">
-<h2 id="orgd75dac4">Introduction</h2>
-<div class="outline-text-2" id="text-orgd75dac4">
+<div id="outline-container-org58935c3" class="outline-2">
+<h2 id="org58935c3">Introduction</h2>
+<div class="outline-text-2" id="text-org58935c3">
 <p>
 <i>Pgf/tikz</i> is an excellent <i>LaTeX</i> package to plot high quality graphs. This post just summaries its basic usages.
 </p>
 </div>
 </div>
-<div id="outline-container-org398adc9" class="outline-2">
-<h2 id="org398adc9">Installation</h2>
-<div class="outline-text-2" id="text-org398adc9">
+<div id="outline-container-org7e7b664" class="outline-2">
+<h2 id="org7e7b664">Installation</h2>
+<div class="outline-text-2" id="text-org7e7b664">
 <p>
 Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As long as texlive is ready, pgf/tikz is out-of-the-box.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf1633ca" class="outline-2">
-<h2 id="orgf1633ca">Basic usage</h2>
-<div class="outline-text-2" id="text-orgf1633ca">
+<div id="outline-container-orgb733b99" class="outline-2">
+<h2 id="orgb733b99">Basic usage</h2>
+<div class="outline-text-2" id="text-orgb733b99">
 </div>
-<div id="outline-container-org7d4410c" class="outline-3">
-<h3 id="org7d4410c">Setting</h3>
-<div class="outline-text-3" id="text-org7d4410c">
+<div id="outline-container-org928d3cc" class="outline-3">
+<h3 id="org928d3cc">Setting</h3>
+<div class="outline-text-3" id="text-org928d3cc">
 <div class="org-src-container">
 <pre class="src src-latex">\usepackage{tikz}
 ...
@@ -272,28 +277,52 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org52440cc" class="outline-3">
-<h3 id="org52440cc">Style</h3>
-<div class="outline-text-3" id="text-org52440cc">
+<div id="outline-container-org8fdb092" class="outline-3">
+<h3 id="org8fdb092">Style</h3>
+<div class="outline-text-3" id="text-org8fdb092">
+</div>
+<div id="outline-container-org817c9da" class="outline-4">
+<h4 id="org817c9da">Create a new style</h4>
+<div class="outline-text-4" id="text-org817c9da">
 <div class="org-src-container">
-<pre class="src src-latex">\tikzstyle newstylename=[option1=value1, option2=value2, ...]
-\tikzstyle existingstylename+=[option1=value1, option2=value2, ...]
+<pre class="src src-latex">\tikzstyle{newstylename}=[option1=value1, option2=value2, ...]
+</pre>
+</div>
+<p>
+For example, following <a href="https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ%3A_A_Tutorial_for_Beginners_(Part_3)%E2%80%94Creating_Flowcharts">styles</a> can be defined for nodes in a flowchart.
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, text width=5cm, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, text width=5cm, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=5cm, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, text width=5cm, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick, -&gt;, &gt;=stealth]
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org128f1c0" class="outline-3">
-<h3 id="org128f1c0">Coordinate</h3>
-<div class="outline-text-3" id="text-org128f1c0">
+<div id="outline-container-org196c2d4" class="outline-4">
+<h4 id="org196c2d4">Modify an existing style</h4>
+<div class="outline-text-4" id="text-org196c2d4">
+<div class="org-src-container">
+<pre class="src src-latex">\tikzstyle{existingstylename}+=[option1=value1, option2=value2, ...]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgebe116a" class="outline-3">
+<h3 id="orgebe116a">Coordinate</h3>
+<div class="outline-text-3" id="text-orgebe116a">
 <ul class="org-ul">
 <li><code>(x, y)</code></li>
 <li><code>(angle: radius)</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org03970d0" class="outline-3">
-<h3 id="org03970d0">List</h3>
-<div class="outline-text-3" id="text-org03970d0">
+<div id="outline-container-org4378e93" class="outline-3">
+<h3 id="org4378e93">List</h3>
+<div class="outline-text-3" id="text-org4378e93">
 <div class="org-src-container">
 <pre class="src src-latex">% step length = 1
 {a, ..., b}
@@ -304,9 +333,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org15716e6" class="outline-3">
-<h3 id="org15716e6">Arrow</h3>
-<div class="outline-text-3" id="text-org15716e6">
+<div id="outline-container-orgdbb6ed1" class="outline-3">
+<h3 id="orgdbb6ed1">Arrow</h3>
+<div class="outline-text-3" id="text-orgdbb6ed1">
 <ul class="org-ul">
 <li>-</li>
 <li>-&gt;</li>
@@ -316,22 +345,22 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </ul>
 </div>
 </div>
-<div id="outline-container-org1c13185" class="outline-3">
-<h3 id="org1c13185">Draw</h3>
-<div class="outline-text-3" id="text-org1c13185">
+<div id="outline-container-orgec05312" class="outline-3">
+<h3 id="orgec05312">Draw</h3>
+<div class="outline-text-3" id="text-orgec05312">
 </div>
-<div id="outline-container-org3bbd682" class="outline-4">
-<h4 id="org3bbd682">Line</h4>
-<div class="outline-text-4" id="text-org3bbd682">
+<div id="outline-container-org8790032" class="outline-4">
+<h4 id="org8790032">Line</h4>
+<div class="outline-text-4" id="text-org8790032">
 <div class="org-src-container">
 <pre class="src src-latex">\draw (x1, y1) -- (x2, y2) -- (x3, y3) -- cycle
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org9555ded" class="outline-4">
-<h4 id="org9555ded">Curve</h4>
-<div class="outline-text-4" id="text-org9555ded">
+<div id="outline-container-org822c0a3" class="outline-4">
+<h4 id="org822c0a3">Curve</h4>
+<div class="outline-text-4" id="text-org822c0a3">
 <div class="org-src-container">
 <pre class="src src-latex">\draw (x1, y1) .. controls (x2, y2) and (x3, y3) .. (x4, y4);
 \draw (x1, y1) .. controls (x2, y2) .. (x3, y3);
@@ -339,9 +368,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-orgb085a18" class="outline-4">
-<h4 id="orgb085a18">Grid</h4>
-<div class="outline-text-4" id="text-orgb085a18">
+<div id="outline-container-org1b7db0a" class="outline-4">
+<h4 id="org1b7db0a">Grid</h4>
+<div class="outline-text-4" id="text-org1b7db0a">
 <div class="org-src-container">
 <pre class="src src-latex">\draw [step=s] (x1, y1) grid (x2, y2);
 \draw [xstep=x_s, ystep=y_s] (x1, y1) grid (x2, y2);
@@ -349,18 +378,18 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-orgf392600" class="outline-4">
-<h4 id="orgf392600">Arc</h4>
-<div class="outline-text-4" id="text-orgf392600">
+<div id="outline-container-orgc099ef8" class="outline-4">
+<h4 id="orgc099ef8">Arc</h4>
+<div class="outline-text-4" id="text-orgc099ef8">
 <div class="org-src-container">
 <pre class="src src-latex">\draw (x1, y1) arc (start_angle: end_angle: radius);
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org6b6b7ab" class="outline-4">
-<h4 id="org6b6b7ab">Rectangle</h4>
-<div class="outline-text-4" id="text-org6b6b7ab">
+<div id="outline-container-orgff22f65" class="outline-4">
+<h4 id="orgff22f65">Rectangle</h4>
+<div class="outline-text-4" id="text-orgff22f65">
 <div class="org-src-container">
 <pre class="src src-latex">\draw (x1, y1) rectangle (x2, y2);
 \fill [color] (x1, y1) rectangle (x2, y2);
@@ -372,9 +401,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org1219dc6" class="outline-4">
-<h4 id="org1219dc6">Circle</h4>
-<div class="outline-text-4" id="text-org1219dc6">
+<div id="outline-container-orgf88aedd" class="outline-4">
+<h4 id="orgf88aedd">Circle</h4>
+<div class="outline-text-4" id="text-orgf88aedd">
 <div class="org-src-container">
 <pre class="src src-latex">\draw (x1, y1) circle (radius);
 \fill [color] (x1, y1) circle (radius);
@@ -386,9 +415,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org0394894" class="outline-4">
-<h4 id="org0394894">Ellipse</h4>
-<div class="outline-text-4" id="text-org0394894">
+<div id="outline-container-org5bfdb2d" class="outline-4">
+<h4 id="org5bfdb2d">Ellipse</h4>
+<div class="outline-text-4" id="text-org5bfdb2d">
 <div class="org-src-container">
 <pre class="src src-latex">\draw (x1, y1) ellipse (x_radius and y_radius);
 \fill [color] (x1, y1) ellipse (x_radius and y_radius);
@@ -400,9 +429,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-orgd88a2fa" class="outline-4">
-<h4 id="orgd88a2fa">Node</h4>
-<div class="outline-text-4" id="text-orgd88a2fa">
+<div id="outline-container-org253343c" class="outline-4">
+<h4 id="org253343c">Node</h4>
+<div class="outline-text-4" id="text-org253343c">
 <div class="org-src-container">
 <pre class="src src-latex">(x0, y0) node [anchor=north/south/east/west, shape=circle/rectangle/ellipse, draw=color1, fill=color2, label=angle:node_label_angle] (node_name) {node_label};
 ...
@@ -410,9 +439,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb737d5a" class="outline-5">
-<h5 id="orgb737d5a">Connecting nodes with</h5>
-<div class="outline-text-5" id="text-orgb737d5a">
+<div id="outline-container-org78b2559" class="outline-5">
+<h5 id="org78b2559">Connecting nodes with</h5>
+<div class="outline-text-5" id="text-org78b2559">
 <ul class="org-ul">
 <li>Lines</li>
 </ul>
@@ -435,9 +464,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org7a96147" class="outline-3">
-<h3 id="org7a96147">Refer to nodes outside current picture</h3>
-<div class="outline-text-3" id="text-org7a96147">
+<div id="outline-container-org2ff56cb" class="outline-3">
+<h3 id="org2ff56cb">Refer to nodes outside current picture</h3>
+<div class="outline-text-3" id="text-org2ff56cb">
 <div class="org-src-container">
 <pre class="src src-latex">\tikzstyle{every picture}+=[remember picture]
 ...
@@ -449,9 +478,9 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-org6ccc9ef" class="outline-3">
-<h3 id="org6ccc9ef">Mix tikz command with LaTeX</h3>
-<div class="outline-text-3" id="text-org6ccc9ef">
+<div id="outline-container-org10c1c39" class="outline-3">
+<h3 id="org10c1c39">Mix tikz command with LaTeX</h3>
+<div class="outline-text-3" id="text-org10c1c39">
 <div class="org-src-container">
 <pre class="src src-latex">\tikz [baseline] ...
 </pre>
@@ -459,16 +488,16 @@ Pgf/Tikz is a built-in package in the <a href="http://tug.org">texlive</a>. As l
 </div>
 </div>
 </div>
-<div id="outline-container-orgb5d4478" class="outline-2">
-<h2 id="orgb5d4478">Libraries</h2>
-<div class="outline-text-2" id="text-orgb5d4478">
+<div id="outline-container-orge377366" class="outline-2">
+<h2 id="orge377366">Libraries</h2>
+<div class="outline-text-2" id="text-orge377366">
 <p>
 Besides the basic tikz package, there are some libraries for dedicated purpose.
 </p>
 </div>
-<div id="outline-container-org90321a5" class="outline-3">
-<h3 id="org90321a5"><code>tikzcd</code> for commutative diagrams</h3>
-<div class="outline-text-3" id="text-org90321a5">
+<div id="outline-container-orga8fa365" class="outline-3">
+<h3 id="orga8fa365"><code>tikzcd</code> for commutative diagrams</h3>
+<div class="outline-text-3" id="text-orga8fa365">
 <ul class="org-ul">
 <li><p>
 Load the package
