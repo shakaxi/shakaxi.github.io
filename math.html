@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-01-28 Sun 22:26 -->
+<!-- 2024-05-03 Fri 23:39 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mathematics</title>
@@ -232,29 +232,47 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org881b4d7">Special functions</a></li>
-<li><a href="#orge20cfbe">Matrix</a>
+<li><a href="#orgb1c32d5">Special functions</a></li>
+<li><a href="#orgd0c9d70">Matrix</a>
 <ul>
-<li><a href="#org69e0031">Vectorization</a></li>
-<li><a href="#org8a5d398">Khatri-Rao product</a></li>
+<li><a href="#org7fc06fc">Vectorization</a></li>
+<li><a href="#org0912c9f">Khatri-Rao product</a></li>
 </ul>
 </li>
-<li><a href="#org2ca9db7">Calculus</a>
+<li><a href="#org635ea06">Calculus</a>
 <ul>
-<li><a href="#org3bc2865">Differentiation</a></li>
-<li><a href="#org2fe273f">Integration</a></li>
-<li><a href="#org42778a9">Maximum and minimum values</a></li>
+<li><a href="#org1f55c69">Differentiation</a></li>
+<li><a href="#org3b9c286">Integral</a>
+<ul>
+<li><a href="#org70e6102">Newton-Leibniz</a></li>
+<li><a href="#orgdb072fe">Symmetry</a></li>
+<li><a href="#org47b89a6">Multiple integral</a>
+<ul>
+<li><a href="#orge9a6a28">Double integral</a></li>
+<li><a href="#orgad8c632">Triple integral</a></li>
 </ul>
 </li>
-<li><a href="#org2a8da1b">Transform</a>
+<li><a href="#orgf66d6d3">Line integral</a>
 <ul>
-<li><a href="#org39810a2">Fourier</a></li>
-<li><a href="#org746e4dc">Laplace</a></li>
+<li><a href="#org4005570">Scalar line integral</a></li>
+<li><a href="#orgaf0de37">Vector line integral</a></li>
 </ul>
 </li>
-<li><a href="#org322f5f0">Series</a>
+<li><a href="#org200ec6d">Surface integral</a></li>
+</ul>
+</li>
+<li><a href="#org3e08f48">Maximum and minimum values</a></li>
+</ul>
+</li>
+<li><a href="#org8edaa43">Transform</a>
 <ul>
-<li><a href="#org304a7d3">Taylor</a></li>
+<li><a href="#org221adbf">Fourier</a></li>
+<li><a href="#org41c26ce">Laplace</a></li>
+</ul>
+</li>
+<li><a href="#org6912126">Series</a>
+<ul>
+<li><a href="#org0e54f91">Taylor</a></li>
 </ul>
 </li>
 </ul>
@@ -264,9 +282,9 @@
 As the titile indicates, this post is written to summarize the basic of mathematics.
 </p>
 
-<div id="outline-container-org881b4d7" class="outline-2">
-<h2 id="org881b4d7">Special functions</h2>
-<div class="outline-text-2" id="text-org881b4d7">
+<div id="outline-container-orgb1c32d5" class="outline-2">
+<h2 id="orgb1c32d5">Special functions</h2>
+<div class="outline-text-2" id="text-orgb1c32d5">
 <ul class="org-ul">
 <li><p>
 Gamma function
@@ -318,13 +336,13 @@ Euler
 </ul>
 </div>
 </div>
-<div id="outline-container-orge20cfbe" class="outline-2">
-<h2 id="orge20cfbe">Matrix</h2>
-<div class="outline-text-2" id="text-orge20cfbe">
+<div id="outline-container-orgd0c9d70" class="outline-2">
+<h2 id="orgd0c9d70">Matrix</h2>
+<div class="outline-text-2" id="text-orgd0c9d70">
 </div>
-<div id="outline-container-org69e0031" class="outline-3">
-<h3 id="org69e0031">Vectorization</h3>
-<div class="outline-text-3" id="text-org69e0031">
+<div id="outline-container-org7fc06fc" class="outline-3">
+<h3 id="org7fc06fc">Vectorization</h3>
+<div class="outline-text-3" id="text-org7fc06fc">
 <p>
 \(\forall \mathbf{A} \in \mathbb{C}^{p \times n}\), \(\mathbf{B} \in \mathbb{C}^{n \times m}\), \(\mathbf{C} \in \mathbb{C}^{m \times q}\),
 </p>
@@ -349,14 +367,14 @@ If \(\mathbf{B} = \text{diag}(\mathbf{b})\) is a diagonal matrix (\(m = n\)), \(
   \text{vec}(\mathbf{ABC}) = (\mathbf{C}^T \odot \mathbf{A})\mathbf{b},
 \end{align*}
 <p>
-where \(\odot\) is the <a href="#org8a5d398">Khatri-Rao product</a> operator.
+where \(\odot\) is the <a href="#org0912c9f">Khatri-Rao product</a> operator.
 </p></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8a5d398" class="outline-3">
-<h3 id="org8a5d398">Khatri-Rao product</h3>
-<div class="outline-text-3" id="text-org8a5d398">
+<div id="outline-container-org0912c9f" class="outline-3">
+<h3 id="org0912c9f">Khatri-Rao product</h3>
+<div class="outline-text-3" id="text-org0912c9f">
 <p>
 \(\forall \mathbf{A} = \begin{bmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots &\mathbf{a}_k \end{bmatrix} \in \mathbb{C}^{n \times k}\) and \(\mathbf{B} = \begin{bmatrix} \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_k \end{bmatrix} \in \mathbb{C}^{m \times k}\), their Khatri-Rao product can be denoted by
 </p>
@@ -371,88 +389,180 @@ where \(\mathbf{a}_i \otimes \mathbf{b}_i = \text{vec}\left(\mathbf{b}_i \mathbf
 </div>
 </div>
 </div>
-<div id="outline-container-org2ca9db7" class="outline-2">
-<h2 id="org2ca9db7">Calculus</h2>
-<div class="outline-text-2" id="text-org2ca9db7">
+<div id="outline-container-org635ea06" class="outline-2">
+<h2 id="org635ea06">Calculus</h2>
+<div class="outline-text-2" id="text-org635ea06">
 </div>
-<div id="outline-container-org3bc2865" class="outline-3">
-<h3 id="org3bc2865">Differentiation</h3>
+<div id="outline-container-org1f55c69" class="outline-3">
+<h3 id="org1f55c69">Differentiation</h3>
 </div>
-<div id="outline-container-org2fe273f" class="outline-3">
-<h3 id="org2fe273f">Integration</h3>
-<div class="outline-text-3" id="text-org2fe273f">
-<ul class="org-ul">
-<li><p>
-Newton-Leibniz
-</p>
+<div id="outline-container-org3b9c286" class="outline-3">
+<h3 id="org3b9c286">Integral</h3>
+<div class="outline-text-3" id="text-org3b9c286">
+</div>
+<div id="outline-container-org70e6102" class="outline-4">
+<h4 id="org70e6102">Newton-Leibniz</h4>
+<div class="outline-text-4" id="text-org70e6102">
 \begin{align*}
-  \int_a^b f(x) dx = F \mid_a^b = F(b) - F(a)
-\end{align*}</li>
-<li><p>
-Symmetry
-</p>
+\int_a^b f(x) dx = F \mid_a^b = F(b) - F(a)
+\end{align*}
+</div>
+</div>
+<div id="outline-container-orgdb072fe" class="outline-4">
+<h4 id="orgdb072fe">Symmetry</h4>
+<div class="outline-text-4" id="text-orgdb072fe">
 \begin{align*}
-  \int_a^b f(x) dx &= \int_a^{\cfrac{a+b}{2}} \left[f(a+b-x) + f(x)\right] dx \\
-                &= \int_{\cfrac{a+b}{2}}^b \left[f(a+b-x) + f(x)\right] dx
+\int_a^b f(x) dx &= \int_a^{\cfrac{a+b}{2}} \left[f(a+b-x) + f(x)\right] dx \\
+&= \int_{\cfrac{a+b}{2}}^b \left[f(a+b-x) + f(x)\right] dx
 \end{align*}
 <p>
 Particularly when \(a = -b\), we have
 </p>
 \begin{align*}
-  \int_{-b}^b f(x) dx &= \int_0^b \left[ f(x) + f(-x) \right] dx \\
-                   &= \begin{cases}
-                     0, & f(x) = -f(-x); \\
-                     2\int_0^b f(x) dx, & f(x) = f(-x).
-                   \end{cases}
-\end{align*}</li>
-<li>Transformation
+\int_{-b}^b f(x) dx &= \int_0^b \left[ f(x) + f(-x) \right] dx \\
+                     &= \begin{cases}
+                       0, & f(x) = -f(-x); \\
+                       2\int_0^b f(x) dx, & f(x) = f(-x).
+                     \end{cases}
+\end{align*}
+</div>
+</div>
+<div id="outline-container-org47b89a6" class="outline-4">
+<h4 id="org47b89a6">Multiple integral</h4>
+<div class="outline-text-4" id="text-org47b89a6">
+</div>
+<div id="outline-container-orge9a6a28" class="outline-5">
+<h5 id="orge9a6a28">Double integral</h5>
+<div class="outline-text-5" id="text-orge9a6a28">
 <ul class="org-ul">
 <li><p>
-Given \(\begin{cases} x = x(u, v) \\ y = y(u, v) \end{cases}\), if \(x(u,v)\) and \(y(u,v)\) are contiguous and differentiable, and Jacobian determinant \(J = \left| \cfrac{D(x,y)}{D(u,v)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix} \neq 0\), then we have
+For a 2D region \(D\) represented by \(\begin{cases} a \leq x \leq b \\ y_1(x) \leq y \leq y_2(x)\end{cases}\), if function \(f(x, y)\) is integrable on \(D\), then
 </p>
 \begin{align*}
-  \iint_{D_{xy}} f(x,y)dxdy = \iint_{D_{uv}} f \left( x(u,v), y(u,v) \right) |J| dudv,
+\iint_D f(x, y)dxdy = \int_a^b dx \int_{y_1(x)}^{y_2(x)} f(x, y) dy.
+\end{align*}</li>
+<li><p>
+For a 2D region \(D\) represented by \(\begin{cases} c \leq y \leq d \\ x_1(y) \leq x \leq x_2(y)\end{cases}\), if function \(f(x, y)\) is integrable on \(D\), then
+</p>
+\begin{align*}
+\iint_D f(x, y)dxdy = \int_c^d dy \int_{x_1(y)}^{x_2(y)} f(x, y) dx.
+\end{align*}</li>
+<li><p>
+Given \(\begin{cases} x = x(u, v) \\ y = y(u, v) \end{cases}\), if \(x(u,v)\) and \(y(u,v)\) are continuous and differentiable, and Jacobian determinant \(J = \left| \cfrac{D(x,y)}{D(u,v)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix} \neq 0\), then we have
+</p>
+\begin{align*}
+\iint_{D(x, y)} f(x,y)dxdy = \iint_{D(u, v)} f \left(x(u, v), y(u, v)\right) |J| dudv,
 \end{align*}
 <p>
-where \(D_{uv}\) is an one-to-one mapping of \(D_{xy}\).
+where \(D(u, v)\) is an one-to-one mapping of \(D(x, y)\).
 </p>
-
-<p>
+<ul class="org-ul">
+<li><p>
 Particularly, for the transformation from Cartesian to polar coordinate systems, \(\begin{cases} x = r\cos\theta \\ y = r\sin\theta \end{cases}\), we have \(J = r\) and
 </p>
 \begin{align*}
-  \iint_{D_{xy}} f(x,y)dxdy = \iint_{D_{r\theta}} f(r\cos\theta, r\sin\theta) rdrd\theta.
-\end{align*}</li>
-<li><p>
-Given \(\begin{cases} x = x(u, v, w) \\ y = y(u, v, w) \\ z = z(u, v, w) \end{cases}\), if \(x(u,v,w)\), \(y(u,v,w)\), and \(z(u,v,w)\) are contiguous and differentiable, and Jacobian determinant \(J = \left| \cfrac{D(x,y,z)}{D(u,v,w)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w}\end{vmatrix} \neq 0\), then we have
-</p>
-\begin{align*}
-  \iiint_{V_{xyz}} f(x,y,z)dxdydz = \iiint_{V_{uvw}} f \left( x(u,v,w), y(u,v,w), z(u,v,w) \right) |J| dudvdw,
-\end{align*}
-<p>
-where \(V_{uvw}\) is an one-to-one mapping of \(V_{xyz}\).
-</p>
-
-<p>
-Particularly, for the transformation from Cartesian to cylindrical coordinate systems, \(\begin{cases} x = r\cos\theta \\ y = r\sin\theta \end{cases}\), we have \(J = r\) and
-</p>
-\begin{align*}
-  \iiint_{V_{xyz}} f(x,y,z)dxdydz = \iiint_{V_{r\theta z}} f(r\cos\theta, r\sin\theta, z) rdrd\theta dz.
-\end{align*}
-
-<p>
-Particularly, for the transformation from Cartesian to spherical coordinate systems, \(\begin{cases} x = r\sin\theta\cos\phi \\ y = r\sin\theta\sin\phi \\ z = r\cos\theta\end{cases}\), we have \(J = r^2 \sin\theta\) and
-</p>
-\begin{align*}
-  \iiint_{V_{xyz}} f(x,y,z)dxdydz = \iiint_{V_{r\theta\phi}} f(r\sin\theta\cos\phi, r\sin\theta\sin\phi, r\cos\theta) r^2\sin\theta drd\theta d\phi.
+\iint_{D(x, y)} f(x,y)dxdy = \iint_{D(r, \theta)} f(r\cos\theta, r\sin\theta) rdrd\theta.
 \end{align*}</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org42778a9" class="outline-3">
-<h3 id="org42778a9">Maximum and minimum values</h3>
-<div class="outline-text-3" id="text-org42778a9">
+<div id="outline-container-orgad8c632" class="outline-5">
+<h5 id="orgad8c632">Triple integral</h5>
+<div class="outline-text-5" id="text-orgad8c632">
+<ul class="org-ul">
+<li><p>
+For a 3D region \(V\) represented by \(\begin{cases} a \leq x \leq b \\ y_1(x) \leq y \leq y_2(x) \\ z_1(x,y) \leq z \leq z_2(x,y)\end{cases}\), if function \(f(x, y, z)\) is integrable on \(V\), then
+</p>
+\begin{align*}
+\iiint_V f(x,y,z)dxdydz = \int_a^b dx \int_{y_1(x)}^{y_2(x)} dy \int_{z_1(x,y)}^{z_2(x,y)} f(x, y, z)dz.
+\end{align*}</li>
+<li><p>
+Given \(\begin{cases} x = x(u, v, w) \\ y = y(u, v, w) \\ z = z(u, v, w) \end{cases}\), if \(x(u,v,w)\), \(y(u,v,w)\), and \(z(u,v,w)\) are continuous and differentiable, and Jacobian determinant \(J = \left| \cfrac{D(x,y,z)}{D(u,v,w)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w}\end{vmatrix} \neq 0\), then we have
+</p>
+\begin{align*}
+\iiint_{V(x, y, z)} f(x,y,z)dxdydz = \iiint_{V(u,v,w)} f \left( x(u,v,w), y(u,v,w), z(u,v,w) \right) |J| dudvdw,
+\end{align*}
+<p>
+where \(V(u,v,w)\) is an one-to-one mapping of \(V(x,y,z)\).
+</p>
+<ul class="org-ul">
+<li><p>
+Particularly, for the transformation from Cartesian to cylindrical coordinate systems, \(\begin{cases} x = r\cos\theta \\ y = r\sin\theta \end{cases}\), we have \(J = r\) and
+</p>
+\begin{align*}
+\iiint_{V(x, y, z)} f(x,y,z)dxdydz = \iiint_{V(r, \theta, z)} f(r\cos\theta, r\sin\theta, z) rdrd\theta dz.
+\end{align*}</li>
+<li><p>
+Particularly, for the transformation from Cartesian to spherical coordinate systems, \(\begin{cases} x = r\sin\theta\cos\phi \\ y = r\sin\theta\sin\phi \\ z = r\cos\theta\end{cases}\), we have \(J = r^2 \sin\theta\) and
+</p>
+\begin{align*}
+\iiint_{V(x, y, z)} f(x,y,z)dxdydz = \iiint_{V(r, \theta, \phi)} f(r\sin\theta\cos\phi, r\sin\theta\sin\phi, r\cos\theta) r^2\sin\theta drd\theta d\phi.
+\end{align*}</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf66d6d3" class="outline-4">
+<h4 id="orgf66d6d3">Line integral</h4>
+<div class="outline-text-4" id="text-orgf66d6d3">
+<p>
+A line integral means to integrate a scalar function or a vector field over a smooth curve in a plane or space. The former is termed <i>scalar line integral</i> or <i>1st type of line integral</i>, while the latter is termed <i>vector line integral</i> or <i>2nd type of line integral</i>.
+</p>
+</div>
+<div id="outline-container-org4005570" class="outline-5">
+<h5 id="org4005570">Scalar line integral</h5>
+<div class="outline-text-5" id="text-org4005570">
+<p>
+Given a smooth curve \(C\) between \(A\) and \(B\) represented by \(x = x(t)\), \(y = y(t)\), \(z = z(t)\), \(t_A \leq t \leq t_B\), if integrand \(f(x, y, z)\) is continuous over \(C\), then
+</p>
+\begin{align*}
+\int_Cf(x,y,z)ds = \int_{t_A}^{t_B} f(x(t), y(t), z(t)) \sqrt{x^{\prime 2}(t) + y^{\prime 2}(t) + z^{\prime 2}(t)} dt,
+\end{align*}
+<p>
+where \(ds = \left\| \begin{bmatrix}dx \\ dy \\ dz\end{bmatrix}\right\| = \left\|\begin{bmatrix} x^{\prime}(t) \\ y^{\prime}(t) \\ z^{\prime}(t) \end{bmatrix}\right\|dt = \sqrt{x^{\prime 2}(t) + y^{\prime 2}(t) + z^{\prime 2}(t)} dt\) is the <i>arc length unit</i>.
+</p>
+
+<p>
+For scalar line integral, neither the orientation nor the parameterization of the curve matters, i.e., \(\int_{\overset{\frown}{AB}} f(x,y,z)ds = \int_{\overset{\frown}{BA}} f(x,y,z)ds\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgaf0de37" class="outline-5">
+<h5 id="orgaf0de37">Vector line integral</h5>
+<div class="outline-text-5" id="text-orgaf0de37">
+<p>
+Given a smooth and oriented curve \(C\) from \(A\) to \(B\) represented by \(x = x(t)\), \(y = y(t)\), \(z = z(t)\), if a vector field \(\mathbf{F} = \begin{bmatrix} P(x,y,z) \\ Q(x,y,z) \\ R(x,y,z)\end{bmatrix}\) is continuous over \(C\), then
+</p>
+\begin{align*}
+\int_C \mathbf{F} \cdot d\mathbf{r} &= \int_C Pdx + Qdy + Rdz = \int_{t_A}^{t_B} Px^{\prime}(t) + Qy^{\prime}(t) + Rz^{\prime}(t) dt \\
+&= \int_C \mathbf{F} \cdot \mathbf{T} ds,
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(d\mathbf{r} = \begin{bmatrix} dx \\ dy \\ dz \end{bmatrix} = \mathbf{r}^{\prime}(t)dt\) is the arc unit;</li>
+<li>\(\mathbf{r}^{\prime}(t) = \begin{bmatrix} x^{\prime}(t) \\ y^{\prime}(t) \\ z^{\prime}(t) \end{bmatrix}\);</li>
+<li>\(\mathbf{T} = \cfrac{\mathbf{r}^{\prime}(t)}{\|\mathbf{r}^{\prime}(t)\|}\) is the <i>unit tangent vector</i> along \(C\);</li>
+<li>\(ds = \|\mathbf{r}^{\prime}(t)\| dt\) is the arc length unit.</li>
+</ul>
+
+<p>
+For vector line integral, the orientation of the curve does matter, i.e., \(\int_{\overset{\frown}{AB}} \mathbf{F} \cdot d\mathbf{r} = -\int_{\overset{\frown}{BA}} \mathbf{F} \cdot d\mathbf{r}\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org200ec6d" class="outline-4">
+<h4 id="org200ec6d">Surface integral</h4>
+</div>
+</div>
+
+<div id="outline-container-org3e08f48" class="outline-3">
+<h3 id="org3e08f48">Maximum and minimum values</h3>
+<div class="outline-text-3" id="text-org3e08f48">
 <p>
 For a differentiable function \(f: \mathbb{R}^{n} \to \mathbb{R}\), zero gradient is the necessary condition of an extreme point.
 </p>
@@ -463,24 +573,24 @@ For a differentiable function \(f: \mathbb{R}^{n} \to \mathbb{R}\), zero gradien
 </div>
 </div>
 </div>
-<div id="outline-container-org2a8da1b" class="outline-2">
-<h2 id="org2a8da1b">Transform</h2>
-<div class="outline-text-2" id="text-org2a8da1b">
+<div id="outline-container-org8edaa43" class="outline-2">
+<h2 id="org8edaa43">Transform</h2>
+<div class="outline-text-2" id="text-org8edaa43">
 </div>
-<div id="outline-container-org39810a2" class="outline-3">
-<h3 id="org39810a2">Fourier</h3>
+<div id="outline-container-org221adbf" class="outline-3">
+<h3 id="org221adbf">Fourier</h3>
 </div>
-<div id="outline-container-org746e4dc" class="outline-3">
-<h3 id="org746e4dc">Laplace</h3>
+<div id="outline-container-org41c26ce" class="outline-3">
+<h3 id="org41c26ce">Laplace</h3>
 </div>
 </div>
-<div id="outline-container-org322f5f0" class="outline-2">
-<h2 id="org322f5f0">Series</h2>
-<div class="outline-text-2" id="text-org322f5f0">
+<div id="outline-container-org6912126" class="outline-2">
+<h2 id="org6912126">Series</h2>
+<div class="outline-text-2" id="text-org6912126">
 </div>
-<div id="outline-container-org304a7d3" class="outline-3">
-<h3 id="org304a7d3">Taylor</h3>
-<div class="outline-text-3" id="text-org304a7d3">
+<div id="outline-container-org0e54f91" class="outline-3">
+<h3 id="org0e54f91">Taylor</h3>
+<div class="outline-text-3" id="text-org0e54f91">
 <ul class="org-ul">
 <li><p>
 For function \(f(x)\), if \(f^{(n)}(x_0)\) exists, its Taylor expansion can be written as
