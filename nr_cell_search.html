@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-07-04 Tue 00:07 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NR - Cell Search</title>
@@ -232,23 +232,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5793033">Synchronization signals</a>
+<li><a href="#org62945ec">Synchronization signals</a>
 <ul>
-<li><a href="#org5077abb">PSS</a></li>
-<li><a href="#org560c4d1">SSS</a></li>
+<li><a href="#org5cc962a">PSS</a></li>
+<li><a href="#org9c9ebdd">SSS</a></li>
 </ul>
 </li>
-<li><a href="#org40da44f">Synchronization raster</a></li>
-<li><a href="#orge9989ea">Synchronization signal burst set</a></li>
-<li><a href="#orge994979">PBCH</a></li>
-<li><a href="#orgc50639e">Remaining minimum system information (RMSI)</a></li>
+<li><a href="#org8717557">Synchronization raster</a></li>
+<li><a href="#orgb613de5">Synchronization signal burst set</a></li>
+<li><a href="#orgac5b0e1">PBCH</a></li>
+<li><a href="#org6b3c7b6">Remaining minimum system information (RMSI)</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5793033" class="outline-2">
-<h2 id="org5793033">Synchronization signals</h2>
-<div class="outline-text-2" id="text-org5793033">
+<div id="outline-container-org62945ec" class="outline-2">
+<h2 id="org62945ec">Synchronization signals</h2>
+<div class="outline-text-2" id="text-org62945ec">
 <p>
 In NR, synchronization signals consist of <i>primary synchronization signal (PSS)</i> and <i>secondary synchronization signal (SSS)</i>. Together with <i>physical broadcast channel (PBCH)</i>, PSS and SSS are jointly termed <i>synchronization signal block (SSB<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>)</i>.
 </p>
@@ -257,7 +257,7 @@ In NR, synchronization signals consist of <i>primary synchronization signal (PSS
 A SSB spans 4 OFDM symbols in the time domain and 240 subcarriers in the frequency domain. Within a SSB, the PSS and SSS lie in the 1st and 3rd symbol, respectively. The PBCH situates in the 2nd and 4th symbols, as well as the 48 subcarriers on the each side of the SSS (in the 3rd symbol), as shown in the figure below. Therefore, within a SSB, there are totally \(240 + 48 \times 2 + 240 = 576\) RE's for PBCH transmission<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>.
 </p>
 
-<div id="org4cb074f" class="figure">
+<div id="org63845cf" class="figure">
 <p><img src="./fig/nr_ssb.png" alt="nr_ssb.png" width="100px">
 </p>
 <p><span class="figure-number">Figure 1: </span>SSB</p>
@@ -271,9 +271,9 @@ It should be noted that 60kHz numerology cannot be used for SSB transmission.
 The SSB is periodically transmitted and the periodicity can be 5/10/20/40/80/160ms. But a UE always assumes that a SSB is repeated at least once every 20ms no matter whether it is the truth.
 </p>
 </div>
-<div id="outline-container-org5077abb" class="outline-3">
-<h3 id="org5077abb">PSS</h3>
-<div class="outline-text-3" id="text-org5077abb">
+<div id="outline-container-org5cc962a" class="outline-3">
+<h3 id="org5cc962a">PSS</h3>
+<div class="outline-text-3" id="text-org5cc962a">
 <p>
 Similar to LTE, there are 3 PSS sequences, including a basic m-sequence of length 127, and its two cyclically shifted versions<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>. The initial values of the basic sequence are {0, 1, 1, 0, 1, 1, 1}. The subsequent values can be derived according to
 </p>
@@ -289,9 +289,9 @@ Then, the cyclically shifted sequences can be obtained by
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org560c4d1" class="outline-3">
-<h3 id="org560c4d1">SSS</h3>
-<div class="outline-text-3" id="text-org560c4d1">
+<div id="outline-container-org9c9ebdd" class="outline-3">
+<h3 id="org9c9ebdd">SSS</h3>
+<div class="outline-text-3" id="text-org9c9ebdd">
 <p>
 There are 336 SSS sequences which are the sums of two m-sequences with different shifts, i.e.,
 </p>
@@ -308,17 +308,17 @@ where the two m-sequences can be obtained according to
 </div>
 </div>
 </div>
-<div id="outline-container-org40da44f" class="outline-2">
-<h2 id="org40da44f">Synchronization raster</h2>
-<div class="outline-text-2" id="text-org40da44f">
+<div id="outline-container-org8717557" class="outline-2">
+<h2 id="org8717557">Synchronization raster</h2>
+<div class="outline-text-2" id="text-org8717557">
 <p>
 Different from the strategy in LTE where the PSS/SSS is always transmitted at the center of a carrier in the frequency domain, SSB in NR is transmitted on a sparser <i>synchronization raster</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-orge9989ea" class="outline-2">
-<h2 id="orge9989ea">Synchronization signal burst set</h2>
-<div class="outline-text-2" id="text-orge9989ea">
+<div id="outline-container-orgb613de5" class="outline-2">
+<h2 id="orgb613de5">Synchronization signal burst set</h2>
+<div class="outline-text-2" id="text-orgb613de5">
 <p>
 Targetting effective coverage, a series of SSB's are transmitted using different analog beams in a TDM way. Accordingly, a set of SSB's within a beam sweeping cycle is referred to as an <i>synchronization signal burst set<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup></i>.
 </p>
@@ -372,9 +372,9 @@ The PSS/SSS only depends on the physical cell identity (PCI), i.e., the PSS/SSS 
 </p>
 </div>
 </div>
-<div id="outline-container-orge994979" class="outline-2">
-<h2 id="orge994979">PBCH</h2>
-<div class="outline-text-2" id="text-orge994979">
+<div id="outline-container-orgac5b0e1" class="outline-2">
+<h2 id="orgac5b0e1">PBCH</h2>
+<div class="outline-text-2" id="text-orgac5b0e1">
 <p>
 The PBCH carries the <i>master information block (MIB)</i>. The information carried by PBCH can be listed in the table below.
 </p>
@@ -448,9 +448,9 @@ The filed of "CRB grid offset" only indicates the offset between the SSB and the
 </p>
 </div>
 </div>
-<div id="outline-container-orgc50639e" class="outline-2">
-<h2 id="orgc50639e">Remaining minimum system information (RMSI)</h2>
-<div class="outline-text-2" id="text-orgc50639e">
+<div id="outline-container-org6b3c7b6" class="outline-2">
+<h2 id="org6b3c7b6">Remaining minimum system information (RMSI)</h2>
+<div class="outline-text-2" id="text-org6b3c7b6">
 <p>
 In NR, except the quite limited information within MIB, system information is carried by different <i>system information blocks (SIB's)</i>.
 </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sparse Array</title>
@@ -232,24 +232,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org49e5b09">Concepts</a></li>
-<li><a href="#orga3d15fd">MUSIC over \(\mathbb{D}\) (Khatri-Rao MUSIC)</a></li>
-<li><a href="#orgc049765">MUSIC over \(\mathbb{U}\)</a></li>
-<li><a href="#orgce1ff34">Example realizations</a>
+<li><a href="#org5696b32">Concepts</a></li>
+<li><a href="#org1d7ad2a">MUSIC over \(\mathbb{D}\) (Khatri-Rao MUSIC)</a></li>
+<li><a href="#org8918e8f">MUSIC over \(\mathbb{U}\)</a></li>
+<li><a href="#org80bc653">Example realizations</a>
 <ul>
-<li><a href="#org4579c83">Nested patterns &amp; coprime patterns (<code>sparse.py</code>)</a></li>
-<li><a href="#orgdd78382">Pattern (<code>pat.py</code>)</a></li>
-<li><a href="#org1077d58">MUSIC (<code>music.py</code>)</a></li>
+<li><a href="#org75d1b36">Nested patterns &amp; coprime patterns (<code>sparse.py</code>)</a></li>
+<li><a href="#org89366c2">Pattern (<code>pat.py</code>)</a></li>
+<li><a href="#org0a43aa1">MUSIC (<code>music.py</code>)</a></li>
 </ul>
 </li>
-<li><a href="#org3ba0c50">References</a></li>
+<li><a href="#org82b3279">References</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org49e5b09" class="outline-2">
-<h2 id="org49e5b09">Concepts</h2>
-<div class="outline-text-2" id="text-org49e5b09">
+<div id="outline-container-org5696b32" class="outline-2">
+<h2 id="org5696b32">Concepts</h2>
+<div class="outline-text-2" id="text-org5696b32">
 <p>
 Given a sparse array, the locations of its component antennas/sensors can be normalized to a minimum inter-antenna distance, denoted by \(d\), e.g., typically \(d = \lambda / 2\). Accordingly, a sparse array can be simply denoted by an integer set \(\mathbb{S}\), and the locations of the antennas are \(nd\), \(n \in \mathbb{S}\).
 </p>
@@ -271,9 +271,9 @@ Let \(\mathbb{U}\) denote the central ULA segment of \(\mathbb{D}\). Its cardina
 </p>
 </div>
 </div>
-<div id="outline-container-orga3d15fd" class="outline-2">
-<h2 id="orga3d15fd">MUSIC over \(\mathbb{D}\) (Khatri-Rao MUSIC)</h2>
-<div class="outline-text-2" id="text-orga3d15fd">
+<div id="outline-container-org1d7ad2a" class="outline-2">
+<h2 id="org1d7ad2a">MUSIC over \(\mathbb{D}\) (Khatri-Rao MUSIC)</h2>
+<div class="outline-text-2" id="text-org1d7ad2a">
 <p>
 Without loss of generality, we consider a simple scenario in which \(r\) monochromatic sources impinge on a sparse array \(\mathbb{S} = \{n_1, n_2, \ldots, n_{|\mathbb{S}|}\}\), the received signal can be expressed as
 </p>
@@ -335,9 +335,9 @@ where \(\mathbf{J}_p \triangleq
 </div>
 </div>
 
-<div id="outline-container-orgc049765" class="outline-2">
-<h2 id="orgc049765">MUSIC over \(\mathbb{U}\)</h2>
-<div class="outline-text-2" id="text-orgc049765">
+<div id="outline-container-org8918e8f" class="outline-2">
+<h2 id="org8918e8f">MUSIC over \(\mathbb{U}\)</h2>
+<div class="outline-text-2" id="text-org8918e8f">
 <p>
 By parsing the rows of \eqref{eq:xd} corresponding to the entries in \(\mathbb{U}\), the received signal on \(\mathbb{U}\) can be expressed as
 </p>
@@ -398,13 +398,13 @@ Finally, what is worth emphasizing, the idea of sparse array is not limited to s
 </div>
 </div>
 
-<div id="outline-container-orgce1ff34" class="outline-2">
-<h2 id="orgce1ff34">Example realizations</h2>
-<div class="outline-text-2" id="text-orgce1ff34">
+<div id="outline-container-org80bc653" class="outline-2">
+<h2 id="org80bc653">Example realizations</h2>
+<div class="outline-text-2" id="text-org80bc653">
 </div>
-<div id="outline-container-org4579c83" class="outline-3">
-<h3 id="org4579c83">Nested patterns &amp; coprime patterns (<code>sparse.py</code>)</h3>
-<div class="outline-text-3" id="text-org4579c83">
+<div id="outline-container-org75d1b36" class="outline-3">
+<h3 id="org75d1b36">Nested patterns &amp; coprime patterns (<code>sparse.py</code>)</h3>
+<div class="outline-text-3" id="text-org75d1b36">
 <div class="org-src-container">
 <pre class="src src-python">def gen_nested_pat(n: int) -&gt; list:
     n1 = n // 2
@@ -423,9 +423,9 @@ def gen_coprime_pat(p: int, q: int) -&gt; list:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdd78382" class="outline-3">
-<h3 id="orgdd78382">Pattern (<code>pat.py</code>)</h3>
-<div class="outline-text-3" id="text-orgdd78382">
+<div id="outline-container-org89366c2" class="outline-3">
+<h3 id="org89366c2">Pattern (<code>pat.py</code>)</h3>
+<div class="outline-text-3" id="text-org89366c2">
 <div class="org-src-container">
 <pre class="src src-python">import numpy as np
 
@@ -466,9 +466,9 @@ class Pattern:
 </div>
 </div>
 </div>
-<div id="outline-container-org1077d58" class="outline-3">
-<h3 id="org1077d58">MUSIC (<code>music.py</code>)</h3>
-<div class="outline-text-3" id="text-org1077d58">
+<div id="outline-container-org0a43aa1" class="outline-3">
+<h3 id="org0a43aa1">MUSIC (<code>music.py</code>)</h3>
+<div class="outline-text-3" id="text-org0a43aa1">
 <div class="org-src-container">
 <pre class="src src-python">import numpy as np
 from pat import Pattern
@@ -493,9 +493,9 @@ class MUSIC_DCA(MUSIC):
 </div>
 </div>
 </div>
-<div id="outline-container-org3ba0c50" class="outline-2">
-<h2 id="org3ba0c50">References</h2>
-<div class="outline-text-2" id="text-org3ba0c50">
+<div id="outline-container-org82b3279" class="outline-2">
+<h2 id="org82b3279">References</h2>
+<div class="outline-text-2" id="text-org82b3279">
 <ol class="org-ol">
 <li>Liu, Chun-Lin and Vaidyanathan, P. P. (2016). "Super Nested Arrays: Linear Sparse Arrays With Reduced Mutual Coupling Part I: Fundamentals". IEEE Transactions on Signal Processing, 64, 3997-4012. 10.1109/TSP.2016.2558159.</li>
 <li>Liu, Chun-Lin and Vaidyanathan, P. P. (2016). "Super Nested Arrays: Linear Sparse Arrays With Reduced Mutual Coupling Part II: High-Order Extensions". IEEE Transactions on Signal Processing, 64, 4203-4217. 10.1109/TSP.2016.2558167.</li>

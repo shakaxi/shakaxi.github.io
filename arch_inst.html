@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Archlinux - Installation</title>
@@ -200,59 +200,59 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org051e92b">Preparation</a></li>
-<li><a href="#org4ccd5a0">Installation</a>
+<li><a href="#orgeb409f7">Preparation</a></li>
+<li><a href="#orgba66721">Installation</a>
 <ul>
-<li><a href="#org5eec71b">Select the suitable architecture</a></li>
-<li><a href="#org069d952">Partition disk</a></li>
-<li><a href="#orgb61c120">Format the partitions</a></li>
-<li><a href="#org2f68e0e">Mount the partitions</a></li>
-<li><a href="#org9752e0b">Configure network</a></li>
-<li><a href="#org904d617">Select nearest mirror</a></li>
-<li><a href="#orga7d9134">Install the base system and necessary applications</a></li>
-<li><a href="#org51af301">Generate fstab file</a></li>
-<li><a href="#orgaa0b035">Chroot into the newly installed system</a></li>
-<li><a href="#org669de0b">Set hostname</a></li>
-<li><a href="#org3afc79e">Set time zone</a></li>
-<li><a href="#orgb2a9555">Set system time</a></li>
-<li><a href="#orgc0473e9">Set locale</a></li>
-<li><a href="#orgdf7a20c">Create an initial RAM disk</a></li>
-<li><a href="#orgef5aad1">Install bootloader</a></li>
-<li><a href="#org397feea">Configure network for the newly installed OS</a></li>
-<li><a href="#org93d9f3f">Configure SSH service</a></li>
-<li><a href="#org897b61d">Configure CPU frequency scaling</a></li>
-<li><a href="#org4c2b696">Set password for root</a></li>
-<li><a href="#orgd0437d0">Unmount and reboot</a></li>
+<li><a href="#org8d4e533">Select the suitable architecture</a></li>
+<li><a href="#org65987ed">Partition disk</a></li>
+<li><a href="#org5adc487">Format the partitions</a></li>
+<li><a href="#org4c4ceaf">Mount the partitions</a></li>
+<li><a href="#orgdaa8d1a">Configure network</a></li>
+<li><a href="#orgdc05b1f">Select nearest mirror</a></li>
+<li><a href="#orgb21b542">Install the base system and necessary applications</a></li>
+<li><a href="#org62aedd2">Generate fstab file</a></li>
+<li><a href="#orge80a3a9">Chroot into the newly installed system</a></li>
+<li><a href="#orgaacf520">Set hostname</a></li>
+<li><a href="#org1d501a9">Set time zone</a></li>
+<li><a href="#org836a42e">Set system time</a></li>
+<li><a href="#org021b398">Set locale</a></li>
+<li><a href="#org5c06c45">Create an initial RAM disk</a></li>
+<li><a href="#org84e83ed">Install bootloader</a></li>
+<li><a href="#orgcdaf78a">Configure network for the newly installed OS</a></li>
+<li><a href="#org7c20c16">Configure SSH service&#xa0;&#xa0;&#xa0;<span class="tag"><span class="server">server</span></span></a></li>
+<li><a href="#orgc231027">Configure CPU frequency scaling</a></li>
+<li><a href="#org81d6c36">Set password for root</a></li>
+<li><a href="#orgd541c4b">Unmount and reboot</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org051e92b" class="outline-2">
-<h2 id="org051e92b">Preparation</h2>
-<div class="outline-text-2" id="text-org051e92b">
+<div id="outline-container-orgeb409f7" class="outline-2">
+<h2 id="orgeb409f7">Preparation</h2>
+<div class="outline-text-2" id="text-orgeb409f7">
 <ol class="org-ol">
 <li>Insert the DVD into the optical driver and reboot the computer.</li>
 <li>In the power-on self-test (POST) stage, press <code>F11</code> <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> on the screen of BIOS splash to boot the computer from the DVD.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org4ccd5a0" class="outline-2">
-<h2 id="org4ccd5a0">Installation</h2>
-<div class="outline-text-2" id="text-org4ccd5a0">
+<div id="outline-container-orgba66721" class="outline-2">
+<h2 id="orgba66721">Installation</h2>
+<div class="outline-text-2" id="text-orgba66721">
 </div>
-<div id="outline-container-org5eec71b" class="outline-3">
-<h3 id="org5eec71b">Select the suitable architecture</h3>
-<div class="outline-text-3" id="text-org5eec71b">
+<div id="outline-container-org8d4e533" class="outline-3">
+<h3 id="org8d4e533">Select the suitable architecture</h3>
+<div class="outline-text-3" id="text-org8d4e533">
 <p>
 When Arch Linux splash appears, choose <code>Boot Arch Linux (x86_64)</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org069d952" class="outline-3">
-<h3 id="org069d952">Partition disk</h3>
-<div class="outline-text-3" id="text-org069d952">
+<div id="outline-container-org65987ed" class="outline-3">
+<h3 id="org65987ed">Partition disk</h3>
+<div class="outline-text-3" id="text-org65987ed">
 <p>
 Divide the entire disk into several partitions, e.g. four partitions for <code>/</code>, <code>/var</code>, <code>/tmp</code>, <code>/home</code>, respectively. What deserves your attention, <code>/</code> should be set bootable. With respect to the partition tool, you have so many choices, e.g. <code>fdisk</code>, <code>cfdisk</code>. Without loss of generality, we take <code>cfdisk</code> for instance here.
 </p>
@@ -265,9 +265,9 @@ For example, we have divided the disk into four partitions, e.g. <code>/sda1</co
 </p>
 </div>
 </div>
-<div id="outline-container-orgb61c120" class="outline-3">
-<h3 id="orgb61c120">Format the partitions</h3>
-<div class="outline-text-3" id="text-orgb61c120">
+<div id="outline-container-org5adc487" class="outline-3">
+<h3 id="org5adc487">Format the partitions</h3>
+<div class="outline-text-3" id="text-org5adc487">
 <div class="org-src-container">
 <pre class="src src-sh">mkfs.ext4 /dev/sda1
 mkfs.ext4 /dev/sda5
@@ -277,9 +277,9 @@ mkfs.ext4 /dev/sda7
 </div>
 </div>
 </div>
-<div id="outline-container-org2f68e0e" class="outline-3">
-<h3 id="org2f68e0e">Mount the partitions</h3>
-<div class="outline-text-3" id="text-org2f68e0e">
+<div id="outline-container-org4c4ceaf" class="outline-3">
+<h3 id="org4c4ceaf">Mount the partitions</h3>
+<div class="outline-text-3" id="text-org4c4ceaf">
 <div class="org-src-container">
 <pre class="src src-sh">mount -t ext4 /dev/sda1 /mnt
 mkdir -p /mnt/{var,tmp,home}
@@ -290,9 +290,9 @@ mount -t ext4 /dev/sda7 /mnt/home
 </div>
 </div>
 </div>
-<div id="outline-container-org9752e0b" class="outline-3">
-<h3 id="org9752e0b">Configure network</h3>
-<div class="outline-text-3" id="text-org9752e0b">
+<div id="outline-container-orgdaa8d1a" class="outline-3">
+<h3 id="orgdaa8d1a">Configure network</h3>
+<div class="outline-text-3" id="text-orgdaa8d1a">
 <div class="org-src-container">
 <pre class="src src-sh">systemctl stop dhcpcd
 ip addr add IP_ADDR/24 broadcast BROADCAST_ADDR dev eth0
@@ -304,9 +304,9 @@ echo nameserver DNS_SERVER_IP_ADDR &gt;&gt; /etc/resolv.conf
 </div>
 </div>
 </div>
-<div id="outline-container-org904d617" class="outline-3">
-<h3 id="org904d617">Select nearest mirror</h3>
-<div class="outline-text-3" id="text-org904d617">
+<div id="outline-container-orgdc05b1f" class="outline-3">
+<h3 id="orgdc05b1f">Select nearest mirror</h3>
+<div class="outline-text-3" id="text-orgdc05b1f">
 <p>
 Edit <code>/etc/pacman.d/mirrorlist</code> as
 </p>
@@ -316,54 +316,54 @@ Edit <code>/etc/pacman.d/mirrorlist</code> as
 </div>
 </div>
 </div>
-<div id="outline-container-orga7d9134" class="outline-3">
-<h3 id="orga7d9134">Install the base system and necessary applications</h3>
-<div class="outline-text-3" id="text-orga7d9134">
+<div id="outline-container-orgb21b542" class="outline-3">
+<h3 id="orgb21b542">Install the base system and necessary applications</h3>
+<div class="outline-text-3" id="text-orgb21b542">
 <div class="org-src-container">
 <pre class="src src-sh">pacstrap /mnt base base-devel os-prober grub openssh nfs-utils boost cpupower libxml2 ntp
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org51af301" class="outline-3">
-<h3 id="org51af301">Generate fstab file</h3>
-<div class="outline-text-3" id="text-org51af301">
+<div id="outline-container-org62aedd2" class="outline-3">
+<h3 id="org62aedd2">Generate fstab file</h3>
+<div class="outline-text-3" id="text-org62aedd2">
 <div class="org-src-container">
 <pre class="src src-sh">genfstab -p /mnt &gt;&gt; /mnt/etc/fstab
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa0b035" class="outline-3">
-<h3 id="orgaa0b035">Chroot into the newly installed system</h3>
-<div class="outline-text-3" id="text-orgaa0b035">
+<div id="outline-container-orge80a3a9" class="outline-3">
+<h3 id="orge80a3a9">Chroot into the newly installed system</h3>
+<div class="outline-text-3" id="text-orge80a3a9">
 <div class="org-src-container">
 <pre class="src src-sh">arch-chroot /mnt
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org669de0b" class="outline-3">
-<h3 id="org669de0b">Set hostname</h3>
-<div class="outline-text-3" id="text-org669de0b">
+<div id="outline-container-orgaacf520" class="outline-3">
+<h3 id="orgaacf520">Set hostname</h3>
+<div class="outline-text-3" id="text-orgaacf520">
 <div class="org-src-container">
 <pre class="src src-sh">echo COMPUTER_NAME &gt; /etc/hostname
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org3afc79e" class="outline-3">
-<h3 id="org3afc79e">Set time zone</h3>
-<div class="outline-text-3" id="text-org3afc79e">
+<div id="outline-container-org1d501a9" class="outline-3">
+<h3 id="org1d501a9">Set time zone</h3>
+<div class="outline-text-3" id="text-org1d501a9">
 <div class="org-src-container">
 <pre class="src src-sh">ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb2a9555" class="outline-3">
-<h3 id="orgb2a9555">Set system time</h3>
-<div class="outline-text-3" id="text-orgb2a9555">
+<div id="outline-container-org836a42e" class="outline-3">
+<h3 id="org836a42e">Set system time</h3>
+<div class="outline-text-3" id="text-org836a42e">
 <p>
 Prepend following line to <code>/etc/ntp.conf</code>
 </p>
@@ -381,9 +381,9 @@ systemctl start ntpd.service
 </div>
 </div>
 </div>
-<div id="outline-container-orgc0473e9" class="outline-3">
-<h3 id="orgc0473e9">Set locale</h3>
-<div class="outline-text-3" id="text-orgc0473e9">
+<div id="outline-container-org021b398" class="outline-3">
+<h3 id="org021b398">Set locale</h3>
+<div class="outline-text-3" id="text-org021b398">
 <p>
 Edit <code>/etc/locale.gen</code> and uncomment the following lines
 </p>
@@ -409,18 +409,18 @@ echo LANG=en_US.UTF-8 &gt; /etc/locale.conf
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf7a20c" class="outline-3">
-<h3 id="orgdf7a20c">Create an initial RAM disk</h3>
-<div class="outline-text-3" id="text-orgdf7a20c">
+<div id="outline-container-org5c06c45" class="outline-3">
+<h3 id="org5c06c45">Create an initial RAM disk</h3>
+<div class="outline-text-3" id="text-org5c06c45">
 <div class="org-src-container">
 <pre class="src src-sh">mkinitcpio -p linux
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgef5aad1" class="outline-3">
-<h3 id="orgef5aad1">Install bootloader</h3>
-<div class="outline-text-3" id="text-orgef5aad1">
+<div id="outline-container-org84e83ed" class="outline-3">
+<h3 id="org84e83ed">Install bootloader</h3>
+<div class="outline-text-3" id="text-org84e83ed">
 <div class="org-src-container">
 <pre class="src src-sh">grub-install --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -428,9 +428,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 </div>
 </div>
 </div>
-<div id="outline-container-org397feea" class="outline-3">
-<h3 id="org397feea">Configure network for the newly installed OS</h3>
-<div class="outline-text-3" id="text-org397feea">
+<div id="outline-container-orgcdaf78a" class="outline-3">
+<h3 id="orgcdaf78a">Configure network for the newly installed OS</h3>
+<div class="outline-text-3" id="text-orgcdaf78a">
 <p>
 Edit <code>/etc/profile</code> and append following two lines to configure the proxy server.
 </p>
@@ -462,9 +462,9 @@ Enable the network configuration
 </div>
 </div>
 </div>
-<div id="outline-container-org93d9f3f" class="outline-3">
-<h3 id="org93d9f3f">Configure SSH service</h3>
-<div class="outline-text-3" id="text-org93d9f3f">
+<div id="outline-container-org7c20c16" class="outline-3">
+<h3 id="org7c20c16">Configure SSH service&#xa0;&#xa0;&#xa0;<span class="tag"><span class="server">server</span></span></h3>
+<div class="outline-text-3" id="text-org7c20c16">
 <p>
 Edit file <code>/etc/ssh/sshd_config</code> as below
 </p>
@@ -483,27 +483,27 @@ Enable the SSH service
 </div>
 </div>
 </div>
-<div id="outline-container-org897b61d" class="outline-3">
-<h3 id="org897b61d">Configure CPU frequency scaling</h3>
-<div class="outline-text-3" id="text-org897b61d">
+<div id="outline-container-orgc231027" class="outline-3">
+<h3 id="orgc231027">Configure CPU frequency scaling</h3>
+<div class="outline-text-3" id="text-orgc231027">
 <div class="org-src-container">
 <pre class="src src-sh">systemctl enable cpupower
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4c2b696" class="outline-3">
-<h3 id="org4c2b696">Set password for root</h3>
-<div class="outline-text-3" id="text-org4c2b696">
+<div id="outline-container-org81d6c36" class="outline-3">
+<h3 id="org81d6c36">Set password for root</h3>
+<div class="outline-text-3" id="text-org81d6c36">
 <div class="org-src-container">
 <pre class="src src-sh">passwd
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd0437d0" class="outline-3">
-<h3 id="orgd0437d0">Unmount and reboot</h3>
-<div class="outline-text-3" id="text-orgd0437d0">
+<div id="outline-container-orgd541c4b" class="outline-3">
+<h3 id="orgd541c4b">Unmount and reboot</h3>
+<div class="outline-text-3" id="text-orgd541c4b">
 <div class="org-src-container">
 <pre class="src src-sh">exit
 umount -R /mnt

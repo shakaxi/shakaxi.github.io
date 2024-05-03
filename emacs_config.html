@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Basic Configuration</title>
@@ -200,15 +200,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org71b1d27">Set values for predefined variables</a></li>
-<li><a href="#org07d9c9f">Bind shortcut keys</a>
+<li><a href="#org43ada88">Set values for predefined variables</a></li>
+<li><a href="#org973cb28">Bind shortcut keys</a>
 <ul>
-<li><a href="#org70e01f1">Set global shortcut key</a></li>
-<li><a href="#org1adb5fd">Set shortcut key for specific modes</a></li>
+<li><a href="#orge113c59">Set global shortcut key</a></li>
+<li><a href="#org757d203">Set shortcut key for specific modes</a></li>
 </ul>
 </li>
-<li><a href="#orgaf92437">Mode &amp; hook</a></li>
-<li><a href="#org266b7b0">Third party extension</a></li>
+<li><a href="#org6596865">Mode &amp; hook</a></li>
+<li><a href="#org7af9a6b">Third party extension</a></li>
 </ul>
 </div>
 </div>
@@ -216,22 +216,22 @@
 As is well-known, <a href="http://www.gnu.org/software/emacs">Emacs</a> is a powerful editor. Due to its infinite customizability and extensibility, in some sense, it is an operation system (OS) rather than an editor. This page briefly introduces how to customize it.
 </p>
 
-<div id="outline-container-org71b1d27" class="outline-2">
-<h2 id="org71b1d27">Set values for predefined variables</h2>
-<div class="outline-text-2" id="text-org71b1d27">
+<div id="outline-container-org43ada88" class="outline-2">
+<h2 id="org43ada88">Set values for predefined variables</h2>
+<div class="outline-text-2" id="text-org43ada88">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(setq variable value)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org07d9c9f" class="outline-2">
-<h2 id="org07d9c9f">Bind shortcut keys</h2>
-<div class="outline-text-2" id="text-org07d9c9f">
+<div id="outline-container-org973cb28" class="outline-2">
+<h2 id="org973cb28">Bind shortcut keys</h2>
+<div class="outline-text-2" id="text-org973cb28">
 </div>
-<div id="outline-container-org70e01f1" class="outline-3">
-<h3 id="org70e01f1">Set global shortcut key</h3>
-<div class="outline-text-3" id="text-org70e01f1">
+<div id="outline-container-orge113c59" class="outline-3">
+<h3 id="orge113c59">Set global shortcut key</h3>
+<div class="outline-text-3" id="text-orge113c59">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(global-set-key key command)
 </pre>
@@ -241,9 +241,9 @@ where <code>key</code> is shortcut<sup><a id="fnr.1" class="footref" href="#fn.1
 </p>
 </div>
 </div>
-<div id="outline-container-org1adb5fd" class="outline-3">
-<h3 id="org1adb5fd">Set shortcut key for specific modes</h3>
-<div class="outline-text-3" id="text-org1adb5fd">
+<div id="outline-container-org757d203" class="outline-3">
+<h3 id="org757d203">Set shortcut key for specific modes</h3>
+<div class="outline-text-3" id="text-org757d203">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(define-key keymap key command)
 </pre>
@@ -254,17 +254,17 @@ where <code>keymap</code> is associated to some mode, e.g. <code>c-mode-map</cod
 </div>
 </div>
 </div>
-<div id="outline-container-orgaf92437" class="outline-2">
-<h2 id="orgaf92437">Mode &amp; hook</h2>
-<div class="outline-text-2" id="text-orgaf92437">
+<div id="outline-container-org6596865" class="outline-2">
+<h2 id="org6596865">Mode &amp; hook</h2>
+<div class="outline-text-2" id="text-org6596865">
 <p>
 Emacs uses different modes to provide different editing environment. Generally, each file type has its own <i>major-mode</i> <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> and one or more <i>minor-mode</i> <sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>. Usually, each major-mode provides <i>hook</i>, mode name appended with <code>-hook</code>. When entering some major-mode, the functions in the corresponding hook will be provoked.
 </p>
 </div>
 </div>
-<div id="outline-container-org266b7b0" class="outline-2">
-<h2 id="org266b7b0">Third party extension</h2>
-<div class="outline-text-2" id="text-org266b7b0">
+<div id="outline-container-org7af9a6b" class="outline-2">
+<h2 id="org7af9a6b">Third party extension</h2>
+<div class="outline-text-2" id="text-org7af9a6b">
 <p>
 After the installation, the configuration includes two steps
 </p>

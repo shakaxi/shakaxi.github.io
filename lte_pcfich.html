@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-07-01 Sat 01:15 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LTE - PCFICH</title>
@@ -201,11 +201,11 @@ As its name implies, <i>physical control format indicator channel (PCFICH)</i> i
 </p>
 
 <p>
-There are totally 2 bits for PCFICH corresponding to the three candidate control region sizes. As illustrated in Figure <a href="#org70c0394">1</a>, the 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the <i>inter-cell interference (ICI)</i>. After that, the codeword is modulated as 16 QPSK symbols and mapped to 4 <i>resource element groups (REG's)</i><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 of the bandwidth.
+There are totally 2 bits for PCFICH corresponding to the three candidate control region sizes. As illustrated in Figure <a href="#org9769bfc">1</a>, the 2-bit payload is first coded into a 32-bit codeword, i.e. the code rate is 1/16, and then scrambled by a cell-specific and subframe-specific sequence to randomize and whiten the <i>inter-cell interference (ICI)</i>. After that, the codeword is modulated as 16 QPSK symbols and mapped to 4 <i>resource element groups (REG's)</i><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> in the first OFDM symbol of each subframe. Targetting for frequency diversity, the spacing between each two adjacent REG's is 1/4 of the bandwidth.
 </p>
 
 
-<div id="org70c0394" class="figure">
+<div id="org9769bfc" class="figure">
 <p><img src="./fig/lte_pcfich.png" alt="lte_pcfich.png">
 </p>
 <p><span class="figure-number">Figure 1: </span>Processing flow of PCFICH</p>

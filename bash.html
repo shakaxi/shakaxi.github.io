@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux - Bash</title>
@@ -200,68 +200,68 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org48d2efb">Running ways</a></li>
-<li><a href="#orgd7962d8">Print</a>
+<li><a href="#org32ed9ef">Running ways</a></li>
+<li><a href="#org9e0479d">Print</a>
 <ul>
-<li><a href="#org750b6e2"><code>echo</code></a></li>
-<li><a href="#orgd58f825"><code>printf</code></a></li>
+<li><a href="#orgdb474f5"><code>echo</code></a></li>
+<li><a href="#org5fe4e95"><code>printf</code></a></li>
 </ul>
 </li>
-<li><a href="#orge4f39b7">Variable</a>
+<li><a href="#orge148a8d">Variable</a>
 <ul>
-<li><a href="#org3aa23ea">Plain variable</a></li>
-<li><a href="#orgce6d2a0">Environment variable</a>
+<li><a href="#orgf86fc70">Plain variable</a></li>
+<li><a href="#org2528fdc">Environment variable</a>
 <ul>
-<li><a href="#org15c6500">List</a></li>
-<li><a href="#org74bcba7">Assignment</a></li>
-<li><a href="#org684c567">Get the length of variable's value (string)</a></li>
+<li><a href="#org1a2cd6b">List</a></li>
+<li><a href="#org87cf9f2">Assignment</a></li>
+<li><a href="#org53e5c22">Get the length of variable's value (string)</a></li>
 </ul>
 </li>
-<li><a href="#orga86bb41">Mathematical operation (e.g. <code>let</code>)</a></li>
+<li><a href="#org672576f">Mathematical operation (e.g. <code>let</code>)</a></li>
 </ul>
 </li>
-<li><a href="#orgeee0b63">Array</a></li>
-<li><a href="#org156c9c8">Alias</a></li>
-<li><a href="#org1743c57">Function</a></li>
-<li><a href="#org751d903">Test &amp; comparison</a>
+<li><a href="#org0d01536">Array</a></li>
+<li><a href="#org6b368fe">Alias</a></li>
+<li><a href="#org5a94a50">Function</a></li>
+<li><a href="#org4696cd9">Test &amp; comparison</a>
 <ul>
-<li><a href="#org396fac4">Arithmetic</a></li>
-<li><a href="#org4370547">File system</a></li>
-<li><a href="#org83b5415">String</a></li>
+<li><a href="#org0f34a3b">Arithmetic</a></li>
+<li><a href="#orga343407">File system</a></li>
+<li><a href="#org50a2316">String</a></li>
 </ul>
 </li>
-<li><a href="#org2d225ee">Judgement</a></li>
-<li><a href="#orgecb3d9c">Iteration</a></li>
-<li><a href="#org3660284">Miscellaneous</a></li>
+<li><a href="#org03431b7">Judgement</a></li>
+<li><a href="#org82d09ea">Iteration</a></li>
+<li><a href="#orge42478b">Miscellaneous</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org48d2efb" class="outline-2">
-<h2 id="org48d2efb">Running ways</h2>
-<div class="outline-text-2" id="text-org48d2efb">
+<div id="outline-container-org32ed9ef" class="outline-2">
+<h2 id="org32ed9ef">Running ways</h2>
+<div class="outline-text-2" id="text-org32ed9ef">
 <dl class="org-dl">
 <dt>Make the shell script executable</dt><dd>The script should begin with the shebang (e.g. <code>#!/bin/bash</code>).</dd>
 <dt>Treat the shell script as the argument of <code>sh</code></dt><dd>In this case, the shebang is not necessary.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgd7962d8" class="outline-2">
-<h2 id="orgd7962d8">Print</h2>
-<div class="outline-text-2" id="text-orgd7962d8">
+<div id="outline-container-org9e0479d" class="outline-2">
+<h2 id="org9e0479d">Print</h2>
+<div class="outline-text-2" id="text-org9e0479d">
 </div>
-<div id="outline-container-org750b6e2" class="outline-3">
-<h3 id="org750b6e2"><code>echo</code></h3>
-<div class="outline-text-3" id="text-org750b6e2">
+<div id="outline-container-orgdb474f5" class="outline-3">
+<h3 id="orgdb474f5"><code>echo</code></h3>
+<div class="outline-text-3" id="text-orgdb474f5">
 <ul class="org-ul">
 <li>By default, a line break is appended every time it is invoked.</li>
 <li>The default line break can be avoided by option <code>-n</code>.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd58f825" class="outline-3">
-<h3 id="orgd58f825"><code>printf</code></h3>
-<div class="outline-text-3" id="text-orgd58f825">
+<div id="outline-container-org5fe4e95" class="outline-3">
+<h3 id="org5fe4e95"><code>printf</code></h3>
+<div class="outline-text-3" id="text-org5fe4e95">
 <ul class="org-ul">
 <li>Syntax</li>
 </ul>
@@ -289,16 +289,16 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orge4f39b7" class="outline-2">
-<h2 id="orge4f39b7">Variable</h2>
-<div class="outline-text-2" id="text-orge4f39b7">
+<div id="outline-container-orge148a8d" class="outline-2">
+<h2 id="orge148a8d">Variable</h2>
+<div class="outline-text-2" id="text-orge148a8d">
 <p>
 In Bash, every variable is a string.
 </p>
 </div>
-<div id="outline-container-org3aa23ea" class="outline-3">
-<h3 id="org3aa23ea">Plain variable</h3>
-<div class="outline-text-3" id="text-org3aa23ea">
+<div id="outline-container-orgf86fc70" class="outline-3">
+<h3 id="orgf86fc70">Plain variable</h3>
+<div class="outline-text-3" id="text-orgf86fc70">
 <p>
 Assignment
 </p>
@@ -308,13 +308,13 @@ Assignment
 </div>
 </div>
 </div>
-<div id="outline-container-orgce6d2a0" class="outline-3">
-<h3 id="orgce6d2a0">Environment variable</h3>
-<div class="outline-text-3" id="text-orgce6d2a0">
+<div id="outline-container-org2528fdc" class="outline-3">
+<h3 id="org2528fdc">Environment variable</h3>
+<div class="outline-text-3" id="text-org2528fdc">
 </div>
-<div id="outline-container-org15c6500" class="outline-4">
-<h4 id="org15c6500">List</h4>
-<div class="outline-text-4" id="text-org15c6500">
+<div id="outline-container-org1a2cd6b" class="outline-4">
+<h4 id="org1a2cd6b">List</h4>
+<div class="outline-text-4" id="text-org1a2cd6b">
 <div class="org-src-container">
 <pre class="src src-sh">cat /proc/$PID/environ
 </pre>
@@ -328,9 +328,9 @@ where <code>$PID</code> is an integer and can be obtained by <code>pgrep</code>,
 </div>
 </div>
 </div>
-<div id="outline-container-org74bcba7" class="outline-4">
-<h4 id="org74bcba7">Assignment</h4>
-<div class="outline-text-4" id="text-org74bcba7">
+<div id="outline-container-org87cf9f2" class="outline-4">
+<h4 id="org87cf9f2">Assignment</h4>
+<div class="outline-text-4" id="text-org87cf9f2">
 <div class="org-src-container">
 <pre class="src src-sh">env_var_name=value
 export env_var_name
@@ -349,9 +349,9 @@ export env_var_name=value
 </ul>
 </div>
 </div>
-<div id="outline-container-org684c567" class="outline-4">
-<h4 id="org684c567">Get the length of variable's value (string)</h4>
-<div class="outline-text-4" id="text-org684c567">
+<div id="outline-container-org53e5c22" class="outline-4">
+<h4 id="org53e5c22">Get the length of variable's value (string)</h4>
+<div class="outline-text-4" id="text-org53e5c22">
 <div class="org-src-container">
 <pre class="src src-sh">${#var_name}
 </pre>
@@ -359,9 +359,9 @@ export env_var_name=value
 </div>
 </div>
 </div>
-<div id="outline-container-orga86bb41" class="outline-3">
-<h3 id="orga86bb41">Mathematical operation (e.g. <code>let</code>)</h3>
-<div class="outline-text-3" id="text-orga86bb41">
+<div id="outline-container-org672576f" class="outline-3">
+<h3 id="org672576f">Mathematical operation (e.g. <code>let</code>)</h3>
+<div class="outline-text-3" id="text-org672576f">
 <p>
 <code>$</code> in front of variable name is not needed.
 </p>
@@ -380,9 +380,9 @@ let var=var-1
 </div>
 </div>
 </div>
-<div id="outline-container-orgeee0b63" class="outline-2">
-<h2 id="orgeee0b63">Array</h2>
-<div class="outline-text-2" id="text-orgeee0b63">
+<div id="outline-container-org0d01536" class="outline-2">
+<h2 id="org0d01536">Array</h2>
+<div class="outline-text-2" id="text-org0d01536">
 <div class="org-src-container">
 <pre class="src src-sh">array_var=(0, 1, 2, 3, 6)
 ...
@@ -391,9 +391,9 @@ echo #{array_var[0]}
 </div>
 </div>
 </div>
-<div id="outline-container-org156c9c8" class="outline-2">
-<h2 id="org156c9c8">Alias</h2>
-<div class="outline-text-2" id="text-org156c9c8">
+<div id="outline-container-org6b368fe" class="outline-2">
+<h2 id="org6b368fe">Alias</h2>
+<div class="outline-text-2" id="text-org6b368fe">
 <div class="org-src-container">
 <pre class="src src-sh">alias new_command='command sequence'
 ...
@@ -402,9 +402,9 @@ new_command
 </div>
 </div>
 </div>
-<div id="outline-container-org1743c57" class="outline-2">
-<h2 id="org1743c57">Function</h2>
-<div class="outline-text-2" id="text-org1743c57">
+<div id="outline-container-org5a94a50" class="outline-2">
+<h2 id="org5a94a50">Function</h2>
+<div class="outline-text-2" id="text-org5a94a50">
 <div class="org-src-container">
 <pre class="src src-sh">function func_name()
 {
@@ -427,13 +427,13 @@ func_name arg_list
 </ul>
 </div>
 </div>
-<div id="outline-container-org751d903" class="outline-2">
-<h2 id="org751d903">Test &amp; comparison</h2>
-<div class="outline-text-2" id="text-org751d903">
+<div id="outline-container-org4696cd9" class="outline-2">
+<h2 id="org4696cd9">Test &amp; comparison</h2>
+<div class="outline-text-2" id="text-org4696cd9">
 </div>
-<div id="outline-container-org396fac4" class="outline-3">
-<h3 id="org396fac4">Arithmetic</h3>
-<div class="outline-text-3" id="text-org396fac4">
+<div id="outline-container-org0f34a3b" class="outline-3">
+<h3 id="org0f34a3b">Arithmetic</h3>
+<div class="outline-text-3" id="text-org0f34a3b">
 <div class="org-src-container">
 <pre class="src src-sh">[ $var -eq 0 ]
 [ $var -ne 0 ]
@@ -447,9 +447,9 @@ func_name arg_list
 </div>
 </div>
 </div>
-<div id="outline-container-org4370547" class="outline-3">
-<h3 id="org4370547">File system</h3>
-<div class="outline-text-3" id="text-org4370547">
+<div id="outline-container-orga343407" class="outline-3">
+<h3 id="orga343407">File system</h3>
+<div class="outline-text-3" id="text-orga343407">
 <div class="org-src-container">
 <pre class="src src-sh">[ -f $var ] # is $var a file?
 [ -d $var ] # is $var a directory?
@@ -464,9 +464,9 @@ func_name arg_list
 </div>
 </div>
 </div>
-<div id="outline-container-org83b5415" class="outline-3">
-<h3 id="org83b5415">String</h3>
-<div class="outline-text-3" id="text-org83b5415">
+<div id="outline-container-org50a2316" class="outline-3">
+<h3 id="org50a2316">String</h3>
+<div class="outline-text-3" id="text-org50a2316">
 <div class="org-src-container">
 <pre class="src src-sh">[[ -z $str ]] # is $str an empty string?
 [[ -n $str ]] # is $str a non-empty string?
@@ -481,9 +481,9 @@ func_name arg_list
 </div>
 </div>
 </div>
-<div id="outline-container-org2d225ee" class="outline-2">
-<h2 id="org2d225ee">Judgement</h2>
-<div class="outline-text-2" id="text-org2d225ee">
+<div id="outline-container-org03431b7" class="outline-2">
+<h2 id="org03431b7">Judgement</h2>
+<div class="outline-text-2" id="text-org03431b7">
 <div class="org-src-container">
 <pre class="src src-sh">if condition; then
 commands
@@ -510,9 +510,9 @@ fi
 </div>
 </div>
 </div>
-<div id="outline-container-orgecb3d9c" class="outline-2">
-<h2 id="orgecb3d9c">Iteration</h2>
-<div class="outline-text-2" id="text-orgecb3d9c">
+<div id="outline-container-org82d09ea" class="outline-2">
+<h2 id="org82d09ea">Iteration</h2>
+<div class="outline-text-2" id="text-org82d09ea">
 <div class="org-src-container">
 <pre class="src src-sh">for var in list;
 do
@@ -532,9 +532,9 @@ done
 </div>
 </div>
 </div>
-<div id="outline-container-org3660284" class="outline-2">
-<h2 id="org3660284">Miscellaneous</h2>
-<div class="outline-text-2" id="text-org3660284">
+<div id="outline-container-orge42478b" class="outline-2">
+<h2 id="orge42478b">Miscellaneous</h2>
+<div class="outline-text-2" id="text-orge42478b">
 <ul class="org-ul">
 <li>Commands are seperated by semicolon (;) or line break.</li>
 <li><i>File descriptor</i> is an abstract pointer for file access.</li>

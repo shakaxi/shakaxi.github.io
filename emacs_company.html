@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - Company</title>
@@ -200,23 +200,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3a555b9">Introduction</a></li>
-<li><a href="#org782f254">Installation and configuration</a>
+<li><a href="#orgbc30b40">Introduction</a></li>
+<li><a href="#orgd15a223">Installation and configuration</a>
 <ul>
-<li><a href="#org670ac47">Company</a></li>
-<li><a href="#org9184f91">Clang support</a></li>
-<li><a href="#org394e5c5">C headers support</a></li>
-<li><a href="#org417e24e">LaTeX support</a></li>
-<li><a href="#org3f2b506">Python support</a></li>
+<li><a href="#org31f7797">Company</a></li>
+<li><a href="#org9383e20">Clang support</a></li>
+<li><a href="#org18e69ff">C headers support</a></li>
+<li><a href="#org94797b5">LaTeX support</a></li>
+<li><a href="#org0b9f0fa">Python support</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3a555b9" class="outline-2">
-<h2 id="org3a555b9">Introduction</h2>
-<div class="outline-text-2" id="text-org3a555b9">
+<div id="outline-container-orgbc30b40" class="outline-2">
+<h2 id="orgbc30b40">Introduction</h2>
+<div class="outline-text-2" id="text-orgbc30b40">
 <p>
 <i>Auto-completion</i> is an important functionality in Emacs. It can greatly speed up our editing and programming. Generally speaking, the auto-completion can be divided into two parts, <i>frontend</i> and <i>backend</i>. As their names indicate, the former presents interface, while the latter provides contents. In a nutshell, the backend generates completion contents and feeds them to the frontend; then the frontend presents completion candidates to us for selection.
 </p>
@@ -234,13 +234,13 @@ For myself, I have been using company since I began to use Emacs. Therefore, I j
 </p>
 </div>
 </div>
-<div id="outline-container-org782f254" class="outline-2">
-<h2 id="org782f254">Installation and configuration</h2>
-<div class="outline-text-2" id="text-org782f254">
+<div id="outline-container-orgd15a223" class="outline-2">
+<h2 id="orgd15a223">Installation and configuration</h2>
+<div class="outline-text-2" id="text-orgd15a223">
 </div>
-<div id="outline-container-org670ac47" class="outline-3">
-<h3 id="org670ac47">Company</h3>
-<div class="outline-text-3" id="text-org670ac47">
+<div id="outline-container-org31f7797" class="outline-3">
+<h3 id="org31f7797">Company</h3>
+<div class="outline-text-3" id="text-org31f7797">
 <p>
 Company can be directly installed via <i>ELPA</i>.
 </p>
@@ -269,9 +269,9 @@ After the installation, following configurations should be added in <code>~/.ema
 </div>
 </div>
 </div>
-<div id="outline-container-org9184f91" class="outline-3">
-<h3 id="org9184f91">Clang support</h3>
-<div class="outline-text-3" id="text-org9184f91">
+<div id="outline-container-org9383e20" class="outline-3">
+<h3 id="org9383e20">Clang support</h3>
+<div class="outline-text-3" id="text-org9383e20">
 <p>
 Clang support is out-of-the-box. Additional package installation is not necessary. However, company-semantic is also built-in and precedes company-clang. Therefore, it is necessary to remove company-semantic. To this end, following configurations are needed.
 </p>
@@ -285,9 +285,9 @@ Clang support is out-of-the-box. Additional package installation is not necessar
 </div>
 </div>
 </div>
-<div id="outline-container-org394e5c5" class="outline-3">
-<h3 id="org394e5c5">C headers support</h3>
-<div class="outline-text-3" id="text-org394e5c5">
+<div id="outline-container-org18e69ff" class="outline-3">
+<h3 id="org18e69ff">C headers support</h3>
+<div class="outline-text-3" id="text-org18e69ff">
 <p>
 For the sake of completing C/C++ header files while input, package <code>company-c-headers</code> can be installed by
 </p>
@@ -306,9 +306,9 @@ and configured by
 </div>
 </div>
 </div>
-<div id="outline-container-org417e24e" class="outline-3">
-<h3 id="org417e24e">LaTeX support</h3>
-<div class="outline-text-3" id="text-org417e24e">
+<div id="outline-container-org94797b5" class="outline-3">
+<h3 id="org94797b5">LaTeX support</h3>
+<div class="outline-text-3" id="text-org94797b5">
 <p>
 In order to enjoy the completion in LaTeX composition, package <code>company-auctex</code> can be installed<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.
 </p>
@@ -327,9 +327,9 @@ Accordingly, append the following line to the configuration of company in <code>
 </div>
 </div>
 </div>
-<div id="outline-container-org3f2b506" class="outline-3">
-<h3 id="org3f2b506">Python support</h3>
-<div class="outline-text-3" id="text-org3f2b506">
+<div id="outline-container-org0b9f0fa" class="outline-3">
+<h3 id="org0b9f0fa">Python support</h3>
+<div class="outline-text-3" id="text-org0b9f0fa">
 <p>
 Targetting for Python support, package <code>company-jedi</code> needs to be installed.
 </p>

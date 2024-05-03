@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Pandas</title>
@@ -200,24 +200,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org005ee42">数据结构</a>
+<li><a href="#orga41a4e5">数据结构</a>
 <ul>
-<li><a href="#org6b72c2c">Series</a></li>
-<li><a href="#org7514a0b">DataFrame</a></li>
-<li><a href="#orgbdb1dee">索引对象</a></li>
+<li><a href="#orgc7a1820">Series</a></li>
+<li><a href="#org5e1f6a2">DataFrame</a></li>
+<li><a href="#orga45e566">索引对象</a></li>
 </ul>
 </li>
-<li><a href="#orgd8ff941">基本功能</a>
+<li><a href="#org389d494">基本功能</a>
 <ul>
-<li><a href="#orgb32d48e">计算统计</a>
+<li><a href="#org427e7bf">计算统计</a>
 <ul>
-<li><a href="#org62da982">可选参数</a></li>
-<li><a href="#org18e0e03">汇总</a></li>
+<li><a href="#orga637340">可选参数</a></li>
+<li><a href="#orgcc55b5e">汇总</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org74ee81b">输入输出</a></li>
+<li><a href="#org694e481">输入输出</a></li>
 </ul>
 </div>
 </div>
@@ -225,13 +225,13 @@
 <code>Pandas</code> 支持大部分 <code>numpy</code> 语言风格的数组计算。尽管代码风格相似，但最大的不同在于前者是用来处理表格或不同类型数据的，而后者更适合处理相同类型数据的。
 </p>
 
-<div id="outline-container-org005ee42" class="outline-2">
-<h2 id="org005ee42">数据结构</h2>
-<div class="outline-text-2" id="text-org005ee42">
+<div id="outline-container-orga41a4e5" class="outline-2">
+<h2 id="orga41a4e5">数据结构</h2>
+<div class="outline-text-2" id="text-orga41a4e5">
 </div>
-<div id="outline-container-org6b72c2c" class="outline-3">
-<h3 id="org6b72c2c">Series</h3>
-<div class="outline-text-3" id="text-org6b72c2c">
+<div id="outline-container-orgc7a1820" class="outline-3">
+<h3 id="orgc7a1820">Series</h3>
+<div class="outline-text-3" id="text-orgc7a1820">
 <ul class="org-ul">
 <li><code>Series</code> 是一维数组的对象，包含 <code>index</code> 序列和 <code>values</code> 序列，分别可以通过对象的 <code>index</code> 和 <code>values</code> 属性获得。</li>
 <li>通常需要创建一个index序列来标识每个数据点。如果不显式指定，那么默认 <code>index</code> 为从0到N-1，其中N为Series对象的长度。</li>
@@ -240,9 +240,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org7514a0b" class="outline-3">
-<h3 id="org7514a0b">DataFrame</h3>
-<div class="outline-text-3" id="text-org7514a0b">
+<div id="outline-container-org5e1f6a2" class="outline-3">
+<h3 id="org5e1f6a2">DataFrame</h3>
+<div class="outline-text-3" id="text-org5e1f6a2">
 <ul class="org-ul">
 <li><code>DataFrame</code> 是二维数据表，既有行索引，又有列索引。可以通过属性 <code>T</code> 进行转置。每一列可以是不同的类型（数值、字符串、布尔值等）。</li>
 <li>和 <code>Series</code> 类似， <code>DataFrame</code> 的 <code>values</code> 属性会将数据以二维ndarray形式返回。</li>
@@ -251,9 +251,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbdb1dee" class="outline-3">
-<h3 id="orgbdb1dee">索引对象</h3>
-<div class="outline-text-3" id="text-orgbdb1dee">
+<div id="outline-container-orga45e566" class="outline-3">
+<h3 id="orga45e566">索引对象</h3>
+<div class="outline-text-3" id="text-orga45e566">
 <ul class="org-ul">
 <li><code>Pandas</code> 中的索引对象是用于存储轴标签和其他元数据的。构建 <code>Series</code> 或 <code>DataFrame</code> 对象时所使用的数组或标签序列都可以在内部转换为索引对象。</li>
 <li>索引对象是不可变的，不能修改。</li>
@@ -262,9 +262,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgd8ff941" class="outline-2">
-<h2 id="orgd8ff941">基本功能</h2>
-<div class="outline-text-2" id="text-orgd8ff941">
+<div id="outline-container-org389d494" class="outline-2">
+<h2 id="org389d494">基本功能</h2>
+<div class="outline-text-2" id="text-org389d494">
 <ul class="org-ul">
 <li>成员函数 <code>reindex</code> : 重建索引。支持如下参数：
 <ul class="org-ul">
@@ -307,13 +307,13 @@ df = pd.concat([df1, df2], axis=1)
 </div></li>
 </ul>
 </div>
-<div id="outline-container-orgb32d48e" class="outline-3">
-<h3 id="orgb32d48e">计算统计</h3>
-<div class="outline-text-3" id="text-orgb32d48e">
+<div id="outline-container-org427e7bf" class="outline-3">
+<h3 id="org427e7bf">计算统计</h3>
+<div class="outline-text-3" id="text-org427e7bf">
 </div>
-<div id="outline-container-org62da982" class="outline-4">
-<h4 id="org62da982">可选参数</h4>
-<div class="outline-text-4" id="text-org62da982">
+<div id="outline-container-orga637340" class="outline-4">
+<h4 id="orga637340">可选参数</h4>
+<div class="outline-text-4" id="text-orga637340">
 <table>
 
 
@@ -347,9 +347,9 @@ df = pd.concat([df1, df2], axis=1)
 </table>
 </div>
 </div>
-<div id="outline-container-org18e0e03" class="outline-4">
-<h4 id="org18e0e03">汇总</h4>
-<div class="outline-text-4" id="text-org18e0e03">
+<div id="outline-container-orgcc55b5e" class="outline-4">
+<h4 id="orgcc55b5e">汇总</h4>
+<div class="outline-text-4" id="text-orgcc55b5e">
 <table>
 
 
@@ -470,9 +470,9 @@ df = pd.concat([df1, df2], axis=1)
 </div>
 </div>
 </div>
-<div id="outline-container-org74ee81b" class="outline-2">
-<h2 id="org74ee81b">输入输出</h2>
-<div class="outline-text-2" id="text-org74ee81b">
+<div id="outline-container-org694e481" class="outline-2">
+<h2 id="org694e481">输入输出</h2>
+<div class="outline-text-2" id="text-org694e481">
 <ul class="org-ul">
 <li><p>
 <code>read_csv</code>

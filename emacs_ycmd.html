@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs - YCMD</title>
@@ -200,51 +200,51 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org97f468b">Introduction</a></li>
-<li><a href="#org710fcb9">Installation</a>
+<li><a href="#org6ef942b">Introduction</a></li>
+<li><a href="#org655e74c">Installation</a>
 <ul>
-<li><a href="#org137af00">Emacs packages</a></li>
-<li><a href="#orga5984a5">Dependency</a></li>
-<li><a href="#orgf459c41">YCMD</a></li>
-<li><a href="#orgd116f9c">Configurations</a></li>
+<li><a href="#orgc45faaa">Emacs packages</a></li>
+<li><a href="#org5c03ef4">Dependency</a></li>
+<li><a href="#org4ba79ca">YCMD</a></li>
+<li><a href="#orgc7a77c0">Configurations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org97f468b" class="outline-2">
-<h2 id="org97f468b">Introduction</h2>
-<div class="outline-text-2" id="text-org97f468b">
+<div id="outline-container-org6ef942b" class="outline-2">
+<h2 id="org6ef942b">Introduction</h2>
+<div class="outline-text-2" id="text-org6ef942b">
 <p>
 YouCompleteMe (YCM) is originally a completion framework for VIM<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, and afterwards splitted into a general server and a client. The general server, namely YCM daemon (YCMD)<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>, is able to provide interface to a variety of clients beyond VIM, e.g. Emacs. Moreover, both <code>company</code> and <code>auto-complete</code> can directly utilize what the server/daemon provides.
 </p>
 </div>
 </div>
-<div id="outline-container-org710fcb9" class="outline-2">
-<h2 id="org710fcb9">Installation</h2>
-<div class="outline-text-2" id="text-org710fcb9">
+<div id="outline-container-org655e74c" class="outline-2">
+<h2 id="org655e74c">Installation</h2>
+<div class="outline-text-2" id="text-org655e74c">
 </div>
-<div id="outline-container-org137af00" class="outline-3">
-<h3 id="org137af00">Emacs packages</h3>
-<div class="outline-text-3" id="text-org137af00">
+<div id="outline-container-orgc45faaa" class="outline-3">
+<h3 id="orgc45faaa">Emacs packages</h3>
+<div class="outline-text-3" id="text-orgc45faaa">
 <p>
 Install the Emacs packages via ELPA, <code>ycmd</code>, <code>company-ycmd</code>, <code>company</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orga5984a5" class="outline-3">
-<h3 id="orga5984a5">Dependency</h3>
-<div class="outline-text-3" id="text-orga5984a5">
+<div id="outline-container-org5c03ef4" class="outline-3">
+<h3 id="org5c03ef4">Dependency</h3>
+<div class="outline-text-3" id="text-org5c03ef4">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S boost
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf459c41" class="outline-3">
-<h3 id="orgf459c41">YCMD</h3>
-<div class="outline-text-3" id="text-orgf459c41">
+<div id="outline-container-org4ba79ca" class="outline-3">
+<h3 id="org4ba79ca">YCMD</h3>
+<div class="outline-text-3" id="text-org4ba79ca">
 <p>
 Install the <code>YCMD</code> to <code>~/.emacs.d/ycmd</code>.
 </p>
@@ -258,9 +258,9 @@ git submodule update --init --recursive
 </div>
 </div>
 </div>
-<div id="outline-container-orgd116f9c" class="outline-3">
-<h3 id="orgd116f9c">Configurations</h3>
-<div class="outline-text-3" id="text-orgd116f9c">
+<div id="outline-container-orgc7a77c0" class="outline-3">
+<h3 id="orgc7a77c0">Configurations</h3>
+<div class="outline-text-3" id="text-orgc7a77c0">
 <ul class="org-ul">
 <li><code>~/.emacs.d/ycmd/global_config.py</code></li>
 </ul>

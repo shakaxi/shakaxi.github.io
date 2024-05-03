@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux - Network time protocol (NTP)</title>
@@ -200,11 +200,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge275e79">Installation</a></li>
-<li><a href="#orgb19b486">Configuration</a>
+<li><a href="#org3e42c24">Installation</a></li>
+<li><a href="#orge8d1ed3">Configuration</a>
 <ul>
-<li><a href="#orgf0d4ac4">Prepend following line(s) to <code>/etc/ntp.conf</code>.</a></li>
-<li><a href="#orgcdd1f60">Start and enable the service</a></li>
+<li><a href="#org535aac6">Prepend following line(s) to <code>/etc/ntp.conf</code>.</a></li>
+<li><a href="#orgbb34728">Start and enable the service</a></li>
 </ul>
 </li>
 </ul>
@@ -213,9 +213,9 @@
 <p>
 <i>Network time protocol (NTP)</i> is a very convenient service which can provide network time synchronized automatically and periodically. This post briefly describes the installation and configuration of NTP on Linux OS.
 </p>
-<div id="outline-container-orge275e79" class="outline-2">
-<h2 id="orge275e79">Installation</h2>
-<div class="outline-text-2" id="text-orge275e79">
+<div id="outline-container-org3e42c24" class="outline-2">
+<h2 id="org3e42c24">Installation</h2>
+<div class="outline-text-2" id="text-org3e42c24">
 <p>
 Without loss of generality, we take Arch Linux for instance here.
 </p>
@@ -225,13 +225,13 @@ Without loss of generality, we take Arch Linux for instance here.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb19b486" class="outline-2">
-<h2 id="orgb19b486">Configuration</h2>
-<div class="outline-text-2" id="text-orgb19b486">
+<div id="outline-container-orge8d1ed3" class="outline-2">
+<h2 id="orge8d1ed3">Configuration</h2>
+<div class="outline-text-2" id="text-orge8d1ed3">
 </div>
-<div id="outline-container-orgf0d4ac4" class="outline-3">
-<h3 id="orgf0d4ac4">Prepend following line(s) to <code>/etc/ntp.conf</code>.</h3>
-<div class="outline-text-3" id="text-orgf0d4ac4">
+<div id="outline-container-org535aac6" class="outline-3">
+<h3 id="org535aac6">Prepend following line(s) to <code>/etc/ntp.conf</code>.</h3>
+<div class="outline-text-3" id="text-org535aac6">
 <ul class="org-ul">
 <li>As server</li>
 </ul>
@@ -249,9 +249,9 @@ fudge 127.127.1.1 stratum 12
 </div>
 </div>
 </div>
-<div id="outline-container-orgcdd1f60" class="outline-3">
-<h3 id="orgcdd1f60">Start and enable the service</h3>
-<div class="outline-text-3" id="text-orgcdd1f60">
+<div id="outline-container-orgbb34728" class="outline-3">
+<h3 id="orgbb34728">Start and enable the service</h3>
+<div class="outline-text-3" id="text-orgbb34728">
 <div class="org-src-container">
 <pre class="src src-sh">systemctl enable ntpd.service
 systemctl start ntpd.service

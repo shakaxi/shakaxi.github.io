@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Pytorch Lightning</title>
@@ -200,12 +200,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8839f15">Installation</a></li>
-<li><a href="#org2964910">Usage</a>
+<li><a href="#org80231ba">Installation</a></li>
+<li><a href="#org957716c">Usage</a>
 <ul>
-<li><a href="#org594f44a">Neural network</a></li>
-<li><a href="#org66f27bb">Data module</a></li>
-<li><a href="#org85c56f1">Procedure</a></li>
+<li><a href="#org7c67afe">Neural network</a></li>
+<li><a href="#org3f6cd71">Data module</a></li>
+<li><a href="#org052f340">Procedure</a></li>
 </ul>
 </li>
 </ul>
@@ -215,9 +215,9 @@
 <a href="https://github.com/Lightning-AI/lightning"><i>Pytorch Lightning</i></a> is a high level framework and encapsulation on top of pytorch, which provides simplified interfaces and elegant code structure relating to AI. Detailed usage can be found in its <a href="https://pytorch-lightning.readthedocs.io/en/stable">manual</a>.
 </p>
 
-<div id="outline-container-org8839f15" class="outline-2">
-<h2 id="org8839f15">Installation</h2>
-<div class="outline-text-2" id="text-org8839f15">
+<div id="outline-container-org80231ba" class="outline-2">
+<h2 id="org80231ba">Installation</h2>
+<div class="outline-text-2" id="text-org80231ba">
 <p>
 The installation of Pytorch Lightning is very simple. Taking <i>pip</i> for instance, following command completes the procedure.
 </p>
@@ -227,13 +227,13 @@ The installation of Pytorch Lightning is very simple. Taking <i>pip</i> for inst
 </div>
 </div>
 </div>
-<div id="outline-container-org2964910" class="outline-2">
-<h2 id="org2964910">Usage</h2>
-<div class="outline-text-2" id="text-org2964910">
+<div id="outline-container-org957716c" class="outline-2">
+<h2 id="org957716c">Usage</h2>
+<div class="outline-text-2" id="text-org957716c">
 </div>
-<div id="outline-container-org594f44a" class="outline-3">
-<h3 id="org594f44a">Neural network</h3>
-<div class="outline-text-3" id="text-org594f44a">
+<div id="outline-container-org7c67afe" class="outline-3">
+<h3 id="org7c67afe">Neural network</h3>
+<div class="outline-text-3" id="text-org7c67afe">
 <p>
 The structure of neural network can be defined as a subclass of <code>pytorch_lightning.LightningModule</code>, which is essentially a subclass of <code>torch.nn.Module</code>. Besides the constructor <code>__init__</code> and function <code>forward</code>, a series of hook functions has been defined and can be simply overridden, e.g.,
 </p>
@@ -246,9 +246,9 @@ The structure of neural network can be defined as a subclass of <code>pytorch_li
 </ul>
 </div>
 </div>
-<div id="outline-container-org66f27bb" class="outline-3">
-<h3 id="org66f27bb">Data module</h3>
-<div class="outline-text-3" id="text-org66f27bb">
+<div id="outline-container-org3f6cd71" class="outline-3">
+<h3 id="org3f6cd71">Data module</h3>
+<div class="outline-text-3" id="text-org3f6cd71">
 <p>
 In <code>python_lightning</code>, a <i>data module</i> class is defined in <code>python_lightning.LightningDataModule</code>, which provides a unified interface for data loading for training, validating, and testing. We can simply define our own data module as a subclass of <code>python_lightning.LightningDataModule</code>, and override the following functions.
 </p>
@@ -258,9 +258,9 @@ In <code>python_lightning</code>, a <i>data module</i> class is defined in <code
 </ul>
 </div>
 </div>
-<div id="outline-container-org85c56f1" class="outline-3">
-<h3 id="org85c56f1">Procedure</h3>
-<div class="outline-text-3" id="text-org85c56f1">
+<div id="outline-container-org052f340" class="outline-3">
+<h3 id="org052f340">Procedure</h3>
+<div class="outline-text-3" id="text-org052f340">
 <p>
 The main procedure is completed based on an instance of class <code>python_lightning.Trainer</code>. In its constructor, we can customize it via a series of keyword arguments, e.g.,
 </p>

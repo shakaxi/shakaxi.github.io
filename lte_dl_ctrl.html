@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-02-19 Sun 00:29 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LTE - Downlink Control</title>
@@ -200,17 +200,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org441c719">Introduction</a></li>
-<li><a href="#orgb4505a8">Resource hierarchy</a></li>
-<li><a href="#org1925348">PCFICH</a></li>
-<li><a href="#org92492f8">Acknowledgement of PUSCH</a></li>
+<li><a href="#orgab1006d">Introduction</a></li>
+<li><a href="#org936d9dc">Resource hierarchy</a></li>
+<li><a href="#org35d68cc">PCFICH</a></li>
+<li><a href="#org9914c1b">Acknowledgement of PUSCH</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org441c719" class="outline-2">
-<h2 id="org441c719">Introduction</h2>
-<div class="outline-text-2" id="text-org441c719">
+<div id="outline-container-orgab1006d" class="outline-2">
+<h2 id="orgab1006d">Introduction</h2>
+<div class="outline-text-2" id="text-orgab1006d">
 <p>
 In LTE, following physical channels are involved in downlink control.
 </p>
@@ -230,9 +230,9 @@ In LTE, following physical channels are involved in downlink control.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb4505a8" class="outline-2">
-<h2 id="orgb4505a8">Resource hierarchy</h2>
-<div class="outline-text-2" id="text-orgb4505a8">
+<div id="outline-container-org936d9dc" class="outline-2">
+<h2 id="org936d9dc">Resource hierarchy</h2>
+<div class="outline-text-2" id="text-org936d9dc">
 <p>
 Just as its name implies, the basic element for PDCCH is <i>Control channel element (CCE)</i>, which is comprised of 9 <i>resource element group (REG)</i>, and a REG consists of 4 RE's in an OFDM symbol without <i>cell-specific reference signal (CRS)</i>, or 6 RE's in an OFDM symbol with CRS. Irrespective of the both cases, there are always 4 effective RE's/REG, which is favorable of <i>space frequency block codes (SFBC)</i> based transmit diversity for PDCCH.
 </p>
@@ -242,9 +242,9 @@ An <i>aggregation level</i> number of CCE's compose one PDCCH. The value of aggr
 </p>
 </div>
 </div>
-<div id="outline-container-org1925348" class="outline-2">
-<h2 id="org1925348">PCFICH</h2>
-<div class="outline-text-2" id="text-org1925348">
+<div id="outline-container-org35d68cc" class="outline-2">
+<h2 id="org35d68cc">PCFICH</h2>
+<div class="outline-text-2" id="text-org35d68cc">
 <p>
 As mentioned above, the time-domain duration of PDCCH (in number of OFDM symbols) is signaled by PCFICH, which is transmitted in 1st symbol of each downlink subframe over 4 REG's, i.e., 16 RE's in a fully distributed pattern across the whole bandwidth.
 </p>
@@ -254,9 +254,9 @@ As mentioned above, the time-domain duration of PDCCH (in number of OFDM symbols
 </ul>
 </div>
 </div>
-<div id="outline-container-org92492f8" class="outline-2">
-<h2 id="org92492f8">Acknowledgement of PUSCH</h2>
-<div class="outline-text-2" id="text-org92492f8">
+<div id="outline-container-org9914c1b" class="outline-2">
+<h2 id="org9914c1b">Acknowledgement of PUSCH</h2>
+<div class="outline-text-2" id="text-org9914c1b">
 <p>
 In LTE, synchronous HARQ is adopted in UL data transmission. Namely, after a PUSCH subframe, a UE will check a HARQ retransmission indication or a scheduling grant in a predefined downlink subframe, e.g., 4 ms later.
 </p>

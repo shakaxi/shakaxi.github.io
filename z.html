@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Z Transform</title>
@@ -232,14 +232,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org23e0781">Definition</a></li>
-<li><a href="#org2e2d7a7">Properties</a>
+<li><a href="#org3fa6b52">Definition</a></li>
+<li><a href="#org506c914">Properties</a>
 <ul>
-<li><a href="#orgec0cdcf">Initial Value Theorem</a></li>
-<li><a href="#org1826902">Final Value Theorem</a></li>
+<li><a href="#orgea4eef1">Initial Value Theorem</a></li>
+<li><a href="#org9f56364">Final Value Theorem</a></li>
 </ul>
 </li>
-<li><a href="#orgae4e620">Transform Pairs</a></li>
+<li><a href="#org41df0ef">Transform Pairs</a></li>
 </ul>
 </div>
 </div>
@@ -247,9 +247,9 @@
 Given a time domain discrete signal, i.e., a sequence, it can be represented in the <i>complex frequency domain</i> by <i>Z transform</i>. It is essentially an extension of <i>discrete time Fourier transform (DTFT)</i>.
 </p>
 
-<div id="outline-container-org23e0781" class="outline-2">
-<h2 id="org23e0781">Definition</h2>
-<div class="outline-text-2" id="text-org23e0781">
+<div id="outline-container-org3fa6b52" class="outline-2">
+<h2 id="org3fa6b52">Definition</h2>
+<div class="outline-text-2" id="text-org3fa6b52">
 <ul class="org-ul">
 <li><p>
 Bilateral transform
@@ -274,9 +274,9 @@ Inverse transform
 </ul>
 </div>
 </div>
-<div id="outline-container-org2e2d7a7" class="outline-2">
-<h2 id="org2e2d7a7">Properties</h2>
-<div class="outline-text-2" id="text-org2e2d7a7">
+<div id="outline-container-org506c914" class="outline-2">
+<h2 id="org506c914">Properties</h2>
+<div class="outline-text-2" id="text-org506c914">
 <p>
 Denote the ROC as \(\alpha < |z| < \beta\), \(0 \le\alpha < \beta\).
 </p>
@@ -309,26 +309,26 @@ Dedicated to unilateral transform
 \end{align*}</li>
 </ul>
 </div>
-<div id="outline-container-orgec0cdcf" class="outline-3">
-<h3 id="orgec0cdcf">Initial Value Theorem</h3>
-<div class="outline-text-3" id="text-orgec0cdcf">
+<div id="outline-container-orgea4eef1" class="outline-3">
+<h3 id="orgea4eef1">Initial Value Theorem</h3>
+<div class="outline-text-3" id="text-orgea4eef1">
 \begin{align*}
   x(0) = \lim_{z\to\infty}X(z)
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org1826902" class="outline-3">
-<h3 id="org1826902">Final Value Theorem</h3>
-<div class="outline-text-3" id="text-org1826902">
+<div id="outline-container-org9f56364" class="outline-3">
+<h3 id="org9f56364">Final Value Theorem</h3>
+<div class="outline-text-3" id="text-org9f56364">
 \begin{align*}
   \lim_{n\to\infty}x(n) = \lim_{z\to 1}(z-1)X(z)
 \end{align*}
 </div>
 </div>
 </div>
-<div id="outline-container-orgae4e620" class="outline-2">
-<h2 id="orgae4e620">Transform Pairs</h2>
-<div class="outline-text-2" id="text-orgae4e620">
+<div id="outline-container-org41df0ef" class="outline-2">
+<h2 id="org41df0ef">Transform Pairs</h2>
+<div class="outline-text-2" id="text-org41df0ef">
 \begin{align*}
   \delta(n) &\leftrightarrow 1 \\
   \varepsilon(n) &\leftrightarrow \frac{z}{z-1}, \quad |z| > 1. \\

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-07-01 Sat 01:15 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Git</title>
@@ -200,35 +200,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8c5e387">Introduction</a>
+<li><a href="#orga560454">Introduction</a>
 <ul>
-<li><a href="#orga764e37">Objects</a></li>
-<li><a href="#org4f56921">Areas</a></li>
+<li><a href="#orga29a446">Objects</a></li>
+<li><a href="#org56c46fd">Areas</a></li>
 </ul>
 </li>
-<li><a href="#org6f9bc62">Installation</a></li>
-<li><a href="#orgda6bd9e">Configuration</a></li>
-<li><a href="#org700b066">Usage</a>
+<li><a href="#orgbfade67">Installation</a></li>
+<li><a href="#org4f4898d">Configuration</a></li>
+<li><a href="#orgce03819">Usage</a>
 <ul>
-<li><a href="#orgaae1c69">Create repositories</a></li>
-<li><a href="#orgbda0959">Basic snapshotting</a>
+<li><a href="#org4f1c48c">Create repositories</a></li>
+<li><a href="#org83699ab">Basic snapshotting</a>
 <ul>
-<li><a href="#org041daa9">Add file(s)</a></li>
-<li><a href="#org8822b61">Remove file(s)</a></li>
-<li><a href="#orged90ca4">Commit the revision(s)</a></li>
-<li><a href="#orgbb154b1">Branch operations</a></li>
-<li><a href="#org76d5627">Rebase</a></li>
-<li><a href="#org39e0227">Tag operations</a></li>
-<li><a href="#orgb1177d3">Information query</a></li>
-<li><a href="#org473338b">Show the difference</a></li>
-<li><a href="#org5d4bfdd">Remote operation</a></li>
-<li><a href="#org6553347">Undo operation</a></li>
+<li><a href="#orged0b8bf">Add file(s)</a></li>
+<li><a href="#orgd417452">Remove file(s)</a></li>
+<li><a href="#org5e8871e">Commit the revision(s)</a></li>
+<li><a href="#org1ab4997">Branch operations</a></li>
+<li><a href="#orgaef04b8">Rebase</a></li>
+<li><a href="#org8c7da17">Tag operations</a></li>
+<li><a href="#org10fc2f6">Information query</a></li>
+<li><a href="#org4a050e4">Show the difference</a></li>
+<li><a href="#org212a211">Remote operation</a></li>
+<li><a href="#org62f85b9">Undo operation</a></li>
 </ul>
 </li>
-<li><a href="#orge469be4">Temporary switch</a></li>
-<li><a href="#org70e730c">Submodule</a>
+<li><a href="#org974b28d">Temporary switch</a></li>
+<li><a href="#org72d0693">Submodule</a>
 <ul>
-<li><a href="#org81c4b1f">Usage</a></li>
+<li><a href="#org81d7e08">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -237,16 +237,16 @@
 </div>
 </div>
 
-<div id="outline-container-org8c5e387" class="outline-2">
-<h2 id="org8c5e387">Introduction</h2>
-<div class="outline-text-2" id="text-org8c5e387">
+<div id="outline-container-orga560454" class="outline-2">
+<h2 id="orga560454">Introduction</h2>
+<div class="outline-text-2" id="text-orga560454">
 <p>
 <i>Git</i> is a famous and powerful open-source software for version control and management. It was developed by Linus Torvalds with C programing language. What is different from <i>subversion</i>, git adopts a completely distributed manner. Regarding its utilization, besides its built-in manual, there is also an excellent book, <i>Pro Git</i>, which can be obtained for free<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>. This post just summarizes the preliminary usage of git, which is referred from the book.
 </p>
 </div>
-<div id="outline-container-orga764e37" class="outline-3">
-<h3 id="orga764e37">Objects</h3>
-<div class="outline-text-3" id="text-orga764e37">
+<div id="outline-container-orga29a446" class="outline-3">
+<h3 id="orga29a446">Objects</h3>
+<div class="outline-text-3" id="text-orga29a446">
 <p>
 In git, there are 3 types of objects defined, <i>blob</i>, <i>tree</i>, and <i>commit</i>. In order to view its properties, a dedicated command <code>git cat-file</code> is provided. Its type and content can be returned with option <code>-t</code> and <code>-p</code> respectively.
 </p>
@@ -261,15 +261,15 @@ A branch or a tag is nothing but a pointer pointing at the SHA-1 hash of a commi
 </p>
 </div>
 </div>
-<div id="outline-container-org4f56921" class="outline-3">
-<h3 id="org4f56921">Areas</h3>
-<div class="outline-text-3" id="text-org4f56921">
+<div id="outline-container-org56c46fd" class="outline-3">
+<h3 id="org56c46fd">Areas</h3>
+<div class="outline-text-3" id="text-org56c46fd">
 <p>
-In the utilization of git, there are four important areas for storage, <i>workspace</i>, <i>index</i> (or <i>stage</i>), <i>repository</i> and <i>remote</i>. Their relationship can be illustrated by Figure <a href="#org38e17bb">1</a>.
+In the utilization of git, there are four important areas for storage, <i>workspace</i>, <i>index</i> (or <i>stage</i>), <i>repository</i> and <i>remote</i>. Their relationship can be illustrated by Figure <a href="#org69c09d7">1</a>.
 </p>
 
 
-<div id="org38e17bb" class="figure">
+<div id="org69c09d7" class="figure">
 <p><img src="./fig/git.png" alt="git.png">
 </p>
 <p><span class="figure-number">Figure 1: </span>Work flow of git</p>
@@ -277,9 +277,9 @@ In the utilization of git, there are four important areas for storage, <i>worksp
 </div>
 </div>
 </div>
-<div id="outline-container-org6f9bc62" class="outline-2">
-<h2 id="org6f9bc62">Installation</h2>
-<div class="outline-text-2" id="text-org6f9bc62">
+<div id="outline-container-orgbfade67" class="outline-2">
+<h2 id="orgbfade67">Installation</h2>
+<div class="outline-text-2" id="text-orgbfade67">
 <p>
 On Unix/Linux operation systems, git can be easily installed. Taking <i>ArchLinux</i> for instance, git can be installed via following command.
 </p>
@@ -303,9 +303,9 @@ For GUI, package <i>tk</i> needs to be installed additionally.
 </div>
 </div>
 </div>
-<div id="outline-container-orgda6bd9e" class="outline-2">
-<h2 id="orgda6bd9e">Configuration</h2>
-<div class="outline-text-2" id="text-orgda6bd9e">
+<div id="outline-container-org4f4898d" class="outline-2">
+<h2 id="org4f4898d">Configuration</h2>
+<div class="outline-text-2" id="text-org4f4898d">
 <p>
 Command <code>git config</code> can define the default preference or behavior of git. There are several files this command will read from and write to so we can set values globally or repository-specifically.
 </p>
@@ -341,13 +341,13 @@ git config [--global/--system] user.email "EMAIL@COMPANY.COM"
 </div>
 </div>
 </div>
-<div id="outline-container-org700b066" class="outline-2">
-<h2 id="org700b066">Usage</h2>
-<div class="outline-text-2" id="text-org700b066">
+<div id="outline-container-orgce03819" class="outline-2">
+<h2 id="orgce03819">Usage</h2>
+<div class="outline-text-2" id="text-orgce03819">
 </div>
-<div id="outline-container-orgaae1c69" class="outline-3">
-<h3 id="orgaae1c69">Create repositories</h3>
-<div class="outline-text-3" id="text-orgaae1c69">
+<div id="outline-container-org4f1c48c" class="outline-3">
+<h3 id="org4f1c48c">Create repositories</h3>
+<div class="outline-text-3" id="text-org4f1c48c">
 <ul class="org-ul">
 <li>Create an empty repository (<code>git init</code> can also reinitialize an existing repository).</li>
 </ul>
@@ -375,13 +375,13 @@ git clone [--bare] USER@SERVER:/PATH/TO/REPOSITORY.git
 </div>
 </div>
 </div>
-<div id="outline-container-orgbda0959" class="outline-3">
-<h3 id="orgbda0959">Basic snapshotting</h3>
-<div class="outline-text-3" id="text-orgbda0959">
+<div id="outline-container-org83699ab" class="outline-3">
+<h3 id="org83699ab">Basic snapshotting</h3>
+<div class="outline-text-3" id="text-org83699ab">
 </div>
-<div id="outline-container-org041daa9" class="outline-4">
-<h4 id="org041daa9">Add file(s)</h4>
-<div class="outline-text-4" id="text-org041daa9">
+<div id="outline-container-orged0b8bf" class="outline-4">
+<h4 id="orged0b8bf">Add file(s)</h4>
+<div class="outline-text-4" id="text-orged0b8bf">
 <ul class="org-ul">
 <li>Add the content from the workspace into index area for the next commit.</li>
 </ul>
@@ -399,9 +399,9 @@ git add DIRECTORY
 </div>
 </div>
 </div>
-<div id="outline-container-org8822b61" class="outline-4">
-<h4 id="org8822b61">Remove file(s)</h4>
-<div class="outline-text-4" id="text-org8822b61">
+<div id="outline-container-orgd417452" class="outline-4">
+<h4 id="orgd417452">Remove file(s)</h4>
+<div class="outline-text-4" id="text-orgd417452">
 <ul class="org-ul">
 <li>Stop tracking file(s).</li>
 </ul>
@@ -418,9 +418,9 @@ git add DIRECTORY
 </div>
 </div>
 </div>
-<div id="outline-container-orged90ca4" class="outline-4">
-<h4 id="orged90ca4">Commit the revision(s)</h4>
-<div class="outline-text-4" id="text-orged90ca4">
+<div id="outline-container-org5e8871e" class="outline-4">
+<h4 id="org5e8871e">Commit the revision(s)</h4>
+<div class="outline-text-4" id="text-org5e8871e">
 <p>
 The commands take the all/or the specific file(s) that have been staged with <code>git add</code> and record a new permanent snapshot in the repository and then moves the branch pointer on the current branch up to it.
 </p>
@@ -448,9 +448,9 @@ git commit --amend [FILE]
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb154b1" class="outline-4">
-<h4 id="orgbb154b1">Branch operations</h4>
-<div class="outline-text-4" id="text-orgbb154b1">
+<div id="outline-container-org1ab4997" class="outline-4">
+<h4 id="org1ab4997">Branch operations</h4>
+<div class="outline-text-4" id="text-org1ab4997">
 <ul class="org-ul">
 <li>List all the local/remote branches.</li>
 </ul>
@@ -569,9 +569,9 @@ git branch -dr REMOTE_NAME/BRANCH_NAME
 </div>
 </div>
 </div>
-<div id="outline-container-org76d5627" class="outline-4">
-<h4 id="org76d5627">Rebase</h4>
-<div class="outline-text-4" id="text-org76d5627">
+<div id="outline-container-orgaef04b8" class="outline-4">
+<h4 id="orgaef04b8">Rebase</h4>
+<div class="outline-text-4" id="text-orgaef04b8">
 <p>
 Taking rebasing the current branch, e.g. <code>BRANCH_NAME</code>, onto a target, e.g. <code>master</code> branch, for instance, a basic work flow for <code>git rebase</code> can be listed as follows.
 </p>
@@ -650,9 +650,9 @@ An interactive interface is available if option <code>-i</code> is given whereby
 </table>
 </div>
 </div>
-<div id="outline-container-org39e0227" class="outline-4">
-<h4 id="org39e0227">Tag operations</h4>
-<div class="outline-text-4" id="text-org39e0227">
+<div id="outline-container-org8c7da17" class="outline-4">
+<h4 id="org8c7da17">Tag operations</h4>
+<div class="outline-text-4" id="text-org8c7da17">
 <ul class="org-ul">
 <li>List all tags.</li>
 </ul>
@@ -712,9 +712,9 @@ git push origin :refs/tags/TAG_NAME
 </div>
 </div>
 </div>
-<div id="outline-container-orgb1177d3" class="outline-4">
-<h4 id="orgb1177d3">Information query</h4>
-<div class="outline-text-4" id="text-orgb1177d3">
+<div id="outline-container-org10fc2f6" class="outline-4">
+<h4 id="org10fc2f6">Information query</h4>
+<div class="outline-text-4" id="text-org10fc2f6">
 <ul class="org-ul">
 <li>Show revised file(s) in workspace compared to those in index.</li>
 </ul>
@@ -752,9 +752,9 @@ git push origin :refs/tags/TAG_NAME
 </div>
 </div>
 </div>
-<div id="outline-container-org473338b" class="outline-4">
-<h4 id="org473338b">Show the difference</h4>
-<div class="outline-text-4" id="text-org473338b">
+<div id="outline-container-org4a050e4" class="outline-4">
+<h4 id="org4a050e4">Show the difference</h4>
+<div class="outline-text-4" id="text-org4a050e4">
 <ul class="org-ul">
 <li>Show the difference between the workspace and the index.</li>
 </ul>
@@ -778,9 +778,9 @@ git push origin :refs/tags/TAG_NAME
 </div>
 </div>
 </div>
-<div id="outline-container-org5d4bfdd" class="outline-4">
-<h4 id="org5d4bfdd">Remote operation</h4>
-<div class="outline-text-4" id="text-org5d4bfdd">
+<div id="outline-container-org212a211" class="outline-4">
+<h4 id="org212a211">Remote operation</h4>
+<div class="outline-text-4" id="text-org212a211">
 <ul class="org-ul">
 <li>List all the remote repositories.</li>
 </ul>
@@ -846,9 +846,9 @@ git push origin :refs/tags/TAG_NAME
 </div>
 </div>
 </div>
-<div id="outline-container-org6553347" class="outline-4">
-<h4 id="org6553347">Undo operation</h4>
-<div class="outline-text-4" id="text-org6553347">
+<div id="outline-container-org62f85b9" class="outline-4">
+<h4 id="org62f85b9">Undo operation</h4>
+<div class="outline-text-4" id="text-org62f85b9">
 <ul class="org-ul">
 <li>Recover the workspace from index.</li>
 </ul>
@@ -887,9 +887,9 @@ git push origin :refs/tags/TAG_NAME
 </div>
 </div>
 </div>
-<div id="outline-container-orge469be4" class="outline-3">
-<h3 id="orge469be4">Temporary switch</h3>
-<div class="outline-text-3" id="text-orge469be4">
+<div id="outline-container-org974b28d" class="outline-3">
+<h3 id="org974b28d">Temporary switch</h3>
+<div class="outline-text-3" id="text-org974b28d">
 <ul class="org-ul">
 <li>Buffer the workspace temporarily.</li>
 </ul>
@@ -927,9 +927,9 @@ git push origin :refs/tags/TAG_NAME
 </div>
 </div>
 </div>
-<div id="outline-container-org70e730c" class="outline-3">
-<h3 id="org70e730c">Submodule</h3>
-<div class="outline-text-3" id="text-org70e730c">
+<div id="outline-container-org72d0693" class="outline-3">
+<h3 id="org72d0693">Submodule</h3>
+<div class="outline-text-3" id="text-org72d0693">
 <p>
 As its name implies, a submodule is a relatively independent feature which can be imported from another repository. The information relating to a submodule is scattered in following 3 places.
 </p>
@@ -959,9 +959,9 @@ As its name implies, a submodule is a relatively independent feature which can b
 Moreover, a submodule can further consist of one or more subsubmodule(s). A recursive operation can be performed by option <code>--recursive</code>.
 </p>
 </div>
-<div id="outline-container-org81c4b1f" class="outline-4">
-<h4 id="org81c4b1f">Usage</h4>
-<div class="outline-text-4" id="text-org81c4b1f">
+<div id="outline-container-org81d7e08" class="outline-4">
+<h4 id="org81d7e08">Usage</h4>
+<div class="outline-text-4" id="text-org81d7e08">
 <ul class="org-ul">
 <li><p>
 Add a submodule to the current repository, with <code>/PATH/TO/SUBMODULE</code> as the relative location for the submodule, and <code>SUBMODULE_NAME</code> as its name.

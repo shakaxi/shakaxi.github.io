@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:01 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Einops</title>
@@ -200,17 +200,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgddca6e7">Installation</a></li>
-<li><a href="#org0b99904">Usage</a>
+<li><a href="#org5aa15f6">Installation</a></li>
+<li><a href="#org8ebdf94">Usage</a>
 <ul>
-<li><a href="#org41ce042">Basic functions</a>
+<li><a href="#orgbf67a9a">Basic functions</a>
 <ul>
-<li><a href="#orga76c3a1"><code>rearrange</code></a></li>
-<li><a href="#org6c04631"><code>reduce</code></a></li>
-<li><a href="#org6f2d939"><code>repeat</code></a></li>
+<li><a href="#org0d55bb1"><code>rearrange</code></a></li>
+<li><a href="#orgce6a609"><code>reduce</code></a></li>
+<li><a href="#org2122598"><code>repeat</code></a></li>
 </ul>
 </li>
-<li><a href="#org0f55404">Layers</a></li>
+<li><a href="#org3b5d99d">Layers</a></li>
 </ul>
 </li>
 </ul>
@@ -220,9 +220,9 @@
 Einstein-inspired notation for operations (Einops<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>) is a python package which provides extremely flexible and powerful opertions on tensors, e.g., permuting/reordering, reshaping (combining and partitioning along axes), reducing, repeating. Moreover, it supports numpy, tensorflow, pytorch, etc.
 </p>
 
-<div id="outline-container-orgddca6e7" class="outline-2">
-<h2 id="orgddca6e7">Installation</h2>
-<div class="outline-text-2" id="text-orgddca6e7">
+<div id="outline-container-org5aa15f6" class="outline-2">
+<h2 id="org5aa15f6">Installation</h2>
+<div class="outline-text-2" id="text-org5aa15f6">
 <p>
 Einops can be directly installed from pypi.
 </p>
@@ -232,13 +232,13 @@ Einops can be directly installed from pypi.
 </div>
 </div>
 </div>
-<div id="outline-container-org0b99904" class="outline-2">
-<h2 id="org0b99904">Usage</h2>
-<div class="outline-text-2" id="text-org0b99904">
+<div id="outline-container-org8ebdf94" class="outline-2">
+<h2 id="org8ebdf94">Usage</h2>
+<div class="outline-text-2" id="text-org8ebdf94">
 </div>
-<div id="outline-container-org41ce042" class="outline-3">
-<h3 id="org41ce042">Basic functions</h3>
-<div class="outline-text-3" id="text-org41ce042">
+<div id="outline-container-orgbf67a9a" class="outline-3">
+<h3 id="orgbf67a9a">Basic functions</h3>
+<div class="outline-text-3" id="text-orgbf67a9a">
 <p>
 Basically, Einops provides 3 Functions, <code>rearrange</code>, <code>reduce</code>, <code>repeat</code>, which can be imported by
 </p>
@@ -257,34 +257,34 @@ repeat(tensor: ~Tensor, pattern: str, **axes_lengths) -&gt; ~Tensor
 <li><code>axes_lengths</code> are dimension related specifications.</li>
 </ul>
 </div>
-<div id="outline-container-orga76c3a1" class="outline-4">
-<h4 id="orga76c3a1"><code>rearrange</code></h4>
-<div class="outline-text-4" id="text-orga76c3a1">
+<div id="outline-container-org0d55bb1" class="outline-4">
+<h4 id="org0d55bb1"><code>rearrange</code></h4>
+<div class="outline-text-4" id="text-org0d55bb1">
 <p>
 <code>rearrange</code> does not change the number of elements inside, and can achieve the operations like transpose, reshape, stack, squeeze, unsqueeze, concatenate, etc.
 </p>
 </div>
 </div>
-<div id="outline-container-org6c04631" class="outline-4">
-<h4 id="org6c04631"><code>reduce</code></h4>
-<div class="outline-text-4" id="text-org6c04631">
+<div id="outline-container-orgce6a609" class="outline-4">
+<h4 id="orgce6a609"><code>reduce</code></h4>
+<div class="outline-text-4" id="text-orgce6a609">
 <p>
 <code>reduce</code> combines elements in one or more axes. So it reduces the total number of elements, but keeps the ordering.
 </p>
 </div>
 </div>
-<div id="outline-container-org6f2d939" class="outline-4">
-<h4 id="org6f2d939"><code>repeat</code></h4>
-<div class="outline-text-4" id="text-org6f2d939">
+<div id="outline-container-org2122598" class="outline-4">
+<h4 id="org2122598"><code>repeat</code></h4>
+<div class="outline-text-4" id="text-org2122598">
 <p>
 <code>repeat</code> produces repetition and tiling.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0f55404" class="outline-3">
-<h3 id="org0f55404">Layers</h3>
-<div class="outline-text-3" id="text-org0f55404">
+<div id="outline-container-org3b5d99d" class="outline-3">
+<h3 id="org3b5d99d">Layers</h3>
+<div class="outline-text-3" id="text-org3b5d99d">
 <p>
 Einops also provides two corresponding layers, which can be directly integrated into any neural network.
 </p>

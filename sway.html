@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-03-19 Sun 14:32 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linux - Sway</title>
@@ -200,29 +200,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org60bbe7d">Introduction</a></li>
-<li><a href="#orgb553820">Installation</a></li>
-<li><a href="#orgf2d2d10">Configuration</a>
+<li><a href="#orgd318275">Introduction</a></li>
+<li><a href="#orge7b3f93">Installation</a></li>
+<li><a href="#org81ce252">Configuration</a>
 <ul>
-<li><a href="#org611788b"><code>~/.config/sway/config</code></a></li>
-<li><a href="#org829a76f"><code>~/.config/sway/wofi.conf</code></a></li>
-<li><a href="#orgd02dc88"><code>~/.config/sway/waybar.style.css</code></a></li>
+<li><a href="#org82f3be0"><code>~/.config/sway/config</code></a></li>
+<li><a href="#orgb83915b"><code>~/.config/sway/wofi.conf</code></a></li>
+<li><a href="#org532461a"><code>~/.config/sway/waybar.style.css</code></a></li>
 </ul>
 </li>
-<li><a href="#org5330a1a">Startup</a></li>
-<li><a href="#orgb6ffbaf">KDE Applications</a>
+<li><a href="#org7609910">Startup</a></li>
+<li><a href="#org6597dc9">KDE Applications</a>
 <ul>
-<li><a href="#org07b4a88">Installation</a></li>
-<li><a href="#org7d701c5">Configuration</a></li>
+<li><a href="#orgcd34828">Installation</a></li>
+<li><a href="#orgdf1ee3b">Configuration</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org60bbe7d" class="outline-2">
-<h2 id="org60bbe7d">Introduction</h2>
-<div class="outline-text-2" id="text-org60bbe7d">
+<div id="outline-container-orgd318275" class="outline-2">
+<h2 id="orgd318275">Introduction</h2>
+<div class="outline-text-2" id="text-orgd318275">
 <p>
 <a href="https://swaywm.org">Sway</a> is a tiling compositor based on <a href="https://wayland.freedesktop.org">Wayland</a>. It can be identified as a counterpart of <a href="http://i3wm.org">i3</a> in Wayland, and as resource saving and lightweight as i3. Even, sway has a completely compatible configuration to i3.
 </p>
@@ -245,25 +245,25 @@ Sway's core components and necessary applications can be simply installed and co
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb553820" class="outline-2">
-<h2 id="orgb553820">Installation</h2>
-<div class="outline-text-2" id="text-orgb553820">
+<div id="outline-container-orge7b3f93" class="outline-2">
+<h2 id="orge7b3f93">Installation</h2>
+<div class="outline-text-2" id="text-orge7b3f93">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S sway swaylock swayidle foot rofi waybar light mako grim slurp swaybg
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf2d2d10" class="outline-2">
-<h2 id="orgf2d2d10">Configuration</h2>
-<div class="outline-text-2" id="text-orgf2d2d10">
+<div id="outline-container-org81ce252" class="outline-2">
+<h2 id="org81ce252">Configuration</h2>
+<div class="outline-text-2" id="text-org81ce252">
 <p>
 For centralized management, the configuration files can be gathered in directory <code>~/.config/sway</code>.
 </p>
 </div>
-<div id="outline-container-org611788b" class="outline-3">
-<h3 id="org611788b"><code>~/.config/sway/config</code></h3>
-<div class="outline-text-3" id="text-org611788b">
+<div id="outline-container-org82f3be0" class="outline-3">
+<h3 id="org82f3be0"><code>~/.config/sway/config</code></h3>
+<div class="outline-text-3" id="text-org82f3be0">
 <div class="org-src-container">
 <pre class="src src-sh"># Default config for sway
 #
@@ -470,9 +470,9 @@ xwayland enable
 </div>
 </div>
 </div>
-<div id="outline-container-org829a76f" class="outline-3">
-<h3 id="org829a76f"><code>~/.config/sway/wofi.conf</code></h3>
-<div class="outline-text-3" id="text-org829a76f">
+<div id="outline-container-orgb83915b" class="outline-3">
+<h3 id="orgb83915b"><code>~/.config/sway/wofi.conf</code></h3>
+<div class="outline-text-3" id="text-orgb83915b">
 <div class="org-src-container">
 <pre class="src src-sh">mode=drun
 allow_images=true
@@ -491,9 +491,9 @@ image_size=32
 </div>
 </div>
 </div>
-<div id="outline-container-orgd02dc88" class="outline-3">
-<h3 id="orgd02dc88"><code>~/.config/sway/waybar.style.css</code></h3>
-<div class="outline-text-3" id="text-orgd02dc88">
+<div id="outline-container-org532461a" class="outline-3">
+<h3 id="org532461a"><code>~/.config/sway/waybar.style.css</code></h3>
+<div class="outline-text-3" id="text-org532461a">
 <div class="org-src-container">
 <pre class="src src-sh">* {
     border: none;
@@ -700,33 +700,33 @@ label:focus {
 </div>
 </div>
 </div>
-<div id="outline-container-org5330a1a" class="outline-2">
-<h2 id="org5330a1a">Startup</h2>
-<div class="outline-text-2" id="text-org5330a1a">
+<div id="outline-container-org7609910" class="outline-2">
+<h2 id="org7609910">Startup</h2>
+<div class="outline-text-2" id="text-org7609910">
 <p>
 After the installation and configuration, sway can be started by running command <code>sway</code> from a TTY after login.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb6ffbaf" class="outline-2">
-<h2 id="orgb6ffbaf">KDE Applications</h2>
-<div class="outline-text-2" id="text-orgb6ffbaf">
+<div id="outline-container-org6597dc9" class="outline-2">
+<h2 id="org6597dc9">KDE Applications</h2>
+<div class="outline-text-2" id="text-org6597dc9">
 <p>
 There are a rich number of applications dedicated for KDE, e.g., file manager <code>dolphin</code> and PDF reader <code>okular</code>. On <code>sway</code>, they can be installed and configured as follows.
 </p>
 </div>
-<div id="outline-container-org07b4a88" class="outline-3">
-<h3 id="org07b4a88">Installation</h3>
-<div class="outline-text-3" id="text-org07b4a88">
+<div id="outline-container-orgcd34828" class="outline-3">
+<h3 id="orgcd34828">Installation</h3>
+<div class="outline-text-3" id="text-orgcd34828">
 <div class="org-src-container">
 <pre class="src src-sh">pacman -S dolphin okular
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org7d701c5" class="outline-3">
-<h3 id="org7d701c5">Configuration</h3>
-<div class="outline-text-3" id="text-org7d701c5">
+<div id="outline-container-orgdf1ee3b" class="outline-3">
+<h3 id="orgdf1ee3b">Configuration</h3>
+<div class="outline-text-3" id="text-orgdf1ee3b">
 <ul class="org-ul">
 <li><p>
 Install icons of <code>breeze</code> theme.

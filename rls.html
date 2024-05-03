@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-01-29 Sun 17:00 -->
+<!-- 2024-02-15 Thu 01:00 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Least Square and Its Iterative Approach (RLS)</title>
@@ -232,22 +232,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf193c5a">Introduction</a></li>
+<li><a href="#org35b1482">Introduction</a></li>
 <li><a href="#sec:ls">Least Square (LS)</a></li>
 <li><a href="#sec:rls">Recursive Least Square (RLS)</a>
 <ul>
-<li><a href="#orgf9632b8">Iteration of Auto/Cross-Correlation</a></li>
-<li><a href="#org759f945">Iteration of LS Filter</a></li>
-<li><a href="#orgf0a8918">Procedure</a></li>
+<li><a href="#orgac47729">Iteration of Auto/Cross-Correlation</a></li>
+<li><a href="#org9e7e0fc">Iteration of LS Filter</a></li>
+<li><a href="#orgeff4a13">Procedure</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf193c5a" class="outline-2">
-<h2 id="orgf193c5a">Introduction</h2>
-<div class="outline-text-2" id="text-orgf193c5a">
+<div id="outline-container-org35b1482" class="outline-2">
+<h2 id="org35b1482">Introduction</h2>
+<div class="outline-text-2" id="text-org35b1482">
 <p>
 As is well-known, <i>least square (LS)</i> is the optimal linear unbiased estimator, which plays an extremely important role in the classic estimation theory. This document motivates to illustrate the fundamental of LS algorithm. However, LS algorithm suffers rather high complexity, especially for the operation of matrix inversion, which greatly limits its application in practice. In order to reduce the computational complexity, an iterative approach, a.k.a. <i>recursive LS (RLS)</i>, has been proposed.
 </p>
@@ -333,9 +333,9 @@ Then, by substituting \eqref{eq:cov} and \eqref{eq:corr} into \eqref{eq:ls}, the
 In this section, RLS algorithm is derived in detail.
 </p>
 </div>
-<div id="outline-container-orgf9632b8" class="outline-3">
-<h3 id="orgf9632b8">Iteration of Auto/Cross-Correlation</h3>
-<div class="outline-text-3" id="text-orgf9632b8">
+<div id="outline-container-orgac47729" class="outline-3">
+<h3 id="orgac47729">Iteration of Auto/Cross-Correlation</h3>
+<div class="outline-text-3" id="text-orgac47729">
 <p>
 According to \eqref{eq:cov}, we have
 </p>
@@ -381,9 +381,9 @@ Simlarly, according to \eqref{eq:corr}, the iteration of the weighted cross-corr
 </div>
 </div>
 
-<div id="outline-container-org759f945" class="outline-3">
-<h3 id="org759f945">Iteration of LS Filter</h3>
-<div class="outline-text-3" id="text-org759f945">
+<div id="outline-container-org9e7e0fc" class="outline-3">
+<h3 id="org9e7e0fc">Iteration of LS Filter</h3>
+<div class="outline-text-3" id="text-org9e7e0fc">
 <p>
 Substituting \eqref{eq:iter-p}, \eqref{eq:k-p} and \eqref{eq:iter-r} into \eqref{eq:ls-brief} produces the iteration between \(\mathbf{w}(n)\) and \(\mathbf{w}(n-1)\), i.e.,
 </p>
@@ -408,9 +408,9 @@ is termed <i>a priori estimation error</i>.
 </div>
 </div>
 
-<div id="outline-container-orgf0a8918" class="outline-3">
-<h3 id="orgf0a8918">Procedure</h3>
-<div class="outline-text-3" id="text-orgf0a8918">
+<div id="outline-container-orgeff4a13" class="outline-3">
+<h3 id="orgeff4a13">Procedure</h3>
+<div class="outline-text-3" id="text-orgeff4a13">
 <p>
 By collecting the operations scattered above, the detailed procedure of RLS algorithm can be summarized as follows, where the values of the two parameters should be offered in advance. \(\lambda \in (0, 1]\) is the forgetting factor, while \(\delta\) is a small positive number used for \(\mathbf{P}(0)\) initialization.
 </p>
