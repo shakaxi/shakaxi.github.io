@@ -137,7 +137,7 @@ where subscript $r$, $i$, $e$, and $o$ mean the real, imagnary, even, and odd pa
 \end{align*}
 *** Parseval Theorem
 \begin{align*}
-  \sum_{n=-\infty}^{\infty}|x(n)|^2 = \frac{1}{2\pi} \int_{-\infty}^{\infty} |X(e^{$j\omega})|^2 d\omega
+  \sum_{n=-\infty}^{\infty}|x(n)|^2 = \frac{1}{2\pi} \int_{-\infty}^{\infty} |X(e^{j\omega})|^2 d\omega
 \end{align*}
 * Discrete Fourier Transform
 ** Definition
