@@ -81,15 +81,15 @@ Particularly when $a = -b$, we have
 \end{align*}
 *** Multiple integral
 **** Double integral
-- For a 2D region $D$ represented by $\begin{cases} a \leq x \leq b \\ y_1(x) \leq y \leq y_2(x)\end{cases}$, if function $f(x, y)$ is integrable on $D$, then
+- For a 2D region $D$ parameterized by $\begin{cases} a \leq x \leq b \\ y_1(x) \leq y \leq y_2(x)\end{cases}$, if function $f(x, y)$ is integrable on $D$, then
   \begin{align*}
   \iint_D f(x, y)dxdy = \int_a^b dx \int_{y_1(x)}^{y_2(x)} f(x, y) dy.
   \end{align*}
-- For a 2D region $D$ represented by $\begin{cases} c \leq y \leq d \\ x_1(y) \leq x \leq x_2(y)\end{cases}$, if function $f(x, y)$ is integrable on $D$, then
+- For a 2D region $D$ parameterized by $\begin{cases} c \leq y \leq d \\ x_1(y) \leq x \leq x_2(y)\end{cases}$, if function $f(x, y)$ is integrable on $D$, then
   \begin{align*}
   \iint_D f(x, y)dxdy = \int_c^d dy \int_{x_1(y)}^{x_2(y)} f(x, y) dx.
   \end{align*}
-- Given $\begin{cases} x = x(u, v) \\ y = y(u, v) \end{cases}$, if $x(u,v)$ and $y(u,v)$ are continuous and differentiable, and Jacobian determinant $J = \left| \cfrac{D(x,y)}{D(u,v)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix} \neq 0$, then we have
+- Given a 2D region parameterized by $\begin{cases} x = x(u, v) \\ y = y(u, v) \end{cases}$, if $x(u,v)$ and $y(u,v)$ are continuous and differentiable, and Jacobian determinant $J = \left| \cfrac{D(x,y)}{D(u,v)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix} \neq 0$, then we have
   \begin{align*}
   \iint_{D(x, y)} f(x,y)dxdy = \iint_{D(u, v)} f \left(x(u, v), y(u, v)\right) |J| dudv,
   \end{align*}
@@ -99,11 +99,11 @@ Particularly when $a = -b$, we have
     \iint_{D(x, y)} f(x,y)dxdy = \iint_{D(r, \theta)} f(r\cos\theta, r\sin\theta) rdrd\theta.
     \end{align*}
 **** Triple integral
-- For a 3D region $V$ represented by $\begin{cases} a \leq x \leq b \\ y_1(x) \leq y \leq y_2(x) \\ z_1(x,y) \leq z \leq z_2(x,y)\end{cases}$, if function $f(x, y, z)$ is integrable on $V$, then
+- For a 3D region $V$ parameterized by $\begin{cases} a \leq x \leq b \\ y_1(x) \leq y \leq y_2(x) \\ z_1(x,y) \leq z \leq z_2(x,y)\end{cases}$, if function $f(x, y, z)$ is integrable on $V$, then
   \begin{align*}
   \iiint_V f(x,y,z)dxdydz = \int_a^b dx \int_{y_1(x)}^{y_2(x)} dy \int_{z_1(x,y)}^{z_2(x,y)} f(x, y, z)dz.
   \end{align*}
-- Given $\begin{cases} x = x(u, v, w) \\ y = y(u, v, w) \\ z = z(u, v, w) \end{cases}$, if $x(u,v,w)$, $y(u,v,w)$, and $z(u,v,w)$ are continuous and differentiable, and Jacobian determinant $J = \left| \cfrac{D(x,y,z)}{D(u,v,w)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w}\end{vmatrix} \neq 0$, then we have
+- Given a 3D region parameterized by $\begin{cases} x = x(u, v, w) \\ y = y(u, v, w) \\ z = z(u, v, w) \end{cases}$, if $x(u,v,w)$, $y(u,v,w)$, and $z(u,v,w)$ are continuous and differentiable, and Jacobian determinant $J = \left| \cfrac{D(x,y,z)}{D(u,v,w)} \right| = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w}\end{vmatrix} \neq 0$, then we have
   \begin{align*}
   \iiint_{V(x, y, z)} f(x,y,z)dxdydz = \iiint_{V(u,v,w)} f \left( x(u,v,w), y(u,v,w), z(u,v,w) \right) |J| dudvdw,
   \end{align*}
@@ -118,29 +118,70 @@ Particularly when $a = -b$, we have
     \end{align*}
 *** Line integral
 A line integral means to integrate a scalar function or a vector field over a smooth curve in a plane or space. The former is termed /scalar line integral/ or /1st type of line integral/, while the latter is termed /vector line integral/ or /2nd type of line integral/.
+**** Curve parameterization
+Generally, a smooth curve can be parameterized by
+\begin{align*}
+  \mathbf{r}(t) = \begin{bmatrix} x(t) \\ y(t) \\ z(t) \end{bmatrix}, \quad a \le t \le b.
+\end{align*}
+***** Regular parameterization
+$\forall t\in [a, b]$, if $\mathbf{r}^\prime(t) \neq \mathbf{0}$, the parameterization is /regular/ or /smooth/. The regularity ensures $\mathbf{r}$ is a curve, but not just a point.
 **** Scalar line integral
-Given a smooth curve $C$ between $A$ and $B$ represented by $x = x(t)$, $y = y(t)$, $z = z(t)$, $t_A \leq t \leq t_B$, if integrand $f(x, y, z)$ is continuous over $C$, then
+Given a smooth curve $C$ between $A$ and $B$ parameterized by $\begin{cases}x = x(t)\\ y = y(t)\\ z = z(t)\end{cases}$, $t_A \leq t \leq t_B$, if integrand $f(x, y, z)$ is continuous over $C$, then
 \begin{align*}
 \int_Cf(x,y,z)ds = \int_{t_A}^{t_B} f(x(t), y(t), z(t)) \sqrt{x^{\prime 2}(t) + y^{\prime 2}(t) + z^{\prime 2}(t)} dt,
 \end{align*}
-where $ds = \left\| \begin{bmatrix}dx \\ dy \\ dz\end{bmatrix}\right\| = \left\|\begin{bmatrix} x^{\prime}(t) \\ y^{\prime}(t) \\ z^{\prime}(t) \end{bmatrix}\right\|dt = \sqrt{x^{\prime 2}(t) + y^{\prime 2}(t) + z^{\prime 2}(t)} dt$ is the /arc length unit/.
+where $ds \triangleq \left\| \begin{bmatrix}dx \\ dy \\ dz\end{bmatrix}\right\| = \left\|\begin{bmatrix} x^{\prime}(t) \\ y^{\prime}(t) \\ z^{\prime}(t) \end{bmatrix}\right\|dt = \sqrt{x^{\prime 2}(t) + y^{\prime 2}(t) + z^{\prime 2}(t)} dt$ is the /arc length unit/.
 
 For scalar line integral, neither the orientation nor the parameterization of the curve matters, i.e., $\int_{\overset{\frown}{AB}} f(x,y,z)ds = \int_{\overset{\frown}{BA}} f(x,y,z)ds$.
 **** Vector line integral
-Given a smooth and oriented curve $C$ from $A$ to $B$ represented by $x = x(t)$, $y = y(t)$, $z = z(t)$, if a vector field $\mathbf{F} = \begin{bmatrix} P(x,y,z) \\ Q(x,y,z) \\ R(x,y,z)\end{bmatrix}$ is continuous over $C$, then
+Given a smooth and oriented curve $C$ from $A$ to $B$ parameterized by $\begin{cases}x = x(t)\\ y = y(t)\\ z = z(t)\end{cases}$, if a vector field $\mathbf{F} = \begin{bmatrix} P(x,y,z) \\ Q(x,y,z) \\ R(x,y,z)\end{bmatrix}$ is continuous over $C$, then
 \begin{align*}
 \int_C \mathbf{F} \cdot d\mathbf{r} &= \int_C Pdx + Qdy + Rdz = \int_{t_A}^{t_B} Px^{\prime}(t) + Qy^{\prime}(t) + Rz^{\prime}(t) dt \\
 &= \int_C \mathbf{F} \cdot \mathbf{T} ds,
 \end{align*}
 where
-- $d\mathbf{r} = \begin{bmatrix} dx \\ dy \\ dz \end{bmatrix} = \mathbf{r}^{\prime}(t)dt$ is the arc unit;
-- $\mathbf{r}^{\prime}(t) = \begin{bmatrix} x^{\prime}(t) \\ y^{\prime}(t) \\ z^{\prime}(t) \end{bmatrix}$;
-- $\mathbf{T} = \cfrac{\mathbf{r}^{\prime}(t)}{\|\mathbf{r}^{\prime}(t)\|}$ is the /unit tangent vector/ along $C$;
-- $ds = \|\mathbf{r}^{\prime}(t)\| dt$ is the arc length unit.
+- $d\mathbf{r} \triangleq \begin{bmatrix} dx \\ dy \\ dz \end{bmatrix} = \mathbf{r}^{\prime}(t)dt = \mathbf{T} ds$ is the arc unit;
+- $\mathbf{r}^{\prime}(t) \triangleq \begin{bmatrix} x^{\prime}(t) \\ y^{\prime}(t) \\ z^{\prime}(t) \end{bmatrix}$;
+- $\mathbf{T} \triangleq \cfrac{\mathbf{r}^{\prime}(t)}{\|\mathbf{r}^{\prime}(t)\|}$ is the /unit tangent vector/ along $C$;
+- $ds \triangleq \|d\mathbf{r}\| = \|\mathbf{r}^{\prime}(t)\| dt$ is the arc length unit.
 
 For vector line integral, the orientation of the curve does matter, i.e., $\int_{\overset{\frown}{AB}} \mathbf{F} \cdot d\mathbf{r} = -\int_{\overset{\frown}{BA}} \mathbf{F} \cdot d\mathbf{r}$.
 *** Surface integral
+A surface integral means to integrate a scalar function or a vector field over a smooth surface in space. A surface integral is very similar to a line integral, and the only difference lies the integration is performed over a surface rather than a path. If the integrand is a scalar function, the integral is termed /scalar surface integral/ or /1st type of surface integral/; if the integrand is a vector field, the integral is termed /vector surface integral/ or /2nd type of surface integral/.
+**** Surface parameterization
+Generally, a surface can be parameterized by
+\begin{align*}
+  \mathbf{r}(u,v) = \begin{bmatrix} x(u,v) \\ y(u,v) \\ z(u,v) \end{bmatrix},
+\end{align*}
+with 2 parameters $u$ and $v$ involved since a surface is 2 dimensional.
 
+For example, a sphere of radius $\rho$ centered at the origin can be parameterized by
+\begin{align*}
+  \mathbf{r}(\theta, \phi) = \begin{bmatrix} \rho\sin\theta\cos\phi \\ \rho\sin\theta\sin\phi \\ \rho\cos\theta\end{bmatrix}; \quad 0 \le \theta \le \pi, 0 \le \phi \le 2\pi.
+\end{align*}
+***** Regular parameterization
+$\forall(u, v)$, if cross product $\mathbf{r}_u \times \mathbf{r}_v \neq \mathbf{0}$, the parameterization is /regular/ or /smooth/. Similarly, the regularity ensures $\mathbf{r}(u,v)$ is a surface, but not just a curve or even point.
+**** Scalar surface integral
+Given a smooth surface $S$, if integrand $f(x, y, z)$ is continuous over $S$, then
+\begin{align*}
+  \iint_Sf(x, y, z)dS &= \iint_{D(u,v)}f(x(u,v),y(u,v),z(u,v))\|\mathbf{t}_u \times \mathbf{t}_v\|dudv \\
+  &= \iint_{D(x,y)}f(x, y, z)\sqrt{1 + z_x^2 + z_y^2}dxdy \\
+  &= \iint_{D(y,z)}f(x, y, z)\sqrt{1 + x_y^2 + x_z^2}dydz \\
+  &= \iint_{D(x,z)}f(x, y, z)\sqrt{1 + y_x^2 + y_z^2}dxdz,
+\end{align*}
+where
+- Tangent vectors $\mathbf{t}_u \triangleq \begin{bmatrix} \cfrac{\partial x}{\partial u}, \cfrac{\partial y}{\partial u}, \cfrac{\partial z}{\partial u} \end{bmatrix}$ and $\mathbf{t}_v \triangleq \begin{bmatrix} \cfrac{\partial x}{\partial v}, \cfrac{\partial y}{\partial v}, \cfrac{\partial z}{\partial v} \end{bmatrix}$ span the /tangent plane/.
+- $dS \triangleq \left\|\mathbf{t}_u \times \mathbf{t}_v \right\|dudv = \sqrt{1 + z_x^2 + z_y^2}dxdy = \sqrt{1 + x_y^2 + x_z^2}dydz = \sqrt{1 + y_x^2 + y_z^2}dxdz$ is the /surface area unit/.
+**** Vector surface integral
+Given a smooth surface $S$, if a vector field $\mathbf{F} = \begin{bmatrix} P(x,y,z) \\ Q(x,y,z) \\ R(x,y,z)\end{bmatrix}$ is continuous over $S$, then,
+\begin{align*}
+\iint_S \mathbf{F} \cdot d\mathbf{S} &= \iint_S Pdydz + Qdxdz + Rdxdy = \iint_S P\cos\alpha + Q\cos\beta + R\cos\gamma dS \\
+&= \iint_S \mathbf{F} \cdot \mathbf{n} dS,
+\end{align*}
+where
+- $d\mathbf{S} \triangleq \begin{bmatrix}dydz \\ dxdz \\ dxdy\end{bmatrix} = \mathbf{n}dS$ is the surface unit.
+- $\mathbf{n} = \begin{bmatrix}\cos\alpha \\ \cos\beta \\ \cos\gamma \end{bmatrix}$ is the /unit normal vector/; $\cos\alpha$, $\cos\beta$, $\cos\gamma$ are direction cosines; $\alpha$, $\beta$, $\gamma$ are the angles relative to $x$, $y$, $z$ axes respectively.
+- $dS \triangleq \|d\mathbf{S}\| = \left\| \begin{bmatrix}dydz \\ dxdz \\ dxdy\end{bmatrix}\right\|$ is the surface area unit.
 ** Maximum and minimum values
 For a differentiable function $f: \mathbb{R}^{n} \to \mathbb{R}$, zero gradient is the necessary condition of an extreme point.
 - If Hessian matrix at an extreme point $\mathbf{x}_0$ is positive definite, i.e., $\nabla f(\mathbf{x}_0) = \mathbf{0}$, $\mathbf{H}(\mathbf{x}_0) \succ 0$, the extreme point corresponds with a local minimum.
