@@ -1,0 +1,44 @@
+#+TITLE: Orthogonal Matching Pursuit (OMP)
+
+/Matching pursuit (MP)/ and its improvement /orthogonal matching pursuit (OMP)/ are both popular algorithms in /compressive sensing (CS)/. Compared to MP, OMP can offer better performance, e.g. in respects of higher precision and faster convergency. This post aims to summarize the detailed procedure of OMP.
+
+Given a NP-hard problem
+\begin{align*}
+  \mathcal{L}:\quad &\arg\min_{\mathbf{x}}\|\mathbf{x}\|_0 \\
+  \mathrm{subject~to}\quad & \mathbf{Ax} = \mathbf{b}
+\end{align*}
+where
+- $\mathbf{A} \in \mathbb{C}^{m \times n}$ is a /short-fat/ matrix, i.e., $n \gg m$.
+- $\mathbf{b}\in\mathbb{C}^m$.
+- $\mathbf{x}\in\mathbb{C}^n$.
+  + $\|\mathbf{x}\|_0$ is $\ell_0$ norm of $\mathbf{x}$, i.e., the number of non-zero elements of $\mathbf{x}$, a.k.a. the /sparsity/ of $\mathbf{x}$;
+  + The set comprising the indices of all non-zero elements in $\mathbf{x}$ is termed the /support/ of $\mathbf{x}$, denoted by
+    \begin{align*}
+      \mathrm{supp}(\mathbf{x}) \triangleq \{i \mid [\mathbf{x}]_i \neq 0\}.
+    \end{align*}
+
+OMP is an iterative algorithm, in which $\mathrm{supp}(\mathbf{x})$ is determined one by one and in each iteration the problem is optimally solved based on the current info. The detailed procedure of the algorithm can be listed in Table [[tab:omp]].
+#+CAPTION: Algorithm $\mathrm{OMP}(\mathbf{A}, \mathbf{b})$
+#+ATTR_HTML: :align center
+#+NAME: tab:omp
+| *Input*:          | $\mathbf{A}$, $\mathbf{b}$.                                                                                                              |
+| *Result*:         | $\mathbf{x}_k$                                                                                                                           |
+| *Initialization*: | $\mathbf{r}_0 = \mathbf{b}$, $\mathcal{S}_0 = \emptyset$.                                                                                |
+| *for*             | $k=1,2,\ldots$ *do*                                                                                                                      |
+| =step-1=          | $\lambda_k = \arg\max\limits_{i\notin\mathcal{S}_{k-1}}\vert[\mathbf{A}]_i^T \mathbf{r}_{k-1}\vert$                                      |
+| =step-2=          | $\mathcal{S}_k = \mathcal{S}_{k-1} \bigcup \{\lambda_k\}$                                                                                |
+| =step-3=          | $[\mathbf{x}_k]_{\mathcal{S}_k} = \arg\min\limits_{\mathbf{x}}\vert\vert[\mathbf{A}]_{\mathcal{S}_k}\mathbf{x} - \mathbf{b}\vert\vert_2$ |
+|                   | $[\mathbf{x}_k]_{\overline{\mathcal{S}_k}}=\mathbf{0}_{n-\vert\mathcal{S}_k\vert}$                                                       |
+| =step-4=          | $\hat{\mathbf{b}}_k = [\mathbf{A}]_{\mathcal{S}_k}[\mathbf{x}_k]_{\mathcal{S}_k} = \mathbf{A}\mathbf{x}_k$                               |
+| =step-5=          | $\mathbf{r}_k = \mathbf{b} - \hat{\mathbf{b}}_k$                                                                                         |
+| *end*             |                                                                                                                                          |
+
+- In =step-1=, the most correlated component is selected by traversing the candidates in the dictionary but outside $\mathcal{S}$.
+- In =step-2=, the support of $\mathbf{x}$, i.e., $\mathrm{supp}(\mathbf{x})$ is updated by adding the resultant index obtained in =step-1=.
+- In =step-3=, /least square (LS) regression/ is conducted based on the latest support of $\mathbf{x}$, i.e., $\mathrm{supp}(\mathbf{x})$,
+  \begin{align*}
+    [\mathbf{x}_k]_{\mathcal{S}_k} = [\mathbf{A}]_{\mathcal{S}_k}^\dagger\mathbf{b}
+  \end{align*}
+  where $[\mathbf{A}]_{\mathcal{S}_k}^\dagger = \left([\mathbf{A}]_{\mathcal{S}_k}^H [\mathbf{A}]_{\mathcal{S}_k}\right)^{-1}[\mathbf{A}]_{\mathcal{S}_k}^H$ is the Moore Penrose inverse of $[\mathbf{A}]_{\mathcal{S}_k}$.
+- In =step-4=, the overall contributions of the components in the support are reconstructed.
+- In =step-5=, residual is updated by subtracting the contributions reconstructed in =step-4= from $\mathbf{b}$.
