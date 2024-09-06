@@ -1,0 +1,24 @@
+#+TITLE: LTE - Downlink Control
+
+* Introduction
+In LTE, following physical channels are involved in downlink control.
+- /Physical downlink control channel (PDCCH)/ carries
+  + Downlink (DL) assignment
+  + Uplink (UL) grant
+  + TPC commands for a group of users
+  + /Physical downlink shared channel (PDSCH)/ arrival time instance
+  + Paging indication
+  + SPS activation/release
+  + Etc.
+- /Physical control format indicator channel (PCFICH)/ indicates the time-domain duration of the PDCCH in each subframe.
+- /Physical HARQ indicator channel (PHICH)/ indicates the acknowledgement of PUSCH.
+* Resource hierarchy
+Just as its name implies, the basic element for PDCCH is /Control channel element (CCE)/, which is comprised of 9 /resource element group (REG)/, and a REG consists of 4 RE's in an OFDM symbol without /cell-specific reference signal (CRS)/, or 6 RE's in an OFDM symbol with CRS. Irrespective of the both cases, there are always 4 effective RE's/REG, which is favorable of /space frequency block codes (SFBC)/ based transmit diversity for PDCCH.
+
+An /aggregation level/ number of CCE's compose one PDCCH. The value of aggregation level can be 1, 2, 4, 8.
+* PCFICH
+As mentioned above, the time-domain duration of PDCCH (in number of OFDM symbols) is signaled by PCFICH, which is transmitted in 1st symbol of each downlink subframe over 4 REG's, i.e., 16 RE's in a fully distributed pattern across the whole bandwidth.
+- For system bandwidth between 6 and 10 RB's, the PDCCH can occupy 2, 3, or 4 OFDM symbols.
+- For system bandwidth larger than 10 RB's, the PDCCH can span 1, 2, or 3 OFDM symbols.
+* Acknowledgement of PUSCH
+In LTE, synchronous HARQ is adopted in UL data transmission. Namely, after a PUSCH subframe, a UE will check a HARQ retransmission indication or a scheduling grant in a predefined downlink subframe, e.g., 4 ms later.

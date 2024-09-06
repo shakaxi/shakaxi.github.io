@@ -49,6 +49,7 @@
 - [[file:gitlab.org][GitLab]]
 - [[file:lte_d2d.org][LTE - D2D]]
 - [[file:lte_ds.org][LTE - Discovery Signal]]
+- [[file:lte_dl_ctrl.org][LTE - Downlink Control]]
 - [[file:lte_fc_loc.org][LTE - Frequency Domain Location of Carriers]]
 - [[file:lte_mobility_mgmt.org][LTE - Mobility Management]]
 - [[file:lte_pcfich.org][LTE - PCFICH]]
