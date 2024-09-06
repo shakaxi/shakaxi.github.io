@@ -47,6 +47,7 @@
 - [[file:gaussian.org][Gaussian Distribution]]
 - [[file:git.org][Git]]
 - [[file:gitlab.org][GitLab]]
+- [[file:kalman_filter.org][Kalman Filter]]
 - [[file:lte_d2d.org][LTE - D2D]]
 - [[file:lte_ds.org][LTE - Discovery Signal]]
 - [[file:lte_dl_ctrl.org][LTE - Downlink Control]]
