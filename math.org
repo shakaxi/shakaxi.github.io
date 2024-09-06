@@ -73,11 +73,11 @@ where $\mathbf{a}_i \otimes \mathbf{b}_i = \text{vec}\left(\mathbf{b}_i \mathbf{
 \end{align*}
 Particularly when $a = -b$, we have
 \begin{align*}
-\int_{-b}^b f(x) dx &= \int_0^b \left[ f(x) + f(-x) \right] dx \\
-                     &= \begin{cases}
-                       0, & f(x) = -f(-x); \\
-                       2\int_0^b f(x) dx, & f(x) = f(-x).
-                     \end{cases}
+  \int_{-b}^b f(x) dx &= \int_0^b \left[ f(x) + f(-x) \right] dx \\
+  &= \begin{cases}
+    0, & f(x) = -f(-x); \\
+    2\int_0^b f(x) dx, & f(x) = f(-x).
+  \end{cases}
 \end{align*}
 *** Multiple integral
 **** Double integral
