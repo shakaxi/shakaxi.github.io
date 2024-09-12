@@ -146,6 +146,13 @@ where
 - $ds \triangleq \|d\mathbf{r}\| = \|\mathbf{r}^{\prime}(t)\| dt$ is the arc length unit.
 
 For vector line integral, the orientation of the curve does matter, i.e., $\int_{\overset{\frown}{AB}} \mathbf{F} \cdot d\mathbf{r} = -\int_{\overset{\frown}{BA}} \mathbf{F} \cdot d\mathbf{r}$.
+***** Orientation
+For a scalar line integral, neither the orientation nor the parameterization of a curve matters. So long as the curve is traversed once by the parameterization, the value of the line integral is unchanged. Differently, the orientation of a curve indeed matters for a vector line integral.
+
+For an oriented curve $C$ and a same curve but with reversed orientation $-C$, following equation holds.
+\begin{align*}
+  \int_{-C} \mathbf{F} \cdot d\mathbf{r} = -\int_C \mathbf{F} \cdot d\mathbf{r}.
+\end{align*}
 *** Surface integral
 A surface integral means to integrate a scalar function or a vector field over a smooth surface in space. A surface integral is very similar to a line integral, and the only difference lies the integration is performed over a surface rather than a path. If the integrand is a scalar function, the integral is termed /scalar surface integral/ or /1st type of surface integral/; if the integrand is a vector field, the integral is termed /vector surface integral/ or /2nd type of surface integral/.
 **** Surface parameterization
@@ -182,6 +189,10 @@ where
 - $d\mathbf{S} \triangleq \begin{bmatrix}dydz \\ dxdz \\ dxdy\end{bmatrix} = \mathbf{n}dS$ is the surface unit.
 - $\mathbf{n} = \begin{bmatrix}\cos\alpha \\ \cos\beta \\ \cos\gamma \end{bmatrix}$ is the /unit normal vector/; $\cos\alpha$, $\cos\beta$, $\cos\gamma$ are direction cosines; $\alpha$, $\beta$, $\gamma$ are the angles relative to $x$, $y$, $z$ axes respectively.
 - $dS \triangleq \|d\mathbf{S}\| = \left\| \begin{bmatrix}dydz \\ dxdz \\ dxdy\end{bmatrix}\right\|$ is the surface area unit.
+***** Orientation
+Similar to vector line integrals, we need to define an oriented surface for a surface integral of a vector field. The orientation means /upward/downward/ for an oriented surface, or /outward/inward/ for a sphere or a cylinder.
+
+For a closed surface, e.g., sphere, we define /outward/ unit normal vector as /positive orientation/; while for a portion of a graph, we define /upward/ unit normal vector as /positive orientation/.
 ** Maximum and minimum values
 For a differentiable function $f: \mathbb{R}^{n} \to \mathbb{R}$, zero gradient is the necessary condition of an extreme point.
 - If Hessian matrix at an extreme point $\mathbf{x}_0$ is positive definite, i.e., $\nabla f(\mathbf{x}_0) = \mathbf{0}$, $\mathbf{H}(\mathbf{x}_0) \succ 0$, the extreme point corresponds with a local minimum.
