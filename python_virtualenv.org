@@ -10,6 +10,10 @@ Python的虚拟环境（virtual environment）是一个独立的Python运行环�
 #+begin_src python
   source ENV_NAME/bin/activate
 #+end_src
+* 安装/升级pip
+#+begin_src python
+  python -m ensurepip --upgrade
+#+end_src
 * 退出环境
 #+begin_src python
   deactivate
