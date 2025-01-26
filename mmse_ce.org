@@ -1,0 +1,42 @@
+#+TITLE: MMSE-based Channel Estimation
+
+Regarding channel estimation, /minimum mean square error (MMSE)/ is a popular algorithm widely utilized in a variety of applications. This short document is just written to reveal the rationale between the algorithm.
+
+Without loss of generality, we take an OFDM system for instance. The received signals on pilot, a.k.a. /reference signal (RS)/ /resource elements (RE)/ can be written as $\mathbf{y}_p = \mathbf{X}_p \mathbf{h}_{p} + \mathbf{n}_p$, where
+- $\mathbf{X}_p \in \mathbb{C}^{P \times P}$ is a diagonal matrix with pilot symbols as its diagonal elements, $P \in \mathbb{Z}^+$ the number of pilot in the pattern.
+- $\mathbf{h}_p \in \mathbb{C}^P$ is the /channel frequency response (CFR)/ on the pilot REs.
+- $\mathbf{n}_p \in \mathbb{C}^P \sim \mathcal{CN}(\mathbf{0}, \sigma^2\mathbf{I}_P)$ is the additive Gaussian white noise.
+
+The CFR of the target RE can be denoted by $\tilde{\mathbf{h}} = \mathbf{G} \mathbf{y}_p$,
+where $\mathbf{h}$ is the target CFR and $\mathbf{G}$ is the MMSE channel estimator.
+
+Then, the /mean square error (MSE)/ can be obtained as
+\begin{align}
+  e &= \mathrm{E}\left[\|\tilde{\mathbf{h}} - \mathbf{h}\|_2^2\right] \nonumber \\
+  &= \mathrm{E}\left[\|\mathbf{G}\mathbf{y}_p - \mathbf{h}\|_2^2\right] \label{eq:mse}
+\end{align}
+Just as its name indicates, MMSE algorithm aims to minimize the MSE. To this end, we let $\cfrac{\partial e}{\partial \mathbf{G}} = \mathrm{E}\left[(\mathbf{G}\mathbf{y}_p - \mathbf{h}) \mathbf{y}_p^H\right] = \mathbf{0}$. Then, we can get the MMSE channel estimator
+\begin{align}
+  \mathbf{G} &= \mathrm{E}\left[\mathbf{h}\mathbf{y}_p^H\right] \cdot \mathrm{E}^{-1}\left[\mathbf{y}_p\mathbf{y}_p^H\right] \nonumber \\
+             &= \mathrm{E}\left[\mathbf{h}\mathbf{h}_p^H \right] \cdot \left(\mathrm{E}\left[\mathbf{h}_p\mathbf{h}_p^H \right] + \frac{1}{\gamma}\mathbf{I}_P \right)^{-1} \cdot \mathbf{X}_p^{-1} \nonumber \\
+             &= \mathbf{R}_{h,p} \left(\mathbf{R}_p + \frac{1}{\gamma}\mathbf{I}_P \right)^{-1} \mathbf{X}_p^{-1}, \label{eq:mmse}
+\end{align}
+where
+- $\gamma$ is the SINR on pilot REs.
+- $\mathbf{R}_{h,p} \triangleq \mathrm{E}\left[\mathbf{h}\mathbf{h}_p^H \right]$ is the cross-correlation between the CFR on target REs and pilot REs.
+- $\mathbf{R}_p\triangleq \mathrm{E}\left[\mathbf{h}_p\mathbf{h}_p^H \right]$ is the auto-correlation of the CFR on pilot REs.
+
+Clearly, either cross-correlation or auto-correlation in \eqref{eq:mmse} depends on the ideal statistics of the channel, e.g., /power delay profile (PDP)/ for frequency-domain correlation computation, and Doppler power spectrum for time-domain correlation computation. However, the ideal statistics is not available in practice. In stead, some simple statistics are assumed in realistic systems, e.g., uniform PDP within /cyclic prefix (CP)/ length, U-shape Doppler power spectrum. In this case, the MMSE channel estimator in \eqref{eq:mmse} becomes
+\begin{align}
+  \tilde{\mathbf{G}} = \tilde{\mathbf{R}}_{h,p} \left(\tilde{\mathbf{R}}_p + \frac{1}{\gamma}\mathbf{I}_P\right)^{-1}\mathbf{X}_p^{-1}, \label{eq:mmse_nonideal}
+\end{align}
+where $\tilde{\mathbf{R}}_{h,p}$ and $\tilde{\mathbf{R}}_p$ are respectively the counterparts of $\mathbf{R}_{h,p}$ and $\mathbf{R}_p$ conditioned on non-ideal channel statistics.
+
+Then, the MSE in \eqref{eq:mse} can be written as
+\begin{align}
+  e(\tilde{\mathbf{G}}) = \mathrm{Tr}\left[\mathbf{R}_h + \tilde{\mathbf{R}}_{h,p}\left(\tilde{\mathbf{R}}_p + \frac{1}{\gamma}\mathbf{I}_P \right)^{-1} \left(\mathbf{R}_p + \frac{1}{\gamma}\mathbf{I}_P \right) \left(\tilde{\mathbf{R}}_p + \frac{1}{\gamma}\mathbf{I}_P \right)^{-1} \tilde{\mathbf{R}}_{h,p}^H - \tilde{\mathbf{R}}_{h,p}\left(\tilde{\mathbf{R}}_p + \frac{1}{\gamma}\mathbf{I}_P \right)^{-1} \mathbf{R}_{h,p}^H - \mathbf{R}_{h,p}\left(\tilde{\mathbf{R}}_p + \frac{1}{\gamma}\mathbf{I}_P \right)^{-1} \tilde{\mathbf{R}}_{h,p}^H\right]. \label{eq:mse_nonideal}
+\end{align}
+Particularly, for ideal channel statistics, the MSE further becomes
+\begin{align*}
+  e(\mathbf{G}) = \mathrm{Tr}\left[\mathbf{R}_h - \mathbf{R}_{h,p}\left(\mathbf{R}_p + \frac{1}{\gamma}\mathbf{I}_P \right)^{-1}\mathbf{R}_{h,p}^H\right].
+\end{align*}
