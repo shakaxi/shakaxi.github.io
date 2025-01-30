@@ -1,0 +1,9 @@
+#+TITLE: Orgmode - Beamer
+
+Emacs's builtin utility, orgmode can export an orgmode file to beamer slides. A [[file:latex_beamer.org][template]] for beamer can be used directly.
+
+In the export, text between a pair of stars will not be exported to boldface stuff as expected by default. Instead, it is colored by red as alert. Following settings can be placed in preamble to correct the behavior.
+#+begin_src latex
+  \setbeamercolor{alerted text}{fg=black}
+  \setbeamerfont{alerted text}{series=\bfseries}
+#+end_src

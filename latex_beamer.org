@@ -2,19 +2,34 @@
 
 /Beamer/ is a convenient \LaTeX package for high quality slides. A template can be shown as follows.
 
-#+BEGIN_SRC latex :exports code
-  \documentclass[compress, red, 10pt, aspectratio=169]{beamer}
+#+begin_src latex :exports code
+  \documentclass[t, compress, red, 10pt, aspectratio=169, allowframebreaks]{beamer}
 
   \usepackage{hyperref}
+  \hypersetup{pdfpagemode=FullScreen,
+  colorlinks=true,
+  pdfauthor={Shaka},
+  pdftitle={TITLE},
+  pdfcreator={GNU Emacs},
+  pdflang={English}}
+  \usepackage{tikz}
+  \usepackage{pgfplots}
+  \usepackage{circuitikz}
+  \usetikzlibrary{arrows, cd, shapes}
+  \tikzstyle{every picture}+=[remember picture]
+  \usepackage{amsmath, amssymb, amsfonts}
+  \usepackage{caption, subcaption}
+  \usepackage{fontawesome5}
   \usepackage{enumerate}
   \usepackage{cite}
-  \usepackage{graphicx, subfigure}
   \usepackage{tabularx}
-  \usepackage{amsmath, amssymb, amsfonts}
   \usepackage{fancybox}
-  \usepackage{tikz}
-  \usepackage{marvosym}
   \usepackage{booktabs}
+
+  \usepackage{biblatex}
+  \addbibresource{~/ref/ref.bib}
+  \newcounter{eg}
+  \newcounter{prop}
   % \usepackage{xeCJK}
   % \setCJKsansfont{WenQuanYi Micro Hei}
   % \usepackage{helvet}
@@ -26,8 +41,6 @@
   % \usepackage{newcent}
   % \usepackage{avant}
   % \usepackage{bookman}
-  \usetikzlibrary{arrows,shapes}
-  \tikzstyle{every picture}+=[remember picture]
   \DeclareMathOperator{\diag}{diag}
   \renewcommand{\emph}[1]{\textit{\textcolor{blue}{#1}}}
 
@@ -42,22 +55,21 @@
 
   %% Theme setting
   % \setbeamercolor{frametitle}{fg=black}
-  \setbeamercovered{transparent}
-  \hypersetup{pdfpagemode=FullScreen, colorlinks=true}
-  \setbeamertemplate{caption}[numbered]
+  \usetheme{default}
   \useinnertheme{circles}
   \useoutertheme{default}
+  \setbeamercovered{transparent}
+  \setbeamertemplate{caption}[numbered]
   \usefonttheme{professionalfonts}
   \setbeamerfont{title}{shape=\scshape,series=\bfseries}
   \setbeamerfont{frametitle}{shape=\scshape,series=\bfseries}
-  \usetheme{default}
 
   \begin{document}
 
-  \title{Title}
-  \author{Author}
-  \date{\textbf{\today}}
-  \institute{Institute}
+  \title{TITLE}
+  \author{AUTHOR}
+  \date{\today}
+  \institute{INSTITUTE}
   \titlepage
 
   \begin{frame}
@@ -74,8 +86,17 @@
   }
 
   \begin{frame}
-    \frametitle{}
+      \frametitle{References}
+      \printbibliography
   \end{frame}
 
+  \begin{frame}
+      \frametitle{FRAME}
+      \begin{itemize}
+      \item Proposal\refstepcounter{prop}\theprop\label{prop:1}: xxx
+      \item Example\refstepcounter{eg}\theeg\label{eg:1}: xxx
+      \item Proposal \ref{prop:1} and Example\ref{eg:1} xxx
+      \end{itemize}
+  \end{frame}
   \end{document}
-#+END_SRC
+#+end_src
