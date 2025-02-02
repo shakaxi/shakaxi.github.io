@@ -1,0 +1,23 @@
+#+TITLE: Python - Concurrent
+
+Python has 2 builtin concurrent utilities which is widely utilized, i.e., process pool and thread pool, dedicated to CPU intensity and I/O intensity respectively.
+
+- Due to /global interpreter lock (GIL)/, a process pool should be used for a CPU intensive task. In this case, each CPU involved (e.g., all the CPU by default) can be fully utilized.
+- While for a I/O intensive task, a thread pool should be used instead.
+
+A simple example can be found below.
+#+begin_src python
+  from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
+
+  # Create a process pool with 4 workers.
+  pool = ProcessPoolExecutor(4)
+  # Create a thread pool with 4 workers.
+  pool = ThreadPoolExecutor(4)
+
+  # Submit tasks to the pool.
+  futures = [pool.submit(FUNCTION, ARG) for ARG in ARGS]
+
+  # Get the results.
+  for f in as_completed(futures):
+      f.result()
+#+end_src
