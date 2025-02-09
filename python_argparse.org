@@ -1,0 +1,31 @@
+#+TITLE: Python - Argument Parser
+
+Package =argparse= is a convenient utility for argument parsing, in which class =ArgumentParser= is defined. Concerning its usage, a simple example can be given as follows.
+
+#+begin_src python
+  from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+
+  args = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
+
+  # Arguments in the root
+  args.add_argument("--ARGUMENT1", type=int, metavar='', help="DESCRIPTION OF ARGUMENT1", default=0)
+
+  # Arguments in groups
+  grp1 = args.add_argument_group("GROUP1", "DESCRIPTION OF GROUP1")
+  grp1.add_argument("--ARGUMENT1INGROUP1", type=float, metavar='', help="DESCRIPTION OF ARGUMENT1 IN GROUP1", default=0)
+  grp1.add_argument("--ARGUMENT2INGROUP1", type=int, nargs=2, metavar='', help="DESCRIPTION OF ARGUMENT2 IN GROUP1", default=[0, 1])
+  grp1.add_argument("--ENABLEFEATURE1", help="DESCRIPTION OF ENABLEFEATURE1 IN GROUP1", action="store_true")
+  ...
+  grp2 = args.add_argument_group("GROUP2", "DESCRIPTION OF GROUP2")
+  ...
+
+  # Parse the arguments
+  para = args.parse_args()
+
+  # Use the arguments parsed
+  arg1 = para.ARGUMENT1 # arg1 is an integer
+  arg1_grp1 = para.ARGUMENT1INGROUP1 # arg1_grp1 is a float
+  arg2_grp1 = para.ARGUMENT2INGROUP1 # arg2_grp2 is a list comprising of 2 integers
+  ...
+  feature1_enabler = para.ENABLEFEATURE1 # feature1_enabler is a boolean
+#+end_src
