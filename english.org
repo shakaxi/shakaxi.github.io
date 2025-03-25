@@ -1,0 +1,189 @@
+#+title: English Study
+
+* 发音
+** 元音字母和辅音字母
+在英文的26个字母中，有5个元音字母，分别为 =a=, =e=, =i=, =o=, =u=; 剩下的21个字母为辅音字母。
+** 开音节和闭音节
+- 开音节单词: 以元音字母结尾的单词
+- 闭音节单词: 以辅音字母结尾的单词
+
+通常，辅音字母的发音较单一，而元音字母的发音相对复杂。元音字母的发音有长音(也即字母本身的音)和短音，通常在开音节单词中发长音，在闭音节单词中发短音。
+| 元音字母 | =a=    | =e=    | =i=    | =o=    | =u=     |
+|----------+--------+--------+--------+--------+---------|
+| 开音节   | =[ei]= | =[i:]= | =[ai]= | =[əʊ]= | =[ju:]= |
+| 闭音节   | =[æ]=  | =[e]=  | =[ɪ]=  | =[ɒ]=  | =[ʌ]=   |
+** 音标
+- 爆破音: =[p]=, =[b]=, =[t]=, =[d]=, =[k]=, =[g]=.
+** Misc.
+- I can't do it 中的 ='t= 不发音，所以这句话读起来和I can do it相似，区别仅仅在于后者中的can弱读。
+* 单词
+- appointment: 预约
+- classy: 优等的, 上等的, 有品味的.
+- disrupt：使瓦解
+- mind
+  + in one's mind: 表达某人记得某事，在某人的记忆里。
+  + on one's mind: 表达困扰某人的问题或事情，某人心里挂念担心的问题或事情。
+- pantsuit：衣裤套装
+- sale: 促销
+- stereotype：模式化形象，刻板印象。
+- stingy: 吝啬的, 小气的.
+- trendy: 流行的，时髦的，时尚的。
+- 变化
+  + get: 逐渐变
+  + turn: 颜色变
+  + grow: 成长变
+  + become: 身份变
+- 看
+  + look: 看的时间短
+  + watch: 看的时间长
+  + see: 强调看的结果
+  + read: 强调安静读
+- 意识
+  + conscious/consciously: 有意识的/有意识地
+  + subconscious/subconsciously: 潜意识的/潜意识地
+- 真
+  + very: 只能修饰形容词或副词。
+  + really: 能修饰动词、形容词、或副词。
+* 短语
+- As time goes by: 时光流逝
+- As you wish: 如你所愿
+- Believe it or not: 信不信由你
+- be made
+  + of: 看得见原材料
+  + from: 看不见原材料
+- catch one's drift: 理解某人所说的话的大概意思
+- charge by the hour: 按小时收费
+- Did it ever occur to you that ...?: 你有没有想过...?
+- Dig in: 开吃吧
+- Same here: 我也一样
+- What's up?: 最近怎么样?
+- Don't be so hard on yourself: 别对自己太苛刻
+- Don't come for me: 别找我麻烦
+- Don't fall for it: 别上当
+- Don't fuck with me: 别耍我
+- Don't give me that look: 别那样看我
+- Don't lose your head: 别失去理智了
+- Don't waste my time: 不要浪费我的时间
+- double-edged sword: 双刃剑
+- Easy for you to say: 站着说话不腰疼
+- face the music: 面对现实
+- Fasten your seatbelt: 系好你的安全带
+- From the ground up: 从头开始, 从零开始.
+- Give it your best shot: 尽你最大的努力
+- green light: 批准
+- Hard to believe: 难以置信
+- Has any one seen sb/sth?: 用于询问某人/某物在哪儿
+- Here you go: 给你
+- hit the roof: 大发雷霆
+- Home free: 大功告成
+- How am I supposed to do sth.?: 我怎么能做某事?
+- How are things going?: 事情进展如何?
+- How's life treating you?: 你过得怎么样?
+- How so?: 何出此言?
+- How do you sleep at night?: 你的良心不会痛吗?
+- Honesty is the best policy: 真诚才是必杀技
+- Who do you think you are?: 你以为你是谁? 你算哪根葱?
+- You had me at hello: 我对你一见钟情
+- First things first: 重要的事情先做
+- Wake up and smell the coffee: 醒醒, 认清现实吧.
+- Be who you are: 做回你自己
+- One step at a time: 一步一步来
+- I adore you: 我超喜欢你
+- Every dog has his day: 人人都有出头之日
+- A promise is a promise: 说到就要做到
+- Break a leg: 祝你成功
+- Poppycock: 胡说八道
+- You got this: 你一定可以的
+- 我更喜欢...而不是...
+  + I prefer to ... rather than ...
+  + I would rather ... than ...
+  + I prefer ... to ...
+  + I enjoy ... more than ...
+- meet up for ...: 见面...
+- Keep an eye on ...: 留意, 照看, 盯着.
+- I can't wait to see you: 我等不及想见你
+- I'd love/like to hear your throughts on ...: 我想听听您对...的看法
+- I don't see why not: 我觉得没什么不可以
+- I have faith in you: 我对你有信心
+- I'll have what he's having: 我要和他一样的
+- I'm afraid not: 恐怕不行
+- I'm not in the mood: 我没心情, 我没兴致.
+- I'm so sorry for running late: 非常抱歉迟到了
+- I'm truly sorry: 我真的很抱歉
+- I need a favor: 我需要帮忙
+- Could I trouble you for a favor?: 能麻烦您帮个忙吗?
+- I saw this coming: 我料到会是这样
+- I should've done sth.: 我本该做某事的
+- It drives me crazy: 简直快让我疯了
+- It is not that bad: 不至于
+- It's a long story: 说来话长
+- It's as simple as that: 就这么简单
+- It's no good/use doing sth: 做某事不好/没用
+- It's waste doing: 做某事真浪费
+- It was all for nothing: 一切都白费了, 白忙一场, 徒劳无功.
+- I will fix you up: 我会帮你搞定
+- (just) keep in mind that ...: 记住 ...
+- Keep me posted: 有情况通知我
+- Let me get this straight: 让我理清楚
+- Let me walk you to the door: 我送您到门口
+- Let's be frank: 让我们坦诚相待, 我们不要拐弯抹角了.
+- Let's get out of here: 我们离开这里
+- Let sleeping dogs lie: 别惹麻烦, 别多事.
+- Long time no see: 好久不见
+- Make a fresh start: 重新开始
+- Make every moment count: 珍惜每一刻
+- My hands are tied: 我束手无策, 我无能为力.
+- Nip(掐) it in the bud(芽): 防范于未然, 消灭于萌芽状态.
+- Nothing ventured, nothing gained.: 不入虎穴焉得虎子.
+- Now is not the time: 现在不是时候
+- obtain forgiveness: 争取谅解
+- Once bitten, twice shy: 一朝被蛇咬, 十年怕井绳.
+- on short notice: 短时间内(紧急情况下)
+- out of sight, out of mind: 眼不见, 心不烦.
+- over my dead body: 想都别想
+- rob the cradle: 老牛吃嫩草
+- rush for success: 急于求成
+- sb. is totally winning life: 某人绝对是人生赢家
+- sedate sb: 通过药物使某人镇静
+- show up: 出现
+- someone thought it would be ...: 某人以为会...
+- split the bill: AA制
+- Stop making noise: 别吵了
+- That's just the way it is: 就是这样
+- They broke up: 他们分手了
+- Up yours: 去你的吧
+- What's it to you?: 关你什么事?
+- What's keeping you busy these days?: 你最近在忙什么?
+- This gift is just a small token of appreciation: 这份礼物聊表心意
+- What's the hurry?: 急什么?
+- What's the point?: 重点是什么?
+- What the hell?: 搞什么鬼?
+- withdraw money: (从银行)取钱
+- wrap one's head/mind around: 想明白
+- You are a chicken: 你是胆小鬼
+- You can keep the charge: 不用找了
+- You can say that again: 确实, 表示强烈赞同, 同exactly.
+- You can't keep doing this: 你不能总是这样
+- You look dashing: 你帅呆了
+- You look stunning: 你美呆了
+- You look divine: 你看起来气质非凡
+- You're a phony: 你是个骗子
+- You're the boss: 你说了算
+- You're so mean: 你太过分了
+- I can handle myself: 我能照顾好自己
+- You've got to be kidding me: 你肯定在逗我
+- I've heard so much about you: 久仰大名
+- I like being around you: 我喜欢和你在一起
+- Another day, another dollar.: 当一天和尚, 撞一天钟.
+- Old habits die hard: 江山易改本性难移
+- move to a quieter spot: 换个安静的地方
+- You must try the signature dish here: 你一定要尝尝这里的招牌菜
+- 喝咖啡
+  + short: 小杯
+  + tall: 中杯
+  + granda: 大杯
+  + venti: 超大杯
+  + trenta: 巨杯
+- 天生不是作...的料
+  + not cut out to be a/an ...
+  + not cut out for ...
