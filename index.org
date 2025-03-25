@@ -41,6 +41,7 @@
 - [[file:emacs_reftex.org][Emacs - RefTeX]]
 - [[file:emacs_wl.org][Emacs - Wanderlust]]
 - [[file:emacs_ycmd.org][Emacs - YCMD]]
+- [[file:english.org][English Study]]
 - [[file:esprit.org][Estimation of Signal Parameters by Rotational Invariance Techniques (ESPRIT)]]
 - [[file:fourier.org][Fourier Transform]]
 - [[file:gaussian.org][Gaussian Distribution]]
