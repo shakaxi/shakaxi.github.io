@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-02-02 Sun 17:06 -->
+<!-- 2025-03-25 Tue 23:01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python - Concurrent</title>
@@ -209,19 +209,19 @@ Python has 2 builtin concurrent utilities which is widely utilized, i.e., proces
 A simple example can be found below.
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
+<pre class="src src-python"><span style="color: #b6a0ff;">from</span> concurrent.futures <span style="color: #b6a0ff;">import</span> ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 
-# Create a process pool with 4 workers.
-pool = ProcessPoolExecutor(4)
-# Create a thread pool with 4 workers.
-pool = ThreadPoolExecutor(4)
+<span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Create a process pool with 4 workers.</span>
+<span style="color: #00d3d0;">pool</span> <span style="color: #ffffff;">=</span> ProcessPoolExecutor<span style="color: #ffffff;">(</span>4<span style="color: #ffffff;">)</span>
+<span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Create a thread pool with 4 workers.</span>
+<span style="color: #00d3d0;">pool</span> <span style="color: #ffffff;">=</span> ThreadPoolExecutor<span style="color: #ffffff;">(</span>4<span style="color: #ffffff;">)</span>
 
-# Submit tasks to the pool.
-futures = [pool.submit(FUNCTION, ARG) for ARG in ARGS]
+<span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Submit tasks to the pool.</span>
+<span style="color: #00d3d0;">futures</span> <span style="color: #ffffff;">=</span> <span style="color: #ffffff;">[</span>pool.submit<span style="color: #ff66ff;">(</span>FUNCTION, ARG<span style="color: #ff66ff;">)</span> <span style="color: #b6a0ff;">for</span> ARG <span style="color: #b6a0ff;">in</span> ARGS<span style="color: #ffffff;">]</span>
 
-# Get the results.
-for f in as_completed(futures):
-    f.result()
+<span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Get the results.</span>
+<span style="color: #b6a0ff;">for</span> f <span style="color: #b6a0ff;">in</span> as_completed<span style="color: #ffffff;">(</span>futures<span style="color: #ffffff;">)</span>:
+    f.result<span style="color: #ffffff;">()</span>
 </pre>
 </div>
 </div>

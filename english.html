@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-06-11 Wed 00:43 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>English Study</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">English Study</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9d682f4">发音</a>
+<ul>
+<li><a href="#orgaa8686d">元音字母和辅音字母</a></li>
+<li><a href="#orgbe8b276">开音节和闭音节</a></li>
+<li><a href="#org671c3ab">音标</a></li>
+<li><a href="#org24f7af5">Misc.</a></li>
+</ul>
+</li>
+<li><a href="#org3eadb94">单词</a></li>
+<li><a href="#org0011ab2">短语</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9d682f4" class="outline-2">
+<h2 id="org9d682f4">发音</h2>
+<div class="outline-text-2" id="text-org9d682f4">
+</div>
+<div id="outline-container-orgaa8686d" class="outline-3">
+<h3 id="orgaa8686d">元音字母和辅音字母</h3>
+<div class="outline-text-3" id="text-orgaa8686d">
+<p>
+在英文的26个字母中，有5个元音字母，分别为 <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, <code>u</code>; 剩下的21个字母为辅音字母。
+</p>
+</div>
+</div>
+<div id="outline-container-orgbe8b276" class="outline-3">
+<h3 id="orgbe8b276">开音节和闭音节</h3>
+<div class="outline-text-3" id="text-orgbe8b276">
+<ul class="org-ul">
+<li>开音节单词: 以元音字母结尾的单词</li>
+<li>闭音节单词: 以辅音字母结尾的单词</li>
+</ul>
+
+<p>
+通常，辅音字母的发音较单一，而元音字母的发音相对复杂。元音字母的发音有长音(也即字母本身的音)和短音，通常在开音节单词中发长音，在闭音节单词中发短音。
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">元音字母</th>
+<th scope="col" class="org-left"><code>a</code></th>
+<th scope="col" class="org-left"><code>e</code></th>
+<th scope="col" class="org-left"><code>i</code></th>
+<th scope="col" class="org-left"><code>o</code></th>
+<th scope="col" class="org-left"><code>u</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">开音节</td>
+<td class="org-left"><code>[ei]</code></td>
+<td class="org-left"><code>[i:]</code></td>
+<td class="org-left"><code>[ai]</code></td>
+<td class="org-left"><code>[əʊ]</code></td>
+<td class="org-left"><code>[ju:]</code></td>
+</tr>
+
+<tr>
+<td class="org-left">闭音节</td>
+<td class="org-left"><code>[æ]</code></td>
+<td class="org-left"><code>[e]</code></td>
+<td class="org-left"><code>[ɪ]</code></td>
+<td class="org-left"><code>[ɒ]</code></td>
+<td class="org-left"><code>[ʌ]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org671c3ab" class="outline-3">
+<h3 id="org671c3ab">音标</h3>
+<div class="outline-text-3" id="text-org671c3ab">
+<ul class="org-ul">
+<li>爆破音: <code>[p]</code>, <code>[b]</code>, <code>[t]</code>, <code>[d]</code>, <code>[k]</code>, <code>[g]</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org24f7af5" class="outline-3">
+<h3 id="org24f7af5">Misc.</h3>
+<div class="outline-text-3" id="text-org24f7af5">
+<ul class="org-ul">
+<li>I can't do it 中的 <code>'t</code> 不发音，所以这句话读起来和I can do it相似，区别仅仅在于后者中的can弱读。</li>
+<li>字母组合 <code>ee</code> 和 <code>ea</code> 均发 <code>[i:]</code> 音。不同在于， <code>ee</code> 喜欢和字母 <code>b</code> 和字母 <code>p</code> 在一起；而 <code>ea</code> 喜欢和字母 <code>d</code> 和字母 <code>t</code> 在一起。</li>
+<li>字母组合 <code>ai</code> 和 <code>ay</code> 均发 <code>[ei]</code> 音。不同在于， <code>ai</code> 一般位于单词中间；而 <code>ay</code> 位于单词尾部。</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3eadb94" class="outline-2">
+<h2 id="org3eadb94">单词</h2>
+<div class="outline-text-2" id="text-org3eadb94">
+<ul class="org-ul">
+<li>appointment: 预约</li>
+<li>beverage: 饮料</li>
+<li>classy: 优等的, 上等的, 有品味的.</li>
+<li>disrupt：使瓦解</li>
+<li>mind
+<ul class="org-ul">
+<li>in one's mind: 表达某人记得某事，在某人的记忆里。</li>
+<li>on one's mind: 表达困扰某人的问题或事情，某人心里挂念担心的问题或事情。</li>
+</ul></li>
+<li>pantsuit：衣裤套装</li>
+<li>sale: 促销</li>
+<li>stereotype：模式化形象，刻板印象。</li>
+<li>stingy: 吝啬的, 小气的.</li>
+<li>trendy: 流行的，时髦的，时尚的。</li>
+<li>变化
+<ul class="org-ul">
+<li>get: 逐渐变</li>
+<li>turn: 颜色变</li>
+<li>grow: 成长变</li>
+<li>become: 身份变</li>
+</ul></li>
+<li>看
+<ul class="org-ul">
+<li>look: 看的时间短</li>
+<li>watch: 看的时间长</li>
+<li>see: 强调看的结果</li>
+<li>read: 强调安静读</li>
+</ul></li>
+<li>意识
+<ul class="org-ul">
+<li>conscious/consciously: 有意识的/有意识地</li>
+<li>subconscious/subconsciously: 潜意识的/潜意识地</li>
+</ul></li>
+<li>真
+<ul class="org-ul">
+<li>very: 只能修饰形容词或副词。</li>
+<li>really: 能修饰动词、形容词、或副词。</li>
+</ul></li>
+<li>动物
+<ul class="org-ul">
+<li>mosquito: 蚊子</li>
+</ul></li>
+<li>超市
+<ul class="org-ul">
+<li>查看促销活动: check promotions</li>
+<li>自动扶梯: escalator
+<ul class="org-ul">
+<li>乘坐扶梯: take the escalator</li>
+</ul></li>
+<li>蔬菜
+<ul class="org-ul">
+<li>香菜: coriander</li>
+<li>麻薯: mochi</li>
+</ul></li>
+<li>水果
+<ul class="org-ul">
+<li>榴莲: durian</li>
+</ul></li>
+<li>瑞士卷: Swiss roll</li>
+</ul></li>
+<li>盖子
+<ul class="org-ul">
+<li>cap: 通常指紧密贴合的盖子，需要拧上或者扣上才能固定。一般用于瓶子、小容器、笔、牙膏等。
+<ul class="org-ul">
+<li>打开: unscrew the cap, twist off the cap.</li>
+<li>关上: screw the cap, tighten the cap.</li>
+</ul></li>
+<li>lid: 通常是可以拿起来的盖子，盖在容器顶部。一般用于锅、盒子、罐子、垃圾桶等较大的容器。例如：垃圾桶盖子: trash can lid.
+<ul class="org-ul">
+<li>打开/关上盖子: open/close the lid</li>
+</ul></li>
+</ul></li>
+<li>租房
+<ul class="org-ul">
+<li>合同: contract</li>
+<li>房东: landlord</li>
+<li>押金: deposit</li>
+<li>中介: broker</li>
+<li>转租: sublet</li>
+<li>租户: tenant</li>
+<li>水电费: utilities</li>
+<li>设施: amenities</li>
+<li>租金: rent</li>
+<li>带家具的: furnished</li>
+<li>租期: tenancy period</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0011ab2" class="outline-2">
+<h2 id="org0011ab2">短语</h2>
+<div class="outline-text-2" id="text-org0011ab2">
+<ul class="org-ul">
+<li>Another time: 下次见</li>
+<li>As time goes by: 时光流逝</li>
+<li>As you wish: 如你所愿</li>
+<li>Believe it or not: 信不信由你</li>
+<li>be made
+<ul class="org-ul">
+<li>of: 看得见原材料</li>
+<li>from: 看不见原材料</li>
+</ul></li>
+<li>catch one's drift: 理解某人所说的话的大概意思</li>
+<li>charge by the hour: 按小时收费</li>
+<li>Did it ever occur to you that &#x2026;?: 你有没有想过&#x2026;?</li>
+<li>Dig in: 开吃吧</li>
+<li>Same here: 我也一样</li>
+<li>What's up?: 最近怎么样?</li>
+<li>Don't be so hard on yourself: 别对自己太苛刻</li>
+<li>Don't come for me: 别找我麻烦</li>
+<li>Don't fall for it: 别上当</li>
+<li>Don't fuck with me: 别耍我</li>
+<li>Don't give me that look: 别那样看我</li>
+<li>Don't lose your head: 别失去理智了</li>
+<li><ul class="org-ul">
+<li>Don't talk the talk if you can't walk the walk: 不要光说不练, 拿出实际行动.</li>
+<li>Put up or shut up: 要么你上, 要么闭嘴.</li>
+<li>Easy for you to say: 站着说话不腰疼</li>
+<li>A promise is a promise: 说到就要做到</li>
+</ul></li>
+<li>Don't waste my time: 不要浪费我的时间</li>
+<li>double-edged sword: 双刃剑</li>
+<li>face the music: 面对现实</li>
+<li>Fasten your seatbelt: 系好你的安全带</li>
+<li>From the ground up: 从头开始, 从零开始.</li>
+<li>Give it your best shot: 尽你最大的努力</li>
+<li>green light: 批准</li>
+<li>Hard to believe: 难以置信</li>
+<li>Has any one seen sb/sth?: 用于询问某人/某物在哪儿</li>
+<li>Here you go: 给你</li>
+<li>hit the roof: 大发雷霆</li>
+<li>Home free: 大功告成</li>
+<li>How am I supposed to do sth.?: 我怎么能做某事?</li>
+<li>How are things going?: 事情进展如何?</li>
+<li>How's life treating you?: 你过得怎么样?</li>
+<li>How so?: 何出此言?</li>
+<li>How do you sleep at night?: 你的良心不会痛吗?</li>
+<li>Honesty is the best policy: 真诚才是必杀技</li>
+<li>Who do you think you are?: 你以为你是谁? 你算哪根葱?</li>
+<li>You had me at hello: 我对你一见钟情</li>
+<li>First things first: 重要的事情先做</li>
+<li>Wake up and smell the coffee: 醒醒, 认清现实吧.</li>
+<li>Be who you are: 做回你自己</li>
+<li>One step at a time: 一步一步来</li>
+<li>I adore you: 我超喜欢你</li>
+<li>Every dog has his day: 人人都有出头之日</li>
+<li>Break a leg: 祝你成功</li>
+<li>Poppycock: 胡说八道</li>
+<li>You got this: 你一定可以的</li>
+<li>我更喜欢&#x2026;而不是&#x2026;
+<ul class="org-ul">
+<li>I prefer to &#x2026; rather than &#x2026;</li>
+<li>I would rather &#x2026; than &#x2026;</li>
+<li>I prefer &#x2026; to &#x2026;</li>
+<li>I enjoy &#x2026; more than &#x2026;</li>
+</ul></li>
+<li>meet up for &#x2026;: 见面&#x2026;</li>
+<li>Keep an eye on &#x2026;: 留意, 照看, 盯着.</li>
+<li>I can't wait to see you: 我等不及想见你</li>
+<li>I'd love/like to hear your throughts on &#x2026;: 我想听听您对&#x2026;的看法</li>
+<li>I don't see why not: 我觉得没什么不可以</li>
+<li>I have faith in you: 我对你有信心</li>
+<li>I'll have what he's having: 我要和他一样的</li>
+<li>I'm afraid not: 恐怕不行</li>
+<li>I'm not in the mood: 我没心情, 我没兴致.</li>
+<li>I'm so sorry for running late: 非常抱歉迟到了</li>
+<li>I'm truly sorry: 我真的很抱歉</li>
+<li>I need a favor: 我需要帮忙</li>
+<li>Could I trouble you for a favor?: 能麻烦您帮个忙吗?</li>
+<li>I saw this coming: 我料到会是这样</li>
+<li>I should've done sth.: 我本该做某事的</li>
+<li>It drives me crazy: 简直快让我疯了</li>
+<li>It is not that bad: 不至于</li>
+<li>It's a long story: 说来话长</li>
+<li>It's as simple as that: 就这么简单</li>
+<li>It's no good/use doing sth: 做某事不好/没用</li>
+<li>It's waste doing: 做某事真浪费</li>
+<li>It was all for nothing: 一切都白费了, 白忙一场, 徒劳无功.</li>
+<li>I will fix you up: 我会帮你搞定</li>
+<li>(just) keep in mind that &#x2026;: 记住 &#x2026;</li>
+<li>Keep me posted: 有情况通知我</li>
+<li>Let me get this straight: 让我理清楚</li>
+<li>Let me walk you to the door: 我送您到门口</li>
+<li>Let's be frank: 让我们坦诚相待, 我们不要拐弯抹角了.</li>
+<li>Let's get out of here: 我们离开这里</li>
+<li>Let's see you do better: 让我们看看你是否能够技高一筹.</li>
+<li>Let sleeping dogs lie: 别惹麻烦, 别多事.</li>
+<li>Long time no see: 好久不见</li>
+<li>Make a fresh start: 重新开始</li>
+<li>Make every moment count: 珍惜每一刻</li>
+<li>My hands are tied: 我束手无策, 我无能为力.</li>
+<li>Nip(掐) it in the bud(芽): 防范于未然, 消灭于萌芽状态.</li>
+<li>Nothing ventured, nothing gained.: 不入虎穴焉得虎子.</li>
+<li>Now is not the time: 现在不是时候</li>
+<li>obtain forgiveness: 争取谅解</li>
+<li>Once bitten, twice shy: 一朝被蛇咬, 十年怕井绳.</li>
+<li>on short notice: 短时间内(紧急情况下)</li>
+<li>out of sight, out of mind: 眼不见, 心不烦.</li>
+<li>over my dead body: 想都别想</li>
+<li>rob the cradle: 老牛吃嫩草</li>
+<li>rush for success: 急于求成</li>
+<li>sb. is totally winning life: 某人绝对是人生赢家</li>
+<li>sedate sb: 通过药物使某人镇静</li>
+<li>show up: 出现</li>
+<li>someone thought it would be &#x2026;: 某人以为会&#x2026;</li>
+<li>split the bill: AA制</li>
+<li>Stop making noise: 别吵了</li>
+<li>That's just the way it is: 就是这样</li>
+<li>They broke up: 他们分手了</li>
+<li>Up yours: 去你的吧</li>
+<li>What's it to you?: 关你什么事?</li>
+<li>What's keeping you busy these days?: 你最近在忙什么?</li>
+<li>This gift is just a small token of appreciation: 这份礼物聊表心意</li>
+<li>What's the hurry?: 急什么?</li>
+<li>What's the point?: 重点是什么?</li>
+<li>What the hell?: 搞什么鬼?</li>
+<li>withdraw money: (从银行)取钱</li>
+<li>wrap one's head/mind around: 想明白</li>
+<li>You are a chicken: 你是胆小鬼</li>
+<li>You can keep the charge: 不用找了</li>
+<li>You can say that again: 确实, 表示强烈赞同, 同exactly.</li>
+<li>You can't keep doing this: 你不能总是这样</li>
+<li>You look dashing: 你帅呆了</li>
+<li>You look stunning: 你美呆了</li>
+<li>You look divine: 你看起来气质非凡</li>
+<li>You're a phony: 你是个骗子</li>
+<li>You're the boss: 你说了算</li>
+<li>You're so mean: 你太过分了</li>
+<li>I can handle myself: 我能照顾好自己</li>
+<li>You've got to be kidding me: 你肯定在逗我</li>
+<li>I've heard so much about you: 久仰大名</li>
+<li>I like being around you: 我喜欢和你在一起</li>
+<li>Another day, another dollar.: 当一天和尚, 撞一天钟.</li>
+<li>Old habits die hard: 江山易改本性难移</li>
+<li>move to a quieter spot: 换个安静的地方</li>
+<li>You must try the signature dish here: 你一定要尝尝这里的招牌菜</li>
+<li>喝咖啡
+<ul class="org-ul">
+<li>short: 小杯</li>
+<li>tall: 中杯</li>
+<li>granda: 大杯</li>
+<li>venti: 超大杯</li>
+<li>trenta: 巨杯</li>
+</ul></li>
+<li>天生不是作&#x2026;的料
+<ul class="org-ul">
+<li>not cut out to be a/an &#x2026;</li>
+<li>not cut out for &#x2026;</li>
+</ul></li>
+<li>我先走了
+<ul class="org-ul">
+<li>I am heading out now</li>
+<li>I have to leave/go now</li>
+</ul></li>
+<li>关于吃饭
+<ul class="org-ul">
+<li>We can eat at home: 我们可以在家吃</li>
+<li>We can eat out: 我们可以出去吃</li>
+<li>We can cook: 我们可以自己做</li>
+<li>We can order takeout: 我们可以点外卖</li>
+<li>We can eat less: 我们可以少吃一点</li>
+</ul></li>
+<li>Well, this is me. 我到了</li>
+<li>我在现场
+<ul class="org-ul">
+<li>I'm on site</li>
+<li>I'm at the location</li>
+</ul></li>
+<li>不用谢/不客气
+<ul class="org-ul">
+<li>No thanks needed.</li>
+<li>No need to thank me.</li>
+<li>Don't mention it.</li>
+<li>Oh it's nothing.</li>
+<li>(It's) my pleasure.</li>
+<li>That's OK.</li>
+<li>Not at all.</li>
+<li>That's all right.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
