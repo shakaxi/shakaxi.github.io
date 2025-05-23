@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-05-24 Sat 01:29 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Electromagnetic Field (EMF)</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Electromagnetic Field (EMF)</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8a8b300">Maxwell's equations without free charge</a></li>
+<li><a href="#orgeef9a34">Wave equation</a></li>
+<li><a href="#org1f33662">Helmholtz equation</a></li>
+<li><a href="#org6a6d903">Angular spectrum</a>
+<ul>
+<li><a href="#org6522ca2">Fresnel diffraction</a></li>
+<li><a href="#org77a00bc">Fraunhofer diffraction</a>
+<ul>
+<li><a href="#org5c0ec06">Rectangular aperture</a></li>
+<li><a href="#org0b0a9c8">Circular aperture</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8a8b300" class="outline-2">
+<h2 id="org8a8b300">Maxwell's equations without free charge</h2>
+<div class="outline-text-2" id="text-org8a8b300">
+\begin{align*}
+  \nabla \times \mathbf{E} &= -\mu \frac{\partial \mathbf{H}}{\partial t} \\
+  \nabla \times \mathbf{H} &= \epsilon \frac{\partial \mathbf{E}}{\partial t} \\
+  \nabla \cdot \epsilon\mathbf{E} &= 0 \\
+  \nabla \cdot \mu\mathbf{H} &= 0
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(\mathbf{E}\) and \(\mathbf{H}\) are strengths of electric and magnetic fields respectively;</li>
+<li>\(\epsilon\) and \(\mu\) are permittivity and permeability respectively.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgeef9a34" class="outline-2">
+<h2 id="orgeef9a34">Wave equation</h2>
+<div class="outline-text-2" id="text-orgeef9a34">
+<p>
+Both \(\mathbf{E}\) and \(\mathbf{H}\) fulfill wave equation in vector format, i.e.,
+</p>
+\begin{align*}
+  \nabla^2 \mathbf{E} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} &= 0\\
+  \nabla^2 \mathbf{H} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{H}}{\partial t^2} &= 0
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(n\) is the <i>refractive index</i> of the medium;</li>
+<li>\(c = \dfrac{1}{\sqrt{\epsilon_0 \mu_0}}\) is the propagation speed of wave in vacuum, with \(\epsilon_0\) and \(\mu_0\) the permittivity and permeability in vacuum respectively.</li>
+</ul>
+<p>
+For any individual component, the wave equation in scalar format applies, i.e.,
+</p>
+\begin{align}
+  \nabla^2 u(\mathbf{p}, t) - \frac{n^2}{c^2} \frac{\partial^2 u(\mathbf{p}, t)}{\partial t^2} = 0, \label{eq:wave-eq}
+\end{align}
+<p>
+where \(u(\mathbf{p},t)\) can be \(\mathbf{E}_x\), \(\mathbf{E}_y\), \(\mathbf{E}_z\), \(\mathbf{H}_x\), \(\mathbf{H}_y\), or \(\mathbf{H}_z\).
+</p>
+
+<p>
+For <i>monochromatic</i> wave, a scalar-field can be written as
+</p>
+\begin{align}
+  u(\mathbf{r}, t) &= a(\mathbf{r}) \cos[2\pi ft + \phi(\mathbf{r})] \nonumber \\
+                   &= \mathcal{R}\left[U(\mathbf{r}, t) \right] \nonumber \\
+                   &= \mathcal{R}\left[U(\mathbf{r}) e^{j2\pi ft}\right] \label{eq:separable}
+\end{align}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(U(\mathbf{r}) \triangleq a(\mathbf{r}) e^{j \phi(\mathbf{r})}\), \(a(\mathbf{r})\) and \(\phi(\mathbf{r})\) are respectively the amplitude and phase at point \(\mathbf{r}\);</li>
+<li>\(U(\mathbf{r},t) \triangleq U(\mathbf{r})e^{j2\pi ft}\).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1f33662" class="outline-2">
+<h2 id="org1f33662">Helmholtz equation</h2>
+<div class="outline-text-2" id="text-org1f33662">
+<p>
+By substituting \eqref{eq:separable} into \eqref{eq:wave-eq}, the time-independent \(U(\mathbf{r})\) obey the following <i>Helmholtz equation</i>,
+</p>
+\begin{align}
+  (\nabla^2 + \kappa^2)U(\mathbf{r}) = 0 \label{eq:helmholtz},
+\end{align}
+<p>
+where \(κ = 2\pi n \dfrac{f}{c} = \dfrac{2\pi}{\lambda}\) is termed <i>wave number</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org6a6d903" class="outline-2">
+<h2 id="org6a6d903">Angular spectrum</h2>
+<div class="outline-text-2" id="text-org6a6d903">
+<p>
+Without loss of generality, a monochromatic wave can be denoted by
+</p>
+\begin{align}
+  U(\mathbf{r})=e^{j\mathbf{k}\cdot \mathbf{r}}, \label{eq:f-distr}
+\end{align}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(\mathbf{r}\) is a location vector,</li>
+<li>\(\mathbf{\kappa} = \cfrac{2\pi}{\lambda} (\hat{\mathbf{x}}\cos\alpha + \hat{\mathbf{y}}\cos\beta + \hat{\mathbf{z}}\cos\gamma)\) is <i>wave vector</i>,</li>
+<li>\(\alpha\), \(\beta\), \(\gamma\) are the angles of \(\mathbf{\kappa}\) relative to \(x\), \(y\), \(z\) axes respectively. Accordingly, their cosine values are direction cosines. Clearly, \(\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1\).</li>
+</ul>
+
+<p>
+Targetting the field on plane perpendicular to \(z\) axis, 2D Fourier transform can be performed
+</p>
+\begin{align*}
+  A(f_X, f_Y; z) &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} U(x,y,z)e^{-j2\pi (f_Xx + f_Yy)} dx dy, \\
+  U(x,y,z) &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} A(f_X,f_Y; z)e^{j2\pi (f_Xx + f_Yy)} df_X df_Y;
+\end{align*}
+<p>
+where
+</p>
+<ul class="org-ul">
+<li>\(A(f_X, f_Y; z)\) is termed <i>angular spectrum</i> of disturbance \(U(x, y, z)\);</li>
+<li>\(f_X \triangleq \cfrac{\cos\alpha}{\lambda}\), \(f_Y \triangleq \cfrac{\cos\beta}{\lambda}\) are <i>spatial frequencies</i>.</li>
+</ul>
+
+<p>
+Based on \eqref{eq:f-distr}, the propagation from \(z=0\) can be expressed by
+</p>
+\begin{align}
+  A(f_X, f_Y; z) = A(f_X, f_Y; 0) e^{j\kappa z \sqrt{1 - \lambda^2f_X^2 - \lambda^2f_Y^2}}. \label{eq:prop}
+\end{align}
+<ul class="org-ul">
+<li>For \(f_X^2 + f_Y^2 < \cfrac{1}{\lambda^2}\), relative phase delays are introduced in the propagation over distance \(z\), as shown in \eqref{eq:prop}.</li>
+<li>For \(f_X^2 + f_Y^2 > \cfrac{1}{\lambda^2}\), \eqref{eq:prop} becomes \(A(f_X, f_Y; z) = A(f_X, f_Y; 0) e^{-\kappa z \sqrt{\lambda^2f_X^2 + \lambda^2f_Y^2 - 1}}\). Accordingly, the component is termed <i>evanescent wave</i> and attenuates quickly. In case of \(z\) larger than several wavelength, the evanescent component can be disregarded.</li>
+</ul>
+<p>
+Equivalently, an effective <i>transfer function</i> for wave propagation can be represented by
+</p>
+\begin{align}
+  H(f_X, f_Y) = \begin{cases}
+      e^{j\kappa z \sqrt{1 - \lambda^2f_X^2 - \lambda^2f_Y^2}} & f_X^2 + f_Y^2 < \cfrac{1}{\lambda^2}; \\
+      0 & \mathrm{otherwise}.
+  \end{cases} \label{eq:h}
+\end{align}
+</div>
+<div id="outline-container-org6522ca2" class="outline-3">
+<h3 id="org6522ca2">Fresnel diffraction</h3>
+<div class="outline-text-3" id="text-org6522ca2">
+<p>
+Conditioned on \(|\lambda f_X| \ll 1\) and \(|\lambda f_Y| \ll 1\), following approximation, a.k.a. <i>Fresnel approximation</i>, <i>paraxial approximation</i>, or <i>near-field approximation</i> holds.
+</p>
+\begin{align}
+  \sqrt{1 - \lambda^2 f_X^2 - \lambda^2f_Y^2} \approx 1 - \dfrac{\lambda^2f_X^2}{2} - \dfrac{\lambda^2f_Y^2}{2}, \label{eq:approx-fresnel}
+\end{align}
+<p>
+In this case, Huygens principle becomes
+</p>
+\begin{align}
+  U(x, y, z) = \frac{e^{j\kappa z}}{j\lambda z} \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}U(\xi, \eta, 0) e^{j \frac{\kappa}{2z}\left[(x - \xi)^2 + (y - \eta)^2\right]} d\xi d\eta, \label{eq:huygens-fresnel}
+\end{align}
+<p>
+and the transfer function in \eqref{eq:h} becomes
+</p>
+\begin{align}
+  H(f_X, f_Y) = \begin{cases}
+      e^{j\kappa z}e^{-j\pi \lambda z \left( f_X^2 + f_Y^2 \right)} & f_X^2 + f_Y^2 < \cfrac{1}{\lambda^2}; \\
+      0 & \mathrm{otherwise}.
+  \end{cases} \label{eq:h-fresnel}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org77a00bc" class="outline-3">
+<h3 id="org77a00bc">Fraunhofer diffraction</h3>
+<div class="outline-text-3" id="text-org77a00bc">
+<p>
+Conditioned on \(z \gg \dfrac{\kappa \max\{\xi^2 + \eta^2\}}{2}\), a.k.a. <i>Fraunhofer approximation</i>, or <i>far-field approximation</i>, Huygens principle becomes
+</p>
+\begin{align}
+  U(x, y, z) = \frac{e^{j\kappa z}e^{j\kappa\frac{x^2+y^2}{2z}}}{j\lambda z} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} U(\xi, \eta, 0)e^{-j \frac{\kappa}{z}(x \xi + y \eta)} d\xi d\eta. \label{eq:huygens-fraunhofer}
+\end{align}
+<p>
+Clearly, besides the coefficient out of integration, the propagation can be is a 2D Fourier transform at frequencies \(f_X = \dfrac{x}{z \lambda}\), \(f_Y = \dfrac{y}{z \lambda}\).
+</p>
+
+<p>
+Additionally, there is a relaxed condition \(z > \dfrac{2D^2}{\lambda}\)<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> in which Fraunhofer diffraction approximately holds, where \(D\) is the aperture size.
+</p>
+</div>
+<div id="outline-container-org5c0ec06" class="outline-4">
+<h4 id="org5c0ec06">Rectangular aperture</h4>
+<div class="outline-text-4" id="text-org5c0ec06">
+<p>
+For a rectangular aperture, its <i>amplitude transmittance ratio</i> can be written as
+</p>
+\begin{align}
+  t_{\mathrm{rect}}(\xi, \eta) = \mathrm{rect}\left(\frac{\xi}{A_x}\right) \mathrm{rect}\left( \frac{\eta}{A_y}\right), \label{eq:rect-apert}
+\end{align}
+<p>
+where \(A_x\) and \(A_y\) are the aperture sizes in the \(x\) and \(y\) axes, respectively. Then its Fraunhofer pattern can be obtained as
+</p>
+\begin{align}
+  U(x, y) &= \frac{e^{j\kappa z}e^{j\kappa\frac{x^2 + y^2}{2z}}}{j\lambda z} \mathcal{F} \left\{ U(\xi, \eta)\right\} \mid_{f_X=\frac{x}{z\lambda}, f_Y=\frac{y}{z\lambda}} \nonumber \\
+  &= \frac{A_xA_ye^{j\kappa z}e^{jκ\frac{x^2 + y^2}{2z}}}{j\lambda z} \mathrm{sinc}\left( \frac{A_xx}{z\lambda} \right) \mathrm{sinc}\left( \frac{A_yy}{z\lambda} \right). \label{eq:rect-pattern}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org0b0a9c8" class="outline-4">
+<h4 id="org0b0a9c8">Circular aperture</h4>
+<div class="outline-text-4" id="text-org0b0a9c8">
+<p>
+For a circular aperture of radius \(R\), its amplitude transmittance ratio can be expressed by
+</p>
+\begin{align}
+  t_{\mathrm{circ}}(q) = \mathrm{circ} \left( \frac{q}{R} \right), \label{eq:circ-apert}
+\end{align}
+<p>
+where \(q = \sqrt{\xi^2 + \eta^2}\). Accordingly, its Fraunhofer pattern can be computed according to
+</p>
+\begin{align}
+  U(r) &= \frac{e^{j\kappa z}e^{j \frac{\kappa r^2}{2z}}}{j\lambda z} \mathcal{B}\left\{ U(q) \right\} \mid_{\rho = \frac{r}{z\lambda}} \nonumber \\
+  &= \frac{R e^{j\kappa z}e^{j \frac{\kappa r^2}{2z}}}{jr}J_1 \left( \frac{\kappa Rr}{z} \right), \label{eq:circ-pattern}
+\end{align}
+<p>
+where \(\mathcal{B}\{\cdot\}\) is the operator of <i>Fourier-Bessel transform</i>, a.k.a. zero-order <i>Hankel transform</i>.
+</p>
+\begin{align}
+  G(\rho) &= \mathcal{B}\{g(r)\} \nonumber \\
+       &=2\pi \int_0^{+\infty}r g(r)J_0(2\pi r \rho) dr. \label{er:fourier-bessel}
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+The distance is termed <i>Rayleigh distance</i> or <i>Fraunhofer distance</i>.
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>
