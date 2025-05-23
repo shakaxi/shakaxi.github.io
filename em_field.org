@@ -1,0 +1,125 @@
+#+TITLE: Electromagnetic Field (EMF)
+
+* Maxwell's equations without free charge
+\begin{align*}
+  \nabla \times \mathbf{E} &= -\mu \frac{\partial \mathbf{H}}{\partial t} \\
+  \nabla \times \mathbf{H} &= \epsilon \frac{\partial \mathbf{E}}{\partial t} \\
+  \nabla \cdot \epsilon\mathbf{E} &= 0 \\
+  \nabla \cdot \mu\mathbf{H} &= 0
+\end{align*}
+where
+- $\mathbf{E}$ and $\mathbf{H}$ are strengths of electric and magnetic fields respectively;
+- $\epsilon$ and $\mu$ are permittivity and permeability respectively.
+* Wave equation
+Both $\mathbf{E}$ and $\mathbf{H}$ fulfill wave equation in vector format, i.e.,
+\begin{align*}
+  \nabla^2 \mathbf{E} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} &= 0\\
+  \nabla^2 \mathbf{H} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{H}}{\partial t^2} &= 0
+\end{align*}
+where
+- $n$ is the /refractive index/ of the medium;
+- $c = \dfrac{1}{\sqrt{\epsilon_0 \mu_0}}$ is the propagation speed of wave in vacuum, with $\epsilon_0$ and $\mu_0$ the permittivity and permeability in vacuum respectively.
+For any individual component, the wave equation in scalar format applies, i.e.,
+\begin{align}
+  \nabla^2 u(\mathbf{p}, t) - \frac{n^2}{c^2} \frac{\partial^2 u(\mathbf{p}, t)}{\partial t^2} = 0, \label{eq:wave-eq}
+\end{align}
+where $u(\mathbf{p},t)$ can be $\mathbf{E}_x$, $\mathbf{E}_y$, $\mathbf{E}_z$, $\mathbf{H}_x$, $\mathbf{H}_y$, or $\mathbf{H}_z$.
+
+For /monochromatic/ wave, a scalar-field can be written as
+\begin{align}
+  u(\mathbf{r}, t) &= a(\mathbf{r}) \cos[2\pi ft + \phi(\mathbf{r})] \nonumber \\
+                   &= \mathcal{R}\left[U(\mathbf{r}, t) \right] \nonumber \\
+                   &= \mathcal{R}\left[U(\mathbf{r}) e^{j2\pi ft}\right] \label{eq:separable}
+\end{align}
+where
+- $U(\mathbf{r}) \triangleq a(\mathbf{r}) e^{j \phi(\mathbf{r})}$, $a(\mathbf{r})$ and $\phi(\mathbf{r})$ are respectively the amplitude and phase at point $\mathbf{r}$;
+- $U(\mathbf{r},t) \triangleq U(\mathbf{r})e^{j2\pi ft}$.
+* Helmholtz equation
+By substituting \eqref{eq:separable} into \eqref{eq:wave-eq}, the time-independent $U(\mathbf{r})$ obey the following /Helmholtz equation/,
+\begin{align}
+  (\nabla^2 + \kappa^2)U(\mathbf{r}) = 0 \label{eq:helmholtz},
+\end{align}
+where $κ = 2\pi n \dfrac{f}{c} = \dfrac{2\pi}{\lambda}$ is termed /wave number/.
+* Angular spectrum
+Without loss of generality, a monochromatic wave can be denoted by
+\begin{align}
+  U(\mathbf{r})=e^{j\mathbf{k}\cdot \mathbf{r}}, \label{eq:f-distr}
+\end{align}
+where
+- $\mathbf{r}$ is a location vector,
+- $\mathbf{\kappa} = \cfrac{2\pi}{\lambda} (\hat{\mathbf{x}}\cos\alpha + \hat{\mathbf{y}}\cos\beta + \hat{\mathbf{z}}\cos\gamma)$ is /wave vector/,
+- $\alpha$, $\beta$, $\gamma$ are the angles of $\mathbf{\kappa}$ relative to $x$, $y$, $z$ axes respectively. Accordingly, their cosine values are direction cosines. Clearly, $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$.
+
+Targetting the field on plane perpendicular to $z$ axis, 2D Fourier transform can be performed
+\begin{align*}
+  A(f_X, f_Y; z) &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} U(x,y,z)e^{-j2\pi (f_Xx + f_Yy)} dx dy, \\
+  U(x,y,z) &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} A(f_X,f_Y; z)e^{j2\pi (f_Xx + f_Yy)} df_X df_Y;
+\end{align*}
+where
+- $A(f_X, f_Y; z)$ is termed /angular spectrum/ of disturbance $U(x, y, z)$;
+- $f_X \triangleq \cfrac{\cos\alpha}{\lambda}$, $f_Y \triangleq \cfrac{\cos\beta}{\lambda}$ are /spatial frequencies/.
+
+Based on \eqref{eq:f-distr}, the propagation from $z=0$ can be expressed by
+\begin{align}
+  A(f_X, f_Y; z) = A(f_X, f_Y; 0) e^{j\kappa z \sqrt{1 - \lambda^2f_X^2 - \lambda^2f_Y^2}}. \label{eq:prop}
+\end{align}
+- For $f_X^2 + f_Y^2 < \cfrac{1}{\lambda^2}$, relative phase delays are introduced in the propagation over distance $z$, as shown in \eqref{eq:prop}.
+- For $f_X^2 + f_Y^2 > \cfrac{1}{\lambda^2}$, \eqref{eq:prop} becomes $A(f_X, f_Y; z) = A(f_X, f_Y; 0) e^{-\kappa z \sqrt{\lambda^2f_X^2 + \lambda^2f_Y^2 - 1}}$. Accordingly, the component is termed /evanescent wave/ and attenuates quickly. In case of $z$ larger than several wavelength, the evanescent component can be disregarded.
+Equivalently, an effective /transfer function/ for wave propagation can be represented by
+\begin{align}
+  H(f_X, f_Y) = \begin{cases}
+      e^{j\kappa z \sqrt{1 - \lambda^2f_X^2 - \lambda^2f_Y^2}} & f_X^2 + f_Y^2 < \cfrac{1}{\lambda^2}; \\
+      0 & \mathrm{otherwise}.
+  \end{cases} \label{eq:h}
+\end{align}
+** Fresnel diffraction
+Conditioned on $|\lambda f_X| \ll 1$ and $|\lambda f_Y| \ll 1$, following approximation, a.k.a. /Fresnel approximation/, /paraxial approximation/, or /near-field approximation/ holds.
+\begin{align}
+  \sqrt{1 - \lambda^2 f_X^2 - \lambda^2f_Y^2} \approx 1 - \dfrac{\lambda^2f_X^2}{2} - \dfrac{\lambda^2f_Y^2}{2}, \label{eq:approx-fresnel}
+\end{align}
+In this case, Huygens principle becomes
+\begin{align}
+  U(x, y, z) = \frac{e^{j\kappa z}}{j\lambda z} \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}U(\xi, \eta, 0) e^{j \frac{\kappa}{2z}\left[(x - \xi)^2 + (y - \eta)^2\right]} d\xi d\eta, \label{eq:huygens-fresnel}
+\end{align}
+and the transfer function in \eqref{eq:h} becomes
+\begin{align}
+  H(f_X, f_Y) = \begin{cases}
+      e^{j\kappa z}e^{-j\pi \lambda z \left( f_X^2 + f_Y^2 \right)} & f_X^2 + f_Y^2 < \cfrac{1}{\lambda^2}; \\
+      0 & \mathrm{otherwise}.
+  \end{cases} \label{eq:h-fresnel}
+\end{align}
+** Fraunhofer diffraction
+Conditioned on $z \gg \dfrac{\kappa \max\{\xi^2 + \eta^2\}}{2}$, a.k.a. /Fraunhofer approximation/, or /far-field approximation/, Huygens principle becomes
+\begin{align}
+  U(x, y, z) = \frac{e^{j\kappa z}e^{j\kappa\frac{x^2+y^2}{2z}}}{j\lambda z} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} U(\xi, \eta, 0)e^{-j \frac{\kappa}{z}(x \xi + y \eta)} d\xi d\eta. \label{eq:huygens-fraunhofer}
+\end{align}
+Clearly, besides the coefficient out of integration, the propagation can be is a 2D Fourier transform at frequencies $f_X = \dfrac{x}{z \lambda}$, $f_Y = \dfrac{y}{z \lambda}$.
+
+Additionally, there is a relaxed condition $z > \dfrac{2D^2}{\lambda}$[fn:1] in which Fraunhofer diffraction approximately holds, where $D$ is the aperture size.
+*** Rectangular aperture
+For a rectangular aperture, its /amplitude transmittance ratio/ can be written as
+\begin{align}
+  t_{\mathrm{rect}}(\xi, \eta) = \mathrm{rect}\left(\frac{\xi}{A_x}\right) \mathrm{rect}\left( \frac{\eta}{A_y}\right), \label{eq:rect-apert}
+\end{align}
+where $A_x$ and $A_y$ are the aperture sizes in the $x$ and $y$ axes, respectively. Then its Fraunhofer pattern can be obtained as
+\begin{align}
+  U(x, y) &= \frac{e^{j\kappa z}e^{j\kappa\frac{x^2 + y^2}{2z}}}{j\lambda z} \mathcal{F} \left\{ U(\xi, \eta)\right\} \mid_{f_X=\frac{x}{z\lambda}, f_Y=\frac{y}{z\lambda}} \nonumber \\
+  &= \frac{A_xA_ye^{j\kappa z}e^{jκ\frac{x^2 + y^2}{2z}}}{j\lambda z} \mathrm{sinc}\left( \frac{A_xx}{z\lambda} \right) \mathrm{sinc}\left( \frac{A_yy}{z\lambda} \right). \label{eq:rect-pattern}
+\end{align}
+*** Circular aperture
+For a circular aperture of radius $R$, its amplitude transmittance ratio can be expressed by
+\begin{align}
+  t_{\mathrm{circ}}(q) = \mathrm{circ} \left( \frac{q}{R} \right), \label{eq:circ-apert}
+\end{align}
+where $q = \sqrt{\xi^2 + \eta^2}$. Accordingly, its Fraunhofer pattern can be computed according to
+\begin{align}
+  U(r) &= \frac{e^{j\kappa z}e^{j \frac{\kappa r^2}{2z}}}{j\lambda z} \mathcal{B}\left\{ U(q) \right\} \mid_{\rho = \frac{r}{z\lambda}} \nonumber \\
+  &= \frac{R e^{j\kappa z}e^{j \frac{\kappa r^2}{2z}}}{jr}J_1 \left( \frac{\kappa Rr}{z} \right), \label{eq:circ-pattern}
+\end{align}
+where $\mathcal{B}\{\cdot\}$ is the operator of /Fourier-Bessel transform/, a.k.a. zero-order /Hankel transform/.
+\begin{align}
+  G(\rho) &= \mathcal{B}\{g(r)\} \nonumber \\
+       &=2\pi \int_0^{+\infty}r g(r)J_0(2\pi r \rho) dr. \label{er:fourier-bessel}
+\end{align}
+* Footnotes
+[fn:1] The distance is termed /Rayleigh distance/ or /Fraunhofer distance/.
