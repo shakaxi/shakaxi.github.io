@@ -16,8 +16,11 @@
 - 爆破音: =[p]=, =[b]=, =[t]=, =[d]=, =[k]=, =[g]=.
 ** Misc.
 - I can't do it 中的 ='t= 不发音，所以这句话读起来和I can do it相似，区别仅仅在于后者中的can弱读。
+- 字母组合 =ee= 和 =ea= 均发 =[i:]= 音。不同在于， =ee= 喜欢和字母 =b= 和字母 =p= 在一起；而 =ea= 喜欢和字母 =d= 和字母 =t= 在一起。
+- 字母组合 =ai= 和 =ay= 均发 =[ei]= 音。不同在于， =ai= 一般位于单词中间；而 =ay= 位于单词尾部。
 * 单词
 - appointment: 预约
+- beverage: 饮料
 - classy: 优等的, 上等的, 有品味的.
 - disrupt：使瓦解
 - mind
@@ -44,7 +47,38 @@
 - 真
   + very: 只能修饰形容词或副词。
   + really: 能修饰动词、形容词、或副词。
+- 动物
+  + mosquito: 蚊子
+- 超市
+  + 查看促销活动: check promotions
+  + 自动扶梯: escalator
+    - 乘坐扶梯: take the escalator
+  + 蔬菜
+    - 香菜: coriander
+    - 麻薯: mochi
+  + 水果
+    - 榴莲: durian
+  + 瑞士卷: Swiss roll
+- 盖子
+  + cap: 通常指紧密贴合的盖子，需要拧上或者扣上才能固定。一般用于瓶子、小容器、笔、牙膏等。
+    - 打开: unscrew the cap, twist off the cap.
+    - 关上: screw the cap, tighten the cap.
+  + lid: 通常是可以拿起来的盖子，盖在容器顶部。一般用于锅、盒子、罐子、垃圾桶等较大的容器。例如：垃圾桶盖子: trash can lid.
+    - 打开/关上盖子: open/close the lid
+- 租房
+  + 合同: contract
+  + 房东: landlord
+  + 押金: deposit
+  + 中介: broker
+  + 转租: sublet
+  + 租户: tenant
+  + 水电费: utilities
+  + 设施: amenities
+  + 租金: rent
+  + 带家具的: furnished
+  + 租期: tenancy period
 * 短语
+- Another time: 下次见
 - As time goes by: 时光流逝
 - As you wish: 如你所愿
 - Believe it or not: 信不信由你
@@ -53,6 +87,11 @@
   + from: 看不见原材料
 - catch one's drift: 理解某人所说的话的大概意思
 - charge by the hour: 按小时收费
+- cut in line: 插队
+- in a rush: 赶时间
+- a big deal: 重要的事
+- make ... complicated: 使 ... 复杂化
+- head back: 返回
 - Did it ever occur to you that ...?: 你有没有想过...?
 - Dig in: 开吃吧
 - Same here: 我也一样
@@ -63,9 +102,13 @@
 - Don't fuck with me: 别耍我
 - Don't give me that look: 别那样看我
 - Don't lose your head: 别失去理智了
+- 
+  + Don't talk the talk if you can't walk the walk: 不要光说不练, 拿出实际行动.
+  + Put up or shut up: 要么你上, 要么闭嘴.
+  + Easy for you to say: 站着说话不腰疼
+  + A promise is a promise: 说到就要做到
 - Don't waste my time: 不要浪费我的时间
 - double-edged sword: 双刃剑
-- Easy for you to say: 站着说话不腰疼
 - face the music: 面对现实
 - Fasten your seatbelt: 系好你的安全带
 - From the ground up: 从头开始, 从零开始.
@@ -90,7 +133,6 @@
 - One step at a time: 一步一步来
 - I adore you: 我超喜欢你
 - Every dog has his day: 人人都有出头之日
-- A promise is a promise: 说到就要做到
 - Break a leg: 祝你成功
 - Poppycock: 胡说八道
 - You got this: 你一定可以的
@@ -128,6 +170,7 @@
 - Let me walk you to the door: 我送您到门口
 - Let's be frank: 让我们坦诚相待, 我们不要拐弯抹角了.
 - Let's get out of here: 我们离开这里
+- Let's see you do better: 让我们看看你是否能够技高一筹.
 - Let sleeping dogs lie: 别惹麻烦, 别多事.
 - Long time no see: 好久不见
 - Make a fresh start: 重新开始
@@ -174,6 +217,7 @@
 - You've got to be kidding me: 你肯定在逗我
 - I've heard so much about you: 久仰大名
 - I like being around you: 我喜欢和你在一起
+- I don't feel like going to work: 我不想上班.
 - Another day, another dollar.: 当一天和尚, 撞一天钟.
 - Old habits die hard: 江山易改本性难移
 - move to a quieter spot: 换个安静的地方
@@ -187,3 +231,63 @@
 - 天生不是作...的料
   + not cut out to be a/an ...
   + not cut out for ...
+- 我先走了
+  + I am heading out now
+  + I have to leave/go now
+- 关于吃饭
+  + We can eat at home: 我们可以在家吃
+  + We can eat out: 我们可以出去吃
+  + We can cook: 我们可以自己做
+  + We can order takeout: 我们可以点外卖
+  + We can eat less: 我们可以少吃一点
+- Well, this is me. 我到了
+- 我在现场
+  + I'm on site
+  + I'm at the location
+- 不用谢/不客气
+  + No thanks needed.
+  + No need to thank me.
+  + Don't mention it.
+  + Oh it's nothing.
+  + (It's) my pleasure.
+  + That's OK.
+  + Not at all.
+  + That's all right.
+- 旅行
+  + 身份证: ID card
+  + 行李: luggage
+  + 航站楼: terminal
+  + 值机: check-in
+  + 进站: arrival
+  + 出站: departure
+  + 登机口: boarding gate
+  + 靠窗座: window-seat
+  + 靠过道座: aisle-seat
+  + 小推车: trolley
+- 骂人
+  + moron: 蠢货
+  + idiot: 白痴
+  + toxic: 有毒的
+  + arrogant: 自大狂
+  + hypocrite: 伪君子
+  + nasty: 讨厌鬼
+  + lazy: 懒虫
+  + rude: 粗鲁的
+  + selfish: 自私鬼
+  + bully: 恶霸
+  + snob: 势利眼
+  + coward: 懦夫
+  + liar: 骗子
+  + jerk: 混蛋
+- in 用于较长的时间，如: in 年/月/季节/上午/下午/晚上
+- 量词
+  + a slice/loaf of bread: 一片/条面包
+  + a box of eggs: 一盒鸡蛋
+  + a head of broccoli: 一颗西兰花
+  + a bar of chocolate: 一条巧克力
+  + a packet of crisps: 一包薯片
+  + a tin of beans: 一罐豆子
+  + a jar of jam: 一罐果酱
+  + a tube of toothpaste: 一管牙膏
+  + a bar of soap: 一块肥皂
+  + a box of tissues: 一盒纸巾
