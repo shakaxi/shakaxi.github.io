@@ -1,0 +1,9 @@
+#+TITLE: K - Means Clustering
+
+K - Means is a classical clustering algorithm, targeting intra-cluster close resemblance and inter-cluster difference.
+
+Without loss of generality, the procedure of assigning $n$ samples to $k$ clusters can be listed as follows.
+1. Initialize the cluster centers: Randomly select $k$ different samples as cluster centers.
+2. Assign samples: For each sample, compute its distance to each cluster center, and assign the sample to its closest cluster.
+3. Update cluster centers: For each cluster, update the mean value of intra-cluster samples as the new cluster center.
+4. Repeat steps 2 and 3 until cluster centers do not change anymore or a maximum/expected number of iterations are reached.
