@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-02-15 Thu 01:00 -->
+<!-- 2025-10-15 Wed 00:29 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ - Armadillo</title>
 <meta name="author" content="shaka" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -232,107 +232,113 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgecc6f1f">Introduction</a></li>
-<li><a href="#org56a7846">Installation</a></li>
-<li><a href="#orgf1736fe">Usage</a>
+<li><a href="#orgbee3171">Introduction</a></li>
+<li><a href="#orge73bc8b">Installation &amp; configuration</a>
 <ul>
-<li><a href="#org4b918f8">Typedef for basic elements</a></li>
-<li><a href="#org8c6ea09">Fill form</a></li>
-<li><a href="#org8b1a5c7">Classes</a>
-<ul>
-<li><a href="#orgc5a10cb">Matrix</a>
-<ul>
-<li><a href="#orgd0454f6">Typedef</a></li>
-<li><a href="#org840ff1c">Constructor</a></li>
-<li><a href="#org8bda78f">Submatrix view</a>
-<ul>
-<li><a href="#org6495703">Continuous</a></li>
-<li><a href="#orgf76d44a">Non-continuous</a></li>
+<li><a href="#org48c4027">Installation</a></li>
+<li><a href="#orgf1f39aa">Configuration</a></li>
+<li><a href="#orgab7f852">Building &amp; linking</a></li>
 </ul>
 </li>
-<li><a href="#orgb9d588e">Member functions</a></li>
+<li><a href="#org83e832b">Usage</a>
+<ul>
+<li><a href="#org82efa96">Typedef for basic elements</a></li>
+<li><a href="#org05c416f">Fill form</a></li>
+<li><a href="#org272cbf4">Classes</a>
+<ul>
+<li><a href="#orgd6c09c3">Matrix</a>
+<ul>
+<li><a href="#org279bc59">Typedef</a></li>
+<li><a href="#orgf2aea9c">Constructor</a></li>
+<li><a href="#org9e26c03">Submatrix view</a>
+<ul>
+<li><a href="#org04f4acd">Continuous</a></li>
+<li><a href="#orge6e8787">Non-continuous</a></li>
 </ul>
 </li>
-<li><a href="#orgf774196">Vector</a>
-<ul>
-<li><a href="#orgbe0e70b">Typedef</a>
-<ul>
-<li><a href="#org4be6449">Column vector</a></li>
-<li><a href="#org5d5c73c">Row vector</a></li>
+<li><a href="#orgdd5ea75">Member functions</a></li>
 </ul>
 </li>
-<li><a href="#org7f61c51">Constructor</a></li>
-<li><a href="#org0a82013">Subvector view</a>
+<li><a href="#org345c63d">Vector</a>
 <ul>
-<li><a href="#org6a4e54d">Continuous</a></li>
-<li><a href="#org55fd927">Non-continuous</a></li>
+<li><a href="#org914c918">Typedef</a>
+<ul>
+<li><a href="#orge83d022">Column vector</a></li>
+<li><a href="#org4c288a2">Row vector</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#orgca7f41d">Cube</a>
+<li><a href="#org87e7d72">Constructor</a></li>
+<li><a href="#org711f0b0">Subvector view</a>
 <ul>
-<li><a href="#org71c8947">Typedef</a></li>
-<li><a href="#org35f3d51">Constructor</a></li>
-<li><a href="#org4447e1d">Subcube view</a>
-<ul>
-<li><a href="#orgab379b1">Contiguous</a></li>
-<li><a href="#orgab0d45d">Non-contiguous</a></li>
-</ul>
-</li>
-<li><a href="#org9c7c273">Member functions</a></li>
-</ul>
-</li>
-<li><a href="#orgc080428">Field</a>
-<ul>
-<li><a href="#org51a8bc5">Constructor</a></li>
-<li><a href="#orgee02b0d">Subfield view</a>
-<ul>
-<li><a href="#org5fa0976">For a 2D field</a></li>
-<li><a href="#org2646282">For a 3D field</a></li>
+<li><a href="#org390dace">Continuous</a></li>
+<li><a href="#org7b39e82">Non-continuous</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#org5eb48ef">Cube</a>
+<ul>
+<li><a href="#org48b7b7e">Typedef</a></li>
+<li><a href="#orgeaf5258">Constructor</a></li>
+<li><a href="#org94fe27d">Subcube view</a>
+<ul>
+<li><a href="#org1a9d42d">Contiguous</a></li>
+<li><a href="#org629a5a9">Non-contiguous</a></li>
 </ul>
 </li>
-<li><a href="#org39a929f">Length and size</a></li>
-<li><a href="#orga40fa39">Common member functions</a></li>
-<li><a href="#org90b5b83">Overloaded operators</a></li>
-<li><a href="#orge90ce10">Element access</a>
+<li><a href="#org1e067e0">Member functions</a></li>
+</ul>
+</li>
+<li><a href="#org9225d51">Field</a>
 <ul>
-<li><a href="#org40a377a">Iterators</a>
+<li><a href="#org432ffdd">Constructor</a></li>
+<li><a href="#org6c2826a">Subfield view</a>
 <ul>
-<li><a href="#org4e0a533">Member functions</a></li>
-<li><a href="#org1533b6e">Iterator types</a>
-<ul>
-<li><a href="#org2f39ad2">For read/write access</a></li>
-<li><a href="#org89a1a51">For read-only access</a></li>
+<li><a href="#org5bfc873">For a 2D field</a></li>
+<li><a href="#orgea12a97">For a 3D field</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2863527">Container-compatible functions</a></li>
 </ul>
 </li>
-<li><a href="#org6e8d92c">Generation</a>
+<li><a href="#org010ab30">Length and size</a></li>
+<li><a href="#org6d1de04">Common member functions</a></li>
+<li><a href="#org3f385a9">Overloaded operators</a></li>
+<li><a href="#org50ce2c9">Element access</a>
 <ul>
-<li><a href="#orgb7095e8">Matrix</a></li>
-<li><a href="#orgc2a20c7">Vector</a></li>
-<li><a href="#orgcd4aa38">Cube</a></li>
+<li><a href="#org95f7da5">Iterators</a>
+<ul>
+<li><a href="#org4213aa8">Member functions</a></li>
+<li><a href="#org3e2fb25">Iterator types</a>
+<ul>
+<li><a href="#org544fa75">For read/write access</a></li>
+<li><a href="#org66e0261">For read-only access</a></li>
 </ul>
 </li>
-<li><a href="#orgd7ad2b4">Functions</a>
-<ul>
-<li><a href="#org60e9fa1">Matrix</a></li>
-<li><a href="#org893fabe">Vector</a></li>
-<li><a href="#org562b75a">Cube</a></li>
 </ul>
 </li>
-<li><a href="#org9f6163d">Miscellaneous</a>
+<li><a href="#org0bd304c">Container-compatible functions</a></li>
+</ul>
+</li>
+<li><a href="#orgfc8d8a7">Generation</a>
 <ul>
-<li><a href="#org528c9ac">Constant</a></li>
-<li><a href="#org78d2c2e">Timer</a></li>
+<li><a href="#org854041b">Matrix</a></li>
+<li><a href="#org5989482">Vector</a></li>
+<li><a href="#orgc88532c">Cube</a></li>
+</ul>
+</li>
+<li><a href="#org85bee38">Functions</a>
+<ul>
+<li><a href="#org6eb8605">Matrix</a></li>
+<li><a href="#orga523304">Vector</a></li>
+<li><a href="#orgd70e7c4">Cube</a></li>
+</ul>
+</li>
+<li><a href="#orgdd3a794">Miscellaneous</a>
+<ul>
+<li><a href="#org9a944c6">Constant</a></li>
+<li><a href="#org1e7ef0a">Timer</a></li>
 </ul>
 </li>
 </ul>
@@ -340,10 +346,9 @@
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgecc6f1f" class="outline-2">
-<h2 id="orgecc6f1f">Introduction</h2>
-<div class="outline-text-2" id="text-orgecc6f1f">
+<div id="outline-container-orgbee3171" class="outline-2">
+<h2 id="orgbee3171">Introduction</h2>
+<div class="outline-text-2" id="text-orgbee3171">
 <p>
 <i>Armadillo</i><sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> is an excellent C++ library, which provides efficient linear algebra related operations, based on a series of classes, e.g., for vectors, matrices, etc. Thanks to its friendly interfaces, similar to <i>MATLAB</i>, the library is very easy to use.
 </p>
@@ -353,40 +358,88 @@ Armadillo is developped by Conrad Sanderson and Ryan Curtin, and released under 
 </p>
 </div>
 </div>
-<div id="outline-container-org56a7846" class="outline-2">
-<h2 id="org56a7846">Installation</h2>
-<div class="outline-text-2" id="text-org56a7846">
+<div id="outline-container-orge73bc8b" class="outline-2">
+<h2 id="orge73bc8b">Installation &amp; configuration</h2>
+<div class="outline-text-2" id="text-orge73bc8b">
+</div>
+<div id="outline-container-org48c4027" class="outline-3">
+<h3 id="org48c4027">Installation</h3>
+<div class="outline-text-3" id="text-org48c4027">
 <p>
-Matrix decomposition related operations are developped based on the existing third-party libraries, e.g., the open source <a href="https://github.com/xianyi/OpenBLAS.git">OpenBLAS</a> or <a href="http://www.netlib.org/lapack">LAPACK</a>, or even the commercial <a href="http://software.intel.com/en-us/intel-mkl">MKL</a>. In my opinion, openBLAS is the best choice, and can be installed in ArchLinux.
+Above all, several third-party open source libraries (including <a href="https://github.com/xianyi/OpenBLAS.git">OpenBLAS</a>, <a href="http://www.netlib.org/lapack">LAPACK</a>, <a href="https://www.arpack.org">ARPACK</a>, <a href="https://github.com/xiaoyeli/superlu.git">SuperLU</a>) should be installed as necessary dependencies. Taking ArchLinux for instance, these libraries can be simply installed by
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">pacman -S openblas
+<pre class="src src-shell">pacman -S openblas lapack arpack superlu
 </pre>
 </div>
 
 <p>
-The latest codes resides in a git repository<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>. Based on the source codes can be compiled and installed as usual.
-</p>
-
-<p>
-Besides, the library can be easily installed as system package. Taking ArchLinux for instance, armadillo can be installed by
+Then, armadillo can be installed by executing following commands.
 </p>
 <div class="org-src-container">
-<pre class="src src-shell">pacman -S armadillo
+<pre class="src src-shell">git clone --depth 1 https://gitlab.com/conradsnicta/armadillo-code.git
+<span style="color: #f78fe7;">cd</span> armadillo-code
+cmake . -DCMAKE_INSTALL_PREFIX:<span style="color: #00d3d0;">PATH</span>=/opt/armadillo
+make
+make install
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf1736fe" class="outline-2">
-<h2 id="orgf1736fe">Usage</h2>
-<div class="outline-text-2" id="text-orgf1736fe">
+<div id="outline-container-orgf1f39aa" class="outline-3">
+<h3 id="orgf1f39aa">Configuration</h3>
+<div class="outline-text-3" id="text-orgf1f39aa">
+<ul class="org-ul">
+<li><p>
+Create file <code>/etc/ld.so.conf.d/arma.conf</code> with its content as follows.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">/opt/armadillo/lib
+</pre>
+</div></li>
+<li><p>
+Then, fresh the cache accordingly.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">ldconfig
+</pre>
+</div></li>
+<li><p>
+Create a soft link for headers.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">ln -s /opt/armadillo/include/* /usr/local/include/
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgab7f852" class="outline-3">
+<h3 id="orgab7f852">Building &amp; linking</h3>
+<div class="outline-text-3" id="text-orgab7f852">
+<ul class="org-ul">
+<li>Due to the soft links in <code>/usr/local/include</code>, the headers can already be found.</li>
+<li><p>
+Due to <code>/etc/ld.so.conf.d/arma.conf</code>, the object files in the library can be directly linked by option <code>-larmadillo</code>, e.g.,
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">g++ main.cpp -o main -O2 -std=c++14 -larmadillo
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org83e832b" class="outline-2">
+<h2 id="org83e832b">Usage</h2>
+<div class="outline-text-2" id="text-org83e832b">
 <p>
 Note that the detailed usage of the libraries can be found in its <a href="https://arma.sourceforge.net/docs.html">online manual</a>, and this post just provides a brief and incomplete summary as a quick lookup reference after my walking through the manual.
 </p>
 </div>
-<div id="outline-container-org4b918f8" class="outline-3">
-<h3 id="org4b918f8">Typedef for basic elements</h3>
-<div class="outline-text-3" id="text-org4b918f8">
+<div id="outline-container-org82efa96" class="outline-3">
+<h3 id="org82efa96">Typedef for basic elements</h3>
+<div class="outline-text-3" id="text-org82efa96">
 <ul class="org-ul">
 <li><code>uword</code> is a typedef for <code>unsigned int</code>.</li>
 <li><code>sword</code> is a typedef for <code>(signed) int</code>.</li>
@@ -395,9 +448,9 @@ Note that the detailed usage of the libraries can be found in its <a href="https
 </ul>
 </div>
 </div>
-<div id="outline-container-org8c6ea09" class="outline-3">
-<h3 id="org8c6ea09">Fill form</h3>
-<div class="outline-text-3" id="text-org8c6ea09">
+<div id="outline-container-org05c416f" class="outline-3">
+<h3 id="org05c416f">Fill form</h3>
+<div class="outline-text-3" id="text-org05c416f">
 <p>
 The library defines a series of <code>fill_form</code>, which significantly facilitates the initialization of the data type classes.
 </p>
@@ -412,20 +465,20 @@ The library defines a series of <code>fill_form</code>, which significantly faci
 </ul>
 </div>
 </div>
-<div id="outline-container-org8b1a5c7" class="outline-3">
-<h3 id="org8b1a5c7">Classes</h3>
-<div class="outline-text-3" id="text-org8b1a5c7">
+<div id="outline-container-org272cbf4" class="outline-3">
+<h3 id="org272cbf4">Classes</h3>
+<div class="outline-text-3" id="text-org272cbf4">
 </div>
-<div id="outline-container-orgc5a10cb" class="outline-4">
-<h4 id="orgc5a10cb">Matrix</h4>
-<div class="outline-text-4" id="text-orgc5a10cb">
+<div id="outline-container-orgd6c09c3" class="outline-4">
+<h4 id="orgd6c09c3">Matrix</h4>
+<div class="outline-text-4" id="text-orgd6c09c3">
 <p>
 Considering the type of component elements, matrix is defined as a template <code>Mat&lt;type&gt;</code>, where <code>type</code> can be signed or unsigned, real or complex, int or float or even double. A matrix is column-wise stored in the memory.
 </p>
 </div>
-<div id="outline-container-orgd0454f6" class="outline-5">
-<h5 id="orgd0454f6">Typedef</h5>
-<div class="outline-text-5" id="text-orgd0454f6">
+<div id="outline-container-org279bc59" class="outline-5">
+<h5 id="org279bc59">Typedef</h5>
+<div class="outline-text-5" id="text-org279bc59">
 <p>
 Moreover, following types have been defined for convenience.
 </p>
@@ -439,9 +492,9 @@ Moreover, following types have been defined for convenience.
 </ul>
 </div>
 </div>
-<div id="outline-container-org840ff1c" class="outline-5">
-<h5 id="org840ff1c">Constructor</h5>
-<div class="outline-text-5" id="text-org840ff1c">
+<div id="outline-container-orgf2aea9c" class="outline-5">
+<h5 id="orgf2aea9c">Constructor</h5>
+<div class="outline-text-5" id="text-orgf2aea9c">
 <p>
 A rich number of constructors have been defined, e.g., taking <code>mat</code> for instance,
 </p>
@@ -464,13 +517,13 @@ A rich number of constructors have been defined, e.g., taking <code>mat</code> f
 </ul>
 </div>
 </div>
-<div id="outline-container-org8bda78f" class="outline-5">
-<h5 id="org8bda78f">Submatrix view</h5>
-<div class="outline-text-5" id="text-org8bda78f">
+<div id="outline-container-org9e26c03" class="outline-5">
+<h5 id="org9e26c03">Submatrix view</h5>
+<div class="outline-text-5" id="text-org9e26c03">
 </div>
-<div id="outline-container-org6495703" class="outline-6">
-<h6 id="org6495703">Continuous</h6>
-<div class="outline-text-6" id="text-org6495703">
+<div id="outline-container-org04f4acd" class="outline-6">
+<h6 id="org04f4acd">Continuous</h6>
+<div class="outline-text-6" id="text-org04f4acd">
 <ul class="org-ul">
 <li><code>X.col(idx)</code> / <code>X.row(idx)</code></li>
 <li><code>X.cols(idx1, idx2)</code> / <code>X.rows(idx1, idx2)</code></li>
@@ -493,9 +546,9 @@ A rich number of constructors have been defined, e.g., taking <code>mat</code> f
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf76d44a" class="outline-6">
-<h6 id="orgf76d44a">Non-continuous</h6>
-<div class="outline-text-6" id="text-orgf76d44a">
+<div id="outline-container-orge6e8787" class="outline-6">
+<h6 id="orge6e8787">Non-continuous</h6>
+<div class="outline-text-6" id="text-orge6e8787">
 <ul class="org-ul">
 <li><code>X.cols(idx_vec)</code> / <code>X.rows(idx_vec)</code></li>
 <li><code>X.submat(row_vec, col_vec)</code></li>
@@ -504,9 +557,9 @@ A rich number of constructors have been defined, e.g., taking <code>mat</code> f
 </div>
 </div>
 </div>
-<div id="outline-container-orgb9d588e" class="outline-5">
-<h5 id="orgb9d588e">Member functions</h5>
-<div class="outline-text-5" id="text-orgb9d588e">
+<div id="outline-container-orgdd5ea75" class="outline-5">
+<h5 id="orgdd5ea75">Member functions</h5>
+<div class="outline-text-5" id="text-orgdd5ea75">
 <ul class="org-ul">
 <li><code>.eye()</code> : Set the matrix to an identity matrix.</li>
 <li><code>.diag(k = 0)</code> : Return a column vector of a matrix.</li>
@@ -520,7 +573,7 @@ A rich number of constructors have been defined, e.g., taking <code>mat</code> f
 <li><code>%=</code> : In-place element-wise multiplication</li>
 </ul></li>
 <li><code>.st()</code> : Return a transposed copy (only applicable for a complex matrix)</li>
-<li><code>.t()</code> : Return a Hermitian transposed copy<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>.</li>
+<li><code>.t()</code> : Return a Hermitian transposed copy<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>.</li>
 <li><code>.i()</code> : Return the inverse for a square matrix.</li>
 <li><code>.is_square()</code></li>
 <li><code>.is_vec()</code> : Return <code>true</code> if the matrix is a column or row vector.</li>
@@ -531,20 +584,20 @@ A rich number of constructors have been defined, e.g., taking <code>mat</code> f
 </div>
 </div>
 </div>
-<div id="outline-container-orgf774196" class="outline-4">
-<h4 id="orgf774196">Vector</h4>
-<div class="outline-text-4" id="text-orgf774196">
+<div id="outline-container-org345c63d" class="outline-4">
+<h4 id="org345c63d">Vector</h4>
+<div class="outline-text-4" id="text-org345c63d">
 <p>
 In the library, column vectors and row vectors are different, represented by <code>Col&lt;type&gt;</code> and <code>Row&lt;type&gt;</code> respectively.
 </p>
 </div>
-<div id="outline-container-orgbe0e70b" class="outline-5">
-<h5 id="orgbe0e70b">Typedef</h5>
-<div class="outline-text-5" id="text-orgbe0e70b">
+<div id="outline-container-org914c918" class="outline-5">
+<h5 id="org914c918">Typedef</h5>
+<div class="outline-text-5" id="text-org914c918">
 </div>
-<div id="outline-container-org4be6449" class="outline-6">
-<h6 id="org4be6449">Column vector</h6>
-<div class="outline-text-6" id="text-org4be6449">
+<div id="outline-container-orge83d022" class="outline-6">
+<h6 id="orge83d022">Column vector</h6>
+<div class="outline-text-6" id="text-orge83d022">
 <ul class="org-ul">
 <li><code>icolvec</code> and <code>ivec</code> are both typedefs for <code>Col&lt;sword&gt;</code>.</li>
 <li><code>ucolvec</code> and <code>uvec</code> are both typedefs for <code>Col&lt;uword&gt;</code>.</li>
@@ -555,9 +608,9 @@ In the library, column vectors and row vectors are different, represented by <co
 </ul>
 </div>
 </div>
-<div id="outline-container-org5d5c73c" class="outline-6">
-<h6 id="org5d5c73c">Row vector</h6>
-<div class="outline-text-6" id="text-org5d5c73c">
+<div id="outline-container-org4c288a2" class="outline-6">
+<h6 id="org4c288a2">Row vector</h6>
+<div class="outline-text-6" id="text-org4c288a2">
 <ul class="org-ul">
 <li><code>irowvec</code> is a typedef for <code>Row&lt;sword&gt;</code>.</li>
 <li><code>urowvec</code> is a typedef for <code>Row&lt;uword&gt;</code>.</li>
@@ -567,9 +620,9 @@ In the library, column vectors and row vectors are different, represented by <co
 </div>
 </div>
 </div>
-<div id="outline-container-org7f61c51" class="outline-5">
-<h5 id="org7f61c51">Constructor</h5>
-<div class="outline-text-5" id="text-org7f61c51">
+<div id="outline-container-org87e7d72" class="outline-5">
+<h5 id="org87e7d72">Constructor</h5>
+<div class="outline-text-5" id="text-org87e7d72">
 <p>
 Taking <code>vec/rowvec</code> for instance, following constructs have been defined.
 </p>
@@ -590,13 +643,13 @@ Taking <code>vec/rowvec</code> for instance, following constructs have been defi
 </ul>
 </div>
 </div>
-<div id="outline-container-org0a82013" class="outline-5">
-<h5 id="org0a82013">Subvector view</h5>
-<div class="outline-text-5" id="text-org0a82013">
+<div id="outline-container-org711f0b0" class="outline-5">
+<h5 id="org711f0b0">Subvector view</h5>
+<div class="outline-text-5" id="text-org711f0b0">
 </div>
-<div id="outline-container-org6a4e54d" class="outline-6">
-<h6 id="org6a4e54d">Continuous</h6>
-<div class="outline-text-6" id="text-org6a4e54d">
+<div id="outline-container-org390dace" class="outline-6">
+<h6 id="org390dace">Continuous</h6>
+<div class="outline-text-6" id="text-org390dace">
 <ul class="org-ul">
 <li><code>V(span(idx1, idx2))</code></li>
 <li><code>V.subvec(idx1, idx2)</code> / <code>V.subvec(idx, size(U))</code></li>
@@ -604,9 +657,9 @@ Taking <code>vec/rowvec</code> for instance, following constructs have been defi
 </ul>
 </div>
 </div>
-<div id="outline-container-org55fd927" class="outline-6">
-<h6 id="org55fd927">Non-continuous</h6>
-<div class="outline-text-6" id="text-org55fd927">
+<div id="outline-container-org7b39e82" class="outline-6">
+<h6 id="org7b39e82">Non-continuous</h6>
+<div class="outline-text-6" id="text-org7b39e82">
 <ul class="org-ul">
 <li><code>X.elem(idx_vec)</code> / <code>X(idx_vec)</code></li>
 </ul>
@@ -614,16 +667,16 @@ Taking <code>vec/rowvec</code> for instance, following constructs have been defi
 </div>
 </div>
 </div>
-<div id="outline-container-orgca7f41d" class="outline-4">
-<h4 id="orgca7f41d">Cube</h4>
-<div class="outline-text-4" id="text-orgca7f41d">
+<div id="outline-container-org5eb48ef" class="outline-4">
+<h4 id="org5eb48ef">Cube</h4>
+<div class="outline-text-4" id="text-org5eb48ef">
 <p>
 A cube is essentially a 3-dimension (3D) matrix, which is compriesd of a series of 2D matrices, a.k.a. <i>slices</i>. Cube class is also a template, i.e., <code>Cube&lt;type&gt;</code>.
 </p>
 </div>
-<div id="outline-container-org71c8947" class="outline-5">
-<h5 id="org71c8947">Typedef</h5>
-<div class="outline-text-5" id="text-org71c8947">
+<div id="outline-container-org48b7b7e" class="outline-5">
+<h5 id="org48b7b7e">Typedef</h5>
+<div class="outline-text-5" id="text-org48b7b7e">
 <ul class="org-ul">
 <li><code>icube</code> is a typedef for <code>Cube&lt;sword&gt;</code>.</li>
 <li><code>ucube</code> is a typedef for <code>Cube&lt;uword&gt;</code>.</li>
@@ -634,9 +687,9 @@ A cube is essentially a 3-dimension (3D) matrix, which is compriesd of a series 
 </ul>
 </div>
 </div>
-<div id="outline-container-org35f3d51" class="outline-5">
-<h5 id="org35f3d51">Constructor</h5>
-<div class="outline-text-5" id="text-org35f3d51">
+<div id="outline-container-orgeaf5258" class="outline-5">
+<h5 id="orgeaf5258">Constructor</h5>
+<div class="outline-text-5" id="text-orgeaf5258">
 <ul class="org-ul">
 <li><code>cube()</code></li>
 <li><code>cube(n_rows, n_cols, n_slices)</code></li>
@@ -649,13 +702,13 @@ A cube is essentially a 3-dimension (3D) matrix, which is compriesd of a series 
 </ul>
 </div>
 </div>
-<div id="outline-container-org4447e1d" class="outline-5">
-<h5 id="org4447e1d">Subcube view</h5>
-<div class="outline-text-5" id="text-org4447e1d">
+<div id="outline-container-org94fe27d" class="outline-5">
+<h5 id="org94fe27d">Subcube view</h5>
+<div class="outline-text-5" id="text-org94fe27d">
 </div>
-<div id="outline-container-orgab379b1" class="outline-6">
-<h6 id="orgab379b1">Contiguous</h6>
-<div class="outline-text-6" id="text-orgab379b1">
+<div id="outline-container-org1a9d42d" class="outline-6">
+<h6 id="org1a9d42d">Contiguous</h6>
+<div class="outline-text-6" id="text-org1a9d42d">
 <ul class="org-ul">
 <li><code>Q.slice(idx)</code> / <code>Q.slices(idx1, idx2)</code></li>
 <li><code>Q.col_as_mat(idx)</code> / <code>Q.row_as_mat(idx)</code> returns a flattened matrix.</li>
@@ -665,13 +718,13 @@ A cube is essentially a 3-dimension (3D) matrix, which is compriesd of a series 
 <li><code>Q(span(row1, row2), span(col1, col2), span(slice1, slice2))</code></li>
 <li><code>Q(row1, col1, slice1, size(n_rows, n_cols, n_slices))</code> / <code>Q(row, col, slice, size(R))</code></li>
 <li><code>Q.head_slices(n_slices)</code> / <code>Q.tail_slices(n_slices)</code></li>
-<li><code>Q.tube(row, col)</code><sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup> / <code>Q.tube(row1, col1, row2, col2)</code> / <code>Q.tube(span(row1, row2), span(col1, col2))</code> / <code>Q.tube(row, col, size(n_rows, n_cols))</code></li>
+<li><code>Q.tube(row, col)</code><sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup> / <code>Q.tube(row1, col1, row2, col2)</code> / <code>Q.tube(span(row1, row2), span(col1, col2))</code> / <code>Q.tube(row, col, size(n_rows, n_cols))</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgab0d45d" class="outline-6">
-<h6 id="orgab0d45d">Non-contiguous</h6>
-<div class="outline-text-6" id="text-orgab0d45d">
+<div id="outline-container-org629a5a9" class="outline-6">
+<h6 id="org629a5a9">Non-contiguous</h6>
+<div class="outline-text-6" id="text-org629a5a9">
 <ul class="org-ul">
 <li><code>Q.elem(idx_vec)</code></li>
 <li><code>Q(idx_vec)</code></li>
@@ -680,9 +733,9 @@ A cube is essentially a 3-dimension (3D) matrix, which is compriesd of a series 
 </div>
 </div>
 </div>
-<div id="outline-container-org9c7c273" class="outline-5">
-<h5 id="org9c7c273">Member functions</h5>
-<div class="outline-text-5" id="text-org9c7c273">
+<div id="outline-container-org1e067e0" class="outline-5">
+<h5 id="org1e067e0">Member functions</h5>
+<div class="outline-text-5" id="text-org1e067e0">
 <ul class="org-ul">
 <li><code>.each_slice(idx_vec)</code> / <code>.each_slice(lambda)</code> / <code>.each_slice(lambda, use_mp = false)</code>: Apply a matrix operation to each slice/matrix of a cube. The argument <code>idx_vec</code> is optional, and by default all slices are used. If the lambda function <code>lambda</code> is specified, then the function must accept a reference to a <code>Mat&lt;type&gt;</code> object with the same element type as the underlying cube. <code>use_mp</code> is a boolean indicator of <i>OpenMP</i> for multithreading. If it is set to <code>true</code>, then the <code>lambda</code> must be thread-safe, i.e., cannot write to variables outside of its scope.</li>
 <li><code>.insert_slices(idx, X)</code> : Insert <code>X</code> at <code>idx</code> th slice.</li>
@@ -694,16 +747,16 @@ A cube is essentially a 3-dimension (3D) matrix, which is compriesd of a series 
 </div>
 </div>
 </div>
-<div id="outline-container-orgc080428" class="outline-4">
-<h4 id="orgc080428">Field</h4>
-<div class="outline-text-4" id="text-orgc080428">
+<div id="outline-container-org9225d51" class="outline-4">
+<h4 id="org9225d51">Field</h4>
+<div class="outline-text-4" id="text-org9225d51">
 <p>
 According to the online manual, a field is a class to store <b>arbitrary objects</b> in <b>matrix-like</b> or <b>cube-like</b> layouts. Given a vector or a matrix or a cube, all the elements (e.g., scalars in a vector, vectors in a matrix, matrices in a cube) must have the identical type and equal size. But in a field, the elements just have the identical type, but their lengths or sizes can be different from one element to another.
 </p>
 </div>
-<div id="outline-container-org51a8bc5" class="outline-5">
-<h5 id="org51a8bc5">Constructor</h5>
-<div class="outline-text-5" id="text-org51a8bc5">
+<div id="outline-container-org432ffdd" class="outline-5">
+<h5 id="org432ffdd">Constructor</h5>
+<div class="outline-text-5" id="text-org432ffdd">
 <p>
 A field object can be created by any one of the constructors below, where <code>object_type</code> is the element type, which can be vector or matrix or cube.
 </p>
@@ -717,13 +770,13 @@ A field object can be created by any one of the constructors below, where <code>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgee02b0d" class="outline-5">
-<h5 id="orgee02b0d">Subfield view</h5>
-<div class="outline-text-5" id="text-orgee02b0d">
+<div id="outline-container-org6c2826a" class="outline-5">
+<h5 id="org6c2826a">Subfield view</h5>
+<div class="outline-text-5" id="text-org6c2826a">
 </div>
-<div id="outline-container-org5fa0976" class="outline-6">
-<h6 id="org5fa0976">For a 2D field</h6>
-<div class="outline-text-6" id="text-org5fa0976">
+<div id="outline-container-org5bfc873" class="outline-6">
+<h6 id="org5bfc873">For a 2D field</h6>
+<div class="outline-text-6" id="text-org5bfc873">
 <ul class="org-ul">
 <li><code>F.row(idx)</code></li>
 <li><code>F.col(idx)</code></li>
@@ -736,9 +789,9 @@ A field object can be created by any one of the constructors below, where <code>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2646282" class="outline-6">
-<h6 id="org2646282">For a 3D field</h6>
-<div class="outline-text-6" id="text-org2646282">
+<div id="outline-container-orgea12a97" class="outline-6">
+<h6 id="orgea12a97">For a 3D field</h6>
+<div class="outline-text-6" id="text-orgea12a97">
 <ul class="org-ul">
 <li><code>F.slice(idx)</code></li>
 <li><code>F.slices(slice1, slice2)</code></li>
@@ -752,9 +805,9 @@ A field object can be created by any one of the constructors below, where <code>
 </div>
 </div>
 </div>
-<div id="outline-container-org39a929f" class="outline-3">
-<h3 id="org39a929f">Length and size</h3>
-<div class="outline-text-3" id="text-org39a929f">
+<div id="outline-container-org010ab30" class="outline-3">
+<h3 id="org010ab30">Length and size</h3>
+<div class="outline-text-3" id="text-org010ab30">
 <p>
 Length and size related attributes of type <code>uword</code>, can be listed as below.
 </p>
@@ -778,9 +831,9 @@ The dimensions above are all read-only, but can be changed by
 </ul>
 </div>
 </div>
-<div id="outline-container-orga40fa39" class="outline-3">
-<h3 id="orga40fa39">Common member functions</h3>
-<div class="outline-text-3" id="text-orga40fa39">
+<div id="outline-container-org6d1de04" class="outline-3">
+<h3 id="org6d1de04">Common member functions</h3>
+<div class="outline-text-3" id="text-org6d1de04">
 <ul class="org-ul">
 <li><code>.zeros()</code> : Set all elements to 0.</li>
 <li><code>.ones()</code> : Set all elements to 1.</li>
@@ -808,8 +861,8 @@ The dimensions above are all read-only, but can be changed by
 <li><code>.shed_cols(first, last)</code> : Remove the columns between <code>first</code> th and <code>last</code> th columns from the underlying row-vector/matrix/cube.</li>
 <li><code>.swap_rows(idx1, idx2)</code> : Swap 2 rows of the underlying column-vector/matrix.</li>
 <li><code>.swap_cols(idx1, idx2)</code> : Swap 2 columns of the underlying row-vector/matrix.</li>
-<li><code>.min()</code> / <code>.max()</code> : Return the extreme<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup> value of a matrix or a cube.</li>
-<li><code>.index_min()</code> / <code>.index_max()</code> : Return the linear index of the extreme<sup><a id="fnr.5.100" class="footref" href="#fn.5" role="doc-backlink">5</a></sup> value of a matrix or a cube.</li>
+<li><code>.min()</code> / <code>.max()</code> : Return the extreme<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup> value of a matrix or a cube.</li>
+<li><code>.index_min()</code> / <code>.index_max()</code> : Return the linear index of the extreme<sup><a id="fnr.4.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup> value of a matrix or a cube.</li>
 <li><code>.in_range</code> : Check the validity of a given location, e.g., return <code>false</code> for an empty object, out-of-bounds.</li>
 <li><code>.is_empty()</code> : Check the object whether it is empty.</li>
 <li><code>.is_sorted(sort_direction = "ascend", dim = 0)</code> : Check a vector or a matrix.</li>
@@ -822,9 +875,9 @@ The dimensions above are all read-only, but can be changed by
 </p>
 </div>
 </div>
-<div id="outline-container-org90b5b83" class="outline-3">
-<h3 id="org90b5b83">Overloaded operators</h3>
-<div class="outline-text-3" id="text-org90b5b83">
+<div id="outline-container-org3f385a9" class="outline-3">
+<h3 id="org3f385a9">Overloaded operators</h3>
+<div class="outline-text-3" id="text-org3f385a9">
 <p>
 A rich number of operators have been overloaded for column/row vector, matrix and cube classes, e.g.,
 </p>
@@ -838,12 +891,12 @@ A rich number of operators have been overloaded for column/row vector, matrix an
 </ul>
 </div>
 </div>
-<div id="outline-container-orge90ce10" class="outline-3">
-<h3 id="orge90ce10">Element access</h3>
-<div class="outline-text-3" id="text-orge90ce10">
+<div id="outline-container-org50ce2c9" class="outline-3">
+<h3 id="org50ce2c9">Element access</h3>
+<div class="outline-text-3" id="text-org50ce2c9">
 <ul class="org-ul">
 <li><code>(n)</code> : Access the \(n\) th element of a vector/matrix/cube or \(n\) th object of a field.</li>
-<li><code>.at(n)</code> / <code>[n]</code> : Similar to <code>(n)</code>, but without a bound check<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>.</li>
+<li><code>.at(n)</code> / <code>[n]</code> : Similar to <code>(n)</code>, but without a bound check<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup>.</li>
 <li><code>(i, j)</code> : Access the element in \(i\) th row and \(j\) th column of a matrix, or the object in \(i\) th row and \(j\) th column of a 2D field.</li>
 <li><code>.at(i, j)</code> : Similar to <code>(i, j)</code>, but without a bound check.</li>
 <li><code>(i, j, k)</code> : Access the element in \(i\) th row, \(j\) th column, and \(k\) th slice; or the object in \(i\) th row, \(j\) th column, and \(k\) th slice for a 3D field.</li>
@@ -854,16 +907,16 @@ A rich number of operators have been overloaded for column/row vector, matrix an
 Note that, 2D index using rectangle bracket (e.g., \([i, j]\), \([i, j, k]\)) does not work correctly. We should use \((i, j)\), \((i, j, k)\) instead.
 </p>
 </div>
-<div id="outline-container-org40a377a" class="outline-4">
-<h4 id="org40a377a">Iterators</h4>
-<div class="outline-text-4" id="text-org40a377a">
+<div id="outline-container-org95f7da5" class="outline-4">
+<h4 id="org95f7da5">Iterators</h4>
+<div class="outline-text-4" id="text-org95f7da5">
 <p>
 In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <a href="./cpp_stl.html">C++ STL</a>, and consequently can be accessed via iterators.
 </p>
 </div>
-<div id="outline-container-org4e0a533" class="outline-5">
-<h5 id="org4e0a533">Member functions</h5>
-<div class="outline-text-5" id="text-org4e0a533">
+<div id="outline-container-org4213aa8" class="outline-5">
+<h5 id="org4213aa8">Member functions</h5>
+<div class="outline-text-5" id="text-org4213aa8">
 <ul class="org-ul">
 <li><code>.begin()</code> : Iterator referring to the first element.</li>
 <li><code>.end()</code> : Iterator referring to the <i>past-the-end</i> element.</li>
@@ -874,13 +927,13 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 </ul>
 </div>
 </div>
-<div id="outline-container-org1533b6e" class="outline-5">
-<h5 id="org1533b6e">Iterator types</h5>
-<div class="outline-text-5" id="text-org1533b6e">
+<div id="outline-container-org3e2fb25" class="outline-5">
+<h5 id="org3e2fb25">Iterator types</h5>
+<div class="outline-text-5" id="text-org3e2fb25">
 </div>
-<div id="outline-container-org2f39ad2" class="outline-6">
-<h6 id="org2f39ad2">For read/write access</h6>
-<div class="outline-text-6" id="text-org2f39ad2">
+<div id="outline-container-org544fa75" class="outline-6">
+<h6 id="org544fa75">For read/write access</h6>
+<div class="outline-text-6" id="text-org544fa75">
 <ul class="org-ul">
 <li><code>mat::iterator</code> / <code>vec::iterator</code> / <code>rowvec::iterator</code> / <code>cube::iterator</code></li>
 <li><code>mat::col_iterator</code> / <code>vec::col_iterator</code> / <code>rowvec::col_iterator</code></li>
@@ -889,9 +942,9 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 </ul>
 </div>
 </div>
-<div id="outline-container-org89a1a51" class="outline-6">
-<h6 id="org89a1a51">For read-only access</h6>
-<div class="outline-text-6" id="text-org89a1a51">
+<div id="outline-container-org66e0261" class="outline-6">
+<h6 id="org66e0261">For read-only access</h6>
+<div class="outline-text-6" id="text-org66e0261">
 <ul class="org-ul">
 <li><code>mat::const_iterator</code> / <code>vec::const_iterator</code> / <code>rowvec::const_iterator</code> / <code>cube::const_iterator</code></li>
 <li><code>mat::const_col_iterator</code> / <code>vec::const_col_iterator</code> / <code>rowvec::const_col_iterator</code></li>
@@ -902,9 +955,9 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 </div>
 </div>
 </div>
-<div id="outline-container-org2863527" class="outline-4">
-<h4 id="org2863527">Container-compatible functions</h4>
-<div class="outline-text-4" id="text-org2863527">
+<div id="outline-container-org0bd304c" class="outline-4">
+<h4 id="org0bd304c">Container-compatible functions</h4>
+<div class="outline-text-4" id="text-org0bd304c">
 <ul class="org-ul">
 <li><code>.front()</code> / <code>.back()</code> : Access the first/last element in a vector.</li>
 <li><code>.clear()</code> : Empty the object.</li>
@@ -914,18 +967,17 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 </div>
 </div>
 </div>
-
-<div id="outline-container-org6e8d92c" class="outline-3">
-<h3 id="org6e8d92c">Generation</h3>
-<div class="outline-text-3" id="text-org6e8d92c">
+<div id="outline-container-orgfc8d8a7" class="outline-3">
+<h3 id="orgfc8d8a7">Generation</h3>
+<div class="outline-text-3" id="text-orgfc8d8a7">
 <ul class="org-ul">
 <li><code>ones(size(X))</code> / <code>zeros(size(X))</code></li>
 <li><code>randu</code> / <code>randi</code> / <code>randn</code> / <code>randg</code></li>
 </ul>
 </div>
-<div id="outline-container-orgb7095e8" class="outline-4">
-<h4 id="orgb7095e8">Matrix</h4>
-<div class="outline-text-4" id="text-orgb7095e8">
+<div id="outline-container-org854041b" class="outline-4">
+<h4 id="org854041b">Matrix</h4>
+<div class="outline-text-4" id="text-org854041b">
 <ul class="org-ul">
 <li><code>eye(n_rows, n_cols)</code> / <code>eye(size(X))</code></li>
 <li><code>ones(n_rows, n_cols)</code> / <code>zeros(n_rows, n_cols)</code></li>
@@ -935,9 +987,9 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc2a20c7" class="outline-4">
-<h4 id="orgc2a20c7">Vector</h4>
-<div class="outline-text-4" id="text-orgc2a20c7">
+<div id="outline-container-org5989482" class="outline-4">
+<h4 id="org5989482">Vector</h4>
+<div class="outline-text-4" id="text-org5989482">
 <ul class="org-ul">
 <li><code>ones(n_elem)</code> / <code>zeros(n_elem)</code></li>
 <li><code>linspace(start, end, N=100)</code></li>
@@ -948,18 +1000,18 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcd4aa38" class="outline-4">
-<h4 id="orgcd4aa38">Cube</h4>
-<div class="outline-text-4" id="text-orgcd4aa38">
+<div id="outline-container-orgc88532c" class="outline-4">
+<h4 id="orgc88532c">Cube</h4>
+<div class="outline-text-4" id="text-orgc88532c">
 <ul class="org-ul">
 <li><code>ones(n_rows, n_cols, n_slices)</code> / <code>zeros(n_rows, n_cols, n_slices)</code></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd7ad2b4" class="outline-3">
-<h3 id="orgd7ad2b4">Functions</h3>
-<div class="outline-text-3" id="text-orgd7ad2b4">
+<div id="outline-container-org85bee38" class="outline-3">
+<h3 id="org85bee38">Functions</h3>
+<div class="outline-text-3" id="text-org85bee38">
 <ul class="org-ul">
 <li><code>abs(X)</code> / <code>arg(X)</code> : Per-element absolute values or phase angles (in radians)</li>
 <li><code>conj(X)</code> : Per-element complex conjugate</li>
@@ -982,9 +1034,9 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 <li>Statistics: <code>mean</code>, <code>median</code>, <code>stddev</code>, <code>var</code>, <code>range</code>, <code>hist</code> / <code>histc</code>, <code>quantile</code>.</li>
 </ul>
 </div>
-<div id="outline-container-org60e9fa1" class="outline-4">
-<h4 id="org60e9fa1">Matrix</h4>
-<div class="outline-text-4" id="text-org60e9fa1">
+<div id="outline-container-org6eb8605" class="outline-4">
+<h4 id="org6eb8605">Matrix</h4>
+<div class="outline-text-4" id="text-org6eb8605">
 <ul class="org-ul">
 <li><code>as_scalar(expression)</code> : Convert the <code>expression</code> (resulting a 1x1 matrix) to a scalar.</li>
 <li><code>cond(X)</code> / <code>rcond(X)</code> : Calculate the (reciprocal) condition number of a matrix.</li>
@@ -1009,9 +1061,9 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 </ul>
 </div>
 </div>
-<div id="outline-container-org893fabe" class="outline-4">
-<h4 id="org893fabe">Vector</h4>
-<div class="outline-text-4" id="text-org893fabe">
+<div id="outline-container-orga523304" class="outline-4">
+<h4 id="orga523304">Vector</h4>
+<div class="outline-text-4" id="text-orga523304">
 <ul class="org-ul">
 <li><code>dot(a, b)</code> : \(a \cdot b\)</li>
 <li><code>cdot(a, b)</code> : \(a^{*} \cdot b\)</li>
@@ -1022,23 +1074,22 @@ In armadillo, matrices/vectors/cubes are somewhat similar to the containers in <
 </ul>
 </div>
 </div>
-<div id="outline-container-org562b75a" class="outline-4">
-<h4 id="org562b75a">Cube</h4>
-<div class="outline-text-4" id="text-org562b75a">
+<div id="outline-container-orgd70e7c4" class="outline-4">
+<h4 id="orgd70e7c4">Cube</h4>
+<div class="outline-text-4" id="text-orgd70e7c4">
 <ul class="org-ul">
 <li><code>join_slices(A, B)</code></li>
 </ul>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org9f6163d" class="outline-3">
-<h3 id="org9f6163d">Miscellaneous</h3>
-<div class="outline-text-3" id="text-org9f6163d">
+<div id="outline-container-orgdd3a794" class="outline-3">
+<h3 id="orgdd3a794">Miscellaneous</h3>
+<div class="outline-text-3" id="text-orgdd3a794">
 </div>
-<div id="outline-container-org528c9ac" class="outline-4">
-<h4 id="org528c9ac">Constant</h4>
-<div class="outline-text-4" id="text-org528c9ac">
+<div id="outline-container-org9a944c6" class="outline-4">
+<h4 id="org9a944c6">Constant</h4>
+<div class="outline-text-4" id="text-org9a944c6">
 <p>
 The constants are stored in <code>Datum&lt;type&gt;</code> class, where <code>type</code> can be float or double.
 </p>
@@ -1079,12 +1130,12 @@ The constants are stored in <code>Datum&lt;type&gt;</code> class, where <code>ty
 
 <tr>
 <td class="org-left"><code>datum::nan</code></td>
-<td class="org-left">NaN<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></td>
+<td class="org-left">NaN<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup></td>
 </tr>
 
 <tr>
 <td class="org-left"><code>datum::eps</code></td>
-<td class="org-left">\(\epsilon\)<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup></td>
+<td class="org-left">\(\epsilon\)<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></td>
 </tr>
 
 <tr>
@@ -1125,9 +1176,9 @@ The constants are stored in <code>Datum&lt;type&gt;</code> class, where <code>ty
 </table>
 </div>
 </div>
-<div id="outline-container-org78d2c2e" class="outline-4">
-<h4 id="org78d2c2e">Timer</h4>
-<div class="outline-text-4" id="text-org78d2c2e">
+<div id="outline-container-org1e7ef0a" class="outline-4">
+<h4 id="org1e7ef0a">Timer</h4>
+<div class="outline-text-4" id="text-org1e7ef0a">
 <p>
 Class <code>wall_clock</code> is simple timer to measure the elapsed seconds. It has 2 member functions.
 </p>
@@ -1148,30 +1199,26 @@ Class <code>wall_clock</code> is simple timer to measure the elapsed seconds. It
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://gitlab.com/conradsnicta/armadillo-code.git">https://gitlab.com/conradsnicta/armadillo-code.git</a>
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Reduce to transposition for real matrices. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <i>Tube</i> is a subcube across all the slices. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 For a complex matrix/cube, absolute values are compared.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 For this reason, it is not recommended. 
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Not a number (NaN) does not equal anything, even itself.
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 Machine epsilon, i.e., difference between 1 and the next representable value. 
 </p></div></div>
 
