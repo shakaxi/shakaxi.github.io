@@ -4,18 +4,40 @@
 /Armadillo/[fn:1] is an excellent C++ library, which provides efficient linear algebra related operations, based on a series of classes, e.g., for vectors, matrices, etc. Thanks to its friendly interfaces, similar to /MATLAB/, the library is very easy to use.
 
 Armadillo is developped by Conrad Sanderson and Ryan Curtin, and released under [[https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)][Apache 2.0 license]].
-* Installation
-Matrix decomposition related operations are developped based on the existing third-party libraries, e.g., the open source [[https://github.com/xianyi/OpenBLAS.git][OpenBLAS]] or [[http://www.netlib.org/lapack][LAPACK]], or even the commercial [[http://software.intel.com/en-us/intel-mkl][MKL]]. In my opinion, openBLAS is the best choice, and can be installed in ArchLinux.
+* Installation & configuration
+** Installation
+Above all, several third-party open source libraries (including [[https://github.com/xianyi/OpenBLAS.git][OpenBLAS]], [[http://www.netlib.org/lapack][LAPACK]], [[https://www.arpack.org][ARPACK]], [[https://github.com/xiaoyeli/superlu.git][SuperLU]]) should be installed as necessary dependencies. Taking ArchLinux for instance, these libraries can be simply installed by
 #+begin_src shell
-  pacman -S openblas
+  pacman -S openblas lapack arpack superlu
 #+end_src
 
-The latest codes resides in a git repository[fn:2]. Based on the source codes can be compiled and installed as usual.
-
-Besides, the library can be easily installed as system package. Taking ArchLinux for instance, armadillo can be installed by
+Then, armadillo can be installed by executing following commands.
 #+begin_src shell
-  pacman -S armadillo
+  git clone --depth 1 https://gitlab.com/conradsnicta/armadillo-code.git
+  cd armadillo-code
+  cmake . -DCMAKE_INSTALL_PREFIX:PATH=/opt/armadillo
+  make
+  make install
 #+end_src
+** Configuration
+- Create file =/etc/ld.so.conf.d/arma.conf= with its content as follows.
+  #+begin_src shell
+    /opt/armadillo/lib
+  #+end_src
+- Then, fresh the cache accordingly.
+  #+begin_src shell
+    ldconfig
+  #+end_src
+- Create a soft link for headers.
+  #+begin_src shell
+    ln -s /opt/armadillo/include/* /usr/local/include/
+  #+end_src
+** Building & linking
+- Due to the soft links in =/usr/local/include=, the headers can already be found.
+- Due to =/etc/ld.so.conf.d/arma.conf=, the object files in the library can be directly linked by option =-larmadillo=, e.g.,
+  #+begin_src shell
+    g++ main.cpp -o main -O2 -std=c++14 -larmadillo
+  #+end_src
 * Usage
 Note that the detailed usage of the libraries can be found in its [[https://arma.sourceforge.net/docs.html][online manual]], and this post just provides a brief and incomplete summary as a quick lookup reference after my walking through the manual.
 ** Typedef for basic elements
@@ -396,5 +418,4 @@ Class =wall_clock= is simple timer to measure the elapsed seconds. It has 2 memb
 [fn:5] Reduce to transposition for real matrices. 
 [fn:4] /Tube/ is a subcube across all the slices. 
 [fn:3] For this reason, it is not recommended. 
-[fn:2] https://gitlab.com/conradsnicta/armadillo-code.git
 [fn:1] https://arma.sourceforge.net
