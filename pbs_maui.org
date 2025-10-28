@@ -16,7 +16,7 @@ yaourt maui
 #+END_SRC
 * Configuration
 ** Server (head node)
-*** =/var/spoo/torque/server_priv/nodes=
+*** =/var/spool/torque/server_priv/nodes=
 #+BEGIN_SRC sh
 node1 np=2
 node2 np=4
