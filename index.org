@@ -58,6 +58,7 @@
 - [[file:latex_pgfplots.org][LaTeX - Pgfplots]]
 - [[file:latex_tikz.org][LaTeX - Pgf/Tikz]]
 - [[file:rls.org][Least Square and Its Iterative Approach (RLS)]]
+- [[file:linux_usr_batch.org][Linux - Add User in a Batch Way]]
 - [[file:bash.org][Linux - Bash]]
 - [[file:tool.org][Linux - Command Line Tools]]
 - [[file:console.org][Linux - Customize Console]]

@@ -1,0 +1,11 @@
+#+TITLE: Linux - Add User in a Batch Way
+
+Following script can be used to add users in a batch way.
+#+begin_src bash
+  #!/bin/bash
+
+  for u in `seq 9`; do
+      useradd -m -G GROUP $u
+      echo $u | passwd -s $u
+  done
+#+end_src
