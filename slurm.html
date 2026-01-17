@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2026-01-18 Sun 00:31 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Slurm</title>
+<meta name="author" content="shaka" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Slurm</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4180fb8">Introduction</a></li>
+<li><a href="#orgae9e3b7">Installation</a></li>
+<li><a href="#orgfbabeac">Configuration</a>
+<ul>
+<li><a href="#org709c7bb">Head/server</a></li>
+<li><a href="#org4feacda">Node/client</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4180fb8" class="outline-2">
+<h2 id="org4180fb8">Introduction</h2>
+<div class="outline-text-2" id="text-org4180fb8">
+<p>
+<a href="https://slurm.schedmd.com">Slurm</a> is the most popular open-source workload manager for Linux clusters released under GNU GPL v2. As a cluster manager, slurm is widely used all over the world, from academic circles to industrial areas. On one hand, it virtualizes the physically individual computing nodes as a supercomputer whereby the procedure and method of visiting resources can be greatly simplified. On other hand, it provides automatic job submission/queuing/scheduling/executing, as well as results collection.
+</p>
+
+<p>
+Slurm is comprised of 3 daemons.
+</p>
+<ul class="org-ul">
+<li><code>slurmctld</code> is the controller daemon running on server.</li>
+<li><code>slurmdbd</code> is an optional but recommended daemon for database-based storage and statistics running on server. E.g., <code>MySQL/mariadb</code> can be installed.</li>
+<li><code>slurmd</code> is a client daemon running on each computing node.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgae9e3b7" class="outline-2">
+<h2 id="orgae9e3b7">Installation</h2>
+<div class="outline-text-2" id="text-orgae9e3b7">
+<p>
+In Linux, slurm can be easily installed. Taking Archlinux for instance, the installation can be completed via <code>pacman</code>, i.e., by running command <code>pacman -S slurm-llnl</code> on head/server and each computing node. Then package <code>slurm-llnl</code> as well as its dependency <code>munge</code> for authentication will be individually installed. Accordingly, a new user <code>slurm</code> will be added.
+</p>
+
+<p>
+Additionally, following optional services are encouraged.
+</p>
+<ul class="org-ul">
+<li>For host resolution within the cluster, a <i>network information service (NIS)</i> or a static <code>/etc/hosts</code> file is necessary.</li>
+<li>Network time synchronization should be achieved in the cluster. To this end, a <code>NTP</code> or <code>timesyncd</code> service should be started.</li>
+<li><i>Network file system (NFS)</i> can be individually installed and configured, see <a href="./nfs.html">NFS</a> for reference.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfbabeac" class="outline-2">
+<h2 id="orgfbabeac">Configuration</h2>
+<div class="outline-text-2" id="text-orgfbabeac">
+<p>
+After the intallation, slurm should be first configured before being used. All the configuration files reside in folder <code>/etc/slurm-llnl</code>. The configuration can be completed by a couple of methods below.
+</p>
+<ol class="org-ol">
+<li>Fill the blanks in the <a href="https://slurm.schedmd.com/configurator.html">online configurator</a> and then download the resultant file as configuration file, i.e., <code>slurm.conf</code>.</li>
+<li>Customize the examples (e.g., <code>cgroup.conf.example</code>, <code>slurm.conf.example</code>, <code>slurmdbd.conf.example</code>) and remove the extension <code>.example</code>.</li>
+</ol>
+
+<p>
+What's worth noting, all the nodes in the cluster should have the same key in <code>/etc/munge/munge.key</code> (in mode <code>0700</code> and owned by user <code>munge</code>). To this end, the file in head can be copied to each computing node.
+</p>
+
+<p>
+Additionally, <i>configless</i> configuration is an awesome feature whereby each computing node can pull the configuration from head instead of from an individual local file (i.e., <code>/etc/slurm-llnl/slurm.conf</code>).
+</p>
+</div>
+<div id="outline-container-org709c7bb" class="outline-3">
+<h3 id="org709c7bb">Head/server</h3>
+<div class="outline-text-3" id="text-org709c7bb">
+<ul class="org-ul">
+<li><p>
+<code>/etc/slurm-llnl/slurm.conf</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">slurm.conf file generated by configurator.html.
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Put this file on all nodes of your cluster.
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">See the slurm.conf man page for more information.
+</span><span style="color: #989898; font-style: italic;">#</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #00d3d0;">ClusterName</span>=CLUSTER
+<span style="color: #00d3d0;">SlurmctldHost</span>=head
+<span style="color: #00d3d0;">SlurmctldParameters</span>=enable_configless,reconfig_on_restart
+<span style="color: #00d3d0;">ProctrackType</span>=proctrack/cgroup
+<span style="color: #00d3d0;">RebootProgram</span>=reboot
+<span style="color: #00d3d0;">ReturnToService</span>=2
+<span style="color: #00d3d0;">SlurmctldPidFile</span>=/var/run/slurmctld.pid
+<span style="color: #00d3d0;">SlurmctldPort</span>=6817
+<span style="color: #00d3d0;">SlurmdPidFile</span>=/var/run/slurmd.pid
+<span style="color: #00d3d0;">SlurmdPort</span>=6818
+<span style="color: #00d3d0;">SlurmdSpoolDir</span>=/var/spool/slurmd
+<span style="color: #00d3d0;">SlurmUser</span>=slurm
+<span style="color: #00d3d0;">StateSaveLocation</span>=/var/spool/slurmctld
+<span style="color: #00d3d0;">TaskPlugin</span>=task/affinity,task/cgroup
+
+<span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">TIMERS
+</span><span style="color: #00d3d0;">InactiveLimit</span>=0
+<span style="color: #00d3d0;">KillWait</span>=30
+<span style="color: #00d3d0;">MinJobAge</span>=300
+<span style="color: #00d3d0;">SlurmctldTimeout</span>=120
+<span style="color: #00d3d0;">SlurmdTimeout</span>=300
+<span style="color: #00d3d0;">Waittime</span>=0
+
+<span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">SCHEDULING
+</span><span style="color: #00d3d0;">SchedulerType</span>=sched/backfill
+<span style="color: #00d3d0;">SelectType</span>=select/linear
+
+<span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">LOGGING AND ACCOUNTING
+</span><span style="color: #00d3d0;">AccountingStorageEnforce</span>=nosteps
+<span style="color: #00d3d0;">AccountingStorageHost</span>=localhost
+<span style="color: #00d3d0;">AccountingStorageType</span>=accounting_storage/slurmdbd
+<span style="color: #00d3d0;">AccountingStoragePass</span>=/var/run/munge/munge.socket.2
+<span style="color: #00d3d0;">AccountingStoreFlags</span>=job_script
+<span style="color: #00d3d0;">JobCompHost</span>=localhost
+<span style="color: #00d3d0;">JobCompPass</span>=SLURM
+<span style="color: #00d3d0;">JobCompType</span>=jobcomp/mysql
+<span style="color: #00d3d0;">JobCompUser</span>=slurm
+<span style="color: #00d3d0;">JobAcctGatherFrequency</span>=300
+<span style="color: #00d3d0;">SlurmctldDebug</span>=info
+<span style="color: #00d3d0;">SlurmctldLogFile</span>=/var/log/slurm-llnl/slurmctld.log
+<span style="color: #00d3d0;">SlurmdDebug</span>=info
+<span style="color: #00d3d0;">SlurmdLogFile</span>=/var/log/slurm-llnl/slurmd.log
+
+<span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">COMPUTE NODES (following information of each node can be obtained by running `slurmd -C' on each computing node)
+</span><span style="color: #00d3d0;">NodeName</span>=node<span style="color: #ffffff;">[</span>1-10<span style="color: #ffffff;">]</span> <span style="color: #00d3d0;">CPUs</span>=128 <span style="color: #00d3d0;">RealMemory</span>=1000000 <span style="color: #00d3d0;">Sockets</span>=2 <span style="color: #00d3d0;">CoresPerSocket</span>=64 <span style="color: #00d3d0;">ThreadsPerCore</span>=2 <span style="color: #00d3d0;">State</span>=UNKNOWN
+<span style="color: #00d3d0;">NodeName</span>=node<span style="color: #ffffff;">[</span>11-16<span style="color: #ffffff;">]</span> <span style="color: #00d3d0;">CPUs</span>=256 <span style="color: #00d3d0;">RealMemory</span>=1000000 <span style="color: #00d3d0;">Sockets</span>=2 <span style="color: #00d3d0;">CoresPerSocket</span>=64 <span style="color: #00d3d0;">ThreadsPerCore</span>=2 <span style="color: #00d3d0;">State</span>=UNKNOWN
+<span style="color: #00d3d0;">PartitionName</span>=QUEUE <span style="color: #00d3d0;">Nodes</span>=ALL <span style="color: #00d3d0;">Default</span>=YES <span style="color: #00d3d0;">MaxTime</span>=INFINITE <span style="color: #00d3d0;">State</span>=UP
+</pre>
+</div></li>
+<li><p>
+<code>/etc/slurm-llnl/cgroup.conf</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #989898; font-style: italic;">###</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #989898; font-style: italic;">#</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Slurm cgroup support configuration file
+</span><span style="color: #989898; font-style: italic;">#</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">See man slurm.conf and man cgroup.conf for further
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">information on cgroup configuration parameters
+</span><span style="color: #989898; font-style: italic;">#</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #00d3d0;">ConstrainCores</span>=yes
+<span style="color: #00d3d0;">ConstrainDevices</span>=yes
+<span style="color: #00d3d0;">ConstrainRAMSpace</span>=yes
+<span style="color: #00d3d0;">ConstrainSwapSpace</span>=yes
+</pre>
+</div></li>
+<li><p>
+<code>/etc/slurm-llnl/slurmdbd.conf</code> (this file should be <code>0640</code>, and owned by user <code>slurm</code>)
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #989898; font-style: italic;">#</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">See the slurmdbd.conf man page for more information.
+</span><span style="color: #989898; font-style: italic;">#</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Authentication info
+</span><span style="color: #00d3d0;">AuthType</span>=auth/munge
+<span style="color: #00d3d0;">AuthInfo</span>=/var/run/munge/munge.socket.2
+<span style="color: #989898; font-style: italic;">#</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">slurmDBD info
+</span><span style="color: #00d3d0;">DbdAddr</span>=localhost
+<span style="color: #00d3d0;">DbdHost</span>=localhost
+<span style="color: #00d3d0;">SlurmUser</span>=slurm
+<span style="color: #00d3d0;">DebugLevel</span>=verbose
+<span style="color: #00d3d0;">LogFile</span>=/var/log/slurm-llnl/slurmdbd.log
+<span style="color: #00d3d0;">PidFile</span>=/var/run/slurmdbd/slurmdbd.pid
+<span style="color: #989898; font-style: italic;">#</span><span style="color: #989898; font-style: italic;">
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Database info
+</span><span style="color: #00d3d0;">StorageType</span>=accounting_storage/mysql
+<span style="color: #00d3d0;">StorageHost</span>=localhost
+<span style="color: #00d3d0;">StoragePass</span>=SLURM
+<span style="color: #00d3d0;">StorageUser</span>=slurm
+<span style="color: #00d3d0;">StorageLoc</span>=slurm_acct_db
+</pre>
+</div></li>
+<li><p>
+<code>/etc/systemd/timesyncd.conf</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #ffffff;">[</span>Time<span style="color: #ffffff;">]</span>
+<span style="color: #00d3d0;">NTP</span>=0.pool.ntp.org
+</pre>
+</div></li>
+<li><p>
+<code>/etc/hosts</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Static table lookup for hostnames.
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">See hosts(5) for details.
+</span>127.0.0.1        localhost
+::1              localhost
+xx.xx.xx.xx      head
+xx.xx.xx.xx      node1
+xx.xx.xx.xx      node2
+xx.xx.xx.xx      node3
+xx.xx.xx.xx      node4
+xx.xx.xx.xx      node5
+</pre>
+</div></li>
+</ul>
+
+<p>
+Finally, enable and start <code>munge.service</code>, <code>slurmctld.service</code>, and <code>slurmdbd.service</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org4feacda" class="outline-3">
+<h3 id="org4feacda">Node/client</h3>
+<div class="outline-text-3" id="text-org4feacda">
+<ul class="org-ul">
+<li><p>
+<code>/etc/systemd/timesyncd.conf</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #ffffff;">[</span>Time<span style="color: #ffffff;">]</span>
+<span style="color: #00d3d0;">NTP</span>=head
+</pre>
+</div></li>
+<li><p>
+<code>/etc/hosts</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">Static table lookup for hostnames.
+</span><span style="color: #989898; font-style: italic;"># </span><span style="color: #989898; font-style: italic;">See hosts(5) for details.
+</span>127.0.0.1        localhost
+::1              localhost
+x.x.x.x          head
+</pre>
+</div></li>
+</ul>
+
+<p>
+Targeting configless mode, an additional parameter for head indication should be provided to the client service first.
+</p>
+<ol class="org-ol">
+<li>Edit the service by running <code>systemctl edit --full slurmd</code> and append an option <code>--conf-server head</code> to the <code>ExecStart</code>.</li>
+<li>Enable and start <code>munge.service</code> and <code>slurmd.service</code>.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
