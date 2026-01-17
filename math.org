@@ -61,6 +61,16 @@ $\forall \mathbf{A} = \begin{bmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots &\mat
 where $\mathbf{a}_i \otimes \mathbf{b}_i = \text{vec}\left(\mathbf{b}_i \mathbf{a}_i^T\right) \in \mathbb{C}^{nm}$, $\mathbf{a}_i \in \mathbb{C}^n$, $\mathbf{b}_i \in \mathbb{C}^m$, $i = 1, 2, \ldots, k$.
 * Calculus
 ** Differentiation
+*** Definition
+*** Trigonometric functions
+\begin{align*}
+\frac{d}{dx}\sin x &= \cos x\\
+\frac{d}{dx}\cos x &= -\sin x\\
+\frac{d}{dx}\tan x &= \sec^2 x\\
+\frac{d}{dx}\cot x &= -\csc^2 x\\
+\frac{d}{dx}\sec x &= \sec x \tan x\\
+\frac{d}{dx}\csc x &= -\csc x \cot x
+\end{align*}
 ** Integral
 *** Newton-Leibniz
 \begin{align*}
