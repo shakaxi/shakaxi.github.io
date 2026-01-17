@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2024-09-12 Thu 23:07 -->
+<!-- 2025-11-29 Sat 01:21 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mathematics</title>
@@ -241,7 +241,12 @@
 </li>
 <li><a href="#org36cfda1">Calculus</a>
 <ul>
-<li><a href="#orgacb53aa">Differentiation</a></li>
+<li><a href="#orgacb53aa">Differentiation</a>
+<ul>
+<li><a href="#orgd7cdf80">Definition</a></li>
+<li><a href="#orgfa55c3a">Trigonometric functions</a></li>
+</ul>
+</li>
 <li><a href="#org93078b1">Integral</a>
 <ul>
 <li><a href="#org185e3ff">Newton-Leibniz</a></li>
@@ -256,13 +261,13 @@
 <ul>
 <li><a href="#orgf932a55">Curve parameterization</a>
 <ul>
-<li><a href="#orgaafe2c2">Regular parameterization</a></li>
+<li><a href="#orgf61458d">Regular parameterization</a></li>
 </ul>
 </li>
 <li><a href="#orga465f8b">Scalar line integral</a></li>
 <li><a href="#orgaf49945">Vector line integral</a>
 <ul>
-<li><a href="#org99ea1d7">Orientation</a></li>
+<li><a href="#org29a5203">Orientation</a></li>
 </ul>
 </li>
 </ul>
@@ -271,13 +276,13 @@
 <ul>
 <li><a href="#org8a7aa4b">Surface parameterization</a>
 <ul>
-<li><a href="#org82d219a">Regular parameterization</a></li>
+<li><a href="#org609ec8f">Regular parameterization</a></li>
 </ul>
 </li>
 <li><a href="#orgbd84df8">Scalar surface integral</a></li>
 <li><a href="#org0bce988">Vector surface integral</a>
 <ul>
-<li><a href="#orgf4c35a8">Orientation</a></li>
+<li><a href="#orgd53d753">Orientation</a></li>
 </ul>
 </li>
 </ul>
@@ -417,6 +422,24 @@ where \(\mathbf{a}_i \otimes \mathbf{b}_i = \text{vec}\left(\mathbf{b}_i \mathbf
 </div>
 <div id="outline-container-orgacb53aa" class="outline-3">
 <h3 id="orgacb53aa">Differentiation</h3>
+<div class="outline-text-3" id="text-orgacb53aa">
+</div>
+<div id="outline-container-orgd7cdf80" class="outline-4">
+<h4 id="orgd7cdf80">Definition</h4>
+</div>
+<div id="outline-container-orgfa55c3a" class="outline-4">
+<h4 id="orgfa55c3a">Trigonometric functions</h4>
+<div class="outline-text-4" id="text-orgfa55c3a">
+\begin{align*}
+\frac{d}{dx}\sin x &= \cos x\\
+\frac{d}{dx}\cos x &= -\sin x\\
+\frac{d}{dx}\tan x &= \sec^2 x\\
+\frac{d}{dx}\cot x &= -\csc^2 x\\
+\frac{d}{dx}\sec x &= \sec x \tan x\\
+\frac{d}{dx}\csc x &= -\csc x \cot x
+\end{align*}
+</div>
+</div>
 </div>
 <div id="outline-container-org93078b1" class="outline-3">
 <h3 id="org93078b1">Integral</h3>
@@ -543,9 +566,9 @@ Generally, a smooth curve can be parameterized by
   \mathbf{r}(t) = \begin{bmatrix} x(t) \\ y(t) \\ z(t) \end{bmatrix}, \quad a \le t \le b.
 \end{align*}
 </div>
-<div id="outline-container-orgaafe2c2" class="outline-6">
-<h6 id="orgaafe2c2">Regular parameterization</h6>
-<div class="outline-text-6" id="text-orgaafe2c2">
+<div id="outline-container-orgf61458d" class="outline-6">
+<h6 id="orgf61458d">Regular parameterization</h6>
+<div class="outline-text-6" id="text-orgf61458d">
 <p>
 \(\forall t\in [a, b]\), if \(\mathbf{r}^\prime(t) \neq \mathbf{0}\), the parameterization is <i>regular</i> or <i>smooth</i>. The regularity ensures \(\mathbf{r}\) is a curve, but not just a point.
 </p>
@@ -594,9 +617,9 @@ where
 For vector line integral, the orientation of the curve does matter, i.e., \(\int_{\overset{\frown}{AB}} \mathbf{F} \cdot d\mathbf{r} = -\int_{\overset{\frown}{BA}} \mathbf{F} \cdot d\mathbf{r}\).
 </p>
 </div>
-<div id="outline-container-org99ea1d7" class="outline-6">
-<h6 id="org99ea1d7">Orientation</h6>
-<div class="outline-text-6" id="text-org99ea1d7">
+<div id="outline-container-org29a5203" class="outline-6">
+<h6 id="org29a5203">Orientation</h6>
+<div class="outline-text-6" id="text-org29a5203">
 <p>
 For a scalar line integral, neither the orientation nor the parameterization of a curve matters. So long as the curve is traversed once by the parameterization, the value of the line integral is unchanged. Differently, the orientation of a curve indeed matters for a vector line integral.
 </p>
@@ -638,9 +661,9 @@ For example, a sphere of radius \(\rho\) centered at the origin can be parameter
   \mathbf{r}(\theta, \phi) = \begin{bmatrix} \rho\sin\theta\cos\phi \\ \rho\sin\theta\sin\phi \\ \rho\cos\theta\end{bmatrix}; \quad 0 \le \theta \le \pi, 0 \le \phi \le 2\pi.
 \end{align*}
 </div>
-<div id="outline-container-org82d219a" class="outline-6">
-<h6 id="org82d219a">Regular parameterization</h6>
-<div class="outline-text-6" id="text-org82d219a">
+<div id="outline-container-org609ec8f" class="outline-6">
+<h6 id="org609ec8f">Regular parameterization</h6>
+<div class="outline-text-6" id="text-org609ec8f">
 <p>
 \(\forall(u, v)\), if cross product \(\mathbf{r}_u \times \mathbf{r}_v \neq \mathbf{0}\), the parameterization is <i>regular</i> or <i>smooth</i>. Similarly, the regularity ensures \(\mathbf{r}(u,v)\) is a surface, but not just a curve or even point.
 </p>
@@ -687,9 +710,9 @@ where
 <li>\(dS \triangleq \|d\mathbf{S}\| = \left\| \begin{bmatrix}dydz \\ dxdz \\ dxdy\end{bmatrix}\right\|\) is the surface area unit.</li>
 </ul>
 </div>
-<div id="outline-container-orgf4c35a8" class="outline-6">
-<h6 id="orgf4c35a8">Orientation</h6>
-<div class="outline-text-6" id="text-orgf4c35a8">
+<div id="outline-container-orgd53d753" class="outline-6">
+<h6 id="orgd53d753">Orientation</h6>
+<div class="outline-text-6" id="text-orgd53d753">
 <p>
 Similar to vector line integrals, we need to define an oriented surface for a surface integral of a vector field. The orientation means <i>upward/downward</i> for an oriented surface, or <i>outward/inward</i> for a sphere or a cylinder.
 </p>
