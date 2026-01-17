@@ -127,6 +127,7 @@
 - [[file:reg_exp.org][Regular Expression]]
 - [[file:capslk2ctrl.org][Remap CapsLock as Ctrl]]
 - [[file:slnr_bf.org][SLNR-based Beamforming]]
+- [[file:slurm.org][Slurm]]
 - [[file:sparse_array.org][Sparse Array]]
 - [[file:ssh.org][SSH]]
 - [[file:tr38901.org][TR38.901]]
