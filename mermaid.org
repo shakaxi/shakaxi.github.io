@@ -1,0 +1,54 @@
+#+TITLE: Mermaid
+
+Mermaid is a JavaScript-based software to draw a wide variety of diagrams and charts, e.g., flowchart, sequence, state, block, class, mindmap, Gantt, git, pie, etc.
+
+In Linux, mermaid can be directly installed via package manager. Taking ArchLinux for instance, it can be installed via pacman, i.e.,
+#+begin_src shell
+  pacman -S mermaid-cli
+#+end_src
+Then, the mermaid utility =mmdc= is available which takes a mermaid file (with a =.mmd= extension) as input and outputs a diagram.
+
+A mermaid-based diagram is comprised of 3 parts,
+- a YAML-based frontmatter (enclosed by a pair of triple-dash lines),
+- a type declaration, and
+- contents.
+#+begin_src shell
+---
+config:
+  theme: default/base/dark/forest/neutral/null
+  look: classic/handDrawn
+  layout: dagre/erk
+  maxTextSize: 50000
+  maxEdges: 500
+  darkMode: false/true
+  htmlLabels: false/true
+  fontFamily: serif/sans-serif/monospace/cursive/fantasy/system-ui/ui-serif/ui-sans-serif/ui-monospace/ui-rounded/math/fangsong
+  startOnLoad: true/false
+  arrowMarkerAbsolute: false/true
+  legacyMathML: false/true
+  forceLegacyMathML: false/true
+  deterministicIds: false/true
+  wrap: true/false
+  fontSize: 16
+  markdownAutoWrap: true/false
+  useMaxWidth: true/false
+---
+graph/sequenceDiagram/classDiagram/stateDiagram/erDiagram/journey/gantt/pie/quadrantChart/requirementDiagram/gitGraph/C4Context/mindmap/timeline/zenuml/sankey/xychart/block/xychart/kanban/architecture-beta/radar-beta/treemap-beta
+  CONTENTS
+#+end_src
+- A comment line starts with double percent signs (=%%=), and will be skipped by mermaid interpretor.
+- Any text (e.g., ) in Markdown format should be enclosed a pair of double quotes and double backticks, e.g., ="`text`"=.
+- An item (e.g., a node or a curve) can be mannually assigned with a ID for subsequent reference or further customization, e.g., =id@{...}=.
+- A node can be customized by setting its =fill=, =stroke=, =stroke-width=, =color=, etc.
+- A curve can be customized by setting its style, e.g., =basis=, =bumpX=, =bumpY=, =cardinal=, =catmullRom=, =linear=, =monotoneX=, =monotoneY=, =natural=, =step=, =stepAfter=, and =stepBefore=.
+- A set of customization can be achieved by defining a class, e.g., =classDef CLASSNAME stroke: none, fill:#f00=, and then the class name can be append to the ID of each target item (e.g., node, curve) via =:::=, e.g., =ID:::CLASSNAME=. Particularly, we can define a class termed =default=, which will be applied to all the items without any class specified, e.g., =classDef default fill:#f00,stroke:none=.
+- The links for node connection can be summarized in the table below.
+  | Length             | 1      | 2       | 3        |
+  |--------------------+--------+---------+----------|
+  | Plain              | =---=  | =----=  | =-----=  |
+  | Arrowed            | =-->=  | =--->=  | =---->=  |
+  | Bold               | =====  | ======  | =======  |
+  | Arrowed and bold   | ===>=  | ====>=  | =====>=  |
+  | Dotted             | =-.-=  | =-..-=  | =-...-=  |
+  | Arrowed and dotted | =-.->= | =-..->= | =-...->= |
+- What is exciting, mermaid supports fontawesome-based labels via =fa:ICONNAME=.

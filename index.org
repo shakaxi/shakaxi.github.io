@@ -89,6 +89,7 @@
 - [[file:math.org][Mathematics]]
 - [[file:matlab_fig.org][MATLAB - Figure Data Abstraction]]
 - [[file:matlab_ssh.org][MATLAB over SSH]]
+- [[file:mermaid.org][Mermaid]]
 - [[file:mmse_ce.org][MMSE-based Channel Estimation]]
 - [[file:music.org][Multiple Signal Classification (MUSIC)]]
 - [[file:mutt.org][Mutt]]
