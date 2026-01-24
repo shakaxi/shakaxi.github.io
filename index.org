@@ -68,6 +68,7 @@
 - [[file:hyprland.org][Linux - Hyprland]]
 - [[file:makefile.org][Linux - Makefile]]
 - [[file:microcode.org][Linux - Microcode]]
+- [[file:linux_net_bond.org][Linux - Network Bonding]]
 - [[file:nfs.org][Linux - Network File System (NFS)]]
 - [[file:ntp.org][Linux - Network time protocol (NTP)]]
 - [[file:ranger.org][Linux - Ranger]]

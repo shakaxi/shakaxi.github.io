@@ -1,0 +1,42 @@
+#+TITLE: Linux - Network Bonding
+
+Just as its name indicates, /network bonding/ is a technique to bond a plurality of network interface together for load balance and a wider bandwidth.
+
+The configuration of network bonding is simple. Taking ArchLinux for instance, the network bonding of 2 network interfaces (e.g., =eth0= and =eth1=) can be configured as follows.
+- =/etc/systemd/network/10-bond0-eth0.network=
+  #+begin_src shell
+    [Match]
+    Name=eth0
+
+    [Network]
+    Bond=bond0
+  #+end_src
+- =/etc/systemd/network/10-bond0-eth1.network=
+  #+begin_src shell
+    [Match]
+    Name=eth1
+
+    [Network]
+    Bond=bond0
+  #+end_src
+- =/etc/systemd/network/10-bond0.netdev=
+  #+begin_src shell
+    [NetDev]
+    Name=bond0
+    Kind=bond
+
+    [Bond]
+    Mode=802.3ad
+    LACPTransmitRate=fast
+    MIIMonitorSec=100ms
+  #+end_src
+- =/etc/systemd/network/10-bond0.network=
+  #+begin_src shell
+    [Match]
+    Name=bond0
+
+    [Network]
+    Address=xxx.xxx.xxx.xxx/24
+    Gateway=xxx.xxx.xxx.xxx
+    DNS=xxx.xxx.xxx.xxx
+  #+end_src
