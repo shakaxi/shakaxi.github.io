@@ -1,0 +1,48 @@
+#+TITLE: RIME Input Method Engine (RIME)
+
+[[https://rime.im][Rime input method engine (RIME)]] is an excellent input method application, which can be run on a variety of platforms, e.g., Linux, MacOS, and Windows.
+
+RIME does not come with a frontend. Therefore, RIME as well as its frontend (e.g., =fcitx5= or =ibus=) can be installed together.
+#+begin_src sh
+  pacman -S librime fcitx5-im
+#+end_src
+
+Among the RIME solutions, =wanxiang= is a good choice. On ArchLinux, it can be easily installed by
+#+begin_src sh
+  yay -S rime-wanxiang-updater
+#+end_src
+After the installation, run =rime-wanxiang-updater= to update the data and complete the configuration.
+
+Besides setting the environment variables (referred to [[file:hyprland.org][hyprland]]), another configuration file for further customization is necessary, e.g.,
+- =~/.local/share/fcitx5/rime/default.custom.yaml=
+  #+begin_src sh
+    patch:
+      menu/page_size: 9
+      ascii_composer:
+        switch_key/Caps_Lock: noop
+      key_binder/bindings:
+        - { when: has_menu, accept: comma, send: Page_Up }
+        - { when: has_menu, accept: period, send: Page_Down }
+  #+end_src
+- =~/.local/share/fcitx5/rime/wanxiang.custom.yaml=
+  #+begin_src sh
+    patch:
+      switches:
+        - name: ascii_mode                    # 中英输入状态
+          states: [ 中文, 英文 ]
+          reset: 0
+        - name: ascii_punct                   # 中英标点，可以在中文输入状态输入英文符号
+          states: [ 中标, 英标 ]
+          reset: 0
+        - name: full_shape                    #全角、半角字符输出
+          states: [ 半角, 全角 ]
+          reset: 0
+        - name: simplification
+          reset: 1
+        - name: abbrev
+          states: [ 简码关, 简码开 ]
+          reset: 1
+        - options: [comment_off, tone_hint, toneless_hint]
+          states: [ 注释关, 有声调, 无声调 ]
+          reset: 1
+  #+end_src

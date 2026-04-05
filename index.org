@@ -128,6 +128,7 @@
 - [[file:python_virtualenv.org][Python - Virtual Environment]]
 - [[file:reg_exp.org][Regular Expression]]
 - [[file:capslk2ctrl.org][Remap CapsLock as Ctrl]]
+- [[file:rime.org][RIME Input Method Engine (RIME)]]
 - [[file:slnr_bf.org][SLNR-based Beamforming]]
 - [[file:slurm.org][Slurm]]
 - [[file:sparse_array.org][Sparse Array]]
