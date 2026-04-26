@@ -18,6 +18,7 @@
 - [[file:cpp_polymorphism.org][C++ - Polymorphism]]
 - [[file:crb.org][Cramer-Rao Bound]]
 - [[file:cpp_singleton.org][C++ - Singleton]]
+- [[file:cpp_span.org][C++ - Span]]
 - [[file:cpp_stl.org][C++ - Standard Template Library (STL)]]
 - [[file:cpp_tp.org][C++ - Thread Pool]]
 - [[file:cpp_sl.org][C++ - 标准库]]

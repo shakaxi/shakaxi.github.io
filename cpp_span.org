@@ -1,0 +1,19 @@
+#+TITLE: C++ - Span
+
+/std::span/ is a class template introduced in C++ 20. As one of the most paramount features, span is essentially a non-owning view of a sequence of objects, which is contiguously distributed in memory and can consequently be iterated and indexed, e.g., =std::array=, =std::vector=, =std::string=.
+
+* Constructors
+- =span(ptr)=
+- =span(ptr, len)=
+- =span(starting_ptr, ending_ptr)=
+* Member functions
+- =first(num)= returns a new span comprising the first =num= elements.
+- =last(num)= returns a new span comprising the last =num= elements.
+- =front()= / =data()= returns a reference to the first element.
+- =back()= returns a reference to the last element.
+- =at(idx)= / =operator[idx]= returns a reference to the =idx= th element.
+- =subspan(starting_idx, len)= returns a new span of length =len= starting from =starting_idx= th element.
+- =size()= returns the number of elements in the span.
+- =empty()= returns a boolean indicator whether the span is empty.
+- =begin()= returns the iterator to the beginning of the span.
+- =end()= returns the iterator to the ending (sentinel) of the span.
