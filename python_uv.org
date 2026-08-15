@@ -1,0 +1,76 @@
+#+TITLE: Python - UV
+
+As another tool for Python, =uv= is written by rust and provides integrated experience, e.g.
+- interpretor management (by =uv python=)
+- virtual environment manangement (by =uv venv=)
+- package management (by =uv pip=)
+- project management (by =uv init/add/lock/sync=)
+
+In Archlinux, =uv= can be easily installed by pacman, i.e.,
+#+begin_src shell
+  pacman -S uv
+#+end_src
+
+Its usage can be summarized as follows. Note that, if a virtual environment has already activated, then the argument =--python /PATH/TO/ENVIRONMENT= below can be omitted.
+* Python interpretor management
+- List the interpretors.
+  #+begin_src shell
+    uv python list
+  #+end_src
+- Install an interpretor.
+  #+begin_src shell
+    uv python install x.y[.z]
+  #+end_src
+* Virtual environment
+- Create a virtual environment based on the system interpretor.
+  #+begin_src shell
+    uv venv --python /usr/bin/python /PATH/TO/ENVIRONMENT
+  #+end_src
+- Create a virtual environment based on a specified interpretor.
+  #+begin_src shell
+    uv venv --python x.y[.z] /PATH/TO/ENVIRONMENT
+  #+end_src
+* Run a Python script or a function
+#+begin_src shell
+  uv run [--python /PATH/TO/ENVIRONMENT] SCRIPT.py
+#+end_src
+* Package management
+- List the [outdated] packages installed.
+  #+begin_src shell
+    uv pip list [--outdated] [--python /PATH/TO/ENVIRONMENT]
+  #+end_src
+- List the details of a package.
+  #+begin_src shell
+    uv pip show [--python /PATH/TO/ENVIRONMENT] PACKAGE_NAME
+  #+end_src
+- Install a package.
+  #+begin_src shell
+    uv pip install [--python /PATH/TO/ENVIRONMENT] PACKAGE_NAME
+  #+end_src
+- Install packages from a list.
+  #+begin_src shell
+    uv pip install [--python /PATH/TO/ENVIRONMENT] -r requirements.txt
+  #+end_src
+- Upgrade a package.
+  #+begin_src shell
+    uv pip install [--python /PATH/TO/ENVIRONMENT] --upgrade PACKAGE_NAME
+  #+end_src
+- Update packages from a list.
+  #+begin_src shell
+    uv pip install [--python /PATH/TO/ENVIRONMENT] --upgrade -r requirements.txt
+  #+end_src
+- Remove a package.
+  #+begin_src shell
+    uv pip uninstall [--python /PATH/TO/ENVIRONMENT] PACKAGE_NAME
+  #+end_src
+- Export the list of installed packages.
+  #+begin_src shell
+    uv pip freeze [--python /PATH/TO/ENVIRONMENT] > requirements.txt
+  #+end_src
+* Mirror configuration
+A mirror site can be configured in =~/.config/uv/uv.toml= or =/etc/uv/uv.toml=.
+#+begin_src toml
+  [[index]]
+  url = "https://mirrors.aliyun.com/pypi/simple"
+  default = true
+#+end_src

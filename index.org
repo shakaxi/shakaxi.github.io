@@ -126,6 +126,7 @@
 - [[file:python_qam.org][Python - QAM]]
 - [[file:python_tdoc.org][Python - TDoc]]
 - [[file:python_tensorflow.org][Python - Tensorflow]]
+- [[file:python_uv.org][Python - UV]]
 - [[file:python_virtualenv.org][Python - Virtual Environment]]
 - [[file:reg_exp.org][Regular Expression]]
 - [[file:capslk2ctrl.org][Remap CapsLock as Ctrl]]
