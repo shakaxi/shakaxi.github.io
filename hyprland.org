@@ -20,7 +20,7 @@ Hyprland's core components and necessary applications can be simply installed an
 - =qt5-wayland/qt6-wayland=: Wayland support for QT
 * Installation
 #+BEGIN_SRC sh
-  pacman -S hyprland waybar foot fuzzel swaybg swaylock light grim slurp ttf-font-awesome qt5-wayland qt6-wayland blueman network-manager-applet pipewire wireplumber xdg-desktop-portal-hyprland-git
+  pacman -S hyprland waybar foot fuzzel swaybg swaylock light grim slurp ttf-font-awesome qt5-wayland qt6-wayland blueman network-manager-applet pipewire wireplumber xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 #+END_SRC
 * Configuration
 By default, all the configuration files are stored in directory =~/.config/hypr=.
