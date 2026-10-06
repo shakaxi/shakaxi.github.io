@@ -23,13 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Gitee repository
-        uses: actions/checkout@v5
-        with:
-          repository: shakaxi/blog
-          ref: master                                  # Gitee 仓库的默认分支
-          token: ${{ secrets.GITEE_TOKEN }}
-          submodules: recursive
-          fetch-depth: 0
+        run: |
+          git clone --depth 1 --recursive https://${{ secrets.GITEE_TOKEN }}@gitee.com/shakaxi/blog.git .
+          git checkout master
+          git submodule update --init --recursive --depth 1
 
       - name: Setup Pages
         id: pages
