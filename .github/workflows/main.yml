@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Gitee repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: shakaxi/blog
           ref: master                                  # Gitee 仓库的默认分支
