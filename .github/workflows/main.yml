@@ -3,6 +3,8 @@ name: Build and Deploy Hugo from Gitee
 on:
   push:
     branches: [master]
+  schedule:
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 permissions:
