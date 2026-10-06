@@ -2,8 +2,8 @@ name: Build and Deploy Hugo from Gitee
 
 on:
   push:
-    branches: [master]        # 如果 Gitee 仓库默认分支是 main，改为 main
-  workflow_dispatch:           # 允许手动触发
+    branches: [master]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -24,8 +24,7 @@ jobs:
     steps:
       - name: Checkout Gitee repository
         run: |
-          git clone --depth 1 --recursive https://${{ secrets.GITEE_TOKEN }}@gitee.com/shakaxi/blog.git .
-          git checkout master
+          git clone --depth 1 --branch master --recursive https://${{ secrets.GITEE_TOKEN }}@gitee.com/shakaxi/blog.git .
           git submodule update --init --recursive --depth 1
 
       - name: Setup Pages
