@@ -23,8 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Gitee repository
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         run: |
-          git clone --depth 1 --branch master --recursive https://shakaxi:${{ secrets.GITEE_TOKEN }}@gitee.com/shakaxi/blog.git .
+          git clone --depth 1 --branch master --recursive https://shakaxi:${GITEE_TOKEN}@gitee.com/shakaxi/blog.git .
           git submodule update --init --recursive --depth 1
 
       - name: Setup Pages
