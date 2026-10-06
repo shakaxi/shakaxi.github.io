@@ -1,0 +1,61 @@
+name: Build and Deploy Hugo from Gitee
+
+on:
+  push:
+    branches: [master]        # 如果 Gitee 仓库默认分支是 main，改为 main
+  workflow_dispatch:           # 允许手动触发
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Gitee repository
+        uses: actions/checkout@v4
+        with:
+          repository: shakaxi/blog
+          ref: master                                  # Gitee 仓库的默认分支
+          token: ${{ secrets.GITEE_TOKEN }}
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.167.0'
+          extended: true
+
+      - name: Build with Hugo
+        run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
